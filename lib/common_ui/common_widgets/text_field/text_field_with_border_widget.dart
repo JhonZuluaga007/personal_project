@@ -66,32 +66,30 @@ class TextFieldWithBorderWidget extends StatelessWidget {
           labelStyle: textStyle ??
               TextStyle(
                 fontFamily: 'Poppins',
-                color: textColor ?? color.mapColors['P00'],
+                color: textColor ?? color.mapColors['IDGrey'],
                 fontSize: 14,
                 fontWeight: FontWeight.normal,
               ),
           hintStyle: hintStyle ??
               TextStyle(
                 fontFamily: 'Poppins',
-                color: textColor ?? color.mapColors['P00'],
+                color: textColor ?? color.mapColors['IDGrey'],
                 fontSize: 14,
                 fontWeight: FontWeight.normal,
               ),
           enabledBorder: enabledBorder ??
               OutlineInputBorder(
                 borderSide: BorderSide(
-                  color: borderColor ?? color.mapColors['P00']!,
+                  color: borderColor ?? color.mapColors['IDGrey']!,
                   width: 1,
                 ),
-                borderRadius: BorderRadius.circular(8),
               ),
           focusedBorder: focusedBorder ??
               OutlineInputBorder(
                 borderSide: BorderSide(
-                  color: borderColor ?? color.mapColors['P00']!,
+                  color: borderColor ?? color.mapColors['IDGrey']!,
                   width: 1,
                 ),
-                borderRadius: BorderRadius.circular(8),
               ),
           filled: false,
           fillColor: fillColor ?? color.mapColors['P00'],

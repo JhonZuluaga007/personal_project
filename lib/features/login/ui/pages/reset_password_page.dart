@@ -1,23 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:personal_project/common_ui/common_widgets/text_field/text_field_with_border_widget.dart';
 import 'package:personal_project/config/theme/theme.dart';
-import 'package:personal_project/features/login/ui/pages/reset_password_page.dart';
 
 import '../../../../common_ui/common_pages/my_app_scaffold_page.dart';
 import '../../../../common_ui/common_widgets/buttons/button_widget.dart';
 import '../../../../common_ui/common_widgets/responsive/dynamic_container_widget.dart';
 import '../../../../common_ui/common_widgets/text/text_widget.dart';
-import '../widgets/line_row_widget.dart';
-import '../widgets/login_text_widget.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+class ResetPassword extends StatefulWidget {
+  const ResetPassword({Key? key}) : super(key: key);
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<ResetPassword> createState() => _ResetPasswordState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _ResetPasswordState extends State<ResetPassword> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController nameController = TextEditingController();
   final TextEditingController userNameController = TextEditingController();
@@ -111,48 +109,37 @@ class _LoginPageState extends State<LoginPage> {
             ],
           ),
         ),
-        SizedBox(height: height * 0.03),
-        Center(
-          child: ButtonWidget(
-            key: const Key('buttonRegisterLogin'),
-            borderColor: wColor.mapColors['IDPink'],
-            textColor: Colors.white,
-            buttonString: '01_login_button_one',
-            onPressed: () => Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const ResetPassword()),
-            ),
-            buttonColor: wColor.mapColors['IDPink'],
-          ),
-        ),
-        SizedBox(height: height * 0.05),
-        LoginTextWidget(width: width),
-        SizedBox(height: height * 0.05),
-        LineRowWidget(width: width, wColor: wColor),
-        SizedBox(height: height * 0.05),
+        SizedBox(height: height * 0.049),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(
-              Icons.smartphone_rounded,
-              color: wColor.mapColors['IDBlack'],
-            ),
-            SizedBox(width: width * 0.01),
-            TextWidget(
-              text: '01_login_button_two',
-              style: TextStyle(color: wColor.mapColors['IDGrey']),
-            ),
-            SizedBox(width: width * 0.01),
-            GestureDetector(
-              onTap: () {},
-              child: Text(
-                'Click here',
-                style: TextStyle(
-                    decoration: TextDecoration.underline,
-                    color: wColor.mapColors['IDGrey']),
-              ),
-            )
+            SizedBox(width: width * 0.04),
+            // ButtonWidget(
+            //     key: const Key('buttonLogin'),
+            //     borderColor: wColor.mapColors['P00'],
+            //     textColor: Colors.white,
+            //     width: width * 0.30,
+            //     buttonString: '01_login_button_two',
+            //     //TODO validadr el ingreso hacia la aplicacion
+            //     onPressed: () => Navigator.push(
+            //           context,
+            //           MaterialPageRoute(builder: (context) => const TabsPage()),
+            //         ),
+            //     buttonColor: wColor.mapColors['P00']),
           ],
+        ),
+        SizedBox(height: height * 0.05),
+        const SizedBox(
+          width: double.infinity,
+          child: TextWidget(
+            text: '01_login_recover_password',
+            style: TextStyle(
+                color: Colors.grey,
+                fontSize: 16,
+                fontWeight: FontWeight.normal,
+                decoration: TextDecoration.underline),
+            textAlign: TextAlign.center,
+          ),
         )
       ],
     );
