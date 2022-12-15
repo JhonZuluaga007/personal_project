@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../common_ui/common_widgets/text/text_widget.dart';
+import '../pages/reset_password_page_info_1.dart';
 
 class LoginTextWidget extends StatelessWidget {
   const LoginTextWidget({
@@ -31,7 +32,12 @@ class LoginTextWidget extends StatelessWidget {
             SizedBox(width: width * 0.01),
             GestureDetector(
               onTap: () {
-                //TODO open reset password
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const ResetPasswordPageInfo()),
+                );
+                print('OLA');
               },
               child: const TextWidget(
                 text: 'Click here',

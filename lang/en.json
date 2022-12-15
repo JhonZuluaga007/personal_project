@@ -1,7 +1,7 @@
 {
     "01_login_title" : "Enter login credentials",
     "01_login_text_one" : "We are glad to have you here. We hope that you enjoy our application.",
-    "01_login_recover_password" : "First time user or Forgotten password?",
+    "01_login_recover_password" : "Forgotten password?",
     "01_login_input_one" : "Username",
     "01_login_input_hint_one" : "salbisserc12",
     "01_login_input_two" : "Password",
@@ -9,15 +9,22 @@
     "01_login_button_one" : "Enter",
     "01_login_button_two" : "Sign in with your cellphone number.",
 
-    "02_login_title" : "Enter login credentials",
-    "02_login_text_one" : "We are glad to have you here. We hope that you enjoy our application.",
-    "02_login_recover_password" : "First time user or Forgotten password?",
-    "02_login_input_one" : "Username",
-    "02_login_input_hint_one" : "salbisserc12",
-    "02_login_input_two" : "Password",
-    "02_login_input_hint_two" : "12345786",
-    "02_login_button_one" : "Enter",
-    "02_login_button_two" : "Sign in with your cellphone number."
+    "02_forgotten_password_title" : "Forgotten Password",
+    "02_forgotten_password_text_one" : "Please enter your email or the username you use to log into the application",
+    "02_forgotten_password_label_input" : "E-mail address or User ID",
+    "02_forgotten_password_hint_input" : "",
+    "02_forgotten_password_button" : "Submit",
+    "02_forgotten_password_text_two" : "Back to login page",
+    "02_forgotten_password_text_three" : "The system will send you an email with instructions for setting your new password.",
+    
 
+    "03_reset_password_title" : "Reset Password",
+    "03_reset_password_text_one" : "Please enter the new password that you want to use.",
+    "03_reset_password_label_input_one" : "Enter the new password",
+    "03_reset_password_hint_input_one" : "New password",
+    "03_reset_password_label_input_two" : "Confirm the new password",
+    "03_reset_password_hint_input_two" : "Confirm password",
+    "03_reset_password_button" : "Reset password",
+    "03_reset_password_text_two" : "Back to login page"
 
 }

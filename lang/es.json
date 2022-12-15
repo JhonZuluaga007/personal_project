@@ -9,7 +9,25 @@
     "01_login_input_hint_two" : "12345786",
 
     "01_login_button_one" : "Ingresa",
-    "01_login_button_two" : "Ingresa con tu número de celular."
+    "01_login_button_two" : "Ingresa con tu número de celular.",
+
+    "02_forgotten_password_title" : "Contraseña olvidada",
+    "02_forgotten_password_text_one" : "Utiliza tu email o el usuario que utilizas para ingresar a la aplicación",
+    "02_forgotten_password_label_input" : "Email o usuario",
+    "02_forgotten_password_hint_input" : "",
+    "02_forgotten_password_button" : "Enviar",
+    "02_forgotten_password_text_two" : "Volver a inicio de sesión",
+    "02_forgotten_password_text_three" : "El sistema te enviara un correo con instrucciones para activar tu nueva Contraseña.",
+    
+
+    "03_reset_password_title" : "Reiniciar Contraseña",
+    "03_reset_password_text_one" : "Porfavor ingresa la nueva Contraseña que quieres utilizar.",
+    "03_reset_password_label_input_one" : "Ingresa la nueva Contraseña",
+    "03_reset_password_hint_input_one" : "Nueva contraseña",
+    "03_reset_password_label_input_two" : "Confirmar la nueva contraseña",
+    "03_reset_password_hint_input_two" : "Confirma contraseña",
+    "03_reset_password_button" : "Reiniciar contraseña",
+    "03_reset_password_text_two" : "Volver a inicio de sesión"
 
 
 }

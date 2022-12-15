@@ -28,10 +28,14 @@ class MyAppScaffold extends StatelessWidget {
       appBar: appBar,
       body: SafeArea(
         child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: mainAxisAlignment ?? MainAxisAlignment.start,
-            crossAxisAlignment: crossAxisAlignment ?? CrossAxisAlignment.center,
-            children: children,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: Column(
+              mainAxisAlignment: mainAxisAlignment ?? MainAxisAlignment.start,
+              crossAxisAlignment:
+                  crossAxisAlignment ?? CrossAxisAlignment.center,
+              children: children,
+            ),
           ),
         ),
       ),
