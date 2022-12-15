@@ -1,0 +1,23 @@
+{
+    "01_login_title" : "Enter login credentials",
+    "01_login_text_one" : "We are glad to have you here. We hope that you enjoy our application.",
+    "01_login_recover_password" : "First time user or Forgotten password?",
+    "01_login_input_one" : "Username",
+    "01_login_input_hint_one" : "salbisserc12",
+    "01_login_input_two" : "Password",
+    "01_login_input_hint_two" : "12345786",
+    "01_login_button_one" : "Enter",
+    "01_login_button_two" : "Sign in with your cellphone number.",
+
+    "02_login_title" : "Enter login credentials",
+    "02_login_text_one" : "We are glad to have you here. We hope that you enjoy our application.",
+    "02_login_recover_password" : "First time user or Forgotten password?",
+    "02_login_input_one" : "Username",
+    "02_login_input_hint_one" : "salbisserc12",
+    "02_login_input_two" : "Password",
+    "02_login_input_hint_two" : "12345786",
+    "02_login_button_one" : "Enter",
+    "02_login_button_two" : "Sign in with your cellphone number."
+
+
+}
