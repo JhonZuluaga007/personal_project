@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:personal_project/app_localizations.dart';
 import 'package:personal_project/config/theme/theme.dart';
 import 'package:personal_project/home/navigationBar/floating_nav_bar.dart';
 import 'package:personal_project/home/navigationBar/floating_nav_bar_item.dart';
@@ -45,13 +46,13 @@ class _NavBarPageState extends State<NavBarPage> {
     final currentIndex = tabs.keys.toList().indexOf(_currentPage);
     final itemsPerson = [
       buttonNavbarWidget(
-          currentIndex, 0, IconsFolderCovid.home, "Home"),
+          currentIndex, 0, IconsFolderCovid.home, "nav_bar_01"),
       buttonNavbarWidget(
-          currentIndex, 1, IconsFolderCovid.covid_19Test, "Covid-19 Tests"),
+          currentIndex, 1, IconsFolderCovid.covid_19Test, "nav_bar_02"),
       buttonNavbarWidget(
-          currentIndex, 2, IconsFolderCovid.myUser, "My users"),
+          currentIndex, 2, IconsFolderCovid.myUser, "nav_bar_03"),
       buttonNavbarWidget(
-          currentIndex, 2, IconsFolderCovid.iconFAQS, "FAQS"),
+          currentIndex, 2, IconsFolderCovid.iconFAQS, "nav_bar_04"),
     ];
     
     return Scaffold(
@@ -78,7 +79,7 @@ class _NavBarPageState extends State<NavBarPage> {
   FloatingNavbarItem buttonNavbarWidget(
       int currentIndex, int index, String iconsActive, String testNavBarIcon) {
     return FloatingNavbarItem(
-      title: testNavBarIcon,
+      title: AppLocalizations.of(context)!.translate(testNavBarIcon),
         customWidget: Image.asset(
                 iconsActive,
                 height: 30,
