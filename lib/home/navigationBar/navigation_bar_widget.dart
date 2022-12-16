@@ -6,7 +6,8 @@ import 'package:personal_project/home/navigationBar/floating_nav_bar_item.dart';
 import 'package:personal_project/home/page/FAQS_page.dart';
 import 'package:personal_project/home/page/register_antigen_test_page.dart';
 import 'package:personal_project/home/page/home_page.dart';
-import 'package:personal_project/home/page/my_users_page.dart';
+import 'package:personal_project/home/page/history_page.dart';
+import 'package:personal_project/home/page/register_pcr_test_page.dart';
 import 'package:personal_project/icons/icons.dart';
 
 class NavBarPage extends StatefulWidget {
@@ -36,7 +37,8 @@ class _NavBarPageState extends State<NavBarPage> {
     Map<String, Widget> personHomePageTabs = {
       'HomePage': const HomePage(),
       'registerAntigen': const RegisterAntigenTestPage(),
-      'my_users': const MyUserPage(),
+      'registerPcr': const RegisterPCRTestPage(),
+      'history': const HistoryPage(),
       "FAQS_page": const FAQSPage()
     };
 
