@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:personal_project/home/navigationBar/floating_nav_bar_item.dart';
+import 'package:personal_project/navigationBar/floating_nav_bar_item.dart';
 
 typedef ItemBuilder = Widget Function(BuildContext context, FloatingNavbarItem items);
 

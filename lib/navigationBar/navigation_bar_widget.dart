@@ -2,8 +2,8 @@
 import 'package:flutter/material.dart';
 import 'package:personal_project/app_localizations.dart';
 import 'package:personal_project/config/theme/theme.dart';
-import 'package:personal_project/home/navigationBar/floating_nav_bar.dart';
-import 'package:personal_project/home/navigationBar/floating_nav_bar_item.dart';
+import 'package:personal_project/navigationBar/floating_nav_bar.dart';
+import 'package:personal_project/navigationBar/floating_nav_bar_item.dart';
 import 'package:personal_project/home/page/FAQS_page.dart';
 import 'package:personal_project/home/page/covid_test_page.dart';
 import 'package:personal_project/home/page/home_page.dart';

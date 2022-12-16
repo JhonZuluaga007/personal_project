@@ -21,6 +21,11 @@
     "nav_bar_01": "Home",
     "nav_bar_02": "Covid-19 Tests",
     "nav_bar_03": "Mi usuario",
-    "nav_bar_04": "FAQS"
+    "nav_bar_04": "FAQS",
+
+    "home_name_user": "Hola Sebastian, bienvenido",
+    "home_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ultrices\n praesent et porta odio purus vulputate convallis. Fermentum,\nermentum morbi dui nec rhoncus suspendisse aliquam urn.",
+    "home_title_card": "Que quieres hacer hoy"
+
 
 }

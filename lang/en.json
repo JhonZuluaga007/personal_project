@@ -27,7 +27,12 @@
     "text_button_onboarding": "Continue",
 
     "nav_bar_01": "Home",
-    "nav_bar_02": "Covid-19 Tests",
+    "nav_bar_02": "Covid-19\nTests",
     "nav_bar_03": "My users",
-    "nav_bar_04": "FAQS"
+    "nav_bar_04": "FAQS",
+
+    "home_name_user": "Hi Sebastian, welcome",
+    "home_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ultrices\npraesent et porta odio purus vulputate convallis. Fermentum,\nermentum morbi dui nec rhoncus suspendisse aliquam urn.",
+    "home_title_card": "What do you want to do today"
+
 }
