@@ -9,7 +9,18 @@
     "01_login_input_hint_two" : "12345786",
 
     "01_login_button_one" : "Ingresa",
-    "01_login_button_two" : "Ingresa con tu número de celular."
+    "01_login_button_two" : "Ingresa con tu número de celular.",
 
+    "onboarding_one": "Onboarding",
+    "onboarding_number_1": "Onboarding Number 1",
+    "onboarding_number_2": "Onboarding Number 2",
+    "onboarding_description_1": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Leo,\namet, mi diam magna libero. Fermentum ultricies id nisi, feugiat\ntellus ullamcorper integer feugiat. Nisl, at eu praesent nisl, non.\nOdio ultricies pellentesque habitasse mauris turpis. Aenean vitae\nblandit sed suspendisse. Arcu bibendum ultrices diam vitae curabitur erat faucibus adipiscing in. Velit lacinia vestibulum\negestas at. Sem mattis interdum gravida magnis sit adipiscing.\nVelit nisi, congue rutrum facilisi egestas ipsum nam ut.",
+    "onboarding_description_2": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Leo, amet\n,mi diam magna libero. Fermentum ultricies id nisi, feugiat tellus\nullamcorper integer feugiat. Nisl, at eu praesent nisl, non. Odio\nultricies pellentesque habitasse mauris turpis. Aenean vitae\nblandit sed suspendisse. Arcu bibendum ultrices diam vitae\ncurabitur erat faucibus adipiscing in. Velit lacinia vestibulum\negestas at. Sem mattis interdum gravida magnis sit adipiscing.\nVelit nisi, congue rutrum facilisi egestas ipsum nam ut.",
+    "text_button_onboarding": "Continuar",
+
+    "nav_bar_01": "Home",
+    "nav_bar_02": "Covid-19 Tests",
+    "nav_bar_03": "Mi usuario",
+    "nav_bar_04": "FAQS"
 
 }
