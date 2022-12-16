@@ -46,5 +46,8 @@ class ThemesIdx20 {
     'IDGrey': const Color.fromRGBO(121, 122, 125, 1),
     'IDRed': const Color.fromRGBO(212, 21, 56, 1),
     'IDWhite': const Color.fromRGBO(255, 255, 255, 1),
+    "S600": const Color.fromRGBO(121, 122, 125, 1),
+    "S800": const Color.fromRGBO(60, 61, 62, 1),
+    "500BASE": const Color.fromRGBO(244, 145, 163, 1),
   };
 }
