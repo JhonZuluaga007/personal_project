@@ -12,7 +12,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
   final pageController = PageController();
 
   @override
@@ -26,19 +25,22 @@ class _HomePageState extends State<HomePage> {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
     final wColor = ThemesIdx20();
-    
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: wColor.mapColors["IDWhite"],
-        shadowColor: wColor.mapColors["IDWhite"],
-        actions: [
-          Image.asset("assets/icons/idx_Icon.png"),
-          SizedBox(
-            width: width * 0.30,
+
+    return Material(
+      child: SafeArea(
+          child: SingleChildScrollView(
+        child: Scrollbar(
+            child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          child: Column(
+            children: [
+              Center(
+                child: Text('HomePage'),
+              )
+            ],
           ),
-        ],
-      ),
+        )),
+      )),
     );
   }
 }
-  

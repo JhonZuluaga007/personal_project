@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:personal_project/common_ui/common_pages/my_app_scaffold_page.dart';
 
-class FAQSPage extends StatelessWidget {
-  const FAQSPage({super.key});
+class RegisterPCRTestPage extends StatelessWidget {
+  const RegisterPCRTestPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +15,7 @@ class FAQSPage extends StatelessWidget {
           child: Column(
             children: [
               Center(
-                child: Text('Faqs'),
+                child: Text('Register_pcr_test'),
               )
             ],
           ),

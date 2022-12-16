@@ -6,12 +6,21 @@ class MyUserPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MyAppScaffold(
-      children: [
-        Center(
-          child: Text("Page of My user")
-        )
-      ],
+    return Material(
+      child: SafeArea(
+          child: SingleChildScrollView(
+        child: Scrollbar(
+            child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          child: Column(
+            children: [
+              Center(
+                child: Text('covid_19_tests'),
+              )
+            ],
+          ),
+        )),
+      )),
     );
   }
 }

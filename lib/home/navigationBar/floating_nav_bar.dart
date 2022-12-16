@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:personal_project/home/navigationBar/floating_nav_bar_item.dart';
 
-typedef ItemBuilder = Widget Function(BuildContext context, FloatingNavbarItem items);
+typedef ItemBuilder = Widget Function(
+    BuildContext context, FloatingNavbarItem items);
 
 class FloatingNavbar extends StatefulWidget {
   final List<FloatingNavbarItem>? items;
@@ -115,7 +116,7 @@ ItemBuilder _defaultItemBuilder({
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             AnimatedContainer(
-              duration: Duration(milliseconds: 300),
+              duration: const Duration(milliseconds: 300),
               decoration: BoxDecoration(
                   color: currentIndex == items!.indexOf(item)
                       ? selectedBackgroundColor
