@@ -4,12 +4,20 @@
     "01_login_recover_password" : "Usuario por primera vez o contraseña olvidada?",
     "01_login_input_one" : "Usuario",
     "01_login_input_hint_one" : "salbisserc12",
-
     "01_login_input_two" : "Contraseña",
     "01_login_input_hint_two" : "12345786",
-
     "01_login_button_one" : "Ingresa",
     "01_login_button_two" : "Ingresa con tu número de celular.",
+
+    "02_login_title" : "Enter login credentials",
+    "02_login_text_one" : "We are glad to have you here. We hope that you enjoy our application.",
+    "02_login_recover_password" : "First time user or Forgotten password?",
+    "02_login_input_one" : "Username",
+    "02_login_input_hint_one" : "salbisserc12",
+    "02_login_input_two" : "Password",
+    "02_login_input_hint_two" : "12345786",
+    "02_login_button_one" : "Enter",
+    "02_login_button_two" : "Sign in with your cellphone number.",
 
     "onboarding_one": "Onboarding",
     "onboarding_number_1": "Onboarding Number 1",
@@ -32,5 +40,4 @@
     "my_user_text_field_label": "Form Label",
     "my_user_text_field_hint": "Placeholder",
     "my_user_button_saved": "Guardar cambios"
-
 }
