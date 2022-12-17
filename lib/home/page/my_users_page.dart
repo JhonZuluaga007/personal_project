@@ -29,106 +29,83 @@ class MyUserPage extends StatelessWidget {
       ),
       children: [
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: width * 0.037, vertical: height * 0.025),
+          padding: EdgeInsets.symmetric(
+              horizontal: width * 0.037, vertical: height * 0.025),
           child: FloatingActionButton(
-            elevation: 0,
-            backgroundColor: wColor.mapColors["S800"],
-            child: Icon(Icons.arrow_back, color: wColor.mapColors["IDWhite"], size: 24,),
-            onPressed: (){
-              // Navigator.pop(context);
-            }
-          ),
+              elevation: 0,
+              backgroundColor: wColor.mapColors["S800"],
+              child: Icon(
+                Icons.arrow_back,
+                color: wColor.mapColors["IDWhite"],
+                size: 24,
+              ),
+              onPressed: () {}),
         ),
-
-        Row(
-          children: [
-            Padding(
-              padding: EdgeInsets.only(left: width * 0.03, top: height * 0.018),
-              child: TextWidget(
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: width * 0.037),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              TextWidget(
                 text: "my_user_profile",
                 style: TextStyle(
-                  fontSize: 20,
-                  letterSpacing: -0.02,
-                  fontWeight: FontWeight.w600,
-                  color: wColor.mapColors["S800"]
-                ),
+                    fontSize: 20,
+                    letterSpacing: -0.02,
+                    fontWeight: FontWeight.w600,
+                    color: wColor.mapColors["S800"]),
               ),
-            ),
-
-            SizedBox(
-              width: width * 0.24,
-            ),
-
-            ButtonWidget(
-              icon: Icons.edit_outlined,
-              iconSize: 16,
-              width: width * 0.462,
-              height: height * 0.047,
-              buttonColor: wColor.mapColors["S800"],
-              textColor: wColor.mapColors["IDWhite"],
-              buttonString: "my_user_button_edit_profile", 
-              textStyle: const TextStyle(
-                fontSize: 13,
-                fontWeight: FontWeight.w700
-              ),
-              onPressed: (){}
-            ),
-          ],
+              ButtonWidget(
+                  icon: Icons.edit_outlined,
+                  iconSize: 16,
+                  width: width * 0.462,
+                  height: height * 0.047,
+                  buttonColor: wColor.mapColors["S800"],
+                  textColor: wColor.mapColors["IDWhite"],
+                  buttonString: "my_user_button_edit_profile",
+                  textStyle: const TextStyle(
+                      fontSize: 13, fontWeight: FontWeight.w700),
+                  onPressed: () {}),
+            ],
+          ),
         ),
-
-        SizedBox(
-          height: height * 0.052,
-        ),
-
+        SizedBox(height: height * 0.052),
         Center(
-          child: Stack(
-            alignment: AlignmentDirectional.center,
-            children: [
-              Image.asset("assets/images/photo_user_edit.png"),
-              Icon(
-                Icons.image_outlined,
-                size: 64,
-                color: wColor.mapColors["IDWhite"],
-              ),
-              Positioned(
-                bottom: 140,
-                right: 3,
+          child: Stack(alignment: AlignmentDirectional.center, children: [
+            Image.asset("assets/images/photo_user_edit.png"),
+            Icon(
+              Icons.image_outlined,
+              size: 64,
+              color: wColor.mapColors["IDWhite"],
+            ),
+            Positioned(
+                bottom: height * 0.15,
+                left: width * 0.31,
                 child: FloatingActionButton(
                   elevation: 3.66,
                   backgroundColor: wColor.mapColors["500BASE"],
-                  child: const Icon(Icons.edit_outlined, size: 24,),
-                  onPressed: (){},
-                )
-              )
-            ]            
-          ),
+                  child: const Icon(
+                    Icons.edit_outlined,
+                    size: 24,
+                  ),
+                  onPressed: () {},
+                ))
+          ]),
         ),
-
-        SizedBox(
-          height: height * 0.070,
-        ),
-
+        SizedBox(height: height * 0.070),
         const TextFieldFormMyUser(
-          labelText: 'my_user_text_field_label', 
           textTitle: 'my_user_text_field_hint',
           iconTextField: Icon(Icons.keyboard_arrow_down_rounded),
           hintText: "my_user_text_field_label",
         ),
-
-        SizedBox(
-          height: height * 0.0485,
-        ),
-
+        SizedBox(height: height * 0.0485),
         Center(
           child: ButtonWidget(
-            buttonString: "my_user_button_saved", 
-            textColor: wColor.mapColors["IDWhite"],
-            buttonColor: wColor.mapColors["500BASE"],
-            borderColor: wColor.mapColors["500BASE"],
-            onPressed: (){}
-          ),
+              buttonString: "my_user_button_saved",
+              textColor: wColor.mapColors["IDWhite"],
+              buttonColor: wColor.mapColors["500BASE"],
+              borderColor: wColor.mapColors["500BASE"],
+              onPressed: () {}),
         )
-        
       ],
     );
   }

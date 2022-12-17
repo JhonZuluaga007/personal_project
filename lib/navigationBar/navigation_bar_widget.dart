@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:personal_project/app_localizations.dart';
 import 'package:personal_project/config/theme/theme.dart';
@@ -26,13 +25,12 @@ class _NavBarPageState extends State<NavBarPage> {
   void initState() {
     super.initState();
     _currentPage = widget.initialPage ?? _currentPage;
-    }
+  }
 
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     final wColor = ThemesIdx20();
-    final width = MediaQuery.of(context).size.width;
 
     Map<String, Widget> personHomePageTabs = {
       'HomePage': const HomePage(),
@@ -42,11 +40,10 @@ class _NavBarPageState extends State<NavBarPage> {
     };
 
     Map<String, dynamic> tabs = personHomePageTabs;
-    
+
     final currentIndex = tabs.keys.toList().indexOf(_currentPage);
     final itemsPerson = [
-      buttonNavbarWidget(
-          currentIndex, 0, IconsFolderCovid.home, "nav_bar_01"),
+      buttonNavbarWidget(currentIndex, 0, IconsFolderCovid.home, "nav_bar_01"),
       buttonNavbarWidget(
           currentIndex, 1, IconsFolderCovid.covid_19Test, "nav_bar_02"),
       buttonNavbarWidget(
@@ -54,13 +51,13 @@ class _NavBarPageState extends State<NavBarPage> {
       buttonNavbarWidget(
           currentIndex, 2, IconsFolderCovid.iconFAQS, "nav_bar_04"),
     ];
-    
+
     return Scaffold(
       body: tabs[_currentPage],
       extendBody: true,
-      floatingActionButton: FloatingActionButton(onPressed: () {
-        
-      },),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+      ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: FloatingNavbar(
         currentIndex: currentIndex,
@@ -71,7 +68,7 @@ class _NavBarPageState extends State<NavBarPage> {
         selectedBackgroundColor: Colors.transparent,
         elevation: 0,
         items: itemsPerson,
-        height: height *0.095,
+        height: height * 0.095,
       ),
     );
   }
@@ -80,10 +77,11 @@ class _NavBarPageState extends State<NavBarPage> {
       int currentIndex, int index, String iconsActive, String testNavBarIcon) {
     return FloatingNavbarItem(
       title: AppLocalizations.of(context)!.translate(testNavBarIcon),
-        customWidget: Image.asset(
-                iconsActive,
-                height: 30,
-                width: 30,
-              ),);
+      customWidget: Image.asset(
+        iconsActive,
+        height: 30,
+        width: 30,
+      ),
+    );
   }
 }

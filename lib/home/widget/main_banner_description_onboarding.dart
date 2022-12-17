@@ -1,22 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:personal_project/common_ui/common_widgets/responsive/dynamic_container_widget.dart';
 
 class MainBannerDescriptionOnboarding extends StatelessWidget {
-
   final String imageMainBanner;
 
-  const MainBannerDescriptionOnboarding({
-    super.key, 
-    required this.imageMainBanner
-  });
+  const MainBannerDescriptionOnboarding(
+      {super.key, required this.imageMainBanner});
 
   @override
   Widget build(BuildContext context) {
-    
-    return DynamicContainerWidget(
-      children: [
-        Image.asset(imageMainBanner, fit: BoxFit.fitWidth,),
-      ]
+    final width = MediaQuery.of(context).size.width;
+    final height = MediaQuery.of(context).size.height;
+    return Container(
+      width: width * 0.94,
+      height: height * 0.12,
+      decoration: BoxDecoration(
+          image: DecorationImage(
+              image: Image.asset(
+        imageMainBanner,
+        fit: BoxFit.cover,
+      ).image)),
     );
   }
 }
