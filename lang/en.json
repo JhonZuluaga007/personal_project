@@ -33,6 +33,12 @@
 
     "home_name_user": "Hi Sebastian, welcome",
     "home_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ultrices\npraesent et porta odio purus vulputate convallis. Fermentum,\nermentum morbi dui nec rhoncus suspendisse aliquam urn.",
-    "home_title_card": "What do you want to do today"
+    "home_title_card": "What do you want to do today",
+
+    "my_user_profile": "My profile",
+    "my_user_button_edit_profile": "Edit my information",
+    "my_user_text_field_label": "Form Label",
+    "my_user_text_field_hint": "Placeholder",
+    "my_user_button_saved": "Save changes"
 
 }

@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:personal_project/common_ui/common_widgets/text_field/text_field_with_border_widget.dart';
 import 'package:personal_project/config/theme/theme.dart';
 
 import '../../../../common_ui/common_pages/my_app_scaffold_page.dart';
-import '../../../../common_ui/common_widgets/buttons/button_widget.dart';
 import '../../../../common_ui/common_widgets/responsive/dynamic_container_widget.dart';
 import '../../../../common_ui/common_widgets/text/text_widget.dart';
 

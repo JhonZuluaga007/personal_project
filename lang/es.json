@@ -1,7 +1,7 @@
 {
     "01_login_title" : "Ingresa tus credenciales",
     "01_login_text_one" : "Estamos contentos de tenerte aquí",
-    "01_login_recover_password" : "Usuario por primera vez o ccontraseña olvidada?",
+    "01_login_recover_password" : "Usuario por primera vez o contraseña olvidada?",
     "01_login_input_one" : "Usuario",
     "01_login_input_hint_one" : "salbisserc12",
 
@@ -25,7 +25,12 @@
 
     "home_name_user": "Hola Sebastian, bienvenido",
     "home_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ultrices\n praesent et porta odio purus vulputate convallis. Fermentum,\nermentum morbi dui nec rhoncus suspendisse aliquam urn.",
-    "home_title_card": "Que quieres hacer hoy"
+    "home_title_card": "Que quieres hacer hoy",
 
+    "my_user_profile": "Mi perfil",
+    "my_user_button_edit_profile": "Editar mi información",
+    "my_user_text_field_label": "Form Label",
+    "my_user_text_field_hint": "Placeholder",
+    "my_user_button_saved": "Guardar cambios"
 
 }

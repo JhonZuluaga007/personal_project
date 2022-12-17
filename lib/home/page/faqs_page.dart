@@ -6,7 +6,7 @@ class FAQSPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MyAppScaffold(
+    return const MyAppScaffold(
       children: [
         Center(
           child: Text("Page of the FAQS")

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:personal_project/common_ui/common_widgets/responsive/dynamic_container_widget.dart';
-import 'package:personal_project/config/theme/theme.dart';
 
 class MainBannerDescriptionOnboarding extends StatelessWidget {
 
@@ -13,9 +12,6 @@ class MainBannerDescriptionOnboarding extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
-    final height = MediaQuery.of(context).size.height;
-    final wColor = ThemesIdx20();
     
     return DynamicContainerWidget(
       children: [

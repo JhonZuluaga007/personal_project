@@ -6,7 +6,7 @@ class CovidTestPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MyAppScaffold(
+    return const MyAppScaffold(
       children: [
         Text("Page of Covid test")
       ],

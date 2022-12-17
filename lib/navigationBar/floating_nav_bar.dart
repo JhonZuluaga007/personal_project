@@ -43,7 +43,7 @@ class FloatingNavbar extends StatefulWidget {
         assert(items!.length <= 5),
         assert(currentIndex! <= items!.length),
         assert(width > 50),
-        this.itemBuilder = itemBuilder ??
+        itemBuilder = itemBuilder ??
             _defaultItemBuilder(
               unselectedItemColor: unselectedItemColor,
               selectedItemColor: selectedItemColor,

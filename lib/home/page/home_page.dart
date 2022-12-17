@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:personal_project/common_ui/common_pages/my_app_scaffold_page.dart';
 import 'package:personal_project/common_ui/common_widgets/text/text_widget.dart';
 import 'package:personal_project/config/theme/theme.dart';
-import 'package:personal_project/home/widget/card_scan_label.dart';
+import 'package:personal_project/home/widget/card_scan_home.dart';
 import 'package:personal_project/home/widget/main_banner_description_onboarding.dart';
 
 class HomePage extends StatefulWidget {
@@ -40,7 +40,6 @@ class _HomePageState extends State<HomePage> {
       crossAxisAlignment: CrossAxisAlignment.start,
       appBar: AppBar(
         backgroundColor: wColor.mapColors["IDWhite"],
-        shadowColor: wColor.mapColors["IDWhite"],
         actions: [
           Image.asset("assets/icons/idx_Icon.png"),
           SizedBox(
@@ -149,7 +148,7 @@ class _HomePageState extends State<HomePage> {
           height: height * 0.02,
         ),
 
-        const CardScanLabel(
+        const CardScanHome(
           imagesScanLabel: "assets/images/scan_kit_label.png", 
           imageCovid_19: "assets/images/covid-19_tests.png", 
           imageTestStatusResult: "assets/images/test_status_and_results.png"

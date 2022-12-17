@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-class CardScanLabel extends StatelessWidget {
+class CardScanHome extends StatelessWidget {
 
   final String imagesScanLabel;
   final String imageCovid_19;
   final String imageTestStatusResult;
 
-  const CardScanLabel({
+  const CardScanHome({
     super.key, 
     required this.imagesScanLabel, 
     required this.imageCovid_19, 
@@ -15,7 +15,6 @@ class CardScanLabel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
 
     return Column(

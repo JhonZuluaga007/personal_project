@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:personal_project/common_ui/common_pages/my_app_scaffold_page.dart';
-import 'package:personal_project/common_ui/common_widgets/responsive/dynamic_container_widget.dart';
 import 'package:personal_project/config/theme/theme.dart';
 import 'package:personal_project/onboarding/widgets/onboarding_description.dart';
 
@@ -41,8 +39,9 @@ class _IntroOnboardingPageState extends State<IntroOnboardingPage> {
         Padding(
           padding: EdgeInsets.only(left: width * 0.03, top: height * 0.001),
           child: FloatingActionButton(
+            elevation: 0,
             backgroundColor: wColor.mapColors["S800"],
-            child: const Icon(Icons.arrow_back),
+            child: Icon(Icons.arrow_back, color: wColor.mapColors["IDWhite"],),
             onPressed: (){
               Navigator.pop(context);
             }
