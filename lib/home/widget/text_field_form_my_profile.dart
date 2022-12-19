@@ -45,7 +45,7 @@ class TextFieldFormMyUser extends StatelessWidget {
                 color: wColor.mapColors["S600"]),
             hintText: hintText,
           ),
-          SizedBox(height: height * 0.0086),
+          SizedBox(height: height * 0.050),
           TextWidget(
             text: textTitle,
             textAlign: TextAlign.start,

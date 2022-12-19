@@ -34,6 +34,10 @@
     "home_name_user": "Hi Sebastian, welcome",
     "home_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ultrices\npraesent et porta odio purus vulputate convallis. Fermentum,\nermentum morbi dui nec rhoncus suspendisse aliquam urn.",
     "home_title_card": "What do you want to do today",
+    "home_title_card_scan": "Scan Kit Label",
+    "home_title_card_covid_19": "Covid-19 Self Tests",
+    "home_title_card_test_status": "Test status and results",
+    "home_description_card_scan": "Lorem ipsum dolor sit amet, consectetur\nadipiscing elit. Ultrices praesent et porta.",
 
     "my_user_profile": "My profile",
     "my_user_button_edit_profile": "Edit my information",

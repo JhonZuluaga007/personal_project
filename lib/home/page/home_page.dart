@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+
 import 'package:personal_project/common_ui/common_pages/my_app_scaffold_page.dart';
 import 'package:personal_project/common_ui/common_widgets/text/text_widget.dart';
 import 'package:personal_project/config/theme/theme.dart';
 import 'package:personal_project/home/widget/card_scan_home.dart';
 import 'package:personal_project/home/widget/main_banner_description_onboarding.dart';
+import 'package:personal_project/icons/icons.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -107,8 +109,9 @@ class _HomePageState extends State<HomePage> {
                   color: pageNumber == index
                       ? wColor.mapColors['T400']
                       : wColor.mapColors['T100'],
-                ),
+                )
               ),
+              
             ),
           ),
         ),
@@ -125,9 +128,22 @@ class _HomePageState extends State<HomePage> {
         ),
         SizedBox(height: height * 0.02),
         const CardScanHome(
-            imagesScanLabel: "assets/images/scan_kit_label.png",
-            imageCovid_19: "assets/images/covid-19_tests.png",
-            imageTestStatusResult: "assets/images/test_status_and_results.png")
+          imageIcon: IconsFolderCovid.scanKitLabel, 
+          textDescription: "home_description_card_scan", 
+          textTitle: "home_title_card_scan",
+        ),
+        SizedBox(height: height * 0.021),
+        const CardScanHome(
+          imageIcon: IconsFolderCovid.covid19Self, 
+          textDescription: "home_description_card_scan", 
+          textTitle: "home_title_card_covid_19",
+        ),
+        SizedBox(height: height * 0.021),
+        const CardScanHome(
+          imageIcon: IconsFolderCovid.testStatusResult, 
+          textDescription: "home_description_card_scan", 
+          textTitle: "home_title_card_test_status",
+        ),
       ],
     );
   }
