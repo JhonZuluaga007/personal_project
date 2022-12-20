@@ -8,7 +8,7 @@ class TextFieldWithBorderWidget extends StatelessWidget {
       {Key? key,
       this.width,
       this.height,
-      required this.labelText,
+      this.labelText,
       this.textInputType,
       this.textEditingController,
       this.textStyle,
@@ -30,7 +30,7 @@ class TextFieldWithBorderWidget extends StatelessWidget {
   final double? height;
   final TextInputType? textInputType;
   final TextEditingController? textEditingController;
-  final String labelText;
+  final String? labelText;
   final String hintText;
   final TextStyle? textStyle;
   final TextStyle? hintStyle;
@@ -59,7 +59,9 @@ class TextFieldWithBorderWidget extends StatelessWidget {
         obscureText: isPassword,
         validator: validator,
         decoration: InputDecoration(
-          labelText: AppLocalizations.of(context)!.translate(labelText),
+          labelText: labelText != null
+              ? AppLocalizations.of(context)!.translate(labelText!)
+              : null,
           hintText: AppLocalizations.of(context)!.translate(hintText),
           suffixIcon: suffixIcon,
           hintTextDirection: hintTextDirection ?? TextDirection.ltr,

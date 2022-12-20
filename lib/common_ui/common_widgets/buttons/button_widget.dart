@@ -15,7 +15,9 @@ class ButtonWidget extends StatelessWidget {
     this.borderColor,
     this.textColor,
     this.buttonColor,
-    required this.onPressed,
+    required this.onPressed, 
+    this.icon,
+    this.iconSize,
   }) : super(key: key);
   final double? width;
   final double? height;
@@ -27,6 +29,8 @@ class ButtonWidget extends StatelessWidget {
   final Color? buttonColor;
   final Color? borderColor;
   final Color? textColor;
+  final IconData? icon;
+  final double? iconSize;
 
   @override
   Widget build(BuildContext context) {
@@ -57,6 +61,12 @@ class ButtonWidget extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          Icon(icon, size: iconSize,),
+
+          SizedBox(
+            width: sizeWidth * 0.021,
+          ),
+
           Text(
             // buttonString,
             AppLocalizations.of(context)!.translate(buttonString),
