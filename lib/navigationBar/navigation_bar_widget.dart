@@ -4,9 +4,10 @@ import 'package:personal_project/config/theme/theme.dart';
 import 'package:personal_project/navigationBar/floating_nav_bar.dart';
 import 'package:personal_project/navigationBar/floating_nav_bar_item.dart';
 import 'package:personal_project/home/page/FAQS_page.dart';
-import 'package:personal_project/home/page/covid_test_page.dart';
+import 'package:personal_project/home/page/register_antigen_test_page.dart';
 import 'package:personal_project/home/page/home_page.dart';
-import 'package:personal_project/home/page/my_users_page.dart';
+import 'package:personal_project/home/page/history_page.dart';
+import 'package:personal_project/home/page/register_pcr_test_page.dart';
 import 'package:personal_project/icons/icons.dart';
 
 class NavBarPage extends StatefulWidget {
@@ -30,12 +31,14 @@ class _NavBarPageState extends State<NavBarPage> {
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
     final wColor = ThemesIdx20();
 
     Map<String, Widget> personHomePageTabs = {
       'HomePage': const HomePage(),
-      'covid-19Test': const CovidTestPage(),
-      'my_users': const MyUserPage(),
+      'registerAntigen': const RegisterAntigenTestPage(),
+      'registerPcr': const RegisterPCRTestPage(),
+      'history': const HistoryPage(),
       "FAQS_page": const FAQSPage()
     };
 
@@ -49,10 +52,23 @@ class _NavBarPageState extends State<NavBarPage> {
       buttonNavbarWidget(
           currentIndex, 2, IconsFolderCovid.myUser, "nav_bar_03"),
       buttonNavbarWidget(
-          currentIndex, 2, IconsFolderCovid.iconFAQS, "nav_bar_04"),
+          currentIndex, 3, IconsFolderCovid.iconFAQS, "nav_bar_04"),
     ];
 
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: wColor.mapColors["IDWhite"],
+        shadowColor: wColor.mapColors["IDWhite"],
+        leading: Padding(
+          padding: const EdgeInsets.only(left: 16.0),
+          child: Image.asset("assets/icons/idx_Icon.png"),
+        ),
+        actions: [
+          SizedBox(
+            width: width * 0.30,
+          ),
+        ],
+      ),
       body: tabs[_currentPage],
       extendBody: true,
       floatingActionButton: FloatingActionButton(
