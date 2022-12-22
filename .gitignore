@@ -35,6 +35,9 @@ windows/
 .pub-cache/
 .pub/
 /build/
+/linux/
+/macos/
+/windows/
 
 # Symbolication related
 app.*.symbols
