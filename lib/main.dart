@@ -3,6 +3,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:personal_project/common_ui/common_pages/splash_page.dart';
+import 'package:personal_project/features/auth/ui/pages/login_page.dart';
+import 'package:personal_project/features/auth/ui/pages/reset_password_page.dart';
+import 'package:personal_project/features/auth/ui/pages/reset_password_page_info_1.dart';
 import 'package:personal_project/navigationBar/navigation_bar_widget.dart';
 import 'package:personal_project/home/page/home_page.dart';
 import 'package:personal_project/onboarding/pages/intro_onboarding_page.dart';
@@ -38,12 +41,15 @@ class MyApp extends StatelessWidget {
         return Locale(locale.languageCode.toString());
       },
       supportedLocales: AppLocalizations.supportedLocales,
-      initialRoute: "navBar",
+      initialRoute: "splash",
       routes: {
         "splash": (_) => const SplashScreenPage(),
         "onboarding": (_) => const IntroOnboardingPage(),
         "home": (_) => const HomePage(),
         "navBar": (_) => const NavBarPage(),
+        "login": (_) => const LoginPage(),
+        "resetInfo": (_) => const ResetPasswordPageInfo(),
+        "reset": (_) => const ResetPasswordPage(),
       },
     );
   }
