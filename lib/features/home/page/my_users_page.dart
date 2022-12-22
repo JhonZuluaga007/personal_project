@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:personal_project/common_ui/common_widgets/buttons/button_widget.dart';
 import 'package:personal_project/common_ui/common_widgets/text/text_widget.dart';
 import 'package:personal_project/config/theme/theme.dart';
-import 'package:personal_project/home/widget/text_field_form_my_profile.dart';
+import 'package:personal_project/features/home/widget/text_field_form_my_profile.dart';
 
 class MyUserPage extends StatelessWidget {
   const MyUserPage({super.key});

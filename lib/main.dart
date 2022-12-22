@@ -7,7 +7,7 @@ import 'package:personal_project/features/auth/ui/pages/login_page.dart';
 import 'package:personal_project/features/auth/ui/pages/reset_password_page.dart';
 import 'package:personal_project/features/auth/ui/pages/reset_password_page_info_1.dart';
 import 'package:personal_project/navigationBar/navigation_bar_widget.dart';
-import 'package:personal_project/home/page/home_page.dart';
+import 'package:personal_project/features/home/page/home_page.dart';
 import 'package:personal_project/onboarding/pages/intro_onboarding_page.dart';
 
 import 'app_localizations.dart';

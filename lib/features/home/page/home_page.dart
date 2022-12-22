@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:personal_project/common_ui/common_widgets/text/text_widget.dart';
 import 'package:personal_project/config/theme/theme.dart';
-import 'package:personal_project/home/widget/card_scan_home.dart';
-import 'package:personal_project/home/widget/main_banner_description_onboarding.dart';
+import 'package:personal_project/features/home/widget/card_scan_home.dart';
+import 'package:personal_project/features/home/widget/main_banner_description_onboarding.dart';
 import 'package:personal_project/icons/icons.dart';
 
 class HomePage extends StatefulWidget {
