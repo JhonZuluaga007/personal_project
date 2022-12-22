@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:personal_project/app_localizations.dart';
 import 'package:personal_project/config/theme/theme.dart';
-import 'package:personal_project/home/navigationBar/floating_nav_bar.dart';
-import 'package:personal_project/home/navigationBar/floating_nav_bar_item.dart';
+import 'package:personal_project/home/page/my_users_page.dart';
+import 'package:personal_project/navigationBar/floating_nav_bar.dart';
+import 'package:personal_project/navigationBar/floating_nav_bar_item.dart';
 import 'package:personal_project/home/page/FAQS_page.dart';
 import 'package:personal_project/home/page/register_antigen_test_page.dart';
 import 'package:personal_project/home/page/home_page.dart';
@@ -31,13 +32,13 @@ class _NavBarPageState extends State<NavBarPage> {
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
-    final wColor = ThemesIdx20();
     final width = MediaQuery.of(context).size.width;
+    final wColor = ThemesIdx20();
 
     Map<String, Widget> personHomePageTabs = {
       'HomePage': const HomePage(),
       'registerAntigen': const RegisterAntigenTestPage(),
-      'registerPcr': const RegisterPCRTestPage(),
+      'registerPcr': const MyUserPage(),
       'history': const HistoryPage(),
       "FAQS_page": const FAQSPage()
     };

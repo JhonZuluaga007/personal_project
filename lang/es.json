@@ -1,13 +1,11 @@
 {
     "01_login_title" : "Ingresa tus credenciales",
     "01_login_text_one" : "Estamos contentos de tenerte aquí",
-    "01_login_recover_password" : "Usuario por primera vez o ccontraseña olvidada?",
+    "01_login_recover_password" : "Usuario por primera vez o contraseña olvidada?",
     "01_login_input_one" : "Usuario",
     "01_login_input_hint_one" : "salbisserc12",
-
     "01_login_input_two" : "Contraseña",
     "01_login_input_hint_two" : "12345786",
-
     "01_login_button_one" : "Ingresa",
     "01_login_button_two" : "Ingresa con tu número de celular.",
 
@@ -28,6 +26,16 @@
     "03_reset_password_hint_input_two" : "Confirma contraseña",
     "03_reset_password_button" : "Reiniciar contraseña",
     "03_reset_password_text_two" : "Volver a inicio de sesión",
+    "02_login_title" : "Enter login credentials",
+    
+    "02_login_text_one" : "We are glad to have you here. We hope that you enjoy our application.",
+    "02_login_recover_password" : "First time user or Forgotten password?",
+    "02_login_input_one" : "Username",
+    "02_login_input_hint_one" : "salbisserc12",
+    "02_login_input_two" : "Password",
+    "02_login_input_hint_two" : "12345786",
+    "02_login_button_one" : "Enter",
+    "02_login_button_two" : "Sign in with your cellphone number.",
 
     "onboarding_one": "Onboarding",
     "onboarding_number_1": "Onboarding Number 1",
@@ -39,6 +47,19 @@
     "nav_bar_01": "Home",
     "nav_bar_02": "Covid-19 Tests",
     "nav_bar_03": "Mi usuario",
-    "nav_bar_04": "FAQS"
+    "nav_bar_04": "FAQS",
 
+    "home_name_user": "Hola Sebastian, bienvenido",
+    "home_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ultrices\n praesent et porta odio purus vulputate convallis. Fermentum,\nermentum morbi dui nec rhoncus suspendisse aliquam urn.",
+    "home_title_card": "Que quieres hacer hoy",
+    "home_title_card_scan": "Scan Kit Label",
+    "home_title_card_covid_19": "Covid-19 Self Tests",
+    "home_title_card_test_status": "Test status and results",
+    "home_description_card_scan": "Lorem ipsum dolor sit amet, consectetur\nadipiscing elit. Ultrices praesent et porta.",
+
+    "my_user_profile": "Mi perfil",
+    "my_user_button_edit_profile": "Editar mi información",
+    "my_user_text_field_label": "Form Label",
+    "my_user_text_field_hint": "Placeholder",
+    "my_user_button_saved": "Guardar cambios"
 }

@@ -3,8 +3,8 @@ import 'package:personal_project/config/theme/theme.dart';
 
 import '../../../app_localizations.dart';
 
-class ButtonWidget extends StatelessWidget {
-  const ButtonWidget({
+class MainButtonWidget extends StatelessWidget {
+  const MainButtonWidget({
     Key? key,
     required this.buttonString,
     this.width,
@@ -58,29 +58,19 @@ class ButtonWidget extends StatelessWidget {
         ),
       ),
       onPressed: onPressed,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(
-            icon,
-            size: iconSize,
-          ),
-          SizedBox(
-            width: sizeWidth * 0.021,
-          ),
-          Text(
-            // buttonString,
-            AppLocalizations.of(context)!.translate(buttonString),
-            style: textStyle ??
-                TextStyle(
-                  color: textColor ?? color.mapColors['P00'],
-                  fontSize: 16,
-                  fontWeight: FontWeight.w700,
-                  fontFamily: 'Poppins',
-                ),
-            textAlign: TextAlign.center,
-          ),
-        ],
+      child: Center(
+        child: Text(
+          // buttonString,
+          AppLocalizations.of(context)!.translate(buttonString),
+          style: textStyle ??
+              TextStyle(
+                color: textColor ?? color.mapColors['P00'],
+                fontSize: 16,
+                fontWeight: FontWeight.w700,
+                fontFamily: 'Poppins',
+              ),
+          textAlign: TextAlign.center,
+        ),
       ),
     );
   }

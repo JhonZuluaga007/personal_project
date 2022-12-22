@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:personal_project/common_ui/common_widgets/buttons/main_button_widget.dart';
 import 'package:personal_project/common_ui/common_widgets/text_field/text_field_with_border_widget.dart';
 import 'package:personal_project/config/theme/theme.dart';
 import 'package:personal_project/features/auth/ui/pages/reset_password_page_info_1.dart';
@@ -7,6 +8,7 @@ import '../../../../common_ui/common_pages/my_app_scaffold_page.dart';
 import '../../../../common_ui/common_widgets/buttons/button_widget.dart';
 import '../../../../common_ui/common_widgets/responsive/dynamic_container_widget.dart';
 import '../../../../common_ui/common_widgets/text/text_widget.dart';
+import '../../../../navigationBar/navigation_bar_widget.dart';
 import '../widgets/line_row_widget.dart';
 import '../widgets/login_text_widget.dart';
 
@@ -103,12 +105,20 @@ class _LoginPageState extends State<LoginPage> {
         ),
         SizedBox(height: height * 0.03),
         Center(
-          child: ButtonWidget(
+          child: MainButtonWidget(
             key: const Key('buttonRegisterLogin'),
             borderColor: wColor.mapColors['IDPink'],
             textColor: Colors.white,
             buttonString: '01_login_button_one',
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const NavBarPage(
+                          initialPage: 'HomePage',
+                        )),
+              );
+            },
             buttonColor: wColor.mapColors['IDPink'],
           ),
         ),

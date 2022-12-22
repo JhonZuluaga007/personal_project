@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:personal_project/home/navigationBar/floating_nav_bar_item.dart';
+import 'package:personal_project/navigationBar/floating_nav_bar_item.dart';
 
 typedef ItemBuilder = Widget Function(
     BuildContext context, FloatingNavbarItem items);
@@ -44,7 +44,7 @@ class FloatingNavbar extends StatefulWidget {
         assert(items!.length <= 5),
         assert(currentIndex! <= items!.length),
         assert(width > 50),
-        this.itemBuilder = itemBuilder ??
+        itemBuilder = itemBuilder ??
             _defaultItemBuilder(
               unselectedItemColor: unselectedItemColor,
               selectedItemColor: selectedItemColor,
