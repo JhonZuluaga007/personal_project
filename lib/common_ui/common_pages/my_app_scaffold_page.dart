@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:personal_project/common_ui/common_widgets/drawer_widget.dart';
 
 class MyAppScaffold extends StatelessWidget {
   const MyAppScaffold({
@@ -9,6 +10,7 @@ class MyAppScaffold extends StatelessWidget {
     this.crossAxisAlignment,
     this.preferredSizeWidget,
     this.appBar,
+    this.drawer,
     Key? key,
   }) : super(key: key);
 
@@ -19,6 +21,7 @@ class MyAppScaffold extends StatelessWidget {
   final CrossAxisAlignment? crossAxisAlignment;
   final PreferredSizeWidget? preferredSizeWidget;
   final AppBar? appBar;
+  final Drawer? drawer;
 
   @override
   Widget build(BuildContext context) {
@@ -26,6 +29,7 @@ class MyAppScaffold extends StatelessWidget {
     return Scaffold(
       backgroundColor: color ?? Colors.white,
       appBar: appBar,
+      drawer: drawer,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
