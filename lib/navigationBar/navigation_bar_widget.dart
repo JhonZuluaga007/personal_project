@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:personal_project/app_localizations.dart';
+import 'package:personal_project/common_ui/common_widgets/drawer_widget.dart';
 import 'package:personal_project/config/theme/theme.dart';
 import 'package:personal_project/features/home/page/faqs_page.dart';
 import 'package:personal_project/features/home/page/my_users_page.dart';
@@ -53,6 +54,8 @@ class _NavBarPageState extends State<NavBarPage> {
           currentIndex, 2, IconsFolderCovid.myUser, "nav_bar_03"),
       buttonNavbarWidget(
           currentIndex, 3, IconsFolderCovid.iconFAQS, "nav_bar_04"),
+      buttonNavbarWidget(
+          currentIndex, 4, IconsFolderCovid.iconFAQS, "nav_bar_05"),
     ];
 
     return Scaffold(
@@ -74,7 +77,7 @@ class _NavBarPageState extends State<NavBarPage> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      drawer: const DrawerWidget(),
       bottomNavigationBar: FloatingNavbar(
         currentIndex: currentIndex,
         onTap: (i) => setState(() => _currentPage = tabs.keys.toList()[i]),
