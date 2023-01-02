@@ -51,7 +51,7 @@ class Api {
         body: body,
         headers: _headers,
       );
-      debugPrint("response: $response.headers");
+      debugPrint("response: $response");
       return decode(response.body);
     } on Exception catch (e) {
       throw Exception(e);

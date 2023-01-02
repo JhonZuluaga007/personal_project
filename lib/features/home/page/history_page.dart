@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:personal_project/common_ui/common_pages/my_app_scaffold_page.dart';
 
 class HistoryPage extends StatelessWidget {
   const HistoryPage({super.key});
@@ -13,7 +12,7 @@ class HistoryPage extends StatelessWidget {
             child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: Column(
-            children: [
+            children: const [
               Center(
                 child: Text('covid_19_tests'),
               )
