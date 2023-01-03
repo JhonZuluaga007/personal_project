@@ -34,7 +34,7 @@ class Api {
       uri,
       headers: _headers,
     );
-    return decode(response.body);
+    return response.body;
   }
 
   //Realiza peticiones tipo POST al backend al endpoint pasado por parámetro
@@ -52,7 +52,7 @@ class Api {
         headers: _headers,
       );
       debugPrint("response: $response");
-      return decode(response.body);
+      return response.body;
     } on Exception catch (e) {
       throw Exception(e);
     }
