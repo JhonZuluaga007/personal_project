@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:personal_project/common_ui/common_widgets/separator_widget.dart';
 
 class DrawerWidget extends StatelessWidget {
   const DrawerWidget({super.key});

@@ -3,13 +3,14 @@ import 'package:personal_project/app_localizations.dart';
 import 'package:personal_project/common_ui/common_widgets/drawer_widget.dart';
 import 'package:personal_project/config/theme/theme.dart';
 import 'package:personal_project/features/home/page/faqs_page.dart';
-import 'package:personal_project/features/home/page/my_users_page.dart';
 import 'package:personal_project/navigationBar/floating_nav_bar.dart';
 import 'package:personal_project/navigationBar/floating_nav_bar_item.dart';
 import 'package:personal_project/features/home/page/register_antigen_test_page.dart';
 import 'package:personal_project/features/home/page/home_page.dart';
 import 'package:personal_project/features/home/page/history_page.dart';
 import 'package:personal_project/icons/icons.dart';
+
+import '../features/home/page/my_users_page.dart';
 
 class NavBarPage extends StatefulWidget {
   const NavBarPage({Key? key, this.initialPage}) : super(key: key);
@@ -47,7 +48,8 @@ class _NavBarPageState extends State<NavBarPage> {
 
     final currentIndex = tabs.keys.toList().indexOf(_currentPage);
     final itemsPerson = [
-      buttonNavbarWidget(currentIndex, 0, IconsFolderCovid.home, "nav_bar_01"),
+      buttonNavbarWidget(
+        currentIndex, 0, IconsFolderCovid.home, "nav_bar_01"),
       buttonNavbarWidget(
           currentIndex, 1, IconsFolderCovid.covid_19Test, "nav_bar_02"),
       buttonNavbarWidget(

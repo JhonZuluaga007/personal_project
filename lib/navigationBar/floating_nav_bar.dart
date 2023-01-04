@@ -111,59 +111,59 @@ ItemBuilder _defaultItemBuilder({
   double? borderRadius,
 }) {
   return (BuildContext context, FloatingNavbarItem item) => Expanded(
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            AnimatedContainer(
-              duration: const Duration(milliseconds: 300),
-              decoration: BoxDecoration(
-                  color: currentIndex == items!.indexOf(item)
-                      ? selectedBackgroundColor
-                      : Colors.transparent,
-                  borderRadius: BorderRadius.circular(itemBorderRadius!)),
-              child: InkWell(
-                onTap: () {
-                  onTap!(items.indexOf(item));
-                },
-                borderRadius: BorderRadius.circular(8),
-                child: Container(
-                  width: width.isFinite
-                      ? (width / items.length - 8)
-                      : MediaQuery.of(context).size.width / items.length - 24,
-                  padding: EdgeInsets.symmetric(
-                      horizontal: 4, vertical: item.title != null ? 4 : 8),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      item.customWidget == null
-                          ? Icon(
-                              item.icon,
-                              color: currentIndex == items.indexOf(item)
-                                  ? selectedItemColor
-                                  : unselectedItemColor,
-                              size: iconSize,
-                            )
-                          : item.customWidget!,
-                      if (item.title != null)
-                        Text(
-                          '${item.title}',
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
-                            color: currentIndex == items.indexOf(item)
-                                ? selectedItemColor
-                                : unselectedItemColor,
-                            fontSize: fontSize,
-                          ),
-                        ),
-                    ],
-                  ),
-                ),
+    child: Row(
+      mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        AnimatedContainer(
+          duration: const Duration(milliseconds: 300),
+          decoration: BoxDecoration(
+              color: currentIndex == items!.indexOf(item)
+                  ? selectedBackgroundColor
+                  : Colors.transparent,
+              borderRadius: BorderRadius.circular(itemBorderRadius!)),
+          child: InkWell(
+            onTap: () {
+              onTap!(items.indexOf(item));
+            },
+            borderRadius: BorderRadius.circular(8),
+            child: Container(
+              width: width.isFinite
+                  ? (width / items.length - 8)
+                  : MediaQuery.of(context).size.width / items.length - 24,
+              padding: EdgeInsets.symmetric(
+                  horizontal: 4, vertical: item.title != null ? 4 : 8),
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  item.customWidget == null
+                      ? Icon(
+                          item.icon,
+                          color: currentIndex == items.indexOf(item)
+                              ? selectedItemColor
+                              : unselectedItemColor,
+                          size: iconSize,
+                        )
+                      : item.customWidget!,
+                  if (item.title != null)
+                    Text(
+                      '${item.title}',
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        color: currentIndex == items.indexOf(item)
+                            ? selectedItemColor
+                            : unselectedItemColor,
+                        fontSize: fontSize,
+                      ),
+                    ),
+                ],
               ),
             ),
-          ],
+          ),
         ),
-      );
+      ],
+    ),
+  );
 }

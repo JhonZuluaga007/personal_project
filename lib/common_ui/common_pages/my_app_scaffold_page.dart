@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:personal_project/common_ui/common_widgets/drawer_widget.dart';
 
 class MyAppScaffold extends StatelessWidget {
   const MyAppScaffold({
