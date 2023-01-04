@@ -113,7 +113,8 @@ class _LoginPageState extends State<LoginPage> {
             textColor: Colors.white,
             buttonString: '01_login_button_one',
             onPressed: () {
-              AuthDataSource().login(nameController.text, passwordController.text);
+              AuthDataSource().getUser('63a39216bd99fc7c1ecad8de');
+              // AuthDataSource().login(nameController.text, passwordController.text);
               Navigator.push(
                 context,
                 MaterialPageRoute(
