@@ -1,56 +1,52 @@
-// To parse this JSON data, do
-//
-//     final userModel = userModelFromMap(jsonString);
-
 import 'dart:convert';
 
-UserModel userModelFromJson(String str) => UserModel.fromMap(json.decode(str));
+UserModel userModelFromJson(String str) => UserModel.fromJson(json.decode(str));
 
 String userModelToJson(UserModel data) => json.encode(data.toJson());
 
 class UserModel {
   UserModel({
     required this.project,
-    required this.statusCode,
     required this.token,
-    required this.user,
+    required this.data,
+    required this.message,
+    required this.statusCode,
   });
 
-  String project;
-  int statusCode;
-  String token;
-  User user;
+  final String project;
+  final String token;
+  final Data data;
+  final String message;
+  final int statusCode;
 
-  factory UserModel.fromJson(String str) => UserModel.fromMap(json.decode(str));
-
-  String toJson() => json.encode(toMap());
-
-  factory UserModel.fromMap(Map<String, dynamic> json) => UserModel(
-        project: json["project"] ?? '',
+  factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
+        project: json["project"],
+        token: json["token"],
+        data: Data.fromJson(json["data"]),
+        message: json["message"],
         statusCode: json["statusCode"],
-        token: json["token"] ?? '',
-        user: User.fromMap(json["user"] ?? json["data"]),
       );
 
-  Map<String, dynamic> toMap() => {
+  Map<String, dynamic> toJson() => {
         "project": project,
-        "statusCode": statusCode,
         "token": token,
-        "user": user.toMap(),
+        "data": data.toJson(),
+        "message": message,
+        "statusCode": statusCode,
       };
 }
 
-class User {
-  User({
+class Data {
+  Data({
     required this.id,
     required this.acceptsTerms,
     required this.addresses,
     required this.cellphone,
     required this.dateOfBirth,
     required this.email,
-    // required this.ethnicity,
+    required this.ethnicity,
     required this.firstLogin,
-    // required this.gender,
+    required this.gender,
     required this.informationUpdated,
     required this.isActive,
     required this.isConfirmed,
@@ -58,102 +54,99 @@ class User {
     required this.loginId,
     required this.middleName,
     required this.name,
-    // required this.organization,
+    required this.organization,
     required this.participantId,
     required this.password,
     required this.passwordReset,
     required this.projects,
-    // required this.race,
-    // required this.roles,
-    // required this.sex,
+    required this.race,
+    required this.roles,
+    required this.sex,
     required this.updated,
   });
 
-  String id;
-  bool acceptsTerms;
-  Addresses addresses;
-  Cellphone cellphone;
-  String dateOfBirth;
-  String email;
-  // Ethnicity ethnicity;
-  bool firstLogin;
-  // Ethnicity gender;
-  bool informationUpdated;
-  bool isActive;
-  bool isConfirmed;
-  String lastname;
-  String loginId;
-  Cellphone middleName;
-  String name;
-  // Ethnicity organization;
-  Cellphone participantId;
-  String password;
-  bool passwordReset;
-  List<dynamic> projects;
-  // Ethnicity race;
-  // List<Ethnicity> roles;
-  // Ethnicity sex;
-  Updated updated;
+  final String id;
+  final bool acceptsTerms;
+  final Addresses addresses;
+  final String cellphone;
+  final DateOfBirth dateOfBirth;
+  final String email;
+  final List<Ethnicity> ethnicity;
+  final bool firstLogin;
+  final List<Gender> gender;
+  final bool informationUpdated;
+  final bool isActive;
+  final bool isConfirmed;
+  final String lastname;
+  final String loginId;
+  final String middleName;
+  final String name;
+  final dynamic organization;
+  final String participantId;
+  final String password;
+  final bool passwordReset;
+  final List<dynamic> projects;
+  final List<Race> race;
+  final Roles roles;
+  final List<Sex> sex;
+  final DateOfBirth updated;
 
-  factory User.fromJson(String str) => User.fromMap(json.decode(str));
-
-  String toJson() => json.encode(toMap());
-
-  factory User.fromMap(Map<String, dynamic> json) => User(
+  factory Data.fromJson(Map<String, dynamic> json) => Data(
         id: json["_id"],
         acceptsTerms: json["accepts_terms"],
-        addresses: Addresses.fromMap(json["addresses"]),
-        cellphone: Cellphone.fromMap(json["cellphone"]),
-        dateOfBirth: json["date_of_birth"],
+        addresses: Addresses.fromJson(json["addresses"]),
+        cellphone: json["cellphone"],
+        dateOfBirth: DateOfBirth.fromJson(json["date_of_birth"]),
         email: json["email"],
-        // ethnicity: Ethnicity.fromMap(json["ethnicity"]),
+        ethnicity: List<Ethnicity>.from(
+            json["ethnicity"].map((x) => Ethnicity.fromJson(x))),
         firstLogin: json["first_login"],
-        // gender: Ethnicity.fromMap(json["gender"]),
+        gender:
+            List<Gender>.from(json["gender"].map((x) => Gender.fromJson(x))),
         informationUpdated: json["information_updated"],
         isActive: json["is_active"],
         isConfirmed: json["is_confirmed"],
         lastname: json["lastname"],
         loginId: json["login_id"],
-        middleName: Cellphone.fromMap(json["middle_name"]),
+        middleName: json["middle_name"],
         name: json["name"],
-        // organization: Ethnicity.fromMap(json["organization"]),
-        participantId: Cellphone.fromMap(json["participant_id"]),
+        organization: json["organization"],
+        participantId: json["participant_id"],
         password: json["password"],
         passwordReset: json["password_reset"],
         projects: List<dynamic>.from(json["projects"].map((x) => x)),
-        // race: Ethnicity.fromMap(json["race"]),
-        // roles: List<Ethnicity>.from(
-        //     json["roles"].map((x) => Ethnicity.fromMap(x))),
-        // sex: Ethnicity.fromMap(json["sex"]),
-        updated: Updated.fromMap(json["updated"]),
+        race: List<Race>.from(json["race"].map((x) => Race.fromJson(x))),
+        roles: Roles.fromJson(json["roles"]),
+        sex: List<Sex>.from(json["sex"].map((x) => Sex.fromJson(x))),
+        updated: DateOfBirth.fromJson(json["updated"]),
       );
 
-  Map<String, dynamic> toMap() => {
+  Map<String, dynamic> toJson() => {
         "_id": id,
         "accepts_terms": acceptsTerms,
-        "addresses": addresses.toMap(),
-        "cellphone": cellphone.toMap(),
-        "date_of_birth": dateOfBirth,
+        "addresses": addresses.toJson(),
+        "cellphone": cellphone,
+        "date_of_birth": dateOfBirth.toJson(),
         "email": email,
-        // "ethnicity": ethnicity.toMap(),
+        "ethnicity": List<dynamic>.from(ethnicity.map((x) => x.toJson())),
         "first_login": firstLogin,
-        // "gender": gender.toMap(),
+        "gender": List<dynamic>.from(gender.map((x) => x.toJson())),
         "information_updated": informationUpdated,
         "is_active": isActive,
         "is_confirmed": isConfirmed,
         "lastname": lastname,
         "login_id": loginId,
-        "middle_name": middleName.toMap(),
+        "middle_name": middleName,
         "name": name,
-        // "organization": organization.toMap(),
-        "participant_id": participantId.toMap(),
+        "organization": organization,
+        "participant_id": participantId,
         "password": password,
         "password_reset": passwordReset,
         "projects": List<dynamic>.from(projects.map((x) => x)),
-        // "race": race.toMap(),
-        // "roles": List<dynamic>.from(roles.map((x) => x.toMap())),
-        // "sex": sex.toMap(),
-        "updated": updated.toMap(),
+        "race": List<dynamic>.from(race.map((x) => x.toJson())),
+        "roles": roles.toJson(),
+        "sex": List<dynamic>.from(sex.map((x) => x.toJson())),
+        "updated": updated.toJson(),
       };
 }
 
@@ -165,23 +158,19 @@ class Addresses {
     required this.zip,
   });
 
-  String address;
-  String city;
-  String state;
-  String zip;
+  final String address;
+  final String city;
+  final String state;
+  final String zip;
 
-  factory Addresses.fromJson(String str) => Addresses.fromMap(json.decode(str));
-
-  String toJson() => json.encode(toMap());
-
-  factory Addresses.fromMap(Map<String, dynamic> json) => Addresses(
+  factory Addresses.fromJson(Map<String, dynamic> json) => Addresses(
         address: json["address"],
         city: json["city"],
         state: json["state"],
         zip: json["zip"],
       );
 
-  Map<String, dynamic> toMap() => {
+  Map<String, dynamic> toJson() => {
         "address": address,
         "city": city,
         "state": state,
@@ -189,62 +178,118 @@ class Addresses {
       };
 }
 
-class Cellphone {
-  Cellphone({
-    required this.numberDouble,
+class DateOfBirth {
+  DateOfBirth({
+    required this.date,
   });
 
-  String numberDouble;
+  final DateTime date;
 
-  factory Cellphone.fromJson(String str) => Cellphone.fromMap(json.decode(str));
-
-  String toJson() => json.encode(toMap());
-
-  factory Cellphone.fromMap(Map<String, dynamic> json) => Cellphone(
-        numberDouble: json["\u0024numberDouble"],
+  factory DateOfBirth.fromJson(Map<String, dynamic> json) => DateOfBirth(
+        date: DateTime.parse(json["\u0024date"]),
       );
 
-  Map<String, dynamic> toMap() => {
-        "\u0024numberDouble": numberDouble,
+  Map<String, dynamic> toJson() => {
+        "\u0024date": date.toIso8601String(),
       };
 }
 
 class Ethnicity {
   Ethnicity({
-    required this.oid,
+    required this.id,
+    required this.ethnicity,
   });
 
-  String oid;
+  final String id;
+  final String ethnicity;
 
-  factory Ethnicity.fromJson(String str) => Ethnicity.fromMap(json.decode(str));
-
-  String toJson() => json.encode(toMap());
-
-  factory Ethnicity.fromMap(Map<String, dynamic> json) => Ethnicity(
-        oid: json["\u0024oid"],
+  factory Ethnicity.fromJson(Map<String, dynamic> json) => Ethnicity(
+        id: json["_id"],
+        ethnicity: json["ethnicity"],
       );
 
-  Map<String, dynamic> toMap() => {
-        "\u0024oid": oid,
+  Map<String, dynamic> toJson() => {
+        "_id": id,
+        "ethnicity": ethnicity,
       };
 }
 
-class Updated {
-  Updated({
-    required this.date,
+class Gender {
+  Gender({
+    required this.id,
+    required this.gender,
   });
 
-  DateTime date;
+  final String id;
+  final String gender;
 
-  factory Updated.fromJson(String str) => Updated.fromMap(json.decode(str));
-
-  String toJson() => json.encode(toMap());
-
-  factory Updated.fromMap(Map<String, dynamic> json) => Updated(
-        date: DateTime.parse(json["\u0024date"]),
+  factory Gender.fromJson(Map<String, dynamic> json) => Gender(
+        id: json["_id"],
+        gender: json["gender"],
       );
 
-  Map<String, dynamic> toMap() => {
-        "\u0024date": date.toIso8601String(),
+  Map<String, dynamic> toJson() => {
+        "_id": id,
+        "gender": gender,
+      };
+}
+
+class Race {
+  Race({
+    required this.id,
+    required this.race,
+  });
+
+  final String id;
+  final String race;
+
+  factory Race.fromJson(Map<String, dynamic> json) => Race(
+        id: json["_id"],
+        race: json["race"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "_id": id,
+        "race": race,
+      };
+}
+
+class Roles {
+  Roles({
+    required this.id,
+    required this.role,
+  });
+
+  final String id;
+  final String role;
+
+  factory Roles.fromJson(Map<String, dynamic> json) => Roles(
+        id: json["_id"],
+        role: json["role"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "_id": id,
+        "role": role,
+      };
+}
+
+class Sex {
+  Sex({
+    required this.id,
+    required this.sex,
+  });
+
+  final String id;
+  final String sex;
+
+  factory Sex.fromJson(Map<String, dynamic> json) => Sex(
+        id: json["_id"],
+        sex: json["sex"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "_id": id,
+        "sex": sex,
       };
 }
