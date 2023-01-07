@@ -59,6 +59,7 @@ class TextFieldWithBorderWidget extends StatelessWidget {
         obscureText: isPassword,
         validator: validator,
         decoration: InputDecoration(
+          floatingLabelBehavior: FloatingLabelBehavior.always,
           labelText: labelText != null
               ? AppLocalizations.of(context)!.translate(labelText!)
               : null,
@@ -69,14 +70,14 @@ class TextFieldWithBorderWidget extends StatelessWidget {
               TextStyle(
                 fontFamily: 'Poppins',
                 color: textColor ?? color.mapColors['IDGrey'],
-                fontSize: 14,
+                fontSize: 16,
                 fontWeight: FontWeight.normal,
               ),
           hintStyle: hintStyle ??
               TextStyle(
                 fontFamily: 'Poppins',
                 color: textColor ?? color.mapColors['IDGrey'],
-                fontSize: 14,
+                fontSize: 16,
                 fontWeight: FontWeight.normal,
               ),
           enabledBorder: enabledBorder ??

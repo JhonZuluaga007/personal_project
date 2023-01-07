@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:personal_project/common_ui/common_widgets/text/text_widget.dart';
 
 class DrawerWidget extends StatelessWidget {
   const DrawerWidget({super.key});
@@ -12,25 +13,63 @@ class DrawerWidget extends StatelessWidget {
         // Importante: elimine cualquier padding del ListView.
         // padding: EdgeInsets.zero,
         children: <Widget>[
-          DrawerHeader(
-            decoration: const BoxDecoration(
-              color: Colors.blue,
+          Theme(
+            data: Theme.of(context).copyWith(
+              dividerTheme: const DividerThemeData(color: Colors.transparent),
             ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
-                Icon(
-                  Icons.person,
-                  size: 70,
-                ),
-                SizedBox(height: 10),
-                Text('Drawer Header'),
-              ],
+            child: DrawerHeader(
+              decoration: const BoxDecoration(color: Colors.transparent),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const [
+                  Icon(
+                    Icons.person,
+                    size: 70,
+                  ),
+                  SizedBox(height: 10),
+                  Text('Mateo Bonnett'),
+                ],
+              ),
+            ),
+          ),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16.0),
+            child: Divider(
+              thickness: 1,
+              height: 2,
             ),
           ),
           ListTile(
-            title: const Text('Item 1'),
+            trailing: const Padding(
+              padding: EdgeInsets.only(right: 16.0),
+              child: Icon(Icons.person),
+            ),
+            title: const TextWidget(
+              text: 'drawer_item_one',
+            ),
+            onTap: () {
+              // Actualiza el estado de la aplicación
+
+              Navigator.pushNamed(context, 'profile');
+              // ...
+            },
+          ),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16.0),
+            child: Divider(
+              thickness: 1,
+              height: 2,
+            ),
+          ),
+          ListTile(
+            trailing: const Padding(
+              padding: EdgeInsets.only(right: 16.0),
+              child: Icon(Icons.history),
+            ),
+            title: const TextWidget(
+              text: 'drawer_item_two',
+            ),
             onTap: () {
               // Actualiza el estado de la aplicación
               // ...
@@ -44,7 +83,13 @@ class DrawerWidget extends StatelessWidget {
             ),
           ),
           ListTile(
-            title: const Text('Item 2'),
+            trailing: Padding(
+              padding: const EdgeInsets.only(right: 16.0),
+              child: Icon(Icons.keyboard_alt_outlined),
+            ),
+            title: const TextWidget(
+              text: 'drawer_item_three',
+            ),
             onTap: () {
               // Actualiza el estado de la aplicación
               // ...
@@ -57,34 +102,20 @@ class DrawerWidget extends StatelessWidget {
               height: 2,
             ),
           ),
-          ListTile(
-            title: const Text('Item 3'),
-            onTap: () {
-              // Actualiza el estado de la aplicación
-              // ...
-            },
-          ),
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16.0),
-            child: Divider(
-              thickness: 1,
-              height: 2,
-            ),
-          ),
-          ListTile(
-            title: const Text('Item 4'),
-            onTap: () {
-              // Actualiza el estado de la aplicación
-              // ...
-            },
-          ),
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16.0),
-            child: Divider(
-              thickness: 1,
-              height: 2,
-            ),
-          ),
+          // ListTile(
+          //   title: const Text('Item 4'),
+          //   onTap: () {
+          //     // Actualiza el estado de la aplicación
+          //     // ...
+          //   },
+          // ),
+          // const Padding(
+          //   padding: EdgeInsets.symmetric(horizontal: 16.0),
+          //   child: Divider(
+          //     thickness: 1,
+          //     height: 2,
+          //   ),
+          // ),
           const Spacer(),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -97,10 +128,10 @@ class DrawerWidget extends StatelessWidget {
                 SizedBox(
                   width: size.width * 0.01,
                 ),
-                const Text(
-                  'Logout',
-                  style: TextStyle(fontSize: 14),
-                )
+                const TextWidget(
+                  text: 'drawer_item_four',
+                  style: TextStyle(),
+                ),
               ],
             ),
           ),

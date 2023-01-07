@@ -8,21 +8,21 @@ class UserModel {
   UserModel({
     required this.project,
     required this.token,
-    required this.data,
+    required this.user,
     required this.message,
     required this.statusCode,
   });
 
   final String project;
   final String token;
-  final Data data;
+  final User user;
   final String message;
   final int statusCode;
 
   factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
         project: json["project"],
         token: json["token"],
-        data: Data.fromJson(json["data"]),
+        user: User.fromJson(json["data"]),
         message: json["message"],
         statusCode: json["statusCode"],
       );
@@ -30,14 +30,14 @@ class UserModel {
   Map<String, dynamic> toJson() => {
         "project": project,
         "token": token,
-        "data": data.toJson(),
+        "user": user.toJson(),
         "message": message,
         "statusCode": statusCode,
       };
 }
 
-class Data {
-  Data({
+class User {
+  User({
     required this.id,
     required this.acceptsTerms,
     required this.addresses,
@@ -91,7 +91,7 @@ class Data {
   final List<Sex> sex;
   final DateOfBirth updated;
 
-  factory Data.fromJson(Map<String, dynamic> json) => Data(
+  factory User.fromJson(Map<String, dynamic> json) => User(
         id: json["_id"],
         acceptsTerms: json["accepts_terms"],
         addresses: Addresses.fromJson(json["addresses"]),
