@@ -45,15 +45,15 @@
     "text_button_onboarding": "Continuar",
 
     "nav_bar_01": "Home",
-    "nav_bar_02": "Antigenos",
-    "nav_bar_03": "PCR",
-    "nav_bar_04": "Historial",
-    "nav_bar_05": "FAQS",
+    "nav_bar_02": "Historial",
+    "nav_bar_03": "Nuevo test",
+    "nav_bar_04": "Mi perfil",
+    "nav_bar_05": "FAQs",
 
 
     "home_name_user": "Hola Sebastian, bienvenido",
     "home_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ultrices\n praesent et porta odio purus vulputate convallis. Fermentum,\nermentum morbi dui nec rhoncus suspendisse aliquam urn.",
-    "home_title_card": "Que quieres hacer hoy",
+    "home_title_card": "¿Que quiere hacer hoy?",
     "home_title_card_scan": "Scan Kit Label",
     "home_title_card_covid_19": "Covid-19 Self Tests",
     "home_title_card_test_status": "Test status and results",

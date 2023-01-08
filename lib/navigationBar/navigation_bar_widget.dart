@@ -6,14 +6,11 @@ import 'package:personal_project/config/theme/theme.dart';
 import 'package:personal_project/features/home/page/faqs_page.dart';
 import 'package:personal_project/features/home/page/register_pcr_test_page.dart';
 import 'package:personal_project/navigationBar/bloc/navigation_bar_bloc.dart';
-import 'package:personal_project/navigationBar/floating_nav_bar.dart';
 import 'package:personal_project/navigationBar/floating_nav_bar_item.dart';
 import 'package:personal_project/features/home/page/register_antigen_test_page.dart';
 import 'package:personal_project/features/home/page/home_page.dart';
 import 'package:personal_project/features/home/page/history_page.dart';
 import 'package:personal_project/icons/icons.dart';
-
-import '../features/home/page/my_users_page.dart';
 
 class NavBarPage extends StatefulWidget {
   const NavBarPage({Key? key, this.initialPage}) : super(key: key);
