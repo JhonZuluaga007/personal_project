@@ -20,135 +20,116 @@ class TextFieldFormMyUser extends StatelessWidget {
     final height = MediaQuery.of(context).size.height;
     final wColor = ThemesIdx20();
 
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: width * 0.037),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          TextWidget(
-            text: textTitle,
-            textAlign: TextAlign.start,
-            style: TextStyle(
-                fontSize: 13,
-                fontWeight: FontWeight.w500,
-                color: wColor.mapColors["S700"]),
-          ),
-          SizedBox(
-            height: height * 0.0086,
-          ),
-          TextFieldWithBorderWidget(
-            suffixIcon: iconTextField,
-            borderColor: wColor.mapColors["T100"],
-            hintStyle: TextStyle(
-                fontSize: 13,
-                fontWeight: FontWeight.w400,
-                color: wColor.mapColors["S600"]),
-            hintText: hintText,
-          ),
-          SizedBox(height: height * 0.050),
-          TextWidget(
-            text: textTitle,
-            textAlign: TextAlign.start,
-            style: TextStyle(
-                fontSize: 13,
-                fontWeight: FontWeight.w500,
-                color: wColor.mapColors["S700"]),
-          ),
-          SizedBox(
-            height: height * 0.0086,
-          ),
-          TextFieldWithBorderWidget(
-            hintText: hintText,
-            borderColor: wColor.mapColors["T100"],
-            hintStyle: TextStyle(
-                fontSize: 13,
-                fontWeight: FontWeight.w400,
-                color: wColor.mapColors["S600"]),
-          ),
-          SizedBox(height: height * 0.050),
-          TextWidget(
-            text: textTitle,
-            textAlign: TextAlign.start,
-            style: TextStyle(
-                fontSize: 13,
-                fontWeight: FontWeight.w500,
-                color: wColor.mapColors["S700"]),
-          ),
-          SizedBox(
-            height: height * 0.0086,
-          ),
-          TextFieldWithBorderWidget(
-            hintText: hintText,
-            borderColor: wColor.mapColors["T100"],
-            hintStyle: TextStyle(
-                fontSize: 13,
-                fontWeight: FontWeight.w400,
-                color: wColor.mapColors["S600"]),
-          ),
-          SizedBox(height: height * 0.050),
-          TextWidget(
-            text: textTitle,
-            textAlign: TextAlign.start,
-            style: TextStyle(
-                fontSize: 13,
-                fontWeight: FontWeight.w500,
-                color: wColor.mapColors["S700"]),
-          ),
-          SizedBox(
-            height: height * 0.0086,
-          ),
-          TextFieldWithBorderWidget(
-            hintText: hintText,
-            suffixIcon: iconTextField,
-            borderColor: wColor.mapColors["T100"],
-            hintStyle: TextStyle(
-                fontSize: 13,
-                fontWeight: FontWeight.w400,
-                color: wColor.mapColors["S600"]),
-          ),
-          SizedBox(height: height * 0.050),
-          TextWidget(
-            text: textTitle,
-            textAlign: TextAlign.start,
-            style: TextStyle(
-                fontSize: 13,
-                fontWeight: FontWeight.w500,
-                color: wColor.mapColors["S700"]),
-          ),
-          SizedBox(
-            height: height * 0.0086,
-          ),
-          TextFieldWithBorderWidget(
-            hintText: hintText,
-            borderColor: wColor.mapColors["T100"],
-            hintStyle: TextStyle(
-                fontSize: 13,
-                fontWeight: FontWeight.w400,
-                color: wColor.mapColors["S600"]),
-          ),
-          SizedBox(height: height * 0.050),
-          TextWidget(
-            text: textTitle,
-            textAlign: TextAlign.start,
-            style: TextStyle(
-                fontSize: 13,
-                fontWeight: FontWeight.w500,
-                color: wColor.mapColors["S700"]),
-          ),
-          SizedBox(
-            height: height * 0.0086,
-          ),
-          TextFieldWithBorderWidget(
-            hintText: hintText,
-            suffixIcon: iconTextField,
-            borderColor: wColor.mapColors["T100"],
-            hintStyle: TextStyle(
-                fontSize: 13,
-                fontWeight: FontWeight.w400,
-                color: wColor.mapColors["S600"]),
-          ),
-        ],
-      ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        TextFieldWithBorderWidget(
+          suffixIcon: iconTextField,
+          borderColor: wColor.mapColors["T100"],
+          hintStyle: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w400,
+              color: wColor.mapColors["S600"]),
+          hintText: "profile_text_hint_seven",
+          textStyle: const TextStyle(fontSize: 18),
+          labelText: "profile_text_seven",
+        ),
+        SizedBox(height: height * 0.0250),
+        TextFieldWithBorderWidget(
+          suffixIcon: iconTextField,
+          borderColor: wColor.mapColors["T100"],
+          hintStyle: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w400,
+              color: wColor.mapColors["S600"]),
+          hintText: "profile_text_hint_eigth",
+          textStyle: const TextStyle(fontSize: 18),
+          labelText: "profile_text_eight",
+        ),
+        SizedBox(
+          height: height * 0.0250,
+        ),
+        TextFieldWithBorderWidget(
+          suffixIcon: iconTextField,
+          borderColor: wColor.mapColors["T100"],
+          hintStyle: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w400,
+              color: wColor.mapColors["S600"]),
+          hintText: "profile_text_hint_nine",
+          textStyle: const TextStyle(fontSize: 18),
+          labelText: "profile_text_nine",
+        ),
+        SizedBox(height: height * 0.0250),
+        TextFieldWithBorderWidget(
+          suffixIcon: iconTextField,
+          borderColor: wColor.mapColors["T100"],
+          hintStyle: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w400,
+              color: wColor.mapColors["S600"]),
+          hintText: "profile_text_hint_ten",
+          textStyle: const TextStyle(fontSize: 18),
+          labelText: "profile_text_ten",
+        ),
+        SizedBox(
+          height: height * 0.025,
+        ),
+        TextFieldWithBorderWidget(
+          suffixIcon: iconTextField,
+          borderColor: wColor.mapColors["T100"],
+          hintStyle: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w400,
+              color: wColor.mapColors["S600"]),
+          hintText: "profile_text_eleven",
+          textStyle: const TextStyle(fontSize: 18),
+          labelText: "profile_text_hint_eleven",
+        ),
+        SizedBox(
+          height: height * 0.025,
+        ),
+        TextFieldWithBorderWidget(
+          suffixIcon: iconTextField,
+          borderColor: wColor.mapColors["T100"],
+          hintStyle: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w400,
+              color: wColor.mapColors["S600"]),
+          hintText: "profile_text_hint_eleven",
+          textStyle: const TextStyle(fontSize: 18),
+          labelText: "profile_text_hint_twelve",
+        ),
+        SizedBox(height: height * 0.025),
+        TextFieldWithBorderWidget(
+          suffixIcon: iconTextField,
+          borderColor: wColor.mapColors["T100"],
+          hintStyle: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w400,
+              color: wColor.mapColors["S600"]),
+          hintText: "helper_one", // TODO CHECK
+          textStyle: const TextStyle(fontSize: 18),
+          labelText: "profile_text_twelve",
+        ),
+        SizedBox(
+          height: height * 0.025,
+        ),
+        TextFieldWithBorderWidget(
+          suffixIcon: iconTextField,
+          borderColor: wColor.mapColors["T100"],
+          hintStyle: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w400,
+              color: wColor.mapColors["S600"]),
+          hintText: "helper_two", // TODO CHECK
+          textStyle: const TextStyle(fontSize: 18),
+          labelText: "profile_text_thirdteen",
+        ),
+        SizedBox(
+          height: height * 0.0086,
+        ),
+      ],
     );
   }
 }

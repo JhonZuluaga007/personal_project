@@ -45,15 +45,15 @@
     "text_button_onboarding": "Continue",
 
     "nav_bar_01": "Home",
-    "nav_bar_02": "Antigen",
-    "nav_bar_03": "PCR",
-    "nav_bar_04": "History",
-    "nav_bar_05": "FAQS",
+    "nav_bar_02": "History",
+    "nav_bar_03": "New test",
+    "nav_bar_04": "Profile",
+    "nav_bar_05": "FAQs",
 
 
     "home_name_user": "Hi Sebastian, welcome",
     "home_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ultrices\npraesent et porta odio purus vulputate convallis. Fermentum,\nermentum morbi dui nec rhoncus suspendisse aliquam urn.",
-    "home_title_card": "What do you want to do today",
+    "home_title_card": "What would you like to do today?",
     "home_title_card_scan": "Scan Kit Label",
     "home_title_card_covid_19": "Covid-19 Self Tests",
     "home_title_card_test_status": "Test status and results",
@@ -63,5 +63,42 @@
     "my_user_button_edit_profile": "Edit my information",
     "my_user_text_field_label": "Form Label",
     "my_user_text_field_hint": "Placeholder",
-    "my_user_button_saved": "Save changes"
+    "my_user_button_saved": "Save changes",
+
+    "drawer_item_one": "My profile",
+    "drawer_item_two": "Medical history",
+    "drawer_item_three": "Change password",
+    "drawer_item_four": "Logout",
+
+"profile_text_one": "Mateo",
+"profile_text_hint": "First name",
+"profile_text_hint_two": "Middle name",
+"profile_text_two": "Middle name",
+"profile_text_hint_three": "Last name",
+"profile_text_three": "Bonnett",
+"profile_text_hint_four": "Date of birth",
+"profile_text_four": "MM/DD/YYYY",
+"profile_text_hint_five": "Phone number",
+"profile_text_five": "000 000 000",
+"profile_text_hint_six": "Email Address",
+"profile_text_six": "mbonnett@bonnettanalytics.com",
+
+"profile_text_seven": "Address",
+"profile_text_hint_seven": "4334 N Hazel St",
+"profile_text_hint_eigth": "City",
+"profile_text_eight": "Chicago",
+"profile_text_hint_nine": "State",
+"profile_text_nine": "Illinois",
+"profile_text_hint_ten": "ZIP",
+"profile_text_ten": "000000",
+"profile_text_hint_eleven": "Sex",
+"profile_text_eleven": "Male",
+"profile_text_hint_twelve": "Gender",
+"profile_text_twelve": "Race",
+"profile_text_thirdteen": "Ethnicity",
+"helper_one": "White",
+"helper_two": "Latino"
+
+
+
 }

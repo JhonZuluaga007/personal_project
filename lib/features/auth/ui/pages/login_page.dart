@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:personal_project/common_ui/common_widgets/buttons/main_button_widget.dart';
 import 'package:personal_project/common_ui/common_widgets/text_field/text_field_with_border_widget.dart';
 import 'package:personal_project/config/theme/theme.dart';
-import 'package:personal_project/features/auth/data/data_source/auth_data_source.dart';
 
 import '../../../../common_ui/common_pages/my_app_scaffold_page.dart';
 import '../../../../common_ui/common_widgets/responsive/dynamic_container_widget.dart';
@@ -25,13 +24,13 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController lastNameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
-  late bool _isObscure = true;
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
     final wColor = ThemesIdx20();
 
+    bool isObscure = true;
     return MyAppScaffold(
       color: Colors.white,
       mainAxisAlignment: MainAxisAlignment.start,
@@ -79,7 +78,7 @@ class _LoginPageState extends State<LoginPage> {
             SizedBox(height: height * 0.03),
             TextFieldWithBorderWidget(
               key: const Key('textFieldPasswordLogin'),
-              isPassword: _isObscure,
+              isPassword: isObscure, // TODO CHECK
               labelText: '01_login_input_two',
               borderColor: wColor.mapColors['IDGrey'],
               textColor: Colors.white,
@@ -93,11 +92,11 @@ class _LoginPageState extends State<LoginPage> {
                 padding: const EdgeInsets.only(left: 10),
                 child: IconButton(
                   icon: Icon(
-                    _isObscure ? Icons.remove_red_eye : Icons.remove_circle,
+                    isObscure ? Icons.remove_red_eye : Icons.remove_circle,
                   ),
                   color: wColor.mapColors['IDGrey'],
                   onPressed: () => setState(() {
-                    _isObscure = !_isObscure;
+                    isObscure = !isObscure;
                   }),
                 ),
               ),
@@ -113,7 +112,8 @@ class _LoginPageState extends State<LoginPage> {
             textColor: Colors.white,
             buttonString: '01_login_button_one',
             onPressed: () {
-              AuthDataSource().login(nameController.text, passwordController.text);
+              // AuthDataSource().getUser('63a39216bd99fc7c1ecad8de');
+              // AuthDataSource().login(nameController.text, passwordController.text);
               Navigator.push(
                 context,
                 MaterialPageRoute(

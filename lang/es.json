@@ -45,15 +45,15 @@
     "text_button_onboarding": "Continuar",
 
     "nav_bar_01": "Home",
-    "nav_bar_02": "Antigenos",
-    "nav_bar_03": "PCR",
-    "nav_bar_04": "Historial",
-    "nav_bar_05": "FAQS",
+    "nav_bar_02": "Historial",
+    "nav_bar_03": "Nuevo test",
+    "nav_bar_04": "Mi perfil",
+    "nav_bar_05": "FAQs",
 
 
     "home_name_user": "Hola Sebastian, bienvenido",
     "home_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ultrices\n praesent et porta odio purus vulputate convallis. Fermentum,\nermentum morbi dui nec rhoncus suspendisse aliquam urn.",
-    "home_title_card": "Que quieres hacer hoy",
+    "home_title_card": "¿Que quiere hacer hoy?",
     "home_title_card_scan": "Scan Kit Label",
     "home_title_card_covid_19": "Covid-19 Self Tests",
     "home_title_card_test_status": "Test status and results",
@@ -63,5 +63,40 @@
     "my_user_button_edit_profile": "Editar mi información",
     "my_user_text_field_label": "Form Label",
     "my_user_text_field_hint": "Placeholder",
-    "my_user_button_saved": "Guardar cambios"
+    "my_user_button_saved": "Guardar cambios",
+
+    "drawer_item_one": "Mi perfil",
+    "drawer_item_two": "Historia medica",
+    "drawer_item_three": "Cambiar password",
+    "drawer_item_four": "Cerrar sesión",
+
+    "profile_text_one": "Mateo",
+    "profile_text_hint": "Primer nombre",
+    "profile_text_hint_two": "Segundo nombre",
+    "profile_text_two": "Segundo nombre",
+    "profile_text_hint_three": "Apellido",
+    "profile_text_three": "Bonnett",
+    "profile_text_hint_four": "Fecha de nacimiento",
+    "profile_text_four": "MM/DD/YYYY",
+    "profile_text_hint_five": "Numero de celular",
+    "profile_text_five": "000 000 000",
+    "profile_text_hint_six": "Correo electronico",
+    "profile_text_six": "mbonnett@bonnettanalytics.com",
+
+    "profile_text_seven": "Dirección",
+    "profile_text_hint_seven": "4334 N Hazel St",
+    "profile_text_hint_eigth": "Ciudad",
+    "profile_text_eight": "Chicago",
+    "profile_text_hint_nine": "Estado",
+    "profile_text_nine": "Illinois",
+    "profile_text_hint_ten": "ZIP",
+    "profile_text_ten": "000000",
+    "profile_text_hint_eleven": "Sexo",
+    "profile_text_eleven": "Hombre",
+    "profile_text_hint_twelve": "Genero",
+    "profile_text_twelve": "Raza",
+    "profile_text_thirdteen": "Etnicidad",
+    "helper_one": "Blanco",
+    "helper_two": "Latino"
+
 }
