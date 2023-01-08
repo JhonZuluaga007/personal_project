@@ -38,13 +38,6 @@ class _NavBarPageState extends State<NavBarPage> {
 
     NavigationBarBloc navigationBloc =
         BlocProvider.of<NavigationBarBloc>(context);
-    Map<String, Widget> personHomePageTabs = {
-      'HomePage': const HomePage(),
-      'registerAntigen': const RegisterAntigenTestPage(),
-      'registerPcr': const RegisterPCRTestPage(),
-      'history': const HistoryPage(),
-      'faqsPage': const FAQSPage()
-    };
 
     final List<Map<String, dynamic>> pageDetails = [
       {'pageName': const HomePage(), 'title': 'Home'},
@@ -52,21 +45,6 @@ class _NavBarPageState extends State<NavBarPage> {
       {'pageName': const RegisterPCRTestPage(), 'title': 'PCR'},
       {'pageName': const HistoryPage(), 'title': 'History'},
       {'pageName': const FAQSPage(), 'title': 'FAQs'},
-    ];
-
-    Map<String, dynamic> tabs = personHomePageTabs;
-
-    final currentIndex = tabs.keys.toList().indexOf(_currentPage);
-    final itemsPerson = [
-      buttonNavbarWidget(currentIndex, 0, IconsFolderCovid.home, "nav_bar_01"),
-      buttonNavbarWidget(
-          currentIndex, 1, IconsFolderCovid.covid_19Test, "nav_bar_02"),
-      buttonNavbarWidget(
-          currentIndex, 2, IconsFolderCovid.myUser, "nav_bar_03"),
-      buttonNavbarWidget(
-          currentIndex, 3, IconsFolderCovid.iconFAQS, "nav_bar_04"),
-      buttonNavbarWidget(
-          currentIndex, 4, IconsFolderCovid.iconFAQS, "nav_bar_05"),
     ];
 
     return BlocBuilder<NavigationBarBloc, NavigationBarState>(
@@ -87,18 +65,12 @@ class _NavBarPageState extends State<NavBarPage> {
             ),
             body: pageDetails[state.indexNavigation]['pageName'],
             extendBody: true,
-            floatingActionButton: FloatingActionButton(
-              onPressed: () {},
-            ),
             drawer: const DrawerWidget(),
             bottomNavigationBar: BottomNavigationBar(
               showUnselectedLabels: true,
               backgroundColor: wColor.mapColors["IDWhite"],
               selectedItemColor: wColor.mapColors["500BASE"],
               unselectedItemColor: wColor.mapColors["S600"],
-              // selectedBackgroundColor: Colors.transparent,
-              // unselectedItemColor: Colors.grey,
-              // selectedItemColor: Colors.black,
               currentIndex: state.indexNavigation,
               onTap: (index) {
                 setState(() {
@@ -145,20 +117,7 @@ class _NavBarPageState extends State<NavBarPage> {
                     label:
                         AppLocalizations.of(context)!.translate("nav_bar_05"))
               ],
-            )
-
-            // bottomNavigationBar: FloatingNavbar(
-            //   currentIndex: currentIndex,
-            //   onTap: (i) => setState(() => _currentPage = tabs.keys.toList()[i]),
-            // backgroundColor: wColor.mapColors["IDWhite"],
-            // selectedItemColor: wColor.mapColors["500BASE"],
-            // unselectedItemColor: wColor.mapColors["S600"],
-            // selectedBackgroundColor: Colors.transparent,
-            //   elevation: 0,
-            //   items: itemsPerson,
-            //   height: height * 0.095,
-            // ),
-            );
+            ));
       },
     );
   }
