@@ -15,7 +15,7 @@ class AuthDataSource {
   Future<UserModel> getUser(String userId) async {
     final response = await Api.get('${Endpoints.getUser}$userId');
     UserModel aaa = userModelFromMap(response);
-    debugPrint("result data response: ${aaa.user.id}");
+    debugPrint("result data response getUser: ${aaa.user.id}");
     return userModelFromMap(response);
   }
 }
