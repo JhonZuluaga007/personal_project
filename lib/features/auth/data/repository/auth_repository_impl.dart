@@ -9,5 +9,7 @@ class AuthRepositoryImpl implements AuthRepository {
     required this.authDataSource,
   });
 
-
+  Future<UserEntity> login(String username, String password) {
+    return authDataSource.login(username, password);
+  }
 }
