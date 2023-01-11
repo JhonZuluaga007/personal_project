@@ -5,7 +5,7 @@ import 'package:personal_project/common_ui/common_pages/splash_page.dart';
 import 'package:personal_project/features/auth/ui/pages/login_page.dart';
 import 'package:personal_project/features/auth/ui/pages/reset_password_page.dart';
 import 'package:personal_project/features/auth/ui/pages/reset_password_page_info_1.dart';
-import 'package:personal_project/features/home/page/my_users_page.dart';
+import 'package:personal_project/features/home/page/edit_profile/my_users_page.dart';
 import 'package:personal_project/navigationBar/bloc/navigation_bar_bloc.dart';
 import 'package:personal_project/navigationBar/navigation_bar_widget.dart';
 import 'package:personal_project/features/home/page/home_page.dart';

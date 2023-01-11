@@ -1,18 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:personal_project/common_ui/common_pages/my_app_scaffold_page.dart';
-import 'package:personal_project/common_ui/common_widgets/buttons/button_widget.dart';
 import 'package:personal_project/common_ui/common_widgets/buttons/main_button_widget.dart';
 import 'package:personal_project/common_ui/common_widgets/text/text_widget.dart';
 import 'package:personal_project/config/theme/theme.dart';
 import 'package:personal_project/features/home/widget/text_field_form_my_profile.dart';
 
-import '../../../navigationBar/bloc/navigation_bar_bloc.dart';
-import '../widget/info_column_widget.dart';
+import '../../../../navigationBar/bloc/navigation_bar_bloc.dart';
+import '../../widget/info_column_widget.dart';
 
-class MyUserPage extends StatelessWidget {
+class MyUserPage extends StatefulWidget {
   const MyUserPage({super.key});
 
+  @override
+  State<MyUserPage> createState() => _MyUserPageState();
+}
+
+class _MyUserPageState extends State<MyUserPage> {
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
@@ -66,7 +70,7 @@ class MyUserPage extends StatelessWidget {
         ),
         SizedBox(height: height * 0.070),
         const InfoColumnWidget(),
-        SizedBox(height: height * 0.070),
+        SizedBox(height: height * 0.040),
         const TextFieldFormMyUser(
           textTitle: 'my_user_text_field_hint',
           iconTextField: Icon(Icons.keyboard_arrow_down_rounded),

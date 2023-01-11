@@ -83,15 +83,15 @@ class TextFieldWithBorderWidget extends StatelessWidget {
           enabledBorder: enabledBorder ??
               OutlineInputBorder(
                 borderSide: BorderSide(
-                  color: borderColor ?? color.mapColors['IDGrey']!,
-                  width: 1,
-                ),
+                    color: borderColor ?? color.mapColors['IDGrey']!,
+                    width: 3,
+                    style: BorderStyle.solid),
               ),
           focusedBorder: focusedBorder ??
               OutlineInputBorder(
                 borderSide: BorderSide(
                   color: borderColor ?? color.mapColors['IDGrey']!,
-                  width: 1,
+                  width: 3,
                 ),
               ),
           filled: false,
