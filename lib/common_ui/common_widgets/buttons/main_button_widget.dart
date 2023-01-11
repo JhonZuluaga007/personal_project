@@ -17,7 +17,8 @@ class MainButtonWidget extends StatelessWidget {
     this.buttonColor,
     required this.onPressed,
     this.icon,
-    this.iconSize,
+    this.iconSize, 
+    this.borderRadiusButton,
   }) : super(key: key);
   final double? width;
   final double? height;
@@ -31,6 +32,7 @@ class MainButtonWidget extends StatelessWidget {
   final Color? textColor;
   final IconData? icon;
   final double? iconSize;
+  final double? borderRadiusButton;
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +53,7 @@ class MainButtonWidget extends StatelessWidget {
         ),
         shape: MaterialStateProperty.all<RoundedRectangleBorder>(
           RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(36),
+            borderRadius: BorderRadius.circular(borderRadiusButton ?? 36),
             side: BorderSide(
                 color: borderColor ?? color.mapColors['P00']!, width: 1),
           ),

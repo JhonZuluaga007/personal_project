@@ -93,6 +93,7 @@ class _LoginPageState extends State<LoginPage> {
                 padding: const EdgeInsets.only(left: 10),
                 child: IconButton(
                   icon: Icon(
+                    // ignore: dead_code
                     isObscure ? Icons.remove_red_eye : Icons.remove_circle,
                   ),
                   color: wColor.mapColors['IDGrey'],

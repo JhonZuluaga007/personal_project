@@ -83,8 +83,8 @@ class DrawerWidget extends StatelessWidget {
             ),
           ),
           ListTile(
-            trailing: Padding(
-              padding: const EdgeInsets.only(right: 16.0),
+            trailing: const Padding(
+              padding: EdgeInsets.only(right: 16.0),
               child: Icon(Icons.keyboard_alt_outlined),
             ),
             title: const TextWidget(

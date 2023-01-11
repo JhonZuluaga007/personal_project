@@ -97,6 +97,24 @@
     "profile_text_twelve": "Raza",
     "profile_text_thirdteen": "Etnicidad",
     "helper_one": "Blanco",
-    "helper_two": "Latino"
+    "helper_two": "Latino",
 
+    "start_counter_text": "Autoprueba",
+    "start_counter_text_2": "minutos restantes",
+    "start_counter_text_button": "Iniciar temporizador",
+    "start_counter_text_button_1": "Saltar temporizador",
+    "start_counter_text_finish_linear": "Comienza el contador (asegúrate de terminarlo)",
+    "popUp_button_text": "Sky anyway",
+    "popUp_button_text_1": "Atrás",
+    "popUp_text_title": "Estas segur@?",
+
+    "Upload_drop_down_0": "Sí",
+    "Upload_drop_down_1": "No",
+    "Upload_button_text":"Actulizar resultado",
+    "Upload_image_Button_text": "Subir una imagen",
+    "Upload_picture_Button_text": "Toma una foto",
+    "Upload_linear_text": "Registra tu resultado",
+    "Upload_question_test_0": "Do you see a top line on the test strip next to C?",
+    "Upload_question_test_01": "Do you see a lower line on the test strip next to T?",
+    "Upload_question_test_02": "What results did you get in the test?"
 }

@@ -51,8 +51,9 @@ class ThemesIdx20 {
     "S700": const Color.fromRGBO(91, 92, 93, 1),
     "S800": const Color.fromRGBO(60, 61, 62, 1),
     "500BASE": const Color.fromRGBO(244, 145, 163, 1),
-    "T400": const Color.fromRGBO(173, 173, 175, 1),
     "T100": const Color.fromRGBO(234, 235, 235, 1),
-    "T300": Color.fromARGB(255, 207, 207, 219),
+    "T300": const Color.fromRGBO(193, 194, 195, 1),
+    "T400": const Color.fromRGBO(173, 173, 175, 1),
+    "Pink": const Color.fromRGBO(251, 145, 163, 1)
   };
 }
