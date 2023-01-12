@@ -5,7 +5,9 @@ import 'package:personal_project/common_ui/common_pages/splash_page.dart';
 import 'package:personal_project/features/auth/ui/pages/login_page.dart';
 import 'package:personal_project/features/auth/ui/pages/reset_password_page.dart';
 import 'package:personal_project/features/auth/ui/pages/reset_password_page_info_1.dart';
-import 'package:personal_project/features/home/page/my_users_page.dart';
+import 'package:personal_project/features/home/page/edit_profile/my_users_page.dart';
+import 'package:personal_project/features/home/page/tests_pages/antigen_pages/antigen_register_info_page.dart';
+import 'package:personal_project/features/home/page/tests_pages/pcr_pages/pcr_test_register_page.dart';
 import 'package:personal_project/navigationBar/bloc/navigation_bar_bloc.dart';
 import 'package:personal_project/navigationBar/navigation_bar_widget.dart';
 import 'package:personal_project/features/home/page/home_page.dart';
@@ -54,6 +56,8 @@ class MyApp extends StatelessWidget {
           "profile": (_) => const MyUserPage(),
           "resetInfo": (_) => const ResetPasswordPageInfo(),
           "reset": (_) => const ResetPasswordPage(),
+          "pcrInfo": (_) => const PcrRegisterPage(),
+          "antigenInfo": (_) => const AntigenRegisterInfoPage(),
         },
       ),
     );

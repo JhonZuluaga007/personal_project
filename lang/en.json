@@ -5,7 +5,7 @@
     "01_login_input_one" : "Username",
     "01_login_input_hint_one" : "salbisserc12",
     "01_login_input_two" : "Password",
-    "01_login_input_hint_two" : "12345786",
+    "01_login_input_hint_two" : "********",
     "01_login_button_one" : "Enter",
     "01_login_button_two" : "Sign in with your cellphone number.",
 
@@ -54,8 +54,8 @@
     "home_name_user": "Hi Sebastian, welcome",
     "home_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ultrices\npraesent et porta odio purus vulputate convallis. Fermentum,\nermentum morbi dui nec rhoncus suspendisse aliquam urn.",
     "home_title_card": "What would you like to do today?",
-    "home_title_card_scan": "Scan Kit Label",
-    "home_title_card_covid_19": "Covid-19 Self Tests",
+    "home_title_card_scan": "Register Antigen Test",
+    "home_title_card_covid_19": "Register PCR Test",
     "home_title_card_test_status": "Test status and results",
     "home_description_card_scan": "Lorem ipsum dolor sit amet, consectetur\nadipiscing elit. Ultrices praesent et porta.",
 
@@ -97,8 +97,28 @@
 "profile_text_twelve": "Race",
 "profile_text_thirdteen": "Ethnicity",
 "helper_one": "White",
-"helper_two": "Latino"
+"helper_two": "Latino",
 
+"test_info_screen_text_title": "Covid 19 self test",
+"test_info_screen_text_one": "Antigen test",
+"test_info_screen_text_two": "PCR test",
+"test_info_screen_text_three": "Select type of test",
+"test_info_screen_text_dropdown_label": "Type test",
+"test_info_screen_text_button": "Continue",
+
+"faqs_text_title": "Frequent asked questions",
+"faqs_text_one": "Answer 1",
+"faqs_text_two": "Answer 2",
+"faqs_text_three": "Answer 3",
+"faqs_text_four": "Answer 4",
+"faqs_text_five": "Answer 5",
+"faqs_text_six": "Answer 6",
+"faqs_text_question_one": "Question number 1?",
+"faqs_text_question_two": "Question number 2?",
+"faqs_text_question_three": "Question number 3?",
+"faqs_text_question_four": "Question number 4?",
+"faqs_text_question_five": "Question number 5?",
+"faqs_text_question_six": "Question number 6?"
 
 
 }

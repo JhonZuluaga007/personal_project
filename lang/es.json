@@ -54,9 +54,9 @@
     "home_name_user": "Hola Sebastian, bienvenido",
     "home_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ultrices\n praesent et porta odio purus vulputate convallis. Fermentum,\nermentum morbi dui nec rhoncus suspendisse aliquam urn.",
     "home_title_card": "¿Que quiere hacer hoy?",
-    "home_title_card_scan": "Scan Kit Label",
-    "home_title_card_covid_19": "Covid-19 Self Tests",
-    "home_title_card_test_status": "Test status and results",
+    "home_title_card_scan": "Registra prueba de Antigenos",
+    "home_title_card_covid_19": "Registra prueba de PCR",
+    "home_title_card_test_status": "Estado de test y resultados",
     "home_description_card_scan": "Lorem ipsum dolor sit amet, consectetur\nadipiscing elit. Ultrices praesent et porta.",
 
     "my_user_profile": "Mi perfil",
@@ -97,6 +97,28 @@
     "profile_text_twelve": "Raza",
     "profile_text_thirdteen": "Etnicidad",
     "helper_one": "Blanco",
-    "helper_two": "Latino"
+    "helper_two": "Latino",
+
+    
+"test_info_screen_text_title": "Autoexamen Covid 19",
+"test_info_screen_text_one": "Prueba antigenos",
+"test_info_screen_text_two": "Prueba PCR",
+"test_info_screen_text_three": "Selecciona tipo de prueba",
+"test_info_screen_text_dropdown_label": "Tipo de prueba",
+"test_info_screen_text_button": "Continuar",
+
+"faqs_text_title": "Preguntas frecuentes",
+"faqs_text_one": "Respuesta 1",
+"faqs_text_two": "Respuesta 2",
+"faqs_text_three": "Respuesta 3",
+"faqs_text_four": "Respuesta 4",
+"faqs_text_five": "Respuesta 5",
+"faqs_text_six": "Respuesta 6",
+"faqs_text_question_one": "Pregunta número 1?",
+"faqs_text_question_two": "Pregunta número 2?",
+"faqs_text_question_three": "Pregunta número 3?",
+"faqs_text_question_four": "Pregunta número 4?",
+"faqs_text_question_five": "Pregunta número 5?",
+"faqs_text_question_six": "Pregunta número 6?"
 
 }

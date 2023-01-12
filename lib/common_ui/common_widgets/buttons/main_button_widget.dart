@@ -47,13 +47,13 @@ class MainButtonWidget extends StatelessWidget {
           Size(width ?? sizeWidth * 0.9, height ?? sizeHeight * 0.055),
         ),
         backgroundColor: MaterialStateProperty.all(
-          buttonColor ?? color.mapColors['P00'],
+          buttonColor ?? color.mapColors['IDPink'],
         ),
         shape: MaterialStateProperty.all<RoundedRectangleBorder>(
           RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(36),
             side: BorderSide(
-                color: borderColor ?? color.mapColors['P00']!, width: 1),
+                color: borderColor ?? color.mapColors['IDPink']!, width: 1),
           ),
         ),
       ),
