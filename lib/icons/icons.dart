@@ -14,5 +14,6 @@ class IconsFolderCovid {
   static const String arrowCircleRight = "${iconsBase}arrow_circle_right.png";
   static const String circleBannerHome = "${iconsBase}home_circle_banner.png";
 
-
+  static const String imagesBase = IconsFolder.base;
+  static const String testPageAsset = "${iconsBase}test_image.png";
 }

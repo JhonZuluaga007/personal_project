@@ -9,7 +9,7 @@ import 'package:personal_project/features/home/page/edit_profile/my_users_page.d
 import 'package:personal_project/features/home/page/register_pcr_test_page.dart';
 import 'package:personal_project/navigationBar/bloc/navigation_bar_bloc.dart';
 import 'package:personal_project/navigationBar/floating_nav_bar_item.dart';
-import 'package:personal_project/features/home/page/register_antigen_test_page.dart';
+import 'package:personal_project/features/home/page/tests_pages/register_antigen_test_page.dart';
 import 'package:personal_project/features/home/page/home_page.dart';
 import 'package:personal_project/features/home/page/history_page.dart';
 import 'package:personal_project/icons/icons.dart';
@@ -44,7 +44,7 @@ class _NavBarPageState extends State<NavBarPage> {
     final List<Map<String, dynamic>> pageDetails = [
       {'pageName': const HomePage(), 'title': 'Home'},
       {'pageName': const HistoryPage(), 'title': 'Antigen'},
-      {'pageName': const RegisterAntigenTestPage(), 'title': 'User'},
+      {'pageName': const RegisterTestPage(), 'title': 'User'},
       {'pageName': const EditUserFromBottomPage(), 'title': 'UserEdit'},
       {'pageName': const FAQSPage(), 'title': 'FAQs'},
     ];

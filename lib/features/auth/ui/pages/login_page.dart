@@ -24,6 +24,7 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController userNameController = TextEditingController();
   final TextEditingController lastNameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  bool isObscure = true;
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +32,6 @@ class _LoginPageState extends State<LoginPage> {
     final height = MediaQuery.of(context).size.height;
     final wColor = ThemesIdx20();
 
-    bool isObscure = true;
     return MyAppScaffold(
       color: Colors.white,
       mainAxisAlignment: MainAxisAlignment.start,
@@ -84,6 +84,7 @@ class _LoginPageState extends State<LoginPage> {
               borderColor: wColor.mapColors['IDGrey'],
               textColor: Colors.white,
               fillColor: wColor.mapColors['P00'],
+
               textEditingController: passwordController,
               hintStyle:
                   TextStyle(color: wColor.mapColors['IDGrey'], fontSize: 14),
@@ -93,7 +94,9 @@ class _LoginPageState extends State<LoginPage> {
                 padding: const EdgeInsets.only(left: 10),
                 child: IconButton(
                   icon: Icon(
-                    isObscure ? Icons.remove_red_eye : Icons.remove_circle,
+                    isObscure
+                        ? Icons.remove_red_eye
+                        : Icons.remove_red_eye_outlined,
                   ),
                   color: wColor.mapColors['IDGrey'],
                   onPressed: () => setState(() {

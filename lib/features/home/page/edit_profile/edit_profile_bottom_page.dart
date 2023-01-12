@@ -22,16 +22,21 @@ class _EditUserFromBottomPageState extends State<EditUserFromBottomPage> {
     final wColor = ThemesIdx20();
 
     return MyAppScaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
-        title: const TextWidget(
-          text: 'my_user_profile',
-          style: TextStyle(fontSize: 16, color: Colors.black),
-        ),
-        centerTitle: true,
-      ),
       children: [
+        SizedBox(height: height * 0.025),
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: const [
+            TextWidget(
+              text: 'my_user_profile',
+              style: TextStyle(
+                  fontSize: 18,
+                  color: Colors.black,
+                  fontWeight: FontWeight.w400),
+            ),
+          ],
+        ),
+        SizedBox(height: height * 0.015),
         Center(
           child: Stack(alignment: AlignmentDirectional.center, children: [
             Image.asset("assets/images/photo_user_edit.png"),

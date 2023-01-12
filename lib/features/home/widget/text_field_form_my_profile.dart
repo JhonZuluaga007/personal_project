@@ -46,6 +46,7 @@ class _TextFieldFormMyUserState extends State<TextFieldFormMyUser> {
           hintText: "profile_text_hint_seven",
           textStyle: const TextStyle(fontSize: 18),
           labelText: "profile_text_seven",
+          widthBorder: 3,
         ),
         SizedBox(height: height * 0.0250),
         TextFieldWithBorderWidget(
@@ -58,6 +59,7 @@ class _TextFieldFormMyUserState extends State<TextFieldFormMyUser> {
           hintText: "profile_text_hint_eigth",
           textStyle: const TextStyle(fontSize: 18),
           labelText: "profile_text_eight",
+          widthBorder: 3,
         ),
         SizedBox(
           height: height * 0.0250,
@@ -72,6 +74,7 @@ class _TextFieldFormMyUserState extends State<TextFieldFormMyUser> {
           hintText: "profile_text_ten",
           textStyle: const TextStyle(fontSize: 18),
           labelText: "profile_text_hint_ten",
+          widthBorder: 3,
         ),
         SizedBox(
           height: height * 0.0250,

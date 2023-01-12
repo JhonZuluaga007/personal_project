@@ -10,8 +10,6 @@ UserModel userModelFromMap(String str) => UserModel.fromMap(json.decode(str));
 UserModelLogin userModelLoginFromMap(String str) =>
     UserModelLogin.fromMap(json.decode(str));
 
-//String userModelToMap(UserModel? data) => json.encode(data!.toMap());
-
 class UserModelLogin {
   UserModelLogin({
     required this.project,
@@ -59,13 +57,6 @@ class UserModel extends UserEntity {
         token: json["token"] ?? "",
         user: User.fromMap(json["user"] ?? json["data"]),
       );
-
-  /*Map<String, dynamic> toMap() => {
-        "project": project,
-        "statusCode": statusCode,
-        "token": token,
-        "user": user.toMap(),
-      };*/
 }
 
 class UserLogin {
@@ -179,43 +170,6 @@ class User extends UserData {
             : List<Sex?>.from(json["sex"]!.map((x) => Sex.fromMap(x))),
         updated: DateOfBirth.fromMap(json["updated"]),
       );
-
-  /*Map<String, dynamic> toMap() => {
-        "_id": id,
-        "accepts_terms": acceptsTerms,
-        "addresses": addresses!.toMap(),
-        "cellphone": cellphone,
-        "date_of_birth": dateOfBirth!.toMap(),
-        "email": email,
-        "ethnicity": ethnicity == null
-            ? []
-            : List<dynamic>.from(ethnicity!.map((x) => x!.toMap())),
-        "first_login": firstLogin,
-        "gender": gender == null
-            ? []
-            : List<dynamic>.from(gender!.map((x) => x!.toMap())),
-        "image": image,
-        "information_updated": informationUpdated,
-        "is_active": isActive,
-        "is_confirmed": isConfirmed,
-        "lastname": lastname,
-        "login_id": loginId,
-        "middle_name": middleName,
-        "name": name,
-        "organization": organization,
-        "participant_id": participantId,
-        "password": password,
-        "password_reset": passwordReset,
-        "projects":
-            projects == null ? [] : List<dynamic>.from(projects!.map((x) => x)),
-        "race": race == null
-            ? []
-            : List<dynamic>.from(race!.map((x) => x!.toMap())),
-        "roles": roles!.toMap(),
-        "sex":
-            sex == null ? [] : List<dynamic>.from(sex!.map((x) => x!.toMap())),
-        "updated": updated!.toMap(),
-      };*/
 }
 
 class Addresses extends AddressesEntity {
