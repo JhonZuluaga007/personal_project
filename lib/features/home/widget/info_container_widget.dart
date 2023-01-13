@@ -33,7 +33,7 @@ class InfoContainerWidget extends StatelessWidget {
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(5),
                 border: Border.all(color: Colors.grey),
-                color: idxColor.mapColors['T300']),
+                color: idxColor.mapColors['T301']),
             child: Padding(
                 padding: const EdgeInsets.only(left: 10),
                 child: Row(

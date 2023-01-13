@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
 import '../../../../common_ui/common_widgets/text/text_widget.dart';
+import '../../../../config/theme/theme.dart';
+
+final wColor = ThemesIdx20();
 
 AppBar registerAppBarWidget(void Function()? onTap, String text) => AppBar(
       leading: GestureDetector(
@@ -17,7 +20,11 @@ AppBar registerAppBarWidget(void Function()? onTap, String text) => AppBar(
       backgroundColor: Colors.white,
       title: TextWidget(
         text: text,
-        style: const TextStyle(fontSize: 16, color: Colors.black),
+        style: TextStyle(
+            fontSize: 20,
+            color: wColor.mapColors["S800"],
+            fontWeight: FontWeight.w600,
+            letterSpacing: -0.2),
       ),
       centerTitle: true,
     );

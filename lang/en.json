@@ -51,7 +51,7 @@
     "nav_bar_05": "FAQs",
 
 
-    "home_name_user": "Hi Sebastian, welcome",
+    "home_name_user": "Hi Mateo, welcome",
     "home_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ultrices\npraesent et porta odio purus vulputate convallis. Fermentum,\nermentum morbi dui nec rhoncus suspendisse aliquam urn.",
     "home_title_card": "What would you like to do today?",
     "home_title_card_scan": "Register Antigen Test",
@@ -100,8 +100,8 @@
     "helper_two": "Latino",
 
     "test_info_screen_text_title": "Covid 19 self test",
-    "test_info_screen_text_one": "Antigen test",
-    "test_info_screen_text_two": "PCR test",
+    "test_info_screen_text_one": "Antigen Self test",
+    "test_info_screen_text_two": "PCR Self test",
     "test_info_screen_text_three": "Select type of test",
     "test_info_screen_text_dropdown_label": "Type test",
     "test_info_screen_text_button": "Continue",
@@ -126,7 +126,7 @@
     "start_counter_text_button": "Start timer",
     "start_counter_text_button_1": "Skip timer",
     "start_counter_text_finish_linear": "Start the counter (make sure you finish it)",
-    "popUp_button_text": "Sky anyway",
+    "popUp_button_text": "Skip anyway",
     "popUp_button_text_1": "Back",
     "popUp_text_title": "Are you sure?",
     "popUp_text_description": "Are you sure you wanna skip the\ntimer? We recommend following the\ninstructions of the test and wait 15\nminutes in order to see the results.",
@@ -153,8 +153,27 @@
     "self_t__drop_down_text_3": "Yes, 2 Dose",
     "self_t__drop_down_text_4": "No dose",
     "self_t_linear_text": "Complete the symptoms form",
-
+    "test_part_one_text": "Scan the kit label",
     "instructions_title_text": "Follow the instructions on your kit",
     "instructions_description_text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.\nLeo, amet, mi diam magna libero. Fermentum ultricies id\nnisi, feugiat tellus ullamcorper integer feugiat. Nisl, at eu\npraesent nisl, non. Odio ultricies pellentesque habitasse\nmauris turpis.",
-    "instructions_linear_text": "Instructions"
+    "instructions_linear_text": "Instructions",
+
+    "medical_history_title": "Medical History",
+"medical_history_text_one": "The following questions will contribute to a better understanding of the medical history of our participants and are intended to provide general information for educational purposes",
+"medical_history_text_two": "Optional Medical History",
+"medical_history_text_three": "Would you like to provide additional information about your Medical History?",
+"medical_history_text_four": "Do you jave any of the following conditions that the CDC classifies as risk factors for severe COVID-19?",
+
+"medical_history_text_button": "Save",
+
+"antigen_test_step_one_text":"Name:",
+"antigen_test_step_one_text_label": "Kit identifier",
+"antigen_test_step_one_text_hint": "Kit ID",
+
+"pcr_test_text_one": "Register PCR Test",
+"pcr_test_text_two": "Scan Kit's QR Code",
+"pcr_test_text_three": "Scan",
+"pcr_test_text_four": "Manually type the 10-digit Kit ID"
+
+
 }

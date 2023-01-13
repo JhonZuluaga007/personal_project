@@ -71,8 +71,7 @@ class DrawerWidget extends StatelessWidget {
               text: 'drawer_item_two',
             ),
             onTap: () {
-              // Actualiza el estado de la aplicación
-              // ...
+              Navigator.pushNamed(context, 'medicalHistory');
             },
           ),
           const Padding(
@@ -117,22 +116,28 @@ class DrawerWidget extends StatelessWidget {
           //   ),
           // ),
           const Spacer(),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            child: Row(
-              children: [
-                const Icon(
-                  Icons.logout_outlined,
-                  size: 24,
-                ),
-                SizedBox(
-                  width: size.width * 0.01,
-                ),
-                const TextWidget(
-                  text: 'drawer_item_four',
-                  style: TextStyle(),
-                ),
-              ],
+          InkWell(
+            onTap: () {
+              Navigator.pushNamed(context, 'login');
+              //TODO RESTART BAR
+            },
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: Row(
+                children: [
+                  const Icon(
+                    Icons.logout_outlined,
+                    size: 24,
+                  ),
+                  SizedBox(
+                    width: size.width * 0.01,
+                  ),
+                  const TextWidget(
+                    text: 'drawer_item_four',
+                    style: TextStyle(),
+                  ),
+                ],
+              ),
             ),
           ),
           SizedBox(

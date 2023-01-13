@@ -51,7 +51,7 @@
     "nav_bar_05": "FAQs",
 
 
-    "home_name_user": "Hola Sebastian, bienvenido",
+    "home_name_user": "Hola Mateo, bienvenido",
     "home_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ultrices\n praesent et porta odio purus vulputate convallis. Fermentum,\nermentum morbi dui nec rhoncus suspendisse aliquam urn.",
     "home_title_card": "¿Que quiere hacer hoy?",
     "home_title_card_scan": "Registra prueba de Antigenos",
@@ -153,8 +153,26 @@
     "self_t__drop_down_text_3": "Yes, 2 dosis",
     "self_t__drop_down_text_4": "No dosis",
     "self_t_linear_text": "Complete el formulario de síntomas",
+    "test_part_one_text": "Escanear el kit",
 
     "instructions_title_text": "Siga las instrucciones en su kit",
     "instructions_description_text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.\nLeo, amet, mi diam magna libero. Fermentum ultricies id\nnisi, feugiat tellus ullamcorper integer feugiat. Nisl, at eu\npraesent nisl, non. Odio ultricies pellentesque habitasse\nmauris turpis.",
-    "instructions_linear_text": "Instrucciones"
+    "instructions_linear_text": "Instrucciones",
+    "medical_history_title": "Historia medica",
+    "medical_history_text_one": "The following questions will contribute to a better understanding of the medical history of our participants and are intended to provide general information for educational purposes",
+    "medical_history_text_two": "Optional Medical History",
+    "medical_history_text_three": "Would you like to provide additional information about your Medical History?",
+    "medical_history_text_four": "Do you jave any of the following conditions that the CDC classifies as risk factors for severe COVID-19?",
+    
+    "medical_history_text_button": "Save",
+    "antigen_test_step_one_text":"Name:",
+    "antigen_test_step_one_text_label": "Kit identifier",
+    "antigen_test_step_one_text_hint": "Kit ID",
+
+    
+    "pcr_test_text_one": "Register PCR Test",
+    "pcr_test_text_two": "Scan Kit's QR Code",
+    "pcr_test_text_three": "Scan",
+    "pcr_test_text_four": "Manually type the 10-digit Kit ID"
+    
 }
