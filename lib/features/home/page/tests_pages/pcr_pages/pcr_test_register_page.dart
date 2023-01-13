@@ -25,7 +25,7 @@ class PcrRegisterPage extends StatelessWidget {
           Navigator.pushNamed(context, 'navBar');
         }
       }, 'test_info_screen_text_two'),
-      children: [],
+      children: const [],
     );
   }
 }

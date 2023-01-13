@@ -16,10 +16,8 @@ class InstructionsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
     final wColor = ThemesIdx20();
-    int maxValueLinear = 5;
 
     return Scaffold(
       appBar: AppBar(

@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:personal_project/common_ui/common_pages/my_app_scaffold_page.dart';
-import 'package:personal_project/common_ui/common_widgets/text_field/text_field_with_border_widget.dart';
 import 'package:personal_project/features/covid_19_test/ui/widgets/drop_down_widget.dart';
 import 'package:personal_project/icons/icons.dart';
 
@@ -24,7 +22,6 @@ class TQuestionsPage extends StatelessWidget {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
     final wColor = ThemesIdx20();
-    int maxValueLinear = 5;
 
     return Scaffold(
       appBar: AppBar(

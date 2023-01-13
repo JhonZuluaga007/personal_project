@@ -32,7 +32,6 @@ class _StartCounterPageState extends State<StartCounterPage> {
 
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
     final wColor = ThemesIdx20();
 
@@ -90,6 +89,7 @@ class _StartCounterPageState extends State<StartCounterPage> {
       ? MainButtonWidget(
           buttonString: "start_counter_text_button_1", 
           textColor: wColor.mapColors["S800"],
+          borderColor: wColor.mapColors["S800"],
           buttonColor: wColor.mapColors["P01"],
           onPressed: (){
             popUpSkyTimer(context);
@@ -99,6 +99,7 @@ class _StartCounterPageState extends State<StartCounterPage> {
           buttonString: "start_counter_text_button", 
           textColor: wColor.mapColors["P01"],
           buttonColor: wColor.mapColors["S800"],
+          borderColor: wColor.mapColors["S800"],
           onPressed: (){
             startTime();
         }
@@ -227,6 +228,7 @@ Future popUpSkyTimer(BuildContext context) {
                     buttonString: "popUp_button_text", 
                     textColor: wColor.mapColors["P01"],
                     buttonColor: wColor.mapColors["S800"],
+                    borderColor: wColor.mapColors["S800"],
                     onPressed: (){
                       Navigator.pushNamed(context, "uploadResult");
                     }
@@ -236,6 +238,7 @@ Future popUpSkyTimer(BuildContext context) {
                     buttonString: "popUp_button_text_1", 
                     buttonColor: wColor.mapColors["P01"],
                     textColor: wColor.mapColors["S800"],
+                    borderColor: wColor.mapColors["S800"],
                     onPressed: (){
                       Navigator.pop(context);
                     }

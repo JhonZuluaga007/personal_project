@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:personal_project/common_ui/common_widgets/text/text_widget.dart';
 
 import '../../../../config/theme/theme.dart';

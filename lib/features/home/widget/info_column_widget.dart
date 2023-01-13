@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:personal_project/features/home/widget/text_field_form_my_profile.dart';
-
 import 'info_container_widget.dart';
 
 class InfoColumnWidget extends StatelessWidget {
