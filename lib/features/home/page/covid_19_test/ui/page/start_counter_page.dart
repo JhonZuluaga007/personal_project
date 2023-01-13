@@ -9,19 +9,25 @@ import 'dart:async';
 import '../widgets/container_start_counter_widget.dart';
 
 class StartCounterPage extends StatefulWidget {
+
+  final int? timerValue;
   final double valueLinear;
   final int maxValueLinear;
 
-  const StartCounterPage(
-      {super.key, this.valueLinear = 0.8, this.maxValueLinear = 5});
+  const StartCounterPage({
+    super.key, 
+    this.valueLinear = 0.8, 
+    this.maxValueLinear = 5, 
+    this.timerValue
+  });
 
   @override
   State<StartCounterPage> createState() => _StartCounterPageState();
 }
 
 class _StartCounterPageState extends State<StartCounterPage> {
-  static const startTimer = Duration(minutes: 15);
-  Duration duration = startTimer;
+  late Duration duration =  Duration(minutes: widget.timerValue ?? 15);
+  late Duration startTimer = Duration(minutes: widget.timerValue ?? 15);
   Timer? timer;
 
   @override

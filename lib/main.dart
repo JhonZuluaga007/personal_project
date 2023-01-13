@@ -30,45 +30,46 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-        providers: [BlocProvider(create: (_) => NavigationBarBloc())],
-        child: MaterialApp(
-          title: 'Idx20',
-          debugShowCheckedModeBanner: false,
-          theme: ThemeData(
-            primarySwatch: Colors.blue,
-          ),
-          localizationsDelegates: const [
-            AppLocalizations.delegate,
-            GlobalMaterialLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate,
-            GlobalCupertinoLocalizations.delegate
-          ],
-          localeResolutionCallback: (locale, supportedLocales) {
-            if (locale!.languageCode.toString() != const Locale('es') ||
-                locale.languageCode.toString() != const Locale('en')) {
-              return const Locale('en');
-            }
-            return Locale(locale.languageCode.toString());
-          },
-          supportedLocales: AppLocalizations.supportedLocales,
-          initialRoute: "splash",
-          routes: {
-            "splash": (_) => const SplashScreenPage(),
-            "onboarding": (_) => const IntroOnboardingPage(),
-            "home": (_) => const HomePage(),
-            "navBar": (_) => const NavBarPage(),
-            "login": (_) => const LoginPage(),
-            "resetInfo": (_) => const ResetPasswordPageInfo(),
-            "reset": (_) => const ResetPasswordPage(),
-            "selfTestQuestions": (_) => const TQuestionsPage(),
-            "instructionPage": (_) => const InstructionsPage(),
-            "startCounter": (_) => const StartCounterPage(),
-            "uploadResult": (_) => const UploadResultPage(),
-            "pcrInfo": (_) => const PcrRegisterPage(),
-            "antigenInfo": (_) => const AntigenRegisterInfoPage(),
-            "medicalHistory": (_) => const MedicalHistoryPage(),
-            "profile": (_) => const MyUserPage(),
-          },
-        ));
+      providers: [BlocProvider(create: (_) => NavigationBarBloc())],
+      child: MaterialApp(
+        title: 'Idx20',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        localizationsDelegates: const [
+          AppLocalizations.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate
+        ],
+        localeResolutionCallback: (locale, supportedLocales) {
+          if (locale!.languageCode.toString() != const Locale('es') ||
+              locale.languageCode.toString() != const Locale('en')) {
+            return const Locale('en');
+          }
+          return Locale(locale.languageCode.toString());
+        },
+        supportedLocales: AppLocalizations.supportedLocales,
+        initialRoute: "selfTestQuestions",
+        routes: {
+          "splash": (_) => const SplashScreenPage(),
+          "onboarding": (_) => const IntroOnboardingPage(),
+          "home": (_) => const HomePage(),
+          "navBar": (_) => const NavBarPage(),
+          "login": (_) => const LoginPage(),
+          "resetInfo": (_) => const ResetPasswordPageInfo(),
+          "reset": (_) => const ResetPasswordPage(),
+          "selfTestQuestions": (_) => const TQuestionsPage(),
+          "instructionPage": (_) => const InstructionsPage(),
+          "startCounter": (_) => const StartCounterPage(timerValue: 10),
+          "uploadResult": (_) => const UploadResultPage(),
+          "pcrInfo": (_) => const PcrRegisterPage(),
+          "antigenInfo": (_) => const AntigenRegisterInfoPage(),
+          "medicalHistory": (_) => const MedicalHistoryPage(),
+          "profile": (_) => const MyUserPage(),
+        },
+      )
+    );
   }
 }

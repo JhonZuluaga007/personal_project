@@ -33,6 +33,7 @@ class _NavBarPageState extends State<NavBarPage> {
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
+    final height = MediaQuery.of(context).size.height;
     final wColor = ThemesIdx20();
 
     NavigationBarBloc navigationBloc =
@@ -79,7 +80,7 @@ class _NavBarPageState extends State<NavBarPage> {
             extendBody: true,
             drawer: const DrawerWidget(),
             bottomNavigationBar: SizedBox(
-              height: 60,
+              height: height * 0.1,
               child: BottomNavigationBar(
                 type: BottomNavigationBarType.fixed,
                 showUnselectedLabels: true,
@@ -100,7 +101,6 @@ class _NavBarPageState extends State<NavBarPage> {
                       icon: Image.asset(
                         IconsFolderCovid.home,
                         color: wColor.mapColors['IDPink'],
-                        height: 24,
                       ),
                       label: AppLocalizations.of(context)!
                           .translate("nav_bar_01")),

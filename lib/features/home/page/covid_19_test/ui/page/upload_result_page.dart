@@ -7,7 +7,7 @@ import '../../../../../../common_ui/common_widgets/text/text_widget.dart';
 import '../../../../../../config/theme/theme.dart';
 import '../../../../../../navigationBar/bloc/navigation_bar_bloc.dart';
 import '../widgets/container_start_counter_widget.dart';
-import '../widgets/drop_down_widget.dart';
+import '../widgets/drop_down_questions_widget.dart';
 
 class UploadResultPage extends StatelessWidget {
   final double valueLinear;
@@ -50,7 +50,7 @@ class UploadResultPage extends StatelessWidget {
         child: Column(
           children: [
             SizedBox(height: height * 0.14),
-            DropDownWidget(
+            DropDownQuestionsWidget(
               dropDownItem: const ["Upload_drop_down_0", "Upload_drop_down_1"],
               dropDownValue: "Selected",
               textQuestion: "Upload_question_test_0",
@@ -62,7 +62,7 @@ class UploadResultPage extends StatelessWidget {
               ),
             ),
             SizedBox(height: height * 0.039),
-            DropDownWidget(
+            DropDownQuestionsWidget(
               dropDownItem: const ["Upload_drop_down_0", "Upload_drop_down_1"],
               dropDownValue: "Selected",
               textQuestion: "Upload_question_test_01",

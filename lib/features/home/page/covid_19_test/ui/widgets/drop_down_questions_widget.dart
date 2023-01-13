@@ -5,7 +5,7 @@ import 'package:personal_project/common_ui/common_widgets/text/text_widget.dart'
 
 import '../../../../../../config/theme/theme.dart';
 
-class DropDownWidget extends StatefulWidget {
+class DropDownQuestionsWidget extends StatefulWidget {
   final List<String> dropDownItem;
   final String textQuestion;
   final Widget? iconWidget;
@@ -14,7 +14,7 @@ class DropDownWidget extends StatefulWidget {
   String dropDownValue = "Yes";
   final TextStyle? dropTextStyle;
 
-  DropDownWidget({
+  DropDownQuestionsWidget({
     Key? key,
     required this.dropDownItem,
     required this.textQuestion,
@@ -26,10 +26,10 @@ class DropDownWidget extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<DropDownWidget> createState() => _DropDownWidgetState();
+  State<DropDownQuestionsWidget> createState() => _DropDownQuestionsWidgetState();
 }
 
-class _DropDownWidgetState extends State<DropDownWidget> {
+class _DropDownQuestionsWidgetState extends State<DropDownQuestionsWidget> {
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
@@ -55,7 +55,7 @@ class _DropDownWidgetState extends State<DropDownWidget> {
           padding: EdgeInsets.symmetric(horizontal: width * 0.039),
           child: SizedBox(
             width: width,
-            height: height * 0.060,
+            height: height * 0.065,
             child: DropdownButtonFormField(
               decoration: InputDecoration(
                   enabledBorder: OutlineInputBorder(

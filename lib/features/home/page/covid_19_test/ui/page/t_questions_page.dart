@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:personal_project/features/home/page/covid_19_test/ui/widgets/drop_down_widget.dart';
+import 'package:personal_project/features/home/page/covid_19_test/ui/widgets/drop_down_questions_widget.dart';
 import 'package:personal_project/icons/icons.dart';
 
 import '../../../../../../common_ui/common_widgets/buttons/main_button_widget.dart';
@@ -52,7 +52,7 @@ class TQuestionsPage extends StatelessWidget {
               height: height * 0.17,
             ),
             Stack(children: [
-              DropDownWidget(
+              DropDownQuestionsWidget(
                 dropDownItem: const [
                   "self_t__drop_down_text",
                   "self_t_drop_down_text_1"
@@ -88,7 +88,7 @@ class TQuestionsPage extends StatelessWidget {
                   textQuestions: "self_t_question_test_drop_down_02"),
             ),
             SizedBox(height: height * 0.053),
-            DropDownWidget(
+            DropDownQuestionsWidget(
               dropDownItem: const [
                 "self_t__drop_down_text_2",
                 "self_t__drop_down_text_3",

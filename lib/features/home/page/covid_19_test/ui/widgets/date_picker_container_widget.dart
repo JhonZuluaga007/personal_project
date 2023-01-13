@@ -51,7 +51,7 @@ class _DatePickerContainerWidgetState extends State<DatePickerContainerWidget> {
           },
           child: Container(
             width: width * 0.922,
-            height: height * 0.056,
+            height: height * 0.06,
             decoration: BoxDecoration(
               color: wColor.mapColors["P01"],
               border: Border(
