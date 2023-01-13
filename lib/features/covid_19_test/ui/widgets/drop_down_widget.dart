@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:personal_project/app_localizations.dart';
 import 'package:personal_project/common_ui/common_widgets/text/text_widget.dart';
 
@@ -10,16 +11,18 @@ class DropDownWidget extends StatefulWidget {
   final String textQuestion;
   final Widget? iconWidget;
   final double width;
+  final double? heightSizedBoxText;
   String dropDownValue = "Yes";
   final TextStyle? dropTextStyle;
 
   DropDownWidget({
-    Key? key, 
-    required this.dropDownItem, 
-    this.iconWidget, 
-    required this.width, 
-    required this.textQuestion, 
-    required this.dropDownValue, 
+    Key? key,
+    required this.dropDownItem,
+    required this.textQuestion,
+    this.iconWidget,
+    required this.width,
+    this.heightSizedBoxText,
+    required this.dropDownValue,
     this.dropTextStyle,
   }) : super(key: key);
 
@@ -50,9 +53,9 @@ class _DropDownWidgetState extends State<DropDownWidget> {
             ),
           ),
         ),
-        SizedBox(height: height * 0.0045),
+        SizedBox(height: widget.heightSizedBoxText ?? height * 0.0045),
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: width * 0.037),
+          padding: EdgeInsets.symmetric(horizontal: width * 0.039),
           child: SizedBox(
             width: width,
             height: height * 0.060,
@@ -100,7 +103,6 @@ class _DropDownWidgetState extends State<DropDownWidget> {
               ),
               icon: widget.iconWidget,
               iconSize: 12,
-              focusColor: wColor.mapColors["T100"],
               borderRadius: BorderRadius.circular(5),
               style: TextStyle(
                 fontSize: 16,

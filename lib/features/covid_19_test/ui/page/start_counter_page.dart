@@ -39,7 +39,10 @@ class _StartCounterPageState extends State<StartCounterPage> {
     return Scaffold(
         appBar: AppBar(
           leading: IconButton(
-            onPressed: (){},
+            onPressed: (){
+              Navigator.pop(context, "instructionPage");
+              timer?.cancel();
+            },
             icon: Icon(
               Icons.arrow_back,
               color: wColor.mapColors["S800"],
@@ -69,37 +72,10 @@ class _StartCounterPageState extends State<StartCounterPage> {
               ),
         ),
       bottomNavigationBar: ContainerStartCounterWidget(
-        height: height * 0.192,
-        width: width * double.infinity, 
-        children: [
-          SizedBox(height: height * 0.020),
-          Text(
-            "Step 4 of ${widget.maxValueLinear}" 
-          ),
-          SizedBox(height: height * 0.0064),
-          TextWidget(
-            text: "start_counter_text_finish_linear",
-            style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.w400,
-              letterSpacing: -0.2,
-              color: wColor.mapColors["S600"]
-            ),
-          ),
-          SizedBox(height: height * 0.0075),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: width * 0.095),
-            child: LinearProgressIndicator(
-              minHeight: 7,
-              value: widget.valueLinear,
-              valueColor: AlwaysStoppedAnimation(wColor.mapColors["500BASE"]!),
-              backgroundColor: wColor.mapColors["T100"],
-              semanticsValue: "hello"
-            ),
-          ),
-          SizedBox(height: height * 0.021),
-          buildButtons(),
-        ],
+        numberPageText: "4", 
+        valueLinear: widget.valueLinear, 
+        widgetButton: buildButtons(), 
+        textContainer: "start_counter_text_finish_linear"
       ),
     );
   }
@@ -252,7 +228,7 @@ Future popUpSkyTimer(BuildContext context) {
                     textColor: wColor.mapColors["P01"],
                     buttonColor: wColor.mapColors["S800"],
                     onPressed: (){
-                      Navigator.pushReplacementNamed(context, "uploadResult");
+                      Navigator.pushNamed(context, "uploadResult");
                     }
                   ),
                   SizedBox(height: height * 0.012),

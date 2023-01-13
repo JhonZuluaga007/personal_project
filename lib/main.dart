@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:personal_project/common_ui/common_pages/splash_page.dart';
+import 'package:personal_project/features/covid_19_test/ui/page/instructions_page.dart';
+import 'package:personal_project/features/covid_19_test/ui/page/t_questions_page.dart';
 import 'package:personal_project/features/covid_19_test/ui/page/start_counter_page.dart';
 import 'package:personal_project/features/covid_19_test/ui/page/upload_result_page.dart';
 import 'package:personal_project/features/auth/ui/pages/login_page.dart';
@@ -45,7 +47,7 @@ class MyApp extends StatelessWidget {
         return Locale(locale.languageCode.toString());
       },
       supportedLocales: AppLocalizations.supportedLocales,
-      initialRoute: "uploadResult",
+      initialRoute: "selfTestQuestions",
       routes: {
         "splash": (_) => const SplashScreenPage(),
         "onboarding": (_) => const IntroOnboardingPage(),
@@ -54,6 +56,8 @@ class MyApp extends StatelessWidget {
         "login": (_) => const LoginPage(),
         "resetInfo": (_) => const ResetPasswordPageInfo(),
         "reset": (_) => const ResetPasswordPage(),
+        "selfTestQuestions": (_) => const TQuestionsPage(),
+        "instructionPage": (_) => const InstructionsPage(),
         "startCounter": (_) => const StartCounterPage(),
         "uploadResult": (_) => const UploadResultPage(),
       },

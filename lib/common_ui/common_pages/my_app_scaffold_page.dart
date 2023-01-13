@@ -10,7 +10,8 @@ class MyAppScaffold extends StatelessWidget {
     this.preferredSizeWidget,
     this.appBar,
     this.drawer,
-    Key? key,
+    Key? key, 
+    this.bottomNavigationBar,
   }) : super(key: key);
 
   final List<Widget> children;
@@ -21,6 +22,7 @@ class MyAppScaffold extends StatelessWidget {
   final PreferredSizeWidget? preferredSizeWidget;
   final AppBar? appBar;
   final Drawer? drawer;
+  final Widget? bottomNavigationBar;
 
   @override
   Widget build(BuildContext context) {
@@ -45,6 +47,7 @@ class MyAppScaffold extends StatelessWidget {
           ),
         ),
       ),
+      bottomNavigationBar: bottomNavigationBar,
     );
   }
 }

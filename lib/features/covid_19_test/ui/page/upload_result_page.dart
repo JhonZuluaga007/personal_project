@@ -28,7 +28,9 @@ class UploadResultPage extends StatelessWidget {
       appBar: AppBar(
           leading: IconButton(
             color: wColor.mapColors["S800"],
-            onPressed: (){},
+            onPressed: (){
+              Navigator.pop(context, "startCounter");
+            },
             icon: Icon(
               Icons.arrow_back,
               color: wColor.mapColors["S800"],
@@ -94,37 +96,11 @@ class UploadResultPage extends StatelessWidget {
           ],
         ),
       ),
-      bottomNavigationBar: ContainerStartCounterWidget(
-        height: height * 0.192,
-        width: width * double.infinity, 
-        children: [
-          SizedBox(height: height * 0.020),
-          Text(
-            "Step 5 of $maxValueLinear" 
-          ),
-          SizedBox(height: height * 0.0064),
-          TextWidget(
-            text: "Upload_linear_text",
-            style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.w400,
-              letterSpacing: -0.2,
-              color: wColor.mapColors["S600"]
-            ),
-          ),
-          SizedBox(height: height * 0.0075),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: width * 0.095),
-            child: LinearProgressIndicator(
-              minHeight: 7,
-              value: valueLinear,
-              valueColor: AlwaysStoppedAnimation(wColor.mapColors["500BASE"]!),
-              backgroundColor: wColor.mapColors["T100"],
-            ),
-          ),
-          SizedBox(height: height * 0.021),
-          buttonUpload(context)
-        ],
+      bottomNavigationBar:  ContainerStartCounterWidget(
+        numberPageText: "5", 
+        valueLinear: valueLinear, 
+        widgetButton: buttonUpload(context), 
+        textContainer: "Upload_linear_text"
       ),
     );
   }
