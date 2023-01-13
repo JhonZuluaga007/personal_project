@@ -22,7 +22,8 @@ class TextFieldWithBorderWidget extends StatelessWidget {
       this.hintTextDirection,
       this.suffixIcon,
       this.focusedBorder,
-      this.isPassword = false,
+      this.isPassword,
+      this.widthBorder,
       this.validator})
       : super(key: key);
 
@@ -42,8 +43,9 @@ class TextFieldWithBorderWidget extends StatelessWidget {
   final Color? borderColor;
   final TextDirection? hintTextDirection;
   final Widget? suffixIcon;
-  final bool isPassword;
+  final bool? isPassword;
   final String? Function(String?)? validator;
+  final double? widthBorder;
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +58,7 @@ class TextFieldWithBorderWidget extends StatelessWidget {
         controller: textEditingController,
         keyboardType: textInputType ?? TextInputType.emailAddress,
         autofocus: false,
-        obscureText: isPassword,
+        obscureText: isPassword ?? false,
         validator: validator,
         decoration: InputDecoration(
           floatingLabelBehavior: FloatingLabelBehavior.always,
@@ -83,15 +85,15 @@ class TextFieldWithBorderWidget extends StatelessWidget {
           enabledBorder: enabledBorder ??
               OutlineInputBorder(
                 borderSide: BorderSide(
-                  color: borderColor ?? color.mapColors['IDGrey']!,
-                  width: 1,
-                ),
+                    color: borderColor ?? color.mapColors['IDGrey']!,
+                    width: widthBorder ?? 1,
+                    style: BorderStyle.solid),
               ),
           focusedBorder: focusedBorder ??
               OutlineInputBorder(
                 borderSide: BorderSide(
                   color: borderColor ?? color.mapColors['IDGrey']!,
-                  width: 1,
+                  width: widthBorder ?? 1,
                 ),
               ),
           filled: false,

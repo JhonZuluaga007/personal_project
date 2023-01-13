@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:personal_project/common_ui/common_widgets/text/text_widget.dart';
 import 'package:personal_project/config/theme/theme.dart';
+import 'package:personal_project/features/home/page/tests_pages/antigen_pages/antigen_register_info_page.dart';
+import 'package:personal_project/features/home/page/tests_pages/pcr_pages/pcr_test_register_page.dart';
 import 'package:personal_project/features/home/widget/card_scan_home.dart';
 import 'package:personal_project/features/home/widget/main_banner_description_onboarding.dart';
 import 'package:personal_project/icons/icons.dart';
@@ -121,22 +123,39 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 SizedBox(height: height * 0.02),
-                const CardScanHome(
+                CardScanHome(
                   imageIcon: IconsFolderCovid.scanKitLabel,
                   textDescription: "home_description_card_scan",
                   textTitle: "home_title_card_scan",
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const AntigenRegisterInfoPage(
+                                  isHomeNavigation: true,
+                                )));
+                  },
                 ),
                 SizedBox(height: height * 0.021),
-                const CardScanHome(
+                CardScanHome(
                   imageIcon: IconsFolderCovid.covid19Self,
                   textDescription: "home_description_card_scan",
                   textTitle: "home_title_card_covid_19",
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const PcrRegisterPage(
+                                  isHomeNavigation: true,
+                                )));
+                  },
                 ),
                 SizedBox(height: height * 0.021),
-                const CardScanHome(
+                CardScanHome(
                   imageIcon: IconsFolderCovid.testStatusResult,
                   textDescription: "home_description_card_scan",
                   textTitle: "home_title_card_test_status",
+                  onTap: () {},
                 ),
               ],
             ),

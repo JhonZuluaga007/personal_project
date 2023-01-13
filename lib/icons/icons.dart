@@ -15,4 +15,6 @@ class IconsFolderCovid {
   static const String circleBannerHome = "${iconsBase}home_circle_banner.png";
   static const String popUpSkyTimer = "${iconsBase}pop_up_sky_timer.png";
   static const String infoCircleDropDown = "${iconsBase}info_circle_dropdown.png";
+  static const String imagesBase = IconsFolder.base;
+  static const String testPageAsset = "${iconsBase}test_image.png";
 }
