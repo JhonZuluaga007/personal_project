@@ -40,8 +40,8 @@ class _NavBarPageState extends State<NavBarPage> {
 
     final List<Map<String, dynamic>> pageDetails = [
       {'pageName': const HomePage(), 'title': 'Home'},
-      {'pageName': const HistoryPage(), 'title': 'Antigen'},
-      {'pageName': const RegisterTestPage(), 'title': 'User'},
+      {'pageName': const HistoryPage(), 'title': 'History'},
+      {'pageName': const RegisterTestPage(), 'title': 'Tests'},
       {'pageName': const EditUserFromBottomPage(), 'title': 'UserEdit'},
       {'pageName': const FAQSPage(), 'title': 'FAQs'},
     ];
@@ -78,57 +78,62 @@ class _NavBarPageState extends State<NavBarPage> {
             body: pageDetails[state.indexNavigation]['pageName'],
             extendBody: true,
             drawer: const DrawerWidget(),
-            bottomNavigationBar: BottomNavigationBar(
-              showUnselectedLabels: true,
-              backgroundColor: wColor.mapColors["IDWhite"],
-              selectedItemColor: wColor.mapColors["500BASE"],
-              unselectedItemColor: wColor.mapColors["S600"],
-              currentIndex: state.indexNavigation,
-              onTap: (index) {
-                setState(() {
-                  state.indexNavigation = index;
-                  navigationBloc.add(PageChanged(
-                    indexNavigation: index,
-                  ));
-                });
-              },
-              items: [
-                BottomNavigationBarItem(
-                    icon: Image.asset(
-                      IconsFolderCovid.home,
-                      color: wColor.mapColors['IDPink'],
-                    ),
-                    label:
-                        AppLocalizations.of(context)!.translate("nav_bar_01")),
-                BottomNavigationBarItem(
-                    icon: Image.asset(
-                      IconsFolderCovid.covid_19Test,
-                      color: wColor.mapColors['IDPink'],
-                    ),
-                    label:
-                        AppLocalizations.of(context)!.translate("nav_bar_02")),
-                BottomNavigationBarItem(
-                    icon: Image.asset(
-                      IconsFolderCovid.covid_19Test,
-                      color: wColor.mapColors['IDPink'],
-                    ),
-                    label:
-                        AppLocalizations.of(context)!.translate("nav_bar_03")),
-                BottomNavigationBarItem(
-                    icon: Image.asset(
-                      IconsFolderCovid.myUser,
-                      color: wColor.mapColors['IDPink'],
-                    ),
-                    label:
-                        AppLocalizations.of(context)!.translate("nav_bar_04")),
-                BottomNavigationBarItem(
-                    icon: Image.asset(
-                      IconsFolderCovid.iconFAQS,
-                      color: wColor.mapColors['IDPink'],
-                    ),
-                    label:
-                        AppLocalizations.of(context)!.translate("nav_bar_05"))
-              ],
+            bottomNavigationBar: SizedBox(
+              height: 60,
+              child: BottomNavigationBar(
+                type: BottomNavigationBarType.fixed,
+                showUnselectedLabels: true,
+                backgroundColor: wColor.mapColors["IDWhite"],
+                selectedItemColor: wColor.mapColors["500BASE"],
+                unselectedItemColor: wColor.mapColors["S600"],
+                currentIndex: state.indexNavigation,
+                onTap: (index) {
+                  setState(() {
+                    state.indexNavigation = index;
+                    navigationBloc.add(PageChanged(
+                      indexNavigation: index,
+                    ));
+                  });
+                },
+                items: [
+                  BottomNavigationBarItem(
+                      icon: Image.asset(
+                        IconsFolderCovid.home,
+                        color: wColor.mapColors['IDPink'],
+                        height: 24,
+                      ),
+                      label: AppLocalizations.of(context)!
+                          .translate("nav_bar_01")),
+                  BottomNavigationBarItem(
+                      icon: Icon(
+                        Icons.history,
+                        color: wColor.mapColors['IDPink'],
+                      ),
+                      label: AppLocalizations.of(context)!
+                          .translate("nav_bar_02")),
+                  BottomNavigationBarItem(
+                      icon: Image.asset(
+                        IconsFolderCovid.covid_19Test,
+                        color: wColor.mapColors['IDPink'],
+                      ),
+                      label: AppLocalizations.of(context)!
+                          .translate("nav_bar_03")),
+                  BottomNavigationBarItem(
+                      icon: Image.asset(
+                        IconsFolderCovid.myUser,
+                        color: wColor.mapColors['IDPink'],
+                      ),
+                      label: AppLocalizations.of(context)!
+                          .translate("nav_bar_04")),
+                  BottomNavigationBarItem(
+                      icon: Image.asset(
+                        IconsFolderCovid.iconFAQS,
+                        color: wColor.mapColors['IDPink'],
+                      ),
+                      label:
+                          AppLocalizations.of(context)!.translate("nav_bar_05"))
+                ],
+              ),
             ));
       },
     );

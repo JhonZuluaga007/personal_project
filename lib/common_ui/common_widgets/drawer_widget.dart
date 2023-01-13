@@ -92,6 +92,7 @@ class DrawerWidget extends StatelessWidget {
             onTap: () {
               // Actualiza el estado de la aplicación
               // ...
+              Navigator.pushNamed(context, 'reset');
             },
           ),
           const Padding(

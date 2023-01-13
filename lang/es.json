@@ -18,13 +18,13 @@
     "02_forgotten_password_text_three" : "El sistema te enviara un correo con instrucciones para activar tu nueva Contraseña.",
     
 
-    "03_reset_password_title" : "Reiniciar Contraseña",
+    "03_reset_password_title" : "Cambiar Contraseña",
     "03_reset_password_text_one" : "Porfavor ingresa la nueva Contraseña que quieres utilizar.",
     "03_reset_password_label_input_one" : "Ingresa la nueva Contraseña",
     "03_reset_password_hint_input_one" : "Nueva contraseña",
     "03_reset_password_label_input_two" : "Confirmar la nueva contraseña",
     "03_reset_password_hint_input_two" : "Confirma contraseña",
-    "03_reset_password_button" : "Reiniciar contraseña",
+    "03_reset_password_button" : "Cambiar contraseña",
     "03_reset_password_text_two" : "Volver a inicio de sesión",
     "02_login_title" : "Enter login credentials",
     

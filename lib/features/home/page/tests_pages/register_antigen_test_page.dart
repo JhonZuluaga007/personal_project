@@ -56,7 +56,7 @@ class _RegisterTestPageState extends State<RegisterTestPage> {
                   defaultValue: defaultValue,
                   antigen: antigen,
                   listEnglish: listsEnglish,
-                  listSpanish:const  [],
+                  listSpanish: const [],
                   pcr: pcr),
             ],
           ),
@@ -119,7 +119,7 @@ class _DropDownTestWidgetState extends State<DropDownTestWidget> {
                     }
                   })
                 }),
-        SizedBox(height: widget.size.height * 0.04),
+        SizedBox(height: widget.size.height * 0.08),
         MainButtonWidget(
           width: widget.size.width * 0.9,
           textColor: Colors.white,
