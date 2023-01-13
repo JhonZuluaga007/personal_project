@@ -5,8 +5,6 @@ import 'package:personal_project/common_ui/common_widgets/drawer_widget.dart';
 import 'package:personal_project/config/theme/theme.dart';
 import 'package:personal_project/features/home/page/edit_profile/edit_profile_bottom_page.dart';
 import 'package:personal_project/features/home/page/faqs_page.dart';
-import 'package:personal_project/features/home/page/edit_profile/my_users_page.dart';
-import 'package:personal_project/features/home/page/register_pcr_test_page.dart';
 import 'package:personal_project/navigationBar/bloc/navigation_bar_bloc.dart';
 import 'package:personal_project/navigationBar/floating_nav_bar_item.dart';
 import 'package:personal_project/features/home/page/tests_pages/register_antigen_test_page.dart';
@@ -34,7 +32,6 @@ class _NavBarPageState extends State<NavBarPage> {
 
   @override
   Widget build(BuildContext context) {
-    final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
     final wColor = ThemesIdx20();
 

@@ -25,7 +25,7 @@ class AntigenRegisterInfoPage extends StatelessWidget {
           Navigator.pushNamed(context, 'navBar');
         }
       }, 'test_info_screen_text_one'),
-      children: [],
+      children: const [],
     );
   }
 }

@@ -56,7 +56,7 @@ class _RegisterTestPageState extends State<RegisterTestPage> {
                   defaultValue: defaultValue,
                   antigen: antigen,
                   listEnglish: listsEnglish,
-                  listSpanish: [],
+                  listSpanish:const  [],
                   pcr: pcr),
             ],
           ),

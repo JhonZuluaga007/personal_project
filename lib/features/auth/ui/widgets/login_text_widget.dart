@@ -37,7 +37,7 @@ class LoginTextWidget extends StatelessWidget {
                   MaterialPageRoute(
                       builder: (context) => const ResetPasswordPageInfo()),
                 );
-                print('OLA');
+                debugPrint('OLA');
               },
               child: const TextWidget(
                 text: 'Click here',

@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:personal_project/common_ui/common_widgets/buttons/main_button_widget.dart';
 import 'package:personal_project/common_ui/common_widgets/text_field/text_field_with_border_widget.dart';
 import 'package:personal_project/config/theme/theme.dart';
-import 'package:personal_project/features/auth/data/data_source/auth_data_source.dart';
-
 import '../../../../common_ui/common_pages/my_app_scaffold_page.dart';
 import '../../../../common_ui/common_widgets/responsive/dynamic_container_widget.dart';
 import '../../../../common_ui/common_widgets/text/text_widget.dart';
