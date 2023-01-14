@@ -24,9 +24,9 @@ class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
   final List<String> listsYesNoSpanish = ['Seleccionar opción', 'Si', 'No'];
 
   final List<String> severeFactorsEnglish = [
+    'Select option',
     'Age 65 >= years',
     'Asthma',
-    'Select option',
     'Cancer',
     'HIV',
   ];

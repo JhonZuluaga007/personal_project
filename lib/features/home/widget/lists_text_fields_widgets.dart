@@ -1,5 +1,6 @@
 class ConstLists {
   List<String> stateList = [
+    'Select option',
     'Alaska',
     'Arizona',
     'Arkansas',
@@ -46,9 +47,9 @@ class ConstLists {
     'West Virginia',
     'Wiscnonsin',
     'Wyoming',
-    'Select option',
   ];
   List<String> genderEnglish = [
+    'Select option',
     'Female',
     'Male',
     'Trans Female',
@@ -56,15 +57,15 @@ class ConstLists {
     'Genderqueer / Gender Non-Binary',
     'Not Listed',
     'Prefer not to say',
-    'Select option',
   ];
   List<String> sexEnglish = [
+    'Select option',
     'Male',
     'Female',
     'Other',
-    'Select option',
   ];
   List<String> raceEnglish = [
+    'Select option',
     'American Indian or Alaska Native',
     'Asian',
     'Black or African American',
@@ -72,12 +73,11 @@ class ConstLists {
     'White',
     'More than one race',
     'Unknown',
-    'Select option',
   ];
   List<String> ethnicityEnglish = [
+    'Select option',
     'Hispanic or latino',
     'Non Hispanic',
-    'Select option',
   ];
   //TODO Change it to spanish
   // List<String> genderEnglish = [

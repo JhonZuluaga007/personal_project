@@ -19,8 +19,12 @@ class _RegisterTestPageState extends State<RegisterTestPage> {
   String defaultValue = 'Select option';
   bool antigen = false;
   bool pcr = false;
-  final List<String> listsEnglish = ['Antigen', 'PCR', 'Select option'];
-  final List<String> listsSpanish = ['Antigen', 'PCR', 'Select option'];
+  final List<String> listsEnglish = [
+    'Select option',
+    'Antigen',
+    'PCR',
+  ];
+  final List<String> listsSpanish = ['Select option', 'Antigen', 'PCR'];
 
   @override
   Widget build(BuildContext context) {
