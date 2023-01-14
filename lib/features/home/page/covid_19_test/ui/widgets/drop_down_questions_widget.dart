@@ -26,7 +26,8 @@ class DropDownQuestionsWidget extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<DropDownQuestionsWidget> createState() => _DropDownQuestionsWidgetState();
+  State<DropDownQuestionsWidget> createState() =>
+      _DropDownQuestionsWidgetState();
 }
 
 class _DropDownQuestionsWidgetState extends State<DropDownQuestionsWidget> {
@@ -50,12 +51,12 @@ class _DropDownQuestionsWidgetState extends State<DropDownQuestionsWidget> {
                 color: wColor.mapColors["S700"]),
           ),
         ),
-        SizedBox(height: widget.heightSizedBoxText ?? height * 0.0045),
+        SizedBox(height: widget.heightSizedBoxText ?? height * 0.0025),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: width * 0.039),
           child: SizedBox(
             width: width,
-            height: height * 0.065,
+            height: height * 0.07,
             child: DropdownButtonFormField(
               decoration: InputDecoration(
                   enabledBorder: OutlineInputBorder(
