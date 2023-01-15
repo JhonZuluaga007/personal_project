@@ -143,10 +143,12 @@
 
     "self_t_question_button": "Continuar",
     "self_t_question_test_drop_down_00": "¿Está experimentando actualmente algún síntoma relacionado con Covid-19?",
-    "self_t_question_test_drop_down_01": "En caso afirmativo: ¿Cuándo comenzó a experimentar estos síntomas?",
-    "self_t_question_test_drop_down_02": "En caso afirmativo: ¿Cuándo dio positivo por COVID-19?",
+    "self_t_question_test_drop_down_01": "Porfavor selecciona todos los sintomas asociados con Covid-19, que experimentas.",
+    "self_t_question_test_drop_down_02": "¿Cuándo empezaste a experimentar esos sintomas?",
     "self_t_question_test_drop_down_03": "¿Ha recibido una vacuna contra el COVID-19?",
     "self_t_question_test_drop_down_04": "En caso afirmativo: ¿Cuándo recibió su vacuna COVID-19 más reciente?",
+    "self_t_question_test_drop_down_05": "How many Boosters have you had so far?",
+    
     "self_t__drop_down_text": "Si",
     "self_t_drop_down_text_1": "No",
     "self_t__drop_down_text_2": "Yes, 1 dosis",
@@ -173,6 +175,47 @@
     "pcr_test_text_one": "Register PCR Test",
     "pcr_test_text_two": "Scan Kit's QR Code",
     "pcr_test_text_three": "Scan",
-    "pcr_test_text_four": "Manually type the 10-digit Kit ID"
+    "pcr_test_text_four": "Manually type the 10-digit Kit ID",
+
+    "history_test_result_title": "Test results",
+    "history_test_result_text_one": "Status last test:",
+    "history_test_result_text_two": "Show test",
+    "history_test_result_text_three": "PCR",
+    "history_test_result_text_four": "Antigen",
+
+    "self_t_question_vissible_2": "In the last 14 days, have you tested positive for COVID-19?",
+    "self_t_question_vissible_3": "When did you test positive for COVID-19",
+    "self_t_question_vissible_4": "When did you test positive for COVID-19",
+    "self_t_question_vissible_5": "When did you receive your most recent COVID-19 vaccine?",
+    "self_t_question_vissible_6": "Which vaccine(s) did you receive? (Please select all that apply)",
+
+    "booster_answer_one": "None.",
+    "booster_answer_two": "1 Booster.",
+    "booster_answer_three": "2 Boosters.",
+    "booster_answer_four": "More than 2 Boosters",
+
+    "vaccines_answer_one": "Pfizer",
+    "vaccines_answer_two": "Moderna",
+    "vaccines_answer_three": "Johnson & Johnson",
+    "vaccines_answer_four": "Other",
+    "vaccines_answer_five": "Do not know",
+
+    "symptoms_dropdown_one" : "Fever over 100.4F",
+    "symptoms_dropdown_two" : "Feeling feverish",
+    "symptoms_dropdown_three" : "Chills",
+    "symptoms_dropdown_four" : "Cough",
+    "symptoms_dropdown_five" : "Shortness of breath",
+    "symptoms_dropdown_six" : "Difficulty breathing",
+    "symptoms_dropdown_seven" : "Fatigue",
+    "symptoms_dropdown_eight" : "Muscle or body aches",
+    "symptoms_dropdown_nine" : "Headache",
+    "symptoms_dropdown_ten" : "New loss of taste",
+    "symptoms_dropdown_eleven" : "New loss of smell",
+    "symptoms_dropdown_twelve" : "Sore throat",
+    "symptoms_dropdown_thirdteen" : "Nasal congestion",
+    "symptoms_dropdown_fourteen" : "Runny nose",
+    "symptoms_dropdown_fiveteen" : "Nausea",
+    "symptoms_dropdown_sixteen" : "Vomiting",
+    "symptoms_dropdown_seventeen" : "Diarrhea"
     
 }

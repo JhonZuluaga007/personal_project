@@ -1,27 +1,62 @@
 import 'package:flutter/material.dart';
 import 'package:personal_project/features/home/page/covid_19_test/ui/widgets/drop_down_questions_widget.dart';
-import 'package:personal_project/icons/icons.dart';
+import 'package:personal_project/features/home/page/covid_19_test/ui/widgets/questions_visible_widgets.dart/second_vissible_question_widget.dart';
+import 'package:personal_project/features/home/page/covid_19_test/ui/widgets/questions_visible_widgets.dart/third_vissible_question_widget.dart';
 
 import '../../../../../../common_ui/common_widgets/buttons/main_button_widget.dart';
 import '../../../../../../common_ui/common_widgets/text/text_widget.dart';
 import '../../../../../../config/theme/theme.dart';
 import '../widgets/container_start_counter_widget.dart';
-import '../widgets/date_picker_container_widget.dart';
+import '../widgets/questions_visible_widgets.dart/first_question_vissible_widget.dart';
 
-class TQuestionsPage extends StatelessWidget {
+class TQuestionsPage extends StatefulWidget {
+  @override
+  State<TQuestionsPage> createState() => _TQuestionsPageState();
+}
+
+class _TQuestionsPageState extends State<TQuestionsPage> {
   final double valueLinear;
+  late bool firstQuestion;
+  late String dropDownValue;
 
-  const TQuestionsPage({
-    super.key,
-    this.valueLinear = 0.34,
-  });
+  _TQuestionsPageState({this.valueLinear = 0.34});
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    firstQuestion = false;
+    dropDownValue = 'No';
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
     final wColor = ThemesIdx20();
+    final List<String> dropdownItem = [
+      "self_t__drop_down_text",
+      "self_t_drop_down_text_1"
+    ];
+    final List<String> dropdownItemVissible = [
+      "self_t_drop_down_text_1",
+      "self_t__drop_down_text_2",
+      "self_t__drop_down_text_3"
+    ];
+    final List<String> covidBeforeAnswer = [
+      "covid_before_one",
+      "covid_before_two",
+      "covid_before_three",
+      "covid_before_four",
+    ];
+    final List<String> pregnantAnswerList = [
+      "pregnant_question_answer_one",
+      "pregnant_question_answer_two",
+      "pregnant_question_answer_three",
+      "pregnant_question_answer_four",
+    ];
 
+//TODO CHECK PAGE
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -45,78 +80,71 @@ class TQuestionsPage extends StatelessWidget {
         backgroundColor: wColor.mapColors["P01"],
         elevation: 4,
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            SizedBox(
-              height: height * 0.17,
-            ),
-            Stack(children: [
+      body: Scrollbar(
+        thumbVisibility: true,
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              SizedBox(
+                height: height * 0.05,
+              ),
+              FirstVissibleQuestionWidget(
+                  width: width,
+                  wColor: wColor,
+                  height: height,
+                  dropDownValue: dropDownValue,
+                  firstQuestion: firstQuestion),
+              SizedBox(
+                height: height * 0.015,
+              ),
+              SecondVissibleQuestionWidget(
+                  width: width,
+                  wColor: wColor,
+                  height: height,
+                  dropdownItem: dropdownItem,
+                  firstQuestion: firstQuestion,
+                  dropDownValue: dropDownValue),
+              SizedBox(
+                height: height * 0.015,
+              ),
               DropDownQuestionsWidget(
-                dropDownItem: const [
-                  "self_t__drop_down_text",
-                  "self_t_drop_down_text_1"
-                ],
-                width: width * 0.922,
-                heightSizedBoxText: height * 0.0116,
-                textQuestion: "self_t_question_test_drop_down_00",
-                dropDownValue: "Yes",
-                iconWidget: Padding(
-                  padding: EdgeInsets.only(right: width * 0.045),
-                  child: Icon(
-                    Icons.keyboard_arrow_down_rounded,
-                    size: 18,
-                    color: wColor.mapColors["Black"],
-                  ),
-                ),
+                  dropDownItem: dropdownItem,
+                  textQuestion: "self_t_question_test_drop_down_04",
+                  width: width,
+                  dropDownValue: 'Select option'),
+
+              SizedBox(
+                height: height * 0.015,
               ),
-              Positioned(
-                  left: width * 0.90,
-                  top: height * 0.021,
-                  child: Image.asset(IconsFolderCovid.infoCircleDropDown)),
-            ]),
-            SizedBox(height: height * 0.031),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: width * 0.037),
-              child: const DatePickerContainerWidget(
-                  textQuestions: "self_t_question_test_drop_down_01"),
-            ),
-            SizedBox(height: height * 0.028),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: width * 0.037),
-              child: const DatePickerContainerWidget(
-                  textQuestions: "self_t_question_test_drop_down_02"),
-            ),
-            SizedBox(height: height * 0.053),
-            DropDownQuestionsWidget(
-              dropDownItem: const [
-                "self_t__drop_down_text_2",
-                "self_t__drop_down_text_3",
-                "self_t__drop_down_text_4",
-              ],
-              width: width * 0.922,
-              heightSizedBoxText: height * 0.0043,
-              textQuestion: "self_t_question_test_drop_down_03",
-              dropDownValue: "Yes, 1 Dose",
-              iconWidget: Padding(
-                padding: EdgeInsets.only(right: width * 0.0431),
-                child: Icon(
-                  Icons.keyboard_arrow_down_rounded,
-                  size: 18,
-                  color: wColor.mapColors["Black"],
-                ),
+              //TODO REVISAR EL MULTISELECTOR WIDGET
+              ThirdVissibleQuestionWidget(
+                  width: width,
+                  wColor: wColor,
+                  height: height,
+                  dropdownItem: dropdownItemVissible,
+                  firstQuestion: firstQuestion,
+                  dropDownValue: dropDownValue),
+              SizedBox(
+                height: height * 0.015,
               ),
-            ),
-            SizedBox(height: height * 0.053),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: width * 0.037),
-              child: const DatePickerContainerWidget(
-                  textQuestions: "self_t_question_test_drop_down_04"),
-            ),
-            SizedBox(
-              height: height * 0.05,
-            )
-          ],
+              DropDownQuestionsWidget(
+                  dropDownItem: covidBeforeAnswer,
+                  textQuestion: "covid_before_question",
+                  width: width,
+                  dropDownValue: 'Select option'),
+              SizedBox(
+                height: height * 0.015,
+              ),
+              DropDownQuestionsWidget(
+                  dropDownItem: pregnantAnswerList,
+                  textQuestion: "pregnant_question",
+                  width: width,
+                  dropDownValue: 'Select option'),
+              SizedBox(
+                height: height * 0.015,
+              ),
+            ],
+          ),
         ),
       ),
       bottomNavigationBar: ContainerStartCounterWidget(

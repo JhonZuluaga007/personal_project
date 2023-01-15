@@ -42,8 +42,8 @@ class _DatePickerContainerWidgetState extends State<DatePickerContainerWidget> {
             DateTime? newDate = await showDatePicker(
                 context: context,
                 initialDate: date,
-                firstDate: DateTime(2010),
-                lastDate: DateTime(3000));
+                firstDate: DateTime(2019),
+                lastDate: DateTime.now());
 
             if (newDate == null) return;
 
@@ -76,7 +76,7 @@ class _DatePickerContainerWidgetState extends State<DatePickerContainerWidget> {
                         letterSpacing: -0.2),
                   ),
                   Icon(
-                    Icons.keyboard_arrow_down_rounded,
+                    Icons.calendar_today,
                     size: 18,
                     color: wColor.mapColors["Black"],
                   )

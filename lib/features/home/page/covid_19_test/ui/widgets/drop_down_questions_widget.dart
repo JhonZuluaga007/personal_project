@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 
 import 'package:personal_project/app_localizations.dart';
@@ -13,17 +15,18 @@ class DropDownQuestionsWidget extends StatefulWidget {
   final double? heightSizedBoxText;
   String dropDownValue = "Yes";
   final TextStyle? dropTextStyle;
-
-  DropDownQuestionsWidget({
-    Key? key,
-    required this.dropDownItem,
-    required this.textQuestion,
-    this.iconWidget,
-    required this.width,
-    this.heightSizedBoxText,
-    required this.dropDownValue,
-    this.dropTextStyle,
-  }) : super(key: key);
+  bool? firstQuestion;
+  DropDownQuestionsWidget(
+      {Key? key,
+      required this.dropDownItem,
+      required this.textQuestion,
+      this.iconWidget,
+      required this.width,
+      this.heightSizedBoxText,
+      required this.dropDownValue,
+      this.dropTextStyle,
+      this.firstQuestion})
+      : super(key: key);
 
   @override
   State<DropDownQuestionsWidget> createState() =>
@@ -56,7 +59,7 @@ class _DropDownQuestionsWidgetState extends State<DropDownQuestionsWidget> {
           padding: EdgeInsets.symmetric(horizontal: width * 0.039),
           child: SizedBox(
             width: width,
-            height: height * 0.07,
+            height: height * 0.072,
             child: DropdownButtonFormField(
               decoration: InputDecoration(
                   enabledBorder: OutlineInputBorder(
@@ -105,6 +108,13 @@ class _DropDownQuestionsWidgetState extends State<DropDownQuestionsWidget> {
               onChanged: (valueDropdown) {
                 setState(() {
                   widget.dropDownValue = valueDropdown.toString();
+                  if (widget.dropDownValue == 'Yes' ||
+                      widget.dropDownValue == 'Si') {
+                    widget.firstQuestion = true;
+                    print('first true');
+                  } else {
+                    widget.firstQuestion = false;
+                  }
                 });
               },
             ),
