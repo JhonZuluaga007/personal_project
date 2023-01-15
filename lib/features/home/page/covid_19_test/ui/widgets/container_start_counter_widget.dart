@@ -32,7 +32,7 @@ class ContainerStartCounterWidget extends StatelessWidget {
       ),
       child: Column(children: [
         SizedBox(height: height * 0.020),
-        Text("Step $numberPageText of 5"),
+        Text("Step $numberPageText of 6"),
         SizedBox(height: height * 0.0064),
         TextWidget(
           text: textContainer,

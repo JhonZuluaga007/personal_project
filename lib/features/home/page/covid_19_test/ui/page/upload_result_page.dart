@@ -14,7 +14,7 @@ class UploadResultPage extends StatelessWidget {
   final int maxValueLinear;
 
   const UploadResultPage(
-      {super.key, this.valueLinear = 1, this.maxValueLinear = 5});
+      {super.key, this.valueLinear = 0.85, this.maxValueLinear = 5});
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +49,7 @@ class UploadResultPage extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(height: height * 0.14),
+            SizedBox(height: height * 0.05),
             DropDownQuestionsWidget(
               dropDownItem: const ["Upload_drop_down_0", "Upload_drop_down_1"],
               dropDownValue: "Selected",
@@ -74,16 +74,25 @@ class UploadResultPage extends StatelessWidget {
               ),
             ),
             SizedBox(height: height * 0.069),
-            TextWidget(
-              text: "Upload_question_test_02",
-              style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                  letterSpacing: -0.2,
-                  color: wColor.mapColors["S800"]),
+            //TODO GRAPHIC IMAGE, while we get the needed
+            SizedBox(
+              height: height * 0.2,
+              width: width * 0.8,
+              child: Image.asset(
+                'assets/images/PrincipalBanner.png',
+                fit: BoxFit.fitHeight,
+              ),
             ),
+            // TextWidget(
+            //   text: "Upload_question_test_02",
+            //   style: TextStyle(
+            //       fontSize: 16,
+            //       fontWeight: FontWeight.w600,
+            //       letterSpacing: -0.2,
+            //       color: wColor.mapColors["S800"]),
+            // ),
             SizedBox(height: height * 0.075),
-            buttonImagePicture(context)
+            // buttonImagePicture(context)
           ],
         ),
       ),
@@ -113,8 +122,8 @@ Widget buttonUpload(BuildContext context) {
       borderColor: wColor.mapColors["500BASE"],
       onPressed: () {
         //TODO CHECK RESULT AND SEND POPUP OF SUCCESS
-        navigationBloc.add(PageChanged(indexNavigation: 0));
-        Navigator.pushNamed(context, 'navBar');
+
+        Navigator.pushNamed(context, 'uploadFinalResult');
       });
 }
 

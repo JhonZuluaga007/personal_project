@@ -13,7 +13,7 @@ class TQuestionsPage extends StatelessWidget {
 
   const TQuestionsPage({
     super.key,
-    this.valueLinear = 0.4,
+    this.valueLinear = 0.34,
   });
 
   @override

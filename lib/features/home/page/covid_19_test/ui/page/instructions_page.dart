@@ -8,7 +8,7 @@ import '../widgets/container_start_counter_widget.dart';
 class InstructionsPage extends StatelessWidget {
   final double valueLinear;
 
-  const InstructionsPage({super.key, this.valueLinear = 0.6});
+  const InstructionsPage({super.key, this.valueLinear = 0.51});
 
   @override
   Widget build(BuildContext context) {
