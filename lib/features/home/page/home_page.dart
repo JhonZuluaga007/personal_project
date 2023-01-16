@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:personal_project/common_ui/common_widgets/text/text_widget.dart';
 import 'package:personal_project/config/theme/theme.dart';
 import 'package:personal_project/features/home/page/tests_pages/antigen_pages/antigen_register_info_page.dart';
@@ -6,6 +7,8 @@ import 'package:personal_project/features/home/page/tests_pages/pcr_pages/pcr_te
 import 'package:personal_project/features/home/widget/card_scan_home.dart';
 import 'package:personal_project/features/home/widget/main_banner_description_onboarding.dart';
 import 'package:personal_project/icons/icons.dart';
+
+import '../../../navigationBar/bloc/navigation_bar_bloc.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -35,7 +38,8 @@ class _HomePageState extends State<HomePage> {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
     final wColor = ThemesIdx20();
-
+    NavigationBarBloc navigationBloc =
+        BlocProvider.of<NavigationBarBloc>(context);
     return Material(
       child: Container(
         height: height,
@@ -155,7 +159,10 @@ class _HomePageState extends State<HomePage> {
                   imageIcon: IconsFolderCovid.testStatusResult,
                   textDescription: "home_description_card_scan",
                   textTitle: "home_title_card_test_status",
-                  onTap: () {},
+                  onTap: () {
+                    navigationBloc.add(PageChanged(indexNavigation: 1));
+                    Navigator.pushNamed(context, 'navBar');
+                  },
                 ),
               ],
             ),

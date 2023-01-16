@@ -112,12 +112,8 @@ class _SecondVissibleQuestionWidgetState
               children: [
                 //TODO FIRST ONE CHANGE IT FOR MULTISELECTOR
                 SizedBox(height: widget.height * 0.028),
-                Padding(
-                  padding:
-                      EdgeInsets.symmetric(horizontal: widget.width * 0.037),
-                  child: const DatePickerContainerWidget(
-                      textQuestions: "self_t_question_vissible_3"),
-                ),
+                const DatePickerContainerWidget(
+                    textQuestions: "self_t_question_vissible_3"),
               ],
             ))
       ],

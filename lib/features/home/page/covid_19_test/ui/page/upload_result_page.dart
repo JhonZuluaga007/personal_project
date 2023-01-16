@@ -47,53 +47,62 @@ class UploadResultPage extends StatelessWidget {
         elevation: 4,
       ),
       body: SingleChildScrollView(
-        child: Column(
-          children: [
-            SizedBox(height: height * 0.05),
-            DropDownQuestionsWidget(
-              dropDownItem: const ["Upload_drop_down_0", "Upload_drop_down_1"],
-              dropDownValue: "Selected",
-              textQuestion: "Upload_question_test_0",
-              width: width * 0.922,
-              iconWidget: const Icon(
-                Icons.keyboard_arrow_down_rounded,
-                color: Colors.black,
-                size: 15,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          child: Column(
+            children: [
+              SizedBox(height: height * 0.05),
+              DropDownQuestionsWidget(
+                dropDownItem: const [
+                  "Upload_drop_down_0",
+                  "Upload_drop_down_1"
+                ],
+                dropDownValue: "Selected",
+                textQuestion: "Upload_question_test_0",
+                width: width * 0.922,
+                iconWidget: const Icon(
+                  Icons.keyboard_arrow_down_rounded,
+                  color: Colors.black,
+                  size: 15,
+                ),
               ),
-            ),
-            SizedBox(height: height * 0.039),
-            DropDownQuestionsWidget(
-              dropDownItem: const ["Upload_drop_down_0", "Upload_drop_down_1"],
-              dropDownValue: "Selected",
-              textQuestion: "Upload_question_test_01",
-              width: width * 0.922,
-              iconWidget: const Icon(
-                Icons.keyboard_arrow_down_rounded,
-                color: Colors.black,
-                size: 15,
+              SizedBox(height: height * 0.039),
+              DropDownQuestionsWidget(
+                dropDownItem: const [
+                  "Upload_drop_down_0",
+                  "Upload_drop_down_1"
+                ],
+                dropDownValue: "Selected",
+                textQuestion: "Upload_question_test_01",
+                width: width * 0.922,
+                iconWidget: const Icon(
+                  Icons.keyboard_arrow_down_rounded,
+                  color: Colors.black,
+                  size: 15,
+                ),
               ),
-            ),
-            SizedBox(height: height * 0.069),
-            //TODO GRAPHIC IMAGE, while we get the needed
-            SizedBox(
-              height: height * 0.2,
-              width: width * 0.8,
-              child: Image.asset(
-                'assets/images/PrincipalBanner.png',
-                fit: BoxFit.fitHeight,
+              SizedBox(height: height * 0.069),
+              //TODO GRAPHIC IMAGE, while we get the needed
+              SizedBox(
+                height: height * 0.2,
+                width: width * 0.8,
+                child: Image.asset(
+                  'assets/images/PrincipalBanner.png',
+                  fit: BoxFit.fitHeight,
+                ),
               ),
-            ),
-            // TextWidget(
-            //   text: "Upload_question_test_02",
-            //   style: TextStyle(
-            //       fontSize: 16,
-            //       fontWeight: FontWeight.w600,
-            //       letterSpacing: -0.2,
-            //       color: wColor.mapColors["S800"]),
-            // ),
-            SizedBox(height: height * 0.075),
-            // buttonImagePicture(context)
-          ],
+              // TextWidget(
+              //   text: "Upload_question_test_02",
+              //   style: TextStyle(
+              //       fontSize: 16,
+              //       fontWeight: FontWeight.w600,
+              //       letterSpacing: -0.2,
+              //       color: wColor.mapColors["S800"]),
+              // ),
+              SizedBox(height: height * 0.075),
+              // buttonImagePicture(context)
+            ],
+          ),
         ),
       ),
       bottomNavigationBar: ContainerStartCounterWidget(

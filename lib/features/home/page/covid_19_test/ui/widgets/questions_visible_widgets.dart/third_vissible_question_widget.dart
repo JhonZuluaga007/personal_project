@@ -130,12 +130,8 @@ class _ThirdVissibleQuestionWidgetState
                     width: widget.width,
                     dropDownValue: 'Select option'),
                 SizedBox(height: widget.height * 0.028),
-                Padding(
-                  padding:
-                      EdgeInsets.symmetric(horizontal: widget.width * 0.037),
-                  child: const DatePickerContainerWidget(
-                      textQuestions: "self_t_question_vissible_5"),
-                ),
+                const DatePickerContainerWidget(
+                    textQuestions: "self_t_question_vissible_5"),
                 SizedBox(height: widget.height * 0.028),
                 DropDownQuestionsWidget(
                     //TODO

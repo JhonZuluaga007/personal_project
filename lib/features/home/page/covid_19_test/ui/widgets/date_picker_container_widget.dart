@@ -55,10 +55,11 @@ class _DatePickerContainerWidgetState extends State<DatePickerContainerWidget> {
             decoration: BoxDecoration(
               color: wColor.mapColors["P01"],
               border: Border(
-                top: BorderSide(width: 1, color: wColor.mapColors["T100"]!),
-                bottom: BorderSide(width: 1, color: wColor.mapColors["T100"]!),
-                right: BorderSide(width: 1, color: wColor.mapColors["T100"]!),
-                left: BorderSide(width: 1, color: wColor.mapColors["T100"]!),
+                top: BorderSide(width: 1, color: wColor.mapColors["IDGrey"]!),
+                bottom:
+                    BorderSide(width: 1, color: wColor.mapColors["IDGrey"]!),
+                right: BorderSide(width: 1, color: wColor.mapColors["IDGrey"]!),
+                left: BorderSide(width: 1, color: wColor.mapColors["IDGrey"]!),
               ),
               borderRadius: BorderRadius.circular(4),
             ),
