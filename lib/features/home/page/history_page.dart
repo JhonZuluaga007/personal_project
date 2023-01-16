@@ -1,11 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:personal_project/common_ui/common_widgets/buttons/button_widget.dart';
+import 'package:personal_project/common_ui/common_widgets/buttons/main_button_widget.dart';
 import 'package:personal_project/common_ui/common_widgets/text/text_widget.dart';
+import 'package:personal_project/features/home/widget/history_widgets.dart/pop_up_widget.dart';
+
+import '../../../config/theme/theme.dart';
+import '../widget/history_widgets.dart/item_widget.dart';
 
 class HistoryPage extends StatelessWidget {
   const HistoryPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final wColor = ThemesIdx20();
+
     final size = MediaQuery.of(context).size;
     return Material(
       child: SafeArea(
@@ -87,7 +95,7 @@ class HistoryPage extends StatelessWidget {
                         color: Colors.white),
                     height: size.height * 0.05,
                     width: size.width * 0.27,
-                    child: Center(child: Text('All tests')),
+                    child: const Center(child: Text('All tests')),
                   ),
                   Container(
                     decoration: BoxDecoration(
@@ -96,7 +104,7 @@ class HistoryPage extends StatelessWidget {
                         color: Colors.white),
                     height: size.height * 0.05,
                     width: size.width * 0.27,
-                    child: Center(child: Text('Antigen tests')),
+                    child: const Center(child: Text('Antigen tests')),
                   ),
                   Container(
                     decoration: BoxDecoration(
@@ -105,17 +113,43 @@ class HistoryPage extends StatelessWidget {
                         color: Colors.white),
                     height: size.height * 0.05,
                     width: size.width * 0.27,
-                    child: Center(child: Text('PCR tests')),
+                    child: const Center(child: Text('PCR tests')),
                   ),
                 ],
               ),
               SizedBox(height: size.height * 0.05),
-              Container(
-                color: Colors.red,
+              SizedBox(
                 height: size.height * 0.48,
                 child: SingleChildScrollView(
                   child: Column(
-                    children: [],
+                    children: [
+                      ItemWidget(
+                        size: size,
+                        wColor: wColor,
+                        onPressed: () {
+                          popUpWidget(context);
+                        },
+                      ),
+                      SizedBox(height: size.height * 0.035),
+                      ItemWidget(
+                          size: size,
+                          wColor: wColor,
+                          onPressed: () {
+                            popUpWidget(context);
+                          }),
+                      SizedBox(height: size.height * 0.035),
+                      ItemWidget(
+                          size: size,
+                          wColor: wColor,
+                          onPressed: () {
+                            popUpWidget(context);
+                          }),
+                      SizedBox(height: size.height * 0.035),
+                      ItemWidget(size: size, wColor: wColor, onPressed: () {}),
+                      SizedBox(height: size.height * 0.035),
+                      ItemWidget(size: size, wColor: wColor, onPressed: () {}),
+                      SizedBox(height: size.height * 0.035),
+                    ],
                   ),
                 ),
               )

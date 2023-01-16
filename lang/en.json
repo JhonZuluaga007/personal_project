@@ -257,7 +257,9 @@
 
 "ethnicity_question" :"Ethnicity",
 "ethnicity_answer_one" :"Hispanic or Latino",
-"ethnicity_answer_two" :"Non Hispanic or Latino"
+"ethnicity_answer_two" :"Non Hispanic or Latino",
+
+"history_button_icon": "Show test"
 
 
 }
