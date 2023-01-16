@@ -43,81 +43,74 @@ class _DropDownQuestionsWidgetState extends State<DropDownQuestionsWidget> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Padding(
-          padding: EdgeInsets.only(left: width * 0.039),
-          child: TextWidget(
-            text: widget.textQuestion,
-            style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w500,
-                letterSpacing: -0.2,
-                color: wColor.mapColors["S700"]),
-          ),
+        TextWidget(
+          text: widget.textQuestion,
+          style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w500,
+              letterSpacing: -0.2,
+              color: wColor.mapColors["S700"]),
         ),
-        SizedBox(height: widget.heightSizedBoxText ?? height * 0.0025),
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: width * 0.039),
-          child: SizedBox(
-            width: width,
-            height: height * 0.072,
-            child: DropdownButtonFormField(
-              decoration: InputDecoration(
-                  enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(4),
-                      borderSide: BorderSide(
-                          width: 1, color: wColor.mapColors["T100"]!))),
-              items: widget.dropDownItem
-                  .map<DropdownMenuItem<String>>((String value) {
-                return DropdownMenuItem<String>(
-                    value: AppLocalizations.of(context)!.translate(value),
-                    child: Padding(
-                      padding: EdgeInsets.only(left: width * 0.028),
-                      child: TextWidget(
-                        textAlign: TextAlign.center,
-                        text: value,
-                        style: widget.dropTextStyle ??
-                            TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w500,
-                                letterSpacing: -0.2,
-                                color: wColor.mapColors["S600"]),
-                      ),
-                    ));
-              }).toList(),
-              hint: Padding(
-                padding: EdgeInsets.only(left: width * 0.028),
-                child: Text(
-                  widget.dropDownValue,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                      letterSpacing: -0.2,
-                      color: wColor.mapColors["S600"]),
-                ),
-              ),
-              icon: widget.iconWidget,
-              iconSize: 12,
-              borderRadius: BorderRadius.circular(5),
+        SizedBox(height: widget.heightSizedBoxText ?? height * 0.0035),
+        SizedBox(
+          width: width,
+          height: height * 0.072,
+          child: DropdownButtonFormField(
+            decoration: InputDecoration(
+                enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(4),
+                    borderSide: BorderSide(
+                        style: BorderStyle.solid,
+                        width: 1,
+                        color: wColor.mapColors["IDGrey"]!))),
+            items: widget.dropDownItem
+                .map<DropdownMenuItem<String>>((String value) {
+              return DropdownMenuItem<String>(
+                  value: AppLocalizations.of(context)!.translate(value),
+                  child: Padding(
+                    padding: EdgeInsets.only(left: width * 0.01),
+                    child: TextWidget(
+                      textAlign: TextAlign.center,
+                      text: value,
+                      style: widget.dropTextStyle ??
+                          TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500,
+                              letterSpacing: -0.2,
+                              color: wColor.mapColors["S600"]),
+                    ),
+                  ));
+            }).toList(),
+            hint: Text(
+              widget.dropDownValue,
+              textAlign: TextAlign.center,
               style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w500,
                   letterSpacing: -0.2,
                   color: wColor.mapColors["S600"]),
-              dropdownColor: wColor.mapColors["P01"],
-              onChanged: (valueDropdown) {
-                setState(() {
-                  widget.dropDownValue = valueDropdown.toString();
-                  if (widget.dropDownValue == 'Yes' ||
-                      widget.dropDownValue == 'Si') {
-                    widget.firstQuestion = true;
-                    print('first true');
-                  } else {
-                    widget.firstQuestion = false;
-                  }
-                });
-              },
             ),
+            icon: const Icon(Icons.arrow_downward),
+            iconSize: 16,
+            borderRadius: BorderRadius.circular(5),
+            style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w500,
+                letterSpacing: -0.2,
+                color: wColor.mapColors["S600"]),
+            dropdownColor: wColor.mapColors["P01"],
+            onChanged: (valueDropdown) {
+              setState(() {
+                widget.dropDownValue = valueDropdown.toString();
+                if (widget.dropDownValue == 'Yes' ||
+                    widget.dropDownValue == 'Si') {
+                  widget.firstQuestion = true;
+                  print('first true');
+                } else {
+                  widget.firstQuestion = false;
+                }
+              });
+            },
           ),
         ),
       ],

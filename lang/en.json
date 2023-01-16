@@ -230,9 +230,34 @@
 "pregnant_question_answer_one" : "Pregnant",
 "pregnant_question_answer_two" : "Not Pregnant",
 "pregnant_question_answer_three" : "Unkown",
-"pregnant_question_answer_four" : "Not applicable"
+"pregnant_question_answer_four" : "Not applicable",
 
 
+"gender_answer_one": "Female",
+"gender_answer_two": "Male",
+"gender_answer_three": "Trans Female",
+"gender_answer_four": "Trans Male",
+"gender_answer_five": "Genderqueer / Gender Non-Binary",
+"gender_answer_six": "Not Listed",
+"gender_answer_seven": "Prefer not to say",
+"gender_answer_question": "Gender",
+
+"sex_question": "Sex",
+"sex_answer_one": "Male",
+"sex_answer_two": "Female",
+
+"race_answer_one": "American indian or Alaska Native",
+"race_answer_two": "Asian",
+"race_answer_three": "Black or African American",
+"race_answer_four": "Native Hawaiian or Other Pacific Island",
+"race_answer_five": "White",
+"race_answer_six": "More than one race",
+"race_answer_seven": "Unknown",
+"race_answer_question": "Race",
+
+"ethnicity_question" :"Ethnicity",
+"ethnicity_answer_one" :"Hispanic or Latino",
+"ethnicity_answer_two" :"Non Hispanic or Latino"
 
 
 }

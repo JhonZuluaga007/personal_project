@@ -216,6 +216,44 @@
     "symptoms_dropdown_fourteen" : "Runny nose",
     "symptoms_dropdown_fiveteen" : "Nausea",
     "symptoms_dropdown_sixteen" : "Vomiting",
-    "symptoms_dropdown_seventeen" : "Diarrhea"
+    "symptoms_dropdown_seventeen" : "Diarrhea",
+
+    "covid_before_question": "Did you have Covid-19 before? (Please select all that apply)",
+    "covid_before_one": "No",
+    "covid_before_two": "Yes, 2020",
+    "covid_before_three": "Yes, 2021",
+    "covid_before_four": "Yes, 2022",
+    
+    "pregnant_question" : "Are you currently pregnant",
+    "pregnant_question_answer_one" : "Pregnant",
+    "pregnant_question_answer_two" : "Not Pregnant",
+    "pregnant_question_answer_three" : "Unkown",
+    "pregnant_question_answer_four" : "Not applicable",
+    
+    "gender_answer_one": "Female",
+    "gender_answer_two": "Male",
+    "gender_answer_three": "Trans Female",
+    "gender_answer_four": "Trans Male",
+    "gender_answer_five": "Genderqueer / Gender Non-Binary",
+    "gender_answer_six": "Not Listed",
+    "gender_answer_seven": "Prefer not to say",
+    "gender_answer_question": "Gender",
+
+    "sex_question": "Sex",
+    "sex_answer_one": "Male",
+    "sex_answer_two": "Female",
+
+    "race_answer_one": "American indian or Alaska Native",
+    "race_answer_two": "Asian",
+    "race_answer_three": "Black or African American",
+    "race_answer_four": "Native Hawaiian or Other Pacific Island",
+    "race_answer_five": "White",
+    "race_answer_six": "More than one race",
+    "race_answer_seven": "Unknown",
+    "race_answer_question": "Race",
+
+    "ethnicity_question" :"Ethnicity",
+    "ethnicity_answer_one" :"Hispanic or Latino",
+    "ethnicity_answer_two" :"Non Hispanic or Latino"
     
 }

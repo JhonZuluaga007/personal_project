@@ -83,67 +83,70 @@ class _TQuestionsPageState extends State<TQuestionsPage> {
       body: Scrollbar(
         thumbVisibility: true,
         child: SingleChildScrollView(
-          child: Column(
-            children: [
-              SizedBox(
-                height: height * 0.05,
-              ),
-              FirstVissibleQuestionWidget(
-                  width: width,
-                  wColor: wColor,
-                  height: height,
-                  dropDownValue: dropDownValue,
-                  firstQuestion: firstQuestion),
-              SizedBox(
-                height: height * 0.015,
-              ),
-              SecondVissibleQuestionWidget(
-                  width: width,
-                  wColor: wColor,
-                  height: height,
-                  dropdownItem: dropdownItem,
-                  firstQuestion: firstQuestion,
-                  dropDownValue: dropDownValue),
-              SizedBox(
-                height: height * 0.015,
-              ),
-              DropDownQuestionsWidget(
-                  dropDownItem: dropdownItem,
-                  textQuestion: "self_t_question_test_drop_down_04",
-                  width: width,
-                  dropDownValue: 'Select option'),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: Column(
+              children: [
+                SizedBox(
+                  height: height * 0.05,
+                ),
+                FirstVissibleQuestionWidget(
+                    width: width,
+                    wColor: wColor,
+                    height: height,
+                    dropDownValue: dropDownValue,
+                    firstQuestion: firstQuestion),
+                SizedBox(
+                  height: height * 0.015,
+                ),
+                SecondVissibleQuestionWidget(
+                    width: width,
+                    wColor: wColor,
+                    height: height,
+                    dropdownItem: dropdownItem,
+                    firstQuestion: firstQuestion,
+                    dropDownValue: dropDownValue),
+                SizedBox(
+                  height: height * 0.015,
+                ),
+                DropDownQuestionsWidget(
+                    dropDownItem: dropdownItem,
+                    textQuestion: "self_t_question_test_drop_down_04",
+                    width: width,
+                    dropDownValue: 'Select option'),
 
-              SizedBox(
-                height: height * 0.015,
-              ),
-              //TODO REVISAR EL MULTISELECTOR WIDGET
-              ThirdVissibleQuestionWidget(
-                  width: width,
-                  wColor: wColor,
-                  height: height,
-                  dropdownItem: dropdownItemVissible,
-                  firstQuestion: firstQuestion,
-                  dropDownValue: dropDownValue),
-              SizedBox(
-                height: height * 0.015,
-              ),
-              DropDownQuestionsWidget(
-                  dropDownItem: covidBeforeAnswer,
-                  textQuestion: "covid_before_question",
-                  width: width,
-                  dropDownValue: 'Select option'),
-              SizedBox(
-                height: height * 0.015,
-              ),
-              DropDownQuestionsWidget(
-                  dropDownItem: pregnantAnswerList,
-                  textQuestion: "pregnant_question",
-                  width: width,
-                  dropDownValue: 'Select option'),
-              SizedBox(
-                height: height * 0.015,
-              ),
-            ],
+                SizedBox(
+                  height: height * 0.015,
+                ),
+                //TODO REVISAR EL MULTISELECTOR WIDGET
+                ThirdVissibleQuestionWidget(
+                    width: width,
+                    wColor: wColor,
+                    height: height,
+                    dropdownItem: dropdownItemVissible,
+                    firstQuestion: firstQuestion,
+                    dropDownValue: dropDownValue),
+                SizedBox(
+                  height: height * 0.015,
+                ),
+                DropDownQuestionsWidget(
+                    dropDownItem: covidBeforeAnswer,
+                    textQuestion: "covid_before_question",
+                    width: width,
+                    dropDownValue: 'Select option'),
+                SizedBox(
+                  height: height * 0.015,
+                ),
+                DropDownQuestionsWidget(
+                    dropDownItem: pregnantAnswerList,
+                    textQuestion: "pregnant_question",
+                    width: width,
+                    dropDownValue: 'Select option'),
+                SizedBox(
+                  height: height * 0.015,
+                ),
+              ],
+            ),
           ),
         ),
       ),
