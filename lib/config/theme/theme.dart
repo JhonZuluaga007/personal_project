@@ -56,6 +56,6 @@ class ThemesIdx20 {
     "T400": const Color.fromRGBO(173, 173, 175, 1),
     "Pink": const Color.fromRGBO(251, 145, 163, 1),
     "Black": const Color.fromRGBO(3, 3, 3, 1),
-    "T301": const Color.fromARGB(255, 194, 207, 245),
+    "T301": const Color.fromRGBO(239, 242, 247, 1),
   };
 }

@@ -42,8 +42,8 @@ class _DatePickerContainerWidgetState extends State<DatePickerContainerWidget> {
             DateTime? newDate = await showDatePicker(
                 context: context,
                 initialDate: date,
-                firstDate: DateTime(2010),
-                lastDate: DateTime(3000));
+                firstDate: DateTime(2019),
+                lastDate: DateTime.now());
 
             if (newDate == null) return;
 
@@ -55,10 +55,11 @@ class _DatePickerContainerWidgetState extends State<DatePickerContainerWidget> {
             decoration: BoxDecoration(
               color: wColor.mapColors["P01"],
               border: Border(
-                top: BorderSide(width: 1, color: wColor.mapColors["T100"]!),
-                bottom: BorderSide(width: 1, color: wColor.mapColors["T100"]!),
-                right: BorderSide(width: 1, color: wColor.mapColors["T100"]!),
-                left: BorderSide(width: 1, color: wColor.mapColors["T100"]!),
+                top: BorderSide(width: 1, color: wColor.mapColors["IDGrey"]!),
+                bottom:
+                    BorderSide(width: 1, color: wColor.mapColors["IDGrey"]!),
+                right: BorderSide(width: 1, color: wColor.mapColors["IDGrey"]!),
+                left: BorderSide(width: 1, color: wColor.mapColors["IDGrey"]!),
               ),
               borderRadius: BorderRadius.circular(4),
             ),
@@ -76,7 +77,7 @@ class _DatePickerContainerWidgetState extends State<DatePickerContainerWidget> {
                         letterSpacing: -0.2),
                   ),
                   Icon(
-                    Icons.keyboard_arrow_down_rounded,
+                    Icons.calendar_today,
                     size: 18,
                     color: wColor.mapColors["Black"],
                   )

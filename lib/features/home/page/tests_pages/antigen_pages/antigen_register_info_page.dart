@@ -13,7 +13,7 @@ import '../../../widget/test_widgets/app_bar_widget.dart';
 
 class AntigenRegisterInfoPage extends StatelessWidget {
   const AntigenRegisterInfoPage(
-      {super.key, this.isHomeNavigation, this.valueLinear = 0.2});
+      {super.key, this.isHomeNavigation, this.valueLinear = 0.17});
   final double valueLinear;
 
   final bool? isHomeNavigation;
@@ -47,24 +47,35 @@ class AntigenRegisterInfoPage extends StatelessWidget {
           style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
         ),
         SizedBox(height: size.height * 0.05),
-        Row(
-          children: [
-            const TextWidget(
-              text: 'antigen_test_step_one_text',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+        // Row(
+        //   children: [
+        //     const TextWidget(
+        //       text: 'antigen_test_step_one_text',
+        //       style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+        //     ),
+        //     SizedBox(
+        //       width: size.width * 0.01,
+        //     ),
+        //     const TextWidget(
+        //       //TODO GET THE USER FROM THE BACKEND
+        //       text: 'Mateo Bonnet',
+        //       requiresTranslate: false,
+        //       style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
+        //     )
+        //   ],
+        // ),
+        Center(
+          child: SizedBox(
+            height: size.height * 0.22,
+            width: size.width * 0.7,
+            child: Image.asset(
+              'assets/images/onboarding_2.png',
+              fit: BoxFit.fitWidth,
             ),
-            SizedBox(
-              width: size.width * 0.01,
-            ),
-            const TextWidget(
-              //TODO GET THE USER FROM THE BACKEND
-              text: 'Mateo Bonnet',
-              requiresTranslate: false,
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
-            )
-          ],
+          ),
         ),
         SizedBox(height: size.height * 0.05),
+
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

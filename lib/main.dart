@@ -5,6 +5,7 @@ import 'package:personal_project/common_ui/common_pages/splash_page.dart';
 import 'package:personal_project/features/home/page/covid_19_test/ui/page/instructions_page.dart';
 import 'package:personal_project/features/home/page/covid_19_test/ui/page/t_questions_page.dart';
 import 'package:personal_project/features/home/page/covid_19_test/ui/page/start_counter_page.dart';
+import 'package:personal_project/features/home/page/covid_19_test/ui/page/upload_final_step_page.dart';
 import 'package:personal_project/features/home/page/covid_19_test/ui/page/upload_result_page.dart';
 import 'package:personal_project/features/auth/ui/pages/login_page.dart';
 import 'package:personal_project/features/auth/ui/pages/reset_password_page.dart';
@@ -30,46 +31,46 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-      providers: [BlocProvider(create: (_) => NavigationBarBloc())],
-      child: MaterialApp(
-        title: 'Idx20',
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
-        localizationsDelegates: const [
-          AppLocalizations.delegate,
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-          GlobalCupertinoLocalizations.delegate
-        ],
-        localeResolutionCallback: (locale, supportedLocales) {
-          if (locale!.languageCode.toString() != const Locale('es') ||
-              locale.languageCode.toString() != const Locale('en')) {
-            return const Locale('en');
-          }
-          return Locale(locale.languageCode.toString());
-        },
-        supportedLocales: AppLocalizations.supportedLocales,
-        initialRoute: "selfTestQuestions",
-        routes: {
-          "splash": (_) => const SplashScreenPage(),
-          "onboarding": (_) => const IntroOnboardingPage(),
-          "home": (_) => const HomePage(),
-          "navBar": (_) => const NavBarPage(),
-          "login": (_) => const LoginPage(),
-          "resetInfo": (_) => const ResetPasswordPageInfo(),
-          "reset": (_) => const ResetPasswordPage(),
-          "selfTestQuestions": (_) => const TQuestionsPage(),
-          "instructionPage": (_) => const InstructionsPage(),
-          "startCounter": (_) => const StartCounterPage(timerValue: 10),
-          "uploadResult": (_) => const UploadResultPage(),
-          "pcrInfo": (_) => const PcrRegisterPage(),
-          "antigenInfo": (_) => const AntigenRegisterInfoPage(),
-          "medicalHistory": (_) => const MedicalHistoryPage(),
-          "profile": (_) => const MyUserPage(),
-        },
-      )
-    );
+        providers: [BlocProvider(create: (_) => NavigationBarBloc())],
+        child: MaterialApp(
+          title: 'Idx20',
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData(
+            primarySwatch: Colors.blue,
+          ),
+          localizationsDelegates: const [
+            AppLocalizations.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate
+          ],
+          localeResolutionCallback: (locale, supportedLocales) {
+            if (locale!.languageCode.toString() != const Locale('es') ||
+                locale.languageCode.toString() != const Locale('en')) {
+              return const Locale('en');
+            }
+            return Locale(locale.languageCode.toString());
+          },
+          supportedLocales: AppLocalizations.supportedLocales,
+          initialRoute: "splash",
+          routes: {
+            "splash": (_) => const SplashScreenPage(),
+            "onboarding": (_) => const IntroOnboardingPage(),
+            "home": (_) => const HomePage(),
+            "navBar": (_) => const NavBarPage(),
+            "login": (_) => const LoginPage(),
+            "resetInfo": (_) => const ResetPasswordPageInfo(),
+            "reset": (_) => const ResetPasswordPage(),
+            "selfTestQuestions": (_) => TQuestionsPage(),
+            "instructionPage": (_) => const InstructionsPage(),
+            "startCounter": (_) => const StartCounterPage(timerValue: 10),
+            "uploadResult": (_) => const UploadResultPage(),
+            "uploadFinalResult": (_) => const UploadFinalResultPage(),
+            "pcrInfo": (_) => const PcrRegisterPage(),
+            "antigenInfo": (_) => const AntigenRegisterInfoPage(),
+            "medicalHistory": (_) => const MedicalHistoryPage(),
+            "profile": (_) => const MyUserPage(),
+          },
+        ));
   }
 }

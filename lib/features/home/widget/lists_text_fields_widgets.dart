@@ -76,8 +76,8 @@ class ConstLists {
   ];
   List<String> ethnicityEnglish = [
     'Select option',
-    'Hispanic or latino',
-    'Non Hispanic',
+    'Hispanic or Latino',
+    'Non Hispanic or Latino',
   ];
   //TODO Change it to spanish
   // List<String> genderEnglish = [
