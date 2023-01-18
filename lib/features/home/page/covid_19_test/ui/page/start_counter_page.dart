@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:personal_project/common_ui/common_widgets/buttons/main_button_widget.dart';
+import 'package:personal_project/common_ui/common_widgets/responsive/dynamic_container_widget.dart';
 import 'package:personal_project/common_ui/common_widgets/text/text_widget.dart';
 import 'package:personal_project/config/theme/theme.dart';
 import 'package:personal_project/icons/icons.dart';
@@ -67,10 +68,11 @@ class _StartCounterPageState extends State<StartCounterPage> {
         ),
       ),
       bottomNavigationBar: ContainerStartCounterWidget(
-          numberPageText: "4",
-          valueLinear: widget.valueLinear,
-          widgetButton: buildButtons(),
-          textContainer: "start_counter_text_finish_linear"),
+        numberPageText: "4",
+        valueLinear: widget.valueLinear,
+        widgetButton: buildButtons(),
+        textContainer: "start_counter_text_finish_linear"
+      ),
     );
   }
 
@@ -79,24 +81,62 @@ class _StartCounterPageState extends State<StartCounterPage> {
 
     final isRunning = timer == null ? false : timer!.isActive;
 
-    return isRunning
-        // ignore: dead_code
-        ? MainButtonWidget(
-            buttonString: "start_counter_text_button_1",
-            textColor: wColor.mapColors["S800"],
-            borderColor: wColor.mapColors["S800"],
-            buttonColor: wColor.mapColors["P01"],
-            onPressed: () {
-              popUpSkyTimer(context);
-            })
-        : MainButtonWidget(
-            buttonString: "start_counter_text_button",
-            textColor: wColor.mapColors["P01"],
-            buttonColor: wColor.mapColors["S800"],
-            borderColor: wColor.mapColors["S800"],
-            onPressed: () {
-              startTime();
-            });
+    return Column(
+      children: [
+        isRunning
+            // ignore: dead_code
+            ? buildButtonsRunning()
+            : MainButtonWidget(
+                buttonString: "start_counter_text_button_start_timer",
+                textColor: wColor.mapColors["S800"],
+                buttonColor: wColor.mapColors["P01"],
+                borderColor: wColor.mapColors["S800"],
+                onPressed: () {
+                  startTime();
+                }),
+      ],
+    );
+  }
+
+  Widget buildButtonsRunning(){
+    final width = MediaQuery.of(context).size.width;
+    final wColor = ThemesIdx20();
+
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        MainButtonWidget(
+          width: width * 0.3,
+          buttonString: "start_counter_text_button_pause",
+          textColor: wColor.mapColors["S800"],
+          borderColor: wColor.mapColors["S800"],
+          buttonColor: wColor.mapColors["P01"],
+          onPressed: () {
+            pauseTime();
+          }
+        ),
+        MainButtonWidget(
+          width: width * 0.3,
+          buttonString: "start_counter_text_button_reset",
+          textColor: wColor.mapColors["S800"],
+          borderColor: wColor.mapColors["S800"],
+          buttonColor: wColor.mapColors["P01"],
+          onPressed: () {
+            resetTime();
+          }
+        ),
+        MainButtonWidget(
+          width: width * 0.3,
+          buttonString: "start_counter_text_button_skip_timer",
+          textColor: wColor.mapColors["S800"],
+          borderColor: wColor.mapColors["S800"],
+          buttonColor: wColor.mapColors["P01"],
+          onPressed: () {
+            popUpSkyTimer(context);
+          }
+        )
+      ],
+    );
   }
 
   void startTime() {
@@ -117,6 +157,18 @@ class _StartCounterPageState extends State<StartCounterPage> {
       } else {
         duration = Duration(seconds: seconds);
       }
+    });
+  }
+
+  void pauseTime() {
+    setState(() {
+      timer?.cancel();
+    });
+  }
+
+  void resetTime() {
+    setState(() {      
+      duration = Duration(seconds: startTimer.inSeconds);
     });
   }
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:personal_project/common_ui/common_pages/my_app_scaffold_page.dart';
 import 'package:personal_project/common_ui/common_widgets/buttons/main_button_widget.dart';
+import 'package:personal_project/features/medical_history/presentation/widgets/multi_selected_widget.dart';
 
 import '../../../../common_ui/common_widgets/drop_down_widget.dart';
 import '../../../../common_ui/common_widgets/text/text_widget.dart';
@@ -22,14 +23,6 @@ class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
 
   final List<String> listsYesNoEnglish = ['Select option', 'Yes', 'No'];
   final List<String> listsYesNoSpanish = ['Seleccionar opción', 'Si', 'No'];
-
-  final List<String> severeFactorsEnglish = [
-    'Select option',
-    'Age 65 >= years',
-    'Asthma',
-    'Cancer',
-    'HIV',
-  ];
 
   bool yes = false;
   bool no = false;
@@ -140,18 +133,15 @@ class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
                       letterSpacing: -0.2),
                 ),
                 SizedBox(height: size.height * 0.02),
-                DropDownContainerWidget(
-                    //TODO CHECK ENGLISH OR SPANISH
-                    listItems: severeFactorsEnglish,
-                    mainValue: defaultValueSevereEn,
-                    width: size.width * 0.9,
-                    onChanged: (value) => {
-                          setState(() {
-                            defaultValueSevereEn = value.toString();
-
-                            //todo multi chip selector
-                          })
-                        }),
+                const MultiSelectedWidget(
+                  listItem: [
+                    "medical_history_drop_down_text",
+                    "medical_history_drop_down_text_1",
+                    "medical_history_drop_down_text_2",
+                    "medical_history_drop_down_text_3"
+                  ],
+                  valueDefaultList: "medical_history_drop_down_select",
+                ),
               ],
             )),
         SizedBox(height: size.height * 0.05),
@@ -163,7 +153,7 @@ class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
               onPressed: () {
                 //TODO SAVE CHANGES TO THE BACKEND
               }),
-        )
+        ),
       ],
     );
   }

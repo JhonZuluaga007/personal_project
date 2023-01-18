@@ -59,6 +59,13 @@
     "home_title_card_test_status": "Estado de test y resultados",
     "home_description_card_scan": "Lorem ipsum dolor sit amet, consectetur\nadipiscing elit. Ultrices praesent et porta.",
 
+    "medical_history_text_multi": "Videogames",
+    "medical_history_drop_down_select":"Select option",
+    "medical_history_drop_down_text":"Age 65 >= years",
+    "medical_history_drop_down_text_1":"Asthma",
+    "medical_history_drop_down_text_2":"Cancer",
+    "medical_history_drop_down_text_3":"HIV",
+
     "my_user_profile": "Mi perfil",
     "my_user_button_edit_profile": "Editar mi información",
     "my_user_text_field_label": "Form Label",
@@ -126,6 +133,8 @@
     "start_counter_text_2": "minutos restantes",
     "start_counter_text_button": "Iniciar temporizador",
     "start_counter_text_button_1": "Saltar temporizador",
+    "start_counter_text_button_2": "Pausar",
+    "start_counter_text_button_3": "Resetear",
     "start_counter_text_finish_linear": "Comienza el contador (asegúrate de terminarlo)",
     "popUp_button_text": "Sky anyway",
     "popUp_button_text_1": "Atrás",
