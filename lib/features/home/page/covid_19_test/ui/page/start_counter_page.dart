@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:personal_project/common_ui/common_widgets/buttons/main_button_widget.dart';
-import 'package:personal_project/common_ui/common_widgets/responsive/dynamic_container_widget.dart';
 import 'package:personal_project/common_ui/common_widgets/text/text_widget.dart';
 import 'package:personal_project/config/theme/theme.dart';
 import 'package:personal_project/icons/icons.dart';
@@ -148,7 +147,7 @@ class _StartCounterPageState extends State<StartCounterPage> {
 
   void decreaseTime() {
     setState(() {
-      final decreaseTime = -1;
+      late int decreaseTime = -1;
 
       final seconds = duration.inSeconds + decreaseTime;
 

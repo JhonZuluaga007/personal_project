@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:personal_project/common_ui/common_pages/splash_page.dart';
+import 'package:personal_project/features/auth/bloc/auth_bloc.dart';
 import 'package:personal_project/features/home/page/covid_19_test/ui/page/instructions_page.dart';
 import 'package:personal_project/features/home/page/covid_19_test/ui/page/t_questions_page.dart';
 import 'package:personal_project/features/home/page/covid_19_test/ui/page/start_counter_page.dart';
@@ -20,8 +21,10 @@ import 'package:personal_project/features/home/page/home_page.dart';
 import 'package:personal_project/onboarding/pages/intro_onboarding_page.dart';
 
 import 'app_localizations.dart';
+import 'config/helpers/injector/injector.dart';
 
 void main() {
+  Injector.setup();
   runApp(const MyApp());
 }
 
@@ -31,7 +34,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-        providers: [BlocProvider(create: (_) => NavigationBarBloc())],
+        providers: [
+          BlocProvider(create: (_) => NavigationBarBloc()),
+          BlocProvider(create: (_) => AuthBloc())
+        ],
         child: MaterialApp(
           title: 'Idx20',
           debugShowCheckedModeBanner: false,
@@ -52,7 +58,7 @@ class MyApp extends StatelessWidget {
             return Locale(locale.languageCode.toString());
           },
           supportedLocales: AppLocalizations.supportedLocales,
-          initialRoute: "medicalHistory",
+          initialRoute: "login",
           routes: {
             "splash": (_) => const SplashScreenPage(),
             "onboarding": (_) => const IntroOnboardingPage(),
