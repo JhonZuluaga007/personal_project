@@ -51,8 +51,8 @@ class Api {
         body: body,
         headers: _headers,
       );
-      debugPrint("response: $response");
-      return response.body;
+      debugPrint("response: ${response.headers}");
+      return decode(response.body);
     } on Exception catch (e) {
       throw Exception(e);
     }

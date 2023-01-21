@@ -45,18 +45,18 @@ class UserModel extends UserEntity {
     required String token,
     required User user,
   }) : super(
-          project: project,
-          statusCode: statusCode,
-          token: token,
-          user: user,
-        );
+      project: project,
+      statusCode: statusCode,
+      token: token,
+      user: user,
+    );
 
-  factory UserModel.fromMap(Map<String, dynamic> json) => UserModel(
-        project: json["project"] ?? "",
-        statusCode: json["statusCode"],
-        token: json["token"] ?? "",
-        user: User.fromMap(json["user"] ?? json["data"]),
-      );
+    factory UserModel.fromMap(Map<String, dynamic> json) => UserModel(
+      project: json["project"],
+      statusCode: json["statusCode"],
+      token: json["token"] ?? "",
+      user: User.fromMap(json["user"]),
+    );
 }
 
 class UserLogin {
@@ -98,7 +98,7 @@ class User extends UserData {
     required String participantId,
     required String password,
     required bool passwordReset,
-    required List<dynamic> projects,
+    required List<String> projects,
     required List<Race?>? race,
     required Roles roles,
     required List<Sex?>? sex,
@@ -160,7 +160,7 @@ class User extends UserData {
         passwordReset: json["password_reset"],
         projects: json["projects"] == null
             ? []
-            : List<dynamic>.from(json["projects"]!.map((x) => x)),
+            : List<String>.from(json["projects"]!.map((x) => x)),
         race: json["race"] == null
             ? []
             : List<Race?>.from(json["race"]!.map((x) => Race.fromMap(x))),

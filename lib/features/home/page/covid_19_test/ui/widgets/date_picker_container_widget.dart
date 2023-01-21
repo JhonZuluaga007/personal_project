@@ -43,7 +43,8 @@ class _DatePickerContainerWidgetState extends State<DatePickerContainerWidget> {
                 context: context,
                 initialDate: date,
                 firstDate: DateTime(2019),
-                lastDate: DateTime.now());
+                lastDate: date
+              );
 
             if (newDate == null) return;
 
