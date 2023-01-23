@@ -1,12 +1,10 @@
 class UserEntity {
   UserEntity({
-    required this.project,
     required this.statusCode,
     required this.token,
     required this.user,
   });
 
-  final String? project;
   final int? statusCode;
   final String? token;
   final UserData user;
@@ -21,7 +19,6 @@ class UserData {
     required this.dateOfBirth,
     required this.email,
     required this.ethnicity,
-    required this.firstLogin,
     required this.gender,
     required this.image,
     required this.informationUpdated,
@@ -49,7 +46,6 @@ class UserData {
   final DateOfBirthEntity? dateOfBirth;
   final String? email;
   final List<EthnicityEntity?>? ethnicity;
-  final bool? firstLogin;
   final List<GenderEntity?>? gender;
   final String? image;
   final bool? informationUpdated;

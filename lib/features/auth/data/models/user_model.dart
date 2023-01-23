@@ -20,7 +20,7 @@ class UserModelLogin {
 
   String? project;
   int? statusCode;
-  String? token;
+  String token;
   UserLogin user;
 
   factory UserModelLogin.fromMap(Map<String, dynamic> json) => UserModelLogin(
@@ -40,23 +40,20 @@ class UserModelLogin {
 
 class UserModel extends UserEntity {
   UserModel({
-    required String project,
     required int statusCode,
     required String token,
     required User user,
   }) : super(
-      project: project,
-      statusCode: statusCode,
-      token: token,
-      user: user,
-    );
+          statusCode: statusCode,
+          token: token,
+          user: user,
+        );
 
-    factory UserModel.fromMap(Map<String, dynamic> json) => UserModel(
-      project: json["project"],
-      statusCode: json["statusCode"],
-      token: json["token"] ?? "",
-      user: User.fromMap(json["user"]),
-    );
+  factory UserModel.fromMap(Map<String, dynamic> json) => UserModel(
+        statusCode: json["statusCode"],
+        token: json["token"] ?? "",
+        user: User.fromMap(json["data"]),
+      );
 }
 
 class UserLogin {
@@ -84,7 +81,6 @@ class User extends UserData {
     required DateOfBirth dateOfBirth,
     required String email,
     required List<Ethnicity?>? ethnicity,
-    required bool firstLogin,
     required List<Gender?>? gender,
     required String image,
     required bool informationUpdated,
@@ -111,7 +107,6 @@ class User extends UserData {
             dateOfBirth: dateOfBirth,
             email: email,
             ethnicity: ethnicity,
-            firstLogin: firstLogin,
             gender: gender,
             image: image,
             informationUpdated: informationUpdated,
@@ -142,7 +137,6 @@ class User extends UserData {
             ? []
             : List<Ethnicity?>.from(
                 json["ethnicity"]!.map((x) => Ethnicity.fromMap(x))),
-        firstLogin: json["first_login"],
         gender: json["gender"] == null
             ? []
             : List<Gender?>.from(json["gender"]!.map((x) => Gender.fromMap(x))),
