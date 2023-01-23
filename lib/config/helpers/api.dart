@@ -10,10 +10,10 @@ class Api {
 
   static Future<void> setHeaders() async {
     _headers[HttpHeaders.contentTypeHeader] = 'application/json';
-    final _storage = await SharedPreferences.getInstance();
-    final jwt = _storage.getString('token');
-    if (jwt != null) {
-      _headers[HttpHeaders.authorizationHeader] = 'Bearer $jwt';
+    final storage = await SharedPreferences.getInstance();
+    final String? basic = storage.getString('Basic');
+    if (basic != null) {
+      _headers['Authorization'] = 'Bearer $basic';
     }
   }
 
@@ -29,12 +29,14 @@ class Api {
   //Returns Future con el resultado de la consulta
   static Future<dynamic> get(String path) async {
     await setHeaders();
+    debugPrint('---------------------------');
+    debugPrint('headers---------: $_headers');
     Uri uri = Uri.parse(path);
     final response = await http.get(
       uri,
       headers: _headers,
     );
-    return response.body;
+    return decode(response.body);
   }
 
   //Realiza peticiones tipo POST al backend al endpoint pasado por parámetro

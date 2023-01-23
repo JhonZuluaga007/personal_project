@@ -28,7 +28,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         emit(state.copyWith(
           formStatus: SubmissionSuccess(),
           userId: user.user.id,
-          project: user.project,
           statusCode: user.statusCode,
           token: user.token,
         ));
