@@ -17,7 +17,6 @@
     "02_forgotten_password_text_two" : "Volver a inicio de sesión",
     "02_forgotten_password_text_three" : "El sistema te enviara un correo con instrucciones para activar tu nueva Contraseña.",
     
-
     "03_reset_password_title" : "Cambiar Contraseña",
     "03_reset_password_text_one" : "Porfavor ingresa la nueva Contraseña que quieres utilizar.",
     "03_reset_password_label_input_one" : "Ingresa la nueva Contraseña",
@@ -50,8 +49,8 @@
     "nav_bar_04": "Mi perfil",
     "nav_bar_05": "FAQs",
 
-
-    "home_name_user": "Hola Mateo, bienvenido",
+    "home_hi": "Hola ",
+    "home_welcome": ", bienvenido",
     "home_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ultrices\n praesent et porta odio purus vulputate convallis. Fermentum,\nermentum morbi dui nec rhoncus suspendisse aliquam urn.",
     "home_title_card": "¿Que quiere hacer hoy?",
     "home_title_card_scan": "Registra prueba de Antigenos",
@@ -264,7 +263,5 @@
     "ethnicity_question" :"Ethnicity",
     "ethnicity_answer_one" :"Hispanic or Latino",
     "ethnicity_answer_two" :"Non Hispanic or Latino",
-"history_button_icon": "Show test"
-
-    
+    "history_button_icon": "Show test"
 }
