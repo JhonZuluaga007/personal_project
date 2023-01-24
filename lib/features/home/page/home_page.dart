@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:personal_project/app_localizations.dart';
 import 'package:personal_project/common_ui/common_widgets/text/text_widget.dart';
 import 'package:personal_project/config/theme/theme.dart';
+import 'package:personal_project/features/auth/bloc/auth_bloc.dart';
 import 'package:personal_project/features/home/page/tests_pages/antigen_pages/antigen_register_info_page.dart';
 import 'package:personal_project/features/home/page/tests_pages/pcr_pages/pcr_test_register_page.dart';
 import 'package:personal_project/features/home/widget/card_scan_home.dart';
@@ -38,6 +40,7 @@ class _HomePageState extends State<HomePage> {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
     final wColor = ThemesIdx20();
+    final authState = context.read<AuthBloc>().state;
     NavigationBarBloc navigationBloc =
         BlocProvider.of<NavigationBarBloc>(context);
     return Material(
@@ -53,14 +56,47 @@ class _HomePageState extends State<HomePage> {
                 Padding(
                   padding: EdgeInsets.symmetric(
                       horizontal: width * 0.03, vertical: height * 0.018),
-                  child: TextWidget(
+                  child: RichText(
+                    text: TextSpan(
+                      children: <TextSpan>[
+                        TextSpan(
+                          text: AppLocalizations.of(context)!
+                              .translate("home_hi"),
+                          style: TextStyle(
+                              letterSpacing: -0.02,
+                              fontSize: 20,
+                              fontWeight: FontWeight.w600,
+                              color: wColor.mapColors["S800"]),
+                        ),
+                        TextSpan(
+                          text: authState.name,
+                          style: TextStyle(
+                              letterSpacing: -0.02,
+                              fontSize: 20,
+                              fontWeight: FontWeight.w600,
+                              color: wColor.mapColors["S800"]),
+                        ),
+                        TextSpan(
+                          text: AppLocalizations.of(context)!
+                              .translate("home_welcome"),
+                          style: TextStyle(
+                              letterSpacing: -0.02,
+                              fontSize: 20,
+                              fontWeight: FontWeight.w600,
+                              color: wColor.mapColors["S800"]),
+                        ),
+                      ],
+                    ),
+                  ),
+
+                  /*TextWidget(
                     text: "home_name_user",
                     style: TextStyle(
                         letterSpacing: -0.02,
                         fontSize: 20,
                         fontWeight: FontWeight.w600,
                         color: wColor.mapColors["S800"]),
-                  ),
+                  ),*/
                 ),
                 // Padding(
                 //   padding: EdgeInsets.symmetric(horizontal: width * 0.03),
