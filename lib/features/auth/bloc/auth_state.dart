@@ -16,6 +16,7 @@ class AuthState {
   final String? ethnicity;
   final String? gender;
   final String? image;
+  final DateOfBirthEntity? birthDate;
   final bool? informationUpdated;
   final bool? isActive;
   final bool? isConfirmed;
@@ -28,6 +29,7 @@ class AuthState {
   final String? race;
   final String? sex;
   final String errorMessage;
+  final String? levelSchool;
   final FormSubmissionStatus formStatus;
 
   const AuthState({
@@ -36,6 +38,7 @@ class AuthState {
     this.token = "",
     this.userId = "",
     this.address = "",
+    this.birthDate,
     this.city = "",
     this.state = "",
     this.zip = "",
@@ -55,12 +58,14 @@ class AuthState {
     this.participantId = "",
     this.race = "",
     this.sex = "",
+    this.levelSchool = "",
     this.formStatus = const InitialFormStatus(),
     this.errorMessage = "",
   });
 
   AuthState copyWith({
     String? project,
+    DateOfBirthEntity? birthDate,
     int? statusCode,
     String? token,
     String? userId,
@@ -85,35 +90,37 @@ class AuthState {
     String? race,
     String? sex,
     String? errorMessage,
+    String? levelSchool,
     FormSubmissionStatus? formStatus,
   }) {
     return AuthState(
-      project: project ?? this.project,
-      statusCode: statusCode ?? this.statusCode,
-      token: token ?? this.token,
-      userId: userId ?? this.userId,
-      address: address ?? this.address,
-      city: city ?? this.city,
-      state: state ?? this.state,
-      zip: zip ?? this.zip,
-      cellphone: cellphone ?? this.cellphone,
-      email: email ?? this.email,
-      ethnicity: ethnicity ?? this.ethnicity,
-      gender: gender ?? this.gender,
-      image: image ?? this.image,
-      informationUpdated: informationUpdated ?? this.informationUpdated,
-      isActive: isActive ?? isActive,
-      isConfirmed: isConfirmed ?? isConfirmed,
-      lastname: lastname ?? this.lastname,
-      loginId: loginId ?? this.loginId,
-      middleName: middleName ?? this.middleName,
-      name: name ?? this.name,
-      organization: organization ?? this.organization,
-      participantId: participantId ?? this.participantId,
-      race: race ?? this.race,
-      sex: sex ?? this.sex,
-      errorMessage: errorMessage ?? this.errorMessage,
-      formStatus: formStatus ?? this.formStatus,
-    );
+        birthDate: birthDate ?? this.birthDate,
+        project: project ?? this.project,
+        statusCode: statusCode ?? this.statusCode,
+        token: token ?? this.token,
+        userId: userId ?? this.userId,
+        address: address ?? this.address,
+        city: city ?? this.city,
+        state: state ?? this.state,
+        zip: zip ?? this.zip,
+        cellphone: cellphone ?? this.cellphone,
+        email: email ?? this.email,
+        ethnicity: ethnicity ?? this.ethnicity,
+        gender: gender ?? this.gender,
+        image: image ?? this.image,
+        informationUpdated: informationUpdated ?? this.informationUpdated,
+        isActive: isActive ?? isActive,
+        isConfirmed: isConfirmed ?? isConfirmed,
+        lastname: lastname ?? this.lastname,
+        loginId: loginId ?? this.loginId,
+        middleName: middleName ?? this.middleName,
+        name: name ?? this.name,
+        organization: organization ?? this.organization,
+        participantId: participantId ?? this.participantId,
+        race: race ?? this.race,
+        sex: sex ?? this.sex,
+        errorMessage: errorMessage ?? this.errorMessage,
+        formStatus: formStatus ?? this.formStatus,
+        levelSchool: levelSchool ?? this.levelSchool);
   }
 }

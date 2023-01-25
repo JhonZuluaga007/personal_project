@@ -85,6 +85,7 @@ class AntigenRegisterInfoPage extends StatelessWidget {
             ),
             SizedBox(height: size.height * 0.015),
             TextFieldWithBorderWidget(
+              requiresTranslate: true,
               textInputType: TextInputType.text,
               suffixIcon: const Icon(Icons.question_mark),
               borderColor: wColor.mapColors["T100"],

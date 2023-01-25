@@ -54,6 +54,7 @@ class ResetPasswordPageInfo extends StatelessWidget {
           children: [
             TextFieldWithBorderWidget(
               key: const Key('textFieldNameLogin'),
+              requiresTranslate: true,
               textColor: wColor.mapColors['P00'],
               labelText: '02_forgotten_password_label_input',
               textEditingController: nameController,

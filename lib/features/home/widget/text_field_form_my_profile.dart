@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:personal_project/common_ui/common_widgets/text_field/text_field_no_label_widget.dart';
 import 'package:personal_project/common_ui/common_widgets/text_field/text_field_with_border_widget.dart';
 import 'package:personal_project/config/theme/theme.dart';
 import 'package:personal_project/features/home/page/covid_19_test/ui/widgets/drop_down_questions_widget.dart';
 import 'package:personal_project/features/home/widget/lists_text_fields_widgets.dart';
 
+import '../../auth/bloc/auth_bloc.dart';
 import 'drop_down_my_profile_widget.dart';
 
 class TextFieldFormMyUser extends StatefulWidget {
@@ -60,91 +63,105 @@ class _TextFieldFormMyUserState extends State<TextFieldFormMyUser> {
     final height = MediaQuery.of(context).size.height;
     ConstLists lists = ConstLists();
     final wColor = ThemesIdx20();
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        TextFieldWithBorderWidget(
-          suffixIcon: widget.iconTextField,
-          borderColor: wColor.mapColors["T100"],
-          hintStyle: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.w400,
-              color: wColor.mapColors["S600"]),
-          hintText: "profile_text_hint_seven",
-          textStyle: const TextStyle(fontSize: 18),
-          labelText: "profile_text_seven",
-          widthBorder: 3,
-        ),
-        SizedBox(height: height * 0.0250),
-        TextFieldWithBorderWidget(
-          suffixIcon: widget.iconTextField,
-          borderColor: wColor.mapColors["T100"],
-          hintStyle: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.w400,
-              color: wColor.mapColors["S600"]),
-          hintText: "profile_text_hint_eigth",
-          textStyle: const TextStyle(fontSize: 18),
-          labelText: "profile_text_eight",
-          widthBorder: 3,
-        ),
-        SizedBox(
-          height: height * 0.0250,
-        ),
-        TextFieldWithBorderWidget(
-          suffixIcon: widget.iconTextField,
-          borderColor: wColor.mapColors["T100"],
-          hintStyle: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.w400,
-              color: wColor.mapColors["S600"]),
-          hintText: "profile_text_ten",
-          textStyle: const TextStyle(fontSize: 18),
-          labelText: "profile_text_hint_ten",
-          widthBorder: 3,
-        ),
-        SizedBox(
-          height: height * 0.0250,
-        ),
-        //TODO ADD SPANISH OPTION LISTS
-        DropDownWidgetMyProfile(
-          item: lists.stateList,
-          fieldText: 'profile_text_hint_nine',
-          valueState: defaultValueState,
-          width: width,
-        ),
-        SizedBox(
-          height: height * 0.0250,
-        ),
-        DropDownQuestionsWidget(
-            dropDownItem: sexAnswer,
-            textQuestion: "sex_question",
-            width: width,
-            dropDownValue: 'Select option'),
-        SizedBox(
-          height: height * 0.0250,
-        ),
-        DropDownQuestionsWidget(
-            dropDownItem: genderAnswer,
-            textQuestion: "gender_answer_question",
-            width: width,
-            dropDownValue: 'Select option'),
-        SizedBox(height: height * 0.0250),
-        DropDownQuestionsWidget(
-            dropDownItem: raceAnswer,
-            textQuestion: "race_answer_question",
-            width: width,
-            dropDownValue: 'Select option'),
-        SizedBox(height: height * 0.0250),
-        DropDownQuestionsWidget(
-            dropDownItem: ethnicityAnswer,
-            textQuestion: "ethnicity_question",
-            width: width,
-            dropDownValue: 'Select option'),
-        SizedBox(
-          height: height * 0.025,
-        ),
-      ],
+    return BlocBuilder<AuthBloc, AuthState>(
+      builder: (context, state) {
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            TextFieldWithBorderWidget(
+              suffixIcon: widget.iconTextField,
+              borderColor: wColor.mapColors["T100"],
+              requiresTranslate: false,
+              hintStyle: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w400,
+                  color: wColor.mapColors["S600"]),
+              hintText: state.address ?? "profile_text_hint_seven",
+              textStyle: const TextStyle(fontSize: 18),
+              labelText: "profile_text_seven",
+              widthBorder: 3,
+            ),
+            SizedBox(height: height * 0.0250),
+            TextFieldWithBorderWidget(
+              suffixIcon: widget.iconTextField,
+              borderColor: wColor.mapColors["T100"],
+              requiresTranslate: false,
+              hintStyle: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w400,
+                  color: wColor.mapColors["S600"]),
+              hintText: state.city ?? "profile_text_eigth",
+              textStyle: const TextStyle(fontSize: 18),
+              labelText: "profile_text_hint_eigth",
+              widthBorder: 3,
+            ),
+            SizedBox(
+              height: height * 0.0250,
+            ),
+            TextFieldWithBorderWidget(
+              suffixIcon: widget.iconTextField,
+              requiresTranslate: false,
+              borderColor: wColor.mapColors["T100"],
+              hintStyle: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w400,
+                  color: wColor.mapColors["S600"]),
+              hintText: state.zip ?? "050001",
+              textStyle: const TextStyle(fontSize: 18),
+              labelText: "profile_text_hint_ten",
+              widthBorder: 3,
+            ),
+            SizedBox(
+              height: height * 0.0250,
+            ),
+            DropDownWidgetMyProfile(
+              item: lists.stateList,
+              fieldText: 'profile_text_hint_nine',
+              valueState: state.state ?? defaultValueState,
+              width: width,
+            ),
+            SizedBox(
+              height: height * 0.0250,
+            ),
+            DropDownQuestionsWidget(
+                dropDownItem: sexAnswer,
+                textQuestion: "sex_question",
+                width: width,
+                dropDownValue: state.sex ?? 'Select option'),
+            SizedBox(
+              height: height * 0.0250,
+            ),
+            DropDownQuestionsWidget(
+                dropDownItem: genderAnswer,
+                textQuestion: "gender_answer_question",
+                width: width,
+                dropDownValue: state.gender ?? 'Select option'),
+            SizedBox(height: height * 0.0250),
+            DropDownQuestionsWidget(
+                dropDownItem: raceAnswer,
+                textQuestion: "race_answer_question",
+                width: width,
+                dropDownValue: state.race ?? 'Select option'),
+            SizedBox(height: height * 0.0250),
+            DropDownQuestionsWidget(
+                dropDownItem: ethnicityAnswer,
+                textQuestion: "ethnicity_question",
+                width: width,
+                dropDownValue: state.ethnicity ?? 'Select option'),
+            SizedBox(
+              height: height * 0.025,
+            ),
+            TextFieldNoLabelWidget(
+                hintText:
+                    state.levelSchool ?? 'High school graduate', // todo check
+                requiresTranslate: false,
+                text: 'graduate_level'),
+            SizedBox(
+              height: height * 0.010,
+            ),
+          ],
+        );
+      },
     );
   }
 }

@@ -65,6 +65,7 @@ class _LoginPageState extends State<LoginPage> {
           children: [
             TextFieldWithBorderWidget(
               key: const Key('textFieldNameLogin'),
+              requiresTranslate: true,
               textColor: wColor.mapColors['P00'],
               labelText: '01_login_input_one',
               textEditingController: emailController,
@@ -77,6 +78,8 @@ class _LoginPageState extends State<LoginPage> {
             SizedBox(height: height * 0.03),
             TextFieldWithBorderWidget(
               key: const Key('textFieldPasswordLogin'),
+              requiresTranslate: true,
+
               isPassword: isObscure, // TODO CHECK
               labelText: '01_login_input_two',
               borderColor: wColor.mapColors['IDGrey'],
@@ -109,34 +112,28 @@ class _LoginPageState extends State<LoginPage> {
         SizedBox(height: height * 0.03),
         BlocConsumer<AuthBloc, AuthState>(
           listener: (BuildContext context, state) {
-            if(state.formStatus is SubmissionSuccess){
+            if (state.formStatus is SubmissionSuccess) {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                builder: (context) => const NavBarPage(
-                      initialPage: 'HomePage',
-                    )
-                  ),
-                );
-            }
-            else if(state.formStatus is SubmissionFailed){
-              final snackBar = SnackBar(
-                content: Text(state.errorMessage),
-                action: SnackBarAction(
-                  label: 'Cerrar',
-                  onPressed: () {},
-                )
+                    builder: (context) => const NavBarPage(
+                          initialPage: 'HomePage',
+                        )),
               );
+            } else if (state.formStatus is SubmissionFailed) {
+              final snackBar = SnackBar(
+                  content: Text(state.errorMessage),
+                  action: SnackBarAction(
+                    label: 'Cerrar',
+                    onPressed: () {},
+                  ));
               ScaffoldMessenger.of(context).showSnackBar(snackBar);
             }
           },
           builder: (context, state) {
-            if(state.formStatus is FormSubmitting){
-              return const Center(
-                child: CircularProgressIndicator()
-              );
-            }
-            else{
+            if (state.formStatus is FormSubmitting) {
+              return const Center(child: CircularProgressIndicator());
+            } else {
               return Center(
                 child: MainButtonWidget(
                   key: const Key('buttonRegisterLogin'),
@@ -145,7 +142,7 @@ class _LoginPageState extends State<LoginPage> {
                   buttonString: '01_login_button_one',
                   onPressed: () {
                     BlocProvider.of<AuthBloc>(context).add(LoginUserE(
-                              emailController.text, passwordController.text));
+                        emailController.text, passwordController.text));
                   },
                   buttonColor: wColor.mapColors['IDPink'],
                 ),

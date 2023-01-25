@@ -2,6 +2,7 @@
 import 'package:bloc/bloc.dart';
 // ignore: depend_on_referenced_packages
 import 'package:meta/meta.dart';
+import 'package:personal_project/features/auth/domain/entities/user_entity.dart';
 
 import '../domain/use_cases/login_use_case.dart';
 import '../../../config/helpers/injector/injector.dart';
@@ -27,6 +28,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         emit(state.copyWith(
           formStatus: SubmissionSuccess(),
           statusCode: user.statusCode,
+          birthDate: user.user.dateOfBirth,
           token: user.token,
           userId: user.user.id,
           address: user.user.addresses!.address,
@@ -47,6 +49,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           name: user.user.name,
           organization: user.user.organization,
           participantId: user.user.participantId,
+          levelSchool: user.user.levelSchool,
           race: user.user.race![0]!.race,
           sex: user.user.sex![0]!.sex,
         ));

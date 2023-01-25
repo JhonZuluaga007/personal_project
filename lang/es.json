@@ -263,5 +263,7 @@
     "ethnicity_question" :"Ethnicity",
     "ethnicity_answer_one" :"Hispanic or Latino",
     "ethnicity_answer_two" :"Non Hispanic or Latino",
-    "history_button_icon": "Show test"
+    "history_button_icon": "Show test",
+
+    "graduate_level": "¿Cuál es el grado o nivel escolar más alto que ha completado? si actualmente está matriculado, el título más alto recibido. Esta información solo se recopila para que comprendamos nuestra demografía y no es una evaluación de usted o sus habilidades."
 }

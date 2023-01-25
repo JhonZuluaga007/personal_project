@@ -97,6 +97,7 @@ class User extends UserData {
     required List<String> projects,
     required List<Race?>? race,
     required Roles roles,
+    required String levelSchool,
     required List<Sex?>? sex,
     required DateOfBirth updated,
   }) : super(
@@ -124,6 +125,7 @@ class User extends UserData {
             race: race,
             roles: roles,
             sex: sex,
+            levelSchool: levelSchool,
             updated: updated);
 
   factory User.fromMap(Map<String, dynamic> json) => User(
@@ -152,6 +154,7 @@ class User extends UserData {
         participantId: json["participant_id"],
         password: json["password"],
         passwordReset: json["password_reset"],
+        levelSchool: json["level_school"],
         projects: json["projects"] == null
             ? []
             : List<String>.from(json["projects"]!.map((x) => x)),

@@ -75,6 +75,7 @@ class PcrRegisterPage extends StatelessWidget {
             ),
             SizedBox(height: size.height * 0.025),
             TextFieldWithBorderWidget(
+              requiresTranslate: true,
               textInputType: TextInputType.text,
               borderColor: wColor.mapColors["T100"],
               hintStyle: TextStyle(

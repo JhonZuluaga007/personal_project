@@ -14,6 +14,8 @@ class ConstLists {
     'Hawaii',
     'Idaho',
     'Iowa',
+    'Louisiana',
+    'Illinois',
     'Kansas',
     'Louisiana',
     'Maine',

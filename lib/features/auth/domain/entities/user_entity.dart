@@ -11,33 +11,33 @@ class UserEntity {
 }
 
 class UserData {
-  UserData({
-    required this.id,
-    required this.acceptsTerms,
-    required this.addresses,
-    required this.cellphone,
-    required this.dateOfBirth,
-    required this.email,
-    required this.ethnicity,
-    required this.gender,
-    required this.image,
-    required this.informationUpdated,
-    required this.isActive,
-    required this.isConfirmed,
-    required this.lastname,
-    required this.loginId,
-    required this.middleName,
-    required this.name,
-    required this.organization,
-    required this.participantId,
-    required this.password,
-    required this.passwordReset,
-    required this.projects,
-    required this.race,
-    required this.roles,
-    required this.sex,
-    required this.updated,
-  });
+  UserData(
+      {required this.id,
+      required this.acceptsTerms,
+      required this.addresses,
+      required this.cellphone,
+      required this.dateOfBirth,
+      required this.email,
+      required this.ethnicity,
+      required this.gender,
+      required this.image,
+      required this.informationUpdated,
+      required this.isActive,
+      required this.isConfirmed,
+      required this.lastname,
+      required this.loginId,
+      required this.middleName,
+      required this.name,
+      required this.organization,
+      required this.participantId,
+      required this.password,
+      required this.passwordReset,
+      required this.projects,
+      required this.race,
+      required this.roles,
+      required this.sex,
+      required this.updated,
+      required this.levelSchool});
 
   final String id;
   final bool? acceptsTerms;
@@ -64,6 +64,7 @@ class UserData {
   final RolesEntity? roles;
   final List<SexEntity?>? sex;
   final DateOfBirthEntity? updated;
+  final String? levelSchool;
 }
 
 class AddressesEntity {

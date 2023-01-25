@@ -59,6 +59,7 @@ class ResetPasswordPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 TextFieldWithBorderWidget(
+                  requiresTranslate: true,
                   key: const Key('enterTheNewPassword'),
                   textColor: wColor.mapColors['P00'],
                   labelText: '03_reset_password_label_input_one',
@@ -71,6 +72,7 @@ class ResetPasswordPage extends StatelessWidget {
                 ),
                 SizedBox(height: height * 0.05),
                 TextFieldWithBorderWidget(
+                  requiresTranslate: true,
                   key: const Key('confirmTheNewPassword'),
                   textColor: wColor.mapColors['P00'],
                   labelText: '03_reset_password_label_input_two',

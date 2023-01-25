@@ -24,6 +24,7 @@ class TextFieldWithBorderWidget extends StatelessWidget {
       this.focusedBorder,
       this.isPassword,
       this.widthBorder,
+      required this.requiresTranslate,
       this.validator})
       : super(key: key);
 
@@ -46,6 +47,7 @@ class TextFieldWithBorderWidget extends StatelessWidget {
   final bool? isPassword;
   final String? Function(String?)? validator;
   final double? widthBorder;
+  final bool requiresTranslate;
 
   @override
   Widget build(BuildContext context) {
@@ -65,7 +67,9 @@ class TextFieldWithBorderWidget extends StatelessWidget {
           labelText: labelText != null
               ? AppLocalizations.of(context)!.translate(labelText!)
               : null,
-          hintText: AppLocalizations.of(context)!.translate(hintText),
+          hintText: requiresTranslate
+              ? AppLocalizations.of(context)!.translate(hintText)
+              : hintText,
           suffixIcon: suffixIcon,
           hintTextDirection: hintTextDirection ?? TextDirection.ltr,
           labelStyle: textStyle ??
