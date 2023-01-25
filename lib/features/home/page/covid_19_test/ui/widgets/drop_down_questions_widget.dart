@@ -105,7 +105,6 @@ class _DropDownQuestionsWidgetState extends State<DropDownQuestionsWidget> {
                 if (widget.dropDownValue == 'Yes' ||
                     widget.dropDownValue == 'Si') {
                   widget.firstQuestion = true;
-                  print('first true');
                 } else {
                   widget.firstQuestion = false;
                 }
