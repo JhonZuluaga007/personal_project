@@ -59,7 +59,6 @@ class _MyUserPageState extends State<MyUserPage> {
           onTap: () {
             navigationBloc.add(PageChanged(indexNavigation: 0));
             Navigator.pushNamed(context, 'navBar');
-            // Navigator.pop(context);
           },
           child: Icon(
             Icons.arrow_back_ios,
@@ -135,16 +134,6 @@ class _MyUserPageState extends State<MyUserPage> {
           iconTextField: Icon(Icons.keyboard_arrow_down_rounded),
           hintText: "my_user_text_field_label",
         ),
-        SizedBox(height: height * 0.0485),
-        Center(
-          child: MainButtonWidget(
-              buttonString: "my_user_button_saved",
-              textColor: wColor.mapColors["IDWhite"],
-              buttonColor: wColor.mapColors["500BASE"],
-              borderColor: wColor.mapColors["500BASE"],
-              onPressed: () {}),
-        ),
-        SizedBox(height: height * 0.0485),
       ],
     );
   }
