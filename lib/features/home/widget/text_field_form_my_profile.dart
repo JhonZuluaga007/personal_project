@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:personal_project/common_ui/common_widgets/buttons/main_button_widget.dart';
 import 'package:personal_project/common_ui/common_widgets/text_field/text_field_no_label_widget.dart';
 import 'package:personal_project/common_ui/common_widgets/text_field/text_field_with_border_widget.dart';
 import 'package:personal_project/config/theme/theme.dart';
+import 'package:personal_project/features/auth/domain/entities/user_update_entity.dart';
 import 'package:personal_project/features/home/page/covid_19_test/ui/widgets/drop_down_questions_widget.dart';
 import 'package:personal_project/features/home/widget/lists_text_fields_widgets.dart';
+import 'package:personal_project/navigationBar/bloc/navigation_bar_bloc.dart';
 
 import '../../auth/bloc/auth_bloc.dart';
 import 'drop_down_my_profile_widget.dart';
@@ -63,8 +66,16 @@ class _TextFieldFormMyUserState extends State<TextFieldFormMyUser> {
     final height = MediaQuery.of(context).size.height;
     ConstLists lists = ConstLists();
     final wColor = ThemesIdx20();
+    NavigationBarBloc navigationBloc =
+        BlocProvider.of<NavigationBarBloc>(context);
     return BlocBuilder<AuthBloc, AuthState>(
       builder: (context, state) {
+        TextEditingController addressController =
+            TextEditingController(text: state.address ?? "");
+        TextEditingController cityController =
+            TextEditingController(text: state.city ?? "");
+        TextEditingController zipController =
+            TextEditingController(text: state.zip ?? "");
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -72,11 +83,12 @@ class _TextFieldFormMyUserState extends State<TextFieldFormMyUser> {
               suffixIcon: widget.iconTextField,
               borderColor: wColor.mapColors["T100"],
               requiresTranslate: false,
+              textEditingController: addressController,
               hintStyle: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w400,
                   color: wColor.mapColors["S600"]),
-              hintText: state.address ?? "profile_text_hint_seven",
+              hintText: "profile_text_hint_seven",
               textStyle: const TextStyle(fontSize: 18),
               labelText: "profile_text_seven",
               widthBorder: 3,
@@ -86,51 +98,45 @@ class _TextFieldFormMyUserState extends State<TextFieldFormMyUser> {
               suffixIcon: widget.iconTextField,
               borderColor: wColor.mapColors["T100"],
               requiresTranslate: false,
+              textEditingController: cityController,
               hintStyle: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w400,
                   color: wColor.mapColors["S600"]),
-              hintText: state.city ?? "profile_text_eigth",
+              hintText: "profile_text_eigth",
               textStyle: const TextStyle(fontSize: 18),
               labelText: "profile_text_hint_eigth",
               widthBorder: 3,
             ),
-            SizedBox(
-              height: height * 0.0250,
-            ),
+            SizedBox(height: height * 0.0250),
             TextFieldWithBorderWidget(
               suffixIcon: widget.iconTextField,
               requiresTranslate: false,
               borderColor: wColor.mapColors["T100"],
+              textEditingController: zipController,
               hintStyle: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w400,
                   color: wColor.mapColors["S600"]),
-              hintText: state.zip ?? "050001",
+              hintText: "050001",
               textStyle: const TextStyle(fontSize: 18),
               labelText: "profile_text_hint_ten",
               widthBorder: 3,
             ),
-            SizedBox(
-              height: height * 0.0250,
-            ),
+            SizedBox(height: height * 0.0250),
             DropDownWidgetMyProfile(
               item: lists.stateList,
               fieldText: 'profile_text_hint_nine',
               valueState: state.state ?? defaultValueState,
               width: width,
             ),
-            SizedBox(
-              height: height * 0.0250,
-            ),
+            SizedBox(height: height * 0.0250),
             DropDownQuestionsWidget(
                 dropDownItem: sexAnswer,
                 textQuestion: "sex_question",
                 width: width,
                 dropDownValue: state.sex ?? 'Select option'),
-            SizedBox(
-              height: height * 0.0250,
-            ),
+            SizedBox(height: height * 0.0250),
             DropDownQuestionsWidget(
                 dropDownItem: genderAnswer,
                 textQuestion: "gender_answer_question",
@@ -148,17 +154,42 @@ class _TextFieldFormMyUserState extends State<TextFieldFormMyUser> {
                 textQuestion: "ethnicity_question",
                 width: width,
                 dropDownValue: state.ethnicity ?? 'Select option'),
-            SizedBox(
-              height: height * 0.025,
-            ),
+            SizedBox(height: height * 0.025),
             TextFieldNoLabelWidget(
                 hintText:
                     state.levelSchool ?? 'High school graduate', // todo check
                 requiresTranslate: false,
                 text: 'graduate_level'),
-            SizedBox(
-              height: height * 0.010,
+            SizedBox(height: height * 0.010),
+            SizedBox(height: height * 0.0485),
+            Center(
+              child: MainButtonWidget(
+                buttonString: "my_user_button_saved",
+                textColor: wColor.mapColors["IDWhite"],
+                buttonColor: wColor.mapColors["500BASE"],
+                borderColor: wColor.mapColors["500BASE"],
+                onPressed: () {
+                  BlocProvider.of<AuthBloc>(context).add(
+                    UserUpdateEvent(
+                      UserUpdateEntity(
+                        userdId: state.userId,
+                        address: addressController.text,
+                        city: cityController.text,
+                        zip: zipController.text,
+                        state: state.state,
+                        sex: state.sex,
+                        gender: state.gender,
+                        race: state.race,
+                        ethnicity: state.ethnicity,
+                      ),
+                    ),
+                  );
+                  navigationBloc.add(PageChanged(indexNavigation: 0));
+                  Navigator.pushNamed(context, 'navBar');
+                },
+              ),
             ),
+            SizedBox(height: height * 0.0485),
           ],
         );
       },

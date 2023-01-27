@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:personal_project/common_ui/common_pages/my_app_scaffold_page.dart';
-import 'package:personal_project/common_ui/common_widgets/buttons/main_button_widget.dart';
 import 'package:personal_project/common_ui/common_widgets/text/text_widget.dart';
 import 'package:personal_project/config/theme/theme.dart';
 import 'package:personal_project/features/home/widget/text_field_form_my_profile.dart';
@@ -126,16 +125,6 @@ class _EditUserFromBottomPageState extends State<EditUserFromBottomPage> {
           iconTextField: Icon(Icons.keyboard_arrow_down_rounded),
           hintText: "my_user_text_field_label",
         ),
-        SizedBox(height: height * 0.0485),
-        Center(
-          child: MainButtonWidget(
-              buttonString: "my_user_button_saved",
-              textColor: wColor.mapColors["IDWhite"],
-              buttonColor: wColor.mapColors["500BASE"],
-              borderColor: wColor.mapColors["500BASE"],
-              onPressed: () {}),
-        ),
-        SizedBox(height: height * 0.0485),
       ],
     );
   }

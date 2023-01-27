@@ -59,4 +59,23 @@ class Api {
       throw Exception(e);
     }
   }
+
+  static Future<dynamic> put(String path, Map<String, dynamic> data) async {
+    await setHeaders();
+    debugPrint('---------------------------');
+    debugPrint('headers---------: $_headers');
+    final body = encode(data);
+    Uri uri = Uri.parse(path);
+    try {
+      final response = await http.put(
+        uri,
+        body: body,
+        headers: _headers,
+      );
+      debugPrint("response: ${response.headers}");
+      return decode(response.body);
+    } on Exception catch (e) {
+      throw Exception(e);
+    }
+  }
 }

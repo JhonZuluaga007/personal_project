@@ -154,7 +154,7 @@ class User extends UserData {
         participantId: json["participant_id"],
         password: json["password"],
         passwordReset: json["password_reset"],
-        levelSchool: json["level_school"],
+        levelSchool: json["level_school"] ?? "",
         projects: json["projects"] == null
             ? []
             : List<String>.from(json["projects"]!.map((x) => x)),
