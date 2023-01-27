@@ -4,7 +4,6 @@ part of 'auth_bloc.dart';
 @immutable
 abstract class AuthEvent {}
 
-
 class LoginUserE extends AuthEvent {
   final String userName;
   final String password;
@@ -12,8 +11,6 @@ class LoginUserE extends AuthEvent {
 }
 
 class UserUpdateEvent extends AuthEvent {
-  UserUpdateEntity userUpdateEntity;
-  UserUpdateEvent({
-    required this.userUpdateEntity,
-  });
+  final UserUpdateEntity userUpdateEntity;
+  UserUpdateEvent(this.userUpdateEntity);
 }

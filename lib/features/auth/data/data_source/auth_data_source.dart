@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:personal_project/config/helpers/api.dart';
 import 'package:personal_project/config/helpers/endpoints.dart';
@@ -38,20 +36,56 @@ class AuthDataSource {
     return userModel;
   }
 
-  Future<ServerValidate> userUpdateEntity(UserUpdateEntity userUpdateEntity) async{
-    final responseUpdateUser = http.MultipartRequest('PUT', Uri.parse('http://127.0.0.1:5000/api/users/63b6f8217421999ac5a4a948'));
+  Future<ServerValidate> userUpdateEntity(
+      UserUpdateEntity userUpdateEntity) async {
+    final response =
+        await Api.put(Endpoints.getUser + userUpdateEntity.userdId!, {
+      'address': userUpdateEntity.address!,
+      'city': userUpdateEntity.city!,
+      'state': userUpdateEntity.state!,
+      'zip': userUpdateEntity.zip!,
+      'race': userUpdateEntity.race!,
+      'ethnicity': userUpdateEntity.ethnicity!,
+      'sex': userUpdateEntity.sex!,
+      'gender': userUpdateEntity.gender!,
+    });
+    if (response["statusCode"] == 200) {
+      //UserModelLogin userResponse = UserModelLogin.fromMap(response);
+      //debugPrint("result data response login: ${userResponse.user.id}");
+
+      return ServerValidate(message: "Changes saved", statusCode: 200);
+    } else {
+      throw InvalidData("Could not save changes");
+    }
+  }
+
+  /*Future<ServerValidate> userUpdateEntity(
+      UserUpdateEntity userUpdateEntity) async {
+    Api.cleanHeaders();
+    final responseUpdateUser = http.MultipartRequest(
+        'PUT', Uri.parse('${Endpoints.getUser}${userUpdateEntity.userdId}'));
+    responseUpdateUser.fields.addAll({
+      'address': userUpdateEntity.address!,
+      'city': userUpdateEntity.city!,
+      'state': userUpdateEntity.state!,
+      'zip': userUpdateEntity.zip!,
+      'race': userUpdateEntity.race!,
+      'ethnicity': userUpdateEntity.ethnicity!,
+      'sex': userUpdateEntity.sex!,
+      'gender': userUpdateEntity.gender!,
+    });
+    responseUpdateUser.files
+        .add(await http.MultipartFile.fromPath('files', ''));
+
     http.StreamedResponse response = await responseUpdateUser.send();
 
     if (response.statusCode == 200) {
       debugPrint(await response.stream.bytesToString());
       //return userUpdateEntity;
       return ServerValidate(message: "", statusCode: 200);
-    }
-    else {
+    } else {
       debugPrint(response.reasonPhrase);
-      throw InvalidData(
-        "Could not save changes"
-      );
+      throw InvalidData("Could not save changes");
     }
-  }
+  }*/
 }
