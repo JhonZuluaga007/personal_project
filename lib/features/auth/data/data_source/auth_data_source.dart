@@ -1,10 +1,15 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:personal_project/config/helpers/api.dart';
 import 'package:personal_project/config/helpers/endpoints.dart';
 import 'package:personal_project/config/helpers/errors/invalid_data.dart';
 import 'package:personal_project/config/helpers/models/server_error.dart';
+import 'package:personal_project/config/helpers/models/server_validate_data.dart';
 import 'package:personal_project/features/auth/data/models/user_model.dart';
+import 'package:personal_project/features/auth/domain/entities/user_update_entity.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:http/http.dart' as http;
 
 class AuthDataSource {
   Future<UserModel> login(String username, String password) async {
@@ -31,5 +36,22 @@ class AuthDataSource {
     UserModel userModel = UserModel.fromMap(response);
     debugPrint("result data response getUser: ${userModel.user.email}");
     return userModel;
+  }
+
+  Future<ServerValidate> userUpdateEntity(UserUpdateEntity userUpdateEntity) async{
+    final responseUpdateUser = http.MultipartRequest('PUT', Uri.parse('http://127.0.0.1:5000/api/users/63b6f8217421999ac5a4a948'));
+    http.StreamedResponse response = await responseUpdateUser.send();
+
+    if (response.statusCode == 200) {
+      debugPrint(await response.stream.bytesToString());
+      //return userUpdateEntity;
+      return ServerValidate(message: "", statusCode: 200);
+    }
+    else {
+      debugPrint(response.reasonPhrase);
+      throw InvalidData(
+        "Could not save changes"
+      );
+    }
   }
 }
