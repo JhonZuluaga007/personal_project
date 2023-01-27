@@ -1,6 +1,5 @@
-
 class UserUpdateEntity {
-
+  final String? userdId;
   final String? address;
   final String? city;
   final String? state;
@@ -11,6 +10,7 @@ class UserUpdateEntity {
   final String? gender;
 
   UserUpdateEntity({
+    this.userdId,
     required this.address,
     required this.city,
     required this.state,
