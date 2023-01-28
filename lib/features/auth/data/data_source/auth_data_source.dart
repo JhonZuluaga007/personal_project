@@ -68,4 +68,20 @@ class AuthDataSource {
       throw InvalidData("Could not save changes");
     }
   }
+
+  Future<ServerValidate> changePassword(String email) async {
+    final response = await Api.post(
+      Endpoints.changePassword,
+      {
+        'userId': '63a39216bd99fc7c1ecad8de',
+        'pass': '123456',
+        'newpass': '123'
+      },
+    );
+    if (response["statusCode"] == 200) {
+      return ServerValidate(message: "Changes saved", statusCode: 200);
+    } else {
+      throw InvalidData("Could not save changes");
+    }
+  }
 }
