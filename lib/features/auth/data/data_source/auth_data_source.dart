@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../models/user_model.dart';
 import '../../../../config/helpers/api.dart';
 import '../../../../config/helpers/endpoints.dart';
 import '../../domain/entities/user_update_entity.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import '../../domain/entities/change_password_entity.dart';
 import '../../../../config/helpers/errors/invalid_data.dart';
 import '../../../../config/helpers/models/server_error.dart';
 import '../../../../config/helpers/models/server_validate_data.dart';
@@ -64,25 +65,27 @@ class AuthDataSource {
       },
     );
     if (response["statusCode"] == 200) {
-      return ServerValidate(message: "Changes saved", statusCode: 200);
+      return ServerValidate(message: "Password sent to email", statusCode: 200);
     } else {
       throw InvalidData("Could not save changes");
     }
   }
 
-  Future<ServerValidate> changePassword(String email) async {
+  Future<ServerValidate> changePassword(
+      ChangePasswordEntity changePassword) async {
     final response = await Api.post(
       Endpoints.changePassword,
       {
-        'userId': '63a39216bd99fc7c1ecad8de',
-        'pass': '123456',
-        'newpass': '123'
+        'userId': changePassword.userId,
+        'pass': changePassword.pass,
+        'newpass': changePassword.newpass
       },
     );
     if (response["statusCode"] == 200) {
-      return ServerValidate(message: "Changes saved", statusCode: 200);
+      return ServerValidate(message: "Password reset", statusCode: 200);
     } else {
-      throw InvalidData("Could not save changes");
+      throw InvalidData(
+          "We could not update your password. Make sure your current password is correct");
     }
   }
 }
