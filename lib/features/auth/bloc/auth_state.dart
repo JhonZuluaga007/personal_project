@@ -29,6 +29,7 @@ class AuthState {
   final String? race;
   final String? sex;
   final String errorMessage;
+  final String? message;
   final String? levelSchool;
   final FormSubmissionStatus formStatus;
 
@@ -59,8 +60,9 @@ class AuthState {
     this.race = "",
     this.sex = "",
     this.levelSchool = "",
-    this.formStatus = const InitialFormStatus(),
     this.errorMessage = "",
+    this.message = "",
+    this.formStatus = const InitialFormStatus(),
   });
 
   AuthState copyWith({
@@ -90,6 +92,7 @@ class AuthState {
     String? race,
     String? sex,
     String? errorMessage,
+    String? message,
     String? levelSchool,
     FormSubmissionStatus? formStatus,
   }) {
@@ -120,6 +123,7 @@ class AuthState {
         race: race ?? this.race,
         sex: sex ?? this.sex,
         errorMessage: errorMessage ?? this.errorMessage,
+        message: message ?? this.message,
         formStatus: formStatus ?? this.formStatus,
         levelSchool: levelSchool ?? this.levelSchool);
   }
