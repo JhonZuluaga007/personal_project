@@ -14,3 +14,8 @@ class UserUpdateEvent extends AuthEvent {
   final UserUpdateEntity userUpdateEntity;
   UserUpdateEvent(this.userUpdateEntity);
 }
+
+class ResetPassword extends AuthEvent {
+  final String email;
+  ResetPassword(this.email);
+}
