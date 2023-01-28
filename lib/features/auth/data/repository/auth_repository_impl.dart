@@ -14,11 +14,11 @@ class AuthRepositoryImpl implements AuthRepository {
   });
 
   @override
-  Future<Either<InvalidData, UserEntity>> login(String username, String password) async {
-
+  Future<Either<InvalidData, UserEntity>> login(
+      String username, String password) async {
     try {
       final UserEntity response =
-      await authDataSource.login(username, password);
+          await authDataSource.login(username, password);
       return Right(response);
     } on InvalidData catch (invalidData) {
       return Left(invalidData);
@@ -26,10 +26,22 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<Either<InvalidData, ServerValidate>> userUpdateEntity(UserUpdateEntity userUpdateEntity) async {
+  Future<Either<InvalidData, ServerValidate>> userUpdateEntity(
+      UserUpdateEntity userUpdateEntity) async {
     try {
       final ServerValidate response =
-      await authDataSource.userUpdateEntity(userUpdateEntity);
+          await authDataSource.userUpdateEntity(userUpdateEntity);
+      return Right(response);
+    } on InvalidData catch (invalidData) {
+      return Left(invalidData);
+    }
+  }
+
+  @override
+  Future<Either<InvalidData, ServerValidate>> resetPassword(
+      String email) async {
+    try {
+      final ServerValidate response = await authDataSource.resetPassword(email);
       return Right(response);
     } on InvalidData catch (invalidData) {
       return Left(invalidData);

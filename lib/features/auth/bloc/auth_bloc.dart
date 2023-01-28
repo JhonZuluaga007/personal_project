@@ -1,4 +1,6 @@
 // ignore: depend_on_referenced_packages
+import 'dart:io';
+
 import 'package:bloc/bloc.dart';
 // ignore: depend_on_referenced_packages
 import 'package:meta/meta.dart';
@@ -6,6 +8,7 @@ import '../domain/entities/user_entity.dart';
 import '../domain/use_cases/login_use_case.dart';
 import '../domain/entities/user_update_entity.dart';
 import '../domain/use_cases/user_update_use_case.dart';
+import '../domain/use_cases/reset_password_use_case.dart';
 import '../../../config/helpers/injector/injector.dart';
 import '../../../config/helpers/form_submission_status.dart';
 
@@ -16,6 +19,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   AuthBloc() : super(const AuthState()) {
     final loginUseCase = Injector.resolve<LoginUseCase>();
     final userUpdateUseCase = Injector.resolve<UserUpdateUseCase>();
+    final resetPasswordUseCase = Injector.resolve<ResetPasswordUseCase>();
 
     on<LoginUserE>((event, emit) async {
       emit(state.copyWith(formStatus: FormSubmitting()));
@@ -68,8 +72,29 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           race: event.userUpdateEntity.race,
           ethnicity: event.userUpdateEntity.ethnicity,
           sex: event.userUpdateEntity.sex,
-          gender: event.userUpdateEntity.gender));
+          gender: event.userUpdateEntity.gender,
+          image: event.userUpdateEntity.file
+        ));
       userUpdateUseCase.call(event.userUpdateEntity);
+    });
+
+    on<ResetPassword>((event, emit) async {
+      emit(state.copyWith(formStatus: FormSubmitting()));
+      final resetPassword = await resetPasswordUseCase.call(event.email);
+      resetPassword.fold((failed) {
+        emit(
+          state.copyWith(
+            formStatus: SubmissionFailed(exception: Exception(failed.message)),
+            errorMessage: failed.message,
+          ),
+        );
+      }, (successful) {
+        emit(state.copyWith(
+          formStatus: SubmissionSuccess(),
+          statusCode: successful.statusCode,
+          message: successful.message,
+        ));
+      });
     });
   }
 }

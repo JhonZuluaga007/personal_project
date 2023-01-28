@@ -10,6 +10,8 @@ import '../widgets/container_start_counter_widget.dart';
 import '../widgets/questions_visible_widgets.dart/first_question_vissible_widget.dart';
 
 class TQuestionsPage extends StatefulWidget {
+  const TQuestionsPage({super.key});
+
   @override
   State<TQuestionsPage> createState() => _TQuestionsPageState();
 }

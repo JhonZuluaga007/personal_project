@@ -5,7 +5,11 @@ import 'package:personal_project/features/auth/domain/entities/user_entity.dart'
 import 'package:personal_project/features/auth/domain/entities/user_update_entity.dart';
 
 abstract class AuthRepository {
-  Future<Either<InvalidData, UserEntity>> login(String username, String password);
+  Future<Either<InvalidData, UserEntity>> login(
+      String username, String password);
 
-  Future<Either<InvalidData, ServerValidate>> userUpdateEntity(UserUpdateEntity userUpdateEntity);
+  Future<Either<InvalidData, ServerValidate>> userUpdateEntity(
+      UserUpdateEntity userUpdateEntity);
+
+  Future<Either<InvalidData, ServerValidate>> resetPassword(String email);
 }

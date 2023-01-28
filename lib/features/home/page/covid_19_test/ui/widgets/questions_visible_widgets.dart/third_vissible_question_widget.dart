@@ -93,7 +93,7 @@ class _ThirdVissibleQuestionWidgetState
                   letterSpacing: -0.2,
                   color: widget.wColor.mapColors["S600"]),
             ),
-            icon: Icon(Icons.arrow_downward),
+            icon: const Icon(Icons.arrow_downward),
             // widget.iconWidget,
             iconSize: 12,
             borderRadius: BorderRadius.circular(5),
@@ -111,7 +111,7 @@ class _ThirdVissibleQuestionWidgetState
                     widget.dropDownValue == 'Yes, 2 Dose' ||
                     widget.dropDownValue == 'Si, 2 Dosis') {
                   widget.firstQuestion = true;
-                  print('first true');
+                  debugPrint('first true');
                 } else {
                   widget.firstQuestion = false;
                 }

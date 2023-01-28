@@ -1,3 +1,5 @@
+import 'dart:io';
+
 class UserEntity {
   UserEntity({
     required this.statusCode,

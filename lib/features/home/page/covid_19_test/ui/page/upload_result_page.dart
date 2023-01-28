@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:personal_project/common_ui/common_widgets/buttons/button_widget.dart';
 import 'package:personal_project/common_ui/common_widgets/buttons/main_button_widget.dart';
 
 import '../../../../../../common_ui/common_widgets/text/text_widget.dart';
 import '../../../../../../config/theme/theme.dart';
-import '../../../../../../navigationBar/bloc/navigation_bar_bloc.dart';
 import '../widgets/container_start_counter_widget.dart';
 import '../widgets/drop_down_questions_widget.dart';
 
@@ -118,9 +116,6 @@ Widget buttonUpload(BuildContext context) {
   final width = MediaQuery.of(context).size.width;
   final height = MediaQuery.of(context).size.height;
   final wColor = ThemesIdx20();
-  NavigationBarBloc navigationBloc =
-      BlocProvider.of<NavigationBarBloc>(context);
-
   return MainButtonWidget(
       width: width * 0.920,
       height: height * 0.053,

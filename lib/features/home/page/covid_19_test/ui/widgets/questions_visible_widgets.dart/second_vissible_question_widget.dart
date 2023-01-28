@@ -6,22 +6,22 @@ import '../../../../../../../config/theme/theme.dart';
 import '../date_picker_container_widget.dart';
 
 class SecondVissibleQuestionWidget extends StatefulWidget {
-  SecondVissibleQuestionWidget(
-      {Key? key,
-      required this.width,
-      required this.wColor,
-      required this.height,
-      required this.dropdownItem,
-      required this.firstQuestion,
-      required this.dropDownValue})
-      : super(key: key);
+  SecondVissibleQuestionWidget({
+    Key? key,
+    required this.width,
+    required this.wColor,
+    required this.height,
+    required this.dropdownItem,
+    required this.firstQuestion,
+    required this.dropDownValue,
+  }) : super(key: key);
 
   final double width;
   final ThemesIdx20 wColor;
   final double height;
   final List<String> dropdownItem;
-  bool firstQuestion;
-  String dropDownValue;
+  late bool firstQuestion;
+  late String dropDownValue;
   @override
   State<SecondVissibleQuestionWidget> createState() =>
       _SecondVissibleQuestionWidgetState();
@@ -98,7 +98,7 @@ class _SecondVissibleQuestionWidgetState
                 if (widget.dropDownValue == 'Yes' ||
                     widget.dropDownValue == 'Si') {
                   widget.firstQuestion = true;
-                  print('first true');
+                  debugPrint('first true');
                 } else {
                   widget.firstQuestion = false;
                 }

@@ -8,6 +8,7 @@ class UserUpdateEntity {
   final String? ethnicity;
   final String? sex;
   final String? gender;
+  final String? file;
 
   UserUpdateEntity({
     this.userdId,
@@ -19,5 +20,6 @@ class UserUpdateEntity {
     required this.ethnicity,
     required this.sex,
     required this.gender,
+    this.file
   });
 }

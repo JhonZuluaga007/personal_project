@@ -67,7 +67,7 @@ class MyApp extends StatelessWidget {
             "login": (_) => const LoginPage(),
             "resetInfo": (_) => const ResetPasswordPageInfo(),
             "reset": (_) => const ResetPasswordPage(),
-            "selfTestQuestions": (_) => TQuestionsPage(),
+            "selfTestQuestions": (_) => const TQuestionsPage(),
             "instructionPage": (_) => const InstructionsPage(),
             "startCounter": (_) => const StartCounterPage(timerValue: 10),
             "uploadResult": (_) => const UploadResultPage(),

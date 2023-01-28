@@ -7,7 +7,6 @@ import 'package:personal_project/config/helpers/models/server_validate_data.dart
 import 'package:personal_project/features/auth/data/models/user_model.dart';
 import 'package:personal_project/features/auth/domain/entities/user_update_entity.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:http/http.dart' as http;
 
 class AuthDataSource {
   Future<UserModel> login(String username, String password) async {
@@ -32,7 +31,7 @@ class AuthDataSource {
     prefs.setString('Basic', token);
     final response = await Api.get('${Endpoints.getUser}$userId');
     UserModel userModel = UserModel.fromMap(response);
-    debugPrint("result data response getUser: ${userModel.user.email}");
+    debugPrint("result data response getUser: ${userModel.user.image}");
     return userModel;
   }
 
@@ -49,43 +48,45 @@ class AuthDataSource {
       'sex': userUpdateEntity.sex!,
       'gender': userUpdateEntity.gender!,
     });
-    if (response["statusCode"] == 200) {
-      //UserModelLogin userResponse = UserModelLogin.fromMap(response);
-      //debugPrint("result data response login: ${userResponse.user.id}");
 
+    response.files.add(
+      await http.MultipartFile.fromPath("files","/${userUpdateEntity.file!}")
+    );
+
+    if (response["statusCode"] == 200) {
       return ServerValidate(message: "Changes saved", statusCode: 200);
     } else {
       throw InvalidData("Could not save changes");
     }
   }
 
-  /*Future<ServerValidate> userUpdateEntity(
-      UserUpdateEntity userUpdateEntity) async {
-    Api.cleanHeaders();
-    final responseUpdateUser = http.MultipartRequest(
-        'PUT', Uri.parse('${Endpoints.getUser}${userUpdateEntity.userdId}'));
-    responseUpdateUser.fields.addAll({
-      'address': userUpdateEntity.address!,
-      'city': userUpdateEntity.city!,
-      'state': userUpdateEntity.state!,
-      'zip': userUpdateEntity.zip!,
-      'race': userUpdateEntity.race!,
-      'ethnicity': userUpdateEntity.ethnicity!,
-      'sex': userUpdateEntity.sex!,
-      'gender': userUpdateEntity.gender!,
-    });
-    responseUpdateUser.files
-        .add(await http.MultipartFile.fromPath('files', ''));
-
-    http.StreamedResponse response = await responseUpdateUser.send();
-
-    if (response.statusCode == 200) {
-      debugPrint(await response.stream.bytesToString());
-      //return userUpdateEntity;
-      return ServerValidate(message: "", statusCode: 200);
+  Future<ServerValidate> resetPassword(String email) async {
+    final response = await Api.post(
+      Endpoints.resetPassword,
+      {
+        "email": email,
+      },
+    );
+    if (response["statusCode"] == 200) {
+      return ServerValidate(message: "Changes saved", statusCode: 200);
     } else {
-      debugPrint(response.reasonPhrase);
       throw InvalidData("Could not save changes");
     }
-  }*/
+  }
+
+  Future<ServerValidate> changePassword(String email) async {
+    final response = await Api.post(
+      Endpoints.changePassword,
+      {
+        'userId': '63a39216bd99fc7c1ecad8de',
+        'pass': '123456',
+        'newpass': '123'
+      },
+    );
+    if (response["statusCode"] == 200) {
+      return ServerValidate(message: "Changes saved", statusCode: 200);
+    } else {
+      throw InvalidData("Could not save changes");
+    }
+  }
 }
