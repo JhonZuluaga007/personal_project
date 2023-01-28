@@ -1,4 +1,6 @@
 // ignore: depend_on_referenced_packages
+import 'dart:io';
+
 import 'package:bloc/bloc.dart';
 // ignore: depend_on_referenced_packages
 import 'package:meta/meta.dart';
@@ -68,7 +70,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           race: event.userUpdateEntity.race,
           ethnicity: event.userUpdateEntity.ethnicity,
           sex: event.userUpdateEntity.sex,
-          gender: event.userUpdateEntity.gender));
+          gender: event.userUpdateEntity.gender,
+          image: event.userUpdateEntity.file
+        ));
       userUpdateUseCase.call(event.userUpdateEntity);
     });
   }
