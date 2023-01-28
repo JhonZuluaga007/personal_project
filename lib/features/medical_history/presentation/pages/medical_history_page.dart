@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:personal_project/common_ui/common_pages/my_app_scaffold_page.dart';
 import 'package:personal_project/common_ui/common_widgets/buttons/main_button_widget.dart';
+import 'package:personal_project/features/medical_history/presentation/widgets/confirm_alert_widget.dart';
+import 'package:personal_project/features/medical_history/presentation/widgets/done_alert_widget.dart';
 import 'package:personal_project/features/medical_history/presentation/widgets/multi_selected_widget.dart';
 
 import '../../../../common_ui/common_widgets/drop_down_widget.dart';
 import '../../../../common_ui/common_widgets/text/text_widget.dart';
 import '../../../../config/theme/theme.dart';
+import '../../../../navigationBar/bloc/navigation_bar_bloc.dart';
+import '../widgets/button_actions_widget.dart';
 
 class MedicalHistoryPage extends StatefulWidget {
   const MedicalHistoryPage({super.key});
@@ -33,6 +38,8 @@ class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
   @override
   Widget build(BuildContext context) {
     final wColor = ThemesIdx20();
+    NavigationBarBloc navigationBloc =
+        BlocProvider.of<NavigationBarBloc>(context);
     final size = MediaQuery.of(context).size;
     return MyAppScaffold(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -145,15 +152,8 @@ class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
               ],
             )),
         SizedBox(height: size.height * 0.05),
-        Center(
-          child: MainButtonWidget(
-              width: size.width,
-              textColor: wColor.mapColors['P01'],
-              buttonString: 'medical_history_text_button',
-              onPressed: () {
-                //TODO SAVE CHANGES TO THE BACKEND
-              }),
-        ),
+        ButtonActionsWidgets(
+            size: size, wColor: wColor, navigationBloc: navigationBloc),
       ],
     );
   }

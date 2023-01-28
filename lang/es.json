@@ -265,5 +265,17 @@
     "ethnicity_answer_two" :"Non Hispanic or Latino",
     "history_button_icon": "Show test",
 
-    "graduate_level": "¿Cuál es el grado o nivel escolar más alto que ha completado? si actualmente está matriculado, el título más alto recibido. Esta información solo se recopila para que comprendamos nuestra demografía y no es una evaluación de usted o sus habilidades."
+    "graduate_level": "¿Cuál es el grado o nivel escolar más alto que ha completado? si actualmente está matriculado, el título más alto recibido. Esta información solo se recopila para que comprendamos nuestra demografía y no es una evaluación de usted o sus habilidades.",
+
+    "alert_confirm_text_one" : "¿Estas seguro?",
+    "alert_confirm_text_two" : "Enviar",
+    "alert_confirm_text_three" : "Si, Actulizar!",
+    "alert_confirm_text_four" : "Cancelar",
+
+    
+    "alert_text_one": "Listo!",
+    "alert_text_two": "Cambios guardados ",
+    "alert_text_three": "Ok"
+
+
 }

@@ -29,6 +29,15 @@ class ResetPasswordPage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
+        leading: GestureDetector(
+          onTap: () {
+            Navigator.pop(context);
+          },
+          child: const Icon(
+            Icons.arrow_back_ios,
+            color: Colors.black,
+          ),
+        ),
       ),
       children: [
         Center(child: Image.asset('assets/icons/idxLogo.png')),
@@ -104,25 +113,6 @@ class ResetPasswordPage extends StatelessWidget {
           ),
         ),
         SizedBox(height: height * 0.03),
-        GestureDetector(
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const LoginPage()),
-            );
-          },
-          child: const Center(
-            child: TextWidget(
-              text: '03_reset_password_text_two',
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 14,
-                fontWeight: FontWeight.normal,
-              ),
-              textAlign: TextAlign.center,
-            ),
-          ),
-        ),
       ],
     );
   }
