@@ -1,4 +1,5 @@
 import 'package:kiwi/kiwi.dart';
+import 'package:personal_project/features/auth/domain/use_cases/reset_password_use_case.dart';
 import 'package:personal_project/features/auth/domain/use_cases/user_update_use_case.dart';
 
 import '../../../features/auth/data/data_source/auth_data_source.dart';
@@ -40,5 +41,6 @@ abstract class Injector {
   @Register.factory(LoginUseCase)
   @Register.factory(AuthDataSource)
   @Register.factory(UserUpdateUseCase)
+  @Register.factory(ResetPasswordUseCase)
   void _configureAuthFactories();
 }
