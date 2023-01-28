@@ -183,6 +183,8 @@ class _TextFieldFormMyUserState extends State<TextFieldFormMyUser> {
                     infoText: 'alert_confirm_text_two',
                     mainButton: 'alert_confirm_text_three',
                     mainButtonFunction: () {
+                      //REVISAR QUE TENGA EXITO Y ACTUALIZAR ESTADO
+                      // EN LO CONTRARIO MOSTRAR ERROR ALERTA.
                       doneSendInfo(
                         context: context,
                         mainIcon: Icon(
