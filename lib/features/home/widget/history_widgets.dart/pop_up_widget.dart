@@ -56,7 +56,7 @@ Future popUpWidget(BuildContext context) {
                               ),
                             ),
                             SizedBox(width: width * 0.01),
-                            Icon(Icons.cancel), //TODO CHECK LAST TEST
+                            const Icon(Icons.cancel), //TODO CHECK LAST TEST
                             SizedBox(width: width * 0.01),
                             TextWidget(
                               text: "Negative",

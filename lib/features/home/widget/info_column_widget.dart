@@ -14,7 +14,6 @@ class InfoColumnWidget extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     return BlocBuilder<AuthBloc, AuthState>(
       builder: (context, state) {
-        print(state.birthDate!.date.toString());
         final DateFormat formatter = DateFormat('MM-dd-yyyy');
 
         return Column(

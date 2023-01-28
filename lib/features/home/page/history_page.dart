@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:personal_project/common_ui/common_widgets/buttons/button_widget.dart';
-import 'package:personal_project/common_ui/common_widgets/buttons/main_button_widget.dart';
 import 'package:personal_project/common_ui/common_widgets/text/text_widget.dart';
 import 'package:personal_project/features/home/widget/history_widgets.dart/pop_up_widget.dart';
 

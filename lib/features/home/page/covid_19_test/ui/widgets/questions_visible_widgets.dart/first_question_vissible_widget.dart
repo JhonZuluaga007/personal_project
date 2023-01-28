@@ -102,7 +102,7 @@ class _FirstVissibleQuestionWidgetState
                   letterSpacing: -0.2,
                   color: widget.wColor.mapColors["S600"]),
             ),
-            icon: Icon(Icons.arrow_downward),
+            icon: const Icon(Icons.arrow_downward),
             // widget.iconWidget,
             iconSize: 12,
             borderRadius: BorderRadius.circular(5),

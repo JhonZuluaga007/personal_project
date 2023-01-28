@@ -7,7 +7,6 @@ import 'package:personal_project/config/helpers/models/server_validate_data.dart
 import 'package:personal_project/features/auth/data/models/user_model.dart';
 import 'package:personal_project/features/auth/domain/entities/user_update_entity.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:http/http.dart' as http;
 
 class AuthDataSource {
   Future<UserModel> login(String username, String password) async {

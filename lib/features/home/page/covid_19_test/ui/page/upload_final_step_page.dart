@@ -22,7 +22,6 @@ class UploadFinalResultPage extends StatefulWidget {
 class _UploadFinalResultPageState extends State<UploadFinalResultPage> {
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
     final wColor = ThemesIdx20();
 
