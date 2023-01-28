@@ -67,6 +67,9 @@
 
     "my_user_profile": "Mi perfil",
     "my_user_button_edit_profile": "Editar mi información",
+    "my_user_pop_up_image": "Escoger cual metodo quieres para subir una imagen",
+    "my_user_button_text_00": "Camara",
+    "my_user_button_text_01": "Galeria",
     "my_user_text_field_label": "Form Label",
     "my_user_text_field_hint": "Placeholder",
     "my_user_button_saved": "Guardar cambios",

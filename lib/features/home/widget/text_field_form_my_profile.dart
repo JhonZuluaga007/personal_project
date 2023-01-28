@@ -181,6 +181,7 @@ class _TextFieldFormMyUserState extends State<TextFieldFormMyUser> {
                         gender: state.gender,
                         race: state.race,
                         ethnicity: state.ethnicity,
+                        file: state.image
                       ),
                     ),
                   );

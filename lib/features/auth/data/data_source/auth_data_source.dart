@@ -31,7 +31,7 @@ class AuthDataSource {
     prefs.setString('Basic', token);
     final response = await Api.get('${Endpoints.getUser}$userId');
     UserModel userModel = UserModel.fromMap(response);
-    debugPrint("result data response getUser: ${userModel.user.email}");
+    debugPrint("result data response getUser: ${userModel.user.image}");
     return userModel;
   }
 
@@ -48,6 +48,11 @@ class AuthDataSource {
       'sex': userUpdateEntity.sex!,
       'gender': userUpdateEntity.gender!,
     });
+
+    response.files.add(
+      await http.MultipartFile.fromPath("files","/${userUpdateEntity.file!}")
+    );
+
     if (response["statusCode"] == 200) {
       return ServerValidate(message: "Changes saved", statusCode: 200);
     } else {
