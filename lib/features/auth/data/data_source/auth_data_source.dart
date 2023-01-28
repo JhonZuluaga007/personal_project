@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:personal_project/config/helpers/api.dart';
-import 'package:personal_project/config/helpers/endpoints.dart';
-import 'package:personal_project/config/helpers/errors/invalid_data.dart';
-import 'package:personal_project/config/helpers/models/server_error.dart';
-import 'package:personal_project/config/helpers/models/server_validate_data.dart';
-import 'package:personal_project/features/auth/data/models/user_model.dart';
-import 'package:personal_project/features/auth/domain/entities/user_update_entity.dart';
+
+import '../models/user_model.dart';
+import '../../../../config/helpers/api.dart';
+import '../../../../config/helpers/endpoints.dart';
+import '../../domain/entities/user_update_entity.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../../../../config/helpers/errors/invalid_data.dart';
+import '../../../../config/helpers/models/server_error.dart';
+import '../../../../config/helpers/models/server_validate_data.dart';
 
 class AuthDataSource {
   Future<UserModel> login(String username, String password) async {
