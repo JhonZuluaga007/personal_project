@@ -10,6 +10,8 @@ import 'package:personal_project/features/home/widget/lists_text_fields_widgets.
 import 'package:personal_project/navigationBar/bloc/navigation_bar_bloc.dart';
 
 import '../../auth/bloc/auth_bloc.dart';
+import '../../medical_history/presentation/widgets/confirm_alert_widget.dart';
+import '../../medical_history/presentation/widgets/done_alert_widget.dart';
 import 'drop_down_my_profile_widget.dart';
 
 class TextFieldFormMyUser extends StatefulWidget {
@@ -169,24 +171,59 @@ class _TextFieldFormMyUserState extends State<TextFieldFormMyUser> {
                 buttonColor: wColor.mapColors["500BASE"],
                 borderColor: wColor.mapColors["500BASE"],
                 onPressed: () {
-                  BlocProvider.of<AuthBloc>(context).add(
-                    UserUpdateEvent(
-                      UserUpdateEntity(
-                        userdId: state.userId,
-                        address: addressController.text,
-                        city: cityController.text,
-                        zip: zipController.text,
-                        state: state.state,
-                        sex: state.sex,
-                        gender: state.gender,
-                        race: state.race,
-                        ethnicity: state.ethnicity,
-                        file: state.image
-                      ),
+                  confirmSendInfo(
+                    context: context,
+                    mainIcon: Icon(
+                      Icons.warning_amber,
+                      size: height * 0.12,
+                      color: wColor.mapColors['Warning'],
                     ),
+                    titleText: "alert_confirm_text_one",
+                    paddingHeight: height * 0.25,
+                    infoText: 'alert_confirm_text_two',
+                    mainButton: 'alert_confirm_text_three',
+                    mainButtonFunction: () {
+                      //REVISAR QUE TENGA EXITO Y ACTUALIZAR ESTADO
+                      // EN LO CONTRARIO MOSTRAR ERROR ALERTA.
+                      doneSendInfo(
+                        context: context,
+                        mainIcon: Icon(
+                          Icons.check,
+                          size: height * 0.15,
+                          color: wColor.mapColors['C00'],
+                        ),
+                        titleText: 'alert_text_one',
+                        paddingHeight: height * 0.25,
+                        infoText: 'alert_text_two',
+                        mainButton: 'alert_text_three',
+                        mainButtonFunction: () {
+                          //todo check if success before
+                          //NEED TO INSTANTIATE A BLOC INSIDE THE FUNCTION
+                          // BlocProvider.of<AuthBloc>(context).add(
+                          //   UserUpdateEvent(
+                          //     UserUpdateEntity(
+                          //       userdId: state.userId,
+                          //       address: addressController.text,
+                          //       city: cityController.text,
+                          //       zip: zipController.text,
+                          //       state: state.state,
+                          //       sex: state.sex,
+                          //       gender: state.gender,
+                          //       race: state.race,
+                          //       ethnicity: state.ethnicity,
+                          //     ),
+                          //   ),
+                          // );
+                          navigationBloc.add(PageChanged(indexNavigation: 0));
+                          Navigator.pushNamed(context, 'navBar');
+                        },
+                      ); //todo open new alert
+                    },
+                    secondButton: 'alert_confirm_text_four',
+                    secondButtonFunction: () {
+                      Navigator.pop(context);
+                    },
                   );
-                  navigationBloc.add(PageChanged(indexNavigation: 0));
-                  Navigator.pushNamed(context, 'navBar');
                 },
               ),
             ),
