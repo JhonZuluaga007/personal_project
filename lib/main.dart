@@ -14,6 +14,7 @@ import 'package:personal_project/features/auth/ui/pages/reset_password_page_info
 import 'package:personal_project/features/home/page/edit_profile/my_users_page.dart';
 import 'package:personal_project/features/home/page/tests_pages/antigen_pages/antigen_register_info_page.dart';
 import 'package:personal_project/features/home/page/tests_pages/pcr_pages/pcr_test_register_page.dart';
+import 'package:personal_project/features/medical_history/presentation/bloc/medical_history_bloc.dart';
 import 'package:personal_project/features/medical_history/presentation/pages/medical_history_page.dart';
 import 'package:personal_project/navigationBar/bloc/navigation_bar_bloc.dart';
 import 'package:personal_project/navigationBar/navigation_bar_widget.dart';
@@ -36,7 +37,8 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
         providers: [
           BlocProvider(create: (_) => NavigationBarBloc()),
-          BlocProvider(create: (_) => AuthBloc())
+          BlocProvider(create: (_) => AuthBloc()),
+          BlocProvider(create: (_) => MedicalHistoryBloc()),
         ],
         child: MaterialApp(
           title: 'Idx20',
