@@ -49,10 +49,6 @@ class AuthDataSource {
       'gender': userUpdateEntity.gender!,
     });
 
-    response.files.add(
-      await http.MultipartFile.fromPath("files","/${userUpdateEntity.file!}")
-    );
-
     if (response["statusCode"] == 200) {
       return ServerValidate(message: "Changes saved", statusCode: 200);
     } else {
