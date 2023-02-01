@@ -21,4 +21,16 @@ class _$Injector extends Injector {
       ..registerFactory(
           (c) => ResetPasswordUseCase(authRepository: c<AuthRepository>()));
   }
+
+  @override
+  void _configureMedicalHistoryFactories() {
+    final KiwiContainer container = KiwiContainer();
+    container
+      ..registerFactory<MedicalHistoryRepository>((c) =>
+          MedicalHistoryRepositoryImpl(
+              medicalHistoryDataSource: c<MedicalHistoryDataSource>()))
+      ..registerFactory((c) => MedicalHistoryUseCase(
+          medicalHistoryRepository: c<MedicalHistoryRepository>()))
+      ..registerFactory((c) => MedicalHistoryDataSource());
+  }
 }

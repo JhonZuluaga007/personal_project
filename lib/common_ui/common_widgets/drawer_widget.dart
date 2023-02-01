@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:personal_project/common_ui/common_widgets/text/text_widget.dart';
+import 'package:personal_project/features/medical_history/data/data_source/medical_data_source.dart';
 
 class DrawerWidget extends StatelessWidget {
   const DrawerWidget({super.key});
@@ -119,7 +120,9 @@ class DrawerWidget extends StatelessWidget {
           const Spacer(),
           InkWell(
             onTap: () {
-              Navigator.pushNamed(context, 'login');
+              // Navigator.pushNamed(context, 'login');
+              MedicalHistoryDataSource()
+                  .getMedicalHistory('63b6f8217421999ac5a4a948');
               //TODO RESTART BAR
             },
             child: Padding(

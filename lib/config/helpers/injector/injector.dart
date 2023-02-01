@@ -1,6 +1,10 @@
 import 'package:kiwi/kiwi.dart';
 import 'package:personal_project/features/auth/domain/use_cases/reset_password_use_case.dart';
 import 'package:personal_project/features/auth/domain/use_cases/user_update_use_case.dart';
+import 'package:personal_project/features/medical_history/data/data_source/medical_data_source.dart';
+import 'package:personal_project/features/medical_history/data/repository/medical_history_repository_impl.dart';
+import 'package:personal_project/features/medical_history/domain/repository/medical_history_repository.dart';
+import 'package:personal_project/features/medical_history/domain/use_cases/get_medical_history_use_case.dart';
 
 import '../../../features/auth/data/data_source/auth_data_source.dart';
 import '../../../features/auth/data/repository/auth_repository_impl.dart';
@@ -31,10 +35,15 @@ abstract class Injector {
 
   void _configure() {
     _configureAuthsModule();
+    _configureMedicalHistoryModule();
   }
 
   void _configureAuthsModule() {
     _configureAuthFactories();
+  }
+
+  void _configureMedicalHistoryModule() {
+    _configureMedicalHistoryFactories();
   }
 
   @Register.factory(AuthRepository, from: AuthRepositoryImpl)
@@ -43,4 +52,10 @@ abstract class Injector {
   @Register.factory(UserUpdateUseCase)
   @Register.factory(ResetPasswordUseCase)
   void _configureAuthFactories();
+
+  @Register.factory(MedicalHistoryRepository,
+      from: MedicalHistoryRepositoryImpl)
+  @Register.factory(MedicalHistoryUseCase)
+  @Register.factory(MedicalHistoryDataSource)
+  void _configureMedicalHistoryFactories();
 }
