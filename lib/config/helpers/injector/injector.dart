@@ -5,6 +5,10 @@ import 'package:personal_project/features/medical_history/data/data_source/medic
 import 'package:personal_project/features/medical_history/data/repository/medical_history_repository_impl.dart';
 import 'package:personal_project/features/medical_history/domain/repository/medical_history_repository.dart';
 import 'package:personal_project/features/medical_history/domain/use_cases/get_medical_history_use_case.dart';
+import 'package:personal_project/features/test_history/data/data_source/test_history_data_source.dart';
+import 'package:personal_project/features/test_history/data/repository/test_history_repository_impl.dart';
+import 'package:personal_project/features/test_history/domain/repository/test_history_repository.dart';
+import 'package:personal_project/features/test_history/domain/use_cases/test_history_use_cases.dart';
 
 import '../../../features/auth/data/data_source/auth_data_source.dart';
 import '../../../features/auth/data/repository/auth_repository_impl.dart';
@@ -36,6 +40,7 @@ abstract class Injector {
   void _configure() {
     _configureAuthsModule();
     _configureMedicalHistoryModule();
+    _configureTestHistory();
   }
 
   void _configureAuthsModule() {
@@ -44,6 +49,10 @@ abstract class Injector {
 
   void _configureMedicalHistoryModule() {
     _configureMedicalHistoryFactories();
+  }
+
+  void _configureTestHistory() {
+    _configureTestHistoryFactories();
   }
 
   @Register.factory(AuthRepository, from: AuthRepositoryImpl)
@@ -58,4 +67,9 @@ abstract class Injector {
   @Register.factory(MedicalHistoryUseCase)
   @Register.factory(MedicalHistoryDataSource)
   void _configureMedicalHistoryFactories();
+
+  @Register.factory(TestHistoryRepository, from: TestHistoryRepositoryImpl)
+  @Register.factory(TestHistoryUseCases)
+  @Register.factory(TestHistoryDataSource)
+  void _configureTestHistoryFactories();
 }

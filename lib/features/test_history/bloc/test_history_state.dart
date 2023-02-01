@@ -19,9 +19,11 @@ class TestHistoryState {
   final DateTime? updated;
   final String? user;
   final List<ValidityEntity?>? validity;
+  final FormSubmissionStatus? formStatus;
 
   const TestHistoryState({
     this.id = "",
+    this.formStatus = const InitialFormStatus(),
     this.batch = "",
     this.code = "",
     this.created,
@@ -41,6 +43,7 @@ class TestHistoryState {
   });
 
   TestHistoryState copyWith({
+    FormSubmissionStatus? formStatus,
     String? id,
     String? batch,
     String? code,
@@ -61,6 +64,7 @@ class TestHistoryState {
   }) {
     return TestHistoryState(
       id: id ?? this.id,
+      formStatus: formStatus ?? this.formStatus,
       batch: batch ?? this.batch,
       code: code ?? this.code,
       created: created ?? this.created,

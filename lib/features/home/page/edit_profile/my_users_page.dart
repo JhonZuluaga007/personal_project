@@ -10,7 +10,6 @@ import 'package:personal_project/config/theme/theme.dart';
 import 'package:personal_project/features/home/page/edit_profile/widgets/build_pop_up_image_widget.dart';
 import 'package:personal_project/features/home/widget/text_field_form_my_profile.dart';
 
-import '../../../../common_ui/common_widgets/buttons/button_widget.dart';
 import '../../../../navigationBar/bloc/navigation_bar_bloc.dart';
 import '../../../auth/bloc/auth_bloc.dart';
 import '../../widget/info_column_widget.dart';
@@ -112,15 +111,11 @@ class _MyUserPageState extends State<MyUserPage> {
                               size: 24,
                             ),
                             //TODO POPUP IMAGE FROM CAMERA OR FROM GALLERY
-                            onPressed: () => buildPopUpImage(
-                              context,
-                              (){
-                                getImage(ImageSource.camera);
-                              },
-                              (){
-                                getImage(ImageSource.gallery);
-                              }
-                            ),
+                            onPressed: () => buildPopUpImage(context, () {
+                              getImage(ImageSource.camera);
+                            }, () {
+                              getImage(ImageSource.gallery);
+                            }),
                           ),
                         ),
                       )
@@ -135,15 +130,11 @@ class _MyUserPageState extends State<MyUserPage> {
                             size: 24,
                           ),
                           //TODO POPUP IMAGE FROM CAMERA OR FROM GALLERY
-                          onPressed: () => buildPopUpImage(
-                            context,
-                            (){
-                              getImage(ImageSource.camera);
-                            },
-                            (){
-                              getImage(ImageSource.gallery);
-                            }
-                          ),
+                          onPressed: () => buildPopUpImage(context, () {
+                            getImage(ImageSource.camera);
+                          }, () {
+                            getImage(ImageSource.gallery);
+                          }),
                         ))
               ]),
             );

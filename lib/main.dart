@@ -16,6 +16,7 @@ import 'package:personal_project/features/home/page/tests_pages/antigen_pages/an
 import 'package:personal_project/features/home/page/tests_pages/pcr_pages/pcr_test_register_page.dart';
 import 'package:personal_project/features/medical_history/presentation/bloc/medical_history_bloc.dart';
 import 'package:personal_project/features/medical_history/presentation/pages/medical_history_page.dart';
+import 'package:personal_project/features/test_history/bloc/test_history_bloc.dart';
 import 'package:personal_project/navigationBar/bloc/navigation_bar_bloc.dart';
 import 'package:personal_project/navigationBar/navigation_bar_widget.dart';
 import 'package:personal_project/features/home/page/home_page.dart';
@@ -39,6 +40,7 @@ class MyApp extends StatelessWidget {
           BlocProvider(create: (_) => NavigationBarBloc()),
           BlocProvider(create: (_) => AuthBloc()),
           BlocProvider(create: (_) => MedicalHistoryBloc()),
+          BlocProvider(create: (_) => TestHistoryBloc()),
         ],
         child: MaterialApp(
           title: 'Idx20',

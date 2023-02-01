@@ -37,8 +37,8 @@ class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
 
   @override
   void initState() {
-    BlocProvider.of<MedicalHistoryBloc>(context)
-        .add(GetMedicalHistoryEvent('63b6f8217421999ac5a4a948', questions2: []));
+    BlocProvider.of<MedicalHistoryBloc>(context).add(
+        GetMedicalHistoryEvent('63b6f8217421999ac5a4a948', questions2: []));
     super.initState();
   }
 
@@ -54,12 +54,17 @@ class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
           setState(() {
             yes = true;
             no = false;
+            defaultValueEng = 'Yes';
+            print(defaultValueEng);
           });
         }
         if (state.status == false) {
           setState(() {
             yes = false;
             no = true;
+            print(defaultValueEng);
+
+            defaultValueEng = 'No';
           });
         }
       },
@@ -131,9 +136,10 @@ class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
             ),
             SizedBox(height: size.height * 0.02),
             DropDownContainerWidget(
-                //TODO CHECK ENGLISH OR SPANISH
+                //TODO CHECK HOW TO HANDLE MAIN VALUE
                 listItems: listsYesNoEnglish,
-                mainValue: state.status == false ? 'No' : 'Yes',
+                mainValue: defaultValueEng,
+                // mainValue: state.status == false ? 'No' : 'Yes',
                 width: size.width * 0.9,
                 onChanged: (value) => {
                       setState(() {
@@ -150,8 +156,6 @@ class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
                             state.status == false) {
                           yes = false;
                           no = true;
-                        } else {
-                          defaultValueEng = state.status.toString();
                         }
                       })
                     }),
@@ -172,8 +176,9 @@ class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
                     SizedBox(height: size.height * 0.02),
                     MultiSelectedWidget(
                       listItem: const [
-                        "medical_history_drop_down_text_1",
-                        "medical_history_drop_down_text_2"
+                        "Asthma",
+                        "Cancer",
+                        "HIV",
                       ],
                       valueDefaultList: "medical_history_drop_down_select",
                     ),
@@ -181,10 +186,10 @@ class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
                 )),
             SizedBox(height: size.height * 0.05),
             ButtonActionsWidgets(
-              size: size, 
-              wColor: wColor, 
+              size: size,
+              wColor: wColor,
               navigationBloc: navigationBloc,
-              onPressed: (){
+              onPressed: () {
                 confirmSendInfo(
                   context: context,
                   mainIcon: Icon(
@@ -225,6 +230,7 @@ class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
                 );
               },
             ),
+            SizedBox(height: size.height * 0.05),
           ],
         );
       },

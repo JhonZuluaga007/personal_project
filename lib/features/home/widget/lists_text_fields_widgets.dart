@@ -17,7 +17,6 @@ class ConstLists {
     'Louisiana',
     'Illinois',
     'Kansas',
-    'Louisiana',
     'Maine',
     'Massachusetts',
     'Michigina',

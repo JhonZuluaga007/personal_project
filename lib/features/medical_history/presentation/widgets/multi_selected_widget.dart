@@ -69,6 +69,7 @@ class _MultiSelectedWidgetState extends State<MultiSelectedWidget> {
                             child: TextWidget(
                               text: value.toString(),
                               textAlign: TextAlign.center,
+                              requiresTranslate: false,
                               style: widget.textStyleList ??
                                   TextStyle(
                                       fontSize: 16,
@@ -80,12 +81,14 @@ class _MultiSelectedWidgetState extends State<MultiSelectedWidget> {
                     }).toList(),
                     hint: Padding(
                       padding: EdgeInsets.only(left: width * 0.037),
-                      child: TextWidget(text: widget.valueDefaultList!),
+                      child: TextWidget(
+                        text: widget.valueDefaultList!,
+                      ),
                     ),
                     onChanged: (value) {
                       setState(() {
                         if (state.question2!.value.contains(value) != true) {
-                          chipListText.add(value.toString());
+                          state.question2!.value.add(value.toString());
                         }
                       });
                     }),
@@ -103,7 +106,8 @@ class _MultiSelectedWidgetState extends State<MultiSelectedWidget> {
         return Wrap(
             spacing: 6,
             runSpacing: 6,
-            children: List<Widget>.generate(state.question2!.value.length, (index) {
+            children:
+                List<Widget>.generate(state.question2!.value.length, (index) {
               return InputChip(
                 label: Text(state.question2!.value[index]),
                 onDeleted: () {

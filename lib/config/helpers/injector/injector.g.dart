@@ -33,4 +33,15 @@ class _$Injector extends Injector {
           medicalHistoryRepository: c<MedicalHistoryRepository>()))
       ..registerFactory((c) => MedicalHistoryDataSource());
   }
+
+  @override
+  void _configureTestHistoryFactories() {
+    final KiwiContainer container = KiwiContainer();
+    container
+      ..registerFactory<TestHistoryRepository>((c) => TestHistoryRepositoryImpl(
+          testHistoryDataSource: c<TestHistoryDataSource>()))
+      ..registerFactory((c) => TestHistoryUseCases(
+          testHistoryRepository: c<TestHistoryRepository>()))
+      ..registerFactory((c) => TestHistoryDataSource());
+  }
 }
