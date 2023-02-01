@@ -23,9 +23,7 @@ class TestHistoryBloc extends Bloc<TestHistoryEvent, TestHistoryState> {
                     SubmissionFailed(exception: Exception(error.message)),
               )),
           (testHistory) => emit(state.copyWith(
-                formStatus: SubmissionSuccess(),
-                //TODO CHECK testHistory
-              )));
+              formStatus: SubmissionSuccess(), testHistory: testHistory)));
     });
   }
 }
