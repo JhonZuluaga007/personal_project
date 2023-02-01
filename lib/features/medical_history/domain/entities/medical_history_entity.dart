@@ -43,7 +43,7 @@ class Question2Entity {
   });
 
   final String name;
-  final List<String> value;
+  late List<String> value;
 }
 
 class UserIdEntity {

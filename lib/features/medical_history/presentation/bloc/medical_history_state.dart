@@ -10,6 +10,7 @@ class MedicalHistoryState {
   final bool? status;
   final AtedEntity? updated;
   final UserIdEntity? userId;
+
   const MedicalHistoryState(
       {this.formStatus = const InitialFormStatus(),
       this.id,

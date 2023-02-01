@@ -5,9 +5,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:personal_project/common_ui/common_pages/my_app_scaffold_page.dart';
-import 'package:personal_project/common_ui/common_widgets/buttons/button_widget.dart';
 import 'package:personal_project/common_ui/common_widgets/text/text_widget.dart';
 import 'package:personal_project/config/theme/theme.dart';
+import 'package:personal_project/features/home/page/edit_profile/widgets/build_pop_up_image_widget.dart';
 import 'package:personal_project/features/home/widget/text_field_form_my_profile.dart';
 
 import '../../../auth/bloc/auth_bloc.dart';
@@ -103,7 +103,15 @@ class _EditUserFromBottomPageState extends State<EditUserFromBottomPage> {
                               size: 24,
                             ),
                             //TODO POPUP IMAGE FROM CAMERA OR FROM GALLERY
-                            onPressed: () => buildPopUpImage(context),
+                            onPressed: () => buildPopUpImage(
+                              context,
+                              (){
+                                getImage(ImageSource.camera);
+                              },
+                              (){
+                                getImage(ImageSource.gallery);
+                              }
+                            ),
                           ),
                         ),
                       )
@@ -117,8 +125,16 @@ class _EditUserFromBottomPageState extends State<EditUserFromBottomPage> {
                             Icons.edit_outlined,
                             size: 24,
                           ),
-                          //TODO POPUP IMAGE FROM CAMERA OR FROM GALLERY
-                          onPressed: () => buildPopUpImage(context),
+                          // TODO POPUP IMAGE FROM CAMERA OR FROM GALLERY
+                          onPressed: () => buildPopUpImage(
+                            context,
+                            (){
+                              getImage(ImageSource.camera);
+                            },
+                            (){
+                              getImage(ImageSource.gallery);
+                            }
+                          ),
                         ))
               ]),
             );
@@ -133,71 +149,6 @@ class _EditUserFromBottomPageState extends State<EditUserFromBottomPage> {
           hintText: "my_user_text_field_label",
         ),
       ],
-    );
-  }
-
-Future buildPopUpImage(BuildContext context) {
-  final width = MediaQuery.of(context).size.width;
-  final height = MediaQuery.of(context).size.height;
-  final wColor = ThemesIdx20();
-
-  return showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          elevation: 6,
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-          title: TextWidget(
-            text: "my_user_pop_up_image",
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.w600,
-              color: wColor.mapColors["S800"]
-            ),
-          ),
-          actions: [
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: width * 0.036, vertical: height * 0.020),
-              child: Column(
-                children: [
-
-                  ButtonWidget(
-                    width: width * 0.920,
-                    height: height * 0.053,
-                    borderRadiusButton: 30,
-                    icon: Icons.file_upload_outlined,
-                    iconColor: wColor.mapColors["S800"],
-                    buttonString: "my_user_button_text_00",
-                    textColor: wColor.mapColors["S800"],
-                    buttonColor: wColor.mapColors["P01"],
-                    borderColor: wColor.mapColors["S800"],
-                    onPressed: () {
-                      getImage(ImageSource.camera);
-                    }
-                  ),
-                  SizedBox(height: height * 0.021),
-                  ButtonWidget(
-                    width: width * 0.920,
-                    height: height * 0.053,
-                    borderRadiusButton: 30,
-                    icon: Icons.camera_alt_outlined,
-                    iconColor: wColor.mapColors["S800"],
-                    buttonString: "my_user_button_text_01",
-                    textColor: wColor.mapColors["S800"],
-                    buttonColor: wColor.mapColors["P01"],
-                    borderColor: wColor.mapColors["S800"],
-                    onPressed: () {
-                      getImage(ImageSource.gallery);
-                    }
-                  ),
-                ],
-              ),
-            ),
-          ]
-        );
-      }
     );
   }
 }

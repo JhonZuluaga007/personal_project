@@ -9,9 +9,9 @@ import '../bloc/medical_history_bloc.dart';
 class MultiSelectedWidget extends StatefulWidget {
   final List<String> listItem;
   final TextStyle? textStyleList;
-  final String? valueDefaultList;
+  String? valueDefaultList;
 
-  const MultiSelectedWidget({
+  MultiSelectedWidget({
     super.key,
     required this.listItem,
     this.textStyleList,
@@ -61,7 +61,7 @@ class _MultiSelectedWidgetState extends State<MultiSelectedWidget> {
                         }),
                     isExpanded: true,
                     items: widget.listItem
-                        .map<DropdownMenuItem<Object>>((Object value) {
+                        .map<DropdownMenuItem<Object>>((Object? value) {
                       return DropdownMenuItem<Object>(
                           value: value.toString(),
                           child: Padding(
@@ -84,7 +84,7 @@ class _MultiSelectedWidgetState extends State<MultiSelectedWidget> {
                     ),
                     onChanged: (value) {
                       setState(() {
-                        if (chipListText.contains(value) != true) {
+                        if (state.question2!.value.contains(value) != true) {
                           chipListText.add(value.toString());
                         }
                       });
@@ -98,21 +98,25 @@ class _MultiSelectedWidgetState extends State<MultiSelectedWidget> {
   }
 
   Widget buildChoiceChip() {
-    return Wrap(
-        spacing: 6,
-        runSpacing: 6,
-        children: List<Widget>.generate(chipListText.length, (index) {
-          return InputChip(
-            label: TextWidget(text: chipListText[index]),
-            onDeleted: () {
-              setState(() {
-                chipListText.removeAt(index);
-              });
-            },
-            backgroundColor: Colors.green,
-            selected: true,
-            selectedColor: Colors.lightBlue,
-          );
-        }));
+    return BlocBuilder<MedicalHistoryBloc, MedicalHistoryState>(
+      builder: (context, state) {
+        return Wrap(
+            spacing: 6,
+            runSpacing: 6,
+            children: List<Widget>.generate(state.question2!.value.length, (index) {
+              return InputChip(
+                label: Text(state.question2!.value[index]),
+                onDeleted: () {
+                  setState(() {
+                    state.question2!.value.removeAt(index);
+                  });
+                },
+                backgroundColor: Colors.green,
+                selected: true,
+                selectedColor: Colors.lightBlue,
+              );
+            }));
+      },
+    );
   }
 }
