@@ -11,4 +11,5 @@ class Endpoints {
   //  Endpoint para viewMedicalHistory (ViewMedicalHistory). Acepta GET.
   static const String viewMedicalHistory = '${Config.baseURL}formmedical/list/';
   static const String testHistory = '${Config.baseURL}tests/list/';
+  static const String viewTest = '${Config.baseURL}tests/detail/';
 }

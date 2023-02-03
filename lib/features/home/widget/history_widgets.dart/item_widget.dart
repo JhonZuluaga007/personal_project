@@ -1,19 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../common_ui/common_widgets/buttons/button_widget.dart';
 import '../../../../config/theme/theme.dart';
+import '../../../test_history/bloc/test_history_bloc.dart';
+import '../../../../common_ui/common_widgets/buttons/button_widget.dart';
 
 class ItemWidget extends StatelessWidget {
   const ItemWidget(
       {Key? key,
       required this.size,
       required this.wColor,
-      required this.onPressed})
+      required this.onPressed, 
+      required this.textTestKit})
       : super(key: key);
 
   final Size size;
   final ThemesIdx20 wColor;
   final dynamic Function() onPressed;
+  final String textTestKit;
 
   @override
   Widget build(BuildContext context) {
@@ -21,15 +25,15 @@ class ItemWidget extends StatelessWidget {
         height: size.height * 0.075,
         decoration: BoxDecoration(
             border: Border(
-                bottom:
-                    BorderSide(width: 4, color: wColor.mapColors["T100"]!))),
+                bottom: BorderSide(
+                    width: 4, color: wColor.mapColors["T100"]!))),
         child: Column(
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text(
-                  'Kits #0000-0000',
+                Text(
+                  textTestKit,
                   style: TextStyle(fontSize: 14),
                 ), // TODO GET THE TEST FROM THE BACKEND
                 ButtonWidget(
