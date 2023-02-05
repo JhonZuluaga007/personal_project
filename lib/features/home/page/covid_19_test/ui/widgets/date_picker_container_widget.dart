@@ -41,9 +41,9 @@ class _DatePickerContainerWidgetState extends State<DatePickerContainerWidget> {
           onTap: () async {
             DateTime? newDate = await showDatePicker(
                 context: context,
-                initialDate: date,
+                initialDate: DateTime.now(),
                 firstDate: DateTime(2019),
-                lastDate: date
+                lastDate: date,
               );
 
             if (newDate == null) return;

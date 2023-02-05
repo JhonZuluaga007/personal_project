@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import '../../../../common_ui/common_widgets/buttons/main_button_widget.dart';
 import '../../../../config/theme/theme.dart';
 import '../../../../navigationBar/bloc/navigation_bar_bloc.dart';
-import 'confirm_alert_widget.dart';
-import 'done_alert_widget.dart';
 
 class ButtonActionsWidgets extends StatelessWidget {
   const ButtonActionsWidgets({

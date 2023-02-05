@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:personal_project/common_ui/common_widgets/text/text_widget.dart';
+import 'package:personal_project/features/auth/bloc/auth_bloc.dart';
 import 'package:personal_project/features/home/widget/history_widgets.dart/pop_up_widget.dart';
+import 'package:personal_project/features/test_history/bloc/test_history_bloc.dart';
 
 import '../../../config/theme/theme.dart';
 import '../widget/history_widgets.dart/item_widget.dart';
@@ -13,6 +16,10 @@ class HistoryPage extends StatelessWidget {
     final wColor = ThemesIdx20();
 
     final size = MediaQuery.of(context).size;
+
+    final stateUserId = BlocProvider.of<AuthBloc>(context).state;
+    BlocProvider.of<TestHistoryBloc>(context).add(GetHistoryTestEvent(stateUserId.userId));
+
     return Material(
       child: SafeArea(
           child: SingleChildScrollView(
@@ -116,41 +123,37 @@ class HistoryPage extends StatelessWidget {
                 ],
               ),
               SizedBox(height: size.height * 0.05),
-              SizedBox(
-                height: size.height * 0.48,
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      ItemWidget(
-                        size: size,
-                        wColor: wColor,
-                        onPressed: () {
-                          popUpWidget(context);
-                        },
+              BlocBuilder<TestHistoryBloc, TestHistoryState>(
+                builder: (context, state) {
+                  print("---------");
+                  print(state.testHistory.length);
+                  return SizedBox(
+                    height: size.height * 0.48,
+                    child: SingleChildScrollView(
+                      child: Column(
+                        children: 
+                        List<Widget>.generate(
+                            state.testHistory.length, (index) {
+                          return Column(
+                            children: [
+                              ItemWidget(
+                                size: size,
+                                wColor: wColor,
+                                onPressed: () {
+                                  BlocProvider.of<TestHistoryBloc>(context).add(GetViewTestEvent(state.testHistory[index].id!.oid!));
+                                  popUpWidget(context);
+                                },
+                                textTestKit: state.testHistory[index].code!,
+                              ),
+                              SizedBox(height: size.height * 0.035),
+                            ],
+                          );
+                        }),
                       ),
-                      SizedBox(height: size.height * 0.035),
-                      ItemWidget(
-                          size: size,
-                          wColor: wColor,
-                          onPressed: () {
-                            popUpWidget(context);
-                          }),
-                      SizedBox(height: size.height * 0.035),
-                      ItemWidget(
-                          size: size,
-                          wColor: wColor,
-                          onPressed: () {
-                            popUpWidget(context);
-                          }),
-                      SizedBox(height: size.height * 0.035),
-                      ItemWidget(size: size, wColor: wColor, onPressed: () {}),
-                      SizedBox(height: size.height * 0.035),
-                      ItemWidget(size: size, wColor: wColor, onPressed: () {}),
-                      SizedBox(height: size.height * 0.035),
-                    ],
-                  ),
-                ),
-              )
+                    ),
+                  );
+                },
+              ),
             ],
           ),
         )),
