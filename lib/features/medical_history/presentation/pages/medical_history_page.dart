@@ -175,10 +175,21 @@ class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
                     ),
                     SizedBox(height: size.height * 0.02),
                     MultiSelectedWidget(
+                      onChanged: (value) {
+                        setState(() {
+                          if (state.question2!.value.contains(value) != true) {
+                            state.question2!.value.add(value.toString());
+                          }
+                        });
+                      },
                       listItem: const [
                         "Asthma",
                         "Cancer",
                         "HIV",
+                        "Cerebrovascular disease",
+                        "Chronic kidney disease",
+                        "Chronic lung disease",
+                        "Neurologic conditions"
                       ],
                       valueDefaultList: "medical_history_drop_down_select",
                     ),

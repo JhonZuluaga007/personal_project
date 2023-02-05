@@ -10,11 +10,13 @@ class MultiSelectedWidget extends StatefulWidget {
   final List<String> listItem;
   final TextStyle? textStyleList;
   String? valueDefaultList;
+  final Function(Object?)? onChanged;
 
   MultiSelectedWidget({
     super.key,
     required this.listItem,
     this.textStyleList,
+    required this.onChanged,
     this.valueDefaultList = "Selection option",
   });
 
@@ -53,46 +55,39 @@ class _MultiSelectedWidgetState extends State<MultiSelectedWidget> {
                   border: Border.all(color: Colors.grey),
                   borderRadius: BorderRadius.circular(5)),
               child: DropdownButtonHideUnderline(
-                child: DropdownButton(
-                    disabledHint: Checkbox(
-                        value: selected,
-                        onChanged: (selectedValue) {
-                          selected = selectedValue!;
-                        }),
-                    isExpanded: true,
-                    items: widget.listItem
-                        .map<DropdownMenuItem<Object>>((Object? value) {
-                      return DropdownMenuItem<Object>(
-                          value: value.toString(),
-                          child: Padding(
-                            padding: EdgeInsets.only(left: width * 0.028),
-                            child: TextWidget(
-                              text: value.toString(),
-                              textAlign: TextAlign.center,
-                              requiresTranslate: false,
-                              style: widget.textStyleList ??
-                                  TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w500,
-                                      letterSpacing: -0.2,
-                                      color: wColor.mapColors["S600"]),
-                            ),
-                          ));
-                    }).toList(),
-                    hint: Padding(
-                      padding: EdgeInsets.only(left: width * 0.037),
-                      child: TextWidget(
-                        text: widget.valueDefaultList!,
+                  child: DropdownButton(
+                      disabledHint: Checkbox(
+                          value: selected,
+                          onChanged: (selectedValue) {
+                            selected = selectedValue!;
+                          }),
+                      isExpanded: true,
+                      items: widget.listItem
+                          .map<DropdownMenuItem<Object>>((Object? value) {
+                        return DropdownMenuItem<Object>(
+                            value: value.toString(),
+                            child: Padding(
+                              padding: EdgeInsets.only(left: width * 0.028),
+                              child: TextWidget(
+                                text: value.toString(),
+                                textAlign: TextAlign.center,
+                                requiresTranslate: false,
+                                style: widget.textStyleList ??
+                                    TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w500,
+                                        letterSpacing: -0.2,
+                                        color: wColor.mapColors["S600"]),
+                              ),
+                            ));
+                      }).toList(),
+                      hint: Padding(
+                        padding: EdgeInsets.only(left: width * 0.037),
+                        child: TextWidget(
+                          text: widget.valueDefaultList!,
+                        ),
                       ),
-                    ),
-                    onChanged: (value) {
-                      setState(() {
-                        if (state.question2!.value.contains(value) != true) {
-                          state.question2!.value.add(value.toString());
-                        }
-                      });
-                    }),
-              ),
+                      onChanged: widget.onChanged)),
             ),
           ],
         );
