@@ -72,7 +72,7 @@ class Data extends TestHistoryEntity {
         status: Status.fromJson(json["status"]),
         statusHistory: List<StatusHistory>.from(
             json["status_history"].map((x) => StatusHistory.fromJson(x))),
-        stepHistory: json["step_history"],
+        stepHistory: json["step_history"] ?? '',
         swabType: Id.fromJson(json["swab_type"]),
         type: Type.fromJson(json["type"]),
         updated: Created.fromJson(json["updated"]),
