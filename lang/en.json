@@ -59,10 +59,12 @@
     "home_description_card_scan": "Lorem ipsum dolor sit amet, consectetur\nadipiscing elit. Ultrices praesent et porta.",
 
     "medical_history_drop_down_select":"Select option",
-    "medical_history_drop_down_text":"Age 65 >= years",
+    "medical_history_drop_down_text":"Cerebrovascular disease",
     "medical_history_drop_down_text_1":"Asthma",
     "medical_history_drop_down_text_2":"Cancer",
-    "medical_history_drop_down_text_3":"HIV",
+    "medical_history_drop_down_text_3":"Chronic kidney disease",
+    "medical_history_drop_down_text_4":"Tuberculosis",
+    "medical_history_drop_down_text_5":"Smoking (current and former)",
 
     "my_user_profile": "My profile",
     "my_user_button_edit_profile": "Edit my information",

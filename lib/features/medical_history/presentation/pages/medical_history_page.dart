@@ -35,10 +35,12 @@ class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
   bool yesSevere = false;
   bool noSevere = false;
 
+  List<String> chipListText = [];
+
   @override
   void initState() {
     BlocProvider.of<MedicalHistoryBloc>(context).add(
-        GetMedicalHistoryEvent('63b6f8217421999ac5a4a948', questions2: []));
+        GetMedicalHistoryEvent('63b6f8217421999ac5a4a948', questions2: const []));
     super.initState();
   }
 
@@ -178,9 +180,12 @@ class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
                       listItem: const [
                         "Asthma",
                         "Cancer",
-                        "HIV",
+                        "Cerebrovascular disease",
+                        "Chronic kidney disease",
+                        "Tuberculosis",
+                        "Smoking (current and former)"
                       ],
-                      valueDefaultList: "medical_history_drop_down_select",
+                      valueDefaultList: "medical_history_drop_down_select", 
                     ),
                   ],
                 )),
@@ -215,9 +220,9 @@ class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
                       mainButton: 'alert_text_three',
                       mainButtonFunction: () {
                         //todo check if success before
-                        // BlocProvider.of<MedicalHistoryBloc>(context).add(GetMedicalHistoryEvent(
-                        //   "63b6f8217421999ac5a4a948",
-                        //   questions2: state.question2!.value));
+                        BlocProvider.of<MedicalHistoryBloc>(context).add(GetMedicalHistoryEvent(
+                          "63b6f8217421999ac5a4a948",
+                          questions2: state.question2!.value));
                         navigationBloc.add(PageChanged(indexNavigation: 0));
                         Navigator.pushNamed(context, 'navBar');
                       },
