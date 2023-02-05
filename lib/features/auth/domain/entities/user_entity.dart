@@ -1,4 +1,4 @@
-import 'dart:io';
+import 'package:personal_project/features/auth/data/models/user_model.dart';
 
 class UserEntity {
   UserEntity({
@@ -18,11 +18,11 @@ class UserData {
       required this.acceptsTerms,
       required this.addresses,
       required this.cellphone,
-      required this.dateOfBirth,
+      //required this.dateOfBirth,
       required this.email,
       required this.ethnicity,
       required this.gender,
-      required this.image,
+      //required this.image,
       required this.informationUpdated,
       required this.isActive,
       required this.isConfirmed,
@@ -38,18 +38,18 @@ class UserData {
       required this.race,
       required this.roles,
       required this.sex,
-      required this.updated,
+      //required this.updated,
       required this.levelSchool});
 
   final String id;
   final bool? acceptsTerms;
   final AddressesEntity? addresses;
   final String? cellphone;
-  final DateOfBirthEntity? dateOfBirth;
+  //final DateEntity? dateOfBirth;
   final String? email;
   final List<EthnicityEntity?>? ethnicity;
   final List<GenderEntity?>? gender;
-  final String? image;
+  //final String? image;
   final bool? informationUpdated;
   final bool? isActive;
   final bool? isConfirmed;
@@ -65,7 +65,7 @@ class UserData {
   final List<RaceEntity?>? race;
   final RolesEntity? roles;
   final List<SexEntity?>? sex;
-  final DateOfBirthEntity? updated;
+  //final DateOfBirthEntity? updated;
   final String? levelSchool;
 }
 
@@ -89,6 +89,22 @@ class DateOfBirthEntity {
   });
 
   final DateTime? date;
+}
+
+class DateEntity {
+  DateEntity({
+    required this.date,
+  });
+
+  final Date? date;
+}
+
+class NumberLongEntity {
+  NumberLongEntity({
+    required this.date,
+  });
+
+  final NumberLongEntity? date;
 }
 
 class EthnicityEntity {

@@ -1,7 +1,3 @@
-// To parse this JSON data, do
-//
-//     final userModel = userModelFromMap(jsonString);
-
 import 'dart:convert';
 
 import 'package:personal_project/features/auth/domain/entities/user_entity.dart';
@@ -78,11 +74,11 @@ class User extends UserData {
     required bool acceptsTerms,
     required Addresses addresses,
     required String cellphone,
-    required DateOfBirth dateOfBirth,
+    //required Date dateOfBirth,
     required String email,
     required List<Ethnicity?>? ethnicity,
     required List<Gender?>? gender,
-    required String image,
+    //required String image,
     required bool informationUpdated,
     required bool isActive,
     required bool isConfirmed,
@@ -99,41 +95,42 @@ class User extends UserData {
     required Roles roles,
     required String levelSchool,
     required List<Sex?>? sex,
-    required DateOfBirth updated,
+    //required DateOfBirth updated,
   }) : super(
-            id: id,
-            acceptsTerms: acceptsTerms,
-            addresses: addresses,
-            cellphone: cellphone,
-            dateOfBirth: dateOfBirth,
-            email: email,
-            ethnicity: ethnicity,
-            gender: gender,
-            image: image,
-            informationUpdated: informationUpdated,
-            isActive: isActive,
-            isConfirmed: isConfirmed,
-            lastname: lastname,
-            loginId: loginId,
-            middleName: middleName,
-            name: name,
-            organization: organization,
-            participantId: participantId,
-            password: password,
-            passwordReset: passwordReset,
-            projects: projects,
-            race: race,
-            roles: roles,
-            sex: sex,
-            levelSchool: levelSchool,
-            updated: updated);
+          id: id,
+          acceptsTerms: acceptsTerms,
+          addresses: addresses,
+          cellphone: cellphone,
+          //dateOfBirth: dateOfBirth,
+          email: email,
+          ethnicity: ethnicity,
+          gender: gender,
+          //image: image,
+          informationUpdated: informationUpdated,
+          isActive: isActive,
+          isConfirmed: isConfirmed,
+          lastname: lastname,
+          loginId: loginId,
+          middleName: middleName,
+          name: name,
+          organization: organization,
+          participantId: participantId,
+          password: password,
+          passwordReset: passwordReset,
+          projects: projects,
+          race: race,
+          roles: roles,
+          sex: sex,
+          levelSchool: levelSchool,
+          //updated: updated,
+        );
 
   factory User.fromMap(Map<String, dynamic> json) => User(
         id: json["_id"] == Map ? Id.fromMap(json["_id"]).oid : json["_id"],
         acceptsTerms: json["accepts_terms"],
         addresses: Addresses.fromMap(json["addresses"]),
         cellphone: json["cellphone"],
-        dateOfBirth: DateOfBirth.fromMap(json["date_of_birth"]),
+        //dateOfBirth: DateOfBirth.fromMap(json["date_of_birth"]),
         email: json["email"],
         ethnicity: json["ethnicity"] == null
             ? []
@@ -142,7 +139,7 @@ class User extends UserData {
         gender: json["gender"] == null
             ? []
             : List<Gender?>.from(json["gender"]!.map((x) => Gender.fromMap(x))),
-        image: json["image"],
+        //image: json["image"],
         informationUpdated: json["information_updated"],
         isActive: json["is_active"],
         isConfirmed: json["is_confirmed"],
@@ -165,7 +162,7 @@ class User extends UserData {
         sex: json["sex"] == null
             ? []
             : List<Sex?>.from(json["sex"]!.map((x) => Sex.fromMap(x))),
-        updated: DateOfBirth.fromMap(json["updated"]),
+        //updated: DateOfBirth.fromMap(json["updated"]),
       );
 }
 
@@ -197,18 +194,26 @@ class Addresses extends AddressesEntity {
       };
 }
 
-class DateOfBirth extends DateOfBirthEntity {
+class DateOfBirth extends DateEntity {
   DateOfBirth({
-    required DateTime date,
+    required Date date,
   }) : super(date: date);
 
   factory DateOfBirth.fromMap(Map<String, dynamic> json) => DateOfBirth(
-        date: DateTime.parse(json["\u0024date"]),
+        date: Date.fromMap(json["\u0024date"]),
       );
+}
 
-  Map<String, dynamic> toMap() => {
-        "\u0024date": date?.toIso8601String(),
-      };
+class Date {
+  Date({
+    required this.numberLong,
+  });
+
+  final String numberLong;
+
+  factory Date.fromMap(Map<String, dynamic> json) => Date(
+        numberLong: json["\u0024numberLong"],
+      );
 }
 
 class Ethnicity extends EthnicityEntity {

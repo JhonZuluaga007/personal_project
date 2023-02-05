@@ -33,7 +33,7 @@ class AuthDataSource {
     prefs.setString('Basic', token);
     final response = await Api.get('${Endpoints.getUser}$userId');
     UserModel userModel = UserModel.fromMap(response);
-    debugPrint("result data response getUser: ${userModel.user.image}");
+    //debugPrint("result data response getUser: ${userModel.user.image}");
     return userModel;
   }
 

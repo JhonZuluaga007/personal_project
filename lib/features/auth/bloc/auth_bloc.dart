@@ -34,7 +34,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         emit(state.copyWith(
           formStatus: SubmissionSuccess(),
           statusCode: user.statusCode,
-          birthDate: user.user.dateOfBirth,
+          //birthDate: user.user.dateOfBirth,
           token: user.token,
           userId: user.user.id,
           address: user.user.addresses!.address,
@@ -43,9 +43,12 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           zip: user.user.addresses!.zip,
           cellphone: user.user.cellphone,
           email: user.user.email,
-          ethnicity: user.user.ethnicity![0]!.ethnicity ?? '',
-          gender: user.user.gender![0]!.gender ?? '',
-          image: user.user.image,
+          ethnicity: user.user.ethnicity!.isNotEmpty
+              ? user.user.ethnicity![0]!.ethnicity
+              : '',
+          gender:
+              user.user.gender!.isNotEmpty ? user.user.gender![0]!.gender : '',
+          //Simage: user.user.image,
           informationUpdated: user.user.informationUpdated,
           isActive: user.user.isActive,
           isConfirmed: user.user.isConfirmed,
@@ -56,8 +59,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           organization: user.user.organization,
           participantId: user.user.participantId,
           levelSchool: user.user.levelSchool,
-          race: user.user.race![0]!.race,
-          sex: user.user.sex![0]!.sex,
+          race: user.user.race!.isNotEmpty ? user.user.race![0]!.race : '',
+          sex: user.user.sex!.isNotEmpty ? user.user.sex![0]!.sex : '',
         ));
       });
     });
@@ -73,8 +76,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           ethnicity: event.userUpdateEntity.ethnicity,
           sex: event.userUpdateEntity.sex,
           gender: event.userUpdateEntity.gender,
-          image: event.userUpdateEntity.file
-        ));
+          image: event.userUpdateEntity.file));
       userUpdateUseCase.call(event.userUpdateEntity);
     });
 
