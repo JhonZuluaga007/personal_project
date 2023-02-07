@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:personal_project/features/home/page/covid_19_test/ui/widgets/drop_down_questions_widget.dart';
 import 'package:personal_project/features/home/page/covid_19_test/ui/widgets/questions_visible_widgets.dart/second_vissible_question_widget.dart';
 import 'package:personal_project/features/home/page/covid_19_test/ui/widgets/questions_visible_widgets.dart/third_vissible_question_widget.dart';
+import 'package:personal_project/features/medical_history/presentation/widgets/multi_selected_widget.dart';
 
 import '../../../../../../common_ui/common_widgets/buttons/main_button_widget.dart';
 import '../../../../../../common_ui/common_widgets/text/text_widget.dart';
@@ -45,6 +46,8 @@ class _TQuestionsPageState extends State<TQuestionsPage> {
       "self_t__drop_down_text_2",
       "self_t__drop_down_text_3"
     ];
+
+    final List<String> covidBeforechipList = [];
     final List<String> covidBeforeAnswer = [
       "covid_before_one",
       "covid_before_two",
@@ -120,7 +123,6 @@ class _TQuestionsPageState extends State<TQuestionsPage> {
                 SizedBox(
                   height: height * 0.015,
                 ),
-                //TODO REVISAR EL MULTISELECTOR WIDGET
                 ThirdVissibleQuestionWidget(
                     width: width,
                     wColor: wColor,
@@ -131,11 +133,19 @@ class _TQuestionsPageState extends State<TQuestionsPage> {
                 SizedBox(
                   height: height * 0.015,
                 ),
-                DropDownQuestionsWidget(
-                    dropDownItem: covidBeforeAnswer,
-                    textQuestion: "covid_before_question",
-                    width: width,
-                    dropDownValue: 'Select option'),
+                MultiSelectedWidget(
+                  listItem: covidBeforeAnswer, 
+                  onChanged: (value){
+                    setState(() {
+                      if (covidBeforechipList.contains(value) != true) {
+                        covidBeforechipList.add(value.toString());
+                      }
+                    });
+                  }, 
+                  requiredTranslate: true,
+                  listChip: covidBeforechipList,
+                  valueDefaultList: "drop_down_select_option",
+                ),
                 SizedBox(
                   height: height * 0.015,
                 ),

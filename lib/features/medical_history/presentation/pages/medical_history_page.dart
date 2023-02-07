@@ -53,6 +53,7 @@ class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
     final size = MediaQuery.of(context).size;
     return BlocConsumer<MedicalHistoryBloc, MedicalHistoryState>(
       listener: (context, state) {
+        // chipListText = state.question2!.value;
         if (state.status == true) {
           setState(() {
             yes = true;
@@ -179,22 +180,31 @@ class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
                     SizedBox(height: size.height * 0.02),
                     MultiSelectedWidget(
                       onChanged: (value) {
+                        // TODO CHECK BAKEND MEDICAL HISTORY
+                        // setState(() {
+                        //   if (state.question2!.value.contains(value.toString()) != true) {
+                        //     state.question2!.value.add(value.toString());
+                        //   }
+                        // });
                         setState(() {
-                          if (state.question2!.value.contains(value) != true) {
-                            state.question2!.value.add(value.toString());
+                          if (chipListText.contains(value.toString()) != true) {
+                            chipListText.add(value.toString());
                           }
                         });
                       },
                       listItem: const [
+                        "Cerebrovascular disease",
                         "Asthma",
                         "Cancer",
-                        "HIV",
-                        "Cerebrovascular disease",
                         "Chronic kidney disease",
-                        "Chronic lung disease",
-                        "Neurologic conditions"
+                        "Tuberculosis",
+                        "Smoking (current and former)",
+                        "Neurologic conditions",
+                        "Hiv"
                       ],
                       valueDefaultList: "medical_history_drop_down_select",
+                      listChip: chipListText, 
+                      requiredTranslate: false,
                     ),
                   ],
                 )),

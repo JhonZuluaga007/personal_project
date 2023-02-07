@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:personal_project/features/medical_history/presentation/widgets/multi_selected_widget.dart';
 
 import '../../../../../../../app_localizations.dart';
 import '../../../../../../../common_ui/common_widgets/text/text_widget.dart';
@@ -34,21 +35,27 @@ class ThirdVissibleQuestionWidget extends StatefulWidget {
 
 class _ThirdVissibleQuestionWidgetState
     extends State<ThirdVissibleQuestionWidget> {
+
+  final List<String> dropdownBoosterChipList = [];
   final List<String> dropdownBooster = [
     "booster_answer_one",
     "booster_answer_two",
     "booster_answer_three",
     "booster_answer_four",
   ];
+
+  final List<String> vacinneChipList = [];
   final List<String> vaccinesList = [
-    "vaccines_answer_one",
-    "vaccines_answer_two",
-    "vaccines_answer_three",
-    "vaccines_answer_four",
-    "vaccines_answer_five",
+    "Pfizer",
+    "Moderna",
+    "Johnson & Johnson",
+    "Other",
+    "Do not know",
   ];
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
+    final wColor = ThemesIdx20();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -122,24 +129,57 @@ class _ThirdVissibleQuestionWidgetState
         Visibility(
             visible: widget.firstQuestion,
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(height: widget.height * 0.031),
-                DropDownQuestionsWidget(
-                    dropDownItem: dropdownBooster,
-                    textQuestion: "self_t_question_test_drop_down_05",
-                    width: widget.width,
-                    dropDownValue: 'Select option'),
+                SizedBox(height: widget.height * 0.025),
+                TextWidget(
+                  text: "self_t_question_test_drop_down_05",
+                  style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                      letterSpacing: -0.2,
+                      color: wColor.mapColors["S700"]),
+                ),
+                SizedBox(height: height * 0.0035),
+                MultiSelectedWidget(
+                  listItem: vaccinesList, 
+                  onChanged: (value){
+                    setState(() {
+                      if (vacinneChipList.contains(value) != true) {
+                        vacinneChipList.add(value.toString());
+                      }
+                    });
+                  }, 
+                  valueDefaultList: "drop_down_select_option",
+                  listChip: vacinneChipList, 
+                  requiredTranslate: false,
+                ),
                 SizedBox(height: widget.height * 0.028),
                 const DatePickerContainerWidget(
                     textQuestions: "self_t_question_vissible_5"),
                 SizedBox(height: widget.height * 0.028),
-                DropDownQuestionsWidget(
-                    //TODO
-                    //ADD MULTI SELECT Widget
-                    dropDownItem: vaccinesList,
-                    textQuestion: "self_t_question_vissible_6",
-                    width: widget.width,
-                    dropDownValue: 'Select option'),
+                TextWidget(
+                  text: "self_t_question_vissible_6",
+                  style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                      letterSpacing: -0.2,
+                      color: wColor.mapColors["S700"]),
+                ),
+                SizedBox(height: height * 0.0035),
+                MultiSelectedWidget(
+                  listItem: dropdownBooster, 
+                  onChanged: (value){
+                    setState(() {
+                      if (dropdownBoosterChipList.contains(value) != true) {
+                        dropdownBoosterChipList.add(value.toString());
+                      }
+                    });
+                  }, 
+                  valueDefaultList: "drop_down_select_option",
+                  listChip: dropdownBoosterChipList, 
+                  requiredTranslate: true,
+                ),
               ],
             ))
       ],

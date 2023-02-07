@@ -4,14 +4,14 @@ part of 'test_history_bloc.dart';
 @immutable
 class TestHistoryState {
   final List<TestHistoryEntity> testHistory;
-  final List<TestViewEntity> testView;
+  // final TestViewEntity testView;
 
   final FormSubmissionStatus? formStatus;
 
   const TestHistoryState({
     this.testHistory = const [],
     this.formStatus = const InitialFormStatus(),
-    this.testView = const [],
+    // this.testView = TestViewEntity()
   });
 
   TestHistoryState copyWith({
@@ -21,7 +21,7 @@ class TestHistoryState {
   }) {
     return TestHistoryState(
       testHistory: testHistory ?? this.testHistory,
-      testView: testView ?? this.testView,
+      // testView: testView ?? this.testView,
       formStatus: formStatus ?? this.formStatus,
     );
   }

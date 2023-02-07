@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -11,13 +13,17 @@ class MultiSelectedWidget extends StatefulWidget {
   final TextStyle? textStyleList;
   String? valueDefaultList;
   final Function(Object?)? onChanged;
+  final List<String> listChip;
+  final bool requiredTranslate; 
 
   MultiSelectedWidget({
     super.key,
     required this.listItem,
     this.textStyleList,
     required this.onChanged,
-    this.valueDefaultList = "Selection option",
+    this.valueDefaultList = "Selection option", 
+    required this.listChip, 
+    required this.requiredTranslate,
   });
 
   @override
@@ -25,14 +31,8 @@ class MultiSelectedWidget extends StatefulWidget {
 }
 
 class _MultiSelectedWidgetState extends State<MultiSelectedWidget> {
-  List<String> chipListText = [];
   bool isSelected = false;
   bool selected = false;
-
-  @override
-  void initState() {
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +47,7 @@ class _MultiSelectedWidgetState extends State<MultiSelectedWidget> {
             DynamicContainerWidget(
                 maxWidth: width * 0.922,
                 minWidth: width * 0.922,
-                children: [buildChoiceChip()]),
+                children: [buildChoiceChip(widget.listChip)]),
             SizedBox(height: heigth * 0.01),
             Container(
               width: width * 0.922,
@@ -61,7 +61,7 @@ class _MultiSelectedWidgetState extends State<MultiSelectedWidget> {
                           onChanged: (selectedValue) {
                             selected = selectedValue!;
                           }),
-                      isExpanded: true,
+                      isExpanded: false,
                       items: widget.listItem
                           .map<DropdownMenuItem<Object>>((Object? value) {
                         return DropdownMenuItem<Object>(
@@ -71,7 +71,7 @@ class _MultiSelectedWidgetState extends State<MultiSelectedWidget> {
                               child: TextWidget(
                                 text: value.toString(),
                                 textAlign: TextAlign.center,
-                                requiresTranslate: false,
+                                requiresTranslate: widget.requiredTranslate,
                                 style: widget.textStyleList ??
                                     TextStyle(
                                         fontSize: 16,
@@ -95,27 +95,27 @@ class _MultiSelectedWidgetState extends State<MultiSelectedWidget> {
     );
   }
 
-  Widget buildChoiceChip() {
-    return BlocBuilder<MedicalHistoryBloc, MedicalHistoryState>(
-      builder: (context, state) {
-        return Wrap(
-            spacing: 6,
-            runSpacing: 6,
-            children:
-                List<Widget>.generate(state.question2!.value.length, (index) {
-              return InputChip(
-                label: Text(state.question2!.value[index]),
-                onDeleted: () {
-                  setState(() {
-                    state.question2!.value.removeAt(index);
-                  });
-                },
-                backgroundColor: Colors.green,
-                selected: true,
-                selectedColor: Colors.lightBlue,
-              );
-            }));
-      },
+Widget buildChoiceChip(List<String> listChip) {
+  final wColor = ThemesIdx20();
+
+    return Wrap(
+        spacing: 6,
+        runSpacing: 6,
+        children:
+            List<Widget>.generate(listChip.length, (index) {
+          return InputChip(
+            label: TextWidget(text: listChip[index], requiresTranslate: widget.requiredTranslate),
+            onDeleted: () {
+              setState(() {
+                listChip.removeAt(index);
+              });
+            },
+            backgroundColor: Colors.green,
+            selected: true,
+            selectedColor: wColor.mapColors["T300"],
+          );
+        }
+      )
     );
   }
 }
