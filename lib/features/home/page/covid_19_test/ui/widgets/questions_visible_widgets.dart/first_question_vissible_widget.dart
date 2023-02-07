@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:personal_project/features/home/page/covid_19_test/ui/widgets/drop_down_questions_widget.dart';
+import 'package:personal_project/features/medical_history/presentation/widgets/multi_selected_widget.dart';
 
 import '../../../../../../../app_localizations.dart';
 import '../../../../../../../common_ui/common_widgets/text/text_widget.dart';
@@ -51,6 +51,8 @@ class _FirstVissibleQuestionWidgetState
     "symptoms_dropdown_sixteen",
     "symptoms_dropdown_seventeen"
   ];
+
+  final List<String> firstQuestionChipLIst = [];
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -129,13 +131,20 @@ class _FirstVissibleQuestionWidgetState
             visible: widget.firstQuestion,
             child: Column(
               children: [
-                //TODO FIRST ONE CHANGE IT FOR MULTISELECTOR
                 SizedBox(height: widget.height * 0.031),
-                DropDownQuestionsWidget(
-                    dropDownItem: firstQuestion,
-                    textQuestion: "self_t_question_test_drop_down_01",
-                    width: widget.width,
-                    dropDownValue: 'Select option'),
+                MultiSelectedWidget(
+                  listItem: firstQuestion, 
+                  onChanged: (value){
+                    setState(() {
+                      if (firstQuestionChipLIst.contains(value) != true) {
+                        firstQuestionChipLIst.add(value.toString());
+                      }
+                    });
+                  }, 
+                  valueDefaultList: "drop_down_select_option",
+                  listChip: firstQuestionChipLIst, 
+                  requiredTranslate: true,
+                ),
                 SizedBox(height: widget.height * 0.028),
                 Padding(
                   padding:

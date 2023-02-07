@@ -65,6 +65,8 @@
     "medical_history_drop_down_text_3":"Chronic kidney disease",
     "medical_history_drop_down_text_4":"Tuberculosis",
     "medical_history_drop_down_text_5":"Smoking (current and former)",
+    "medical_history_drop_down_text_6": "Neurologic conditions",
+    "medical_history_drop_down_text_7": "Hiv",
 
     "my_user_profile": "My profile",
     "my_user_button_edit_profile": "Edit my information",
@@ -229,6 +231,7 @@
     "symptoms_dropdown_fiveteen" : "Nausea",
     "symptoms_dropdown_sixteen" : "Vomiting",
     "symptoms_dropdown_seventeen" : "Diarrhea",
+    "drop_down_select_option": "Select option",
 
     "covid_before_question": "Did you have Covid-19 before? (Please select all that apply)",
     "covid_before_one": "No",
@@ -279,8 +282,6 @@
     "alert_text_one": "Done!",
     "alert_text_two": "Changes saved",
     "alert_text_three": "Ok"
-
-
 
 
 
