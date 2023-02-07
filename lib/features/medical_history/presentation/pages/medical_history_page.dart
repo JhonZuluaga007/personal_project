@@ -7,6 +7,7 @@ import '../../../../common_ui/common_widgets/drop_down_widget.dart';
 import '../../../../common_ui/common_widgets/text/text_widget.dart';
 import '../../../../config/theme/theme.dart';
 import '../../../../navigationBar/bloc/navigation_bar_bloc.dart';
+import '../../../antigen/data/data_source/antigen_data_source.dart';
 import '../bloc/medical_history_bloc.dart';
 import '../widgets/button_actions_widget.dart';
 import '../widgets/confirm_alert_widget.dart';
@@ -39,6 +40,9 @@ class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
 
   @override
   void initState() {
+    AntigenDataSource()
+        .validateAntigen('63cc20b184ce548f26c07d39', 'A000004447');
+    //TODO GET THE USER ID NOT BURN VALUE
     BlocProvider.of<MedicalHistoryBloc>(context).add(GetMedicalHistoryEvent(
         '63b6f8217421999ac5a4a948',
         questions2: const []));

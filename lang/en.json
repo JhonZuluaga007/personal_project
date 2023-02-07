@@ -281,8 +281,12 @@
 
     "alert_text_one": "Done!",
     "alert_text_two": "Changes saved",
-    "alert_text_three": "Ok"
+    "alert_text_three": "Ok",
 
+
+    "alert_text_error_one": "Error!",
+    "alert_text_error_two": "We could not find a test with that Id",
+    "alert_text_error_three": "Ok"
 
 
 }

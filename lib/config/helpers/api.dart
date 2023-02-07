@@ -60,6 +60,11 @@ class Api {
     }
   }
 
+  // static Future<dynamic> postFormData(String path,Map<String, dynamic> data)async {
+  //   await setHeaders();
+
+  // }
+
   static Future<dynamic> put(String path, Map<String, dynamic> data) async {
     await setHeaders();
     debugPrint('---------------------------');

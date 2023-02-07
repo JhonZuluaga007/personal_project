@@ -4,6 +4,7 @@ import 'package:personal_project/common_ui/common_widgets/buttons/main_button_wi
 import 'package:personal_project/common_ui/common_widgets/text_field/text_field_with_border_widget.dart';
 import 'package:personal_project/config/helpers/form_submission_status.dart';
 import 'package:personal_project/config/theme/theme.dart';
+import 'package:personal_project/features/antigen/data/data_source/antigen_data_source.dart';
 import '../../../../common_ui/common_pages/my_app_scaffold_page.dart';
 import '../../../../common_ui/common_widgets/responsive/dynamic_container_widget.dart';
 import '../../../../common_ui/common_widgets/text/text_widget.dart';
@@ -79,13 +80,11 @@ class _LoginPageState extends State<LoginPage> {
             TextFieldWithBorderWidget(
               key: const Key('textFieldPasswordLogin'),
               requiresTranslate: true,
-
-              isPassword: isObscure, // TODO CHECK
+              isPassword: isObscure,
               labelText: '01_login_input_two',
               borderColor: wColor.mapColors['IDGrey'],
               textColor: Colors.white,
               fillColor: wColor.mapColors['P00'],
-
               textEditingController: passwordController,
               hintStyle:
                   TextStyle(color: wColor.mapColors['IDGrey'], fontSize: 14),

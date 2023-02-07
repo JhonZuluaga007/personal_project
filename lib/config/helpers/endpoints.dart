@@ -12,4 +12,10 @@ class Endpoints {
   static const String viewMedicalHistory = '${Config.baseURL}formmedical/list/';
   static const String testHistory = '${Config.baseURL}tests/list/';
   static const String viewTest = '${Config.baseURL}tests/detail/';
+
+//Validate antigen Endpoint
+  static const String validateAntigen = '${Config.baseURL}codevalidator';
+
+//Validate pcr endpoint
+  static const String validatePcr = '${Config.baseURL}codepcrvalidator';
 }

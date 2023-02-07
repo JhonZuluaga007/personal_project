@@ -1,22 +1,35 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:personal_project/common_ui/common_pages/my_app_scaffold_page.dart';
 import 'package:personal_project/common_ui/common_widgets/buttons/button_widget.dart';
+import 'package:personal_project/features/antigen/data/data_source/antigen_data_source.dart';
 import 'package:personal_project/features/home/page/covid_19_test/ui/widgets/container_start_counter_widget.dart';
+import 'package:personal_project/features/medical_history/presentation/widgets/error_alert_widget.dart';
 
 import '../../../../../common_ui/common_widgets/buttons/main_button_widget.dart';
 import '../../../../../common_ui/common_widgets/text/text_widget.dart';
 import '../../../../../common_ui/common_widgets/text_field/text_field_with_border_widget.dart';
 import '../../../../../config/theme/theme.dart';
 import '../../../../../navigationBar/bloc/navigation_bar_bloc.dart';
-import '../../../widget/test_widgets/app_bar_widget.dart';
+import '../../../../auth/bloc/auth_bloc.dart';
+import '../../../../home/widget/test_widgets/app_bar_widget.dart';
 
-class AntigenRegisterInfoPage extends StatelessWidget {
+class AntigenRegisterInfoPage extends StatefulWidget {
   const AntigenRegisterInfoPage(
       {super.key, this.isHomeNavigation, this.valueLinear = 0.17});
   final double valueLinear;
 
   final bool? isHomeNavigation;
+
+  @override
+  State<AntigenRegisterInfoPage> createState() =>
+      _AntigenRegisterInfoPageState();
+}
+
+class _AntigenRegisterInfoPageState extends State<AntigenRegisterInfoPage> {
+  final TextEditingController testIdController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -26,18 +39,18 @@ class AntigenRegisterInfoPage extends StatelessWidget {
     return MyAppScaffold(
       crossAxisAlignment: CrossAxisAlignment.start,
       appBar: registerAppBarWidget(() {
-        if (isHomeNavigation == true) {
+        if (widget.isHomeNavigation == true) {
           navigationBloc.add(PageChanged(indexNavigation: 0));
           Navigator.pushNamed(context, 'navBar');
         }
-        if (isHomeNavigation == false) {
+        if (widget.isHomeNavigation == false) {
           navigationBloc.add(PageChanged(indexNavigation: 2));
           Navigator.pushNamed(context, 'navBar');
         }
       }, 'test_info_screen_text_one'),
       bottomNavigationBar: ContainerStartCounterWidget(
           numberPageText: "1",
-          valueLinear: valueLinear,
+          valueLinear: widget.valueLinear,
           widgetButton: buttonContinuePartOne(context),
           textContainer: "test_part_one_text"),
       children: [
@@ -85,6 +98,7 @@ class AntigenRegisterInfoPage extends StatelessWidget {
             ),
             SizedBox(height: size.height * 0.015),
             TextFieldWithBorderWidget(
+              textEditingController: testIdController,
               requiresTranslate: true,
               textInputType: TextInputType.text,
               suffixIcon: const Icon(Icons.question_mark),
@@ -113,22 +127,41 @@ class AntigenRegisterInfoPage extends StatelessWidget {
       ],
     );
   }
-}
 
-Widget buttonContinuePartOne(BuildContext context) {
-  final width = MediaQuery.of(context).size.width;
-  final height = MediaQuery.of(context).size.height;
-  final wColor = ThemesIdx20();
-
-  return MainButtonWidget(
-      width: width * 0.920,
-      height: height * 0.053,
-      borderRadiusButton: 30,
-      buttonString: "self_t_button",
-      textColor: wColor.mapColors["P01"],
-      buttonColor: wColor.mapColors["500BASE"],
-      borderColor: wColor.mapColors["500BASE"],
-      onPressed: () {
-        Navigator.pushNamed(context, "selfTestQuestions");
-      });
+  Widget buttonContinuePartOne(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
+    final height = MediaQuery.of(context).size.height;
+    final wColor = ThemesIdx20();
+    final userState = BlocProvider.of<AuthBloc>(context).state;
+    return MainButtonWidget(
+        width: width * 0.920,
+        height: height * 0.053,
+        borderRadiusButton: 30,
+        buttonString: "self_t_button",
+        textColor: wColor.mapColors["P01"],
+        buttonColor: wColor.mapColors["500BASE"],
+        borderColor: wColor.mapColors["500BASE"],
+        onPressed: () async {
+          bool validAntigen = await AntigenDataSource()
+              .validateAntigen(userState.userId, testIdController.text);
+          if (validAntigen == true) {
+            Navigator.pushNamed(context, "selfTestQuestions");
+          } else {
+            errorAlertInfoPop(
+                context: context,
+                mainIcon: Icon(
+                  Icons.cancel,
+                  color: wColor.mapColors['C01'],
+                  size: 46,
+                ),
+                titleText: 'alert_text_error_one',
+                paddingHeight: height * 0.25,
+                infoText: 'alert_text_error_two',
+                mainButton: 'alert_text_error_three',
+                mainButtonFunction: () {
+                  Navigator.pop(context);
+                });
+          }
+        });
+  }
 }

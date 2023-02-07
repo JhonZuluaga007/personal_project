@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:personal_project/common_ui/common_widgets/buttons/main_button_widget.dart';
 import 'package:personal_project/common_ui/common_widgets/text/text_widget.dart';
 import 'package:personal_project/config/theme/theme.dart';
-import 'package:personal_project/features/home/page/tests_pages/antigen_pages/antigen_register_info_page.dart';
-import 'package:personal_project/features/home/page/tests_pages/pcr_pages/pcr_test_register_page.dart';
+import 'package:personal_project/features/antigen/presentation/pages/antigen_pages/antigen_register_info_page.dart';
+import 'package:personal_project/features/pcr/presentation/pages/pcr_test_register_page.dart';
 import 'package:personal_project/icons/icons.dart';
 
 import '../../../../common_ui/common_widgets/drop_down_widget.dart';
