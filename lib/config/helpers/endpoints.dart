@@ -15,4 +15,7 @@ class Endpoints {
 
 //Validate antigen Endpoint
   static const String validateAntigen = '${Config.baseURL}codevalidator';
+
+//Validate pcr endpoint
+  static const String validatePcr = '${Config.baseURL}codepcrvalidator';
 }

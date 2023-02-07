@@ -1,12 +1,11 @@
-import 'package:personal_project/config/helpers/api.dart';
 import 'package:personal_project/config/helpers/endpoints.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-class AntigenDataSource {
-  Future<bool> validateAntigen(String userId, String code) async {
+class PcrDataSource {
+  Future<bool> validatePcr(String userId, String code) async {
     var request =
-        http.MultipartRequest('POST', Uri.parse(Endpoints.validateAntigen));
+        http.MultipartRequest('POST', Uri.parse(Endpoints.validatePcr));
     request.fields.addAll({'code': code, 'userId': userId});
 
     http.StreamedResponse response = await request.send();
