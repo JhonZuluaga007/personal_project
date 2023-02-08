@@ -30,8 +30,6 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
     final TextEditingController confirmPassword = TextEditingController();
     NavigationBarBloc navigationBloc =
         BlocProvider.of<NavigationBarBloc>(context);
-    final userState = BlocProvider.of<AuthBloc>(context).state;
-    AuthBloc userBloc = BlocProvider.of<AuthBloc>(context);
 
     return MyAppScaffold(
       color: Colors.white,
@@ -53,94 +51,97 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
       children: [
         Center(child: Image.asset('assets/icons/idxLogo.png')),
         SizedBox(height: height * 0.06),
-        BlocConsumer<AuthBloc, AuthState>(
-          listener: (context, state) {
-            if (state.formStatus is SubmissionSuccess) {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => const NavBarPage(
-                          initialPage: 'login',
-                        )),
-              );
-            } else if (state.formStatus is SubmissionFailed) {
-              final snackBar = SnackBar(
-                  content: Text(state.errorMessage),
-                  action: SnackBarAction(
-                    label: 'Cerrar',
-                    onPressed: () {},
-                  ));
-              ScaffoldMessenger.of(context).showSnackBar(snackBar);
-            }
-          },
-          builder: (context, state) {
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(
-                  width: double.infinity,
-                  child: TextWidget(
-                    text: '03_reset_password_title',
-                    style: TextStyle(
-                        color: wColor.mapColors['IDBlack'],
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold),
-                    textAlign: TextAlign.left,
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(
+              width: double.infinity,
+              child: TextWidget(
+                text: '03_reset_password_title',
+                style: TextStyle(
+                    color: wColor.mapColors['IDBlack'],
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold),
+                textAlign: TextAlign.left,
+              ),
+            ),
+            SizedBox(height: height * 0.03),
+            const TextWidget(
+              text: '03_reset_password_text_one',
+              style: TextStyle(fontSize: 14),
+            ),
+            SizedBox(height: height * 0.05),
+            Form(
+              child: DynamicContainerWidget(
+                minWidth: double.infinity,
+                maxWidth: double.infinity,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  TextFieldWithBorderWidget(
+                    requiresTranslate: true,
+                    key: const Key('oldPassword'),
+                    textColor: wColor.mapColors['P00'],
+                    labelText: '03_reset_password_label_one',
+                    textEditingController: oldPassword,
+                    hintText: '03_reset_password_hint_one',
+                    textStyle: TextStyle(
+                        color: wColor.mapColors['IDGrey'], fontSize: 14),
+                    hintStyle: TextStyle(
+                        color: wColor.mapColors['IDGrey'], fontSize: 14),
                   ),
-                ),
-                SizedBox(height: height * 0.03),
-                const TextWidget(
-                  text: '03_reset_password_text_one',
-                  style: TextStyle(fontSize: 14),
-                ),
-                SizedBox(height: height * 0.05),
-                DynamicContainerWidget(
-                  minWidth: double.infinity,
-                  maxWidth: double.infinity,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    TextFieldWithBorderWidget(
-                      requiresTranslate: true,
-                      key: const Key('oldPassword'),
-                      textColor: wColor.mapColors['P00'],
-                      labelText: '03_reset_password_label_one',
-                      textEditingController: oldPassword,
-                      hintText: '03_reset_password_hint_one',
-                      textStyle: TextStyle(
-                          color: wColor.mapColors['IDGrey'], fontSize: 14),
-                      hintStyle: TextStyle(
-                          color: wColor.mapColors['IDGrey'], fontSize: 14),
-                    ),
-                    SizedBox(height: height * 0.05),
-                    TextFieldWithBorderWidget(
-                      requiresTranslate: true,
-                      key: const Key('enterTheNewPassword'),
-                      textColor: wColor.mapColors['P00'],
-                      labelText: '03_reset_password_label_input_one',
-                      textEditingController: newPassword,
-                      hintText: '03_reset_password_hint_input_one',
-                      textStyle: TextStyle(
-                          color: wColor.mapColors['IDGrey'], fontSize: 14),
-                      hintStyle: TextStyle(
-                          color: wColor.mapColors['IDGrey'], fontSize: 14),
-                    ),
-                    SizedBox(height: height * 0.05),
-                    TextFieldWithBorderWidget(
-                      requiresTranslate: true,
-                      key: const Key('confirmTheNewPassword'),
-                      textColor: wColor.mapColors['P00'],
-                      labelText: '03_reset_password_label_input_two',
-                      textEditingController: confirmPassword,
-                      hintText: '03_reset_password_hint_input_two',
-                      textStyle: TextStyle(
-                          color: wColor.mapColors['IDGrey'], fontSize: 14),
-                      hintStyle: TextStyle(
-                          color: wColor.mapColors['IDGrey'], fontSize: 14),
-                    ),
-                  ],
-                ),
-                SizedBox(height: height * 0.049),
-                Center(
+                  SizedBox(height: height * 0.05),
+                  TextFieldWithBorderWidget(
+                    requiresTranslate: true,
+                    key: const Key('enterTheNewPassword'),
+                    textColor: wColor.mapColors['P00'],
+                    labelText: '03_reset_password_label_input_one',
+                    textEditingController: newPassword,
+                    hintText: '03_reset_password_hint_input_one',
+                    textStyle: TextStyle(
+                        color: wColor.mapColors['IDGrey'], fontSize: 14),
+                    hintStyle: TextStyle(
+                        color: wColor.mapColors['IDGrey'], fontSize: 14),
+                  ),
+                  SizedBox(height: height * 0.05),
+                  TextFieldWithBorderWidget(
+                    requiresTranslate: true,
+                    key: const Key('confirmTheNewPassword'),
+                    textColor: wColor.mapColors['P00'],
+                    labelText: '03_reset_password_label_input_two',
+                    textEditingController: confirmPassword,
+                    hintText: '03_reset_password_hint_input_two',
+                    textStyle: TextStyle(
+                        color: wColor.mapColors['IDGrey'], fontSize: 14),
+                    hintStyle: TextStyle(
+                        color: wColor.mapColors['IDGrey'], fontSize: 14),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(height: height * 0.049),
+            BlocConsumer<AuthBloc, AuthState>(listener: (context, state) {
+              if (state.formStatus is SubmissionSuccess) {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const NavBarPage(
+                            initialPage: 'login',
+                          )),
+                );
+              } else if (state.formStatus is SubmissionFailed) {
+                final snackBar = SnackBar(
+                    content: Text(state.errorMessage),
+                    action: SnackBarAction(
+                      label: 'Cerrar',
+                      onPressed: () {},
+                    ));
+                ScaffoldMessenger.of(context).showSnackBar(snackBar);
+              }
+            }, builder: (context, state) {
+              if (state.formStatus is FormSubmitting) {
+                return const Center(child: CircularProgressIndicator());
+              } else {
+                return Center(
                   child: MainButtonWidget(
                     key: const Key('buttonLogin'),
                     borderColor: wColor.mapColors['IDPink'],
@@ -150,10 +151,12 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                     onPressed: () {
                       if (oldPassword.text == newPassword.text) {
                         Navigator.pushNamed(context, 'navBar');
+                        BlocProvider.of<AuthBloc>(context).add(ChangePassword(
+                            state.userId, oldPassword.text, newPassword.text));
 
-                        userBloc.add(ChangePassword(userState.userId,
-                            oldPassword.text, newPassword.text));
                         print('ESOOOO');
+                      } else {
+                        print('aa');
                       }
                       setState(() {});
 
@@ -163,12 +166,12 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
 
                     buttonColor: wColor.mapColors['IDPink'],
                   ),
-                ),
-                SizedBox(height: height * 0.03),
-              ],
-            );
-          },
-        ),
+                );
+              }
+            }),
+            SizedBox(height: height * 0.03),
+          ],
+        )
       ],
     );
   }
