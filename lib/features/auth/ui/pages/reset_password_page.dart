@@ -149,11 +149,11 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                     buttonString: '03_reset_password_button',
                     //TODO validadr el ingreso hacia la aplicacion
                     onPressed: () {
-                      if (oldPassword.text == newPassword.text) {
-                        Navigator.pushNamed(context, 'navBar');
+                      if (confirmPassword.text == newPassword.text) {
                         BlocProvider.of<AuthBloc>(context).add(ChangePassword(
                             state.userId, oldPassword.text, newPassword.text));
 
+                        Navigator.pushNamed(context, 'login');
                         print('ESOOOO');
                       } else {
                         print('aa');

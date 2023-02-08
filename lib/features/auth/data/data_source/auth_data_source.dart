@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 import '../models/user_model.dart';
 import '../../../../config/helpers/api.dart';
@@ -74,7 +76,40 @@ class AuthDataSource {
 
   Future<ServerValidate> changePassword(
       ChangePasswordEntity changePassword) async {
-    final response = await Api.post(
+    var headers = {
+      'Authorization':
+          'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY3NTgyOTc5NiwianRpIjoiY2Q0ZjRkNDAtZjk3Zi00N2FlLTllZjUtZTJiYjI5M2FlNGYxIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6InNhbGJpc3NlckBib25uZXR0YW5hbHl0aWNzLmNvbSIsIm5iZiI6MTY3NTgyOTc5NiwiZXhwIjoxNjc1OTE2MTk2fQ.n5tEuDiS9bPrT5gO41IsyFHBy9bQAu_BC-F1MkqWbzg'
+    };
+    var request =
+        http.MultipartRequest('POST', Uri.parse(Endpoints.changePassword));
+    request.fields.addAll(
+      {
+        'userId': changePassword.userId,
+        'pass': changePassword.pass,
+        'newpass': changePassword.newpass
+      },
+    );
+
+    request.headers.addAll(headers);
+    http.StreamedResponse response = await request.send();
+
+    if (response.statusCode == 200) {
+      final responseString = await response.stream.bytesToString();
+      final decodedMap = json.decode(responseString);
+      bool success = false;
+      if (decodedMap['statusCode'] == 200) {
+        success = true;
+      }
+      return success
+          ? ServerValidate(message: "Password reset", statusCode: 200)
+          : throw InvalidData(
+              "We could not update your password. Make sure your current password is correct");
+    } else {
+      throw InvalidData(
+          "We could not update your password. Make sure your current password is correct");
+    }
+
+    /*final response = await Api.post(
       Endpoints.changePassword,
       {
         'userId': changePassword.userId,
@@ -87,6 +122,6 @@ class AuthDataSource {
     } else {
       throw InvalidData(
           "We could not update your password. Make sure your current password is correct");
-    }
+    }*/
   }
 }
