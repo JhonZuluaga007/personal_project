@@ -35,7 +35,7 @@ class SearchDelegateWidget extends SearchDelegate {
   Widget? buildLeading(BuildContext context) {
     return IconButton(
       onPressed: () {
-        close(context, _filterTestHistoryList = []);
+        close(context, _filterTestHistoryList);
       }, 
       icon: Icon(Icons.arrow_back, color: wColor.mapColors["P00"])
     );
