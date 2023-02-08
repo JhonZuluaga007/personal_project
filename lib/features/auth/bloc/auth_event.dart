@@ -20,6 +20,10 @@ class ResetPassword extends AuthEvent {
   ResetPassword(this.email);
 }
 
+class LogOut extends AuthEvent {
+  LogOut();
+}
+
 class ChangePassword extends AuthEvent {
   final String userId;
   final String oldPassword;

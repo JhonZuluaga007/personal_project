@@ -3,14 +3,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:personal_project/common_ui/common_widgets/buttons/main_button_widget.dart';
 import 'package:personal_project/common_ui/common_widgets/text_field/text_field_with_border_widget.dart';
 import 'package:personal_project/config/theme/theme.dart';
-import 'package:personal_project/features/auth/ui/pages/login_page.dart';
 
 import '../../../../common_ui/common_pages/my_app_scaffold_page.dart';
 import '../../../../common_ui/common_widgets/responsive/dynamic_container_widget.dart';
 import '../../../../common_ui/common_widgets/text/text_widget.dart';
 import '../../../../config/helpers/form_submission_status.dart';
-import '../../../../navigationBar/bloc/navigation_bar_bloc.dart';
-import '../../../../navigationBar/navigation_bar_widget.dart';
+
 import '../../../medical_history/presentation/widgets/done_alert_widget.dart';
 import '../../../medical_history/presentation/widgets/error_alert_widget.dart';
 import '../../bloc/auth_bloc.dart';
@@ -30,8 +28,8 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
     final TextEditingController oldPassword = TextEditingController();
     final TextEditingController newPassword = TextEditingController();
     final TextEditingController confirmPassword = TextEditingController();
-    NavigationBarBloc navigationBloc =
-        BlocProvider.of<NavigationBarBloc>(context);
+
+    final authBloc = BlocProvider.of<AuthBloc>(context);
 
     return MyAppScaffold(
       color: Colors.white,
@@ -122,19 +120,40 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
             ),
             SizedBox(height: height * 0.049),
             BlocConsumer<AuthBloc, AuthState>(listener: (context, state) {
-              if (state.formStatus is SubmissionSuccess) {
-                print('');
-              } else if (state.formStatus is SubmissionFailed) {
-                final snackBar = SnackBar(
-                    content: Text(state.errorMessage),
-                    action: SnackBarAction(
-                      label: 'Cerrar',
-                      onPressed: () {},
-                    ));
-                ScaffoldMessenger.of(context).showSnackBar(snackBar);
+              if (state.formChangePasswordStatus is SubmissionSuccess) {
+                doneSendInfo(
+                    context: context,
+                    mainIcon: Icon(
+                      Icons.check,
+                      size: height * 0.15,
+                      color: wColor.mapColors['C00'],
+                    ),
+                    titleText: 'alert_text_one',
+                    paddingHeight: height * 0.25,
+                    infoText: 'alert_text_password_updated',
+                    mainButton: 'alert_text_three',
+                    mainButtonFunction: () {
+                      Navigator.pushReplacementNamed(context, 'login');
+                      authBloc.add(LogOut());
+                    });
+              } else if (state.formChangePasswordStatus is SubmissionFailed) {
+                errorAlertInfoPop(
+                    context: context,
+                    mainIcon: Icon(
+                      Icons.cancel,
+                      color: wColor.mapColors['C01'],
+                      size: 46,
+                    ),
+                    titleText: 'alert_text_error_one',
+                    paddingHeight: height * 0.25,
+                    infoText: 'alert_text_password_error',
+                    mainButton: 'alert_text_error_three',
+                    mainButtonFunction: () {
+                      Navigator.pop(context);
+                    });
               }
             }, builder: (context, state) {
-              if (state.formStatus is FormSubmitting) {
+              if (state.formChangePasswordStatus is FormSubmitting) {
                 return const Center(child: CircularProgressIndicator());
               } else {
                 return Center(
@@ -147,39 +166,6 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                       if (confirmPassword.text == newPassword.text) {
                         BlocProvider.of<AuthBloc>(context).add(ChangePassword(
                             state.userId, oldPassword.text, newPassword.text));
-                        if (state.formStatus is SubmissionSuccess) {
-                          doneSendInfo(
-                              context: context,
-                              mainIcon: Icon(
-                                Icons.check,
-                                size: height * 0.15,
-                                color: wColor.mapColors['C00'],
-                              ),
-                              titleText: 'alert_text_one',
-                              paddingHeight: height * 0.25,
-                              infoText: 'alert_text_password_updated',
-                              mainButton: 'alert_text_three',
-                              mainButtonFunction: () {
-                                navigationBloc
-                                    .add(PageChanged(indexNavigation: 0));
-                                Navigator.pushNamed(context, 'navBar');
-                              });
-                        } else {
-                          errorAlertInfoPop(
-                              context: context,
-                              mainIcon: Icon(
-                                Icons.cancel,
-                                color: wColor.mapColors['C01'],
-                                size: 46,
-                              ),
-                              titleText: 'alert_text_error_one',
-                              paddingHeight: height * 0.25,
-                              infoText: 'alert_text_password_error',
-                              mainButton: 'alert_text_error_three',
-                              mainButtonFunction: () {
-                                Navigator.pop(context);
-                              });
-                        }
                       } else {
                         if (confirmPassword.text != newPassword.text) {
                           final snackBar = SnackBar(

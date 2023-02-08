@@ -6,6 +6,7 @@ import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:personal_project/features/auth/domain/entities/change_password_entity.dart';
 import 'package:personal_project/features/auth/domain/use_cases/change_password_use_case.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../domain/entities/user_entity.dart';
 import '../domain/use_cases/login_use_case.dart';
 import '../domain/entities/user_update_entity.dart';
@@ -35,6 +36,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       }, (user) {
         emit(state.copyWith(
           formStatus: SubmissionSuccess(),
+
           statusCode: user.statusCode,
           //birthDate: user.user.dateOfBirth,
           token: user.token,
@@ -82,7 +84,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       userUpdateUseCase.call(event.userUpdateEntity);
     });
     on<ChangePassword>((event, emit) async {
-      emit(state.copyWith(formStatus: FormSubmitting()));
+      emit(state.copyWith(formChangePasswordStatus: FormSubmitting()));
       ChangePasswordEntity updatedPassword = ChangePasswordEntity(
           userId: event.userId,
           pass: event.oldPassword,
@@ -93,7 +95,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           (failed) => {
                 emit(
                   state.copyWith(
-                    formStatus:
+                    formChangePasswordStatus:
                         SubmissionFailed(exception: Exception(failed.message)),
                     errorMessage: failed.message,
                   ),
@@ -101,7 +103,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
               },
           (successfull) => {
                 emit(state.copyWith(
-                    formStatus: SubmissionSuccess(),
+                    formChangePasswordStatus: SubmissionSuccess(),
                     statusCode: successfull.statusCode,
                     message: successfull.message))
               });
@@ -123,6 +125,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           message: successful.message,
         ));
       });
+    });
+    on<LogOut>((event, emit) async {
+      final prefs = await SharedPreferences.getInstance();
+      prefs.clear();
+      emit(state.initialState());
     });
   }
 }
