@@ -133,8 +133,8 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                     infoText: 'alert_text_password_updated',
                     mainButton: 'alert_text_three',
                     mainButtonFunction: () {
-                      Navigator.pushReplacementNamed(context, 'login');
-                      authBloc.add(LogOut());
+                      // Navigator.pushReplacementNamed(context, 'login');
+                      Navigator.pop(context);
                     });
               } else if (state.formChangePasswordStatus is SubmissionFailed) {
                 errorAlertInfoPop(
