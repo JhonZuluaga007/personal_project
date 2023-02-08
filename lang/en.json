@@ -289,7 +289,12 @@
 
     "alert_text_error_one": "Error!",
     "alert_text_error_two": "We could not find a test with that Id",
-    "alert_text_error_three": "Ok"
+    "alert_text_error_three": "Ok",
+    "alert_text_password_updated": "Password has been updated successfully",
+    "alert_text_password_error": "There was an error, and your password couldnt be updated",
+
+    "match_password": "Make sure your passwords match"
+
 
 
 }

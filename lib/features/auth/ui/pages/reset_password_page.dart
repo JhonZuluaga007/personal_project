@@ -11,6 +11,8 @@ import '../../../../common_ui/common_widgets/text/text_widget.dart';
 import '../../../../config/helpers/form_submission_status.dart';
 import '../../../../navigationBar/bloc/navigation_bar_bloc.dart';
 import '../../../../navigationBar/navigation_bar_widget.dart';
+import '../../../medical_history/presentation/widgets/done_alert_widget.dart';
+import '../../../medical_history/presentation/widgets/error_alert_widget.dart';
 import '../../bloc/auth_bloc.dart';
 
 class ResetPasswordPage extends StatefulWidget {
@@ -121,13 +123,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
             SizedBox(height: height * 0.049),
             BlocConsumer<AuthBloc, AuthState>(listener: (context, state) {
               if (state.formStatus is SubmissionSuccess) {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const NavBarPage(
-                            initialPage: 'login',
-                          )),
-                );
+                print('');
               } else if (state.formStatus is SubmissionFailed) {
                 final snackBar = SnackBar(
                     content: Text(state.errorMessage),
@@ -147,23 +143,56 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                     borderColor: wColor.mapColors['IDPink'],
                     textColor: Colors.white,
                     buttonString: '03_reset_password_button',
-                    //TODO validadr el ingreso hacia la aplicacion
                     onPressed: () {
                       if (confirmPassword.text == newPassword.text) {
                         BlocProvider.of<AuthBloc>(context).add(ChangePassword(
                             state.userId, oldPassword.text, newPassword.text));
-
-                        Navigator.pushNamed(context, 'login');
-                        print('ESOOOO');
+                        if (state.formStatus is SubmissionSuccess) {
+                          doneSendInfo(
+                              context: context,
+                              mainIcon: Icon(
+                                Icons.check,
+                                size: height * 0.15,
+                                color: wColor.mapColors['C00'],
+                              ),
+                              titleText: 'alert_text_one',
+                              paddingHeight: height * 0.25,
+                              infoText: 'alert_text_password_updated',
+                              mainButton: 'alert_text_three',
+                              mainButtonFunction: () {
+                                navigationBloc
+                                    .add(PageChanged(indexNavigation: 0));
+                                Navigator.pushNamed(context, 'navBar');
+                              });
+                        } else {
+                          errorAlertInfoPop(
+                              context: context,
+                              mainIcon: Icon(
+                                Icons.cancel,
+                                color: wColor.mapColors['C01'],
+                                size: 46,
+                              ),
+                              titleText: 'alert_text_error_one',
+                              paddingHeight: height * 0.25,
+                              infoText: 'alert_text_password_error',
+                              mainButton: 'alert_text_error_three',
+                              mainButtonFunction: () {
+                                Navigator.pop(context);
+                              });
+                        }
                       } else {
-                        print('aa');
+                        if (confirmPassword.text != newPassword.text) {
+                          final snackBar = SnackBar(
+                              content: const TextWidget(text: 'match_password'),
+                              action: SnackBarAction(
+                                label: 'Cerrar',
+                                onPressed: () {},
+                              ));
+                          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                        }
                       }
                       setState(() {});
-
-                      // navigationBloc.add(PageChanged(indexNavigation: 0));
-                      // Navigator.pushNamed(context, 'navBar');
                     },
-
                     buttonColor: wColor.mapColors['IDPink'],
                   ),
                 );
