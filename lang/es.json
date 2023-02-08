@@ -21,6 +21,8 @@
     "03_reset_password_text_one" : "Porfavor ingresa la nueva Contraseña que quieres utilizar.",
     "03_reset_password_label_input_one" : "Ingresa la nueva Contraseña",
     "03_reset_password_hint_input_one" : "Nueva contraseña",
+    "03_reset_password_hint_one" : "Contraseña actual",
+    "03_reset_password_label_one" : "Ingresa la contraseña actual",
     "03_reset_password_label_input_two" : "Confirmar la nueva contraseña",
     "03_reset_password_hint_input_two" : "Confirma contraseña",
     "03_reset_password_button" : "Cambiar contraseña",

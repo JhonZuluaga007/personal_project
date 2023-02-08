@@ -1,4 +1,6 @@
 import 'package:kiwi/kiwi.dart';
+import 'package:personal_project/features/auth/bloc/auth_bloc.dart';
+import 'package:personal_project/features/auth/domain/use_cases/change_password_use_case.dart';
 import 'package:personal_project/features/auth/domain/use_cases/reset_password_use_case.dart';
 import 'package:personal_project/features/auth/domain/use_cases/user_update_use_case.dart';
 import 'package:personal_project/features/medical_history/data/data_source/medical_data_source.dart';
@@ -60,6 +62,7 @@ abstract class Injector {
   @Register.factory(AuthDataSource)
   @Register.factory(UserUpdateUseCase)
   @Register.factory(ResetPasswordUseCase)
+  @Register.factory(ChangePasswordUseCase)
   void _configureAuthFactories();
 
   @Register.factory(MedicalHistoryRepository,

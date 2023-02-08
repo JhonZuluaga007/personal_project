@@ -19,3 +19,11 @@ class ResetPassword extends AuthEvent {
   final String email;
   ResetPassword(this.email);
 }
+
+class ChangePassword extends AuthEvent {
+  final String userId;
+  final String oldPassword;
+  final String newPassword;
+
+  ChangePassword(this.userId, this.oldPassword, this.newPassword);
+}
