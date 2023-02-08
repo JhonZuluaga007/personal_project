@@ -13,7 +13,7 @@ class TestViewModel {
     final int statusCode;
 
     factory TestViewModel.fromJson(Map<String, dynamic> json) => TestViewModel(
-        data: List<Data>.from(json["data"].map((x) => Data.fromMap(x))),
+        data: List<Data>.from(json["data"].map((x) => Data.fromJson(x))),
         message: json["message"],
         statusCode: json["statusCode"],
     );
@@ -64,7 +64,7 @@ class Data extends TestViewEntity {
       validity: validity
     );
 
-    factory Data.fromMap(Map<String, dynamic> json) => Data(
+    factory Data.fromJson(Map<String, dynamic> json) => Data(
         id: Id.fromMap(json["_id"]),
         associatedTests: List<dynamic>.from(json["associated_tests"].map((x) => x)),
         batch: List<Batch>.from(json["batch"].map((x) => Batch.fromMap(x))),
@@ -251,7 +251,7 @@ class Question1Class extends Question10ClassViewEntity {
 
     factory Question1Class.fromMap(Map<String, dynamic> json) => Question1Class(
         name: json["name"],
-        value: json["value"],
+        value: json["value"] ?? "",
     );
 
     Map<String, dynamic> toMap() => {

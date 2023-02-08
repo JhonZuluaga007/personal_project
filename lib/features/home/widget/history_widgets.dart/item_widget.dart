@@ -11,13 +11,16 @@ class ItemWidget extends StatelessWidget {
       required this.size,
       required this.wColor,
       required this.onPressed, 
-      required this.textTestKit})
+      required this.textTestKit, 
+      this.styleText
+    })
       : super(key: key);
 
   final Size size;
   final ThemesIdx20 wColor;
   final dynamic Function() onPressed;
   final String textTestKit;
+  final TextStyle? styleText;
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +37,7 @@ class ItemWidget extends StatelessWidget {
               children: [
                 Text(
                   textTestKit,
-                  style: TextStyle(fontSize: 14),
+                  style: styleText ?? const TextStyle(fontSize: 14),
                 ), // TODO GET THE TEST FROM THE BACKEND
                 ButtonWidget(
                     buttonColor: wColor.mapColors['S800'],
