@@ -10,6 +10,8 @@ class DrawerWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final authBloc = BlocProvider.of<AuthBloc>(context);
+
     final size = MediaQuery.of(context).size;
     return WillPopScope(
       onWillPop: () async {
@@ -136,7 +138,7 @@ class DrawerWidget extends StatelessWidget {
             InkWell(
               onTap: () {
                 Navigator.pushReplacementNamed(context, 'login');
-
+                authBloc.add(LogOut());
                 //TODO RESTART BAR
               },
               child: Padding(
