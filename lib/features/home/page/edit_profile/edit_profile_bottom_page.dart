@@ -70,7 +70,7 @@ class _EditUserFromBottomPageState extends State<EditUserFromBottomPage> {
           builder: (context, state) {
             return Center(
               child: Stack(alignment: AlignmentDirectional.center, children: [
-                imageDisplayed != null                    
+                imageDisplayed != null
                     ? Container(
                         height: height * 0.3,
                         width: width * 0.5,
@@ -103,15 +103,11 @@ class _EditUserFromBottomPageState extends State<EditUserFromBottomPage> {
                               size: 24,
                             ),
                             //TODO POPUP IMAGE FROM CAMERA OR FROM GALLERY
-                            onPressed: () => buildPopUpImage(
-                              context,
-                              (){
-                                getImage(ImageSource.camera);
-                              },
-                              (){
-                                getImage(ImageSource.gallery);
-                              }
-                            ),
+                            onPressed: () => buildPopUpImage(context, () {
+                              getImage(ImageSource.camera);
+                            }, () {
+                              getImage(ImageSource.gallery);
+                            }),
                           ),
                         ),
                       )
@@ -126,15 +122,11 @@ class _EditUserFromBottomPageState extends State<EditUserFromBottomPage> {
                             size: 24,
                           ),
                           // TODO POPUP IMAGE FROM CAMERA OR FROM GALLERY
-                          onPressed: () => buildPopUpImage(
-                            context,
-                            (){
-                              getImage(ImageSource.camera);
-                            },
-                            (){
-                              getImage(ImageSource.gallery);
-                            }
-                          ),
+                          onPressed: () => buildPopUpImage(context, () {
+                            getImage(ImageSource.camera);
+                          }, () {
+                            getImage(ImageSource.gallery);
+                          }),
                         ))
               ]),
             );
@@ -152,4 +144,3 @@ class _EditUserFromBottomPageState extends State<EditUserFromBottomPage> {
     );
   }
 }
-

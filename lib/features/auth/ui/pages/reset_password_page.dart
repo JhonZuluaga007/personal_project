@@ -29,8 +29,6 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
     final TextEditingController newPassword = TextEditingController();
     final TextEditingController confirmPassword = TextEditingController();
 
-    final authBloc = BlocProvider.of<AuthBloc>(context);
-
     return MyAppScaffold(
       color: Colors.white,
       mainAxisAlignment: MainAxisAlignment.start,
@@ -134,6 +132,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                     mainButton: 'alert_text_three',
                     mainButtonFunction: () {
                       // Navigator.pushReplacementNamed(context, 'login');
+                      //TODO CHECK!!!
                       Navigator.pop(context);
                     });
               } else if (state.formChangePasswordStatus is SubmissionFailed) {
@@ -162,7 +161,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                     borderColor: wColor.mapColors['IDPink'],
                     textColor: Colors.white,
                     buttonString: '03_reset_password_button',
-                    onPressed: () {
+                    onPressed: () async {
                       if (confirmPassword.text == newPassword.text) {
                         BlocProvider.of<AuthBloc>(context).add(ChangePassword(
                             state.userId, oldPassword.text, newPassword.text));
@@ -171,7 +170,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                           final snackBar = SnackBar(
                               content: const TextWidget(text: 'match_password'),
                               action: SnackBarAction(
-                                label: 'Cerrar',
+                                label: 'Close', //TODO CHECK LANGUAGE
                                 onPressed: () {},
                               ));
                           ScaffoldMessenger.of(context).showSnackBar(snackBar);
