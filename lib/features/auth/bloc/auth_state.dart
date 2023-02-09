@@ -33,39 +33,40 @@ class AuthState {
   final String? levelSchool;
   final FormSubmissionStatus formStatus;
   final FormSubmissionStatus? formChangePasswordStatus;
+  final FormSubmissionStatus? formResetPassword;
 
-  const AuthState({
-    this.project = "",
-    this.statusCode = 404,
-    this.token = "",
-    this.userId = "",
-    this.address = "",
-    this.birthDate,
-    this.city = "",
-    this.state = "",
-    this.zip = "",
-    this.cellphone = "",
-    this.email = "",
-    this.ethnicity = "",
-    this.gender = "",
-    this.image = "",
-    this.informationUpdated = false,
-    this.isActive = false,
-    this.isConfirmed = false,
-    this.lastname = "",
-    this.loginId = "",
-    this.middleName = "",
-    this.name = "",
-    this.organization = "",
-    this.participantId = "",
-    this.race = "",
-    this.sex = "",
-    this.levelSchool = "",
-    this.errorMessage = "",
-    this.message = "",
-    this.formChangePasswordStatus = const InitialFormStatus(),
-    this.formStatus = const InitialFormStatus(),
-  });
+  const AuthState(
+      {this.project = "",
+      this.statusCode = 404,
+      this.token = "",
+      this.userId = "",
+      this.address = "",
+      this.birthDate,
+      this.city = "",
+      this.state = "",
+      this.zip = "",
+      this.cellphone = "",
+      this.email = "",
+      this.ethnicity = "",
+      this.gender = "",
+      this.image = "",
+      this.informationUpdated = false,
+      this.isActive = false,
+      this.isConfirmed = false,
+      this.lastname = "",
+      this.loginId = "",
+      this.middleName = "",
+      this.name = "",
+      this.organization = "",
+      this.participantId = "",
+      this.race = "",
+      this.sex = "",
+      this.levelSchool = "",
+      this.errorMessage = "",
+      this.message = "",
+      this.formChangePasswordStatus = const InitialFormStatus(),
+      this.formStatus = const InitialFormStatus(),
+      this.formResetPassword = const InitialFormStatus()});
 
   AuthState copyWith(
       {String? project,
@@ -97,6 +98,7 @@ class AuthState {
       String? message,
       String? levelSchool,
       FormSubmissionStatus? formStatus,
+      FormSubmissionStatus? formResetPassword,
       FormSubmissionStatus? formChangePasswordStatus}) {
     return AuthState(
         birthDate: birthDate ?? this.birthDate,
@@ -129,6 +131,7 @@ class AuthState {
         formStatus: formStatus ?? this.formStatus,
         formChangePasswordStatus:
             formChangePasswordStatus ?? this.formChangePasswordStatus,
+        formResetPassword: formResetPassword ?? this.formResetPassword,
         levelSchool: levelSchool ?? this.levelSchool);
   }
 
@@ -162,6 +165,7 @@ class AuthState {
           String? message,
           String? levelSchool,
           FormSubmissionStatus? formStatus,
+          FormSubmissionStatus? formResetPassword,
           FormSubmissionStatus? formChangePasswordStatus}) =>
       const AuthState(
           project: '',
@@ -192,5 +196,6 @@ class AuthState {
           message: '',
           levelSchool: '',
           formChangePasswordStatus: InitialFormStatus(),
-          formStatus: InitialFormStatus());
+          formStatus: InitialFormStatus(),
+          formResetPassword: InitialFormStatus());
 }

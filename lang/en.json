@@ -11,7 +11,7 @@
 
     "02_forgotten_password_title" : "Forgotten Password",
     "02_forgotten_password_text_one" : "Please enter your email or the username you use to log into the application",
-    "02_forgotten_password_label_input" : "E-mail address or User ID",
+    "02_forgotten_password_label_input" : "E-mail address",
     "02_forgotten_password_hint_input" : "",
     "02_forgotten_password_button" : "Submit",
     "02_forgotten_password_text_two" : "Back to login page",
@@ -285,6 +285,10 @@
     "alert_text_one": "Done!",
     "alert_text_two": "Changes saved",
     "alert_text_three": "Ok",
+
+    "alert_text_reset": "Password has been sent to your email",
+    "alert_text_error": "There was an error reseting your password please try again.",
+
 
 
     "alert_text_error_one": "Error!",

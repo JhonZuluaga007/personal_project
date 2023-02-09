@@ -109,18 +109,19 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
               });
     });
     on<ResetPassword>((event, emit) async {
-      emit(state.copyWith(formStatus: FormSubmitting()));
+      emit(state.copyWith(formResetPassword: FormSubmitting()));
       final resetPassword = await resetPasswordUseCase.call(event.email);
       resetPassword.fold((failed) {
         emit(
           state.copyWith(
-            formStatus: SubmissionFailed(exception: Exception(failed.message)),
+            formResetPassword:
+                SubmissionFailed(exception: Exception(failed.message)),
             errorMessage: failed.message,
           ),
         );
       }, (successful) {
         emit(state.copyWith(
-          formStatus: SubmissionSuccess(),
+          formResetPassword: SubmissionSuccess(),
           statusCode: successful.statusCode,
           message: successful.message,
         ));

@@ -17,6 +17,10 @@ class Api {
     }
   }
 
+  static void clearHeaders() {
+    _headers.clear();
+  }
+
   // Parsea un json en formato string a un Map
   // Returns. Map String, dynamic
   static dynamic decode(String response) => json.decode(response);

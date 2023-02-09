@@ -61,6 +61,31 @@ class AuthDataSource {
   }
 
   Future<ServerValidate> resetPassword(String email) async {
+    // var headers = {'Content-Type': 'application/json'};
+    // var request = http.Request('POST', Uri.parse(Endpoints.resetPassword));
+    // request.body = jsonEncode({"email": email});
+    // request.headers.addAll(headers);
+    // http.StreamedResponse response = await request.send();
+    // final responseString = await response.stream.bytesToString();
+    // final decodedMap = json.decode(responseString);
+    // if (response.statusCode == 200) {
+    //   bool success = false;
+
+    //   if (decodedMap['statusCode'] == 200) {
+    //     success = true;
+    //   }
+    //   return success
+    //       ? ServerValidate(
+    //           message: "Password send to your email", statusCode: 200)
+    //       : throw InvalidData(
+    //           "We could not reset your password. Make sure your current user is correct");
+    // } else {
+    //   throw InvalidData(
+    //       "We could not reset your password. Make sure your current user is correct");
+    // }
+
+    Api.clearHeaders();
+    Api.setHeaders();
     final response = await Api.post(
       Endpoints.resetPassword,
       {
@@ -70,16 +95,16 @@ class AuthDataSource {
     if (response["statusCode"] == 200) {
       return ServerValidate(message: "Password sent to email", statusCode: 200);
     } else {
+      print(response['statusCode']);
       throw InvalidData("Could not save changes");
     }
   }
 
   Future<ServerValidate> changePassword(
       ChangePasswordEntity changePassword) async {
-    var headers = {
-      'Authorization':
-          'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY3NTgyOTc5NiwianRpIjoiY2Q0ZjRkNDAtZjk3Zi00N2FlLTllZjUtZTJiYjI5M2FlNGYxIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6InNhbGJpc3NlckBib25uZXR0YW5hbHl0aWNzLmNvbSIsIm5iZiI6MTY3NTgyOTc5NiwiZXhwIjoxNjc1OTE2MTk2fQ.n5tEuDiS9bPrT5gO41IsyFHBy9bQAu_BC-F1MkqWbzg'
-    };
+    final prefs = await SharedPreferences.getInstance();
+    String bearerToken = prefs.getString('Basic')!;
+    var headers = {'Authorization': 'Bearer $bearerToken'};
     var request =
         http.MultipartRequest('POST', Uri.parse(Endpoints.changePassword));
     request.fields.addAll(

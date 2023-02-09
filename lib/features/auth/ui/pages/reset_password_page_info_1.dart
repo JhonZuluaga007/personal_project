@@ -11,16 +11,24 @@ import 'package:personal_project/navigationBar/navigation_bar_widget.dart';
 import '../../../../common_ui/common_widgets/buttons/main_button_widget.dart';
 import '../../../../common_ui/common_widgets/responsive/dynamic_container_widget.dart';
 import '../../../../common_ui/common_widgets/text_field/text_field_with_border_widget.dart';
+import '../../../medical_history/presentation/widgets/done_alert_widget.dart';
+import '../../../medical_history/presentation/widgets/error_alert_widget.dart';
 
-class ResetPasswordPageInfo extends StatelessWidget {
+class ResetPasswordPageInfo extends StatefulWidget {
   const ResetPasswordPageInfo({Key? key}) : super(key: key);
+
+  @override
+  State<ResetPasswordPageInfo> createState() => _ResetPasswordPageInfoState();
+}
+
+class _ResetPasswordPageInfoState extends State<ResetPasswordPageInfo> {
+  final TextEditingController emailController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     final wColor = ThemesIdx20();
-
-    final TextEditingController emailController = TextEditingController();
+    final authBloc = BlocProvider.of<AuthBloc>(context);
 
     return MyAppScaffold(
       color: Colors.white,
@@ -55,6 +63,7 @@ class ResetPasswordPageInfo extends StatelessWidget {
           maxWidth: double.infinity,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            //TODO VALIDATE A EMAIL
             TextFieldWithBorderWidget(
               key: const Key('textFieldNameLogin'),
               requiresTranslate: true,
@@ -73,22 +82,39 @@ class ResetPasswordPageInfo extends StatelessWidget {
         SizedBox(height: height * 0.049),
         BlocConsumer<AuthBloc, AuthState>(
           listener: (BuildContext context, state) {
-            if (state.formStatus is SubmissionSuccess) {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => const NavBarPage(
-                          initialPage: 'login',
-                        )),
-              );
-            } else if (state.formStatus is SubmissionFailed) {
-              final snackBar = SnackBar(
-                  content: Text(state.errorMessage),
-                  action: SnackBarAction(
-                    label: 'Cerrar',
-                    onPressed: () {},
-                  ));
-              ScaffoldMessenger.of(context).showSnackBar(snackBar);
+            if (state.formResetPassword is SubmissionSuccess) {
+              Navigator.pushNamed(context, 'login');
+              doneSendInfo(
+                  context: context,
+                  mainIcon: Icon(
+                    Icons.check,
+                    size: height * 0.15,
+                    color: wColor.mapColors['C00'],
+                  ),
+                  titleText: 'alert_text_one',
+                  paddingHeight: height * 0.25,
+                  infoText: 'alert_text_password_updated',
+                  mainButton: 'alert_text_three',
+                  mainButtonFunction: () {
+                    authBloc.add(LogOut());
+
+                    Navigator.pop(context);
+                  });
+            } else if (state.formResetPassword is SubmissionFailed) {
+              errorAlertInfoPop(
+                  context: context,
+                  mainIcon: Icon(
+                    Icons.cancel,
+                    color: wColor.mapColors['C01'],
+                    size: 46,
+                  ),
+                  titleText: 'alert_text_error_one',
+                  paddingHeight: height * 0.25,
+                  infoText: 'alert_text_error',
+                  mainButton: 'alert_text_error_three',
+                  mainButtonFunction: () {
+                    Navigator.pop(context);
+                  });
             }
           },
           builder: (context, state) {
