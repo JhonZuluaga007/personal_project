@@ -102,7 +102,6 @@ class _EditUserFromBottomPageState extends State<EditUserFromBottomPage> {
                               Icons.edit_outlined,
                               size: 24,
                             ),
-                            //TODO POPUP IMAGE FROM CAMERA OR FROM GALLERY
                             onPressed: () => buildPopUpImage(context, () {
                               getImage(ImageSource.camera);
                             }, () {
@@ -121,7 +120,6 @@ class _EditUserFromBottomPageState extends State<EditUserFromBottomPage> {
                             Icons.edit_outlined,
                             size: 24,
                           ),
-                          // TODO POPUP IMAGE FROM CAMERA OR FROM GALLERY
                           onPressed: () => buildPopUpImage(context, () {
                             getImage(ImageSource.camera);
                           }, () {

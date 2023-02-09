@@ -11,7 +11,7 @@
 
     "02_forgotten_password_title" : "Contraseña olvidada",
     "02_forgotten_password_text_one" : "Utiliza tu email o el usuario que utilizas para ingresar a la aplicación",
-    "02_forgotten_password_label_input" : "Email o usuario",
+    "02_forgotten_password_label_input" : "Email",
     "02_forgotten_password_hint_input" : "",
     "02_forgotten_password_button" : "Enviar",
     "02_forgotten_password_text_two" : "Volver a inicio de sesión",
@@ -286,6 +286,9 @@
     "alert_text_one": "Listo!",
     "alert_text_two": "Cambios guardados ",
     "alert_text_three": "Ok",
+    "alert_text_reset": "Password has been sent to your email.",
+    "alert_text_error": "There was an error reseting your password please try again.",
+
 
     "alert_text_error_one": "Error!",
     "alert_text_error_two": "We could not find a test with that Id",

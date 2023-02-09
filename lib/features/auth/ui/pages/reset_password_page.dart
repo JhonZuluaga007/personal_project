@@ -21,13 +21,14 @@ class ResetPasswordPage extends StatefulWidget {
 }
 
 class _ResetPasswordPageState extends State<ResetPasswordPage> {
+  final TextEditingController oldPassword = TextEditingController();
+  final TextEditingController newPassword = TextEditingController();
+  final TextEditingController confirmPassword = TextEditingController();
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     final wColor = ThemesIdx20();
-    final TextEditingController oldPassword = TextEditingController();
-    final TextEditingController newPassword = TextEditingController();
-    final TextEditingController confirmPassword = TextEditingController();
+    final authBloc = BlocProvider.of<AuthBloc>(context);
 
     return MyAppScaffold(
       color: Colors.white,
@@ -132,7 +133,8 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                     mainButton: 'alert_text_three',
                     mainButtonFunction: () {
                       // Navigator.pushReplacementNamed(context, 'login');
-                      //TODO CHECK!!!
+                      authBloc.add(LogOut());
+
                       Navigator.pop(context);
                     });
               } else if (state.formChangePasswordStatus is SubmissionFailed) {
