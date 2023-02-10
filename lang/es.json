@@ -12,7 +12,7 @@
     "02_forgotten_password_title" : "Contraseña olvidada",
     "02_forgotten_password_text_one" : "Utiliza tu email o el usuario que utilizas para ingresar a la aplicación",
     "02_forgotten_password_label_input" : "Email",
-    "02_forgotten_password_hint_input" : "",
+    "02_forgotten_password_hint_input" : "test@test.com",
     "02_forgotten_password_button" : "Enviar",
     "02_forgotten_password_text_two" : "Volver a inicio de sesión",
     "02_forgotten_password_text_three" : "El sistema te enviara un correo con instrucciones para activar tu nueva Contraseña.",
@@ -297,7 +297,8 @@
     "alert_text_password_error": "There was an error, and your password couldnt be updated",
 
 
-    "match_password": "Asegurate de que tu contraseña coincida"
+    "match_password": "Asegurate de que tu contraseña coincida",
+    "password_validate_text_one": "Campo no valido, se necesita tener como minimo 6 caracteres",
 
-
+    "user_name_text_one": "Enter a valid email"
 }
