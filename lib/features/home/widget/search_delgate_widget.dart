@@ -6,6 +6,7 @@ import 'package:personal_project/features/home/widget/history_widgets.dart/item_
 import 'package:personal_project/features/home/widget/history_widgets.dart/pop_up_widget.dart';
 import 'package:personal_project/icons/icons.dart';
 
+import '../../../common_ui/common_widgets/text/text_widget.dart';
 import '../../../config/theme/theme.dart';
 import '../../test_history/bloc/test_history_bloc.dart';
 import '../../test_history/domain/entities/test_history_entity.dart';
@@ -49,9 +50,16 @@ class SearchDelegateWidget extends SearchDelegate {
         child: SizedBox(
           width: size.width * 0.4,
           height: size.height * 0.4,
-          child: Image.asset(
-            IconsFolderCovid.popUpSkyTimer,
-            fit: BoxFit.contain,
+          child: Center(
+            child: TextWidget(
+              text: "test_history_search_delegate",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: wColor.mapColors["Black"],
+                fontSize: 24,
+                fontWeight: FontWeight.w600
+              ),
+            ),
           ),
         )
       ),

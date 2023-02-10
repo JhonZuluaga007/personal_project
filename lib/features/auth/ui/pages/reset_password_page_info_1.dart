@@ -36,7 +36,7 @@ class _ResetPasswordPageInfoState extends State<ResetPasswordPageInfo> {
     final wColor = ThemesIdx20();
     final authBloc = BlocProvider.of<AuthBloc>(context);
     final emailTraslate = AppLocalizations.of(context)!
-                    .translate("user_name_text_one");
+                    .translate("email_text_invalid");
 
     return MyAppScaffold(
       color: Colors.white,

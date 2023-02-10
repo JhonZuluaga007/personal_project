@@ -23,7 +23,7 @@ class TestHistoryBloc extends Bloc<TestHistoryEvent, TestHistoryState> {
                     SubmissionFailed(exception: Exception(error.message)),
               )),
           (testHistory) => emit(state.copyWith(
-              formStatus: SubmissionSuccess(), testHistory: testHistory)));
+              formStatus: SubmissionSuccess(), allTestHistoryList: testHistory,)));
     });
     on<GetViewTestEvent>((event, emit) async {
       emit(state.copyWith(formStatus: FormSubmitting()));
@@ -35,7 +35,7 @@ class TestHistoryBloc extends Bloc<TestHistoryEvent, TestHistoryState> {
                     SubmissionFailed(exception: Exception(error.message)),
               )),
           (testView) => emit(state.copyWith(
-              formStatus: SubmissionSuccess(), testView: testView)));
+              formStatus: SubmissionSuccess(), /*testView: testView*/)));
     });
   }
 }
