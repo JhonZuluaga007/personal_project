@@ -26,7 +26,7 @@ class SearchDelegateWidget extends SearchDelegate {
     return [
       IconButton(
         onPressed: () => query = "",
-        icon: Icon(Icons.clear, color: wColor.mapColors["P00"],)
+        icon: Icon(Icons.clear, color: wColor.mapColors["P00"])
       )
     ];
   }
@@ -61,15 +61,13 @@ class SearchDelegateWidget extends SearchDelegate {
   @override
   Widget buildResults(BuildContext context) {
 
-    final listHistoryState = BlocProvider.of<TestHistoryBloc>(context).state;
-
     if(query.trim().isEmpty){
       return _emptyContainer(context);
     }
 
 
-    for (var i = 0; i < listHistoryState.testHistory.length; i++) {
-      _filterTestHistoryList = listHistoryState.testHistory.where((testHistory){
+    for (var i = 0; i < listTestHistoryState.length; i++) {
+      _filterTestHistoryList = listTestHistoryState.where((testHistory){
         return testHistory.code.toString().toLowerCase().contains(query.trim().toLowerCase(), 0);
       }).toList();
     }
@@ -85,14 +83,12 @@ class SearchDelegateWidget extends SearchDelegate {
   @override
   Widget buildSuggestions(BuildContext context) {
 
-    final listHistoryState = BlocProvider.of<TestHistoryBloc>(context).state;
-
     if(query.trim().isEmpty){
       return _emptyContainer(context);
     }
 
-    for (var i = 0; i < listHistoryState.testHistory.length; i++) {
-      _filterTestHistoryList = listHistoryState.testHistory.where((testHistory){
+    for (var i = 0; i < listTestHistoryState.length; i++) {
+      _filterTestHistoryList = listTestHistoryState.where((testHistory){
         return testHistory.code.toString().toLowerCase().contains(query.trim().toLowerCase(), 0);
       }).toList();
     }
@@ -105,13 +101,6 @@ class SearchDelegateWidget extends SearchDelegate {
     );
   }
 }
-
-// Future<List<TestHistoryEntity>> testHistoryList(String query, BuildContext context, int index) async{
-
-//   final stateHistoryTest = BlocProvider.of<TestHistoryBloc>(context).state;
-
-//   return stateHistoryTest.testHistory;
-// }
 
 class ItemTestData extends StatelessWidget {
   final String codeTest;

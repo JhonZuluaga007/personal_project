@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:personal_project/common_ui/common_widgets/buttons/main_button_widget.dart';
 import 'package:personal_project/common_ui/common_widgets/text_field/text_field_with_border_widget.dart';
+import 'package:personal_project/common_ui/utils/utils_string_password.dart';
+import 'package:personal_project/common_ui/utils/utils_email.dart';
 import 'package:personal_project/config/helpers/form_submission_status.dart';
 import 'package:personal_project/config/theme/theme.dart';
-import 'package:personal_project/features/antigen/data/data_source/antigen_data_source.dart';
+import 'package:personal_project/features/auth/data/models/user_model.dart';
+import '../../../../app_localizations.dart';
 import '../../../../common_ui/common_pages/my_app_scaffold_page.dart';
-import '../../../../common_ui/common_widgets/responsive/dynamic_container_widget.dart';
 import '../../../../common_ui/common_widgets/text/text_widget.dart';
 import '../../../../navigationBar/navigation_bar_widget.dart';
 import '../../bloc/auth_bloc.dart';
@@ -23,13 +25,22 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+
+  bool passwordValidateError = false;
+  bool emailValidateError = false;
   bool isObscure = true;
+
+  final GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
     final wColor = ThemesIdx20();
+    final emailTraslate = AppLocalizations.of(context)!
+                        .translate("user_name_text_one");
+    final passwordTraslate = AppLocalizations.of(context)!
+                        .translate("password_validate_text_one");
 
     return MyAppScaffold(
       color: Colors.white,
@@ -59,54 +70,133 @@ class _LoginPageState extends State<LoginPage> {
           style: TextStyle(fontSize: 14),
         ),
         SizedBox(height: height * 0.05),
-        DynamicContainerWidget(
-          minWidth: double.infinity,
-          maxWidth: double.infinity,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            TextFieldWithBorderWidget(
-              key: const Key('textFieldNameLogin'),
-              requiresTranslate: true,
-              textColor: wColor.mapColors['P00'],
-              labelText: '01_login_input_one',
-              textEditingController: emailController,
-              hintText: '01_login_input_hint_one',
-              textStyle:
-                  TextStyle(color: wColor.mapColors['IDGrey'], fontSize: 14),
-              hintStyle:
-                  TextStyle(color: wColor.mapColors['IDGrey'], fontSize: 1),
-            ),
-            SizedBox(height: height * 0.03),
-            TextFieldWithBorderWidget(
-              key: const Key('textFieldPasswordLogin'),
-              requiresTranslate: true,
-              isPassword: isObscure,
-              labelText: '01_login_input_two',
-              borderColor: wColor.mapColors['IDGrey'],
-              textColor: Colors.white,
-              fillColor: wColor.mapColors['P00'],
-              textEditingController: passwordController,
-              hintStyle:
-                  TextStyle(color: wColor.mapColors['IDGrey'], fontSize: 14),
-              textStyle:
-                  TextStyle(color: wColor.mapColors['IDGrey'], fontSize: 14),
-              suffixIcon: Padding(
-                padding: const EdgeInsets.only(left: 10),
-                child: IconButton(
-                  icon: Icon(
-                    isObscure
-                        ? Icons.remove_red_eye
-                        : Icons.remove_red_eye_outlined,
-                  ),
-                  color: wColor.mapColors['IDGrey'],
-                  onPressed: () => setState(() {
-                    isObscure = !isObscure;
-                  }),
-                ),
+        Form(
+          key: loginFormKey,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              TextFieldWithBorderWidget(
+                validator: (valueUserName){
+                  if (UtilsEmailUser.validateUserName(emailController.text)) {
+                    return null;
+                  }
+                  else{
+                    return emailTraslate;
+                  }
+                },
+                onChanged: (userName) {
+                  if (UtilsEmailUser.validateUserName(emailController.text)) {
+                    setState(() {
+                      emailValidateError = false;
+                    });
+                  } 
+                  else {
+                    setState(() {
+                      emailValidateError = true;
+                    });
+                  }
+                  return null;
+                },
+                textErrorValidate: emailValidateError,
+                textError: emailTraslate,
+                key: const Key('textFieldNameLogin'),
+                requiresTranslate: true,
+                textColor: wColor.mapColors['P00'],
+                labelText: '01_login_input_one',
+                borderColor: emailValidateError 
+                      ? wColor.mapColors['C01']
+                      : wColor.mapColors["IDGrey"],
+                textEditingController: emailController,
+                hintText: '01_login_input_hint_one',
+                textStyle:
+                    TextStyle(
+                      color: emailValidateError 
+                      ? wColor.mapColors['C01']
+                      : wColor.mapColors["IDGrey"], 
+                      fontSize: 14
+                    ),
+                hintStyle:
+                    TextStyle(
+                      color: emailValidateError 
+                      ? wColor.mapColors['C01']
+                      : wColor.mapColors["IDGrey"], 
+                      fontSize: 1
+                    ),
               ),
-              hintText: '01_login_input_hint_two',
-            ),
-          ],
+              if (emailValidateError)
+                SizedBox(
+                  height: height * 0.02,
+                ),
+              SizedBox(height: height * 0.03),
+              TextFieldWithBorderWidget(
+                onChanged: (password) {
+                  if (UtilsStringPasword.isValidPassword(password!) ||
+                      password.length < 6) {
+                    setState(() {
+                      passwordValidateError = true;
+                    });
+                  } else {
+                    setState(() {
+                      passwordValidateError = false;
+                    });
+                  }
+                },
+                validator: (password) {
+                  if (UtilsStringPasword.isValidPassword(password!) || password.length < 6) {
+                    return passwordTraslate;
+                  }
+                  else {
+                    return null;
+                  }
+                },
+                textErrorValidate: passwordValidateError,
+                textError: passwordTraslate,
+                key: const Key('textFieldPasswordLogin'),
+                requiresTranslate: true,
+                isPassword: isObscure,
+                labelText: '01_login_input_two',
+                borderColor: passwordValidateError 
+                      ? wColor.mapColors['C01']
+                      : wColor.mapColors["IDGrey"],
+                textColor: Colors.white,
+                fillColor: wColor.mapColors['P00'],
+                textEditingController: passwordController,
+                hintStyle:
+                    TextStyle(
+                      color: passwordValidateError 
+                      ? wColor.mapColors['C01']
+                      : wColor.mapColors["IDGrey"], 
+                      fontSize: 14
+                    ),
+                textStyle:
+                    TextStyle(
+                      color: passwordValidateError 
+                      ? wColor.mapColors['C01']
+                      : wColor.mapColors["IDGrey"], 
+                      fontSize: 14
+                    ),
+                suffixIcon: Padding(
+                  padding: const EdgeInsets.only(left: 10),
+                  child: IconButton(
+                    icon: Icon(
+                      isObscure
+                          ? Icons.visibility_off
+                          : Icons.visibility,
+                    ),
+                    color: wColor.mapColors['IDGrey'],
+                    onPressed: () => setState(() {
+                      isObscure = !isObscure;
+                    }),
+                  ),
+                ),
+                hintText: '01_login_input_hint_two',
+              ),
+              if (passwordValidateError)
+                SizedBox(
+                  height: height * 0.02,
+                ),
+            ],
+          ),
         ),
         SizedBox(height: height * 0.03),
         BlocConsumer<AuthBloc, AuthState>(
@@ -139,9 +229,15 @@ class _LoginPageState extends State<LoginPage> {
                   borderColor: wColor.mapColors['IDPink'],
                   textColor: Colors.white,
                   buttonString: '01_login_button_one',
-                  onPressed: () {
-                    BlocProvider.of<AuthBloc>(context).add(LoginUserE(
-                        emailController.text, passwordController.text));
+                  onPressed: () { 
+                    setState(() {
+                      if (emailController.text.isNotEmpty &&
+                        passwordController.text.isNotEmpty && passwordController.text.length >= 6) {
+                        BlocProvider.of<AuthBloc>(context).add(LoginUserE(
+                            emailController.text, passwordController.text));
+                      } 
+                      else {} 
+                    });
                   },
                   buttonColor: wColor.mapColors['IDPink'],
                 ),

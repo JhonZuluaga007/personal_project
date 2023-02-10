@@ -12,7 +12,7 @@
     "02_forgotten_password_title" : "Forgotten Password",
     "02_forgotten_password_text_one" : "Please enter your email or the username you use to log into the application",
     "02_forgotten_password_label_input" : "E-mail address",
-    "02_forgotten_password_hint_input" : "",
+    "02_forgotten_password_hint_input" : "test@test.com",
     "02_forgotten_password_button" : "Submit",
     "02_forgotten_password_text_two" : "Back to login page",
     "02_forgotten_password_text_three" : "The system will send you an email with instructions for setting your new password.",
@@ -297,8 +297,8 @@
     "alert_text_password_updated": "Password has been updated successfully",
     "alert_text_password_error": "There was an error, and your password couldnt be updated",
 
-    "match_password": "Make sure your passwords match"
+    "match_password": "Make sure your passwords match",
+    "password_validate_text_one": "Invalid field, it must have at least 6 characters",
 
-
-
+    "user_name_text_one": "Enter a valid email"
 }

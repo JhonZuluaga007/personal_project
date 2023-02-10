@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:personal_project/config/theme/theme.dart';
+import 'package:personal_project/features/home/widget/test_widgets/app_bar_widget.dart';
 
 import '../../../app_localizations.dart';
 
@@ -25,7 +26,11 @@ class TextFieldWithBorderWidget extends StatelessWidget {
       this.isPassword,
       this.widthBorder,
       required this.requiresTranslate,
-      this.validator})
+      this.validator, 
+      this.onChanged, 
+      this.textErrorValidate, 
+      this.textError, 
+      })
       : super(key: key);
 
   final double? width;
@@ -46,64 +51,91 @@ class TextFieldWithBorderWidget extends StatelessWidget {
   final Widget? suffixIcon;
   final bool? isPassword;
   final String? Function(String?)? validator;
+  final String? Function(String?)? onChanged;
   final double? widthBorder;
   final bool requiresTranslate;
+  final bool? textErrorValidate;
+  final String? textError;
 
   @override
   Widget build(BuildContext context) {
     final color = ThemesIdx20();
     final size = MediaQuery.of(context).size;
-    return SizedBox(
-      width: width ?? size.width * 0.9,
-      height: height ?? size.height * 0.06,
-      child: TextFormField(
-        controller: textEditingController,
-        keyboardType: textInputType ?? TextInputType.emailAddress,
-        autofocus: false,
-        obscureText: isPassword ?? false,
-        validator: validator,
-        decoration: InputDecoration(
-          floatingLabelBehavior: FloatingLabelBehavior.always,
-          labelText: labelText != null
-              ? AppLocalizations.of(context)!.translate(labelText!)
-              : null,
-          hintText: requiresTranslate
-              ? AppLocalizations.of(context)!.translate(hintText)
-              : hintText,
-          suffixIcon: suffixIcon,
-          hintTextDirection: hintTextDirection ?? TextDirection.ltr,
-          labelStyle: textStyle ??
-              TextStyle(
-                fontFamily: 'Poppins',
-                color: textColor ?? color.mapColors['IDGrey'],
-                fontSize: 16,
-                fontWeight: FontWeight.normal,
-              ),
-          hintStyle: hintStyle ??
-              TextStyle(
-                fontFamily: 'Poppins',
-                color: textColor ?? color.mapColors['IDGrey'],
-                fontSize: 16,
-                fontWeight: FontWeight.normal,
-              ),
-          enabledBorder: enabledBorder ??
-              OutlineInputBorder(
-                borderSide: BorderSide(
-                    color: borderColor ?? color.mapColors['IDGrey']!,
-                    width: widthBorder ?? 1,
-                    style: BorderStyle.solid),
-              ),
-          focusedBorder: focusedBorder ??
-              OutlineInputBorder(
-                borderSide: BorderSide(
-                  color: borderColor ?? color.mapColors['IDGrey']!,
-                  width: widthBorder ?? 1,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        SizedBox(
+          width: width ?? size.width * 0.9,
+          height: height ?? size.height * 0.06,
+          child: TextFormField(
+            controller: textEditingController,
+            keyboardType: textInputType ?? TextInputType.emailAddress,
+            autofocus: false,
+            obscureText: isPassword ?? false,
+            validator: validator,
+            onChanged: onChanged,
+            decoration: InputDecoration(
+              floatingLabelBehavior: FloatingLabelBehavior.always,
+              labelText: labelText != null
+                  ? AppLocalizations.of(context)!.translate(labelText!)
+                  : null,
+              hintText: requiresTranslate
+                  ? AppLocalizations.of(context)!.translate(hintText)
+                  : hintText,
+              suffixIcon: suffixIcon,
+              hintTextDirection: hintTextDirection ?? TextDirection.ltr,
+              labelStyle: textStyle ??
+                  TextStyle(
+                    fontFamily: 'Poppins',
+                    color: textColor ?? color.mapColors['IDGrey'],
+                    fontSize: 16,
+                    fontWeight: FontWeight.normal,
+                  ),
+              hintStyle: hintStyle ??
+                  TextStyle(
+                    fontFamily: 'Poppins',
+                    color: textColor ?? color.mapColors['IDGrey'],
+                    fontSize: 16,
+                    fontWeight: FontWeight.normal,
+                  ),
+              enabledBorder: enabledBorder ??
+                  OutlineInputBorder(
+                    borderSide: BorderSide(
+                        color: borderColor ?? color.mapColors['IDGrey']!,
+                        width: widthBorder ?? 1,
+                        style: BorderStyle.solid),
+                  ),
+              focusedBorder: focusedBorder ??
+                  OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: borderColor ?? color.mapColors['IDGrey']!,
+                      width: widthBorder ?? 1,
+                    ),
+                  ),
+              filled: false,
+              fillColor: fillColor ?? color.mapColors['P00'],
+            ),
+          ),
+        ),
+        Visibility(
+          visible: textErrorValidate ?? false,
+          child: Column(
+            children: [
+              SizedBox(height: size.height * 0.0045),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: size.width * 0.023),
+                child: Text(
+                  textError ?? "Hola", 
+                  style: TextStyle(
+                    color: wColor.mapColors["C01"],
+                    fontSize: 13
+                  ),
                 ),
               ),
-          filled: false,
-          fillColor: fillColor ?? color.mapColors['P00'],
-        ),
-      ),
+            ],
+          )
+        )
+      ],
     );
   }
 }

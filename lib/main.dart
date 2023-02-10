@@ -62,7 +62,7 @@ class MyApp extends StatelessWidget {
             return Locale(locale.languageCode.toString());
           },
           supportedLocales: AppLocalizations.supportedLocales,
-          initialRoute: "splash",
+          initialRoute: "resetInfo",
           routes: {
             "splash": (_) => const SplashScreenPage(),
             "onboarding": (_) => const IntroOnboardingPage(),

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../../app_localizations.dart';
+import '../../../../common_ui/utils/utils_email.dart';
 import '../../../../config/theme/theme.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../features/auth/bloc/auth_bloc.dart';
@@ -24,11 +26,17 @@ class ResetPasswordPageInfo extends StatefulWidget {
 class _ResetPasswordPageInfoState extends State<ResetPasswordPageInfo> {
   final TextEditingController emailController = TextEditingController();
 
+  final GlobalKey<FormState> resetPasswordFormKey = GlobalKey<FormState>();
+
+  bool emailValidateError = false;
+
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     final wColor = ThemesIdx20();
     final authBloc = BlocProvider.of<AuthBloc>(context);
+    final emailTraslate = AppLocalizations.of(context)!
+                    .translate("user_name_text_one");
 
     return MyAppScaffold(
       color: Colors.white,
@@ -58,26 +66,63 @@ class _ResetPasswordPageInfoState extends State<ResetPasswordPageInfo> {
           style: TextStyle(fontSize: 14),
         ),
         SizedBox(height: height * 0.05),
-        DynamicContainerWidget(
-          minWidth: double.infinity,
-          maxWidth: double.infinity,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            //TODO VALIDATE A EMAIL
-            TextFieldWithBorderWidget(
-              key: const Key('textFieldNameLogin'),
-              requiresTranslate: true,
-              textColor: wColor.mapColors['P00'],
-              labelText: '02_forgotten_password_label_input',
-              textEditingController: emailController,
-              hintText: '02_forgotten_password_hint_input',
-              textStyle:
-                  TextStyle(color: wColor.mapColors['IDGrey'], fontSize: 14),
-              hintStyle:
-                  TextStyle(color: wColor.mapColors['IDGrey'], fontSize: 1),
-            ),
-            SizedBox(height: height * 0.03),
-          ],
+        Form(
+          key: resetPasswordFormKey,
+          child: DynamicContainerWidget(
+            minWidth: double.infinity,
+            maxWidth: double.infinity,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              //TODO VALIDATE A EMAIL
+              TextFieldWithBorderWidget(
+                textErrorValidate: emailValidateError,
+                textError: emailTraslate,
+                textInputType: TextInputType.emailAddress,
+                key: const Key('textFieldNameLogin'),
+                requiresTranslate: true,
+                textColor: wColor.mapColors['P00'],
+                labelText: '02_forgotten_password_label_input',
+                textEditingController: emailController,
+                hintText: '02_forgotten_password_hint_input',
+                borderColor: emailValidateError 
+                      ? wColor.mapColors['C01']
+                      : wColor.mapColors["IDGrey"],
+                textStyle: TextStyle(
+                  color: emailValidateError 
+                      ? wColor.mapColors['C01']
+                      : wColor.mapColors["IDGrey"], 
+                  fontSize: 14
+                ),
+                hintStyle: TextStyle(
+                  color: emailValidateError 
+                      ? wColor.mapColors['C01']
+                      : wColor.mapColors["IDGrey"], 
+                  fontSize: 1
+                ),
+                validator: (emailValidate){
+                 if (UtilsEmailUser.validateEmail(emailValidate!)) {
+                    return null;
+                  }
+                  else{
+                    return emailTraslate;
+                  }
+                },
+                onChanged: (emailValue) {
+                  if (UtilsEmailUser.validateEmail(emailValue!)) {
+                    setState(() {
+                      emailValidateError = false;
+                    });
+                  } 
+                  else {
+                    setState(() {
+                      emailValidateError = true;
+                    });
+                  }
+                },
+              ),
+              SizedBox(height: height * 0.03),
+            ],
+          ),
         ),
         SizedBox(height: height * 0.049),
         BlocConsumer<AuthBloc, AuthState>(
@@ -128,8 +173,10 @@ class _ResetPasswordPageInfoState extends State<ResetPasswordPageInfo> {
                   textColor: Colors.white,
                   buttonString: '02_forgotten_password_button',
                   onPressed: () {
-                    BlocProvider.of<AuthBloc>(context)
+                    if(emailController.text.isNotEmpty){
+                      BlocProvider.of<AuthBloc>(context)
                         .add(ResetPassword(emailController.text));
+                    }
                   },
                   buttonColor: wColor.mapColors['IDPink'],
                 ),
