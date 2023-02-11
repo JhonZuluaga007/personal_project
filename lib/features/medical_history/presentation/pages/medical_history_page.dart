@@ -40,6 +40,7 @@ class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
 
   @override
   void initState() {
+    final stateTestMedical = BlocProvider.of<MedicalHistoryBloc>(context).state;
     AntigenDataSource()
         .validateAntigen('63cc20b184ce548f26c07d39', 'A000004447');
     //TODO GET THE USER ID NOT BURN VALUE

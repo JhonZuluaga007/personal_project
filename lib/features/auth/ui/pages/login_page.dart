@@ -37,7 +37,7 @@ class _LoginPageState extends State<LoginPage> {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
     final wColor = ThemesIdx20();
-    final emailTraslate = AppLocalizations.of(context)!
+    final userNameTraslate = AppLocalizations.of(context)!
                         .translate("user_name_text_one");
     final passwordTraslate = AppLocalizations.of(context)!
                         .translate("password_validate_text_one");
@@ -77,28 +77,28 @@ class _LoginPageState extends State<LoginPage> {
             children: [
               TextFieldWithBorderWidget(
                 validator: (valueUserName){
-                  if (UtilsEmailUser.validateUserName(emailController.text)) {
-                    return null;
+                  if (UtilsEmailUser.validateUserName(valueUserName!) || emailController.text.length < 4) {
+                    return userNameTraslate;
                   }
                   else{
-                    return emailTraslate;
+                    return null;
                   }
                 },
                 onChanged: (userName) {
-                  if (UtilsEmailUser.validateUserName(emailController.text)) {
+                  if (UtilsEmailUser.validateUserName(userName!) || emailController.text.length < 4) {
                     setState(() {
-                      emailValidateError = false;
+                      emailValidateError = true;
                     });
                   } 
                   else {
                     setState(() {
-                      emailValidateError = true;
+                      emailValidateError = false;
                     });
                   }
                   return null;
                 },
                 textErrorValidate: emailValidateError,
-                textError: emailTraslate,
+                textError: userNameTraslate,
                 key: const Key('textFieldNameLogin'),
                 requiresTranslate: true,
                 textColor: wColor.mapColors['P00'],

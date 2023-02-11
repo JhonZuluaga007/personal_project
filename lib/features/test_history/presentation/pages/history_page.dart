@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:personal_project/common_ui/common_widgets/text/text_widget.dart';
-import 'package:personal_project/features/auth/bloc/auth_bloc.dart';
-import 'package:personal_project/features/home/widget/history_widgets.dart/pop_up_widget.dart';
-import 'package:personal_project/features/home/widget/search_delgate_widget.dart';
-import 'package:personal_project/features/test_history/bloc/test_history_bloc.dart';
 
-import '../../../config/theme/theme.dart';
-import '../widget/history_widgets.dart/item_widget.dart';
+import '../../../auth/bloc/auth_bloc.dart';
+import '../../bloc/test_history_bloc.dart';
+import '../../../../config/theme/theme.dart';
+import '../widgets/history_test_widget.dart';
+import '../widgets/search_delgate_widget.dart';
+import '../../../../common_ui/common_widgets/text/text_widget.dart';
 
 class HistoryPage extends StatefulWidget {
   const HistoryPage({super.key});
@@ -17,13 +16,19 @@ class HistoryPage extends StatefulWidget {
 }
 
 class _HistoryPageState extends State<HistoryPage> {
+  final double selectedBorder = 2.5;
+  final double unselectedBorder = 1;
+
+  bool allTestHistory = true;
+  bool antigenTestHistoy = false;
+  bool pcrTestHistory = false;
+
   @override
   Widget build(BuildContext context) {
     final wColor = ThemesIdx20();
-
     final size = MediaQuery.of(context).size;
-
     final stateUserId = BlocProvider.of<AuthBloc>(context).state;
+
     BlocProvider.of<TestHistoryBloc>(context)
         .add(GetHistoryTestEvent(stateUserId.userId));
 
@@ -53,8 +58,10 @@ class _HistoryPageState extends State<HistoryPage> {
                         onTap: () {
                           setState(() {
                             showSearch(
-                              context: context,
-                              delegate: SearchDelegateWidget(listTestHistoryState: state.testHistory));
+                                context: context,
+                                delegate: SearchDelegateWidget(
+                                    listTestHistoryState:
+                                        state.allTestHistoryList));
                           });
                         },
                         child: Container(
@@ -120,63 +127,94 @@ class _HistoryPageState extends State<HistoryPage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      Container(
-                        decoration: BoxDecoration(
-                            border: Border.all(color: Colors.black),
-                            borderRadius: BorderRadius.circular(5),
-                            color: Colors.white),
-                        height: size.height * 0.05,
-                        width: size.width * 0.27,
-                        child: const Center(child: Text('All tests')),
+                      GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            allTestHistory = true;
+                            antigenTestHistoy = false;
+                            pcrTestHistory = false;
+                          });
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                              border: Border.all(
+                                  color: Colors.black,
+                                  width: allTestHistory == true
+                                      ? selectedBorder
+                                      : unselectedBorder),
+                              borderRadius: BorderRadius.circular(5),
+                              color: Colors.white),
+                          height: size.height * 0.05,
+                          width: size.width * 0.27,
+                          child: const Center(child: Text('All tests')),
+                        ),
                       ),
-                      Container(
-                        decoration: BoxDecoration(
-                            border: Border.all(color: Colors.black),
-                            borderRadius: BorderRadius.circular(5),
-                            color: Colors.white),
-                        height: size.height * 0.05,
-                        width: size.width * 0.27,
-                        child: const Center(child: Text('Antigen tests')),
+                      GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            allTestHistory = false;
+                            antigenTestHistoy = true;
+                            pcrTestHistory = false;
+                          });
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                              border: Border.all(
+                                  color: Colors.black,
+                                  width: antigenTestHistoy == true
+                                      ? selectedBorder
+                                      : unselectedBorder),
+                              borderRadius: BorderRadius.circular(5),
+                              color: Colors.white),
+                          height: size.height * 0.05,
+                          width: size.width * 0.27,
+                          child: const Center(child: Text('Antigen tests')),
+                        ),
                       ),
-                      Container(
-                        decoration: BoxDecoration(
-                            border: Border.all(color: Colors.black),
-                            borderRadius: BorderRadius.circular(5),
-                            color: Colors.white),
-                        height: size.height * 0.05,
-                        width: size.width * 0.27,
-                        child: const Center(child: Text('PCR tests')),
+                      GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            allTestHistory = false;
+                            antigenTestHistoy = false;
+                            pcrTestHistory = true;
+                          });
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                              border: Border.all(
+                                  color: Colors.black,
+                                  width: pcrTestHistory == true
+                                      ? selectedBorder
+                                      : unselectedBorder),
+                              borderRadius: BorderRadius.circular(5),
+                              color: Colors.white),
+                          height: size.height * 0.05,
+                          width: size.width * 0.27,
+                          child: const Center(child: Text('PCR tests')),
+                        ),
                       ),
                     ],
                   ),
-                  SizedBox(height: size.height * 0.025),
+                  SizedBox(height: size.height * 0.030),
                   SizedBox(
                     height: size.height * 0.48,
                     child: SingleChildScrollView(
-                      child: Column(
-                        children: List<Widget>.generate(
-                            state.testHistory.length, (index) {
-                          return Column(
-                            children: [
-                              ItemWidget(
-                                size: size,
-                                wColor: wColor,
-                                onPressed: () {
-                                  BlocProvider.of<TestHistoryBloc>(context).add(
-                                      GetViewTestEvent(
-                                          state.testHistory[index].id!.oid!));
-                                  popUpWidget(context);
-                                },
-                                textTestKit: state.testHistory[index].code!,
-                              ),
-                              SizedBox(height: size.height * 0.035),
-                            ],
-                          );
-                        }),
-                      ),
+                      child: Stack(children: [
+                        HistoryTestWidget(
+                          isSelect: allTestHistory,
+                          testList: state.allTestHistoryList,
+                        ),
+                        HistoryTestWidget(
+                          isSelect: antigenTestHistoy,
+                          testList: state.antigenTestHistoryList,
+                        ),
+                        HistoryTestWidget(
+                          isSelect: pcrTestHistory,
+                          testList: state.pcrTestHistoryList,
+                        ),
+                      ]),
                     ),
                   ),
-                  SizedBox(height: size.height * 0.05),
                 ],
               );
             },

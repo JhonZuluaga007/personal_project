@@ -1,5 +1,4 @@
 import 'package:either_dart/either.dart';
-import 'package:personal_project/features/test_history/domain/entities/test_view_entity.dart';
 
 import '../data_source/test_history_data_source.dart';
 import '../../domain/entities/test_history_entity.dart';
@@ -22,19 +21,5 @@ class TestHistoryRepositoryImpl extends TestHistoryRepository {
     } on InvalidData catch (invalidData) {
       return Left(invalidData);
     }
-    
-  }
-
-  @override
-  Future<Either<InvalidData, List<TestViewEntity>>> getViewTest(
-    String testId) async {
-    try {
-      final List<TestViewEntity> response =
-          await testHistoryDataSource.getViewTest(testId);
-      return Right(response);
-    } on InvalidData catch (invalidData) {
-      return Left(invalidData);
-    }
-    
   }
 }

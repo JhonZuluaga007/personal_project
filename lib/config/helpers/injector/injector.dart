@@ -1,17 +1,17 @@
 import 'package:kiwi/kiwi.dart';
-import 'package:personal_project/features/auth/bloc/auth_bloc.dart';
-import 'package:personal_project/features/auth/domain/use_cases/change_password_use_case.dart';
-import 'package:personal_project/features/auth/domain/use_cases/reset_password_use_case.dart';
-import 'package:personal_project/features/auth/domain/use_cases/user_update_use_case.dart';
-import 'package:personal_project/features/medical_history/data/data_source/medical_data_source.dart';
-import 'package:personal_project/features/medical_history/data/repository/medical_history_repository_impl.dart';
-import 'package:personal_project/features/medical_history/domain/repository/medical_history_repository.dart';
-import 'package:personal_project/features/medical_history/domain/use_cases/get_medical_history_use_case.dart';
-import 'package:personal_project/features/test_history/data/data_source/test_history_data_source.dart';
-import 'package:personal_project/features/test_history/data/repository/test_history_repository_impl.dart';
-import 'package:personal_project/features/test_history/domain/repository/test_history_repository.dart';
-import 'package:personal_project/features/test_history/domain/use_cases/test_history_use_cases.dart';
 
+import '../../../features/auth/domain/use_cases/change_password_use_case.dart';
+import '../../../features/auth/domain/use_cases/reset_password_use_case.dart';
+import '../../../features/auth/domain/use_cases/user_update_use_case.dart';
+import '../../../features/medical_history/data/data_source/medical_data_source.dart';
+import '../../../features/medical_history/data/repository/medical_history_repository_impl.dart';
+import '../../../features/medical_history/domain/repository/medical_history_repository.dart';
+import '../../../features/medical_history/domain/use_cases/get_medical_history_use_case.dart';
+import '../../../features/test_history/data/data_source/test_history_data_source.dart';
+import '../../../features/test_history/data/repository/test_history_repository_impl.dart';
+import '../../../features/test_history/domain/repository/test_history_repository.dart';
+import '../../../features/test_history/domain/use_cases/test_history_use_cases.dart';
+import '../../../features/test_history/domain/use_cases/view_test_use_cases.dart';
 import '../../../features/auth/data/data_source/auth_data_source.dart';
 import '../../../features/auth/data/repository/auth_repository_impl.dart';
 import '../../../features/auth/domain/repository/auth_repository.dart';
@@ -72,6 +72,7 @@ abstract class Injector {
   void _configureMedicalHistoryFactories();
 
   @Register.factory(TestHistoryRepository, from: TestHistoryRepositoryImpl)
+  @Register.factory(ViewTestUseCases)
   @Register.factory(TestHistoryUseCases)
   @Register.factory(TestHistoryDataSource)
   void _configureTestHistoryFactories();

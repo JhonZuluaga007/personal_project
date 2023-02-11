@@ -5,6 +5,7 @@ class TestHistoryEntity {
     required this.code,
     required this.created,
     required this.form,
+    required this.laboratory,
     required this.manufacturer,
     required this.photo,
     required this.result,
@@ -17,6 +18,7 @@ class TestHistoryEntity {
     required this.updated,
     required this.user,
     required this.validity,
+    required this.vialName,
   });
 
   final IdEntity? id;
@@ -24,6 +26,7 @@ class TestHistoryEntity {
   final String? code;
   final CreatedEntity? created;
   final IdEntity? form;
+  final IdEntity? laboratory;
   final IdEntity? manufacturer;
   final List<String?>? photo;
   final List<ResultEntity?>? result;
@@ -36,6 +39,7 @@ class TestHistoryEntity {
   final CreatedEntity? updated;
   final IdEntity? user;
   final List<ValidityEntity?>? validity;
+  final String? vialName;
 }
 
 class IdEntity {

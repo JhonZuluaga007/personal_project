@@ -300,5 +300,9 @@
     "match_password": "Asegurate de que tu contraseña coincida",
     "password_validate_text_one": "Campo no valido, se necesita tener como minimo 6 caracteres",
 
-    "user_name_text_one": "Enter a valid email"
+    "user_name_text_one": "Email no valido, tiene que ser mayor a 4 caracteres",
+    "email_text_invalid": "Email no valido",
+
+    "test_history_empty": "En este momento no tienes ninguna prueba en tu historial",
+    "test_history_search_delegate": "No hay resultados de los que buscas"
 }
