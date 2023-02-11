@@ -18,11 +18,11 @@ class UserData {
       required this.acceptsTerms,
       required this.addresses,
       required this.cellphone,
-      //required this.dateOfBirth,
+      required this.dateOfBirth,
       required this.email,
       required this.ethnicity,
       required this.gender,
-      //required this.image,
+      required this.image,
       required this.informationUpdated,
       required this.isActive,
       required this.isConfirmed,
@@ -45,11 +45,11 @@ class UserData {
   final bool? acceptsTerms;
   final AddressesEntity? addresses;
   final String? cellphone;
-  //final DateEntity? dateOfBirth;
+  final DateOfBirth? dateOfBirth;
   final String? email;
   final List<EthnicityEntity?>? ethnicity;
   final List<GenderEntity?>? gender;
-  //final String? image;
+  final String? image;
   final bool? informationUpdated;
   final bool? isActive;
   final bool? isConfirmed;

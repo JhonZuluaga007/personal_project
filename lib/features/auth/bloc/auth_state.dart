@@ -16,7 +16,7 @@ class AuthState {
   final String? ethnicity;
   final String? gender;
   final String? image;
-  final DateOfBirthEntity? birthDate;
+  final DateOfBirth? birthDate;
   final bool? informationUpdated;
   final bool? isActive;
   final bool? isConfirmed;
@@ -70,7 +70,7 @@ class AuthState {
 
   AuthState copyWith(
       {String? project,
-      DateOfBirthEntity? birthDate,
+      DateOfBirth? birthDate,
       int? statusCode,
       String? token,
       String? userId,
@@ -137,7 +137,7 @@ class AuthState {
 
   AuthState initialState(
           {String? project,
-          DateOfBirthEntity? birthDate,
+          DateOfBirth? birthDate,
           int? statusCode,
           String? token,
           String? userId,

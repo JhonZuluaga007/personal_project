@@ -34,13 +34,13 @@ class InfoColumnWidget extends StatelessWidget {
               text: state.lastname ?? 'Last name',
             ),
             SizedBox(height: size.height * 0.015),
-            InfoContainerWidget(
-              hintText: 'Date of birth',
-              text: state.birthDate != null
-                  ? formatter.format(state.birthDate!.date!)
-                  : 'mm/dd/yyyy',
-              icon: Icons.calendar_month,
-            ),
+            // InfoContainerWidget(
+            //   hintText: 'Date of birth',
+            //   text: state.birthDate != null
+            //       ? formatter.format(state.birthDate!.date!)
+            //       : 'mm/dd/yyyy',
+            //   icon: Icons.calendar_month,
+            // ),
             SizedBox(height: size.height * 0.015),
             InfoContainerWidget(
               hintText: 'Phone number',
