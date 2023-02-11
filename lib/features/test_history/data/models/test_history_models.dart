@@ -26,6 +26,7 @@ class Data extends TestHistoryEntity {
     required String code,
     required Created created,
     required Id form,
+    required Id laboratory,
     required Id manufacturer,
     required List<String> photo,
     required List<Result> result,
@@ -38,12 +39,14 @@ class Data extends TestHistoryEntity {
     required Created updated,
     required Id user,
     required List<Validity> validity,
+    required String vialName,
   }) : super(
           id: id,
           batch: batch,
           code: code,
           created: created,
           form: form,
+          laboratory: laboratory,
           manufacturer: manufacturer,
           photo: photo,
           result: result,
@@ -56,6 +59,7 @@ class Data extends TestHistoryEntity {
           updated: updated,
           user: user,
           validity: validity,
+          vialName: vialName,
         );
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
@@ -63,9 +67,16 @@ class Data extends TestHistoryEntity {
         batch: Id.fromJson(json["batch"]),
         code: json["code"],
         created: Created.fromJson(json["created"]),
-        form: Id.fromJson(json["form"]),
-        manufacturer: Id.fromJson(json["manufacturer"]),
-        photo: List<String>.from(json["photo"].map((x) => x)),
+        form: json["form"] != null ? Id.fromJson(json["form"]) : Id(oid: ""),
+        laboratory: json["laboratory"] != null
+            ? Id.fromJson(json["laboratory"])
+            : Id(oid: ""),
+        manufacturer: json["manufacturer"] != null
+            ? Id.fromJson(json["manufacturer"])
+            : Id(oid: ""),
+        photo: json["photo"] != null
+            ? List<String>.from(json["photo"].map((x) => x))
+            : [],
         result:
             List<Result>.from(json["result"].map((x) => Result.fromJson(x))),
         sampleDate: Created.fromJson(json["sample_date"]),
@@ -73,12 +84,15 @@ class Data extends TestHistoryEntity {
         statusHistory: List<StatusHistory>.from(
             json["status_history"].map((x) => StatusHistory.fromJson(x))),
         stepHistory: json["step_history"] ?? '',
-        swabType: Id.fromJson(json["swab_type"]),
+        swabType: json["swab_type"] != null
+            ? Id.fromJson(json["swab_type"])
+            : Id(oid: ""),
         type: Type.fromJson(json["type"]),
         updated: Created.fromJson(json["updated"]),
         user: Id.fromJson(json["user"]),
         validity: List<Validity>.from(
             json["validity"].map((x) => Validity.fromJson(x))),
+        vialName: json["vial_name"] ?? "",
       );
 }
 
@@ -88,7 +102,7 @@ class Id extends IdEntity {
   }) : super(oid: oid);
 
   factory Id.fromJson(Map<String, dynamic> json) => Id(
-        oid: json["\u0024oid"],
+        oid: json["\u0024oid"] ?? "",
       );
 }
 
@@ -186,6 +200,6 @@ class Validity extends ValidityEntity {
 
   factory Validity.fromJson(Map<String, dynamic> json) => Validity(
         id: Id.fromJson(json["_id"]),
-        validity: json["validity"],
+        validity: json["validity"] ?? "",
       );
 }
