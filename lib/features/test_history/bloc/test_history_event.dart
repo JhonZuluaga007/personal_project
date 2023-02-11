@@ -7,8 +7,3 @@ class GetHistoryTestEvent extends TestHistoryEvent {
   final String userId;
   GetHistoryTestEvent(this.userId);
 }
-
-class GetViewTestEvent extends TestHistoryEvent {
-  final String testId;
-  GetViewTestEvent(this.testId);
-}

@@ -9,7 +9,7 @@ import 'package:personal_project/navigationBar/bloc/navigation_bar_bloc.dart';
 import 'package:personal_project/navigationBar/floating_nav_bar_item.dart';
 import 'package:personal_project/features/home/page/tests_pages/register_antigen_test_page.dart';
 import 'package:personal_project/features/home/page/home_page.dart';
-import 'package:personal_project/features/home/page/history_page.dart';
+import 'package:personal_project/features/test_history/presentation/pages/history_page.dart';
 import 'package:personal_project/icons/icons.dart';
 
 class NavBarPage extends StatefulWidget {
