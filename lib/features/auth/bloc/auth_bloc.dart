@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:bloc/bloc.dart';
 // ignore: depend_on_referenced_packages
 import 'package:meta/meta.dart';
+import 'package:personal_project/features/auth/data/models/user_model.dart';
 import 'package:personal_project/features/auth/domain/entities/change_password_entity.dart';
 import 'package:personal_project/features/auth/domain/use_cases/change_password_use_case.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -36,9 +37,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       }, (user) {
         emit(state.copyWith(
           formStatus: SubmissionSuccess(),
-
           statusCode: user.statusCode,
-          //birthDate: user.user.dateOfBirth,
+          birthDate: user.user.dateOfBirth,
           token: user.token,
           userId: user.user.id,
           address: user.user.addresses!.address,
@@ -52,7 +52,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
               : '',
           gender:
               user.user.gender!.isNotEmpty ? user.user.gender![0]!.gender : '',
-          //Simage: user.user.image,
+          image: user.user.image,
           informationUpdated: user.user.informationUpdated,
           isActive: user.user.isActive,
           isConfirmed: user.user.isConfirmed,

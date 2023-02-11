@@ -77,27 +77,32 @@ class _MyUserPageState extends State<MyUserPage> {
           builder: (context, state) {
             return Center(
               child: Stack(alignment: AlignmentDirectional.center, children: [
-                state.image != null
+                state.image != null || imageDisplayed != null
                     ? Container(
                         height: height * 0.3,
                         width: width * 0.5,
                         decoration: const BoxDecoration(
-                            shape: BoxShape.circle, color: Colors.red),
-                        child: Image.asset(state.image!),
+                            shape: BoxShape.circle, color: Colors.white),
+                        child: state.image != null
+                            ? Image.network(state.image!)
+                            : Image.file(
+                                imageDisplayed!,
+                                fit: BoxFit.cover,
+                              ),
                         /*Image.file(
                           File(state.image!),
                           fit: BoxFit.contain,
                         ),*/
                       )
                     : Image.asset("assets/images/photo_user_edit.png"),
-                state.image != null
+                state.image != null || imageDisplayed != null
                     ? const SizedBox()
                     : Icon(
                         Icons.image_outlined,
                         size: 64,
                         color: wColor.mapColors["IDWhite"],
                       ),
-                state.image != null
+                state.image != null || imageDisplayed != null
                     ? Positioned(
                         bottom: height * 0.245,
                         left: width * 0.36,

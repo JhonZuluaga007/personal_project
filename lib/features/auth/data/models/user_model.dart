@@ -1,5 +1,5 @@
 import 'dart:convert';
-
+import 'package:meta/meta.dart';
 import 'package:personal_project/features/auth/domain/entities/user_entity.dart';
 
 UserModel userModelFromMap(String str) => UserModel.fromMap(json.decode(str));
@@ -74,11 +74,11 @@ class User extends UserData {
     required bool acceptsTerms,
     required Addresses addresses,
     required String cellphone,
-    //required Date dateOfBirth,
+    required DateOfBirth dateOfBirth,
     required String email,
     required List<Ethnicity?>? ethnicity,
     required List<Gender?>? gender,
-    //required String image,
+    required String image,
     required bool informationUpdated,
     required bool isActive,
     required bool isConfirmed,
@@ -101,11 +101,11 @@ class User extends UserData {
           acceptsTerms: acceptsTerms,
           addresses: addresses,
           cellphone: cellphone,
-          //dateOfBirth: dateOfBirth,
+          dateOfBirth: dateOfBirth,
           email: email,
           ethnicity: ethnicity,
           gender: gender,
-          //image: image,
+          image: image,
           informationUpdated: informationUpdated,
           isActive: isActive,
           isConfirmed: isConfirmed,
@@ -130,7 +130,7 @@ class User extends UserData {
         acceptsTerms: json["accepts_terms"],
         addresses: Addresses.fromMap(json["addresses"]),
         cellphone: json["cellphone"],
-        //dateOfBirth: DateOfBirth.fromMap(json["date_of_birth"]),
+        dateOfBirth: DateOfBirth.fromJson(json["date_of_birth"]),
         email: json["email"],
         ethnicity: json["ethnicity"] == null
             ? []
@@ -139,7 +139,7 @@ class User extends UserData {
         gender: json["gender"] == null
             ? []
             : List<Gender?>.from(json["gender"]!.map((x) => Gender.fromMap(x))),
-        //image: json["image"],
+        image: json["image"],
         informationUpdated: json["information_updated"],
         isActive: json["is_active"],
         isConfirmed: json["is_confirmed"],
@@ -202,6 +202,13 @@ class DateOfBirth extends DateEntity {
   factory DateOfBirth.fromMap(Map<String, dynamic> json) => DateOfBirth(
         date: Date.fromMap(json["\u0024date"]),
       );
+  factory DateOfBirth.fromJson(Map<String, dynamic> json) => DateOfBirth(
+        date: Date.fromJson(json["\u0024date"]),
+      );
+
+  Map<String, dynamic> toJson() => {
+        "\u0024date": date?.toJson(),
+      };
 }
 
 class Date {
@@ -214,6 +221,13 @@ class Date {
   factory Date.fromMap(Map<String, dynamic> json) => Date(
         numberLong: json["\u0024numberLong"],
       );
+  factory Date.fromJson(Map<String, dynamic> json) => Date(
+        numberLong: json["\u0024numberLong"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "\u0024numberLong": numberLong,
+      };
 }
 
 class Ethnicity extends EthnicityEntity {
