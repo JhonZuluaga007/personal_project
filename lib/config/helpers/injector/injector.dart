@@ -11,7 +11,6 @@ import '../../../features/test_history/data/data_source/test_history_data_source
 import '../../../features/test_history/data/repository/test_history_repository_impl.dart';
 import '../../../features/test_history/domain/repository/test_history_repository.dart';
 import '../../../features/test_history/domain/use_cases/test_history_use_cases.dart';
-import '../../../features/test_history/domain/use_cases/view_test_use_cases.dart';
 import '../../../features/auth/data/data_source/auth_data_source.dart';
 import '../../../features/auth/data/repository/auth_repository_impl.dart';
 import '../../../features/auth/domain/repository/auth_repository.dart';
@@ -72,7 +71,6 @@ abstract class Injector {
   void _configureMedicalHistoryFactories();
 
   @Register.factory(TestHistoryRepository, from: TestHistoryRepositoryImpl)
-  @Register.factory(ViewTestUseCases)
   @Register.factory(TestHistoryUseCases)
   @Register.factory(TestHistoryDataSource)
   void _configureTestHistoryFactories();

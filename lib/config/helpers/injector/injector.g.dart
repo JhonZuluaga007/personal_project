@@ -42,8 +42,6 @@ class _$Injector extends Injector {
     container
       ..registerFactory<TestHistoryRepository>((c) => TestHistoryRepositoryImpl(
           testHistoryDataSource: c<TestHistoryDataSource>()))
-      ..registerFactory((c) =>
-          ViewTestUseCases(testHistoryRepository: c<TestHistoryRepository>()))
       ..registerFactory((c) => TestHistoryUseCases(
           testHistoryRepository: c<TestHistoryRepository>()))
       ..registerFactory((c) => TestHistoryDataSource());
