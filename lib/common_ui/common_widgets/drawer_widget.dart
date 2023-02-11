@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:personal_project/common_ui/common_widgets/text/text_widget.dart';
-import 'package:personal_project/features/medical_history/data/data_source/medical_data_source.dart';
-
 import '../../features/auth/bloc/auth_bloc.dart';
 
 class DrawerWidget extends StatelessWidget {

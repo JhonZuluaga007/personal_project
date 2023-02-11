@@ -9,7 +9,6 @@ import '../../../../features/auth/ui/pages/login_page.dart';
 import '../../../../config/helpers/form_submission_status.dart';
 import '../../../../common_ui/common_widgets/text/text_widget.dart';
 import '../../../../common_ui/common_pages/my_app_scaffold_page.dart';
-import 'package:personal_project/navigationBar/navigation_bar_widget.dart';
 import '../../../../common_ui/common_widgets/buttons/main_button_widget.dart';
 import '../../../../common_ui/common_widgets/responsive/dynamic_container_widget.dart';
 import '../../../../common_ui/common_widgets/text_field/text_field_with_border_widget.dart';
@@ -35,8 +34,8 @@ class _ResetPasswordPageInfoState extends State<ResetPasswordPageInfo> {
     final height = MediaQuery.of(context).size.height;
     final wColor = ThemesIdx20();
     final authBloc = BlocProvider.of<AuthBloc>(context);
-    final emailTraslate = AppLocalizations.of(context)!
-                    .translate("email_text_invalid");
+    final emailTraslate =
+        AppLocalizations.of(context)!.translate("email_text_invalid");
 
     return MyAppScaffold(
       color: Colors.white,
@@ -84,26 +83,23 @@ class _ResetPasswordPageInfoState extends State<ResetPasswordPageInfo> {
                 labelText: '02_forgotten_password_label_input',
                 textEditingController: emailController,
                 hintText: '02_forgotten_password_hint_input',
-                borderColor: emailValidateError 
-                      ? wColor.mapColors['C01']
-                      : wColor.mapColors["IDGrey"],
+                borderColor: emailValidateError
+                    ? wColor.mapColors['C01']
+                    : wColor.mapColors["IDGrey"],
                 textStyle: TextStyle(
-                  color: emailValidateError 
-                      ? wColor.mapColors['C01']
-                      : wColor.mapColors["IDGrey"], 
-                  fontSize: 14
-                ),
+                    color: emailValidateError
+                        ? wColor.mapColors['C01']
+                        : wColor.mapColors["IDGrey"],
+                    fontSize: 14),
                 hintStyle: TextStyle(
-                  color: emailValidateError 
-                      ? wColor.mapColors['C01']
-                      : wColor.mapColors["IDGrey"], 
-                  fontSize: 1
-                ),
-                validator: (emailValidate){
-                 if (UtilsEmailUser.validateEmail(emailValidate!)) {
+                    color: emailValidateError
+                        ? wColor.mapColors['C01']
+                        : wColor.mapColors["IDGrey"],
+                    fontSize: 1),
+                validator: (emailValidate) {
+                  if (UtilsEmailUser.validateEmail(emailValidate!)) {
                     return null;
-                  }
-                  else{
+                  } else {
                     return emailTraslate;
                   }
                 },
@@ -112,8 +108,7 @@ class _ResetPasswordPageInfoState extends State<ResetPasswordPageInfo> {
                     setState(() {
                       emailValidateError = false;
                     });
-                  } 
-                  else {
+                  } else {
                     setState(() {
                       emailValidateError = true;
                     });
@@ -173,9 +168,9 @@ class _ResetPasswordPageInfoState extends State<ResetPasswordPageInfo> {
                   textColor: Colors.white,
                   buttonString: '02_forgotten_password_button',
                   onPressed: () {
-                    if(emailController.text.isNotEmpty){
+                    if (emailController.text.isNotEmpty) {
                       BlocProvider.of<AuthBloc>(context)
-                        .add(ResetPassword(emailController.text));
+                          .add(ResetPassword(emailController.text));
                     }
                   },
                   buttonColor: wColor.mapColors['IDPink'],

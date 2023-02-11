@@ -95,7 +95,6 @@ class AuthDataSource {
     if (response["statusCode"] == 200) {
       return ServerValidate(message: "Password sent to email", statusCode: 200);
     } else {
-      print(response['statusCode']);
       throw InvalidData("Could not save changes");
     }
   }

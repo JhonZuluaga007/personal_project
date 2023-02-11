@@ -1,6 +1,3 @@
-// ignore: depend_on_referenced_packages
-import 'dart:io';
-
 import 'package:bloc/bloc.dart';
 // ignore: depend_on_referenced_packages
 import 'package:meta/meta.dart';
@@ -8,7 +5,6 @@ import 'package:personal_project/features/auth/data/models/user_model.dart';
 import 'package:personal_project/features/auth/domain/entities/change_password_entity.dart';
 import 'package:personal_project/features/auth/domain/use_cases/change_password_use_case.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../domain/entities/user_entity.dart';
 import '../domain/use_cases/login_use_case.dart';
 import '../domain/entities/user_update_entity.dart';
 import '../domain/use_cases/user_update_use_case.dart';

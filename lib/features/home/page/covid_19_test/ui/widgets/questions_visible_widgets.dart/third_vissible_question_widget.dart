@@ -5,7 +5,6 @@ import '../../../../../../../app_localizations.dart';
 import '../../../../../../../common_ui/common_widgets/text/text_widget.dart';
 import '../../../../../../../config/theme/theme.dart';
 import '../date_picker_container_widget.dart';
-import '../drop_down_questions_widget.dart';
 
 //TODO
 //How many boosters have you sad so far
@@ -35,7 +34,6 @@ class ThirdVissibleQuestionWidget extends StatefulWidget {
 
 class _ThirdVissibleQuestionWidgetState
     extends State<ThirdVissibleQuestionWidget> {
-
   final List<String> dropdownBoosterChipList = [];
   final List<String> dropdownBooster = [
     "booster_answer_one",
@@ -142,16 +140,16 @@ class _ThirdVissibleQuestionWidgetState
                 ),
                 SizedBox(height: height * 0.0035),
                 MultiSelectedWidget(
-                  listItem: vaccinesList, 
-                  onChanged: (value){
+                  listItem: vaccinesList,
+                  onChanged: (value) {
                     setState(() {
                       if (vacinneChipList.contains(value) != true) {
                         vacinneChipList.add(value.toString());
                       }
                     });
-                  }, 
+                  },
                   valueDefaultList: "drop_down_select_option",
-                  listChip: vacinneChipList, 
+                  listChip: vacinneChipList,
                   requiredTranslate: false,
                 ),
                 SizedBox(height: widget.height * 0.028),
@@ -168,16 +166,16 @@ class _ThirdVissibleQuestionWidgetState
                 ),
                 SizedBox(height: height * 0.0035),
                 MultiSelectedWidget(
-                  listItem: dropdownBooster, 
-                  onChanged: (value){
+                  listItem: dropdownBooster,
+                  onChanged: (value) {
                     setState(() {
                       if (dropdownBoosterChipList.contains(value) != true) {
                         dropdownBoosterChipList.add(value.toString());
                       }
                     });
-                  }, 
+                  },
                   valueDefaultList: "drop_down_select_option",
-                  listChip: dropdownBoosterChipList, 
+                  listChip: dropdownBoosterChipList,
                   requiredTranslate: true,
                 ),
               ],
