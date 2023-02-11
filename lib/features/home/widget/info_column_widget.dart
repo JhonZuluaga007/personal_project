@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:personal_project/features/auth/bloc/auth_bloc.dart';
+import 'package:personal_project/features/auth/data/models/user_model.dart';
 import 'info_container_widget.dart';
 import 'package:intl/intl.dart';
 
@@ -14,8 +15,10 @@ class InfoColumnWidget extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     return BlocBuilder<AuthBloc, AuthState>(
       builder: (context, state) {
-        final DateFormat formatter = DateFormat('MM-dd-yyyy');
-
+        // final DateFormat formatter = DateFormat('MM-dd-yyyy');
+        // Date myDate = state.birthDate!.date!;
+        // DateTime myDateTime = DateTime.parse(myDate.numberLong);
+        // print(myDateTime);
         return Column(
           children: [
             //TODO translate hintText

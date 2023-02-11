@@ -30,7 +30,7 @@ class _EditUserFromBottomPageState extends State<EditUserFromBottomPage> {
   }
 
   File? imageDisplayed;
-  Future getImage(ImageSource source) async {
+  Future getImageBottom(ImageSource source) async {
     try {
       final image = await ImagePicker().pickImage(source: source);
       if (image == null) return;
@@ -75,10 +75,17 @@ class _EditUserFromBottomPageState extends State<EditUserFromBottomPage> {
                         height: height * 0.3,
                         width: width * 0.5,
                         decoration: const BoxDecoration(
-                            shape: BoxShape.circle, color: Colors.red),
-                        child: Image.file(
-                          imageDisplayed!,
-                          fit: BoxFit.cover,
+                            shape: BoxShape.circle, color: Colors.white),
+                        child: Container(
+                          height: height * 0.3,
+                          width: width * 0.5,
+                          decoration: const BoxDecoration(
+                            shape: BoxShape.circle,
+                          ),
+                          child: Image.file(
+                            imageDisplayed!,
+                            fit: BoxFit.contain,
+                          ),
                         ),
                       )
                     : Image.asset("assets/images/photo_user_edit.png"),
@@ -103,9 +110,9 @@ class _EditUserFromBottomPageState extends State<EditUserFromBottomPage> {
                               size: 24,
                             ),
                             onPressed: () => buildPopUpImage(context, () {
-                              getImage(ImageSource.camera);
+                              getImageBottom(ImageSource.camera);
                             }, () {
-                              getImage(ImageSource.gallery);
+                              getImageBottom(ImageSource.gallery);
                             }),
                           ),
                         ),
@@ -121,9 +128,9 @@ class _EditUserFromBottomPageState extends State<EditUserFromBottomPage> {
                             size: 24,
                           ),
                           onPressed: () => buildPopUpImage(context, () {
-                            getImage(ImageSource.camera);
+                            getImageBottom(ImageSource.camera);
                           }, () {
-                            getImage(ImageSource.gallery);
+                            getImageBottom(ImageSource.gallery);
                           }),
                         ))
               ]),

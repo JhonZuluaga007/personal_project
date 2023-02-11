@@ -153,9 +153,8 @@ class _PcrRegisterPageState extends State<PcrRegisterPage> {
                 onPressed: () async {
                   bool validPcr = await PcrDataSource()
                       .validatePcr(userState.userId, pcrIdController.text);
-                  print(validPcr);
+
                   if (validPcr == true) {
-                    //load then send success
                     doneSendInfo(
                       context: context,
                       mainIcon: Icon(
@@ -168,8 +167,7 @@ class _PcrRegisterPageState extends State<PcrRegisterPage> {
                       infoText: 'alert_text_two',
                       mainButton: 'alert_text_three',
                       mainButtonFunction: () {
-                        //todo check if success before
-                        navigationBloc.add(PageChanged(indexNavigation: 0));
+                        navigationBloc.add(PageChanged(indexNavigation: 1));
                         Navigator.pushNamed(context, 'navBar');
                       },
                     );

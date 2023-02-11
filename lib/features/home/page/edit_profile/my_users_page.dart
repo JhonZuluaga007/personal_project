@@ -83,19 +83,31 @@ class _MyUserPageState extends State<MyUserPage> {
                         width: width * 0.5,
                         decoration: const BoxDecoration(
                             shape: BoxShape.circle, color: Colors.white),
-                        child: state.image != null
+                        child: state.image != null || imageDisplayed != null
                             ? Image.network(state.image!)
-                            : Image.file(
-                                imageDisplayed!,
-                                fit: BoxFit.cover,
+                            : Container(
+                                height: height * 0.3,
+                                width: width * 0.5,
+                                decoration: const BoxDecoration(
+                                  shape: BoxShape.circle,
+                                ),
+                                child: Image.file(
+                                  imageDisplayed!,
+                                  fit: BoxFit.contain,
+                                ),
                               ),
-                        /*Image.file(
-                          File(state.image!),
-                          fit: BoxFit.contain,
-                        ),*/
                       )
-                    : Image.asset("assets/images/photo_user_edit.png"),
-                state.image != null || imageDisplayed != null
+                    : Container(
+                        height: height * 0.3,
+                        width: width * 0.5,
+                        decoration: const BoxDecoration(
+                          shape: BoxShape.circle,
+                        ),
+                        child: Image.asset(
+                          "assets/images/photo_user_edit.png",
+                          fit: BoxFit.contain,
+                        )),
+                imageDisplayed != null || state.image != null
                     ? const SizedBox()
                     : Icon(
                         Icons.image_outlined,
