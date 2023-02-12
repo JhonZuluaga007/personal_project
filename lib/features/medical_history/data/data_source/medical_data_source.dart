@@ -1,7 +1,5 @@
-import 'package:flutter/foundation.dart';
 import 'package:personal_project/config/helpers/errors/invalid_data.dart';
 import 'package:personal_project/features/medical_history/data/models/medical_history_model.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../config/helpers/api.dart';
 import '../../../../config/helpers/endpoints.dart';

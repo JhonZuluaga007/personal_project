@@ -58,20 +58,19 @@ class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
     final size = MediaQuery.of(context).size;
     return BlocConsumer<MedicalHistoryBloc, MedicalHistoryState>(
       listener: (context, state) {
-        // chipListText = state.question2!.value;
         if (state.status == true) {
           setState(() {
             yes = true;
             no = false;
             defaultValueEng = 'Yes';
-            print(defaultValueEng);
+            debugPrint(defaultValueEng);
           });
         }
         if (state.status == false) {
           setState(() {
             yes = false;
             no = true;
-            print(defaultValueEng);
+            debugPrint(defaultValueEng);
 
             defaultValueEng = 'No';
           });
@@ -208,7 +207,7 @@ class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
                         "Hiv"
                       ],
                       valueDefaultList: "medical_history_drop_down_select",
-                      listChip: chipListText, 
+                      listChip: chipListText,
                       requiredTranslate: false,
                     ),
                   ],
