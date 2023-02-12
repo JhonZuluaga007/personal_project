@@ -1,8 +1,3 @@
-// To parse this JSON data, do
-//
-//     final medicalHistoryModel = medicalHistoryModelFromJson(jsonString);
-
-import 'package:meta/meta.dart';
 import 'dart:convert';
 
 import 'package:personal_project/features/medical_history/domain/entities/medical_history_entity.dart';
