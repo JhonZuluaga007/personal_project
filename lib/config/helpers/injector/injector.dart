@@ -6,7 +6,7 @@ import '../../../features/auth/domain/use_cases/user_update_use_case.dart';
 import '../../../features/medical_history/data/data_source/medical_data_source.dart';
 import '../../../features/medical_history/data/repository/medical_history_repository_impl.dart';
 import '../../../features/medical_history/domain/repository/medical_history_repository.dart';
-import '../../../features/medical_history/domain/use_cases/get_medical_history_use_case.dart';
+import '../../../features/medical_history/domain/use_cases/medical_history_use_case.dart';
 import '../../../features/test_history/data/data_source/test_history_data_source.dart';
 import '../../../features/test_history/data/repository/test_history_repository_impl.dart';
 import '../../../features/test_history/domain/repository/test_history_repository.dart';
