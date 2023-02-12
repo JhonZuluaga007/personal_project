@@ -210,14 +210,12 @@ class _PcrRegisterPageState extends State<PcrRegisterPage> {
   }
 
   processQr(String value) async {
-    pcrIdController.text = value;
-    setState(() {});
-    // if (value.startsWith("pcr:")) {
-    //   value = value.substring(10);
-    // }
-    // data = await ServiceLnBits.decodeInvoice(value);
-    // setState(() {
-    //   bolt11 = value;
-    // });
+    if (value.startsWith("R00:")) {
+      value = value.substring(7);
+    }
+
+    setState(() {
+      pcrIdController.text = value;
+    });
   }
 }
