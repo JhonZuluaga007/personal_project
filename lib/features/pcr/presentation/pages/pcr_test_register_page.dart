@@ -1,6 +1,10 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:personal_project/common_ui/common_pages/my_app_scaffold_page.dart';
+import 'package:personal_project/common_ui/common_widgets/qr/service_qr_widget.dart';
 import 'package:personal_project/features/pcr/data/data_source/pcr_data_source.dart';
 import '../../../../common_ui/common_widgets/buttons/button_widget.dart';
 import '../../../../common_ui/common_widgets/buttons/main_button_widget.dart';
@@ -115,7 +119,14 @@ class _PcrRegisterPageState extends State<PcrRegisterPage> {
                 borderColor: Colors.black,
                 textColor: Colors.black,
                 buttonString: 'test_part_one_text',
-                onPressed: () {
+                onPressed: () async {
+                  String qrValor = await FlutterBarcodeScanner.scanBarcode(
+                    '#FF0000',
+                    'Cancel',
+                    false,
+                    ScanMode.QR,
+                  );
+                  print(qrValor);
                   //TODO OPEN QR SCAN and paste it into the identifier
                   /*
  bool validAntigen = await AntigenDataSource()
@@ -192,5 +203,21 @@ class _PcrRegisterPageState extends State<PcrRegisterPage> {
         )
       ],
     );
+  }
+
+  Future<void> _readQr() async {
+    ServiceQRWidget.escanearQr(processQr);
+  }
+
+  processQr(String value) async {
+    pcrIdController.text = value;
+    setState(() {});
+    // if (value.startsWith("pcr:")) {
+    //   value = value.substring(10);
+    // }
+    // data = await ServiceLnBits.decodeInvoice(value);
+    // setState(() {
+    //   bolt11 = value;
+    // });
   }
 }
