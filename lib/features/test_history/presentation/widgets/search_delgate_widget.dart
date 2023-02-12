@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'card_test_widget.dart';
 import '../widgets/pop_up_widget.dart';
-import '../../bloc/test_history_bloc.dart';
 import '../../../../config/theme/theme.dart';
 import '../../domain/entities/test_history_entity.dart';
 import '../../../../common_ui/common_widgets/text/text_widget.dart';
@@ -75,7 +73,7 @@ class SearchDelegateWidget extends SearchDelegate {
     return ListView.builder(
         itemCount: _filterTestHistoryList.length,
         itemBuilder: (_, int index) {
-          return ItemTestData(codeTest: _filterTestHistoryList[index].code!);
+          return ItemTestData(testView: _filterTestHistoryList[index]);
         });
   }
 
@@ -97,38 +95,34 @@ class SearchDelegateWidget extends SearchDelegate {
     return ListView.builder(
         itemCount: _filterTestHistoryList.length,
         itemBuilder: (_, int index) {
-          return ItemTestData(codeTest: _filterTestHistoryList[index].code!);
+          return ItemTestData(testView: _filterTestHistoryList[index]);
         });
   }
 }
 
 class ItemTestData extends StatelessWidget {
-  final String codeTest;
+  const ItemTestData({super.key, required this.testView,});
 
-  const ItemTestData({super.key, required this.codeTest});
+  final TestHistoryEntity testView;
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
 
-    return BlocBuilder<TestHistoryBloc, TestHistoryState>(
-      builder: (context, state) {
-        return GestureDetector(
-          onTap: () {
-            Navigator.pop(context);
-          },
-          child: Padding(
-            padding: EdgeInsets.symmetric(
-                horizontal: size.width * 0.040, vertical: size.height * 0.020),
-            child: CardTestWidget(
-              onPressed: () {
-                popUpWidget(context);
-              },
-              textTestKit: codeTest,
-            ),
-          ),
-        );
+    return GestureDetector(
+      onTap: () {
+        Navigator.pop(context);
       },
+      child: Padding(
+        padding: EdgeInsets.symmetric(
+            horizontal: size.width * 0.040, vertical: size.height * 0.020),
+        child: CardTestWidget(
+          onPressed: () {
+            popUpWidget(context, testView);
+          },
+          textTestKit: testView.code!,
+        ),
+      ),
     );
   }
 }
