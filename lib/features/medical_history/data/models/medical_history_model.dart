@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:personal_project/features/medical_history/domain/entities/medical_history_entity.dart';
+import '../../domain/entities/medical_history_entity.dart';
 
 MedicalHistoryModel medicalHistoryModelFromJson(String str) =>
     MedicalHistoryModel.fromJson(json.decode(str));

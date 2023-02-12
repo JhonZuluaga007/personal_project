@@ -1,9 +1,8 @@
-import 'package:personal_project/config/helpers/errors/invalid_data.dart';
-import 'package:personal_project/config/helpers/models/server_validate_data.dart';
-import 'package:personal_project/features/medical_history/data/models/medical_history_model.dart';
-
 import '../../../../config/helpers/api.dart';
+import '../models/medical_history_model.dart';
 import '../../../../config/helpers/endpoints.dart';
+import '../../../../config/helpers/errors/invalid_data.dart';
+import '../../../../config/helpers/models/server_validate_data.dart';
 
 class MedicalHistoryDataSource {
   Future<MedicalHistoryModel> getMedicalHistory(String userId) async {

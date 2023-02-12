@@ -1,9 +1,10 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
-import 'package:personal_project/config/helpers/form_submission_status.dart';
-import 'package:personal_project/config/helpers/injector/injector.dart';
-import 'package:personal_project/features/medical_history/domain/entities/medical_history_entity.dart';
-import 'package:personal_project/features/medical_history/domain/use_cases/get_medical_history_use_case.dart';
+
+import '../../../../config/helpers/form_submission_status.dart';
+import '../../../../config/helpers/injector/injector.dart';
+import '../../domain/entities/medical_history_entity.dart';
+import '../../domain/use_cases/get_medical_history_use_case.dart';
 
 part 'medical_history_event.dart';
 part 'medical_history_state.dart';

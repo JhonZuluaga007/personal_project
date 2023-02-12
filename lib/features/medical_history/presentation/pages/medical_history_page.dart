@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:personal_project/common_ui/common_pages/my_app_scaffold_page.dart';
-import 'package:personal_project/features/medical_history/presentation/widgets/multi_selected_widget.dart';
 
-import '../../../../common_ui/common_widgets/drop_down_widget.dart';
-import '../../../../common_ui/common_widgets/text/text_widget.dart';
+import '../bloc/medical_history_bloc.dart';
+import '../widgets/done_alert_widget.dart';
 import '../../../../config/theme/theme.dart';
+import '../widgets/confirm_alert_widget.dart';
+import '../widgets/button_actions_widget.dart';
+import '../widgets/multi_selected_widget.dart';
 import '../../../../navigationBar/bloc/navigation_bar_bloc.dart';
 import '../../../antigen/data/data_source/antigen_data_source.dart';
-import '../bloc/medical_history_bloc.dart';
-import '../widgets/button_actions_widget.dart';
-import '../widgets/confirm_alert_widget.dart';
-import '../widgets/done_alert_widget.dart';
+import '../../../../common_ui/common_widgets/text/text_widget.dart';
+import '../../../../common_ui/common_widgets/drop_down_widget.dart';
+import '../../../../common_ui/common_pages/my_app_scaffold_page.dart';
 
 class MedicalHistoryPage extends StatefulWidget {
   const MedicalHistoryPage({super.key});
