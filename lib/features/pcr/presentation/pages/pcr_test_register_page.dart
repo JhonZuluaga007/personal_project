@@ -120,13 +120,7 @@ class _PcrRegisterPageState extends State<PcrRegisterPage> {
                 textColor: Colors.black,
                 buttonString: 'test_part_one_text',
                 onPressed: () async {
-                  String qrValor = await FlutterBarcodeScanner.scanBarcode(
-                    '#FF0000',
-                    'Cancel',
-                    false,
-                    ScanMode.QR,
-                  );
-                  print(qrValor);
+                  _readQr();
                   //TODO OPEN QR SCAN and paste it into the identifier
                   /*
  bool validAntigen = await AntigenDataSource()
