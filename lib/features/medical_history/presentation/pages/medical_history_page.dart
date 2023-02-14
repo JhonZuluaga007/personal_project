@@ -15,6 +15,7 @@ import '../../../antigen/data/data_source/antigen_data_source.dart';
 import '../../../../common_ui/common_widgets/text/text_widget.dart';
 import '../../../../common_ui/common_widgets/drop_down_widget.dart';
 import '../../../../common_ui/common_pages/my_app_scaffold_page.dart';
+import '../widgets/text_column_widget.dart';
 
 class MedicalHistoryPage extends StatefulWidget {
   const MedicalHistoryPage({super.key});
@@ -103,46 +104,7 @@ class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
             centerTitle: true,
           ),
           children: [
-            SizedBox(height: size.height * 0.05),
-            TextWidget(
-              text: "medical_history_title",
-              style: TextStyle(
-                  fontSize: 20,
-                  color: wColor.mapColors["S800"],
-                  fontWeight: FontWeight.w600,
-                  letterSpacing: -0.2),
-            ),
-            SizedBox(height: size.height * 0.025),
-            TextWidget(
-              text: "medical_history_text_one",
-              textAlign: TextAlign.left,
-              style: TextStyle(
-                  fontSize: 16,
-                  color: wColor.mapColors["S800"],
-                  fontWeight: FontWeight.w400,
-                  letterSpacing: -0.2),
-            ),
-            SizedBox(height: size.height * 0.025),
-            TextWidget(
-              text: "medical_history_text_two",
-              textAlign: TextAlign.left,
-              style: TextStyle(
-                  fontSize: 20,
-                  color: wColor.mapColors["S800"],
-                  fontWeight: FontWeight.w600,
-                  letterSpacing: -0.2),
-            ),
-            SizedBox(height: size.height * 0.02),
-            TextWidget(
-              text: "medical_history_text_three",
-              textAlign: TextAlign.left,
-              style: TextStyle(
-                  fontSize: 16,
-                  color: wColor.mapColors["S800"],
-                  fontWeight: FontWeight.w400,
-                  letterSpacing: -0.2),
-            ),
-            SizedBox(height: size.height * 0.02),
+            TextColumnMedicalHistoryWidget(size: size, wColor: wColor),
             DropDownContainerWidget(
                 //TODO CHECK HOW TO HANDLE MAIN VALUE
                 listItems: listsYesNoEnglish,
