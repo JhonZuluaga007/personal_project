@@ -296,6 +296,7 @@
     "alert_text_error_three": "Ok",
     "alert_text_password_updated": "Password has been updated successfully",
     "alert_text_password_error": "There was an error, and your password couldnt be updated",
+    "alert_text_error_update": "We could not update your information",
 
     "match_password": "Make sure your passwords match",
     "password_validate_text_one": "Invalid field, it must have at least 6 characters",

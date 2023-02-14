@@ -51,7 +51,7 @@ class MedicalHistoryBloc
               )),
           (medicalHistory) => emit(
                 state.copyWith(
-                    formStatus: const InitialFormStatus(),
+                    formStatus: SubmissionSuccess(),
                     infoUploaded: SubmissionSuccess(),
                     question1: Question1Entity(
                         name: 'name', value: event.responseOne)),

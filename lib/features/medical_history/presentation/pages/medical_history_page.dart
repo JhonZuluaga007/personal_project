@@ -8,6 +8,7 @@ import '../widgets/done_alert_widget.dart';
 import '../../../../config/theme/theme.dart';
 import '../widgets/confirm_alert_widget.dart';
 import '../widgets/button_actions_widget.dart';
+import '../widgets/error_alert_widget.dart';
 import '../widgets/multi_selected_widget.dart';
 import '../../../../navigationBar/bloc/navigation_bar_bloc.dart';
 import '../../../antigen/data/data_source/antigen_data_source.dart';
@@ -87,206 +88,209 @@ class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
         }
       },
       builder: (context, state) {
-        if (state.formStatus is FormSubmitting) {
-          return const CircularProgressIndicator(
-            key: Key('LoaderRegisterKey'),
-          );
-        } else {
-          return MyAppScaffold(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            appBar: AppBar(
-              leading: GestureDetector(
-                onTap: () => Navigator.pop(context),
-                child: const Icon(
-                  Icons.arrow_back_ios,
-                  color: Colors.black,
-                ),
+        return MyAppScaffold(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          appBar: AppBar(
+            leading: GestureDetector(
+              onTap: () => Navigator.pop(context),
+              child: const Icon(
+                Icons.arrow_back_ios,
+                color: Colors.black,
               ),
-              backgroundColor: Colors.white,
-              title: Image.asset("assets/icons/idx_Icon.png"),
-              centerTitle: true,
             ),
-            children: [
-              SizedBox(height: size.height * 0.05),
-              TextWidget(
-                text: "medical_history_title",
-                style: TextStyle(
-                    fontSize: 20,
-                    color: wColor.mapColors["S800"],
-                    fontWeight: FontWeight.w600,
-                    letterSpacing: -0.2),
-              ),
-              SizedBox(height: size.height * 0.025),
-              TextWidget(
-                text: "medical_history_text_one",
-                textAlign: TextAlign.left,
-                style: TextStyle(
-                    fontSize: 16,
-                    color: wColor.mapColors["S800"],
-                    fontWeight: FontWeight.w400,
-                    letterSpacing: -0.2),
-              ),
-              SizedBox(height: size.height * 0.025),
-              TextWidget(
-                text: "medical_history_text_two",
-                textAlign: TextAlign.left,
-                style: TextStyle(
-                    fontSize: 20,
-                    color: wColor.mapColors["S800"],
-                    fontWeight: FontWeight.w600,
-                    letterSpacing: -0.2),
-              ),
-              SizedBox(height: size.height * 0.02),
-              TextWidget(
-                text: "medical_history_text_three",
-                textAlign: TextAlign.left,
-                style: TextStyle(
-                    fontSize: 16,
-                    color: wColor.mapColors["S800"],
-                    fontWeight: FontWeight.w400,
-                    letterSpacing: -0.2),
-              ),
-              SizedBox(height: size.height * 0.02),
-              DropDownContainerWidget(
-                  //TODO CHECK HOW TO HANDLE MAIN VALUE
-                  listItems: listsYesNoEnglish,
-                  mainValue: defaultValueEng,
-                  // mainValue: state.status == false ? 'No' : 'Yes',
-                  width: size.width * 0.9,
-                  onChanged: (value) => {
+            backgroundColor: Colors.white,
+            title: Image.asset("assets/icons/idx_Icon.png"),
+            centerTitle: true,
+          ),
+          children: [
+            SizedBox(height: size.height * 0.05),
+            TextWidget(
+              text: "medical_history_title",
+              style: TextStyle(
+                  fontSize: 20,
+                  color: wColor.mapColors["S800"],
+                  fontWeight: FontWeight.w600,
+                  letterSpacing: -0.2),
+            ),
+            SizedBox(height: size.height * 0.025),
+            TextWidget(
+              text: "medical_history_text_one",
+              textAlign: TextAlign.left,
+              style: TextStyle(
+                  fontSize: 16,
+                  color: wColor.mapColors["S800"],
+                  fontWeight: FontWeight.w400,
+                  letterSpacing: -0.2),
+            ),
+            SizedBox(height: size.height * 0.025),
+            TextWidget(
+              text: "medical_history_text_two",
+              textAlign: TextAlign.left,
+              style: TextStyle(
+                  fontSize: 20,
+                  color: wColor.mapColors["S800"],
+                  fontWeight: FontWeight.w600,
+                  letterSpacing: -0.2),
+            ),
+            SizedBox(height: size.height * 0.02),
+            TextWidget(
+              text: "medical_history_text_three",
+              textAlign: TextAlign.left,
+              style: TextStyle(
+                  fontSize: 16,
+                  color: wColor.mapColors["S800"],
+                  fontWeight: FontWeight.w400,
+                  letterSpacing: -0.2),
+            ),
+            SizedBox(height: size.height * 0.02),
+            DropDownContainerWidget(
+                //TODO CHECK HOW TO HANDLE MAIN VALUE
+                listItems: listsYesNoEnglish,
+                mainValue: defaultValueEng,
+                // mainValue: state.status == false ? 'No' : 'Yes',
+                width: size.width * 0.9,
+                onChanged: (value) => {
+                      setState(() {
+                        defaultValueEng = value.toString();
+                        if (defaultValueEng == 'Yes' || state.status == true) {
+                          yes = true;
+                          no = false;
+                        }
+                        if (defaultValueEng == 'No' || state.status == false) {
+                          yes = false;
+                          no = true;
+                          chipListText.clear();
+                        }
+                        if (defaultValueEng == 'Select option' ||
+                            state.status == false) {
+                          yes = false;
+                          no = true;
+                        }
+                      })
+                    }),
+            SizedBox(height: size.height * 0.02),
+            Visibility(
+                visible: yes,
+                child: Column(
+                  children: [
+                    TextWidget(
+                      text: "medical_history_text_four",
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                          fontSize: 16,
+                          color: wColor.mapColors["S800"],
+                          fontWeight: FontWeight.w400,
+                          letterSpacing: -0.2),
+                    ),
+                    SizedBox(height: size.height * 0.02),
+                    MultiSelectedWidget(
+                      onChanged: (value) {
+                        // TODO CHECK BAKEND MEDICAL HISTORY
                         setState(() {
-                          defaultValueEng = value.toString();
-                          if (defaultValueEng == 'Yes' ||
-                              state.status == true) {
-                            yes = true;
-                            no = false;
+                          if (state.question2!.value
+                                  .contains(value.toString()) !=
+                              true) {
+                            chipListText.add(value.toString());
+                            debugPrint(chipListText.toString());
                           }
-                          if (defaultValueEng == 'No' ||
-                              state.status == false) {
-                            yes = false;
-                            no = true;
+                          if (state.question1!.value == 'no') {
                             chipListText.clear();
                           }
-                          if (defaultValueEng == 'Select option' ||
-                              state.status == false) {
-                            yes = false;
-                            no = true;
-                          }
-                        })
-                      }),
-              SizedBox(height: size.height * 0.02),
-              Visibility(
-                  visible: yes,
-                  child: Column(
-                    children: [
-                      TextWidget(
-                        text: "medical_history_text_four",
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                            fontSize: 16,
-                            color: wColor.mapColors["S800"],
-                            fontWeight: FontWeight.w400,
-                            letterSpacing: -0.2),
-                      ),
-                      SizedBox(height: size.height * 0.02),
-                      MultiSelectedWidget(
-                        onChanged: (value) {
-                          // TODO CHECK BAKEND MEDICAL HISTORY
-                          setState(() {
-                            if (state.question2!.value
-                                    .contains(value.toString()) !=
-                                true) {
-                              chipListText.add(value.toString());
-                              debugPrint(chipListText.toString());
-                            }
-                            if (state.question1!.value == 'no') {
-                              chipListText.clear();
-                            }
-                          });
-                        },
-                        listItem: const [
-                          "Cerebrovascular disease",
-                          "Asthma",
-                          "Cancer",
-                          "Chronic kidney disease",
-                          "Tuberculosis",
-                          "Smoking (current and former)",
-                          "Neurologic conditions",
-                          "Hiv"
-                        ],
-                        valueDefaultList: "medical_history_drop_down_select",
-                        listChip: chipListText,
-                        requiredTranslate: false,
-                      ),
-                    ],
-                  )),
-              SizedBox(height: size.height * 0.05),
-              BlocConsumer<MedicalHistoryBloc, MedicalHistoryState>(
-                listener: (context, state) {
-                  // TODO: implement listener
-                  if (state.formStatus is SubmissionSuccess) {
-                    navigationBloc.add(PageChanged(indexNavigation: 0));
-                    Navigator.pushNamed(context, 'navBar');
-                  } else {
-                    const CircularProgressIndicator(
-                      key: Key('LoaderRegisterKey'),
-                    );
-                  }
-                },
-                builder: (context, state) {
-                  return ButtonActionsWidgets(
-                    size: size,
-                    wColor: wColor,
-                    navigationBloc: navigationBloc,
-                    onPressed: () {
-                      confirmSendInfo(
-                        context: context,
-                        mainIcon: Icon(
-                          Icons.warning_amber,
-                          size: size.height * 0.12,
-                          color: wColor.mapColors['Warning'],
-                        ),
-                        titleText: "alert_confirm_text_one",
-                        paddingHeight: size.height * 0.25,
-                        infoText: 'alert_confirm_text_two',
-                        mainButton: 'alert_confirm_text_three',
-                        mainButtonFunction: () {
-                          doneSendInfo(
-                            context: context,
-                            mainIcon: Icon(
-                              Icons.check,
-                              size: size.height * 0.15,
-                              color: wColor.mapColors['C00'],
-                            ),
-                            titleText: 'alert_text_one',
-                            paddingHeight: size.height * 0.25,
-                            infoText: 'alert_text_two',
-                            mainButton: 'alert_text_three',
-                            mainButtonFunction: () {
-                              //todo check if success before
-                              BlocProvider.of<MedicalHistoryBloc>(context).add(
-                                  EditMedicalHistoryEvent(
-                                      userId: stateUserId.userId,
-                                      responseOne: defaultValueEng,
-                                      responseTwo: chipListText));
-                              // state.question1!.value = defaultValueEng;
-                              // state.question2!.value = chipListText;
-                            },
-                          ); //todo open new alert
-                        },
-                        secondButton: 'alert_confirm_text_four',
-                        secondButtonFunction: () {
-                          Navigator.pop(context);
-                        },
-                      );
+                        });
+                      },
+                      listItem: const [
+                        "Cerebrovascular disease",
+                        "Asthma",
+                        "Cancer",
+                        "Chronic kidney disease",
+                        "Tuberculosis",
+                        "Smoking (current and former)",
+                        "Neurologic conditions",
+                        "Hiv"
+                      ],
+                      valueDefaultList: "medical_history_drop_down_select",
+                      listChip: chipListText,
+                      requiredTranslate: false,
+                    ),
+                  ],
+                )),
+            SizedBox(height: size.height * 0.05),
+            BlocConsumer<MedicalHistoryBloc, MedicalHistoryState>(
+              listener: (context, state) {
+                if (state.formStatus is FormSubmitting) {
+                  const CircularProgressIndicator(
+                    key: Key('LoaderRegisterKey'),
+                  );
+                }
+                if (state.formStatus is SubmissionSuccess) {
+                  doneSendInfo(
+                    context: context,
+                    mainIcon: Icon(
+                      Icons.check,
+                      size: size.height * 0.15,
+                      color: wColor.mapColors['C00'],
+                    ),
+                    titleText: 'alert_text_one',
+                    paddingHeight: size.height * 0.25,
+                    infoText: 'alert_text_two',
+                    mainButton: 'alert_text_three',
+                    mainButtonFunction: () {
+                      Navigator.pop(context);
                     },
                   );
-                },
-              ),
-              SizedBox(height: size.height * 0.05),
-            ],
-          );
-        }
+                } else if (state.formStatus is SubmissionFailed) {
+                  errorAlertInfoPop(
+                      context: context,
+                      mainIcon: Icon(
+                        Icons.cancel,
+                        color: wColor.mapColors['C01'],
+                        size: 46,
+                      ),
+                      titleText: 'alert_text_error_one',
+                      paddingHeight: size.height * 0.25,
+                      infoText: 'alert_text_error_update',
+                      mainButton: 'alert_text_error_three',
+                      mainButtonFunction: () {
+                        Navigator.pop(context);
+                      });
+                }
+              },
+              builder: (context, state) {
+                return ButtonActionsWidgets(
+                  size: size,
+                  wColor: wColor,
+                  navigationBloc: navigationBloc,
+                  onPressed: () {
+                    confirmSendInfo(
+                      context: context,
+                      mainIcon: Icon(
+                        Icons.warning_amber,
+                        size: size.height * 0.12,
+                        color: wColor.mapColors['Warning'],
+                      ),
+                      titleText: "alert_confirm_text_one",
+                      paddingHeight: size.height * 0.25,
+                      infoText: 'alert_confirm_text_two',
+                      mainButton: 'alert_confirm_text_three',
+                      mainButtonFunction: () {
+                        BlocProvider.of<MedicalHistoryBloc>(context).add(
+                            EditMedicalHistoryEvent(
+                                userId: stateUserId.userId,
+                                responseOne: defaultValueEng,
+                                responseTwo: chipListText));
+                      },
+                      secondButton: 'alert_confirm_text_four',
+                      secondButtonFunction: () {
+                        Navigator.pop(context);
+                      },
+                    );
+                  },
+                );
+              },
+            ),
+            SizedBox(height: size.height * 0.05),
+          ],
+        );
       },
     );
   }
