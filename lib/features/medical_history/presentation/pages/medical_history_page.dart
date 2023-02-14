@@ -192,7 +192,7 @@ class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
                             chipListText.add(value.toString());
                             debugPrint(chipListText.toString());
                           }
-                          if (state.question1!.value == 'yes') {
+                          if (state.question1!.value == 'no') {
                             chipListText.clear();
                           }
                         });
