@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:personal_project/features/auth/presentation/pages/login_page.dart';
 
 import '../../../../app_localizations.dart';
 import '../../../../common_ui/utils/utils_email.dart';
 import '../../../../config/theme/theme.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../features/auth/bloc/auth_bloc.dart';
-import '../../../../features/auth/ui/pages/login_page.dart';
+import '../../bloc/auth_bloc.dart';
 import '../../../../config/helpers/form_submission_status.dart';
 import '../../../../common_ui/common_widgets/text/text_widget.dart';
 import '../../../../common_ui/common_pages/my_app_scaffold_page.dart';

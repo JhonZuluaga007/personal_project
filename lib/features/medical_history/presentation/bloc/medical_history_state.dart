@@ -10,9 +10,11 @@ class MedicalHistoryState {
   final bool? status;
   final AtedEntity? updated;
   final UserIdEntity? userId;
+  final String? message;
 
   const MedicalHistoryState(
       {this.formStatus = const InitialFormStatus(),
+      this.message,
       this.id,
       this.created,
       this.question1,
@@ -30,6 +32,7 @@ class MedicalHistoryState {
     bool? status,
     AtedEntity? updated,
     UserIdEntity? userId,
+    String? message
   }) {
     return MedicalHistoryState(
         formStatus: formStatus ?? this.formStatus,
@@ -39,6 +42,7 @@ class MedicalHistoryState {
         question2: question2 ?? this.question2,
         updated: updated ?? this.updated,
         status: status ?? this.status,
-        userId: userId);
+        userId: userId ?? this.userId,
+        message: message ?? this.message);
   }
 }

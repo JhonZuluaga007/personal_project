@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:personal_project/common_ui/common_pages/my_app_scaffold_page.dart';
 import 'package:personal_project/common_ui/common_widgets/buttons/button_widget.dart';
 import 'package:personal_project/features/antigen/data/data_source/antigen_data_source.dart';
-import 'package:personal_project/features/home/page/covid_19_test/ui/widgets/container_start_counter_widget.dart';
+import 'package:personal_project/features/home/page/covid_19_test/presentation/widgets/container_start_counter_widget.dart';
 import 'package:personal_project/features/medical_history/presentation/widgets/error_alert_widget.dart';
 
 import '../../../../../common_ui/common_widgets/buttons/main_button_widget.dart';

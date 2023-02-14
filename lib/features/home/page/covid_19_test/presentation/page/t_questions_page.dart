@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:personal_project/features/home/page/covid_19_test/ui/widgets/drop_down_questions_widget.dart';
-import 'package:personal_project/features/home/page/covid_19_test/ui/widgets/questions_visible_widgets.dart/second_vissible_question_widget.dart';
-import 'package:personal_project/features/home/page/covid_19_test/ui/widgets/questions_visible_widgets.dart/third_vissible_question_widget.dart';
+import 'package:personal_project/features/home/page/covid_19_test/presentation/widgets/drop_down_questions_widget.dart';
+import 'package:personal_project/features/home/page/covid_19_test/presentation/widgets/questions_visible_widgets.dart/second_vissible_question_widget.dart';
+import 'package:personal_project/features/home/page/covid_19_test/presentation/widgets/questions_visible_widgets.dart/third_vissible_question_widget.dart';
 import 'package:personal_project/features/medical_history/presentation/widgets/multi_selected_widget.dart';
 
 import '../../../../../../common_ui/common_widgets/buttons/main_button_widget.dart';

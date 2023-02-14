@@ -222,7 +222,7 @@ class _LoginPageState extends State<LoginPage> {
                     setState(() {
                       if (emailController.text.isNotEmpty &&
                           passwordController.text.isNotEmpty &&
-                          passwordController.text.length >= 6) {
+                          passwordController.text.length >= 6 && emailController.text.length > 4) {
                         BlocProvider.of<AuthBloc>(context).add(LoginUserE(
                             emailController.text, passwordController.text));
                       } else {}

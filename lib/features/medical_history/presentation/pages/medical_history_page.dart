@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:personal_project/features/auth/bloc/auth_bloc.dart';
 
 import '../bloc/medical_history_bloc.dart';
 import '../widgets/done_alert_widget.dart';
@@ -40,12 +41,16 @@ class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
 
   @override
   void initState() {
-    final stateTestMedical = BlocProvider.of<MedicalHistoryBloc>(context).state;
+    // final stateTestMedical = BlocProvider.of<TestHistoryBloc>(context).state;
+    // for (var i = 0; i < stateTestMedical.allTestHistoryList.length; i++) {
+    //   AntigenDataSource()
+    //     .validateAntigen('63cc20b184ce548f26c07d39', stateTestMedical.allTestHistoryList[i].code!);
+    // }
     AntigenDataSource()
         .validateAntigen('63cc20b184ce548f26c07d39', 'A000004447');
     //TODO GET THE USER ID NOT BURN VALUE
     BlocProvider.of<MedicalHistoryBloc>(context).add(GetMedicalHistoryEvent(
-        '63b6f8217421999ac5a4a948',
+        '63cc20b184ce548f26c07d39',
         questions2: const []));
     super.initState();
   }
@@ -55,6 +60,7 @@ class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
     final wColor = ThemesIdx20();
     NavigationBarBloc navigationBloc =
         BlocProvider.of<NavigationBarBloc>(context);
+    final stateUserId = BlocProvider.of<AuthBloc>(context).state;
     final size = MediaQuery.of(context).size;
     return BlocConsumer<MedicalHistoryBloc, MedicalHistoryState>(
       listener: (context, state) {
@@ -74,6 +80,16 @@ class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
 
             defaultValueEng = 'No';
           });
+        }
+        if(chipListText.isEmpty){
+          chipListText = state.question2!.value;
+        }
+        else{
+          state.question2!.value = chipListText;
+          // BlocProvider.of<MedicalHistoryBloc>(context).add(
+          //   EditMedicalHistoryEvent(userId: stateUserId.userId,
+          //   responseOne: defaultValueEng,
+          //   responseTwo: state.question2!.value));
         }
       },
       builder: (context, state) {
@@ -185,14 +201,10 @@ class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
                     MultiSelectedWidget(
                       onChanged: (value) {
                         // TODO CHECK BAKEND MEDICAL HISTORY
-                        // setState(() {
-                        //   if (state.question2!.value.contains(value.toString()) != true) {
-                        //     state.question2!.value.add(value.toString());
-                        //   }
-                        // });
                         setState(() {
-                          if (chipListText.contains(value.toString()) != true) {
+                          if (state.question2!.value.contains(value.toString()) != true) {
                             chipListText.add(value.toString());
+                            debugPrint(chipListText.toString());
                           }
                         });
                       },
@@ -244,8 +256,12 @@ class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
                       mainButtonFunction: () {
                         //todo check if success before
                         BlocProvider.of<MedicalHistoryBloc>(context).add(
-                            GetMedicalHistoryEvent("63b6f8217421999ac5a4a948",
-                                questions2: state.question2!.value));
+                          EditMedicalHistoryEvent(userId: stateUserId.userId,
+                              responseOne: defaultValueEng,
+                              responseTwo: chipListText));
+                        state.question1!.value = defaultValueEng;
+                        state.question2!.value = chipListText;
+                        debugPrint("State Questions Medical : ${state.question2!.value.toList()}");
                         navigationBloc.add(PageChanged(indexNavigation: 0));
                         Navigator.pushNamed(context, 'navBar');
                       },

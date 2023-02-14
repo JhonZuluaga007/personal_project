@@ -33,6 +33,8 @@ class _$Injector extends Injector {
               medicalHistoryDataSource: c<MedicalHistoryDataSource>()))
       ..registerFactory((c) => MedicalHistoryUseCase(
           medicalHistoryRepository: c<MedicalHistoryRepository>()))
+      ..registerFactory((c) => EditMedicalHistoryUseCase(
+          editMedicalHistoryRepo: c<MedicalHistoryRepository>()))
       ..registerFactory((c) => MedicalHistoryDataSource());
   }
 

@@ -33,7 +33,7 @@ class Question1Entity {
   });
 
   final String name;
-  final String value;
+  late String value;
 }
 
 class Question2Entity {

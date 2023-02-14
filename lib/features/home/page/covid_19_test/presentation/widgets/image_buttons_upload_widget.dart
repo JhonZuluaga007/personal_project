@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:personal_project/features/home/page/covid_19_test/ui/widgets/upload_final_widget.dart';
+import 'package:personal_project/features/home/page/covid_19_test/presentation/widgets/upload_final_widget.dart';
 
 import '../../../../../../common_ui/common_widgets/buttons/button_widget.dart';
 import '../../../../../../config/theme/theme.dart';

@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
+import 'package:personal_project/features/medical_history/domain/use_cases/edit_medical_history_use_case.dart';
 
 import '../../../../config/helpers/injector/injector.dart';
 import '../../domain/entities/medical_history_entity.dart';
@@ -13,6 +14,7 @@ class MedicalHistoryBloc
     extends Bloc<MedicalHistoryEvent, MedicalHistoryState> {
   MedicalHistoryBloc() : super(const MedicalHistoryState()) {
     final getMedicalHistoryUseCase = Injector.resolve<MedicalHistoryUseCase>();
+    final editMedicalHistoryUseCase = Injector.resolve<EditMedicalHistoryUseCase>();
 
     on<GetMedicalHistoryEvent>((event, emit) async {
       emit(state.copyWith(formStatus: FormSubmitting()));
@@ -33,6 +35,21 @@ class MedicalHistoryBloc
               updated: medicalHistory.updated,
               question1: medicalHistory.question1,
               question2: medicalHistory.question2)));
+    });
+
+    on<EditMedicalHistoryEvent>((event, emit) async {
+      emit(state.copyWith(formStatus: FormSubmitting()));
+      final editMedicalHistory =
+          await editMedicalHistoryUseCase.editMedicalHistory(event.userId, event.responseOne, event.responseTwo);
+      editMedicalHistory.fold(
+          (error) => emit(state.copyWith(
+                formStatus:
+                    SubmissionFailed(exception: Exception(error.message)),
+                // errorMessage: error.message, // TODO CHECK
+              )),
+          (medicalHistory) => emit(state.copyWith(
+            message: medicalHistory.message
+          )));
     });
   }
 }
