@@ -14,7 +14,8 @@ class MedicalHistoryBloc
     extends Bloc<MedicalHistoryEvent, MedicalHistoryState> {
   MedicalHistoryBloc() : super(const MedicalHistoryState()) {
     final getMedicalHistoryUseCase = Injector.resolve<MedicalHistoryUseCase>();
-    final editMedicalHistoryUseCase = Injector.resolve<EditMedicalHistoryUseCase>();
+    final editMedicalHistoryUseCase =
+        Injector.resolve<EditMedicalHistoryUseCase>();
 
     on<GetMedicalHistoryEvent>((event, emit) async {
       emit(state.copyWith(formStatus: FormSubmitting()));
@@ -40,7 +41,8 @@ class MedicalHistoryBloc
     on<EditMedicalHistoryEvent>((event, emit) async {
       emit(state.copyWith(formStatus: FormSubmitting()));
       final editMedicalHistory =
-          await editMedicalHistoryUseCase.editMedicalHistory(event.userId, event.responseOne, event.responseTwo);
+          await editMedicalHistoryUseCase.editMedicalHistory(
+              event.userId, event.responseOne, event.responseTwo);
       editMedicalHistory.fold(
           (error) => emit(state.copyWith(
                 formStatus:
@@ -48,8 +50,8 @@ class MedicalHistoryBloc
                 // errorMessage: error.message, // TODO CHECK
               )),
           (medicalHistory) => emit(state.copyWith(
-            message: medicalHistory.message
-          )));
+              message: medicalHistory.message,
+              formStatus: SubmissionSuccess())));
     });
   }
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:personal_project/common_ui/common_widgets/text/text_widget.dart';
 import '../../features/auth/bloc/auth_bloc.dart';
+import '../../features/medical_history/presentation/bloc/medical_history_bloc.dart';
 
 class DrawerWidget extends StatelessWidget {
   const DrawerWidget({super.key});
@@ -9,6 +10,7 @@ class DrawerWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final authBloc = BlocProvider.of<AuthBloc>(context);
+    final stateUserId = BlocProvider.of<AuthBloc>(context).state;
 
     final size = MediaQuery.of(context).size;
     return WillPopScope(
@@ -18,35 +20,29 @@ class DrawerWidget extends StatelessWidget {
       child: Drawer(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          // Importante: elimine cualquier padding del ListView.
-          // padding: EdgeInsets.zero,
           children: <Widget>[
             Theme(
               data: Theme.of(context).copyWith(
                 dividerTheme: const DividerThemeData(color: Colors.transparent),
               ),
-              child: BlocBuilder<AuthBloc, AuthState>(
-                builder: (context, state) {
-                  return DrawerHeader(
-                    decoration: const BoxDecoration(color: Colors.transparent),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Icon(
-                          Icons.person, // TODO GET IMAGE FROM THE PROFILE.
-                          size: 70,
-                        ),
-                        const SizedBox(height: 10),
-                        TextWidget(
-                          text: '${state.name} ${state.lastname}',
-                          requiresTranslate: false,
-                          style: const TextStyle(fontSize: 16),
-                        )
-                      ],
+              child: DrawerHeader(
+                decoration: const BoxDecoration(color: Colors.transparent),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Icon(
+                      Icons.person, // TODO GET IMAGE FROM THE PROFILE.
+                      size: 70,
                     ),
-                  );
-                },
+                    const SizedBox(height: 10),
+                    TextWidget(
+                      text: '${stateUserId.name} ${stateUserId.lastname}',
+                      requiresTranslate: false,
+                      style: const TextStyle(fontSize: 16),
+                    )
+                  ],
+                ),
               ),
             ),
             const Padding(
@@ -87,6 +83,9 @@ class DrawerWidget extends StatelessWidget {
                 text: 'drawer_item_two',
               ),
               onTap: () {
+                BlocProvider.of<MedicalHistoryBloc>(context).add(
+                    GetMedicalHistoryEvent(stateUserId.userId,
+                        questions2: const []));
                 Navigator.pushNamed(context, 'medicalHistory');
               },
             ),
@@ -137,7 +136,6 @@ class DrawerWidget extends StatelessWidget {
               onTap: () {
                 Navigator.pushReplacementNamed(context, 'login');
                 authBloc.add(LogOut());
-                //TODO RESTART BAR
               },
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
