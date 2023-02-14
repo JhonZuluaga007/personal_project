@@ -67,6 +67,7 @@ class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
             no = false;
             defaultValueEng = 'Yes';
             debugPrint(defaultValueEng);
+            print(defaultValueEng);
           });
         }
         if (state.status == false) {
@@ -74,8 +75,9 @@ class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
             yes = false;
             no = true;
             debugPrint(defaultValueEng);
-
+            print(state.question1!.value);
             defaultValueEng = 'No';
+            print(defaultValueEng);
           });
         }
         if (chipListText.isEmpty) {
@@ -156,6 +158,7 @@ class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
                         if (defaultValueEng == 'No' || state.status == false) {
                           yes = false;
                           no = true;
+                          chipListText.clear();
                         }
                         if (defaultValueEng == 'Select option' ||
                             state.status == false) {
@@ -189,6 +192,9 @@ class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
                             chipListText.add(value.toString());
                             debugPrint(chipListText.toString());
                           }
+                          if (state.question1!.value == 'yes') {
+                            chipListText.clear();
+                          }
                         });
                       },
                       listItem: const [
@@ -212,8 +218,9 @@ class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
               listener: (context, state) {
                 // TODO: implement listener
                 if (state.formStatus is SubmissionSuccess) {
-                  navigationBloc.add(PageChanged(indexNavigation: 0));
-                  Navigator.pushNamed(context, 'navBar');
+                  // navigationBloc.add(PageChanged(indexNavigation: 0));
+                  // Navigator.pushNamed(context, 'navBar');
+                  print(state.question1);
                 } else {
                   const CircularProgressIndicator(
                     key: Key('LoaderRegisterKey'),
@@ -256,10 +263,8 @@ class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
                                     userId: stateUserId.userId,
                                     responseOne: defaultValueEng,
                                     responseTwo: chipListText));
-                            state.question1!.value = defaultValueEng;
-                            state.question2!.value = chipListText;
-                            debugPrint(
-                                "State Questions Medical : ${state.question2!.value.toList()}");
+                            // state.question1!.value = defaultValueEng;
+                            // state.question2!.value = chipListText;
                           },
                         ); //todo open new alert
                       },

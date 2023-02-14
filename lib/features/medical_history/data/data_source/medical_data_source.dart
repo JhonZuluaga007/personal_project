@@ -32,7 +32,7 @@ class MedicalHistoryDataSource {
       "value": responseTwo
     };
     var request = http.MultipartRequest(
-        'POST', Uri.parse('${Endpoints.editMedicalHistory}$userId'));
+        'POST', Uri.parse('${Endpoints.editMedicalHistory}$userId/'));
     request.fields.addAll({
       'question1': jsonEncode(questionOne),
       'question2': jsonEncode(questionTwo)
@@ -46,7 +46,7 @@ class MedicalHistoryDataSource {
       if (decodedMap['statusCode'] == 200) {
         success = true;
       }
-      return ServerValidate.fromJson(decodedMap);
+      return ServerValidate.fromMap(decodedMap);
     } else {
       throw InvalidData('error');
     }
