@@ -49,9 +49,13 @@ class MedicalHistoryBloc
                     SubmissionFailed(exception: Exception(error.message)),
                 // errorMessage: error.message, // TODO CHECK
               )),
-          (medicalHistory) => emit(state.copyWith(
-              message: medicalHistory.message,
-              formStatus: SubmissionSuccess())));
+          (medicalHistory) => emit(
+                state.copyWith(
+                    formStatus: const InitialFormStatus(),
+                    infoUploaded: SubmissionSuccess(),
+                    question1: Question1Entity(
+                        name: 'name', value: event.responseOne)),
+              ));
     });
   }
 }

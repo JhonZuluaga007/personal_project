@@ -11,6 +11,7 @@ class MedicalHistoryState {
   final AtedEntity? updated;
   final UserIdEntity? userId;
   final String? message;
+  final FormSubmissionStatus? infoUploaded;
 
   const MedicalHistoryState(
       {this.formStatus = const InitialFormStatus(),
@@ -21,19 +22,20 @@ class MedicalHistoryState {
       this.question2,
       this.status,
       this.updated,
+      this.infoUploaded,
       this.userId});
 
-  MedicalHistoryState copyWith({
-    FormSubmissionStatus? formStatus,
-    String? id,
-    AtedEntity? created,
-    Question1Entity? question1,
-    Question2Entity? question2,
-    bool? status,
-    AtedEntity? updated,
-    UserIdEntity? userId,
-    String? message
-  }) {
+  MedicalHistoryState copyWith(
+      {FormSubmissionStatus? formStatus,
+      String? id,
+      AtedEntity? created,
+      Question1Entity? question1,
+      Question2Entity? question2,
+      bool? status,
+      AtedEntity? updated,
+      UserIdEntity? userId,
+      FormSubmissionStatus? infoUploaded,
+      String? message}) {
     return MedicalHistoryState(
         formStatus: formStatus ?? this.formStatus,
         id: id ?? this.id,
@@ -43,6 +45,15 @@ class MedicalHistoryState {
         updated: updated ?? this.updated,
         status: status ?? this.status,
         userId: userId ?? this.userId,
+        infoUploaded: infoUploaded ?? this.infoUploaded,
         message: message ?? this.message);
+  }
+
+  MedicalHistoryState initialState({
+    FormSubmissionStatus? formStatus,
+  }) {
+    return const MedicalHistoryState(
+      formStatus: InitialFormStatus(),
+    );
   }
 }
