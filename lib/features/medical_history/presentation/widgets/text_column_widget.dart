@@ -6,16 +6,14 @@ import '../../../../config/theme/theme.dart';
 class TextColumnMedicalHistoryWidget extends StatelessWidget {
   const TextColumnMedicalHistoryWidget({
     Key? key,
-    required this.size,
-    required this.wColor,
   }) : super(key: key);
-
-  final Size size;
-  final ThemesIdx20 wColor;
 
   @override
   Widget build(BuildContext context) {
+    final wColor = ThemesIdx20();
+    final size = MediaQuery.of(context).size;
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SizedBox(height: size.height * 0.05),
         TextWidget(

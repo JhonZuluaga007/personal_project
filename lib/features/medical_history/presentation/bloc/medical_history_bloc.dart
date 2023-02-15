@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
+
 import 'package:personal_project/features/medical_history/domain/use_cases/edit_medical_history_use_case.dart';
 
 import '../../../../config/helpers/injector/injector.dart';
@@ -25,36 +26,45 @@ class MedicalHistoryBloc
           (error) => emit(state.copyWith(
                 formStatus:
                     SubmissionFailed(exception: Exception(error.message)),
-                // errorMessage: error.message, // TODO CHECK
               )),
           (medicalHistory) => emit(state.copyWith(
-              userId: medicalHistory.userId,
-              formStatus: SubmissionSuccess(),
-              status: medicalHistory.status,
-              id: medicalHistory.id,
-              created: medicalHistory.created,
-              updated: medicalHistory.updated,
-              question1: medicalHistory.question1,
-              question2: medicalHistory.question2)));
+                userId: medicalHistory.userId,
+                formStatus: SubmissionSuccess(),
+                status: medicalHistory.status,
+                id: medicalHistory.id,
+                created: medicalHistory.created,
+                updated: medicalHistory.updated,
+                question1: medicalHistory.question1,
+                question2: medicalHistory.question2,
+              )));
     });
 
     on<EditMedicalHistoryEvent>((event, emit) async {
-      emit(state.copyWith(formStatus: FormSubmitting()));
+      emit(state.copyWith(
+        infoUploaded: FormSubmitting(),
+      ));
       final editMedicalHistory =
           await editMedicalHistoryUseCase.editMedicalHistory(
               event.userId, event.responseOne, event.responseTwo);
       editMedicalHistory.fold(
           (error) => emit(state.copyWith(
-                formStatus:
-                    SubmissionFailed(exception: Exception(error.message)),
+                infoUploaded: SubmissionFailed(
+                  exception: Exception(error.message),
+                ),
                 // errorMessage: error.message, // TODO CHECK
               )),
           (medicalHistory) => emit(
                 state.copyWith(
-                    formStatus: SubmissionSuccess(),
-                    infoUploaded: SubmissionSuccess(),
-                    question1: Question1Entity(
-                        name: 'name', value: event.responseOne)),
+                  infoUploaded: SubmissionSuccess(),
+                  question1: Question1Entity(
+                    name: state.question1!.name,
+                    value: event.responseOne,
+                  ),
+                  question2: Question2Entity(
+                    name: state.question2!.name,
+                    value: event.responseTwo,
+                  ),
+                ),
               ));
     });
   }
