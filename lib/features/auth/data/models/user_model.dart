@@ -129,9 +129,10 @@ class User extends UserData {
         acceptsTerms: json["accepts_terms"],
         addresses: Addresses.fromMap(json["addresses"]),
         cellphone: json["cellphone"] ?? '',
-        dateOfBirth: json["date_of_birth"] != null
-            ? DateOfBirth.fromJson(json["date_of_birth"])
-            : DateOfBirth(date: Date(numberLong: '')),
+        dateOfBirth: DateOfBirth.fromJson(json["date_of_birth"]),
+        // json["date_of_birth"] != null
+        //     ? DateOfBirth.fromJson(json["date_of_birth"])
+        //     : DateOfBirth(date: Date(numberLong: '')),
         email: json["email"] ?? '',
         ethnicity: json["ethnicity"] == null
             ? []
@@ -195,22 +196,40 @@ class Addresses extends AddressesEntity {
       };
 }
 
-class DateOfBirth extends DateEntity {
+class DateOfBirth {
+  // TODO Need to extends from Entity.
   DateOfBirth({
-    required Date date,
-  }) : super(date: date);
+    required this.date,
+  });
 
-  factory DateOfBirth.fromMap(Map<String, dynamic> json) => DateOfBirth(
-        date: Date.fromMap(json["\u0024date"]),
-      );
+  final DateTime date;
+
   factory DateOfBirth.fromJson(Map<String, dynamic> json) => DateOfBirth(
-        date: Date.fromJson(json["\u0024date"]),
+        date: DateTime.parse(json["\u0024date"]),
       );
 
   Map<String, dynamic> toJson() => {
-        "\u0024date": date?.toJson(),
+        "\u0024date": date.toIso8601String(),
       };
 }
+// class DateOfBirth extends DateEntity {
+//   DateOfBirth({
+//     required Date date,
+//   }) : super(date: date);
+//  DateOfBirth({
+//         required this.date,
+//     });
+
+//     final DateTime date;
+
+//     factory DateOfBirth.fromJson(Map<String, dynamic> json) => DateOfBirth(
+//         date: DateTime.parse(json["\u0024date"]),
+//     );
+
+//     Map<String, dynamic> toJson() => {
+//         "\u0024date": date.toIso8601String(),
+//     };
+// }
 
 class Date {
   Date({
