@@ -38,6 +38,7 @@ class UserData {
       required this.race,
       required this.roles,
       required this.sex,
+      required this.firstLogin,
       //required this.updated,
       required this.levelSchool});
 
@@ -53,6 +54,7 @@ class UserData {
   final bool? informationUpdated;
   final bool? isActive;
   final bool? isConfirmed;
+  final bool? firstLogin;
   final String? lastname;
   final String? loginId;
   final String? middleName;

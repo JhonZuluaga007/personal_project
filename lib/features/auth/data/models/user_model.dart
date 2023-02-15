@@ -89,6 +89,7 @@ class User extends UserData {
     required String participantId,
     required String password,
     required bool passwordReset,
+    required bool firstLogin,
     required List<String> projects,
     required List<Race?>? race,
     required Roles roles,
@@ -116,6 +117,7 @@ class User extends UserData {
           participantId: participantId,
           password: password,
           passwordReset: passwordReset,
+          firstLogin: firstLogin,
           projects: projects,
           race: race,
           roles: roles,
@@ -130,6 +132,7 @@ class User extends UserData {
         addresses: Addresses.fromMap(json["addresses"]),
         cellphone: json["cellphone"] ?? '',
         dateOfBirth: DateOfBirth.fromJson(json["date_of_birth"]),
+        firstLogin: json["first_login"] ?? false,
         // json["date_of_birth"] != null
         //     ? DateOfBirth.fromJson(json["date_of_birth"])
         //     : DateOfBirth(date: Date(numberLong: '')),
