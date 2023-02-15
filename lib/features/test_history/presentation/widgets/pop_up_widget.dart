@@ -93,7 +93,7 @@ Future popUpWidget(BuildContext context, TestHistoryEntity testView) {
                         SizedBox(height: height * 0.011),
                         TextWidget(
                           text:
-                              "${dateCreate.day}/${dateCreate.month}/${dateCreate.year}",
+                              "${dateCreate.day} / ${dateCreate.month} / ${dateCreate.year}",
                           textAlign: TextAlign.center,
                           requiresTranslate: false,
                           style: TextStyle(

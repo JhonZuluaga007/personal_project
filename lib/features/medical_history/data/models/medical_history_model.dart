@@ -49,6 +49,23 @@ class Ated extends AtedEntity {
       };
 }
 
+enum AnswerType { Yes, No }
+
+final answerTypeValues =
+    EnumValues({"Yes": AnswerType.Yes, "No": AnswerType.No});
+
+class EnumValues<T> {
+  Map<String, T> map;
+  late Map<T, String> reverseMap;
+
+  EnumValues(this.map);
+
+  Map<T, String> get reverse {
+    reverseMap = map.map((k, v) => MapEntry(v, k));
+    return reverseMap;
+  }
+}
+
 class Question1 extends Question1Entity {
   Question1({
     required String name,

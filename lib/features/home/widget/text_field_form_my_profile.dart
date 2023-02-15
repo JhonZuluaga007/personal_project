@@ -4,7 +4,7 @@ import 'package:personal_project/common_ui/common_widgets/buttons/main_button_wi
 import 'package:personal_project/common_ui/common_widgets/text_field/text_field_no_label_widget.dart';
 import 'package:personal_project/common_ui/common_widgets/text_field/text_field_with_border_widget.dart';
 import 'package:personal_project/config/theme/theme.dart';
-import 'package:personal_project/features/home/page/covid_19_test/ui/widgets/drop_down_questions_widget.dart';
+import 'package:personal_project/features/home/page/covid_19_test/presentation/widgets/drop_down_questions_widget.dart';
 import 'package:personal_project/features/home/widget/lists_text_fields_widgets.dart';
 import 'package:personal_project/navigationBar/bloc/navigation_bar_bloc.dart';
 

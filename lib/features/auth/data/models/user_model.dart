@@ -128,9 +128,11 @@ class User extends UserData {
         id: json["_id"] == Map ? Id.fromMap(json["_id"]).oid : json["_id"],
         acceptsTerms: json["accepts_terms"],
         addresses: Addresses.fromMap(json["addresses"]),
-        cellphone: json["cellphone"],
-        dateOfBirth: DateOfBirth.fromJson(json["date_of_birth"]),
-        email: json["email"],
+        cellphone: json["cellphone"] ?? '',
+        dateOfBirth: json["date_of_birth"] != null
+            ? DateOfBirth.fromJson(json["date_of_birth"])
+            : DateOfBirth(date: Date(numberLong: '')),
+        email: json["email"] ?? '',
         ethnicity: json["ethnicity"] == null
             ? []
             : List<Ethnicity?>.from(
@@ -139,17 +141,17 @@ class User extends UserData {
             ? []
             : List<Gender?>.from(json["gender"]!.map((x) => Gender.fromMap(x))),
         image: json["image"],
-        informationUpdated: json["information_updated"],
-        isActive: json["is_active"],
-        isConfirmed: json["is_confirmed"],
-        lastname: json["lastname"],
-        loginId: json["login_id"],
-        middleName: json["middle_name"],
-        name: json["name"],
-        organization: json["organization"],
-        participantId: json["participant_id"],
-        password: json["password"],
-        passwordReset: json["password_reset"],
+        informationUpdated: json["information_updated"] ?? false,
+        isActive: json["is_active"] ?? false,
+        isConfirmed: json["is_confirmed"] ?? false,
+        lastname: json["lastname"] ?? '',
+        loginId: json["login_id"] ?? '',
+        middleName: json["middle_name"] ?? '',
+        name: json["name"] ?? '',
+        organization: json["organization"] ?? '',
+        participantId: json["participant_id"] ?? '',
+        password: json["password"] ?? '',
+        passwordReset: json["password_reset"] ?? false,
         levelSchool: json["level_school"] ?? "",
         projects: json["projects"] == null
             ? []

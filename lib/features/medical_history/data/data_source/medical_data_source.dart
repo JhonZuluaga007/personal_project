@@ -1,8 +1,11 @@
+import 'dart:convert';
+
 import '../../../../config/helpers/api.dart';
 import '../models/medical_history_model.dart';
 import '../../../../config/helpers/endpoints.dart';
 import '../../../../config/helpers/errors/invalid_data.dart';
 import '../../../../config/helpers/models/server_validate_data.dart';
+import 'package:http/http.dart' as http;
 
 class MedicalHistoryDataSource {
   Future<MedicalHistoryModel> getMedicalHistory(String userId) async {
@@ -28,18 +31,24 @@ class MedicalHistoryDataSource {
           "Do you have any of the following conditions that the CDC classifies as risk factors for severe COVID-19?",
       "value": responseTwo
     };
-    final response = await Api.post(
-      '${Endpoints.editMedicalHistory}$userId',
-      {
-        "question1": questionOne,
-        "question2": questionTwo,
-      },
-    );
-    try {
-      ServerValidate serverValidate = ServerValidate.fromJson(response);
-      return serverValidate;
-    } on InvalidData catch (invalidData) {
-      throw InvalidData(invalidData.toString());
+    var request = http.MultipartRequest(
+        'POST', Uri.parse('${Endpoints.editMedicalHistory}$userId/'));
+    request.fields.addAll({
+      'question1': jsonEncode(questionOne),
+      'question2': jsonEncode(questionTwo)
+    });
+
+    http.StreamedResponse response = await request.send();
+    if (response.statusCode == 200) {
+      final responseString = await response.stream.bytesToString();
+      final decodedMap = json.decode(responseString);
+      bool success = false;
+      if (decodedMap['statusCode'] == 200) {
+        success = true;
+      }
+      return ServerValidate.fromMap(decodedMap);
+    } else {
+      throw InvalidData('error');
     }
   }
 }

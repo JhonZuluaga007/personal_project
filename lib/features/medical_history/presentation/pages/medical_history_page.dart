@@ -1,21 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
+import 'package:http/http.dart';
+import 'package:personal_project/features/auth/bloc/auth_bloc.dart';
+import '../../../../config/helpers/form_submission_status.dart';
 import '../bloc/medical_history_bloc.dart';
-import '../widgets/done_alert_widget.dart';
 import '../../../../config/theme/theme.dart';
 import '../widgets/confirm_alert_widget.dart';
 import '../widgets/button_actions_widget.dart';
+import '../widgets/done_alert_widget.dart';
+import '../widgets/error_alert_widget.dart';
 import '../widgets/multi_selected_widget.dart';
 import '../../../../navigationBar/bloc/navigation_bar_bloc.dart';
-import '../../../antigen/data/data_source/antigen_data_source.dart';
 import '../../../../common_ui/common_widgets/text/text_widget.dart';
 import '../../../../common_ui/common_widgets/drop_down_widget.dart';
 import '../../../../common_ui/common_pages/my_app_scaffold_page.dart';
+import '../widgets/text_column_widget.dart';
 
 class MedicalHistoryPage extends StatefulWidget {
   const MedicalHistoryPage({super.key});
-
   @override
   State<MedicalHistoryPage> createState() => _MedicalHistoryPageState();
 }
@@ -23,245 +25,226 @@ class MedicalHistoryPage extends StatefulWidget {
 class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
   String defaultValueEng = 'Select option';
   String defaultValueSp = 'Seleccionar opción';
-
   String defaultValueSevereEn = 'Select option';
   String defaultValueSevereSp = 'Seleccionar opción';
-
   final List<String> listsYesNoEnglish = ['Select option', 'Yes', 'No'];
   final List<String> listsYesNoSpanish = ['Seleccionar opción', 'Si', 'No'];
-
-  bool yes = false;
-  bool no = false;
-
+  bool visibilityYes = false;
   bool yesSevere = false;
   bool noSevere = false;
-
   List<String> chipListText = [];
-
-  @override
-  void initState() {
-    final stateTestMedical = BlocProvider.of<MedicalHistoryBloc>(context).state;
-    AntigenDataSource()
-        .validateAntigen('63cc20b184ce548f26c07d39', 'A000004447');
-    //TODO GET THE USER ID NOT BURN VALUE
-    BlocProvider.of<MedicalHistoryBloc>(context).add(GetMedicalHistoryEvent(
-        '63b6f8217421999ac5a4a948',
-        questions2: const []));
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     final wColor = ThemesIdx20();
     NavigationBarBloc navigationBloc =
         BlocProvider.of<NavigationBarBloc>(context);
+    final stateUserId = BlocProvider.of<AuthBloc>(context).state;
     final size = MediaQuery.of(context).size;
-    return BlocConsumer<MedicalHistoryBloc, MedicalHistoryState>(
-      listener: (context, state) {
-        if (state.status == true) {
-          setState(() {
-            yes = true;
-            no = false;
-            defaultValueEng = 'Yes';
-            debugPrint(defaultValueEng);
-          });
-        }
-        if (state.status == false) {
-          setState(() {
-            yes = false;
-            no = true;
-            debugPrint(defaultValueEng);
-
-            defaultValueEng = 'No';
-          });
-        }
-      },
-      builder: (context, state) {
-        return MyAppScaffold(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          appBar: AppBar(
-            leading: GestureDetector(
-              onTap: () => Navigator.pop(context),
-              // navigationBloc.add(PageChanged(indexNavigation: 0));
-              // Navigator.pushNamed(context, 'navBar');
-
-              child: const Icon(
-                Icons.arrow_back_ios,
-                color: Colors.black,
-              ),
-            ),
-            backgroundColor: Colors.white,
-            title: Image.asset("assets/icons/idx_Icon.png"),
-            // title: TextWidget(
-            //   text: "medical_history_title",
-            //   style: TextStyle(
-            //       fontSize: 20,
-            //       color: wColor.mapColors["S800"],
-            //       fontWeight: FontWeight.w600,
-            //       letterSpacing: -0.2),
-            // ),
-            centerTitle: true,
+    return MyAppScaffold(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      appBar: AppBar(
+        leading: GestureDetector(
+          onTap: () => Navigator.pop(context),
+          child: const Icon(
+            Icons.arrow_back_ios,
+            color: Colors.black,
           ),
-          children: [
-            SizedBox(height: size.height * 0.05),
-            TextWidget(
-              text: "medical_history_title",
-              style: TextStyle(
-                  fontSize: 20,
-                  color: wColor.mapColors["S800"],
-                  fontWeight: FontWeight.w600,
-                  letterSpacing: -0.2),
-            ),
-            SizedBox(height: size.height * 0.025),
-            TextWidget(
-              text: "medical_history_text_one",
-              textAlign: TextAlign.left,
-              style: TextStyle(
-                  fontSize: 16,
-                  color: wColor.mapColors["S800"],
-                  fontWeight: FontWeight.w400,
-                  letterSpacing: -0.2),
-            ),
-            SizedBox(height: size.height * 0.025),
-            TextWidget(
-              text: "medical_history_text_two",
-              textAlign: TextAlign.left,
-              style: TextStyle(
-                  fontSize: 20,
-                  color: wColor.mapColors["S800"],
-                  fontWeight: FontWeight.w600,
-                  letterSpacing: -0.2),
-            ),
-            SizedBox(height: size.height * 0.02),
-            TextWidget(
-              text: "medical_history_text_three",
-              textAlign: TextAlign.left,
-              style: TextStyle(
-                  fontSize: 16,
-                  color: wColor.mapColors["S800"],
-                  fontWeight: FontWeight.w400,
-                  letterSpacing: -0.2),
-            ),
-            SizedBox(height: size.height * 0.02),
-            DropDownContainerWidget(
-                //TODO CHECK HOW TO HANDLE MAIN VALUE
-                listItems: listsYesNoEnglish,
-                mainValue: defaultValueEng,
-                // mainValue: state.status == false ? 'No' : 'Yes',
-                width: size.width * 0.9,
-                onChanged: (value) => {
-                      setState(() {
-                        defaultValueEng = value.toString();
-                        if (defaultValueEng == 'Yes' || state.status == true) {
-                          yes = true;
-                          no = false;
-                        }
-                        if (defaultValueEng == 'No' || state.status == false) {
-                          yes = false;
-                          no = true;
-                        }
-                        if (defaultValueEng == 'Select option' ||
-                            state.status == false) {
-                          yes = false;
-                          no = true;
-                        }
-                      })
-                    }),
-            SizedBox(height: size.height * 0.02),
-            Visibility(
-                visible: yes,
-                child: Column(
-                  children: [
-                    TextWidget(
-                      text: "medical_history_text_four",
-                      textAlign: TextAlign.left,
-                      style: TextStyle(
-                          fontSize: 16,
-                          color: wColor.mapColors["S800"],
-                          fontWeight: FontWeight.w400,
-                          letterSpacing: -0.2),
-                    ),
-                    SizedBox(height: size.height * 0.02),
-                    MultiSelectedWidget(
-                      onChanged: (value) {
-                        // TODO CHECK BAKEND MEDICAL HISTORY
-                        // setState(() {
-                        //   if (state.question2!.value.contains(value.toString()) != true) {
-                        //     state.question2!.value.add(value.toString());
-                        //   }
-                        // });
-                        setState(() {
-                          if (chipListText.contains(value.toString()) != true) {
-                            chipListText.add(value.toString());
-                          }
-                        });
-                      },
-                      listItem: const [
-                        "Cerebrovascular disease",
-                        "Asthma",
-                        "Cancer",
-                        "Chronic kidney disease",
-                        "Tuberculosis",
-                        "Smoking (current and former)",
-                        "Neurologic conditions",
-                        "Hiv"
-                      ],
-                      valueDefaultList: "medical_history_drop_down_select",
-                      listChip: chipListText,
-                      requiredTranslate: false,
-                    ),
-                  ],
-                )),
-            SizedBox(height: size.height * 0.05),
-            ButtonActionsWidgets(
-              size: size,
-              wColor: wColor,
-              navigationBloc: navigationBloc,
-              onPressed: () {
-                confirmSendInfo(
+        ),
+        backgroundColor: Colors.white,
+        title: Image.asset("assets/icons/idx_Icon.png"),
+        centerTitle: true,
+      ),
+      children: [
+        const TextColumnMedicalHistoryWidget(),
+        BlocConsumer<MedicalHistoryBloc, MedicalHistoryState>(
+          listener: (context, state) {
+            if (state.formStatus is SubmissionSuccess) {
+              if (state.question1!.value == 'Yes') {
+                setState(() {
+                  visibilityYes = true;
+                  chipListText = state.question2!.value;
+                  defaultValueEng = 'Yes';
+                });
+              } else {
+                setState(() {
+                  visibilityYes = false;
+                  chipListText = state.question2!.value;
+                  defaultValueEng = 'No';
+                });
+              }
+            } else if (state.formStatus is SubmissionFailed) {
+              errorAlertInfoPop(
                   context: context,
                   mainIcon: Icon(
-                    Icons.warning_amber,
-                    size: size.height * 0.12,
-                    color: wColor.mapColors['Warning'],
+                    Icons.cancel,
+                    color: wColor.mapColors['C01'],
+                    size: 46,
                   ),
-                  titleText: "alert_confirm_text_one",
+                  titleText: 'alert_text_error_one',
                   paddingHeight: size.height * 0.25,
-                  infoText: 'alert_confirm_text_two',
-                  mainButton: 'alert_confirm_text_three',
+                  infoText: 'alert_text_error_update_one',
+                  mainButton: 'alert_text_error_three',
                   mainButtonFunction: () {
-                    doneSendInfo(
-                      context: context,
-                      mainIcon: Icon(
-                        Icons.check,
-                        size: size.height * 0.15,
-                        color: wColor.mapColors['C00'],
-                      ),
-                      titleText: 'alert_text_one',
-                      paddingHeight: size.height * 0.25,
-                      infoText: 'alert_text_two',
-                      mainButton: 'alert_text_three',
-                      mainButtonFunction: () {
-                        //todo check if success before
-                        BlocProvider.of<MedicalHistoryBloc>(context).add(
-                            GetMedicalHistoryEvent("63b6f8217421999ac5a4a948",
-                                questions2: state.question2!.value));
-                        navigationBloc.add(PageChanged(indexNavigation: 0));
-                        Navigator.pushNamed(context, 'navBar');
-                      },
-                    ); //todo open new alert
-                  },
-                  secondButton: 'alert_confirm_text_four',
-                  secondButtonFunction: () {
                     Navigator.pop(context);
-                  },
-                );
+                  });
+            }
+
+            if (state.infoUploaded is FormSubmitting) {
+              const Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+
+            if (state.infoUploaded is SubmissionSuccess) {
+              doneSendInfo(
+                context: context,
+                mainIcon: Icon(
+                  Icons.check,
+                  size: size.height * 0.15,
+                  color: wColor.mapColors['C00'],
+                ),
+                titleText: 'alert_text_one',
+                paddingHeight: size.height * 0.25,
+                infoText: 'alert_text_two',
+                mainButton: 'alert_text_three',
+                mainButtonFunction: () {
+                  navigationBloc.add(PageChanged(indexNavigation: 0));
+                  Navigator.pushNamed(context, 'navBar');
+                },
+              );
+            } else if (state.infoUploaded is SubmissionFailed) {
+              errorAlertInfoPop(
+                  context: context,
+                  mainIcon: Icon(
+                    Icons.cancel,
+                    color: wColor.mapColors['C01'],
+                    size: 46,
+                  ),
+                  titleText: 'alert_text_error_one',
+                  paddingHeight: size.height * 0.25,
+                  infoText: 'alert_text_error_update',
+                  mainButton: 'alert_text_error_three',
+                  mainButtonFunction: () {
+                    Navigator.pop(context);
+                  });
+            }
+          },
+          builder: (context, state) {
+            if (state.formStatus is FormSubmitting) {
+              return Column(
+                children: [
+                  SizedBox(
+                    height: size.height * 0.1,
+                  ),
+                  const Center(
+                    child: CircularProgressIndicator(
+                      key: Key('LoaderKey'),
+                    ),
+                  ),
+                  SizedBox(
+                    height: size.height * 0.1,
+                  ),
+                ],
+              );
+            }
+            return Column(
+              children: [
+                DropDownContainerWidget(
+                    listItems: listsYesNoEnglish,
+                    mainValue: defaultValueEng,
+                    width: size.width * 0.9,
+                    onChanged: (value) => {
+                          setState(() {
+                            defaultValueEng = value.toString();
+                            if (defaultValueEng == 'Yes') {
+                              visibilityYes = true;
+                            } else {
+                              visibilityYes = false;
+                              //chipListText.clear();
+                            }
+                          })
+                        }),
+                SizedBox(height: size.height * 0.02),
+                Visibility(
+                    visible: visibilityYes,
+                    child: Column(
+                      children: [
+                        TextWidget(
+                          text: "medical_history_text_four",
+                          textAlign: TextAlign.left,
+                          style: TextStyle(
+                              fontSize: 16,
+                              color: wColor.mapColors["S800"],
+                              fontWeight: FontWeight.w400,
+                              letterSpacing: -0.2),
+                        ),
+                        SizedBox(height: size.height * 0.02),
+                        MultiSelectedWidget(
+                          onChanged: (value) {
+                            setState(() {
+                              if (state.question2!.value
+                                      .contains(value.toString()) !=
+                                  true) {
+                                chipListText.add(value.toString());
+                                debugPrint(chipListText.toString());
+                              }
+                              if (state.question1!.value == 'no') {
+                                chipListText.clear();
+                              }
+                            });
+                          },
+                          listItem: const [
+                            "Cerebrovascular disease",
+                            "Asthma",
+                            "Cancer",
+                            "Chronic kidney disease",
+                            "Tuberculosis",
+                            "Smoking (current and former)",
+                            "Neurologic conditions",
+                            "Hiv"
+                          ],
+                          valueDefaultList: "medical_history_drop_down_select",
+                          listChip: chipListText,
+                          requiredTranslate: false,
+                        ),
+                      ],
+                    )),
+                SizedBox(height: size.height * 0.05),
+              ],
+            );
+          },
+        ),
+        ButtonActionsWidgets(
+          size: size,
+          wColor: wColor,
+          navigationBloc: navigationBloc,
+          onPressed: () {
+            confirmSendInfo(
+              context: context,
+              mainIcon: Icon(
+                Icons.warning_amber,
+                size: size.height * 0.12,
+                color: wColor.mapColors['Warning'],
+              ),
+              titleText: "alert_confirm_text_one",
+              paddingHeight: size.height * 0.25,
+              infoText: 'alert_confirm_text_two',
+              mainButton: 'alert_confirm_text_three',
+              mainButtonFunction: () {
+                BlocProvider.of<MedicalHistoryBloc>(context).add(
+                    EditMedicalHistoryEvent(
+                        userId: stateUserId.userId,
+                        responseOne: defaultValueEng,
+                        responseTwo: chipListText));
               },
-            ),
-            SizedBox(height: size.height * 0.05),
-          ],
-        );
-      },
+              secondButton: 'alert_confirm_text_four',
+              secondButtonFunction: () {
+                Navigator.pop(context);
+              },
+            );
+          },
+        ),
+      ],
     );
   }
 }
