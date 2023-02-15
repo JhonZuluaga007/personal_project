@@ -9,7 +9,8 @@ class EditMedicalHistoryUseCase {
   EditMedicalHistoryUseCase({required this.editMedicalHistoryRepo});
 
   Future<Either<InvalidData, ServerValidate>> editMedicalHistory(
-    String userId, String responseOne, List<String> responseTwo) async {
-    return await editMedicalHistoryRepo.editMedicalHistory(userId, responseOne, responseTwo);
+      String userId, String responseOne, List<String> responseTwo) async {
+    return await editMedicalHistoryRepo.editMedicalHistory(
+        userId, responseOne, responseTwo);
   }
 }

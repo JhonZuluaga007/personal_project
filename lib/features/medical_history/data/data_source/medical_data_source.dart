@@ -50,19 +50,5 @@ class MedicalHistoryDataSource {
     } else {
       throw InvalidData('error');
     }
-
-    // final response = await Api.post(
-    //   '${Endpoints.editMedicalHistory}$userId',
-    //   {
-    //     "question1": questionOne,
-    //     "question2": questionTwo,
-    //   },
-    // );
-    // try {
-    //   ServerValidate serverValidate = ServerValidate.fromJson(response);
-    //   return serverValidate;
-    // } on InvalidData catch (invalidData) {
-    //   throw InvalidData(invalidData.toString());
-    // }
   }
 }
