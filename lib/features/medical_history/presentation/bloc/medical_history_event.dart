@@ -18,3 +18,5 @@ class EditMedicalHistoryEvent extends MedicalHistoryEvent {
     required this.responseTwo,
   });
 }
+
+class ResetStatesMedicalHistoryEvent extends MedicalHistoryEvent {}

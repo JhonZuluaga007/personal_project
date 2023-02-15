@@ -52,20 +52,26 @@ class MedicalHistoryBloc
                   exception: Exception(error.message),
                 ),
                 // errorMessage: error.message, // TODO CHECK
-              )),
-          (medicalHistory) => emit(
-                state.copyWith(
-                  infoUploaded: SubmissionSuccess(),
-                  question1: Question1Entity(
-                    name: state.question1!.name,
-                    value: event.responseOne,
-                  ),
-                  question2: Question2Entity(
-                    name: state.question2!.name,
-                    value: event.responseTwo,
-                  ),
-                ),
-              ));
+              )), (medicalHistory) {
+        emit(
+          state.copyWith(
+            infoUploaded: SubmissionSuccess(),
+            question1: Question1Entity(
+              name: state.question1!.name,
+              value: event.responseOne,
+            ),
+            question2: Question2Entity(
+              name: state.question2!.name,
+              value: event.responseTwo,
+            ),
+          ),
+        );
+      });
+      add(ResetStatesMedicalHistoryEvent());
+    });
+
+    on<ResetStatesMedicalHistoryEvent>((event, emit) async {
+      emit(state.initialState());
     });
   }
 }

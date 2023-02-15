@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:http/http.dart';
 import 'package:personal_project/features/auth/bloc/auth_bloc.dart';
+import '../../../../config/helpers/form_submission_status.dart';
 import '../bloc/medical_history_bloc.dart';
 import '../../../../config/theme/theme.dart';
 import '../widgets/confirm_alert_widget.dart';
 import '../widgets/button_actions_widget.dart';
+import '../widgets/done_alert_widget.dart';
+import '../widgets/error_alert_widget.dart';
 import '../widgets/multi_selected_widget.dart';
 import '../../../../navigationBar/bloc/navigation_bar_bloc.dart';
 import '../../../../common_ui/common_widgets/text/text_widget.dart';
@@ -54,21 +58,95 @@ class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
         const TextColumnMedicalHistoryWidget(),
         BlocConsumer<MedicalHistoryBloc, MedicalHistoryState>(
           listener: (context, state) {
-            if (state.question1!.value == 'Yes') {
-              setState(() {
-                visibilityYes = true;
-                chipListText = state.question2!.value;
-                defaultValueEng = 'Yes';
-              });
-            } else {
-              setState(() {
-                visibilityYes = false;
-                chipListText = state.question2!.value;
-                defaultValueEng = 'No';
-              });
+            if (state.formStatus is SubmissionSuccess) {
+              if (state.question1!.value == 'Yes') {
+                setState(() {
+                  visibilityYes = true;
+                  chipListText = state.question2!.value;
+                  defaultValueEng = 'Yes';
+                });
+              } else {
+                setState(() {
+                  visibilityYes = false;
+                  chipListText = state.question2!.value;
+                  defaultValueEng = 'No';
+                });
+              }
+            } else if (state.formStatus is SubmissionFailed) {
+              errorAlertInfoPop(
+                  context: context,
+                  mainIcon: Icon(
+                    Icons.cancel,
+                    color: wColor.mapColors['C01'],
+                    size: 46,
+                  ),
+                  titleText: 'alert_text_error_one',
+                  paddingHeight: size.height * 0.25,
+                  infoText: 'alert_text_error_update_one',
+                  mainButton: 'alert_text_error_three',
+                  mainButtonFunction: () {
+                    Navigator.pop(context);
+                  });
+            }
+
+            if (state.infoUploaded is FormSubmitting) {
+              const Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+
+            if (state.infoUploaded is SubmissionSuccess) {
+              doneSendInfo(
+                context: context,
+                mainIcon: Icon(
+                  Icons.check,
+                  size: size.height * 0.15,
+                  color: wColor.mapColors['C00'],
+                ),
+                titleText: 'alert_text_one',
+                paddingHeight: size.height * 0.25,
+                infoText: 'alert_text_two',
+                mainButton: 'alert_text_three',
+                mainButtonFunction: () {
+                  navigationBloc.add(PageChanged(indexNavigation: 0));
+                  Navigator.pushNamed(context, 'navBar');
+                },
+              );
+            } else if (state.infoUploaded is SubmissionFailed) {
+              errorAlertInfoPop(
+                  context: context,
+                  mainIcon: Icon(
+                    Icons.cancel,
+                    color: wColor.mapColors['C01'],
+                    size: 46,
+                  ),
+                  titleText: 'alert_text_error_one',
+                  paddingHeight: size.height * 0.25,
+                  infoText: 'alert_text_error_update',
+                  mainButton: 'alert_text_error_three',
+                  mainButtonFunction: () {
+                    Navigator.pop(context);
+                  });
             }
           },
           builder: (context, state) {
+            if (state.formStatus is FormSubmitting) {
+              return Column(
+                children: [
+                  SizedBox(
+                    height: size.height * 0.1,
+                  ),
+                  const Center(
+                    child: CircularProgressIndicator(
+                      key: Key('LoaderKey'),
+                    ),
+                  ),
+                  SizedBox(
+                    height: size.height * 0.1,
+                  ),
+                ],
+              );
+            }
             return Column(
               children: [
                 DropDownContainerWidget(
@@ -158,8 +236,6 @@ class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
                         userId: stateUserId.userId,
                         responseOne: defaultValueEng,
                         responseTwo: chipListText));
-                navigationBloc.add(PageChanged(indexNavigation: 0));
-                Navigator.pushNamed(context, 'navBar');
               },
               secondButton: 'alert_confirm_text_four',
               secondButtonFunction: () {
@@ -168,83 +244,6 @@ class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
             );
           },
         ),
-
-        /*BlocConsumer<MedicalHistoryBloc, MedicalHistoryState>(
-              listener: (context, state) {
-                if (state.formStatus is FormSubmitting) {
-                  const CircularProgressIndicator(
-                    key: Key('LoaderRegisterKey'),
-                  );
-                }
-                if (state.infoUploaded is SubmissionSuccess) {
-                  doneSendInfo(
-                    context: context,
-                    mainIcon: Icon(
-                      Icons.check,
-                      size: size.height * 0.15,
-                      color: wColor.mapColors['C00'],
-                    ),
-                    titleText: 'alert_text_one',
-                    paddingHeight: size.height * 0.25,
-                    infoText: 'alert_text_two',
-                    mainButton: 'alert_text_three',
-                    mainButtonFunction: () {
-                      navigationBloc.add(PageChanged(indexNavigation: 0));
-                      Navigator.pushNamed(context, 'navBar');
-                      Navigator.pop(context);
-                    },
-                  );
-                } else if (state.infoUploaded is SubmissionFailed) {
-                  errorAlertInfoPop(
-                      context: context,
-                      mainIcon: Icon(
-                        Icons.cancel,
-                        color: wColor.mapColors['C01'],
-                        size: 46,
-                      ),
-                      titleText: 'alert_text_error_one',
-                      paddingHeight: size.height * 0.25,
-                      infoText: 'alert_text_error_update',
-                      mainButton: 'alert_text_error_three',
-                      mainButtonFunction: () {
-                        Navigator.pop(context);
-                      });
-                }
-              },
-              builder: (context, state) {
-                return ButtonActionsWidgets(
-                  size: size,
-                  wColor: wColor,
-                  navigationBloc: navigationBloc,
-                  onPressed: () {
-                    confirmSendInfo(
-                      context: context,
-                      mainIcon: Icon(
-                        Icons.warning_amber,
-                        size: size.height * 0.12,
-                        color: wColor.mapColors['Warning'],
-                      ),
-                      titleText: "alert_confirm_text_one",
-                      paddingHeight: size.height * 0.25,
-                      infoText: 'alert_confirm_text_two',
-                      mainButton: 'alert_confirm_text_three',
-                      mainButtonFunction: () {
-                        BlocProvider.of<MedicalHistoryBloc>(context).add(
-                            EditMedicalHistoryEvent(
-                                userId: stateUserId.userId,
-                                responseOne: defaultValueEng,
-                                responseTwo: chipListText));
-                      },
-                      secondButton: 'alert_confirm_text_four',
-                      secondButtonFunction: () {
-                        Navigator.pop(context);
-                      },
-                    );
-                  },
-                );
-              },
-            ),
-            SizedBox(height: size.height * 0.05),*/
       ],
     );
   }

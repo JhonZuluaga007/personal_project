@@ -52,15 +52,7 @@ class MedicalHistoryState {
     );
   }
 
-  MedicalHistoryState initialState() => MedicalHistoryState(
-        formStatus: const InitialFormStatus(),
-        id: "",
-        created: AtedEntity(date: DateTime.now()),
-        question1: Question1Entity(name: "", value: ""),
-        question2: Question2Entity(name: "", value: const []),
-        status: false,
-        updated: AtedEntity(date: DateTime.now()),
-        infoUploaded: const InitialFormStatus(),
-        message: "",
+  MedicalHistoryState initialState() => const MedicalHistoryState(
+        infoUploaded: InitialFormStatus(),
       );
 }

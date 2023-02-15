@@ -297,6 +297,8 @@
     "alert_text_password_error": "There was an error, and your password couldnt be updated",
 
     "alert_text_error_update": "We could not update your information",
+    "alert_text_error_update_one": "We could not load your information, please try again",
+
 
 
     "match_password": "Asegurate de que tu contraseña coincida",
