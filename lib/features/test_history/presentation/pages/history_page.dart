@@ -198,22 +198,25 @@ class _HistoryPageState extends State<HistoryPage> {
                   SizedBox(height: size.height * 0.030),
                   SizedBox(
                     height: size.height * 0.48,
-                    child: SingleChildScrollView(
-                      child: Stack(children: [
-                        HistoryTestWidget(
-                          isSelect: allTestHistory,
-                          testList: state.allTestHistoryList,
-                        ),
-                        HistoryTestWidget(
-                          isSelect: antigenTestHistoy,
-                          testList: state.antigenTestHistoryList,
-                        ),
-                        HistoryTestWidget(
-                          isSelect: pcrTestHistory,
-                          testList: state.pcrTestHistoryList,
-                        ),
-                      ]),
-                    ),
+                    child: PageView(
+                      scrollDirection: Axis.vertical,
+                      children: [
+                        Stack(children: [
+                          HistoryTestWidget(
+                            isSelect: allTestHistory,
+                            testList: state.allTestHistoryList,
+                          ),
+                          HistoryTestWidget(
+                            isSelect: antigenTestHistoy,
+                            testList: state.antigenTestHistoryList,
+                          ),
+                          HistoryTestWidget(
+                            isSelect: pcrTestHistory,
+                            testList: state.pcrTestHistoryList,
+                          ),
+                        ]),
+                      ]
+                    )
                   ),
                 ],
               );

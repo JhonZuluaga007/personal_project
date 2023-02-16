@@ -9,6 +9,7 @@ import 'package:personal_project/features/home/widget/lists_text_fields_widgets.
 import 'package:personal_project/navigationBar/bloc/navigation_bar_bloc.dart';
 
 import '../../auth/bloc/auth_bloc.dart';
+import '../../auth/domain/entities/user_update_entity.dart';
 import '../../medical_history/presentation/widgets/confirm_alert_widget.dart';
 import '../../medical_history/presentation/widgets/done_alert_widget.dart';
 import 'drop_down_my_profile_widget.dart';
@@ -18,11 +19,13 @@ class TextFieldFormMyUser extends StatefulWidget {
       {super.key,
       required this.textTitle,
       this.iconTextField,
-      required this.hintText});
+      required this.hintText,
+      this.imageState});
 
   final String textTitle;
   final String hintText;
   final Icon? iconTextField;
+  final String? imageState;
 
   @override
   State<TextFieldFormMyUser> createState() => _TextFieldFormMyUserState();
@@ -198,21 +201,22 @@ class _TextFieldFormMyUserState extends State<TextFieldFormMyUser> {
                         mainButtonFunction: () {
                           //todo check if success before
                           //NEED TO INSTANTIATE A BLOC INSIDE THE FUNCTION
-                          // BlocProvider.of<AuthBloc>(context).add(
-                          //   UserUpdateEvent(
-                          //     UserUpdateEntity(
-                          //       userdId: state.userId,
-                          //       address: addressController.text,
-                          //       city: cityController.text,
-                          //       zip: zipController.text,
-                          //       state: state.state,
-                          //       sex: state.sex,
-                          //       gender: state.gender,
-                          //       race: state.race,
-                          //       ethnicity: state.ethnicity,
-                          //     ),
-                          //   ),
-                          // );
+                          BlocProvider.of<AuthBloc>(context).add(
+                            UserUpdateEvent(
+                              UserUpdateEntity(
+                                  userdId: state.userId,
+                                  address: addressController.text,
+                                  city: cityController.text,
+                                  zip: zipController.text,
+                                  state: state.state,
+                                  sex: state.sex,
+                                  gender: state.gender,
+                                  race: state.race,
+                                  ethnicity: state.ethnicity,
+                                  file: widget.imageState
+                                ),
+                            ),
+                          );
                           navigationBloc.add(PageChanged(indexNavigation: 0));
                           Navigator.pushNamed(context, 'navBar');
                         },
