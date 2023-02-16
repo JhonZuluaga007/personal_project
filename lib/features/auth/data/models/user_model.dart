@@ -185,10 +185,10 @@ class Addresses extends AddressesEntity {
         );
 
   factory Addresses.fromMap(Map<String, dynamic> json) => Addresses(
-        address: json["address"],
-        city: json["city"],
-        state: json["state"],
-        zip: json["zip"],
+        address: json["address"] ?? "",
+        city: json["city"] ?? "",
+        state: json["state"] ?? "",
+        zip: json["zip"] ?? "",
       );
 
   Map<String, dynamic> toMap() => {

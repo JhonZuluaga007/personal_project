@@ -69,81 +69,103 @@ class _EditUserFromBottomPageState extends State<EditUserFromBottomPage> {
         BlocBuilder<AuthBloc, AuthState>(
           builder: (context, state) {
             return Center(
-              child: Stack(alignment: AlignmentDirectional.center, children: [
-                imageDisplayed != null
-                    ? Container(
-                        height: height * 0.3,
-                        width: width * 0.5,
-                        decoration: const BoxDecoration(
-                            shape: BoxShape.circle, color: Colors.white),
-                        child: Container(
-                          height: height * 0.3,
-                          width: width * 0.5,
-                          decoration: const BoxDecoration(
-                            shape: BoxShape.circle,
-                          ),
-                          child: Image.file(
-                            imageDisplayed!,
-                            fit: BoxFit.contain,
-                          ),
-                        ),
-                      )
-                    : Image.asset("assets/images/photo_user_edit.png"),
-                imageDisplayed != null
-                    ? const SizedBox()
-                    : Icon(
-                        Icons.image_outlined,
-                        size: 64,
-                        color: wColor.mapColors["IDWhite"],
-                      ),
-                imageDisplayed != null
-                    ? Positioned(
-                        bottom: height * 0.245,
-                        left: width * 0.36,
-                        child: SizedBox(
-                          height: 40,
-                          child: FloatingActionButton(
-                            elevation: 3.66,
-                            backgroundColor: wColor.mapColors["500BASE"],
-                            child: const Icon(
-                              Icons.edit_outlined,
-                              size: 24,
+              child: Column(
+                children: [
+                  Stack(alignment: AlignmentDirectional.center, children: [
+                    state.image != null
+                        ? Container(
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(12)),
+                            child: CircleAvatar(
+                              backgroundColor: wColor.mapColors["P01"],
+                              backgroundImage: AssetImage(imagePath),
+                              radius: 110,
+                            ))
+                        : Container(
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(12)),
+                            child: CircleAvatar(
+                              backgroundColor: wColor.mapColors["P01"],
+                              backgroundImage:
+                                  Image.file(imageDisplayed!).image,
+                              radius: 110,
                             ),
-                            onPressed: () => buildPopUpImage(context, () {
-                              getImageBottom(ImageSource.camera);
-                            }, () {
-                              getImageBottom(ImageSource.gallery);
-                            }),
                           ),
-                        ),
-                      )
-                    : Positioned(
-                        bottom: height * 0.15,
-                        left: width * 0.31,
-                        child: FloatingActionButton(
-                          elevation: 3.66,
-                          backgroundColor: wColor.mapColors["500BASE"],
-                          child: const Icon(
-                            Icons.edit_outlined,
-                            size: 24,
+                    imageDisplayed != null
+                        ? Container(
+                            decoration: const BoxDecoration(
+                                shape: BoxShape.circle, color: Colors.white),
+                            child: CircleAvatar(
+                              backgroundColor: wColor.mapColors["P01"],
+                              backgroundImage:
+                                  Image.file(imageDisplayed!).image,
+                              radius: 110,
+                            ),
+                          )
+                        : CircleAvatar(
+                            backgroundColor: wColor.mapColors["P01"],
+                            backgroundImage: Image.network(state.image!).image,
+                            radius: 110,
                           ),
-                          onPressed: () => buildPopUpImage(context, () {
-                            getImageBottom(ImageSource.camera);
-                          }, () {
-                            getImageBottom(ImageSource.gallery);
-                          }),
-                        ))
-              ]),
+                    imageDisplayed != null
+                        ? Positioned(
+                            bottom: height * 0.17,
+                            left: width * 0.37,
+                            child: SizedBox(
+                              height: 48,
+                              child: FloatingActionButton(
+                                elevation: 3.66,
+                                backgroundColor: wColor.mapColors["500BASE"],
+                                child: const Icon(
+                                  Icons.edit_outlined,
+                                  size: 24,
+                                ),
+                                onPressed: () => buildPopUpImage(context, () {
+                                  getImageBottom(ImageSource.camera);
+                                  Navigator.pop(context);
+                                }, () {
+                                  getImageBottom(ImageSource.gallery);
+                                  Navigator.pop(context);
+                                }),
+                              ),
+                            ),
+                          )
+                        : Positioned(
+                            bottom: height * 0.18,
+                            left: width * 0.34,
+                            child: SizedBox(
+                              height: 48,
+                              child: FloatingActionButton(
+                                elevation: 3.66,
+                                backgroundColor: wColor.mapColors["500BASE"],
+                                child: const Icon(
+                                  Icons.edit_outlined,
+                                  size: 24,
+                                ),
+                                onPressed: () => buildPopUpImage(context, () {
+                                  getImageBottom(ImageSource.camera);
+                                  Navigator.pop(context);
+                                }, () {
+                                  getImageBottom(ImageSource.gallery);
+                                  Navigator.pop(context);
+                                }),
+                              ),
+                            )),
+                  ]),
+                  SizedBox(height: height * 0.060),
+                  const InfoColumnWidget(),
+                  SizedBox(height: height * 0.070),
+                  TextFieldFormMyUser(
+                    textTitle: 'my_user_text_field_hint',
+                    iconTextField:
+                        const Icon(Icons.keyboard_arrow_down_rounded),
+                    hintText: "my_user_text_field_label",
+                    imageState: state.image,
+                  )
+                ],
+              ),
             );
           },
-        ),
-        SizedBox(height: height * 0.070),
-        const InfoColumnWidget(),
-        SizedBox(height: height * 0.070),
-        const TextFieldFormMyUser(
-          textTitle: 'my_user_text_field_hint',
-          iconTextField: Icon(Icons.keyboard_arrow_down_rounded),
-          hintText: "my_user_text_field_label",
         ),
       ],
     );

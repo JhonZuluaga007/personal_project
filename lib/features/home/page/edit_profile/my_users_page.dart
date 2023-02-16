@@ -77,49 +77,45 @@ class _MyUserPageState extends State<MyUserPage> {
           builder: (context, state) {
             return Center(
               child: Stack(alignment: AlignmentDirectional.center, children: [
-                state.image != null || imageDisplayed != null
+                state.image != null
                     ? Container(
-                        height: height * 0.3,
-                        width: width * 0.5,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12)),
+                        child: CircleAvatar(
+                          backgroundColor: wColor.mapColors["P01"],
+                          backgroundImage: AssetImage(imagePath),
+                          radius: 110,
+                        ))
+                    : Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12)),
+                        child: CircleAvatar(
+                          backgroundColor: wColor.mapColors["P01"],
+                          backgroundImage: Image.file(imageDisplayed!).image,
+                          radius: 110,
+                        ),
+                      ),
+                imageDisplayed != null
+                    ? Container(
                         decoration: const BoxDecoration(
                             shape: BoxShape.circle, color: Colors.white),
-                        child: state.image != null || imageDisplayed != null
-                            ? Image.network(state.image!)
-                            : Container(
-                                height: height * 0.3,
-                                width: width * 0.5,
-                                decoration: const BoxDecoration(
-                                  shape: BoxShape.circle,
-                                ),
-                                child: Image.file(
-                                  imageDisplayed!,
-                                  fit: BoxFit.contain,
-                                ),
-                              ),
-                      )
-                    : Container(
-                        height: height * 0.3,
-                        width: width * 0.5,
-                        decoration: const BoxDecoration(
-                          shape: BoxShape.circle,
+                        child: CircleAvatar(
+                          backgroundColor: wColor.mapColors["P01"],
+                          backgroundImage: Image.file(imageDisplayed!).image,
+                          radius: 110,
                         ),
-                        child: Image.asset(
-                          "assets/images/photo_user_edit.png",
-                          fit: BoxFit.contain,
-                        )),
-                imageDisplayed != null || state.image != null
-                    ? const SizedBox()
-                    : Icon(
-                        Icons.image_outlined,
-                        size: 64,
-                        color: wColor.mapColors["IDWhite"],
+                      )
+                    : CircleAvatar(
+                        backgroundColor: wColor.mapColors["P01"],
+                        backgroundImage: Image.network(state.image!).image,
+                        radius: 110,
                       ),
-                state.image != null || imageDisplayed != null
+                imageDisplayed != null
                     ? Positioned(
-                        bottom: height * 0.245,
-                        left: width * 0.36,
+                        bottom: height * 0.18,
+                        left: width * 0.38,
                         child: SizedBox(
-                          height: 40,
+                          height: 48,
                           child: FloatingActionButton(
                             elevation: 3.66,
                             backgroundColor: wColor.mapColors["500BASE"],
@@ -127,32 +123,37 @@ class _MyUserPageState extends State<MyUserPage> {
                               Icons.edit_outlined,
                               size: 24,
                             ),
-                            //TODO POPUP IMAGE FROM CAMERA OR FROM GALLERY
                             onPressed: () => buildPopUpImage(context, () {
                               getImage(ImageSource.camera);
+                              Navigator.pop(context);
                             }, () {
                               getImage(ImageSource.gallery);
+                              Navigator.pop(context);
                             }),
                           ),
                         ),
                       )
                     : Positioned(
-                        bottom: height * 0.17,
-                        left: width * 0.31,
-                        child: FloatingActionButton(
-                          elevation: 3.66,
-                          backgroundColor: wColor.mapColors["500BASE"],
-                          child: const Icon(
-                            Icons.edit_outlined,
-                            size: 24,
+                        bottom: height * 0.15,
+                        left: width * 0.33,
+                        child: SizedBox(
+                          height: 48,
+                          child: FloatingActionButton(
+                            elevation: 3.66,
+                            backgroundColor: wColor.mapColors["500BASE"],
+                            child: const Icon(
+                              Icons.edit_outlined,
+                              size: 24,
+                            ),
+                            onPressed: () => buildPopUpImage(context, () {
+                              getImage(ImageSource.camera);
+                              Navigator.pop(context);
+                            }, () {
+                              getImage(ImageSource.gallery);
+                              Navigator.pop(context);
+                            }),
                           ),
-                          //TODO POPUP IMAGE FROM CAMERA OR FROM GALLERY
-                          onPressed: () => buildPopUpImage(context, () {
-                            getImage(ImageSource.camera);
-                          }, () {
-                            getImage(ImageSource.gallery);
-                          }),
-                        ))
+                        )),
               ]),
             );
           },
