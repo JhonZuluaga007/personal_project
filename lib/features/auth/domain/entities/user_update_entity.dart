@@ -8,18 +8,19 @@ class UserUpdateEntity {
   final String? ethnicity;
   final String? sex;
   final String? gender;
+  final String? levelSchool;
   final String? file;
 
-  UserUpdateEntity({
-    this.userdId,
-    required this.address,
-    required this.city,
-    required this.state,
-    required this.zip,
-    required this.race,
-    required this.ethnicity,
-    required this.sex,
-    required this.gender,
-    this.file
-  });
+  UserUpdateEntity(
+      {this.userdId,
+      required this.address,
+      required this.city,
+      required this.state,
+      required this.zip,
+      required this.race,
+      required this.ethnicity,
+      required this.sex,
+      required this.levelSchool,
+      required this.gender,
+      this.file});
 }

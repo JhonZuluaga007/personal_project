@@ -37,6 +37,12 @@ class _TextFieldFormMyUserState extends State<TextFieldFormMyUser> {
   String defaultValueGender = 'Select option';
   String defaultValueRace = 'Select option';
   String defaultValueEthnicity = 'Select option';
+  String selectedSexValue = '';
+  String selectedGenderValue = '';
+  String selectedRaceValue = '';
+  String selectedEtnichityValue = '';
+  String selectedStateValue = '';
+
   final List<String> genderAnswer = [
     "gender_answer_one",
     "gender_answer_two",
@@ -63,6 +69,11 @@ class _TextFieldFormMyUserState extends State<TextFieldFormMyUser> {
     "ethnicity_answer_one",
     "ethnicity_answer_two"
   ];
+  //TODO CHECK
+  TextEditingController addressController = TextEditingController(text: "");
+  TextEditingController cityController = TextEditingController(text: "");
+  TextEditingController zipController = TextEditingController(text: "");
+  TextEditingController degreeController = TextEditingController(text: '');
 
   @override
   Widget build(BuildContext context) {
@@ -74,12 +85,6 @@ class _TextFieldFormMyUserState extends State<TextFieldFormMyUser> {
         BlocProvider.of<NavigationBarBloc>(context);
     return BlocBuilder<AuthBloc, AuthState>(
       builder: (context, state) {
-        TextEditingController addressController =
-            TextEditingController(text: state.address ?? "");
-        TextEditingController cityController =
-            TextEditingController(text: state.city ?? "");
-        TextEditingController zipController =
-            TextEditingController(text: state.zip ?? "");
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -128,38 +133,69 @@ class _TextFieldFormMyUserState extends State<TextFieldFormMyUser> {
               widthBorder: 3,
             ),
             SizedBox(height: height * 0.0250),
-            DropDownWidgetMyProfile(
-              item: lists.stateList,
-              fieldText: 'profile_text_hint_nine',
-              valueState: state.state ?? defaultValueState,
-              width: width,
-            ),
+            // DropDownWidgetMyProfile(
+            //   item: lists.stateList,
+            //   fieldText: 'profile_text_hint_nine',
+            //   valueState: state.state ?? defaultValueState,
+            //   width: width,
+            // ),//TODO FIX STATE
+            DropDownQuestionsWidget(
+                dropDownItem: lists.stateList,
+                textQuestion: "profile_text_hint_nine",
+                width: width,
+                dropDownValue: state.sex ?? 'Select option'),
             SizedBox(height: height * 0.0250),
             DropDownQuestionsWidget(
                 dropDownItem: sexAnswer,
                 textQuestion: "sex_question",
                 width: width,
+                selectedString: selectedSexValue,
+                onChanged: (valueDropdown) {
+                  setState(() {
+                    defaultValueSex = valueDropdown.toString();
+                    selectedSexValue = valueDropdown.toString();
+                  });
+                },
                 dropDownValue: state.sex ?? 'Select option'),
             SizedBox(height: height * 0.0250),
             DropDownQuestionsWidget(
                 dropDownItem: genderAnswer,
                 textQuestion: "gender_answer_question",
                 width: width,
+                onChanged: (valueDropdown) {
+                  setState(() {
+                    defaultValueSex = valueDropdown.toString();
+                    selectedGenderValue = valueDropdown.toString();
+                  });
+                },
                 dropDownValue: state.gender ?? 'Select option'),
             SizedBox(height: height * 0.0250),
             DropDownQuestionsWidget(
                 dropDownItem: raceAnswer,
                 textQuestion: "race_answer_question",
                 width: width,
+                onChanged: (valueDropdown) {
+                  setState(() {
+                    defaultValueSex = valueDropdown.toString();
+                    selectedRaceValue = valueDropdown.toString();
+                  });
+                },
                 dropDownValue: state.race ?? 'Select option'),
             SizedBox(height: height * 0.0250),
             DropDownQuestionsWidget(
                 dropDownItem: ethnicityAnswer,
                 textQuestion: "ethnicity_question",
                 width: width,
+                onChanged: (valueDropdown) {
+                  setState(() {
+                    defaultValueSex = valueDropdown.toString();
+                    selectedEtnichityValue = valueDropdown.toString();
+                  });
+                },
                 dropDownValue: state.ethnicity ?? 'Select option'),
             SizedBox(height: height * 0.025),
             TextFieldNoLabelWidget(
+                textEditingController: degreeController,
                 hintText:
                     state.levelSchool ?? 'High school graduate', // todo check
                 requiresTranslate: false,
@@ -205,16 +241,24 @@ class _TextFieldFormMyUserState extends State<TextFieldFormMyUser> {
                             UserUpdateEvent(
                               UserUpdateEntity(
                                   userdId: state.userId,
-                                  address: addressController.text,
-                                  city: cityController.text,
-                                  zip: zipController.text,
+                                  address: addressController.text != ''
+                                      ? addressController.text
+                                      : state.address,
+                                  city: cityController.text != ''
+                                      ? cityController.text
+                                      : state.city,
+                                  zip: zipController.text != ''
+                                      ? zipController.text
+                                      : state.zip,
                                   state: state.state,
-                                  sex: state.sex,
-                                  gender: state.gender,
-                                  race: state.race,
-                                  ethnicity: state.ethnicity,
-                                  file: widget.imageState
-                                ),
+                                  sex: selectedSexValue,
+                                  gender: selectedGenderValue,
+                                  race: selectedRaceValue,
+                                  levelSchool: degreeController.text != ''
+                                      ? degreeController.text
+                                      : state.levelSchool,
+                                  ethnicity: selectedEtnichityValue,
+                                  file: widget.imageState),
                             ),
                           );
                           navigationBloc.add(PageChanged(indexNavigation: 0));

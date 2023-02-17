@@ -15,7 +15,9 @@ class DropDownQuestionsWidget extends StatefulWidget {
   final double? heightSizedBoxText;
   String dropDownValue = "Yes";
   final TextStyle? dropTextStyle;
+  String? selectedString;
   bool? firstQuestion;
+  final Function(String?)? onChanged;
   DropDownQuestionsWidget(
       {Key? key,
       required this.dropDownItem,
@@ -23,6 +25,8 @@ class DropDownQuestionsWidget extends StatefulWidget {
       this.iconWidget,
       required this.width,
       this.heightSizedBoxText,
+      this.selectedString,
+      this.onChanged,
       required this.dropDownValue,
       this.dropTextStyle,
       this.firstQuestion})
@@ -99,17 +103,20 @@ class _DropDownQuestionsWidgetState extends State<DropDownQuestionsWidget> {
                 letterSpacing: -0.2,
                 color: wColor.mapColors["S600"]),
             dropdownColor: wColor.mapColors["P01"],
-            onChanged: (valueDropdown) {
-              setState(() {
-                widget.dropDownValue = valueDropdown.toString();
-                if (widget.dropDownValue == 'Yes' ||
-                    widget.dropDownValue == 'Si') {
-                  widget.firstQuestion = true;
-                } else {
-                  widget.firstQuestion = false;
-                }
-              });
-            },
+            onChanged: widget.onChanged ??
+                (valueDropdown) {
+                  setState(() {
+                    widget.dropDownValue = valueDropdown.toString();
+                    widget.selectedString = valueDropdown.toString();
+                    print(widget.selectedString);
+                    if (widget.dropDownValue == 'Yes' ||
+                        widget.dropDownValue == 'Si') {
+                      widget.firstQuestion = true;
+                    } else {
+                      widget.firstQuestion = false;
+                    }
+                  });
+                },
           ),
         ),
       ],
