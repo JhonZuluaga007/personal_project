@@ -105,6 +105,13 @@ class OpStateEntity extends OpDropdown {
   }) : super(id: id, valor: state);
 }
 
+class OpSchoolLevelEntity extends OpDropdown {
+  OpSchoolLevelEntity({
+    required String id,
+    required String schoolLevel,
+  }) : super(id: id, valor: schoolLevel);
+}
+
 class OpPregnantEntity extends OpDropdown {
   OpPregnantEntity({
     required String id,

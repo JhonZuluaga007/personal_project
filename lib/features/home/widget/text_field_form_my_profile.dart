@@ -38,16 +38,17 @@ class _TextFieldFormMyUserState extends State<TextFieldFormMyUser> {
   String defaultValueGender = 'Select option';
   String defaultValueRace = 'Select option';
   String defaultValueEthnicity = 'Select option';
+  String defaultValueSchool = 'Select option';
   String selectedSexValue = '';
   String selectedGenderValue = '';
   String selectedRaceValue = '';
   String selectedEtnichityValue = '';
   String selectedStateValue = '';
+  String selectedSchoolLevel = '';
 
   TextEditingController addressController = TextEditingController(text: "");
   TextEditingController cityController = TextEditingController(text: "");
   TextEditingController zipController = TextEditingController(text: "");
-  TextEditingController degreeController = TextEditingController(text: '');
 
   @override
   Widget build(BuildContext context) {
@@ -173,11 +174,17 @@ class _TextFieldFormMyUserState extends State<TextFieldFormMyUser> {
                 },
                 dropDownValue: state.ethnicity ?? 'Select option'),
             SizedBox(height: height * 0.025),
-            TextFieldNoLabelWidget(
-                textEditingController: degreeController,
-                hintText: state.levelSchool ?? 'High school graduate',
-                requiresTranslate: false,
-                text: 'graduate_level'),
+            DropDownQuestionsWidget(
+                dropDownItem: ConstLists.schoolLevelList,
+                textQuestion: "graduate_level",
+                width: width,
+                onChanged: (valueDropdown) {
+                  setState(() {
+                    defaultValueSchool = valueDropdown!.valor;
+                    selectedSchoolLevel = valueDropdown.id;
+                  });
+                },
+                dropDownValue: state.levelSchool ?? 'Select option'),
             SizedBox(height: height * 0.010),
             SizedBox(height: height * 0.0485),
             Center(
@@ -226,14 +233,24 @@ class _TextFieldFormMyUserState extends State<TextFieldFormMyUser> {
                                   zip: zipController.text != ''
                                       ? zipController.text
                                       : state.zip,
-                                  state: selectedStateValue,
-                                  sex: selectedSexValue,
-                                  gender: selectedGenderValue,
-                                  race: selectedRaceValue,
-                                  levelSchool: degreeController.text != ''
-                                      ? degreeController.text
+                                  state: selectedStateValue != ''
+                                      ? selectedStateValue
+                                      : state.state,
+                                  sex: selectedSexValue != ''
+                                      ? selectedSexValue
+                                      : state.sex,
+                                  gender: selectedGenderValue != ''
+                                      ? selectedGenderValue
+                                      : state.gender,
+                                  race: selectedRaceValue != ''
+                                      ? selectedRaceValue
+                                      : state.race,
+                                  levelSchool: selectedSchoolLevel != ''
+                                      ? selectedSchoolLevel
                                       : state.levelSchool,
-                                  ethnicity: selectedEtnichityValue,
+                                  ethnicity: selectedEtnichityValue != ''
+                                      ? selectedEtnichityValue
+                                      : state.ethnicity,
                                   file: widget.imageState),
                             ),
                           );
