@@ -28,13 +28,13 @@ class CardScanHome extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: width * 0.037),
+        padding: EdgeInsets.symmetric(horizontal: width * 0.017),
         child: Card(
           shadowColor: wColor.mapColors["IDWhite"],
           elevation: 4,
           child: Padding(
             padding: EdgeInsets.symmetric(
-                horizontal: width * 0.037, vertical: height * 0.037),
+              vertical: height * 0.037),
             child: Row(mainAxisAlignment: MainAxisAlignment.start, children: [
               Padding(
                 padding: EdgeInsets.only(left: width * 0.039),

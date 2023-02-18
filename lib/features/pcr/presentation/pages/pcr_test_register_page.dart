@@ -1,4 +1,8 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
+import 'package:scan/scan.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:personal_project/common_ui/common_pages/my_app_scaffold_page.dart';
 import 'package:personal_project/features/pcr/data/data_source/pcr_data_source.dart';
@@ -24,7 +28,8 @@ class PcrRegisterPage extends StatefulWidget {
 
 class _PcrRegisterPageState extends State<PcrRegisterPage> {
   final TextEditingController pcrIdController = TextEditingController();
-
+  String qrCode = '';
+  ScanController scanController = ScanController();
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -90,6 +95,7 @@ class _PcrRegisterPageState extends State<PcrRegisterPage> {
             ),
             SizedBox(height: size.height * 0.025),
             TextFieldWithBorderWidget(
+              height: height*0.12,
               requiresTranslate: true,
               textEditingController: pcrIdController,
               textInputType: TextInputType.text,
@@ -102,12 +108,12 @@ class _PcrRegisterPageState extends State<PcrRegisterPage> {
               textStyle: const TextStyle(fontSize: 18),
               widthBorder: 3,
             ),
-            SizedBox(height: size.height * 0.035),
+            SizedBox(height: size.height * 0.015),
             const TextWidget(
               text: 'pcr_test_text_two',
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
             ),
-            SizedBox(height: size.height * 0.035),
+            SizedBox(height: size.height * 0.015),
             ButtonWidget(
                 icon: Icons.qr_code_scanner,
                 iconColor: Colors.black,
@@ -116,31 +122,25 @@ class _PcrRegisterPageState extends State<PcrRegisterPage> {
                 textColor: Colors.black,
                 buttonString: 'test_part_one_text',
                 onPressed: () {
-                  //TODO OPEN QR SCAN and paste it into the identifier
-                  /*
- bool validAntigen = await AntigenDataSource()
-              .validateAntigen(userState.userId, testIdController.text);
-          if (validAntigen == true) {
-            Navigator.pushNamed(context, "selfTestQuestions");
-          } else {
-            errorAlertInfoPop(
-                context: context,
-                mainIcon: Icon(
-                  Icons.cancel,
-                  color: wColor.mapColors['C01'],
-                  size: 46,
-                ),
-                titleText: 'alert_text_error_one',
-                paddingHeight: height * 0.25,
-                infoText: 'alert_text_error_two',
-                mainButton: 'alert_text_error_three',
-                mainButtonFunction: () {
-                  Navigator.pop(context);
-                });
-          }
-        }
-                  */
-                }),
+                  
+                 Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) =>  ScanView(
+                                                    
+                                                    controller: scanController,
+                                                    scanAreaScale: .7,
+                                                    onCapture: (value) {
+                                                      String newValue = value.split('=').last;
+                                                        pcrIdController.text = newValue;
+                                                      Navigator.pop(context);
+                                                    },
+                                                            ),
+                                )  
+            );
+                }
+                                ),
+                               
+
             SizedBox(height: size.height * 0.15),
             MainButtonWidget(
                 width: width * 0.920,
