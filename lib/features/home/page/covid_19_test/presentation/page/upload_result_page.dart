@@ -50,7 +50,7 @@ class UploadResultPage extends StatelessWidget {
           child: Column(
             children: [
               SizedBox(height: height * 0.05),
-              DropDownQuestionsWidget(
+              /*DropDownQuestionsWidget(
                 dropDownItem: const [
                   "Upload_drop_down_0",
                   "Upload_drop_down_1"
@@ -78,7 +78,7 @@ class UploadResultPage extends StatelessWidget {
                   color: Colors.black,
                   size: 15,
                 ),
-              ),
+              ),*/
               SizedBox(height: height * 0.069),
               //TODO GRAPHIC IMAGE, while we get the needed
               SizedBox(

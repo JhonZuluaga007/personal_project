@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:personal_project/common_ui/utils/const_list.dart';
+import 'package:personal_project/features/auth/domain/entities/helper_tools_entity.dart';
 import 'package:personal_project/features/home/page/covid_19_test/presentation/widgets/drop_down_questions_widget.dart';
 import 'package:personal_project/features/home/page/covid_19_test/presentation/widgets/questions_visible_widgets.dart/second_vissible_question_widget.dart';
 import 'package:personal_project/features/home/page/covid_19_test/presentation/widgets/questions_visible_widgets.dart/third_vissible_question_widget.dart';
@@ -54,12 +56,9 @@ class _TQuestionsPageState extends State<TQuestionsPage> {
       "covid_before_three",
       "covid_before_four",
     ];
-    final List<String> pregnantAnswerList = [
-      "pregnant_question_answer_one",
-      "pregnant_question_answer_two",
-      "pregnant_question_answer_three",
-      "pregnant_question_answer_four",
-    ];
+
+    final List<OpPregnantEntity> pregnantAnswerList =
+        ConstLists.pregnantAnswers;
 
 //TODO CHECK PAGE
     return Scaffold(
@@ -114,12 +113,12 @@ class _TQuestionsPageState extends State<TQuestionsPage> {
                 SizedBox(
                   height: height * 0.015,
                 ),
-                DropDownQuestionsWidget(
+                //TODO Revisar el nuevo ajutes le dropDown
+                /*DropDownQuestionsWidget(
                     dropDownItem: dropdownItem,
                     textQuestion: "self_t_question_test_drop_down_04",
                     width: width,
-                    dropDownValue: 'Select option'),
-
+                    dropDownValue: 'Select option'),*/
                 SizedBox(
                   height: height * 0.015,
                 ),
@@ -134,14 +133,14 @@ class _TQuestionsPageState extends State<TQuestionsPage> {
                   height: height * 0.015,
                 ),
                 MultiSelectedWidget(
-                  listItem: covidBeforeAnswer, 
-                  onChanged: (value){
+                  listItem: covidBeforeAnswer,
+                  onChanged: (value) {
                     setState(() {
                       if (covidBeforechipList.contains(value) != true) {
                         covidBeforechipList.add(value.toString());
                       }
                     });
-                  }, 
+                  },
                   requiredTranslate: true,
                   listChip: covidBeforechipList,
                   valueDefaultList: "drop_down_select_option",
