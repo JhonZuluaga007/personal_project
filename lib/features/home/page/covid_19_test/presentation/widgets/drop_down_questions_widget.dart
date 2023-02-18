@@ -1,14 +1,12 @@
-// ignore_for_file: must_be_immutable
-
 import 'package:flutter/material.dart';
 
-import 'package:personal_project/app_localizations.dart';
 import 'package:personal_project/common_ui/common_widgets/text/text_widget.dart';
+import 'package:personal_project/features/auth/domain/entities/helper_tools_entity.dart';
 
 import '../../../../../../config/theme/theme.dart';
 
 class DropDownQuestionsWidget extends StatefulWidget {
-  final List<String> dropDownItem;
+  final List<OpDropdown> dropDownItem;
   final String textQuestion;
   final Widget? iconWidget;
   final double width;
@@ -17,7 +15,7 @@ class DropDownQuestionsWidget extends StatefulWidget {
   final TextStyle? dropTextStyle;
   String? selectedString;
   bool? firstQuestion;
-  final Function(String?)? onChanged;
+  final Function(OpDropdown?)? onChanged;
   DropDownQuestionsWidget(
       {Key? key,
       required this.dropDownItem,
@@ -68,14 +66,15 @@ class _DropDownQuestionsWidgetState extends State<DropDownQuestionsWidget> {
                         width: 1,
                         color: wColor.mapColors["IDGrey"]!))),
             items: widget.dropDownItem
-                .map<DropdownMenuItem<String>>((String value) {
-              return DropdownMenuItem<String>(
-                  value: AppLocalizations.of(context)!.translate(value),
+                .map<DropdownMenuItem<OpDropdown>>((OpDropdown value) {
+              return DropdownMenuItem<OpDropdown>(
+                  value: value,
                   child: Padding(
                     padding: EdgeInsets.only(left: width * 0.01),
                     child: TextWidget(
+                      requiresTranslate: false,
                       textAlign: TextAlign.center,
-                      text: value,
+                      text: value.valor,
                       style: widget.dropTextStyle ??
                           TextStyle(
                               fontSize: 16,
