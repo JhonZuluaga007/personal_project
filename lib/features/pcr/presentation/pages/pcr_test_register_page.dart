@@ -5,7 +5,6 @@ import 'package:scan/scan.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:personal_project/common_ui/common_pages/my_app_scaffold_page.dart';
-import 'package:personal_project/common_ui/common_widgets/qr/service_qr_widget.dart';
 import 'package:personal_project/features/pcr/data/data_source/pcr_data_source.dart';
 import '../../../../common_ui/common_widgets/buttons/button_widget.dart';
 import '../../../../common_ui/common_widgets/buttons/main_button_widget.dart';
@@ -125,8 +124,11 @@ class _PcrRegisterPageState extends State<PcrRegisterPage> {
                   ScanView(
                     controller: scanController,
                     scanAreaScale: .7,
-                    onCapture: (str) {
-                      pcrIdController.text = str;
+                    onCapture: (value) {
+                      if (value.startsWith("R00:")) {
+                        value = value.substring(7);
+                      }
+                      pcrIdController.text = value;
                     },
                   );
 
@@ -206,19 +208,5 @@ class _PcrRegisterPageState extends State<PcrRegisterPage> {
         )
       ],
     );
-  }
-
-  Future<void> _readQr() async {
-    ServiceQRWidget.escanearQr(processQr);
-  }
-
-  processQr(String value) async {
-    if (value.startsWith("R00:")) {
-      value = value.substring(7);
-    }
-
-    setState(() {
-      pcrIdController.text = value;
-    });
   }
 }
