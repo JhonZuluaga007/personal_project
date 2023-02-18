@@ -3,11 +3,14 @@ import 'package:personal_project/features/antigen/data/data_source/antigen_data_
 import 'package:personal_project/features/antigen/domain/repository/antigen_repository.dart';
 import 'package:personal_project/features/antigen/domain/use_cases/antigen_validate_use_case.dart';
 import 'package:personal_project/features/medical_history/domain/use_cases/edit_medical_history_use_case.dart';
+import 'package:personal_project/features/pcr/data/data_source/pcr_data_source.dart';
+import 'package:personal_project/features/pcr/data/repository/pcr_repository_impl.dart';
+import 'package:personal_project/features/pcr/domain/repository/pcr_repository.dart';
+import 'package:personal_project/features/pcr/domain/use_case/pcr_validate_use_case.dart';
 
 import '../../../features/antigen/data/repository/antigen_repository_impl.dart';
 
 import '../../../features/auth/domain/use_cases/helper_tools_use_cases.dart';
-import '../../../features/medical_history/domain/use_cases/edit_medical_history_use_case.dart';
 import '../../../features/auth/domain/use_cases/change_password_use_case.dart';
 import '../../../features/auth/domain/use_cases/reset_password_use_case.dart';
 import '../../../features/auth/domain/use_cases/user_update_use_case.dart';
@@ -51,6 +54,7 @@ abstract class Injector {
     _configureMedicalHistoryModule();
     _configureTestHistoryModule();
     _configureAntigenModule();
+    _configurePcrModule();
   }
 
   void _configureAuthsModule() {
@@ -64,9 +68,13 @@ abstract class Injector {
   void _configureTestHistoryModule() {
     _configureTestHistoryFactories();
   }
-  
+
   void _configureAntigenModule() {
     _configureAntigenFactories();
+  }
+
+  void _configurePcrModule() {
+    _configurePcrFactories();
   }
 
   @Register.factory(AuthRepository, from: AuthRepositoryImpl)
@@ -94,4 +102,9 @@ abstract class Injector {
   @Register.factory(AntigenValidateUseCase)
   @Register.factory(AntigenDataSource)
   void _configureAntigenFactories();
+
+  @Register.factory(PcrRepository, from: PcrRepositoryImpl)
+  @Register.factory(PcrValidateUseCase)
+  @Register.factory(PcrDataSource)
+  void _configurePcrFactories();
 }
