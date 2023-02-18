@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:personal_project/common_ui/common_pages/my_app_scaffold_page.dart';
 import 'package:personal_project/common_ui/common_widgets/buttons/button_widget.dart';
-import 'package:personal_project/features/antigen/data/data_source/antigen_data_source.dart';
-import 'package:personal_project/features/home/page/covid_19_test/ui/widgets/container_start_counter_widget.dart';
+import 'package:personal_project/config/helpers/form_submission_status.dart';
+import 'package:personal_project/features/antigen/presentation/bloc/antigen_test_bloc.dart';
+import 'package:personal_project/features/home/page/covid_19_test/presentation/page/t_questions_page.dart';
+import 'package:personal_project/features/home/page/covid_19_test/presentation/widgets/container_start_counter_widget.dart';
 import 'package:personal_project/features/medical_history/presentation/widgets/error_alert_widget.dart';
 
 import '../../../../../common_ui/common_widgets/buttons/main_button_widget.dart';
@@ -133,35 +135,52 @@ class _AntigenRegisterInfoPageState extends State<AntigenRegisterInfoPage> {
     final height = MediaQuery.of(context).size.height;
     final wColor = ThemesIdx20();
     final userState = BlocProvider.of<AuthBloc>(context).state;
-    return MainButtonWidget(
-        width: width * 0.920,
-        height: height * 0.053,
-        borderRadiusButton: 30,
-        buttonString: "self_t_button",
-        textColor: wColor.mapColors["P01"],
-        buttonColor: wColor.mapColors["500BASE"],
-        borderColor: wColor.mapColors["500BASE"],
-        onPressed: () async {
-          bool validAntigen = await AntigenDataSource()
-              .validateAntigen(userState.userId, testIdController.text);
-          if (validAntigen == true) {
-            Navigator.pushNamed(context, "selfTestQuestions");
-          } else {
-            errorAlertInfoPop(
-                context: context,
-                mainIcon: Icon(
-                  Icons.cancel,
-                  color: wColor.mapColors['C01'],
-                  size: 46,
-                ),
-                titleText: 'alert_text_error_one',
-                paddingHeight: height * 0.25,
-                infoText: 'alert_text_error_two',
-                mainButton: 'alert_text_error_three',
-                mainButtonFunction: () {
-                  Navigator.pop(context);
-                });
-          }
-        });
+    return BlocConsumer<AntigenTestBloc, AntigenTestState>(
+      listener: (BuildContext context, state) {
+        if (state.formStatus is SubmissionSuccess) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const TQuestionsPage()),
+          );
+        } else if (state.formStatus is SubmissionFailed) {
+          errorAlertInfoPop(
+              context: context,
+              mainIcon: Icon(
+                Icons.cancel,
+                color: wColor.mapColors['C01'],
+                size: 46,
+              ),
+              titleText: 'alert_text_error_one',
+              paddingHeight: height * 0.25,
+              infoText: 'alert_text_error_two',
+              mainButton: 'alert_text_error_three',
+              mainButtonFunction: () {
+                Navigator.pop(context);
+              });
+        }
+      },
+      builder: (BuildContext context, state) {
+        if (state.formStatus is FormSubmitting) {
+          return const Center(child: CircularProgressIndicator());
+        } else {
+          return MainButtonWidget(
+              width: width * 0.920,
+              height: height * 0.053,
+              borderRadiusButton: 30,
+              buttonString: "self_t_button",
+              textColor: wColor.mapColors["P01"],
+              buttonColor: wColor.mapColors["500BASE"],
+              borderColor: wColor.mapColors["500BASE"],
+              onPressed: () {
+                if (testIdController.text.isEmpty) {
+                  return;
+                }
+                BlocProvider.of<AntigenTestBloc>(context).add(
+                    AntigenValidateEvent(
+                        userId: userState.userId, code: testIdController.text));
+              });
+        }
+      },
+    );
   }
 }

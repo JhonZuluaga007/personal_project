@@ -32,7 +32,7 @@ Future<dynamic> failureAlertWidget({
       SizedBox(height: height * 0.018),
       Center(
         child: Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             shape: BoxShape.circle,
             // border: Border.all(color: wColor.mapColors['Warning']!)
           ),

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:personal_project/common_ui/common_widgets/buttons/main_button_widget.dart';
-import 'package:personal_project/config/theme/theme.dart';
 
-import '../../../../common_ui/common_widgets/responsive/dynamic_container_widget.dart';
+import '../../../../config/theme/theme.dart';
 import '../../../../common_ui/common_widgets/text/text_widget.dart';
+import '../../../../common_ui/common_widgets/buttons/main_button_widget.dart';
+import '../../../../common_ui/common_widgets/responsive/dynamic_container_widget.dart';
 
 Future<dynamic> errorAlertInfoPop({
   required BuildContext context,

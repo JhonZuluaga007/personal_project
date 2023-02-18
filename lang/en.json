@@ -289,13 +289,25 @@
     "alert_text_reset": "Password has been sent to your email",
     "alert_text_error": "There was an error reseting your password please try again.",
 
-
+    "level_school_one": "No schooling completed",
+    "level_school_two": "Nursery school to 8th grade",
+    "level_school_three": "Some high school, no diploma",
+    "level_school_four": "High school graduate, diploma or the equivalent (For example: GED)",
+    "level_school_five": "Some college credit, no degree",
+    "level_school_six": "Trade/technical/vocational training",
+    "level_school_seven": "Associate degree",
+    "level_school_eigth": "Bachelor's degree",
+    "level_school_nine": "Master's degree",
+    "level_school_ten": "Professional degree",
+    "level_school_eleven": "Doctorate degree",
 
     "alert_text_error_one": "Error!",
     "alert_text_error_two": "We could not find a test with that Id",
     "alert_text_error_three": "Ok",
     "alert_text_password_updated": "Password has been updated successfully",
     "alert_text_password_error": "There was an error, and your password couldnt be updated",
+    "alert_text_error_update": "We could not update your information",
+    "alert_text_error_update_one": "We could not load your information, please try again",
 
     "match_password": "Make sure your passwords match",
     "password_validate_text_one": "Invalid field, it must have at least 6 characters",

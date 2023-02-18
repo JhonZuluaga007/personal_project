@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:personal_project/common_ui/common_widgets/buttons/main_button_widget.dart';
-import 'package:personal_project/config/theme/theme.dart';
 
-import '../../../../common_ui/common_widgets/responsive/dynamic_container_widget.dart';
+import '../../../../config/theme/theme.dart';
 import '../../../../common_ui/common_widgets/text/text_widget.dart';
+import '../../../../common_ui/common_widgets/buttons/main_button_widget.dart';
+import '../../../../common_ui/common_widgets/responsive/dynamic_container_widget.dart';
 
 Future<dynamic> confirmSendInfo({
   required BuildContext context,
@@ -32,7 +32,7 @@ Future<dynamic> confirmSendInfo({
       SizedBox(height: height * 0.018),
       Center(
         child: Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             shape: BoxShape.circle,
             // border: Border.all(color: wColor.mapColors['Warning']!)
           ),

@@ -133,16 +133,16 @@ class _FirstVissibleQuestionWidgetState
               children: [
                 SizedBox(height: widget.height * 0.031),
                 MultiSelectedWidget(
-                  listItem: firstQuestion, 
-                  onChanged: (value){
+                  listItem: firstQuestion,
+                  onChanged: (value) {
                     setState(() {
                       if (firstQuestionChipLIst.contains(value) != true) {
                         firstQuestionChipLIst.add(value.toString());
                       }
                     });
-                  }, 
+                  },
                   valueDefaultList: "drop_down_select_option",
-                  listChip: firstQuestionChipLIst, 
+                  listChip: firstQuestionChipLIst,
                   requiredTranslate: true,
                 ),
                 SizedBox(height: widget.height * 0.028),

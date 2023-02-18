@@ -2,15 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:personal_project/common_ui/common_pages/splash_page.dart';
+import 'package:personal_project/features/antigen/presentation/bloc/antigen_test_bloc.dart';
 import 'package:personal_project/features/auth/bloc/auth_bloc.dart';
-import 'package:personal_project/features/home/page/covid_19_test/ui/page/instructions_page.dart';
-import 'package:personal_project/features/home/page/covid_19_test/ui/page/t_questions_page.dart';
-import 'package:personal_project/features/home/page/covid_19_test/ui/page/start_counter_page.dart';
-import 'package:personal_project/features/home/page/covid_19_test/ui/page/upload_final_step_page.dart';
-import 'package:personal_project/features/home/page/covid_19_test/ui/page/upload_result_page.dart';
-import 'package:personal_project/features/auth/ui/pages/login_page.dart';
-import 'package:personal_project/features/auth/ui/pages/reset_password_page.dart';
-import 'package:personal_project/features/auth/ui/pages/reset_password_page_info_1.dart';
+import 'package:personal_project/features/auth/bloc/helper_tools_bloc.dart';
+import 'package:personal_project/features/home/page/covid_19_test/presentation/page/instructions_page.dart';
+import 'package:personal_project/features/home/page/covid_19_test/presentation/page/t_questions_page.dart';
+import 'package:personal_project/features/home/page/covid_19_test/presentation/page/start_counter_page.dart';
+import 'package:personal_project/features/home/page/covid_19_test/presentation/page/upload_final_step_page.dart';
+import 'package:personal_project/features/home/page/covid_19_test/presentation/page/upload_result_page.dart';
+import 'package:personal_project/features/auth/presentation/pages/login_page.dart';
+import 'package:personal_project/features/auth/presentation/pages/reset_password_page.dart';
+import 'package:personal_project/features/auth/presentation/pages/reset_password_page_info_1.dart';
 import 'package:personal_project/features/home/page/edit_profile/my_users_page.dart';
 import 'package:personal_project/features/antigen/presentation/pages/antigen_pages/antigen_register_info_page.dart';
 import 'package:personal_project/features/pcr/presentation/pages/pcr_test_register_page.dart';
@@ -41,6 +43,8 @@ class MyApp extends StatelessWidget {
           BlocProvider(create: (_) => AuthBloc()),
           BlocProvider(create: (_) => MedicalHistoryBloc()),
           BlocProvider(create: (_) => TestHistoryBloc()),
+          BlocProvider(create: (_) => AntigenTestBloc()),
+          BlocProvider(create: (_) => HelperToolsBloc()),
         ],
         child: MaterialApp(
           title: 'Idx20',

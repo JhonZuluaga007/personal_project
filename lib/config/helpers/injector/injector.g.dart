@@ -21,7 +21,9 @@ class _$Injector extends Injector {
       ..registerFactory(
           (c) => ResetPasswordUseCase(authRepository: c<AuthRepository>()))
       ..registerFactory(
-          (c) => ChangePasswordUseCase(authRepository: c<AuthRepository>()));
+          (c) => ChangePasswordUseCase(authRepository: c<AuthRepository>()))
+      ..registerFactory(
+          (c) => HelperToolsUseCases(authRepository: c<AuthRepository>()));
   }
 
   @override
@@ -33,6 +35,8 @@ class _$Injector extends Injector {
               medicalHistoryDataSource: c<MedicalHistoryDataSource>()))
       ..registerFactory((c) => MedicalHistoryUseCase(
           medicalHistoryRepository: c<MedicalHistoryRepository>()))
+      ..registerFactory((c) => EditMedicalHistoryUseCase(
+          editMedicalHistoryRepo: c<MedicalHistoryRepository>()))
       ..registerFactory((c) => MedicalHistoryDataSource());
   }
 
@@ -45,5 +49,16 @@ class _$Injector extends Injector {
       ..registerFactory((c) => TestHistoryUseCases(
           testHistoryRepository: c<TestHistoryRepository>()))
       ..registerFactory((c) => TestHistoryDataSource());
+  }
+
+  @override
+  void _configureAntigenFactories() {
+    final KiwiContainer container = KiwiContainer();
+    container
+      ..registerFactory<AntigenRepository>(
+          (c) => AntigenRepositoryImpl(authDataSource: c<AntigenDataSource>()))
+      ..registerFactory(
+          (c) => AntigenValidateUseCase(authRepository: c<AntigenRepository>()))
+      ..registerFactory((c) => AntigenDataSource());
   }
 }

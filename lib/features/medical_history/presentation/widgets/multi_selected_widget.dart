@@ -1,12 +1,10 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../common_ui/common_widgets/responsive/dynamic_container_widget.dart';
-import '../../../../common_ui/common_widgets/text/text_widget.dart';
-import '../../../../config/theme/theme.dart';
 import '../bloc/medical_history_bloc.dart';
+import '../../../../config/theme/theme.dart';
+import '../../../../common_ui/common_widgets/text/text_widget.dart';
+import '../../../../common_ui/common_widgets/responsive/dynamic_container_widget.dart';
 
 class MultiSelectedWidget extends StatefulWidget {
   final List<String> listItem;
@@ -14,15 +12,15 @@ class MultiSelectedWidget extends StatefulWidget {
   String? valueDefaultList;
   final Function(Object?)? onChanged;
   final List<String> listChip;
-  final bool requiredTranslate; 
+  final bool requiredTranslate;
 
   MultiSelectedWidget({
     super.key,
     required this.listItem,
     this.textStyleList,
     required this.onChanged,
-    this.valueDefaultList = "Selection option", 
-    required this.listChip, 
+    this.valueDefaultList = "Selection option",
+    required this.listChip,
     required this.requiredTranslate,
   });
 
@@ -95,16 +93,17 @@ class _MultiSelectedWidgetState extends State<MultiSelectedWidget> {
     );
   }
 
-Widget buildChoiceChip(List<String> listChip) {
-  final wColor = ThemesIdx20();
+  Widget buildChoiceChip(List<String> listChip) {
+    final wColor = ThemesIdx20();
 
     return Wrap(
         spacing: 6,
         runSpacing: 6,
-        children:
-            List<Widget>.generate(listChip.length, (index) {
+        children: List<Widget>.generate(listChip.length, (index) {
           return InputChip(
-            label: TextWidget(text: listChip[index], requiresTranslate: widget.requiredTranslate),
+            label: TextWidget(
+                text: listChip[index],
+                requiresTranslate: widget.requiredTranslate),
             onDeleted: () {
               setState(() {
                 listChip.removeAt(index);
@@ -114,8 +113,6 @@ Widget buildChoiceChip(List<String> listChip) {
             selected: true,
             selectedColor: wColor.mapColors["T300"],
           );
-        }
-      )
-    );
+        }));
   }
 }

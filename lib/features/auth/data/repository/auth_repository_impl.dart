@@ -3,6 +3,7 @@ import '../data_source/auth_data_source.dart';
 import '../../domain/entities/user_entity.dart';
 import '../../domain/repository/auth_repository.dart';
 import '../../domain/entities/user_update_entity.dart';
+import '../../domain/entities/helper_tools_entity.dart';
 import '../../domain/entities/change_password_entity.dart';
 import '../../../../config/helpers/errors/invalid_data.dart';
 import '../../../../config/helpers/models/server_validate_data.dart';
@@ -55,6 +56,16 @@ class AuthRepositoryImpl implements AuthRepository {
     try {
       final ServerValidate response =
           await authDataSource.changePassword(changePassword);
+      return Right(response);
+    } on InvalidData catch (invalidData) {
+      return Left(invalidData);
+    }
+  }
+
+  @override
+  Future<Either<InvalidData, HelperToolsEntity>> getTestools() async {
+    try {
+      final HelperToolsEntity response = await authDataSource.getTestools();
       return Right(response);
     } on InvalidData catch (invalidData) {
       return Left(invalidData);

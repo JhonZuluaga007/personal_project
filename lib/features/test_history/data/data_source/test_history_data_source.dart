@@ -18,7 +18,7 @@ class TestHistoryDataSource {
       } else {
         throw InvalidData("No se encontro datos");
       }
-    } on InvalidData catch (invalidData) {
+    } on InvalidData {
       throw InvalidData("Data no encontrada");
     }
   }

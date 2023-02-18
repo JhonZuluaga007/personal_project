@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 part of 'medical_history_bloc.dart';
 
 @immutable
@@ -8,3 +7,16 @@ class GetMedicalHistoryEvent extends MedicalHistoryEvent {
   final String userId;
   GetMedicalHistoryEvent(this.userId, {required List<String> questions2});
 }
+
+class EditMedicalHistoryEvent extends MedicalHistoryEvent {
+  final String userId;
+  final String responseOne;
+  final List<String> responseTwo;
+  EditMedicalHistoryEvent({
+    required this.userId,
+    required this.responseOne,
+    required this.responseTwo,
+  });
+}
+
+class ResetStatesMedicalHistoryEvent extends MedicalHistoryEvent {}

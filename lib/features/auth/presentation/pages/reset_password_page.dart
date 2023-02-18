@@ -9,7 +9,6 @@ import '../../../../app_localizations.dart';
 import '../../../../common_ui/common_pages/my_app_scaffold_page.dart';
 import '../../../../common_ui/common_widgets/responsive/dynamic_container_widget.dart';
 import '../../../../common_ui/common_widgets/text/text_widget.dart';
-import '../../../../common_ui/utils/utils_email.dart';
 import '../../../../config/helpers/form_submission_status.dart';
 
 import '../../../medical_history/presentation/widgets/done_alert_widget.dart';
@@ -39,8 +38,8 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
     final height = MediaQuery.of(context).size.height;
     final wColor = ThemesIdx20();
     final authBloc = BlocProvider.of<AuthBloc>(context);
-    final passwordTraslate = AppLocalizations.of(context)!
-                    .translate("password_validate_text_one");
+    final passwordTraslate =
+        AppLocalizations.of(context)!.translate("password_validate_text_one");
 
     return MyAppScaffold(
       color: Colors.white,
@@ -98,36 +97,38 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                     labelText: '03_reset_password_label_one',
                     textEditingController: oldPassword,
                     hintText: '03_reset_password_hint_one',
-                    borderColor: oldPasswordValidateError 
-                      ? wColor.mapColors['C01']
-                      : wColor.mapColors["IDGrey"],
+                    borderColor: oldPasswordValidateError
+                        ? wColor.mapColors['C01']
+                        : wColor.mapColors["IDGrey"],
                     textStyle: TextStyle(
-                        color: oldPasswordValidateError 
-                      ? wColor.mapColors['C01']
-                      : wColor.mapColors["IDGrey"], 
-                      fontSize: 14),
+                        color: oldPasswordValidateError
+                            ? wColor.mapColors['C01']
+                            : wColor.mapColors["IDGrey"],
+                        fontSize: 14),
                     hintStyle: TextStyle(
-                        color: oldPasswordValidateError 
-                      ? wColor.mapColors['C01']
-                      : wColor.mapColors["IDGrey"], 
-                      fontSize: 14),
-                    onChanged: (oldPasswordValue){
-                      if (UtilsStringPasword.isValidPassword(oldPassword.text)  || oldPasswordValue!.length < 6) {
+                        color: oldPasswordValidateError
+                            ? wColor.mapColors['C01']
+                            : wColor.mapColors["IDGrey"],
+                        fontSize: 14),
+                    onChanged: (oldPasswordValue) {
+                      if (UtilsStringPasword.isValidPassword(
+                              oldPassword.text) ||
+                          oldPasswordValue!.length < 6) {
                         setState(() {
                           oldPasswordValidateError = true;
                         });
-                      } 
-                      else {
+                      } else {
                         setState(() {
                           oldPasswordValidateError = false;
                         });
                       }
                     },
-                    validator: (oldPasswordValidate){
-                      if (UtilsStringPasword.isValidPassword(oldPassword.text) || oldPasswordValidate!.length < 6) {
+                    validator: (oldPasswordValidate) {
+                      if (UtilsStringPasword.isValidPassword(
+                              oldPassword.text) ||
+                          oldPasswordValidate!.length < 6) {
                         return passwordTraslate;
-                      }
-                      else{
+                      } else {
                         return null;
                       }
                     },
@@ -142,38 +143,38 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                     textEditingController: newPassword,
                     textError: passwordTraslate,
                     hintText: '03_reset_password_hint_input_one',
-                    borderColor: newPasswordValidateError 
-                      ? wColor.mapColors['C01']
-                      : wColor.mapColors["IDGrey"],
+                    borderColor: newPasswordValidateError
+                        ? wColor.mapColors['C01']
+                        : wColor.mapColors["IDGrey"],
                     textStyle: TextStyle(
-                      color: newPasswordValidateError 
-                      ? wColor.mapColors['C01']
-                      : wColor.mapColors["IDGrey"], 
-                      fontSize: 14
-                    ),
+                        color: newPasswordValidateError
+                            ? wColor.mapColors['C01']
+                            : wColor.mapColors["IDGrey"],
+                        fontSize: 14),
                     hintStyle: TextStyle(
-                      color: newPasswordValidateError 
-                      ? wColor.mapColors['C01']
-                      : wColor.mapColors["IDGrey"], 
-                      fontSize: 14
-                    ),
-                    onChanged: (newPasswordValue){
-                      if (UtilsStringPasword.isValidPassword(oldPassword.text) || newPasswordValue!.length < 6) {
+                        color: newPasswordValidateError
+                            ? wColor.mapColors['C01']
+                            : wColor.mapColors["IDGrey"],
+                        fontSize: 14),
+                    onChanged: (newPasswordValue) {
+                      if (UtilsStringPasword.isValidPassword(
+                              oldPassword.text) ||
+                          newPasswordValue!.length < 6) {
                         setState(() {
                           newPasswordValidateError = true;
                         });
-                      } 
-                      else {
+                      } else {
                         setState(() {
                           newPasswordValidateError = false;
                         });
                       }
                     },
-                    validator: (newPasswordValidate){
-                      if (UtilsStringPasword.isValidPassword(oldPassword.text) || newPasswordValidate!.length < 6) {
+                    validator: (newPasswordValidate) {
+                      if (UtilsStringPasword.isValidPassword(
+                              oldPassword.text) ||
+                          newPasswordValidate!.length < 6) {
                         return passwordTraslate;
-                      }
-                      else{
+                      } else {
                         return null;
                       }
                     },
@@ -187,37 +188,39 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                     labelText: '03_reset_password_label_input_two',
                     textEditingController: confirmPassword,
                     textError: passwordTraslate,
-                    borderColor: confirmPasswordValidateError 
-                      ? wColor.mapColors['C01']
-                      : wColor.mapColors["IDGrey"],
+                    borderColor: confirmPasswordValidateError
+                        ? wColor.mapColors['C01']
+                        : wColor.mapColors["IDGrey"],
                     hintText: '03_reset_password_hint_input_two',
                     textStyle: TextStyle(
-                        color: confirmPasswordValidateError 
-                      ? wColor.mapColors['C01']
-                      : wColor.mapColors["IDGrey"], 
-                      fontSize: 14),
+                        color: confirmPasswordValidateError
+                            ? wColor.mapColors['C01']
+                            : wColor.mapColors["IDGrey"],
+                        fontSize: 14),
                     hintStyle: TextStyle(
                         color: confirmPasswordValidateError
-                      ? wColor.mapColors['C01']
-                      : wColor.mapColors["IDGrey"], 
-                      fontSize: 14),
-                    onChanged: (confirmPasswordValue){
-                      if (UtilsStringPasword.isValidPassword(confirmPasswordValue!) || confirmPasswordValue.length < 6) {
+                            ? wColor.mapColors['C01']
+                            : wColor.mapColors["IDGrey"],
+                        fontSize: 14),
+                    onChanged: (confirmPasswordValue) {
+                      if (UtilsStringPasword.isValidPassword(
+                              confirmPasswordValue!) ||
+                          confirmPasswordValue.length < 6) {
                         setState(() {
                           confirmPasswordValidateError = true;
                         });
-                      } 
-                      else {
+                      } else {
                         setState(() {
                           confirmPasswordValidateError = false;
                         });
                       }
                     },
-                    validator: (confirmPasswordValidate){
-                      if (UtilsStringPasword.isValidPassword(confirmPasswordValidate!) || confirmPasswordValidate.length < 6) {
+                    validator: (confirmPasswordValidate) {
+                      if (UtilsStringPasword.isValidPassword(
+                              confirmPasswordValidate!) ||
+                          confirmPasswordValidate.length < 6) {
                         return passwordTraslate;
-                      }
-                      else{
+                      } else {
                         return null;
                       }
                     },
@@ -274,22 +277,27 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                     buttonString: '03_reset_password_button',
                     onPressed: () async {
                       setState(() {
-                        if(oldPassword.text.isNotEmpty && oldPassword.text.length >= 6 && 
-                          newPassword.text.isNotEmpty && newPassword.text.length >= 6 && 
-                          confirmPassword.text.isNotEmpty && confirmPassword.text.length >= 6){
-                            if (confirmPassword.text == newPassword.text) {
-                              BlocProvider.of<AuthBloc>(context).add(ChangePassword(
-                                  state.userId, oldPassword.text, newPassword.text));
-                            } 
-                            else {
+                        if (oldPassword.text.isNotEmpty &&
+                            oldPassword.text.length >= 6 &&
+                            newPassword.text.isNotEmpty &&
+                            newPassword.text.length >= 6 &&
+                            confirmPassword.text.isNotEmpty &&
+                            confirmPassword.text.length >= 6) {
+                          if (confirmPassword.text == newPassword.text) {
+                            BlocProvider.of<AuthBloc>(context).add(
+                                ChangePassword(state.userId, oldPassword.text,
+                                    newPassword.text));
+                          } else {
                             if (confirmPassword.text != newPassword.text) {
                               final snackBar = SnackBar(
-                                  content: const TextWidget(text: 'match_password'),
+                                  content:
+                                      const TextWidget(text: 'match_password'),
                                   action: SnackBarAction(
                                     label: 'Close', //TODO CHECK LANGUAGE
                                     onPressed: () {},
                                   ));
-                              ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(snackBar);
                             }
                           }
                         }

@@ -1,29 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:personal_project/common_ui/common_widgets/buttons/main_button_widget.dart';
-import 'package:personal_project/common_ui/common_widgets/text_field/text_field_no_label_widget.dart';
 import 'package:personal_project/common_ui/common_widgets/text_field/text_field_with_border_widget.dart';
+import 'package:personal_project/common_ui/utils/const_list.dart';
 import 'package:personal_project/config/theme/theme.dart';
-import 'package:personal_project/features/auth/domain/entities/user_update_entity.dart';
-import 'package:personal_project/features/home/page/covid_19_test/ui/widgets/drop_down_questions_widget.dart';
-import 'package:personal_project/features/home/widget/lists_text_fields_widgets.dart';
+import 'package:personal_project/features/auth/bloc/helper_tools_bloc.dart';
+import 'package:personal_project/features/auth/domain/entities/helper_tools_entity.dart';
+import 'package:personal_project/features/auth/domain/entities/user_entity.dart';
+import 'package:personal_project/features/home/page/covid_19_test/presentation/widgets/drop_down_questions_widget.dart';
 import 'package:personal_project/navigationBar/bloc/navigation_bar_bloc.dart';
 
 import '../../auth/bloc/auth_bloc.dart';
+import '../../auth/domain/entities/user_update_entity.dart';
 import '../../medical_history/presentation/widgets/confirm_alert_widget.dart';
 import '../../medical_history/presentation/widgets/done_alert_widget.dart';
-import 'drop_down_my_profile_widget.dart';
 
 class TextFieldFormMyUser extends StatefulWidget {
   const TextFieldFormMyUser(
       {super.key,
       required this.textTitle,
       this.iconTextField,
-      required this.hintText});
+      required this.hintText,
+      this.imageState});
 
   final String textTitle;
   final String hintText;
   final Icon? iconTextField;
+  final String? imageState;
 
   @override
   State<TextFieldFormMyUser> createState() => _TextFieldFormMyUserState();
@@ -35,54 +38,41 @@ class _TextFieldFormMyUserState extends State<TextFieldFormMyUser> {
   String defaultValueGender = 'Select option';
   String defaultValueRace = 'Select option';
   String defaultValueEthnicity = 'Select option';
-  final List<String> genderAnswer = [
-    "gender_answer_one",
-    "gender_answer_two",
-    "gender_answer_three",
-    "gender_answer_four",
-    "gender_answer_five",
-    "gender_answer_six",
-    "gender_answer_seven",
-  ];
-  final List<String> sexAnswer = [
-    "sex_answer_one",
-    "sex_answer_two",
-  ];
-  final List<String> raceAnswer = [
-    "race_answer_one",
-    "race_answer_two",
-    "race_answer_three",
-    "race_answer_four",
-    "race_answer_five",
-    "race_answer_six",
-    "race_answer_seven",
-  ];
-  final List<String> ethnicityAnswer = [
-    "ethnicity_answer_one",
-    "ethnicity_answer_two"
-  ];
+  String defaultValueSchool = 'Select option';
+  SexEntity selectedSexValue = SexEntity(id: '', sex: '');
+  GenderEntity selectedGenderValue = GenderEntity(id: '', gender: '');
+  RaceEntity selectedRaceValue = RaceEntity(id: '', race: '');
+  EthnicityEntity selectedEtnichityValue =
+      EthnicityEntity(id: '', ethnicity: '');
+  String selectedStateValue = '';
+  String selectedSchoolLevel = '';
+
+  TextEditingController addressController = TextEditingController(text: "");
+  TextEditingController cityController = TextEditingController(text: "");
+  TextEditingController zipController = TextEditingController(text: "");
 
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
-    ConstLists lists = ConstLists();
     final wColor = ThemesIdx20();
     NavigationBarBloc navigationBloc =
         BlocProvider.of<NavigationBarBloc>(context);
+
+    final helperToolsState = BlocProvider.of<HelperToolsBloc>(context).state;
+
+    final List<OpGenderEntity> genderAnswer = helperToolsState.opGender;
+    final List<OpSexEntity> sexAnswer = helperToolsState.opSex;
+    final List<OpRaceEntity> raceAnswer = helperToolsState.opRace;
+    final List<OpEthnicityEntity> ethnicityAnswer =
+        helperToolsState.opEthnicity;
+
     return BlocBuilder<AuthBloc, AuthState>(
       builder: (context, state) {
-        TextEditingController addressController =
-            TextEditingController(text: state.address ?? "");
-        TextEditingController cityController =
-            TextEditingController(text: state.city ?? "");
-        TextEditingController zipController =
-            TextEditingController(text: state.zip ?? "");
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             TextFieldWithBorderWidget(
-              suffixIcon: widget.iconTextField,
               borderColor: wColor.mapColors["T100"],
               requiresTranslate: false,
               textEditingController: addressController,
@@ -97,7 +87,6 @@ class _TextFieldFormMyUserState extends State<TextFieldFormMyUser> {
             ),
             SizedBox(height: height * 0.0250),
             TextFieldWithBorderWidget(
-              suffixIcon: widget.iconTextField,
               borderColor: wColor.mapColors["T100"],
               requiresTranslate: false,
               textEditingController: cityController,
@@ -112,7 +101,6 @@ class _TextFieldFormMyUserState extends State<TextFieldFormMyUser> {
             ),
             SizedBox(height: height * 0.0250),
             TextFieldWithBorderWidget(
-              suffixIcon: widget.iconTextField,
               requiresTranslate: false,
               borderColor: wColor.mapColors["T100"],
               textEditingController: zipController,
@@ -126,42 +114,82 @@ class _TextFieldFormMyUserState extends State<TextFieldFormMyUser> {
               widthBorder: 3,
             ),
             SizedBox(height: height * 0.0250),
-            DropDownWidgetMyProfile(
-              item: lists.stateList,
-              fieldText: 'profile_text_hint_nine',
-              valueState: state.state ?? defaultValueState,
-              width: width,
-            ),
+            DropDownQuestionsWidget(
+                dropDownItem: ConstLists.stateList,
+                textQuestion: "profile_text_hint_nine",
+                width: width,
+                onChanged: (valueDropdown) {
+                  setState(() {
+                    defaultValueState = valueDropdown!.valor;
+                    selectedStateValue = valueDropdown.valor;
+                  });
+                },
+                dropDownValue: state.state ?? 'Select option'),
             SizedBox(height: height * 0.0250),
             DropDownQuestionsWidget(
                 dropDownItem: sexAnswer,
                 textQuestion: "sex_question",
                 width: width,
-                dropDownValue: state.sex ?? 'Select option'),
+                selectedString: selectedSexValue.sex,
+                onChanged: (valueDropdown) {
+                  setState(() {
+                    defaultValueSex = valueDropdown!.valor;
+                    selectedSexValue = SexEntity(
+                        id: valueDropdown.id, sex: valueDropdown.valor);
+                  });
+                },
+                dropDownValue: state.sex!.sex ?? 'Select option'),
             SizedBox(height: height * 0.0250),
             DropDownQuestionsWidget(
                 dropDownItem: genderAnswer,
                 textQuestion: "gender_answer_question",
                 width: width,
-                dropDownValue: state.gender ?? 'Select option'),
+                onChanged: (valueDropdown) {
+                  setState(() {
+                    defaultValueSex = valueDropdown!.valor;
+                    selectedGenderValue = GenderEntity(
+                        id: valueDropdown.id, gender: valueDropdown.valor);
+                  });
+                },
+                dropDownValue: state.gender!.gender ?? 'Select option'),
             SizedBox(height: height * 0.0250),
             DropDownQuestionsWidget(
                 dropDownItem: raceAnswer,
                 textQuestion: "race_answer_question",
                 width: width,
-                dropDownValue: state.race ?? 'Select option'),
+                onChanged: (valueDropdown) {
+                  setState(() {
+                    defaultValueSex = valueDropdown!.valor;
+                    selectedRaceValue = RaceEntity(
+                        id: valueDropdown.id, race: valueDropdown.valor);
+                  });
+                },
+                dropDownValue: state.race!.race ?? 'Select option'),
             SizedBox(height: height * 0.0250),
             DropDownQuestionsWidget(
                 dropDownItem: ethnicityAnswer,
                 textQuestion: "ethnicity_question",
                 width: width,
-                dropDownValue: state.ethnicity ?? 'Select option'),
+                onChanged: (valueDropdown) {
+                  setState(() {
+                    defaultValueSex = valueDropdown!.valor;
+                    selectedEtnichityValue = EthnicityEntity(
+                        id: valueDropdown.id, ethnicity: valueDropdown.valor);
+                  });
+                },
+                dropDownValue: state.ethnicity!.ethnicity ?? 'Select option'),
             SizedBox(height: height * 0.025),
-            TextFieldNoLabelWidget(
-                hintText:
-                    state.levelSchool ?? 'High school graduate', // todo check
-                requiresTranslate: false,
-                text: 'graduate_level'),
+            DropDownQuestionsWidget(
+                dropDownItem: ConstLists.schoolLevelList,
+                textQuestion: "graduate_level",
+                width: width,
+                onChanged: (valueDropdown) {
+                  setState(() {
+                    defaultValueSchool = valueDropdown!.valor;
+                    selectedSchoolLevel = valueDropdown.id;
+                  });
+                },
+                dropDownValue: state.levelSchool ?? 'Select option'),
             SizedBox(height: height * 0.010),
             SizedBox(height: height * 0.0485),
             Center(
@@ -197,27 +225,46 @@ class _TextFieldFormMyUserState extends State<TextFieldFormMyUser> {
                         infoText: 'alert_text_two',
                         mainButton: 'alert_text_three',
                         mainButtonFunction: () {
-                          //todo check if success before
-                          //NEED TO INSTANTIATE A BLOC INSIDE THE FUNCTION
-                          // BlocProvider.of<AuthBloc>(context).add(
-                          //   UserUpdateEvent(
-                          //     UserUpdateEntity(
-                          //       userdId: state.userId,
-                          //       address: addressController.text,
-                          //       city: cityController.text,
-                          //       zip: zipController.text,
-                          //       state: state.state,
-                          //       sex: state.sex,
-                          //       gender: state.gender,
-                          //       race: state.race,
-                          //       ethnicity: state.ethnicity,
-                          //     ),
-                          //   ),
-                          // );
+                          BlocProvider.of<AuthBloc>(context).add(
+                            UserUpdateEvent(
+                              UserUpdateEntity(
+                                userdId: state.userId,
+                                address: addressController.text != ''
+                                    ? addressController.text
+                                    : state.address,
+                                city: cityController.text != ''
+                                    ? cityController.text
+                                    : state.city,
+                                zip: zipController.text != ''
+                                    ? zipController.text
+                                    : state.zip,
+                                state: selectedStateValue != ''
+                                    ? selectedStateValue
+                                    : state.state,
+                                sex: selectedSexValue.sex != ''
+                                    ? selectedSexValue
+                                    : state.sex,
+                                gender: selectedGenderValue.gender != ''
+                                    ? selectedGenderValue
+                                    : state.gender,
+                                race: selectedRaceValue.race != ''
+                                    ? selectedRaceValue
+                                    : state.race,
+                                levelSchool: selectedSchoolLevel != ''
+                                    ? selectedSchoolLevel
+                                    : state.levelSchool,
+                                ethnicity:
+                                    selectedEtnichityValue.ethnicity != ''
+                                        ? selectedEtnichityValue
+                                        : state.ethnicity,
+                                file: widget.imageState,
+                              ),
+                            ),
+                          );
                           navigationBloc.add(PageChanged(indexNavigation: 0));
                           Navigator.pushNamed(context, 'navBar');
                         },
-                      ); //todo open new alert
+                      );
                     },
                     secondButton: 'alert_confirm_text_four',
                     secondButtonFunction: () {

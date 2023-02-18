@@ -6,7 +6,7 @@ import 'package:personal_project/common_ui/utils/utils_string_password.dart';
 import 'package:personal_project/common_ui/utils/utils_email.dart';
 import 'package:personal_project/config/helpers/form_submission_status.dart';
 import 'package:personal_project/config/theme/theme.dart';
-import 'package:personal_project/features/auth/data/models/user_model.dart';
+import 'package:personal_project/features/auth/bloc/helper_tools_bloc.dart';
 import '../../../../app_localizations.dart';
 import '../../../../common_ui/common_pages/my_app_scaffold_page.dart';
 import '../../../../common_ui/common_widgets/text/text_widget.dart';
@@ -37,10 +37,10 @@ class _LoginPageState extends State<LoginPage> {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
     final wColor = ThemesIdx20();
-    final userNameTraslate = AppLocalizations.of(context)!
-                        .translate("user_name_text_one");
-    final passwordTraslate = AppLocalizations.of(context)!
-                        .translate("password_validate_text_one");
+    final userNameTraslate =
+        AppLocalizations.of(context)!.translate("user_name_text_one");
+    final passwordTraslate =
+        AppLocalizations.of(context)!.translate("password_validate_text_one");
 
     return MyAppScaffold(
       color: Colors.white,
@@ -76,21 +76,21 @@ class _LoginPageState extends State<LoginPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               TextFieldWithBorderWidget(
-                validator: (valueUserName){
-                  if (UtilsEmailUser.validateUserName(valueUserName!) || emailController.text.length < 4) {
+                validator: (valueUserName) {
+                  if (UtilsEmailUser.validateUserName(valueUserName!) ||
+                      emailController.text.length < 4) {
                     return userNameTraslate;
-                  }
-                  else{
+                  } else {
                     return null;
                   }
                 },
                 onChanged: (userName) {
-                  if (UtilsEmailUser.validateUserName(userName!) || emailController.text.length < 4) {
+                  if (UtilsEmailUser.validateUserName(userName!) ||
+                      emailController.text.length < 4) {
                     setState(() {
                       emailValidateError = true;
                     });
-                  } 
-                  else {
+                  } else {
                     setState(() {
                       emailValidateError = false;
                     });
@@ -103,25 +103,21 @@ class _LoginPageState extends State<LoginPage> {
                 requiresTranslate: true,
                 textColor: wColor.mapColors['P00'],
                 labelText: '01_login_input_one',
-                borderColor: emailValidateError 
-                      ? wColor.mapColors['C01']
-                      : wColor.mapColors["IDGrey"],
+                borderColor: emailValidateError
+                    ? wColor.mapColors['C01']
+                    : wColor.mapColors["IDGrey"],
                 textEditingController: emailController,
                 hintText: '01_login_input_hint_one',
-                textStyle:
-                    TextStyle(
-                      color: emailValidateError 
-                      ? wColor.mapColors['C01']
-                      : wColor.mapColors["IDGrey"], 
-                      fontSize: 14
-                    ),
-                hintStyle:
-                    TextStyle(
-                      color: emailValidateError 
-                      ? wColor.mapColors['C01']
-                      : wColor.mapColors["IDGrey"], 
-                      fontSize: 1
-                    ),
+                textStyle: TextStyle(
+                    color: emailValidateError
+                        ? wColor.mapColors['C01']
+                        : wColor.mapColors["IDGrey"],
+                    fontSize: 14),
+                hintStyle: TextStyle(
+                    color: emailValidateError
+                        ? wColor.mapColors['C01']
+                        : wColor.mapColors["IDGrey"],
+                    fontSize: 1),
               ),
               if (emailValidateError)
                 SizedBox(
@@ -142,10 +138,10 @@ class _LoginPageState extends State<LoginPage> {
                   }
                 },
                 validator: (password) {
-                  if (UtilsStringPasword.isValidPassword(password!) || password.length < 6) {
+                  if (UtilsStringPasword.isValidPassword(password!) ||
+                      password.length < 6) {
                     return passwordTraslate;
-                  }
-                  else {
+                  } else {
                     return null;
                   }
                 },
@@ -155,33 +151,27 @@ class _LoginPageState extends State<LoginPage> {
                 requiresTranslate: true,
                 isPassword: isObscure,
                 labelText: '01_login_input_two',
-                borderColor: passwordValidateError 
-                      ? wColor.mapColors['C01']
-                      : wColor.mapColors["IDGrey"],
+                borderColor: passwordValidateError
+                    ? wColor.mapColors['C01']
+                    : wColor.mapColors["IDGrey"],
                 textColor: Colors.white,
                 fillColor: wColor.mapColors['P00'],
                 textEditingController: passwordController,
-                hintStyle:
-                    TextStyle(
-                      color: passwordValidateError 
-                      ? wColor.mapColors['C01']
-                      : wColor.mapColors["IDGrey"], 
-                      fontSize: 14
-                    ),
-                textStyle:
-                    TextStyle(
-                      color: passwordValidateError 
-                      ? wColor.mapColors['C01']
-                      : wColor.mapColors["IDGrey"], 
-                      fontSize: 14
-                    ),
+                hintStyle: TextStyle(
+                    color: passwordValidateError
+                        ? wColor.mapColors['C01']
+                        : wColor.mapColors["IDGrey"],
+                    fontSize: 14),
+                textStyle: TextStyle(
+                    color: passwordValidateError
+                        ? wColor.mapColors['C01']
+                        : wColor.mapColors["IDGrey"],
+                    fontSize: 14),
                 suffixIcon: Padding(
                   padding: const EdgeInsets.only(left: 10),
                   child: IconButton(
                     icon: Icon(
-                      isObscure
-                          ? Icons.visibility_off
-                          : Icons.visibility,
+                      isObscure ? Icons.visibility_off : Icons.visibility,
                     ),
                     color: wColor.mapColors['IDGrey'],
                     onPressed: () => setState(() {
@@ -202,6 +192,7 @@ class _LoginPageState extends State<LoginPage> {
         BlocConsumer<AuthBloc, AuthState>(
           listener: (BuildContext context, state) {
             if (state.formStatus is SubmissionSuccess) {
+              BlocProvider.of<HelperToolsBloc>(context).add(GetTestTools());
               Navigator.push(
                 context,
                 MaterialPageRoute(
@@ -229,14 +220,15 @@ class _LoginPageState extends State<LoginPage> {
                   borderColor: wColor.mapColors['IDPink'],
                   textColor: Colors.white,
                   buttonString: '01_login_button_one',
-                  onPressed: () { 
+                  onPressed: () {
                     setState(() {
                       if (emailController.text.isNotEmpty &&
-                        passwordController.text.isNotEmpty && passwordController.text.length >= 6) {
+                          passwordController.text.isNotEmpty &&
+                          passwordController.text.length >= 6 &&
+                          emailController.text.length > 4) {
                         BlocProvider.of<AuthBloc>(context).add(LoginUserE(
                             emailController.text, passwordController.text));
-                      } 
-                      else {} 
+                      } else {}
                     });
                   },
                   buttonColor: wColor.mapColors['IDPink'],

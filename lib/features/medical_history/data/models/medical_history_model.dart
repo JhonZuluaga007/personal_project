@@ -1,11 +1,6 @@
-// To parse this JSON data, do
-//
-//     final medicalHistoryModel = medicalHistoryModelFromJson(jsonString);
-
-import 'package:meta/meta.dart';
 import 'dart:convert';
 
-import 'package:personal_project/features/medical_history/domain/entities/medical_history_entity.dart';
+import '../../domain/entities/medical_history_entity.dart';
 
 MedicalHistoryModel medicalHistoryModelFromJson(String str) =>
     MedicalHistoryModel.fromJson(json.decode(str));
@@ -52,6 +47,23 @@ class Ated extends AtedEntity {
   Map<String, dynamic> toJson() => {
         "\u0024date": date.toIso8601String(),
       };
+}
+
+enum AnswerType { Yes, No }
+
+final answerTypeValues =
+    EnumValues({"Yes": AnswerType.Yes, "No": AnswerType.No});
+
+class EnumValues<T> {
+  Map<String, T> map;
+  late Map<T, String> reverseMap;
+
+  EnumValues(this.map);
+
+  Map<T, String> get reverse {
+    reverseMap = map.map((k, v) => MapEntry(v, k));
+    return reverseMap;
+  }
 }
 
 class Question1 extends Question1Entity {

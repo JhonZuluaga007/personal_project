@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:personal_project/features/auth/data/models/helper_tools_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -35,55 +36,47 @@ class AuthDataSource {
     prefs.setString('Basic', token);
     final response = await Api.get('${Endpoints.getUser}$userId');
     UserModel userModel = UserModel.fromMap(response);
-    //debugPrint("result data response getUser: ${userModel.user.image}");
     return userModel;
   }
 
   Future<ServerValidate> userUpdateEntity(
       UserUpdateEntity userUpdateEntity) async {
-    final response =
-        await Api.put(Endpoints.getUser + userUpdateEntity.userdId!, {
-      'address': userUpdateEntity.address!,
-      'city': userUpdateEntity.city!,
-      'state': userUpdateEntity.state!,
-      'zip': userUpdateEntity.zip!,
-      'race': userUpdateEntity.race!,
-      'ethnicity': userUpdateEntity.ethnicity!,
-      'sex': userUpdateEntity.sex!,
-      'gender': userUpdateEntity.gender!,
-    });
+    var request = http.MultipartRequest(
+        'PUT', Uri.parse(Endpoints.getUser + userUpdateEntity.userdId!));
+    request.fields.addAll(
+      {
+        'address': userUpdateEntity.address!,
+        'city': userUpdateEntity.city!,
+        'state': userUpdateEntity.state!,
+        'zip': userUpdateEntity.zip!,
+        'race': userUpdateEntity.race!.id!,
+        'ethnicity': userUpdateEntity.ethnicity!.id!,
+        'sex': userUpdateEntity.sex!.id!,
+        'gender': userUpdateEntity.gender!.id!,
+        'level_school': "Trade/technical/vocational training"
+      },
+    );
 
-    if (response["statusCode"] == 200) {
-      return ServerValidate(message: "Changes saved", statusCode: 200);
+    http.StreamedResponse response = await request.send();
+
+    if (response.statusCode == 200) {
+      final responseString = await response.stream.bytesToString();
+      final decodedMap = json.decode(responseString);
+      bool success = false;
+      if (decodedMap['statusCode'] == 200) {
+        success = true;
+      }
+      return success
+          ? ServerValidate(message: "Changes saved", statusCode: 200)
+          : throw InvalidData(
+              "We could not update your password. Make sure your current password is correct");
     } else {
-      throw InvalidData("Could not save changes");
+      throw InvalidData(
+          "We could not update your password. Make sure your current password is correct");
     }
   }
 
   Future<ServerValidate> resetPassword(String email) async {
-    // var headers = {'Content-Type': 'application/json'};
-    // var request = http.Request('POST', Uri.parse(Endpoints.resetPassword));
-    // request.body = jsonEncode({"email": email});
-    // request.headers.addAll(headers);
-    // http.StreamedResponse response = await request.send();
-    // final responseString = await response.stream.bytesToString();
-    // final decodedMap = json.decode(responseString);
-    // if (response.statusCode == 200) {
-    //   bool success = false;
-
-    //   if (decodedMap['statusCode'] == 200) {
-    //     success = true;
-    //   }
-    //   return success
-    //       ? ServerValidate(
-    //           message: "Password send to your email", statusCode: 200)
-    //       : throw InvalidData(
-    //           "We could not reset your password. Make sure your current user is correct");
-    // } else {
-    //   throw InvalidData(
-    //       "We could not reset your password. Make sure your current user is correct");
-    // }
-
     Api.clearHeaders();
     Api.setHeaders();
     final response = await Api.post(
@@ -95,7 +88,6 @@ class AuthDataSource {
     if (response["statusCode"] == 200) {
       return ServerValidate(message: "Password sent to email", statusCode: 200);
     } else {
-      print(response['statusCode']);
       throw InvalidData("Could not save changes");
     }
   }
@@ -133,20 +125,17 @@ class AuthDataSource {
       throw InvalidData(
           "We could not update your password. Make sure your current password is correct");
     }
+  }
 
-    /*final response = await Api.post(
-      Endpoints.changePassword,
-      {
-        'userId': changePassword.userId,
-        'pass': changePassword.pass,
-        'newpass': changePassword.newpass
-      },
-    );
+  Future<HelperToolsModel> getTestools() async {
+    final response = await Api.get(Endpoints.testools);
     if (response["statusCode"] == 200) {
-      return ServerValidate(message: "Password reset", statusCode: 200);
+      HelperToolsModel helperToolsModel = HelperToolsModel.fromJson(response);
+      return helperToolsModel;
     } else {
       throw InvalidData(
-          "We could not update your password. Make sure your current password is correct");
-    }*/
+        ServerError.fromMap(response).errorMessage,
+      );
+    }
   }
 }
