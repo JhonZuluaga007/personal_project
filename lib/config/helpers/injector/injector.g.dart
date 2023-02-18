@@ -50,4 +50,15 @@ class _$Injector extends Injector {
           testHistoryRepository: c<TestHistoryRepository>()))
       ..registerFactory((c) => TestHistoryDataSource());
   }
+
+  @override
+  void _configureAntigenFactories() {
+    final KiwiContainer container = KiwiContainer();
+    container
+      ..registerFactory<AntigenRepository>(
+          (c) => AntigenRepositoryImpl(authDataSource: c<AntigenDataSource>()))
+      ..registerFactory(
+          (c) => AntigenValidateUseCase(authRepository: c<AntigenRepository>()))
+      ..registerFactory((c) => AntigenDataSource());
+  }
 }

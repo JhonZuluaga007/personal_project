@@ -66,7 +66,7 @@ class AuthState {
     this.message = "",
     this.formChangePasswordStatus = const InitialFormStatus(),
     this.formStatus = const InitialFormStatus(),
-    this.formResetPassword = const InitialFormStatus(),
+    this.formResetPassword = const InitialFormStatus()
   });
 
   AuthState copyWith({

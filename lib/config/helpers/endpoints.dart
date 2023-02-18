@@ -18,6 +18,7 @@ class Endpoints {
 
 //Validate pcr endpoint
   static const String validatePcr = '${Config.baseURL}codepcrvalidator';
+  static const String registerTest = "${Config.baseURL}forms";
 
   static const String testools = '${Config.baseURL}testools';
 }
