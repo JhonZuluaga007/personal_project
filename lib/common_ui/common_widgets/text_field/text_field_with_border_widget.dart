@@ -5,33 +5,32 @@ import 'package:personal_project/features/home/widget/test_widgets/app_bar_widge
 import '../../../app_localizations.dart';
 
 class TextFieldWithBorderWidget extends StatelessWidget {
-  const TextFieldWithBorderWidget(
-      {Key? key,
-      this.width,
-      this.height,
-      this.labelText,
-      this.textInputType,
-      this.textEditingController,
-      this.textStyle,
-      this.hintStyle,
-      this.fillColor,
-      required this.hintText,
-      this.filled,
-      this.textColor,
-      this.borderColor,
-      this.enabledBorder,
-      this.hintTextDirection,
-      this.suffixIcon,
-      this.focusedBorder,
-      this.isPassword,
-      this.widthBorder,
-      required this.requiresTranslate,
-      this.validator, 
-      this.onChanged, 
-      this.textErrorValidate, 
-      this.textError, 
-      })
-      : super(key: key);
+  const TextFieldWithBorderWidget({
+    Key? key,
+    this.width,
+    this.height,
+    this.labelText,
+    this.textInputType,
+    this.textEditingController,
+    this.textStyle,
+    this.hintStyle,
+    this.fillColor,
+    required this.hintText,
+    this.filled,
+    this.textColor,
+    this.borderColor,
+    this.enabledBorder,
+    this.hintTextDirection,
+    this.suffixIcon,
+    this.focusedBorder,
+    this.isPassword,
+    this.widthBorder,
+    required this.requiresTranslate,
+    this.validator,
+    this.onChanged,
+    this.textErrorValidate,
+    this.textError,
+  }) : super(key: key);
 
   final double? width;
   final double? height;
@@ -118,23 +117,20 @@ class TextFieldWithBorderWidget extends StatelessWidget {
           ),
         ),
         Visibility(
-          visible: textErrorValidate ?? false,
-          child: Column(
-            children: [
-              SizedBox(height: size.height * 0.0045),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: size.width * 0.023),
-                child: Text(
-                  textError ?? "Hola", 
-                  style: TextStyle(
-                    color: wColor.mapColors["C01"],
-                    fontSize: 13
+            visible: textErrorValidate ?? false,
+            child: Column(
+              children: [
+                SizedBox(height: size.height * 0.0045),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: size.width * 0.023),
+                  child: Text(
+                    textError ?? "Hola",
+                    style:
+                        TextStyle(color: wColor.mapColors["C01"], fontSize: 13),
                   ),
                 ),
-              ),
-            ],
-          )
-        )
+              ],
+            ))
       ],
     );
   }
