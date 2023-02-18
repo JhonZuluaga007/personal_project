@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:personal_project/common_ui/common_widgets/buttons/main_button_widget.dart';
-import 'package:personal_project/common_ui/common_widgets/text_field/text_field_no_label_widget.dart';
 import 'package:personal_project/common_ui/common_widgets/text_field/text_field_with_border_widget.dart';
 import 'package:personal_project/common_ui/utils/const_list.dart';
 import 'package:personal_project/config/theme/theme.dart';
 import 'package:personal_project/features/auth/bloc/helper_tools_bloc.dart';
 import 'package:personal_project/features/auth/domain/entities/helper_tools_entity.dart';
+import 'package:personal_project/features/auth/domain/entities/user_entity.dart';
 import 'package:personal_project/features/home/page/covid_19_test/presentation/widgets/drop_down_questions_widget.dart';
 import 'package:personal_project/navigationBar/bloc/navigation_bar_bloc.dart';
 
@@ -39,10 +39,11 @@ class _TextFieldFormMyUserState extends State<TextFieldFormMyUser> {
   String defaultValueRace = 'Select option';
   String defaultValueEthnicity = 'Select option';
   String defaultValueSchool = 'Select option';
-  String selectedSexValue = '';
-  String selectedGenderValue = '';
-  String selectedRaceValue = '';
-  String selectedEtnichityValue = '';
+  SexEntity selectedSexValue = SexEntity(id: '', sex: '');
+  GenderEntity selectedGenderValue = GenderEntity(id: '', gender: '');
+  RaceEntity selectedRaceValue = RaceEntity(id: '', race: '');
+  EthnicityEntity selectedEtnichityValue =
+      EthnicityEntity(id: '', ethnicity: '');
   String selectedStateValue = '';
   String selectedSchoolLevel = '';
 
@@ -129,14 +130,15 @@ class _TextFieldFormMyUserState extends State<TextFieldFormMyUser> {
                 dropDownItem: sexAnswer,
                 textQuestion: "sex_question",
                 width: width,
-                selectedString: selectedSexValue,
+                selectedString: selectedSexValue.sex,
                 onChanged: (valueDropdown) {
                   setState(() {
                     defaultValueSex = valueDropdown!.valor;
-                    selectedSexValue = valueDropdown.id;
+                    selectedSexValue = SexEntity(
+                        id: valueDropdown.id, sex: valueDropdown.valor);
                   });
                 },
-                dropDownValue: state.sex ?? 'Select option'),
+                dropDownValue: state.sex!.sex ?? 'Select option'),
             SizedBox(height: height * 0.0250),
             DropDownQuestionsWidget(
                 dropDownItem: genderAnswer,
@@ -145,10 +147,11 @@ class _TextFieldFormMyUserState extends State<TextFieldFormMyUser> {
                 onChanged: (valueDropdown) {
                   setState(() {
                     defaultValueSex = valueDropdown!.valor;
-                    selectedGenderValue = valueDropdown.id;
+                    selectedGenderValue = GenderEntity(
+                        id: valueDropdown.id, gender: valueDropdown.valor);
                   });
                 },
-                dropDownValue: state.gender ?? 'Select option'),
+                dropDownValue: state.gender!.gender ?? 'Select option'),
             SizedBox(height: height * 0.0250),
             DropDownQuestionsWidget(
                 dropDownItem: raceAnswer,
@@ -157,10 +160,11 @@ class _TextFieldFormMyUserState extends State<TextFieldFormMyUser> {
                 onChanged: (valueDropdown) {
                   setState(() {
                     defaultValueSex = valueDropdown!.valor;
-                    selectedRaceValue = valueDropdown.id;
+                    selectedRaceValue = RaceEntity(
+                        id: valueDropdown.id, race: valueDropdown.valor);
                   });
                 },
-                dropDownValue: state.race ?? 'Select option'),
+                dropDownValue: state.race!.race ?? 'Select option'),
             SizedBox(height: height * 0.0250),
             DropDownQuestionsWidget(
                 dropDownItem: ethnicityAnswer,
@@ -169,10 +173,11 @@ class _TextFieldFormMyUserState extends State<TextFieldFormMyUser> {
                 onChanged: (valueDropdown) {
                   setState(() {
                     defaultValueSex = valueDropdown!.valor;
-                    selectedEtnichityValue = valueDropdown.id;
+                    selectedEtnichityValue = EthnicityEntity(
+                        id: valueDropdown.id, ethnicity: valueDropdown.valor);
                   });
                 },
-                dropDownValue: state.ethnicity ?? 'Select option'),
+                dropDownValue: state.ethnicity!.ethnicity ?? 'Select option'),
             SizedBox(height: height * 0.025),
             DropDownQuestionsWidget(
                 dropDownItem: ConstLists.schoolLevelList,
@@ -223,35 +228,37 @@ class _TextFieldFormMyUserState extends State<TextFieldFormMyUser> {
                           BlocProvider.of<AuthBloc>(context).add(
                             UserUpdateEvent(
                               UserUpdateEntity(
-                                  userdId: state.userId,
-                                  address: addressController.text != ''
-                                      ? addressController.text
-                                      : state.address,
-                                  city: cityController.text != ''
-                                      ? cityController.text
-                                      : state.city,
-                                  zip: zipController.text != ''
-                                      ? zipController.text
-                                      : state.zip,
-                                  state: selectedStateValue != ''
-                                      ? selectedStateValue
-                                      : state.state,
-                                  sex: selectedSexValue != ''
-                                      ? selectedSexValue
-                                      : state.sex,
-                                  gender: selectedGenderValue != ''
-                                      ? selectedGenderValue
-                                      : state.gender,
-                                  race: selectedRaceValue != ''
-                                      ? selectedRaceValue
-                                      : state.race,
-                                  levelSchool: selectedSchoolLevel != ''
-                                      ? selectedSchoolLevel
-                                      : state.levelSchool,
-                                  ethnicity: selectedEtnichityValue != ''
-                                      ? selectedEtnichityValue
-                                      : state.ethnicity,
-                                  file: widget.imageState),
+                                userdId: state.userId,
+                                address: addressController.text != ''
+                                    ? addressController.text
+                                    : state.address,
+                                city: cityController.text != ''
+                                    ? cityController.text
+                                    : state.city,
+                                zip: zipController.text != ''
+                                    ? zipController.text
+                                    : state.zip,
+                                state: selectedStateValue != ''
+                                    ? selectedStateValue
+                                    : state.state,
+                                sex: selectedSexValue.sex != ''
+                                    ? selectedSexValue
+                                    : state.sex,
+                                gender: selectedGenderValue.gender != ''
+                                    ? selectedGenderValue
+                                    : state.gender,
+                                race: selectedRaceValue.race != ''
+                                    ? selectedRaceValue
+                                    : state.race,
+                                levelSchool: selectedSchoolLevel != ''
+                                    ? selectedSchoolLevel
+                                    : state.levelSchool,
+                                ethnicity:
+                                    selectedEtnichityValue.ethnicity != ''
+                                        ? selectedEtnichityValue
+                                        : state.ethnicity,
+                                file: widget.imageState,
+                              ),
                             ),
                           );
                           navigationBloc.add(PageChanged(indexNavigation: 0));

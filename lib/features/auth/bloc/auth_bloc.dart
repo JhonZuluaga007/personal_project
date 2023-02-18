@@ -3,6 +3,7 @@ import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:personal_project/features/auth/data/models/user_model.dart';
 import 'package:personal_project/features/auth/domain/entities/change_password_entity.dart';
+import 'package:personal_project/features/auth/domain/entities/user_entity.dart';
 import 'package:personal_project/features/auth/domain/use_cases/change_password_use_case.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../domain/use_cases/login_use_case.dart';
@@ -16,7 +17,7 @@ part 'auth_event.dart';
 part 'auth_state.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
-  AuthBloc() : super(const AuthState()) {
+  AuthBloc() : super(AuthState()) {
     final loginUseCase = Injector.resolve<LoginUseCase>();
     final userUpdateUseCase = Injector.resolve<UserUpdateUseCase>();
     final resetPasswordUseCase = Injector.resolve<ResetPasswordUseCase>();
@@ -43,11 +44,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           zip: user.user.addresses!.zip,
           cellphone: user.user.cellphone,
           email: user.user.email,
-          ethnicity: user.user.ethnicity!.isNotEmpty
-              ? user.user.ethnicity![0]!.ethnicity
-              : '',
-          gender:
-              user.user.gender!.isNotEmpty ? user.user.gender![0]!.gender : '',
+          ethnicity: user.user.ethnicity![0],
+          gender: user.user.gender![0],
           image: user.user.image,
           informationUpdated: user.user.informationUpdated,
           isActive: user.user.isActive,
@@ -59,8 +57,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           organization: user.user.organization,
           participantId: user.user.participantId,
           levelSchool: user.user.levelSchool,
-          race: user.user.race!.isNotEmpty ? user.user.race![0]!.race : '',
-          sex: user.user.sex!.isNotEmpty ? user.user.sex![0]!.sex : '',
+          race: user.user.race![0],
+          sex: user.user.sex![0],
         ));
       });
     });

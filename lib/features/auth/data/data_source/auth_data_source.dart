@@ -49,10 +49,10 @@ class AuthDataSource {
         'city': userUpdateEntity.city!,
         'state': userUpdateEntity.state!,
         'zip': userUpdateEntity.zip!,
-        'race': userUpdateEntity.race!,
-        'ethnicity': userUpdateEntity.ethnicity!,
-        'sex': userUpdateEntity.sex!,
-        'gender': userUpdateEntity.gender!,
+        'race': userUpdateEntity.race!.id!,
+        'ethnicity': userUpdateEntity.ethnicity!.id!,
+        'sex': userUpdateEntity.sex!.id!,
+        'gender': userUpdateEntity.gender!.id!,
         'level_school': "Trade/technical/vocational training"
       },
     );
