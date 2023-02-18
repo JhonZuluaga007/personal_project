@@ -1,7 +1,8 @@
-import 'dart:developer';
+// ignore_for_file: use_build_context_synchronously
 
 import 'package:flutter/material.dart';
-import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
+import 'package:scan/scan.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:personal_project/common_ui/common_pages/my_app_scaffold_page.dart';
 import 'package:personal_project/common_ui/common_widgets/qr/service_qr_widget.dart';
@@ -28,7 +29,8 @@ class PcrRegisterPage extends StatefulWidget {
 
 class _PcrRegisterPageState extends State<PcrRegisterPage> {
   final TextEditingController pcrIdController = TextEditingController();
-
+  String qrCode = '';
+  ScanController scanController = ScanController();
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -120,7 +122,14 @@ class _PcrRegisterPageState extends State<PcrRegisterPage> {
                 textColor: Colors.black,
                 buttonString: 'test_part_one_text',
                 onPressed: () async {
-                  _readQr();
+                  ScanView(
+                    controller: scanController,
+                    scanAreaScale: .7,
+                    onCapture: (str) {
+                      pcrIdController.text = str;
+                    },
+                  );
+
                   //TODO OPEN QR SCAN and paste it into the identifier
                   /*
  bool validAntigen = await AntigenDataSource()

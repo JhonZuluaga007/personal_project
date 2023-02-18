@@ -47,6 +47,8 @@ dependencies:
   path_provider: ^2.0.11
   either_dart: ^0.3.0
   flutter_barcode_scanner: ^2.0.0
+  qr_flutter: ^4.0.0
+  scan: ^1.6.0
 
 dev_dependencies:
   flutter_test:
