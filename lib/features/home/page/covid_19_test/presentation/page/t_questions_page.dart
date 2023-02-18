@@ -39,6 +39,7 @@ class _TQuestionsPageState extends State<TQuestionsPage> {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
     final wColor = ThemesIdx20();
+
     final List<String> dropdownItem = [
       "self_t__drop_down_text",
       "self_t_drop_down_text_1"
@@ -60,7 +61,7 @@ class _TQuestionsPageState extends State<TQuestionsPage> {
     final List<OpPregnantEntity> pregnantAnswerList =
         ConstLists.pregnantAnswers;
 
-//TODO CHECK PAGE
+    //TODO CHECK PAGE
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -94,22 +95,12 @@ class _TQuestionsPageState extends State<TQuestionsPage> {
                 SizedBox(
                   height: height * 0.05,
                 ),
-                FirstVissibleQuestionWidget(
-                    width: width,
-                    wColor: wColor,
-                    height: height,
-                    dropDownValue: dropDownValue,
-                    firstQuestion: firstQuestion),
+                FirstVissibleQuestionWidget(),
                 SizedBox(
                   height: height * 0.015,
                 ),
                 SecondVissibleQuestionWidget(
-                    width: width,
-                    wColor: wColor,
-                    height: height,
-                    dropdownItem: dropdownItem,
-                    firstQuestion: firstQuestion,
-                    dropDownValue: dropDownValue),
+                    dropdownItem: dropdownItem),
                 SizedBox(
                   height: height * 0.015,
                 ),
@@ -123,12 +114,7 @@ class _TQuestionsPageState extends State<TQuestionsPage> {
                   height: height * 0.015,
                 ),
                 ThirdVissibleQuestionWidget(
-                    width: width,
-                    wColor: wColor,
-                    height: height,
-                    dropdownItem: dropdownItemVissible,
-                    firstQuestion: firstQuestion,
-                    dropDownValue: dropDownValue),
+                    dropdownItem: dropdownItemVissible),
                 SizedBox(
                   height: height * 0.015,
                 ),
@@ -168,22 +154,42 @@ class _TQuestionsPageState extends State<TQuestionsPage> {
           textContainer: "self_t_linear_text"),
     );
   }
-}
 
-Widget buttonContinue(BuildContext context) {
-  final width = MediaQuery.of(context).size.width;
-  final height = MediaQuery.of(context).size.height;
-  final wColor = ThemesIdx20();
+  Widget buttonContinue(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
+    final height = MediaQuery.of(context).size.height;
+    final wColor = ThemesIdx20();
 
-  return MainButtonWidget(
-      width: width * 0.920,
-      height: height * 0.053,
-      borderRadiusButton: 30,
-      buttonString: "self_t_button",
-      textColor: wColor.mapColors["P01"],
-      buttonColor: wColor.mapColors["500BASE"],
-      borderColor: wColor.mapColors["500BASE"],
-      onPressed: () {
-        Navigator.pushNamed(context, "instructionPage");
-      });
+    return MainButtonWidget(
+        width: width * 0.920,
+        height: height * 0.053,
+        borderRadiusButton: 30,
+        buttonString: "self_t_button",
+        textColor: wColor.mapColors["P01"],
+        buttonColor: wColor.mapColors["500BASE"],
+        borderColor: wColor.mapColors["500BASE"],
+        onPressed: () {
+          // BlocProvider.of<AntigenTestBloc>(context).add(AntigenUpdateEvent(
+          //   code: state.code!,
+          //   created: state.created!.date,
+          //   ip: state.ip!,
+          //   question1Value: dropDownValue,
+          // question10Value: state.question10Value!.value!,
+          // question11Value: question11Value,
+          // question12Value: question12Value,
+          // question13Value: question13Value,
+          // question14Value: question14Value,
+          //   question2Value: firstQuestionChipList,
+          // question3Value: question3Value,
+          // question4Value: question4Value,
+          // question5Value: question5Value,
+          // question6Value: question6Value,
+          // question7Value: question7Value,
+          // question8Value: question8Value,
+          // question9Value: question9Value,
+          // updated: updated
+          // ));
+          //Navigator.pushNamed(context, "instructionPage");
+        });
+  }
 }

@@ -11,22 +11,13 @@ import '../date_picker_container_widget.dart';
 //when did you receive your most recent covid-19 vaccine date
 //Which vaccines did you receive
 class ThirdVissibleQuestionWidget extends StatefulWidget {
-  ThirdVissibleQuestionWidget(
+  const ThirdVissibleQuestionWidget(
       {Key? key,
-      required this.width,
-      required this.wColor,
-      required this.height,
-      required this.dropdownItem,
-      required this.firstQuestion,
-      required this.dropDownValue})
+      
+      required this.dropdownItem})
       : super(key: key);
 
-  final double width;
-  final ThemesIdx20 wColor;
-  final double height;
   final List<String> dropdownItem;
-  bool firstQuestion;
-  String dropDownValue;
   @override
   State<ThirdVissibleQuestionWidget> createState() =>
       _ThirdVissibleQuestionWidgetState();
@@ -50,8 +41,11 @@ class _ThirdVissibleQuestionWidgetState
     "Other",
     "Do not know",
   ];
+
+  late DateTime date = DateTime.now();
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
     final wColor = ThemesIdx20();
     return Column(
@@ -63,18 +57,18 @@ class _ThirdVissibleQuestionWidgetState
               fontSize: 16,
               fontWeight: FontWeight.w500,
               letterSpacing: -0.2,
-              color: widget.wColor.mapColors["S700"]),
+              color: wColor.mapColors["S700"]),
         ),
-        SizedBox(height: widget.height * 0.0025),
+        SizedBox(height: height * 0.0025),
         SizedBox(
-          width: widget.width,
-          height: widget.height * 0.07,
+          width:width,
+          height: height * 0.07,
           child: DropdownButtonFormField(
             decoration: InputDecoration(
                 enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(4),
                     borderSide: BorderSide(
-                        width: 1, color: widget.wColor.mapColors["IDGrey"]!))),
+                        width: 1, color: wColor.mapColors["IDGrey"]!))),
             items: widget.dropdownItem
                 .map<DropdownMenuItem<String>>((String value) {
               return DropdownMenuItem<String>(
@@ -86,7 +80,7 @@ class _ThirdVissibleQuestionWidgetState
                         fontSize: 16,
                         fontWeight: FontWeight.w500,
                         letterSpacing: -0.2,
-                        color: widget.wColor.mapColors["S600"]),
+                        color: wColor.mapColors["S600"]),
                   ));
             }).toList(),
             hint: Text(
@@ -96,40 +90,39 @@ class _ThirdVissibleQuestionWidgetState
                   fontSize: 16,
                   fontWeight: FontWeight.w500,
                   letterSpacing: -0.2,
-                  color: widget.wColor.mapColors["S600"]),
+                  color: wColor.mapColors["S600"]),
             ),
             icon: const Icon(Icons.arrow_downward),
-            // widget.iconWidget,
             iconSize: 12,
             borderRadius: BorderRadius.circular(5),
             style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
                 letterSpacing: -0.2,
-                color: widget.wColor.mapColors["S600"]),
-            dropdownColor: widget.wColor.mapColors["P01"],
+                color: wColor.mapColors["S600"]),
+            dropdownColor: wColor.mapColors["P01"],
             onChanged: (valueDropdown) {
               setState(() {
-                widget.dropDownValue = valueDropdown.toString();
+                /*widget.dropDownValue = valueDropdown.toString();
                 if (widget.dropDownValue == 'Yes, 1 Dose' ||
                     widget.dropDownValue == 'Si, 1 Dosis' ||
                     widget.dropDownValue == 'Yes, 2 Dose' ||
                     widget.dropDownValue == 'Si, 2 Dosis') {
-                  widget.firstQuestion = true;
+                  //widget.firstQuestion = true;
                   debugPrint('first true');
                 } else {
-                  widget.firstQuestion = false;
-                }
+                  //widget.firstQuestion = false;
+                }*/
               });
             },
           ),
         ),
         Visibility(
-            visible: widget.firstQuestion,
+            visible: false,//widget.firstQuestion,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(height: widget.height * 0.025),
+                SizedBox(height: height * 0.025),
                 TextWidget(
                   text: "self_t_question_test_drop_down_05",
                   style: TextStyle(
@@ -152,10 +145,26 @@ class _ThirdVissibleQuestionWidgetState
                   listChip: vacinneChipList,
                   requiredTranslate: false,
                 ),
-                SizedBox(height: widget.height * 0.028),
-                const DatePickerContainerWidget(
-                    textQuestions: "self_t_question_vissible_5"),
-                SizedBox(height: widget.height * 0.028),
+                SizedBox(height: height * 0.028),
+                DatePickerContainerWidget(
+                  textQuestions: "self_t_question_vissible_5",
+                  date: date,
+                  onTap: () async {
+                    DateTime? newDate = await showDatePicker(
+                      context: context,
+                      initialDate: DateTime.now(),
+                      firstDate: DateTime(2019),
+                      lastDate: DateTime.now(),
+                    );
+
+                    if (newDate == null) return;
+
+                    setState(() {
+                      date = newDate;
+                    });
+                  },
+                ),
+                SizedBox(height: height * 0.028),
                 TextWidget(
                   text: "self_t_question_vissible_6",
                   style: TextStyle(

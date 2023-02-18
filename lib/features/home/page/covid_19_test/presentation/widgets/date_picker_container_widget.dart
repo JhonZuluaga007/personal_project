@@ -1,14 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:personal_project/common_ui/common_widgets/text/text_widget.dart';
 
 import '../../../../../../config/theme/theme.dart';
+import '../../../../../antigen/presentation/bloc/antigen_test_bloc.dart';
 
 class DatePickerContainerWidget extends StatefulWidget {
   final String textQuestions;
+  final DateTime date;
+  final Function() onTap;
 
   const DatePickerContainerWidget({
     super.key,
-    required this.textQuestions,
+    required this.textQuestions, 
+    required this.onTap, 
+    required this.date,
   });
 
   @override
@@ -17,7 +23,6 @@ class DatePickerContainerWidget extends StatefulWidget {
 }
 
 class _DatePickerContainerWidgetState extends State<DatePickerContainerWidget> {
-  DateTime date = DateTime.now();
 
   @override
   Widget build(BuildContext context) {
@@ -38,18 +43,7 @@ class _DatePickerContainerWidgetState extends State<DatePickerContainerWidget> {
         ),
         SizedBox(height: height * 0.0043),
         GestureDetector(
-          onTap: () async {
-            DateTime? newDate = await showDatePicker(
-                context: context,
-                initialDate: DateTime.now(),
-                firstDate: DateTime(2019),
-                lastDate: date,
-              );
-
-            if (newDate == null) return;
-
-            setState(() => date = newDate);
-          },
+          onTap: widget.onTap,
           child: Container(
             width: width * 0.922,
             height: height * 0.06,
@@ -70,7 +64,7 @@ class _DatePickerContainerWidgetState extends State<DatePickerContainerWidget> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    "${date.day}/${date.month}/${date.year}",
+                    "${widget.date.day}/${widget.date.month}/${widget.date.year}",
                     style: TextStyle(
                         color: wColor.mapColors["S600"],
                         fontWeight: FontWeight.w500,

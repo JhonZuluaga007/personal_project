@@ -6,22 +6,12 @@ import '../../../../../../../config/theme/theme.dart';
 import '../date_picker_container_widget.dart';
 
 class SecondVissibleQuestionWidget extends StatefulWidget {
-  SecondVissibleQuestionWidget({
+  const SecondVissibleQuestionWidget({
     Key? key,
-    required this.width,
-    required this.wColor,
-    required this.height,
     required this.dropdownItem,
-    required this.firstQuestion,
-    required this.dropDownValue,
   }) : super(key: key);
 
-  final double width;
-  final ThemesIdx20 wColor;
-  final double height;
   final List<String> dropdownItem;
-  late bool firstQuestion;
-  late String dropDownValue;
   @override
   State<SecondVissibleQuestionWidget> createState() =>
       _SecondVissibleQuestionWidgetState();
@@ -29,8 +19,12 @@ class SecondVissibleQuestionWidget extends StatefulWidget {
 
 class _SecondVissibleQuestionWidgetState
     extends State<SecondVissibleQuestionWidget> {
+  late DateTime date = DateTime.now();
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
+    final height = MediaQuery.of(context).size.height;
+    final wColor = ThemesIdx20();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -40,19 +34,18 @@ class _SecondVissibleQuestionWidgetState
               fontSize: 16,
               fontWeight: FontWeight.w500,
               letterSpacing: -0.2,
-              color: widget.wColor.mapColors["S700"]),
+              color: wColor.mapColors["S700"]),
         ),
+        SizedBox(height: height * 0.0025),
         SizedBox(
-            height: /*widget.heightSizedBoxText??  */ widget.height * 0.0025),
-        SizedBox(
-          width: widget.width,
-          height: widget.height * 0.07,
+          width: width,
+          height: height * 0.07,
           child: DropdownButtonFormField(
             decoration: InputDecoration(
                 enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(4),
                     borderSide: BorderSide(
-                        width: 1, color: widget.wColor.mapColors["IDGrey"]!))),
+                        width: 1, color: wColor.mapColors["IDGrey"]!))),
             items: widget.dropdownItem
                 .map<DropdownMenuItem<String>>((String value) {
               return DropdownMenuItem<String>(
@@ -60,26 +53,23 @@ class _SecondVissibleQuestionWidgetState
                   child: TextWidget(
                     textAlign: TextAlign.center,
                     text: value,
-                    style:
-                        // widget.dropTextStyle ??
-                        TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
-                            letterSpacing: -0.2,
-                            color: widget.wColor.mapColors["S600"]),
+                    style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                        letterSpacing: -0.2,
+                        color: wColor.mapColors["S600"]),
                   ));
             }).toList(),
             hint: Padding(
-              padding: EdgeInsets.only(left: widget.width * 0.028),
+              padding: EdgeInsets.only(left: width * 0.028),
               child: Text(
                 'Select option',
-                // widget.dropDownValue,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w500,
                     letterSpacing: -0.2,
-                    color: widget.wColor.mapColors["S600"]),
+                    color: wColor.mapColors["S600"]),
               ),
             ),
             icon: const Icon(Icons.arrow_downward),
@@ -90,30 +80,46 @@ class _SecondVissibleQuestionWidgetState
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
                 letterSpacing: -0.2,
-                color: widget.wColor.mapColors["S600"]),
-            dropdownColor: widget.wColor.mapColors["P01"],
+                color: wColor.mapColors["S600"]),
+            dropdownColor: wColor.mapColors["P01"],
             onChanged: (valueDropdown) {
               setState(() {
-                widget.dropDownValue = valueDropdown.toString();
+                /*widget.dropDownValue = valueDropdown.toString();
                 if (widget.dropDownValue == 'Yes' ||
                     widget.dropDownValue == 'Si') {
-                  widget.firstQuestion = true;
+                  //widget.firstQuestion = true;
                   debugPrint('first true');
                 } else {
-                  widget.firstQuestion = false;
-                }
+                  //widget.firstQuestion = false;
+                }*/
               });
             },
           ),
         ),
         Visibility(
-            visible: widget.firstQuestion,
+            visible: false,
             child: Column(
               children: [
                 //TODO FIRST ONE CHANGE IT FOR MULTISELECTOR
-                SizedBox(height: widget.height * 0.028),
-                const DatePickerContainerWidget(
-                    textQuestions: "self_t_question_vissible_3"),
+                SizedBox(height: height * 0.028),
+                DatePickerContainerWidget(
+                  textQuestions: "self_t_question_vissible_3",
+                  date: date,
+                  onTap: () async {
+                    DateTime? newDate = await showDatePicker(
+                      context: context,
+                      initialDate: DateTime.now(),
+                      firstDate: DateTime(2019),
+                      lastDate: DateTime.now(),
+                    );
+
+                    if (newDate == null) return;
+
+                    setState(() {
+                      date = newDate;
+                    });
+                  },
+                ),
               ],
             ))
       ],
