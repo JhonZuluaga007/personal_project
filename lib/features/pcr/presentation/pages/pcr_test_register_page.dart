@@ -132,9 +132,6 @@ class _PcrRegisterPageState extends State<PcrRegisterPage> {
                                                     onCapture: (value) {
                                                       String newValue = value.split('=').last;
                                                         pcrIdController.text = newValue;
-
-                                                     
-                                                      
                                                       Navigator.pop(context);
                                                     },
                                                             ),
