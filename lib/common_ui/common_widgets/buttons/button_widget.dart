@@ -71,7 +71,7 @@ class ButtonWidget extends StatelessWidget {
             color: iconColor,
           ),
           SizedBox(
-            width: sizeWidth * 0.021,
+            width: sizeWidth * 0.01,
           ),
           Text(
             // buttonString,

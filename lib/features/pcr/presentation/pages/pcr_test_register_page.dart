@@ -95,6 +95,7 @@ class _PcrRegisterPageState extends State<PcrRegisterPage> {
             ),
             SizedBox(height: size.height * 0.025),
             TextFieldWithBorderWidget(
+              height: height*0.12,
               requiresTranslate: true,
               textEditingController: pcrIdController,
               textInputType: TextInputType.text,
@@ -107,12 +108,12 @@ class _PcrRegisterPageState extends State<PcrRegisterPage> {
               textStyle: const TextStyle(fontSize: 18),
               widthBorder: 3,
             ),
-            SizedBox(height: size.height * 0.035),
+            SizedBox(height: size.height * 0.015),
             const TextWidget(
               text: 'pcr_test_text_two',
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
             ),
-            SizedBox(height: size.height * 0.035),
+            SizedBox(height: size.height * 0.015),
             ButtonWidget(
                 icon: Icons.qr_code_scanner,
                 iconColor: Colors.black,
@@ -120,43 +121,29 @@ class _PcrRegisterPageState extends State<PcrRegisterPage> {
                 borderColor: Colors.black,
                 textColor: Colors.black,
                 buttonString: 'test_part_one_text',
-                onPressed: () async {
-                  ScanView(
-                    controller: scanController,
-                    scanAreaScale: .7,
-                    onCapture: (value) {
-                      if (value.startsWith("R00:")) {
-                        value = value.substring(7);
-                      }
-                      pcrIdController.text = value;
-                    },
-                  );
+                onPressed: () {
+                  
+                 Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) =>  ScanView(
+                                                    
+                                                    controller: scanController,
+                                                    scanAreaScale: .7,
+                                                    onCapture: (value) {
+                                                      String newValue = value.split('=').last;
+                                                        pcrIdController.text = newValue;
 
-                  //TODO OPEN QR SCAN and paste it into the identifier
-                  /*
- bool validAntigen = await AntigenDataSource()
-              .validateAntigen(userState.userId, testIdController.text);
-          if (validAntigen == true) {
-            Navigator.pushNamed(context, "selfTestQuestions");
-          } else {
-            errorAlertInfoPop(
-                context: context,
-                mainIcon: Icon(
-                  Icons.cancel,
-                  color: wColor.mapColors['C01'],
-                  size: 46,
-                ),
-                titleText: 'alert_text_error_one',
-                paddingHeight: height * 0.25,
-                infoText: 'alert_text_error_two',
-                mainButton: 'alert_text_error_three',
-                mainButtonFunction: () {
-                  Navigator.pop(context);
-                });
-          }
-        }
-                  */
-                }),
+                                                     
+                                                      
+                                                      Navigator.pop(context);
+                                                    },
+                                                            ),
+                                )  
+            );
+                }
+                                ),
+                               
+
             SizedBox(height: size.height * 0.15),
             MainButtonWidget(
                 width: width * 0.920,
