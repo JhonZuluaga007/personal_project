@@ -1,6 +1,7 @@
 import 'package:kiwi/kiwi.dart';
-import 'package:personal_project/features/medical_history/domain/use_cases/edit_medical_history_use_case.dart';
 
+import '../../../features/auth/domain/use_cases/helper_tools_use_cases.dart';
+import '../../../features/medical_history/domain/use_cases/edit_medical_history_use_case.dart';
 import '../../../features/auth/domain/use_cases/change_password_use_case.dart';
 import '../../../features/auth/domain/use_cases/reset_password_use_case.dart';
 import '../../../features/auth/domain/use_cases/user_update_use_case.dart';
@@ -63,6 +64,7 @@ abstract class Injector {
   @Register.factory(UserUpdateUseCase)
   @Register.factory(ResetPasswordUseCase)
   @Register.factory(ChangePasswordUseCase)
+  @Register.factory(HelperToolsUseCases)
   void _configureAuthFactories();
 
   @Register.factory(MedicalHistoryRepository,
