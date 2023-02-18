@@ -6,6 +6,7 @@ import 'package:personal_project/common_ui/utils/utils_string_password.dart';
 import 'package:personal_project/common_ui/utils/utils_email.dart';
 import 'package:personal_project/config/helpers/form_submission_status.dart';
 import 'package:personal_project/config/theme/theme.dart';
+import 'package:personal_project/features/auth/bloc/helper_tools_bloc.dart';
 import '../../../../app_localizations.dart';
 import '../../../../common_ui/common_pages/my_app_scaffold_page.dart';
 import '../../../../common_ui/common_widgets/text/text_widget.dart';
@@ -191,6 +192,7 @@ class _LoginPageState extends State<LoginPage> {
         BlocConsumer<AuthBloc, AuthState>(
           listener: (BuildContext context, state) {
             if (state.formStatus is SubmissionSuccess) {
+              BlocProvider.of<HelperToolsBloc>(context).add(GetTestTools());
               Navigator.push(
                 context,
                 MaterialPageRoute(
@@ -222,7 +224,8 @@ class _LoginPageState extends State<LoginPage> {
                     setState(() {
                       if (emailController.text.isNotEmpty &&
                           passwordController.text.isNotEmpty &&
-                          passwordController.text.length >= 6 && emailController.text.length > 4) {
+                          passwordController.text.length >= 6 &&
+                          emailController.text.length > 4) {
                         BlocProvider.of<AuthBloc>(context).add(LoginUserE(
                             emailController.text, passwordController.text));
                       } else {}

@@ -1,21 +1,21 @@
-// ignore_for_file: must_be_immutable
-
 import 'package:flutter/material.dart';
 
-import 'package:personal_project/app_localizations.dart';
 import 'package:personal_project/common_ui/common_widgets/text/text_widget.dart';
+import 'package:personal_project/features/auth/domain/entities/helper_tools_entity.dart';
 
 import '../../../../../../config/theme/theme.dart';
 
 class DropDownQuestionsWidget extends StatefulWidget {
-  final List<String> dropDownItem;
+  final List<OpDropdown> dropDownItem;
   final String textQuestion;
   final Widget? iconWidget;
   final double width;
   final double? heightSizedBoxText;
   String dropDownValue = "Yes";
   final TextStyle? dropTextStyle;
+  String? selectedString;
   bool? firstQuestion;
+  final Function(OpDropdown?)? onChanged;
   DropDownQuestionsWidget(
       {Key? key,
       required this.dropDownItem,
@@ -23,6 +23,8 @@ class DropDownQuestionsWidget extends StatefulWidget {
       this.iconWidget,
       required this.width,
       this.heightSizedBoxText,
+      this.selectedString,
+      this.onChanged,
       required this.dropDownValue,
       this.dropTextStyle,
       this.firstQuestion})
@@ -64,14 +66,15 @@ class _DropDownQuestionsWidgetState extends State<DropDownQuestionsWidget> {
                         width: 1,
                         color: wColor.mapColors["IDGrey"]!))),
             items: widget.dropDownItem
-                .map<DropdownMenuItem<String>>((String value) {
-              return DropdownMenuItem<String>(
-                  value: AppLocalizations.of(context)!.translate(value),
+                .map<DropdownMenuItem<OpDropdown>>((OpDropdown value) {
+              return DropdownMenuItem<OpDropdown>(
+                  value: value,
                   child: Padding(
                     padding: EdgeInsets.only(left: width * 0.01),
                     child: TextWidget(
+                      requiresTranslate: false,
                       textAlign: TextAlign.center,
-                      text: value,
+                      text: value.valor,
                       style: widget.dropTextStyle ??
                           TextStyle(
                               fontSize: 16,
@@ -99,17 +102,20 @@ class _DropDownQuestionsWidgetState extends State<DropDownQuestionsWidget> {
                 letterSpacing: -0.2,
                 color: wColor.mapColors["S600"]),
             dropdownColor: wColor.mapColors["P01"],
-            onChanged: (valueDropdown) {
-              setState(() {
-                widget.dropDownValue = valueDropdown.toString();
-                if (widget.dropDownValue == 'Yes' ||
-                    widget.dropDownValue == 'Si') {
-                  widget.firstQuestion = true;
-                } else {
-                  widget.firstQuestion = false;
-                }
-              });
-            },
+            onChanged: widget.onChanged ??
+                (valueDropdown) {
+                  setState(() {
+                    widget.dropDownValue = valueDropdown.toString();
+                    widget.selectedString = valueDropdown.toString();
+                    print(widget.selectedString);
+                    if (widget.dropDownValue == 'Yes' ||
+                        widget.dropDownValue == 'Si') {
+                      widget.firstQuestion = true;
+                    } else {
+                      widget.firstQuestion = false;
+                    }
+                  });
+                },
           ),
         ),
       ],
