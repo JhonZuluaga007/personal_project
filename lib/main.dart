@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:personal_project/common_ui/common_pages/splash_page.dart';
+import 'package:personal_project/features/antigen/presentation/bloc/antigen_test_bloc.dart';
 import 'package:personal_project/features/auth/bloc/auth_bloc.dart';
 import 'package:personal_project/features/home/page/covid_19_test/presentation/page/instructions_page.dart';
 import 'package:personal_project/features/home/page/covid_19_test/presentation/page/t_questions_page.dart';
@@ -41,6 +42,7 @@ class MyApp extends StatelessWidget {
           BlocProvider(create: (_) => AuthBloc()),
           BlocProvider(create: (_) => MedicalHistoryBloc()),
           BlocProvider(create: (_) => TestHistoryBloc()),
+          BlocProvider(create: (_) => AntigenTestBloc()),
         ],
         child: MaterialApp(
           title: 'Idx20',

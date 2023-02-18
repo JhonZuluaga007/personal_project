@@ -1,6 +1,10 @@
 import 'package:kiwi/kiwi.dart';
+import 'package:personal_project/features/antigen/data/data_source/antigen_data_source.dart';
+import 'package:personal_project/features/antigen/domain/repository/antigen_repository.dart';
+import 'package:personal_project/features/antigen/domain/use_cases/antigen_validate_use_case.dart';
 import 'package:personal_project/features/medical_history/domain/use_cases/edit_medical_history_use_case.dart';
 
+import '../../../features/antigen/data/repository/antigen_repository_impl.dart';
 import '../../../features/auth/domain/use_cases/change_password_use_case.dart';
 import '../../../features/auth/domain/use_cases/reset_password_use_case.dart';
 import '../../../features/auth/domain/use_cases/user_update_use_case.dart';
@@ -42,7 +46,8 @@ abstract class Injector {
   void _configure() {
     _configureAuthsModule();
     _configureMedicalHistoryModule();
-    _configureTestHistory();
+    _configureTestHistoryModule();
+    _configureAntigenModule();
   }
 
   void _configureAuthsModule() {
@@ -53,8 +58,12 @@ abstract class Injector {
     _configureMedicalHistoryFactories();
   }
 
-  void _configureTestHistory() {
+  void _configureTestHistoryModule() {
     _configureTestHistoryFactories();
+  }
+  
+  void _configureAntigenModule() {
+    _configureAntigenFactories();
   }
 
   @Register.factory(AuthRepository, from: AuthRepositoryImpl)
@@ -76,4 +85,9 @@ abstract class Injector {
   @Register.factory(TestHistoryUseCases)
   @Register.factory(TestHistoryDataSource)
   void _configureTestHistoryFactories();
+
+  @Register.factory(AntigenRepository, from: AntigenRepositoryImpl)
+  @Register.factory(AntigenValidateUseCase)
+  @Register.factory(AntigenDataSource)
+  void _configureAntigenFactories();
 }
