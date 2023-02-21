@@ -1,12 +1,11 @@
 import 'dart:convert';
-
-import 'package:personal_project/config/helpers/api.dart';
-import 'package:personal_project/config/helpers/endpoints.dart';
-import 'package:personal_project/config/helpers/errors/invalid_data.dart';
-import 'package:personal_project/config/helpers/models/server_error.dart';
 import 'package:http/http.dart' as http;
 
-import 'package:personal_project/features/antigen/data/models/antigen_model.dart';
+import '../models/antigen_model.dart';
+import '../../../../config/helpers/api.dart';
+import '../../../../config/helpers/endpoints.dart';
+import '../../../../config/helpers/errors/invalid_data.dart';
+import '../../../../config/helpers/models/server_error.dart';
 
 class AntigenDataSource {
   Future<AntigenModel> validateAntigen(String userId, String code) async {
@@ -30,8 +29,7 @@ class AntigenDataSource {
     final response = await Api.get(Endpoints.registerTest);
 
     try {
-      AntigenModel medicalHistoryModel =
-          AntigenModel.fromJson(response);
+      AntigenModel medicalHistoryModel = AntigenModel.fromJson(response);
       return medicalHistoryModel;
     } on InvalidData catch (invalidData) {
       throw InvalidData(invalidData.toString());

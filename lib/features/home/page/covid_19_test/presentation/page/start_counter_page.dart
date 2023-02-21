@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:personal_project/common_ui/common_widgets/buttons/main_button_widget.dart';
-import 'package:personal_project/common_ui/common_widgets/text/text_widget.dart';
-import 'package:personal_project/config/theme/theme.dart';
-import 'package:personal_project/icons/icons.dart';
-
 import 'dart:async';
 
-import '../widgets/container_start_counter_widget.dart';
+import '../../../../../../icons/icons.dart';
+import '../../../../../../config/theme/theme.dart';
+import '../../../../../../common_ui/common_widgets/text/text_widget.dart';
+import '../../../../../../common_ui/common_widgets/buttons/main_button_widget.dart';
+import '../../../../../antigen/presentation/ui/widgets/container_start_counter_widget.dart';
 
 class StartCounterPage extends StatefulWidget {
   final int? timerValue;
@@ -67,11 +66,10 @@ class _StartCounterPageState extends State<StartCounterPage> {
         ),
       ),
       bottomNavigationBar: ContainerStartCounterWidget(
-        numberPageText: "4",
-        valueLinear: widget.valueLinear,
-        widgetButton: buildButtons(),
-        textContainer: "start_counter_text_finish_linear"
-      ),
+          numberPageText: "4",
+          valueLinear: widget.valueLinear,
+          widgetButton: buildButtons(),
+          textContainer: "start_counter_text_finish_linear"),
     );
   }
 
@@ -97,7 +95,7 @@ class _StartCounterPageState extends State<StartCounterPage> {
     );
   }
 
-  Widget buildButtonsRunning(){
+  Widget buildButtonsRunning() {
     final width = MediaQuery.of(context).size.width;
     final wColor = ThemesIdx20();
 
@@ -105,35 +103,32 @@ class _StartCounterPageState extends State<StartCounterPage> {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         MainButtonWidget(
-          width: width * 0.3,
-          buttonString: "start_counter_text_button_pause",
-          textColor: wColor.mapColors["S800"],
-          borderColor: wColor.mapColors["S800"],
-          buttonColor: wColor.mapColors["P01"],
-          onPressed: () {
-            pauseTime();
-          }
-        ),
+            width: width * 0.3,
+            buttonString: "start_counter_text_button_pause",
+            textColor: wColor.mapColors["S800"],
+            borderColor: wColor.mapColors["S800"],
+            buttonColor: wColor.mapColors["P01"],
+            onPressed: () {
+              pauseTime();
+            }),
         MainButtonWidget(
-          width: width * 0.3,
-          buttonString: "start_counter_text_button_reset",
-          textColor: wColor.mapColors["S800"],
-          borderColor: wColor.mapColors["S800"],
-          buttonColor: wColor.mapColors["P01"],
-          onPressed: () {
-            resetTime();
-          }
-        ),
+            width: width * 0.3,
+            buttonString: "start_counter_text_button_reset",
+            textColor: wColor.mapColors["S800"],
+            borderColor: wColor.mapColors["S800"],
+            buttonColor: wColor.mapColors["P01"],
+            onPressed: () {
+              resetTime();
+            }),
         MainButtonWidget(
-          width: width * 0.3,
-          buttonString: "start_counter_text_button_skip_timer",
-          textColor: wColor.mapColors["S800"],
-          borderColor: wColor.mapColors["S800"],
-          buttonColor: wColor.mapColors["P01"],
-          onPressed: () {
-            popUpSkyTimer(context);
-          }
-        )
+            width: width * 0.3,
+            buttonString: "start_counter_text_button_skip_timer",
+            textColor: wColor.mapColors["S800"],
+            borderColor: wColor.mapColors["S800"],
+            buttonColor: wColor.mapColors["P01"],
+            onPressed: () {
+              popUpSkyTimer(context);
+            })
       ],
     );
   }
@@ -166,7 +161,7 @@ class _StartCounterPageState extends State<StartCounterPage> {
   }
 
   void resetTime() {
-    setState(() {      
+    setState(() {
       duration = Duration(seconds: startTimer.inSeconds);
     });
   }

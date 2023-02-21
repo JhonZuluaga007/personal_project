@@ -44,21 +44,21 @@ class Lasttest extends LasttestEntity {
     required Created created,
     required Id idTest,
     required String ip,
-    required Question1Class question1,
-    required Question10Class question10,
-    required Question10Class question11,
-    required Question10Class question12,
-    required Question1Class question13,
-    required Question1Class question14,
-    required Question1Class question15,
-    required Question10Class question2,
-    required Question1Class question3,
-    required Question1Class question4,
-    required Question1Class question5,
-    required Question1Class question6,
-    required Question1Class question7,
-    required Question1Class question8,
-    required Question1Class question9,
+    required QuestionTypeOne question1,
+    required QuestionTypeTwo question10,
+    required QuestionTypeTwo question11,
+    required QuestionTypeTwo question12,
+    required QuestionTypeOne question13,
+    required QuestionTypeOne question14,
+    required QuestionTypeOne question15,
+    required QuestionTypeTwo question2,
+    required QuestionTypeOne question3,
+    required QuestionTypeOne question4,
+    required QuestionTypeOne question5,
+    required QuestionTypeOne question6,
+    required QuestionTypeOne question7,
+    required QuestionTypeOne question8,
+    required QuestionTypeOne question9,
     required Created updated,
   }) : super(
             id: id,
@@ -88,21 +88,21 @@ class Lasttest extends LasttestEntity {
         created: Created.fromMap(json["created"]),
         idTest: Id.fromMap(json["idTest"]),
         ip: json["ip"],
-        question1: Question1Class.fromMap(json["question1"]),
-        question10: Question10Class.fromMap(json["question10"]),
-        question11: Question10Class.fromMap(json["question11"]),
-        question12: Question10Class.fromMap(json["question12"]),
-        question13: Question1Class.fromMap(json["question13"]),
-        question14: Question1Class.fromMap(json["question14"]),
-        question15: Question1Class.fromMap(json["question15"]),
-        question2: Question10Class.fromMap(json["question2"]),
-        question3: Question1Class.fromMap(json["question3"]),
-        question4: Question1Class.fromMap(json["question4"]),
-        question5: Question1Class.fromMap(json["question5"]),
-        question6: Question1Class.fromMap(json["question6"]),
-        question7: Question1Class.fromMap(json["question7"]),
-        question8: Question1Class.fromMap(json["question8"]),
-        question9: Question1Class.fromMap(json["question9"]),
+        question1: QuestionTypeOne.fromMap(json["question1"]),
+        question10: QuestionTypeTwo.fromMap(json["question10"]),
+        question11: QuestionTypeTwo.fromMap(json["question11"]),
+        question12: QuestionTypeTwo.fromMap(json["question12"]),
+        question13: QuestionTypeOne.fromMap(json["question13"]),
+        question14: QuestionTypeOne.fromMap(json["question14"]),
+        question15: QuestionTypeOne.fromMap(json["question15"]),
+        question2: QuestionTypeTwo.fromMap(json["question2"]),
+        question3: QuestionTypeOne.fromMap(json["question3"]),
+        question4: QuestionTypeOne.fromMap(json["question4"]),
+        question5: QuestionTypeOne.fromMap(json["question5"]),
+        question6: QuestionTypeOne.fromMap(json["question6"]),
+        question7: QuestionTypeOne.fromMap(json["question7"]),
+        question8: QuestionTypeOne.fromMap(json["question8"]),
+        question9: QuestionTypeOne.fromMap(json["question9"]),
         updated: Created.fromMap(json["updated"]),
       );
 }
@@ -142,18 +142,18 @@ class Id extends IdEntity {
       };
 }
 
-class Question1Class extends Question1ClassEntity {
-  Question1Class({
+class QuestionTypeOne extends QuestionTypeOneEntity {
+  QuestionTypeOne({
     required String? name,
     required String? value,
   }) : super(name: name, value: value);
 
-  factory Question1Class.fromJson(String str) =>
-      Question1Class.fromMap(json.decode(str));
+  factory QuestionTypeOne.fromJson(String str) =>
+      QuestionTypeOne.fromMap(json.decode(str));
 
   String toJson() => json.encode(toMap());
 
-  factory Question1Class.fromMap(Map<String, dynamic> json) => Question1Class(
+  factory QuestionTypeOne.fromMap(Map<String, dynamic> json) => QuestionTypeOne(
         name: json["name"],
         value: json["value"],
       );
@@ -164,18 +164,18 @@ class Question1Class extends Question1ClassEntity {
       };
 }
 
-class Question10Class extends Question10ClassEntity {
-  Question10Class({
+class QuestionTypeTwo extends QuestionTypeTwoEntity {
+  QuestionTypeTwo({
     required String? name,
     required List<String>? value,
   }) : super(name: name, value: value);
 
-  factory Question10Class.fromJson(String str) =>
-      Question10Class.fromMap(json.decode(str));
+  factory QuestionTypeTwo.fromJson(String str) =>
+      QuestionTypeTwo.fromMap(json.decode(str));
 
   String toJson() => json.encode(toMap());
 
-  factory Question10Class.fromMap(Map<String, dynamic> json) => Question10Class(
+  factory QuestionTypeTwo.fromMap(Map<String, dynamic> json) => QuestionTypeTwo(
         name: json["name"],
         value: List<String>.from(json["value"].map((x) => x)),
       );

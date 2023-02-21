@@ -4,7 +4,7 @@ import 'package:personal_project/app_localizations.dart';
 import 'package:personal_project/common_ui/common_widgets/text/text_widget.dart';
 import 'package:personal_project/config/theme/theme.dart';
 import 'package:personal_project/features/auth/bloc/auth_bloc.dart';
-import 'package:personal_project/features/antigen/presentation/pages/antigen_pages/antigen_register_info_page.dart';
+import 'package:personal_project/features/antigen/presentation/ui/pages/antigen_register_info_page.dart';
 import 'package:personal_project/features/pcr/presentation/pages/pcr_test_register_page.dart';
 import 'package:personal_project/features/home/widget/card_scan_home.dart';
 import 'package:personal_project/features/home/widget/main_banner_description_onboarding.dart';

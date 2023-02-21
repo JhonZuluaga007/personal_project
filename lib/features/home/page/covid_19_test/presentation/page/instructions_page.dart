@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../../common_ui/common_widgets/buttons/main_button_widget.dart';
-import '../../../../../../common_ui/common_widgets/text/text_widget.dart';
 import '../../../../../../config/theme/theme.dart';
-import '../widgets/container_start_counter_widget.dart';
+import '../../../../../../common_ui/common_widgets/text/text_widget.dart';
+import '../../../../../../common_ui/common_widgets/buttons/main_button_widget.dart';
+import '../../../../../antigen/presentation/ui/widgets/container_start_counter_widget.dart';
 
 class InstructionsPage extends StatelessWidget {
   final double valueLinear;

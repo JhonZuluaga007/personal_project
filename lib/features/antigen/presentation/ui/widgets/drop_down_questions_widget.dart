@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:personal_project/common_ui/common_widgets/text/text_widget.dart';
-import 'package:personal_project/features/auth/domain/entities/helper_tools_entity.dart';
-
-import '../../../../../../config/theme/theme.dart';
+import '../../../../../config/theme/theme.dart';
+import '../../../../auth/domain/entities/helper_tools_entity.dart';
+import '../../../../../common_ui/common_widgets/text/text_widget.dart';
 
 class DropDownQuestionsWidget extends StatefulWidget {
   final List<OpDropdown> dropDownItem;
@@ -56,7 +55,7 @@ class _DropDownQuestionsWidgetState extends State<DropDownQuestionsWidget> {
         SizedBox(height: widget.heightSizedBoxText ?? height * 0.0035),
         SizedBox(
           width: width,
-          height: height * 0.07,
+          height: height * 0.072,
           child: DropdownButtonFormField(
             decoration: InputDecoration(
                 enabledBorder: OutlineInputBorder(

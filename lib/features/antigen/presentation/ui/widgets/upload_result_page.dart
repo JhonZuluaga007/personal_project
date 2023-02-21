@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:personal_project/common_ui/common_widgets/buttons/button_widget.dart';
-import 'package:personal_project/common_ui/common_widgets/buttons/main_button_widget.dart';
+import 'container_start_counter_widget.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../../../common_ui/common_widgets/text/text_widget.dart';
-import '../../../../../../config/theme/theme.dart';
-import '../widgets/container_start_counter_widget.dart';
-import '../widgets/drop_down_questions_widget.dart';
+import '../../bloc/antigen_test_bloc.dart';
+import '../../../../../config/theme/theme.dart';
+import '../../../../../common_ui/common_widgets/text/text_widget.dart';
+import '../../../../../common_ui/common_pages/my_app_scaffold_page.dart';
+import '../../../../../common_ui/common_widgets/buttons/button_widget.dart';
+import '../../../../../common_ui/common_widgets/buttons/main_button_widget.dart';
+import '../../../../../common_ui/common_widgets/form_field_dropdown_widget.dart';
 
-class UploadResultPage extends StatelessWidget {
+class UploadResultPage extends StatefulWidget {
   final double valueLinear;
   final int maxValueLinear;
 
@@ -15,12 +18,21 @@ class UploadResultPage extends StatelessWidget {
       {super.key, this.valueLinear = 0.85, this.maxValueLinear = 5});
 
   @override
+  State<UploadResultPage> createState() => _UploadResultPageState();
+}
+
+class _UploadResultPageState extends State<UploadResultPage> {
+  String _covidQuestionOneValue = "";
+  String _covidQuestionTwoValue = "";
+  String _covidQuestionThreeValue = "";
+  @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
     final wColor = ThemesIdx20();
+    final antigenBloc = BlocProvider.of<AntigenTestBloc>(context);
 
-    return Scaffold(
+    return MyAppScaffold(
       appBar: AppBar(
         leading: IconButton(
           color: wColor.mapColors["S800"],
@@ -44,70 +56,69 @@ class UploadResultPage extends StatelessWidget {
         backgroundColor: wColor.mapColors["P01"],
         elevation: 4,
       ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0),
-          child: Column(
-            children: [
-              SizedBox(height: height * 0.05),
-              /*DropDownQuestionsWidget(
-                dropDownItem: const [
-                  "Upload_drop_down_0",
-                  "Upload_drop_down_1"
-                ],
-                dropDownValue: "Selected",
-                textQuestion: "Upload_question_test_0",
-                width: width * 0.922,
-                iconWidget: const Icon(
-                  Icons.keyboard_arrow_down_rounded,
-                  color: Colors.black,
-                  size: 15,
-                ),
-              ),
-              SizedBox(height: height * 0.039),
-              DropDownQuestionsWidget(
-                dropDownItem: const [
-                  "Upload_drop_down_0",
-                  "Upload_drop_down_1"
-                ],
-                dropDownValue: "Selected",
-                textQuestion: "Upload_question_test_01",
-                width: width * 0.922,
-                iconWidget: const Icon(
-                  Icons.keyboard_arrow_down_rounded,
-                  color: Colors.black,
-                  size: 15,
-                ),
-              ),*/
-              SizedBox(height: height * 0.069),
-              //TODO GRAPHIC IMAGE, while we get the needed
-              SizedBox(
-                height: height * 0.2,
-                width: width * 0.8,
-                child: Image.asset(
-                  'assets/images/PrincipalBanner.png',
-                  fit: BoxFit.fitHeight,
-                ),
-              ),
-              // TextWidget(
-              //   text: "Upload_question_test_02",
-              //   style: TextStyle(
-              //       fontSize: 16,
-              //       fontWeight: FontWeight.w600,
-              //       letterSpacing: -0.2,
-              //       color: wColor.mapColors["S800"]),
-              // ),
-              SizedBox(height: height * 0.075),
-              // buttonImagePicture(context)
-            ],
-          ),
-        ),
-      ),
       bottomNavigationBar: ContainerStartCounterWidget(
           numberPageText: "5",
-          valueLinear: valueLinear,
+          valueLinear: widget.valueLinear,
           widgetButton: buttonUpload(context),
           textContainer: "Upload_linear_text"),
+      children: [
+        SizedBox(height: height * 0.02),
+        FormFieldDropdownWidget(
+          question: antigenBloc.state.question13!.name!,
+          generalColor: wColor.mapColors["S700"]!,
+          height: height * 0.08,
+          listItems: const [
+            "",
+            "Yes",
+            "No",
+          ],
+          selectedValue: _covidQuestionOneValue,
+          width: width,
+          onChanged: (covidQuestionTwo) {
+            antigenBloc
+                .add(AntigenQuestion13Event(question13: covidQuestionTwo!));
+            setState(() {
+              _covidQuestionOneValue = covidQuestionTwo;
+            });
+          },
+        ),
+        SizedBox(
+          height: height * 0.2,
+          width: width * 0.9,
+          child: Image.asset(
+            'assets/images/cimage.png',
+            fit: BoxFit.contain,
+          ),
+        ),
+        FormFieldDropdownWidget(
+          question: antigenBloc.state.question14!.name!,
+          generalColor: wColor.mapColors["S700"]!,
+          height: height * 0.08,
+          listItems: const [
+            "",
+            "Yes",
+            "No",
+          ],
+          selectedValue: _covidQuestionTwoValue,
+          width: width,
+          onChanged: (covidQuestionTwo) {
+            antigenBloc
+                .add(AntigenQuestion14Event(question14: covidQuestionTwo!));
+            setState(() {
+              _covidQuestionTwoValue = covidQuestionTwo;
+            });
+          },
+        ),
+        SizedBox(
+          height: height * 0.2,
+          width: width * 0.95,
+          child: Image.asset(
+            'assets/images/timage.png',
+            fit: BoxFit.contain,
+          ),
+        ),
+        SizedBox(height: height * 0.05),
+      ],
     );
   }
 }
