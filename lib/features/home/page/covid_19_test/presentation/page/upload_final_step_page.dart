@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:personal_project/config/helpers/form_submission_status.dart';
 
 import '../../../../../../common_ui/common_widgets/form_field_dropdown_widget.dart';
 import '../../../../../../config/theme/theme.dart';
 import '../../../../../antigen/presentation/bloc/antigen_test_bloc.dart';
+import '../../../../../medical_history/presentation/widgets/done_alert_widget.dart';
+import '../../../../../medical_history/presentation/widgets/error_alert_widget.dart';
 import '../widgets/image_buttons_upload_widget.dart';
 import '../../../../../../common_ui/common_widgets/text/text_widget.dart';
 import '../../../../../../navigationBar/bloc/navigation_bar_bloc.dart';
@@ -111,17 +114,65 @@ Widget buttonUpload(BuildContext context) {
   NavigationBarBloc navigationBloc =
       BlocProvider.of<NavigationBarBloc>(context);
 
-  return MainButtonWidget(
-      width: width * 0.920,
-      height: height * 0.053,
-      borderRadiusButton: 30,
-      buttonString: "Upload_button_text",
-      textColor: wColor.mapColors["P01"],
-      buttonColor: wColor.mapColors["500BASE"],
-      borderColor: wColor.mapColors["500BASE"],
-      onPressed: () {
-        //TODO CHECK RESULT AND SEND POPUP OF SUCCESS
-        navigationBloc.add(PageChanged(indexNavigation: 0));
-        Navigator.pushNamed(context, 'navBar');
-      });
+  return BlocConsumer<AntigenTestBloc, AntigenTestState>(
+    listener: (context, state) {
+      if (state.formStatus is SubmissionSuccess) {
+        if (state.question15!.value == "Yes") {
+          navigationBloc.add(PageChanged(indexNavigation: 2));
+          Navigator.pushReplacementNamed(context, 'navBar');
+        } else {
+          navigationBloc.add(PageChanged(indexNavigation: 1));
+          Navigator.pushReplacementNamed(context, 'navBar');
+        }
+        doneSendInfo(
+          context: context,
+          mainIcon: Icon(
+            Icons.check,
+            size: height * 0.15,
+            color: wColor.mapColors['C00'],
+          ),
+          titleText: 'alert_text_one',
+          paddingHeight: height * 0.25,
+          infoText: state.message,
+          mainButton: 'alert_text_three',
+          mainButtonFunction: () {
+            Navigator.pop(context);
+          },
+        );
+      } else if (state.formStatus is SubmissionFailed) {
+        errorAlertInfoPop(
+            context: context,
+            mainIcon: Icon(
+              Icons.cancel,
+              color: wColor.mapColors['C01'],
+              size: 46,
+            ),
+            titleText: 'alert_text_error_one',
+            paddingHeight: height * 0.25,
+            infoText: state.errorMessage,
+            mainButton: 'alert_text_error_three',
+            mainButtonFunction: () {
+              Navigator.pop(context);
+            });
+      }
+    },
+    builder: (context, state) {
+      if (state.formStatus is FormSubmitting) {
+        return const Center(child: CircularProgressIndicator());
+      } else {
+        return MainButtonWidget(
+            width: width * 0.920,
+            height: height * 0.053,
+            borderRadiusButton: 30,
+            buttonString: "Upload_button_text",
+            textColor: wColor.mapColors["P01"],
+            buttonColor: wColor.mapColors["500BASE"],
+            borderColor: wColor.mapColors["500BASE"],
+            onPressed: () {
+              BlocProvider.of<AntigenTestBloc>(context)
+                  .add(AntigenRegisterEvent());
+            });
+      }
+    },
+  );
 }

@@ -152,7 +152,7 @@ class _AntigenRegisterInfoPageState extends State<AntigenRegisterInfoPage> {
         if (state.formStatus is SubmissionSuccess) {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => QuestionsAntigenPage()),
+            MaterialPageRoute(builder: (context) => const QuestionsAntigenPage()),
           );
         } else if (state.formStatus is SubmissionFailed) {
           errorAlertInfoPop(
