@@ -20,6 +20,7 @@ class AntigenTestBloc extends Bloc<AntigenTestEvent, AntigenTestState> {
       getMedicalHistoryResponse.fold(
           (error) => emit(state.copyWith(
               formStatus: SubmissionFailed(exception: Exception(error.message)),
+              errorMessage: error.message,
               statusCode: state.statusCode)),
           (antigenModel) => emit(state.copyWith(
                 code: event.code,

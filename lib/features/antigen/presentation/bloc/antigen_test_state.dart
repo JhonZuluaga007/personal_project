@@ -6,6 +6,7 @@ class AntigenTestState {
   final String code;
   final String id;
   final String idTest;
+  final String errorMessage;
   final DateTime? created;
   final int statusCode;
   final FormSubmissionStatus formStatus;
@@ -32,6 +33,7 @@ class AntigenTestState {
     this.code = "",
     this.id = "",
     this.idTest = "",
+    this.errorMessage = "",
     this.statusCode = 200,
     this.formStatus = const InitialFormStatus(),
     this.testTime = 0,
@@ -57,6 +59,7 @@ class AntigenTestState {
     String? code,
     String? id,
     String? idTest,
+    String? errorMessage,
     DateTime? created,
     int? statusCode,
     FormSubmissionStatus? formStatus,
@@ -82,6 +85,7 @@ class AntigenTestState {
         code: code ?? this.code,
         id: id ?? this.id,
         idTest: idTest ?? this.idTest,
+        errorMessage: errorMessage ?? this.errorMessage,
         created: created ?? this.created,
         statusCode: statusCode ?? this.statusCode,
         formStatus: formStatus ?? this.formStatus,

@@ -60,6 +60,7 @@ Future<dynamic> errorAlertInfoPop({
                   fontWeight: FontWeight.w400,
                   fontSize: 18),
               textAlign: TextAlign.center,
+              requiresTranslate: false,
             ),
             SizedBox(height: height * 0.02),
           ],
