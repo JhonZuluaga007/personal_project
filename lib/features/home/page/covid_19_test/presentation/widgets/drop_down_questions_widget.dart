@@ -54,68 +54,70 @@ class _DropDownQuestionsWidgetState extends State<DropDownQuestionsWidget> {
               color: wColor.mapColors["S700"]),
         ),
         SizedBox(height: widget.heightSizedBoxText ?? height * 0.0035),
-        SizedBox(
-          width: width,
-          height: height * 0.07,
-          child: DropdownButtonFormField(
-            decoration: InputDecoration(
-                enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(4),
-                    borderSide: BorderSide(
-                        style: BorderStyle.solid,
-                        width: 1,
-                        color: wColor.mapColors["IDGrey"]!))),
-            items: widget.dropDownItem
-                .map<DropdownMenuItem<OpDropdown>>((OpDropdown value) {
-              return DropdownMenuItem<OpDropdown>(
-                  value: value,
-                  child: Padding(
-                    padding: EdgeInsets.only(left: width * 0.01),
-                    child: TextWidget(
-                      requiresTranslate: false,
-                      textAlign: TextAlign.center,
-                      text: value.valor,
-                      style: widget.dropTextStyle ??
-                          TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500,
-                              letterSpacing: -0.2,
-                              color: wColor.mapColors["S600"]),
-                    ),
-                  ));
-            }).toList(),
-            hint: Text(
-              widget.dropDownValue,
-              textAlign: TextAlign.center,
+        SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: SizedBox(
+            width: width * 0.9,
+            height: height * 0.07,
+            child: DropdownButtonFormField(
+              decoration: InputDecoration(
+                  enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(4),
+                      borderSide: BorderSide(
+                          style: BorderStyle.solid,
+                          width: 1,
+                          color: wColor.mapColors["IDGrey"]!))),
+              items: widget.dropDownItem
+                  .map<DropdownMenuItem<OpDropdown>>((OpDropdown value) {
+                return DropdownMenuItem<OpDropdown>(
+                    value: value,
+                    child: Padding(
+                      padding: EdgeInsets.only(left: width * 0.01),
+                      child: TextWidget(
+                        requiresTranslate: false,
+                        textAlign: TextAlign.center,
+                        text: value.valor,
+                        style: widget.dropTextStyle ??
+                            TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500,
+                                letterSpacing: -0.2,
+                                color: wColor.mapColors["S600"]),
+                      ),
+                    ));
+              }).toList(),
+              hint: Text(
+                widget.dropDownValue,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                    letterSpacing: -0.2,
+                    color: wColor.mapColors["S600"]),
+              ),
+              icon: const Icon(Icons.arrow_downward),
+              iconSize: 16,
+              borderRadius: BorderRadius.circular(5),
               style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w500,
                   letterSpacing: -0.2,
                   color: wColor.mapColors["S600"]),
+              dropdownColor: wColor.mapColors["P01"],
+              onChanged: widget.onChanged ??
+                  (valueDropdown) {
+                    setState(() {
+                      widget.dropDownValue = valueDropdown.toString();
+                      widget.selectedString = valueDropdown.toString();
+                      if (widget.dropDownValue == 'Yes' ||
+                          widget.dropDownValue == 'Si') {
+                        widget.firstQuestion = true;
+                      } else {
+                        widget.firstQuestion = false;
+                      }
+                    });
+                  },
             ),
-            icon: const Icon(Icons.arrow_downward),
-            iconSize: 16,
-            borderRadius: BorderRadius.circular(5),
-            style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w500,
-                letterSpacing: -0.2,
-                color: wColor.mapColors["S600"]),
-            dropdownColor: wColor.mapColors["P01"],
-            onChanged: widget.onChanged ??
-                (valueDropdown) {
-                  setState(() {
-                    widget.dropDownValue = valueDropdown.toString();
-                    widget.selectedString = valueDropdown.toString();
-                    print(widget.selectedString);
-                    if (widget.dropDownValue == 'Yes' ||
-                        widget.dropDownValue == 'Si') {
-                      widget.firstQuestion = true;
-                    } else {
-                      widget.firstQuestion = false;
-                    }
-                  });
-                },
           ),
         ),
       ],

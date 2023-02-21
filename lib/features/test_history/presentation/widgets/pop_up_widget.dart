@@ -14,7 +14,7 @@ Future popUpWidget(BuildContext context, TestHistoryEntity testView) {
   final wColor = ThemesIdx20();
 
   final stateUserId = BlocProvider.of<AuthBloc>(context).state;
-  
+
   final dateCreate = testView.created!.date;
 
   return showDialog(
@@ -29,16 +29,21 @@ Future popUpWidget(BuildContext context, TestHistoryEntity testView) {
                 padding: EdgeInsets.symmetric(
                     horizontal: width * 0.049, vertical: height * 0.052),
                 child: SizedBox(
-                  height: height * 0.50,
+                  height: height * 0.55,
                   width: width,
                   child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
+                        //TODO GET ACTUAL TEST IMAGE
+                        // FadeInImage(
+                        //     image: NetworkImage(testView.photo!),
+                        //     placeholder:
+                        //         const AssetImage('assets/images/no_image.png')),
                         Image.asset(
                           IconsFolderCovid.popUpSkyTimer,
                           height: height * 0.2,
                           fit: BoxFit.cover,
-                        ), //TODO Get user image
+                        ),
                         SizedBox(height: height * 0.031),
                         TextWidget(
                           text: "${stateUserId.name} ${stateUserId.lastname}",
@@ -66,19 +71,22 @@ Future popUpWidget(BuildContext context, TestHistoryEntity testView) {
                                 ),
                               ),
                               SizedBox(width: width * 0.01),
-
                               Visibility(
                                 visible: testView.result!.isNotEmpty,
-                                child: testView.result!.isNotEmpty ? SizedBox(
-                                  child: testView.result!.first!.result ==
-                                          "Negative"
-                                      ? const Icon(Icons.cancel)
-                                      : const Icon(Icons.check_circle),
-                                ): const SizedBox(),
+                                child: testView.result!.isNotEmpty
+                                    ? SizedBox(
+                                        child: testView.result!.first!.result ==
+                                                "Negative"
+                                            ? const Icon(Icons.cancel)
+                                            : const Icon(Icons.check_circle),
+                                      )
+                                    : const SizedBox(),
                               ),
                               SizedBox(width: width * 0.01),
                               TextWidget(
-                                text: testView.result!.isNotEmpty ? testView.result!.first!.result! : "In progress",
+                                text: testView.result!.isNotEmpty
+                                    ? testView.result!.first!.result!
+                                    : "In progress",
                                 textAlign: TextAlign.center,
                                 requiresTranslate: false,
                                 style: TextStyle(

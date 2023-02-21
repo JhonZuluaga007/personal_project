@@ -106,9 +106,12 @@ class _MyUserPageState extends State<MyUserPage> {
                         ),
                       )
                     : CircleAvatar(
-                        backgroundColor: wColor.mapColors["P01"],
-                        backgroundImage: Image.network(state.image!).image,
                         radius: 110,
+                        backgroundColor: wColor.mapColors["P01"],
+                        child: FadeInImage(
+                            image: NetworkImage(state.image!),
+                            placeholder:
+                                const AssetImage('assets/images/no_image.png')),
                       ),
                 imageDisplayed != null
                     ? Positioned(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:personal_project/config/helpers/form_submission_status.dart';
 
 import '../../../auth/bloc/auth_bloc.dart';
 import '../../bloc/test_history_bloc.dart';
@@ -196,28 +197,31 @@ class _HistoryPageState extends State<HistoryPage> {
                     ],
                   ),
                   SizedBox(height: size.height * 0.030),
-                  SizedBox(
-                    height: size.height * 0.48,
-                    child: PageView(
-                      scrollDirection: Axis.vertical,
-                      children: [
-                        Stack(children: [
-                          HistoryTestWidget(
-                            isSelect: allTestHistory,
-                            testList: state.allTestHistoryList,
-                          ),
-                          HistoryTestWidget(
-                            isSelect: antigenTestHistoy,
-                            testList: state.antigenTestHistoryList,
-                          ),
-                          HistoryTestWidget(
-                            isSelect: pcrTestHistory,
-                            testList: state.pcrTestHistoryList,
-                          ),
-                        ]),
-                      ]
-                    )
-                  ),
+                  state.formStatus is FormSubmitting
+                      ? const Padding(
+                          padding: EdgeInsets.only(top: 32.0),
+                          child: Center(child: CircularProgressIndicator()),
+                        )
+                      : SizedBox(
+                          height: size.height * 0.48,
+                          child: PageView(
+                              scrollDirection: Axis.vertical,
+                              children: [
+                                Stack(children: [
+                                  HistoryTestWidget(
+                                    isSelect: allTestHistory,
+                                    testList: state.allTestHistoryList,
+                                  ),
+                                  HistoryTestWidget(
+                                    isSelect: antigenTestHistoy,
+                                    testList: state.antigenTestHistoryList,
+                                  ),
+                                  HistoryTestWidget(
+                                    isSelect: pcrTestHistory,
+                                    testList: state.pcrTestHistoryList,
+                                  ),
+                                ]),
+                              ])),
                 ],
               );
             },
