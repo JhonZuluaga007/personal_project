@@ -28,7 +28,7 @@ class TestHistoryEntity {
   final IdEntity? form;
   final IdEntity? laboratory;
   final IdEntity? manufacturer;
-  final List<String?>? photo;
+  final String? photo;
   final List<ResultEntity?>? result;
   final CreatedEntity? sampleDate;
   final StatusEntity? status;

@@ -164,7 +164,7 @@ class _AntigenRegisterInfoPageState extends State<AntigenRegisterInfoPage> {
               ),
               titleText: 'alert_text_error_one',
               paddingHeight: height * 0.25,
-              infoText: state.errorMessage!,
+              infoText: state.errorMessage,
               mainButton: 'alert_text_error_three',
               mainButtonFunction: () {
                 Navigator.pop(context);

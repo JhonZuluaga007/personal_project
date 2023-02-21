@@ -28,7 +28,7 @@ class Data extends TestHistoryEntity {
     required Id form,
     required Id laboratory,
     required Id manufacturer,
-    required List<String> photo,
+    required String photo,
     required List<Result> result,
     required Created sampleDate,
     required Status status,
@@ -74,9 +74,7 @@ class Data extends TestHistoryEntity {
         manufacturer: json["manufacturer"] != null
             ? Id.fromJson(json["manufacturer"])
             : Id(oid: ""),
-        photo: json["photo"] != null
-            ? List<String>.from(json["photo"].map((x) => x))
-            : [],
+        photo: json["photo"] ?? "",
         result:
             List<Result>.from(json["result"].map((x) => Result.fromJson(x))),
         sampleDate: Created.fromJson(json["sample_date"]),
