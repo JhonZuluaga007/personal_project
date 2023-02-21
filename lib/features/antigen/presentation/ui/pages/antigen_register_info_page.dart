@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:personal_project/features/antigen/presentation/ui/pages/questions_antigen_page.dart';
+import 'package:scan/scan.dart';
 
 import '../../bloc/antigen_test_bloc.dart';
 import '../../../../auth/bloc/auth_bloc.dart';
@@ -30,7 +31,8 @@ class AntigenRegisterInfoPage extends StatefulWidget {
 
 class _AntigenRegisterInfoPageState extends State<AntigenRegisterInfoPage> {
   final TextEditingController testIdController = TextEditingController();
-
+  String qrCode = '';
+  ScanController scanController = ScanController();
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -120,7 +122,19 @@ class _AntigenRegisterInfoPageState extends State<AntigenRegisterInfoPage> {
                 textColor: Colors.black,
                 buttonString: 'test_part_one_text',
                 onPressed: () {
-                  //TODO OPEN QR SCAN and paste it into the identifier
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ScanView(
+                          controller: scanController,
+                          scanAreaScale: .7,
+                          onCapture: (value) {
+                            String newValue = value.split('=').last;
+                            testIdController.text = newValue;
+                            Navigator.pop(context);
+                          },
+                        ),
+                      ));
                 })
           ],
         )
