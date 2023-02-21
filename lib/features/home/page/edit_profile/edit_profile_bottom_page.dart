@@ -87,6 +87,23 @@ class _EditUserFromBottomPageState extends State<EditUserFromBottomPage> {
                                 backgroundColor: wColor.mapColors["P01"],
                                 backgroundImage: NetworkImage(state.image!),
                                 radius: 110,
+                                onBackgroundImageError:
+                                    (exception, stackTrace) {
+                                  Container(
+                                    color: Colors.white,
+                                    alignment: Alignment.center,
+                                    child: Column(
+                                      children: [
+                                        Image.asset(
+                                            'assets/images/no_image.png'),
+                                        const TextWidget(
+                                          text: 'error_image',
+                                          style: TextStyle(fontSize: 20),
+                                        ),
+                                      ],
+                                    ),
+                                  );
+                                },
                               ))
                           : Container(
                               decoration: BoxDecoration(
@@ -111,8 +128,67 @@ class _EditUserFromBottomPageState extends State<EditUserFromBottomPage> {
                             )
                           : CircleAvatar(
                               backgroundColor: wColor.mapColors["P01"],
-                              backgroundImage: NetworkImage(state.image!),
+                              backgroundImage: Image.network(state.image!).image,
                               radius: 110,
+                              onBackgroundImageError: (exception, stackTrace) {
+                                Container(
+                                  color: Colors.white,
+                                  alignment: Alignment.center,
+                                  child: Column(
+                                    children: [
+                                      Image.asset('assets/images/no_image.png'),
+                                      const TextWidget(
+                                        text: 'error_image',
+                                        style: TextStyle(fontSize: 20),
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              },
+                            ),
+                      imageDisplayed != null
+                          ? Positioned(
+                              bottom: height * 0.17,
+                              left: width * 0.37,
+                              child: SizedBox(
+                                  height: 48,
+                                  child: FloatingActionButton(
+                                    elevation: 3.66,
+                                    backgroundColor:
+                                        wColor.mapColors["500BASE"],
+                                    child: const Icon(
+                                      Icons.edit_outlined,
+                                      size: 24,
+                                    ),
+                                    onPressed: () =>
+                                        buildPopUpImage(context, () {
+                                      getImageBottom(ImageSource.camera);
+                                      Navigator.pop(context);
+                                    }, () {
+                                      getImageBottom(ImageSource.gallery);
+                                      Navigator.pop(context);
+                                    }),
+                                  )))
+                          : CircleAvatar(
+                              radius: 110,
+                              backgroundColor: wColor.mapColors["P01"],
+                              backgroundImage:
+                                  Image.network(state.image!).image,
+                              onBackgroundImageError: (exception, stackTrace) {
+                                Container(
+                                  color: Colors.white,
+                                  alignment: Alignment.center,
+                                  child: Column(
+                                    children: [
+                                      Image.asset('assets/images/no_image.png'),
+                                      const TextWidget(
+                                        text: 'error_image',
+                                        style: TextStyle(fontSize: 20),
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              },
                             ),
                       imageDisplayed != null
                           ? Positioned(
@@ -123,54 +199,13 @@ class _EditUserFromBottomPageState extends State<EditUserFromBottomPage> {
                                 child: FloatingActionButton(
                                   elevation: 3.66,
                                   backgroundColor: wColor.mapColors["500BASE"],
+                                  onPressed: () {},
                                   child: const Icon(
                                     Icons.edit_outlined,
                                     size: 24,
                                   ),
-                                  onPressed: () => buildPopUpImage(context, () {
-                                    getImageBottom(ImageSource.camera);
-                                    Navigator.pop(context);
-                                  }, () {
-                                    getImageBottom(ImageSource.gallery);
-                                    Navigator.pop(context);
-                                  }),
-                          )))
-                        : CircleAvatar(
-                            radius: 110,
-                            backgroundColor: wColor.mapColors["P01"],
-                            backgroundImage: Image.network(state.image!).image,
-                            onBackgroundImageError: (exception, stackTrace) {
-                              Container(
-                                color: Colors.white,
-                                alignment: Alignment.center,
-                                child: Column(
-                                  children: [
-                                    Image.asset('assets/images/no_image.png'),
-                                    const TextWidget(
-                                      text: 'error_image',
-                                      style: TextStyle(fontSize: 20),
-                                    ),
-                                  ],
                                 ),
-                              );
-                            },
-                          ),
-                    imageDisplayed != null
-                        ? Positioned(
-                            bottom: height * 0.17,
-                            left: width * 0.37,
-                            child: SizedBox(
-                              height: 48,
-                              child: FloatingActionButton(
-                                elevation: 3.66,
-                                backgroundColor: wColor.mapColors["500BASE"],
-                                onPressed: () {  },
-                                child: const Icon(
-                                  Icons.edit_outlined,
-                                  size: 24,
-                                ),
-                              ),
-                            ))
+                              ))
                           : Positioned(
                               bottom: height * 0.18,
                               left: width * 0.34,
