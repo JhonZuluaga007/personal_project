@@ -9,6 +9,7 @@ import 'package:personal_project/features/antigen/presentation/bloc/antigen_test
 import 'package:personal_project/features/home/page/covid_19_test/presentation/page/t_questions_page.dart';
 import 'package:personal_project/features/home/page/covid_19_test/presentation/widgets/container_start_counter_widget.dart';
 import 'package:personal_project/features/medical_history/presentation/widgets/error_alert_widget.dart';
+import 'package:scan/scan.dart';
 
 import '../../../../../common_ui/common_widgets/buttons/main_button_widget.dart';
 import '../../../../../common_ui/common_widgets/text/text_widget.dart';
@@ -32,9 +33,11 @@ class AntigenRegisterInfoPage extends StatefulWidget {
 
 class _AntigenRegisterInfoPageState extends State<AntigenRegisterInfoPage> {
   final TextEditingController testIdController = TextEditingController();
-
+  String qrCode = '';
+  ScanController scanController = ScanController();
   @override
   Widget build(BuildContext context) {
+    
     final size = MediaQuery.of(context).size;
     NavigationBarBloc navigationBloc =
         BlocProvider.of<NavigationBarBloc>(context);
@@ -122,7 +125,18 @@ class _AntigenRegisterInfoPageState extends State<AntigenRegisterInfoPage> {
                 textColor: Colors.black,
                 buttonString: 'test_part_one_text',
                 onPressed: () {
-                  //TODO OPEN QR SCAN and paste it into the identifier
+                   Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) =>  ScanView(
+                                                    
+                                                    controller: scanController,
+                                                    scanAreaScale: .7,
+                                                    onCapture: (value) {
+                                                      String newValue = value.split('=').last;
+                                                        testIdController.text = newValue;
+                                                      Navigator.pop(context);
+                                                    },
+                                                            )));
                 })
           ],
         )

@@ -61,4 +61,15 @@ class _$Injector extends Injector {
           (c) => AntigenValidateUseCase(authRepository: c<AntigenRepository>()))
       ..registerFactory((c) => AntigenDataSource());
   }
+
+  @override
+  void _configurePcrFactories() {
+    final KiwiContainer container = KiwiContainer();
+    container
+      ..registerFactory<PcrRepository>(
+          (c) => PcrRepositoryImpl(authDataSource: c<PcrDataSource>()))
+      ..registerFactory(
+          (c) => PcrValidateUseCase(authRepository: c<PcrRepository>()))
+      ..registerFactory((c) => PcrDataSource());
+  }
 }

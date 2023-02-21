@@ -13,8 +13,8 @@ class AuthState {
   final String? zip;
   final String? cellphone;
   final String? email;
-  final String? ethnicity;
-  final String? gender;
+  final EthnicityEntity? ethnicity;
+  final GenderEntity? gender;
   final String? image;
   final DateOfBirth? birthDate;
   final bool? informationUpdated;
@@ -26,8 +26,8 @@ class AuthState {
   final String? name;
   final String organization;
   final String? participantId;
-  final String? race;
-  final String? sex;
+  final RaceEntity? race;
+  final SexEntity? sex;
   final String errorMessage;
   final String? message;
   final String? levelSchool;
@@ -47,8 +47,8 @@ class AuthState {
     this.zip = "",
     this.cellphone = "",
     this.email = "",
-    this.ethnicity = "",
-    this.gender = "",
+    this.ethnicity,
+    this.gender,
     this.image = "",
     this.informationUpdated = false,
     this.isActive = false,
@@ -59,14 +59,14 @@ class AuthState {
     this.name = "",
     this.organization = "",
     this.participantId = "",
-    this.race = "",
-    this.sex = "",
+    this.race,
+    this.sex,
     this.levelSchool = "",
     this.errorMessage = "",
     this.message = "",
     this.formChangePasswordStatus = const InitialFormStatus(),
     this.formStatus = const InitialFormStatus(),
-    this.formResetPassword = const InitialFormStatus()
+    this.formResetPassword = const InitialFormStatus(),
   });
 
   AuthState copyWith({
@@ -81,8 +81,8 @@ class AuthState {
     String? zip,
     String? cellphone,
     String? email,
-    String? ethnicity,
-    String? gender,
+    EthnicityEntity? ethnicity,
+    GenderEntity? gender,
     String? image,
     bool? informationUpdated,
     bool? isActive,
@@ -93,8 +93,8 @@ class AuthState {
     String? name,
     String? organization,
     String? participantId,
-    String? race,
-    String? sex,
+    RaceEntity? race,
+    SexEntity? sex,
     String? errorMessage,
     String? message,
     String? levelSchool,
@@ -150,8 +150,8 @@ class AuthState {
           String? zip,
           String? cellphone,
           String? email,
-          String? ethnicity,
-          String? gender,
+          EthnicityEntity? ethnicity,
+          GenderEntity? gender,
           String? image,
           bool? informationUpdated,
           bool? isActive,
@@ -162,15 +162,15 @@ class AuthState {
           String? name,
           String? organization,
           String? participantId,
-          String? race,
-          String? sex,
+          RaceEntity? race,
+          SexEntity? sex,
           String? errorMessage,
           String? message,
           String? levelSchool,
           FormSubmissionStatus? formStatus,
           FormSubmissionStatus? formResetPassword,
           FormSubmissionStatus? formChangePasswordStatus}) =>
-      const AuthState(
+      AuthState(
           project: '',
           birthDate: null,
           state: '',
@@ -181,8 +181,8 @@ class AuthState {
           zip: '',
           cellphone: '',
           email: '',
-          ethnicity: '',
-          gender: '',
+          ethnicity: EthnicityEntity(id: '', ethnicity: ''),
+          gender: GenderEntity(id: '', gender: ''),
           image: '',
           informationUpdated: true,
           isActive: false,
@@ -193,12 +193,12 @@ class AuthState {
           name: '',
           organization: '',
           participantId: '',
-          race: '',
-          sex: '',
+          race: RaceEntity(id: '', race: ''),
+          sex: SexEntity(id: '', sex: ''),
           errorMessage: '',
           message: '',
           levelSchool: '',
-          formChangePasswordStatus: InitialFormStatus(),
-          formStatus: InitialFormStatus(),
-          formResetPassword: InitialFormStatus());
+          formChangePasswordStatus: const InitialFormStatus(),
+          formStatus: const InitialFormStatus(),
+          formResetPassword: const InitialFormStatus());
 }

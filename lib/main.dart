@@ -15,6 +15,7 @@ import 'package:personal_project/features/auth/presentation/pages/reset_password
 import 'package:personal_project/features/auth/presentation/pages/reset_password_page_info_1.dart';
 import 'package:personal_project/features/home/page/edit_profile/my_users_page.dart';
 import 'package:personal_project/features/antigen/presentation/pages/antigen_pages/antigen_register_info_page.dart';
+import 'package:personal_project/features/pcr/presentation/bloc/pcr_bloc.dart';
 import 'package:personal_project/features/pcr/presentation/pages/pcr_test_register_page.dart';
 import 'package:personal_project/features/medical_history/presentation/bloc/medical_history_bloc.dart';
 import 'package:personal_project/features/medical_history/presentation/pages/medical_history_page.dart';
@@ -44,6 +45,7 @@ class MyApp extends StatelessWidget {
           BlocProvider(create: (_) => MedicalHistoryBloc()),
           BlocProvider(create: (_) => TestHistoryBloc()),
           BlocProvider(create: (_) => AntigenTestBloc()),
+          BlocProvider(create: (_) => PcrBloc()),
           BlocProvider(create: (_) => HelperToolsBloc()),
         ],
         child: MaterialApp(

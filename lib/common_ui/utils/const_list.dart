@@ -56,4 +56,22 @@ class ConstLists {
     OpPregnantEntity(id: '0', pregnant: 'Unkown'),
     OpPregnantEntity(id: '0', pregnant: 'Not applicable'),
   ];
+
+  static List<OpSchoolLevelEntity> schoolLevelList = [
+    OpSchoolLevelEntity(id: '7', schoolLevel: 'No schooling completed'),
+    OpSchoolLevelEntity(id: '7', schoolLevel: 'Nursery school to 8th grade'),
+    OpSchoolLevelEntity(id: '7', schoolLevel: 'Some high school, no diploma'),
+    OpSchoolLevelEntity(
+        id: '7',
+        schoolLevel:
+            'High school graduate, diploma or the equivalent (For example: GED)'),
+    OpSchoolLevelEntity(id: '7', schoolLevel: 'Some college credit, no degree'),
+    OpSchoolLevelEntity(
+        id: '7', schoolLevel: 'Trade/technical/vocational training'),
+    OpSchoolLevelEntity(id: '7', schoolLevel: 'Associate degree'),
+    OpSchoolLevelEntity(id: '7', schoolLevel: 'Bachelor\'s degree'),
+    OpSchoolLevelEntity(id: '7', schoolLevel: 'Master\'s degree'),
+    OpSchoolLevelEntity(id: '7', schoolLevel: 'Professional degree'),
+    OpSchoolLevelEntity(id: '7', schoolLevel: '"Doctorate degree'),
+  ];
 }

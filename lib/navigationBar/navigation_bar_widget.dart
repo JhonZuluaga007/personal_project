@@ -84,7 +84,7 @@ class _NavBarPageState extends State<NavBarPage> {
               extendBody: true,
               drawer: const DrawerWidget(),
               bottomNavigationBar: SizedBox(
-                height: height * 0.1,
+                height: height * 0.12,
                 child: BottomNavigationBar(
                   type: BottomNavigationBarType.fixed,
                   showUnselectedLabels: true,
