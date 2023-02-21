@@ -21,6 +21,7 @@ class PcrBloc extends Bloc<PcrEvent, PcrState> {
       getMedicalHistoryResponse.fold(
           (error) => emit(state.copyWith(
               formStatus: SubmissionFailed(exception: Exception(error.message)),
+              errorMessage: error.message,
               statusCode: state.statusCode,
               success: state.success)),
           (pcrSuccess) => emit(state.copyWith(
