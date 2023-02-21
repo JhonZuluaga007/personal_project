@@ -105,9 +105,9 @@ class _EditUserFromBottomPageState extends State<EditUserFromBottomPage> {
                         : CircleAvatar(
                             radius: 110,
                             backgroundColor: wColor.mapColors["P01"],
-                            child: Image.network(state.image!,
-                                errorBuilder: (context, error, stackTrace) {
-                              return Container(
+                            backgroundImage: Image.network(state.image!).image,
+                            onBackgroundImageError: (exception, stackTrace) {
+                              Container(
                                 color: Colors.white,
                                 alignment: Alignment.center,
                                 child: Column(
@@ -120,7 +120,8 @@ class _EditUserFromBottomPageState extends State<EditUserFromBottomPage> {
                                   ],
                                 ),
                               );
-                            })),
+                            },
+                          ),
                     imageDisplayed != null
                         ? Positioned(
                             bottom: height * 0.17,
