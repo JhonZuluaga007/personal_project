@@ -48,7 +48,7 @@ class MedicalHistoryDataSource {
       }
       return ServerValidate.fromMap(decodedMap);
     } else {
-      throw InvalidData('error');
+      throw InvalidData('error of save the data');
     }
   }
 }

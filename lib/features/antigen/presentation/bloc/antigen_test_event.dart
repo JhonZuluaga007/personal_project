@@ -102,3 +102,5 @@ class AntigenQuestion15Event extends AntigenTestEvent {
 
   AntigenQuestion15Event({required this.question15});
 }
+
+class AntigenRegisterEvent extends AntigenTestEvent {}

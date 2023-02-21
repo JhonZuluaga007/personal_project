@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import '../../../test_history/domain/entities/test_history_entity.dart';
 
 class DataEntity {
@@ -64,6 +66,13 @@ class QuestionTypeOneEntity {
 
   final String? name;
   final String? value;
+
+  String toJson() => json.encode(toMap());
+
+  Map<String, dynamic> toMap() => {
+        "name": name,
+        "value": value,
+      };
 }
 
 class QuestionTypeTwoEntity {
@@ -74,4 +83,11 @@ class QuestionTypeTwoEntity {
 
   final String? name;
   final List<String>? value;
+
+  String toJson() => json.encode(toMap());
+
+  Map<String, dynamic> toMap() => {
+        "name": name,
+        "value": List<dynamic>.from(value!.map((x) => x)),
+      };
 }

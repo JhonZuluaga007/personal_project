@@ -53,6 +53,7 @@ Future<dynamic> doneSendInfo({
             ),
             SizedBox(height: height * 0.02),
             TextWidget(
+              requiresTranslate: false,
               text: infoText,
               style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                   color: color.mapColors['IDGrey'],

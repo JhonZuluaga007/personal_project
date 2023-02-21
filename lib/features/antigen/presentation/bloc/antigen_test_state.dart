@@ -7,6 +7,7 @@ class AntigenTestState {
   final String id;
   final String idTest;
   final String errorMessage;
+  final String message;
   final DateTime? created;
   final int statusCode;
   final FormSubmissionStatus formStatus;
@@ -27,8 +28,11 @@ class AntigenTestState {
   final QuestionTypeOneEntity? question15;
   final DateTime? updatedValue;
   final int testTime;
+  final String? stepHistory;
+  final File? files;
 
   const AntigenTestState({
+    this.message = "",
     this.created,
     this.code = "",
     this.id = "",
@@ -53,6 +57,8 @@ class AntigenTestState {
     this.question14,
     this.question15,
     this.updatedValue,
+    this.stepHistory = "",
+    this.files
   });
 
   AntigenTestState copyWith({
@@ -60,6 +66,7 @@ class AntigenTestState {
     String? id,
     String? idTest,
     String? errorMessage,
+    String? message,
     DateTime? created,
     int? statusCode,
     FormSubmissionStatus? formStatus,
@@ -80,31 +87,37 @@ class AntigenTestState {
     QuestionTypeOneEntity? question15,
     DateTime? updatedValue,
     int? testTime,
-  }) =>
-      AntigenTestState(
-        code: code ?? this.code,
-        id: id ?? this.id,
-        idTest: idTest ?? this.idTest,
-        errorMessage: errorMessage ?? this.errorMessage,
-        created: created ?? this.created,
-        statusCode: statusCode ?? this.statusCode,
-        formStatus: formStatus ?? this.formStatus,
-        question1: question1 ?? this.question1,
-        question2: question2 ?? this.question2,
-        question3: question3 ?? this.question3,
-        question4: question4 ?? this.question4,
-        question5: question5 ?? this.question5,
-        question6: question6 ?? this.question6,
-        question7: question7 ?? this.question7,
-        question8: question8 ?? this.question8,
-        question9: question9 ?? this.question9,
-        question10: question10 ?? this.question10,
-        question11: question11 ?? this.question11,
-        question12: question12 ?? this.question12,
-        question13: question13 ?? this.question13,
-        question14: question14 ?? this.question14,
-        question15: question15 ?? this.question15,
-        updatedValue: updatedValue ?? this.updatedValue,
-        testTime: testTime ?? this.testTime,
-      );
+    String? stepHistory,
+    File? files,
+  }) {
+    return AntigenTestState(
+      code: code ?? this.code,
+      id: id ?? this.id,
+      idTest: idTest ?? this.idTest,
+      errorMessage: errorMessage ?? this.errorMessage,
+      message: message ?? this.message,
+      created: created ?? this.created,
+      statusCode: statusCode ?? this.statusCode,
+      formStatus: formStatus ?? this.formStatus,
+      question1: question1 ?? this.question1,
+      question2: question2 ?? this.question2,
+      question3: question3 ?? this.question3,
+      question4: question4 ?? this.question4,
+      question5: question5 ?? this.question5,
+      question6: question6 ?? this.question6,
+      question7: question7 ?? this.question7,
+      question8: question8 ?? this.question8,
+      question9: question9 ?? this.question9,
+      question10: question10 ?? this.question10,
+      question11: question11 ?? this.question11,
+      question12: question12 ?? this.question12,
+      question13: question13 ?? this.question13,
+      question14: question14 ?? this.question14,
+      question15: question15 ?? this.question15,
+      updatedValue: updatedValue ?? this.updatedValue,
+      testTime: testTime ?? this.testTime,
+      stepHistory: stepHistory ?? this.stepHistory,
+      files: files ?? this.files,
+    );
+  }
 }

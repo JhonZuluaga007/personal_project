@@ -10,7 +10,7 @@ class AntigenValidateUseCase {
     required this.authRepository,
   });
 
-  Future<Either<InvalidData, AntigenModel>> callAntigen(
+  Future<Either<InvalidData, AntigenModel>> call(
       String userId, String code) async {
     return await authRepository.validateAntigen(userId, code);
   }

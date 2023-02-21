@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:personal_project/common_ui/common_pages/my_app_scaffold_page.dart';
 import 'package:personal_project/common_ui/common_widgets/text/text_widget.dart';
+import 'package:personal_project/config/helpers/form_submission_status.dart';
 import 'package:personal_project/config/theme/theme.dart';
 import 'package:personal_project/features/home/page/edit_profile/widgets/build_pop_up_image_widget.dart';
 import 'package:personal_project/features/home/widget/text_field_form_my_profile.dart';
@@ -24,20 +26,22 @@ class _EditUserFromBottomPageState extends State<EditUserFromBottomPage> {
   late String imagePath;
   @override
   void initState() {
-    // TODO: implement initState
     imagePath = 'assets/images/no_image.png';
     super.initState();
   }
 
   File? imageDisplayed;
+  String pathImageSave = "";
   Future getImageBottom(ImageSource source) async {
+    final String pathRuta =
+        "${(await getTemporaryDirectory()).path}${DateTime.now()}.png";
     try {
+      final File localImage = await imageDisplayed!.copy(pathRuta);
       final image = await ImagePicker().pickImage(source: source);
       if (image == null) return;
-      final imageCameraTemporary = File(image.path);
-      // final imagePermanent = await saveFilePerma(image.path);
       setState(() {
-        imageDisplayed = imageCameraTemporary;
+        imageDisplayed = localImage;
+        pathImageSave = pathRuta;
       });
     } on PlatformException catch (e) {
       debugPrint('Failed to pick image: $e');
@@ -67,41 +71,70 @@ class _EditUserFromBottomPageState extends State<EditUserFromBottomPage> {
         ),
         SizedBox(height: height * 0.015),
         BlocBuilder<AuthBloc, AuthState>(
-          builder: (context, state) {
-            return Center(
-              child: Column(
-                children: [
-                  Stack(alignment: AlignmentDirectional.center, children: [
-                    state.image != null
-                        ? Container(
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(12)),
-                            child: CircleAvatar(
+          builder: (_, state) {
+            if (state.formStatus is FormSubmitting) {
+              return const Center(child: CircularProgressIndicator());
+            } else {
+              return Center(
+                child: Column(
+                  children: [
+                    Stack(alignment: AlignmentDirectional.center, children: [
+                      state.image != null
+                          ? Container(
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(12)),
+                              child: CircleAvatar(
+                                backgroundColor: wColor.mapColors["P01"],
+                                backgroundImage: NetworkImage(state.image!),
+                                radius: 110,
+                              ))
+                          : Container(
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(12)),
+                              child: CircleAvatar(
+                                backgroundColor: wColor.mapColors["P01"],
+                                backgroundImage:
+                                    Image.file(imageDisplayed!).image,
+                                radius: 110,
+                              ),
+                            ),
+                      imageDisplayed != null
+                          ? Container(
+                              decoration: const BoxDecoration(
+                                  shape: BoxShape.circle, color: Colors.white),
+                              child: CircleAvatar(
+                                backgroundColor: wColor.mapColors["P01"],
+                                backgroundImage:
+                                    Image.file(imageDisplayed!).image,
+                                radius: 110,
+                              ),
+                            )
+                          : CircleAvatar(
                               backgroundColor: wColor.mapColors["P01"],
-                              backgroundImage: AssetImage(imagePath),
-                              radius: 110,
-                            ))
-                        : Container(
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(12)),
-                            child: CircleAvatar(
-                              backgroundColor: wColor.mapColors["P01"],
-                              backgroundImage:
-                                  Image.file(imageDisplayed!).image,
+                              backgroundImage: NetworkImage(state.image!),
                               radius: 110,
                             ),
-                          ),
-                    imageDisplayed != null
-                        ? Container(
-                            decoration: const BoxDecoration(
-                                shape: BoxShape.circle, color: Colors.white),
-                            child: CircleAvatar(
-                              backgroundColor: wColor.mapColors["P01"],
-                              backgroundImage:
-                                  Image.file(imageDisplayed!).image,
-                              radius: 110,
-                            ),
-                          )
+                      imageDisplayed != null
+                          ? Positioned(
+                              bottom: height * 0.17,
+                              left: width * 0.37,
+                              child: SizedBox(
+                                height: 48,
+                                child: FloatingActionButton(
+                                  elevation: 3.66,
+                                  backgroundColor: wColor.mapColors["500BASE"],
+                                  child: const Icon(
+                                    Icons.edit_outlined,
+                                    size: 24,
+                                  ),
+                                  onPressed: () => buildPopUpImage(context, () {
+                                    getImageBottom(ImageSource.camera);
+                                    Navigator.pop(context);
+                                  }, () {
+                                    getImageBottom(ImageSource.gallery);
+                                    Navigator.pop(context);
+                                  }),
+                          )))
                         : CircleAvatar(
                             radius: 110,
                             backgroundColor: wColor.mapColors["P01"],
@@ -131,55 +164,48 @@ class _EditUserFromBottomPageState extends State<EditUserFromBottomPage> {
                               child: FloatingActionButton(
                                 elevation: 3.66,
                                 backgroundColor: wColor.mapColors["500BASE"],
+                                onPressed: () {  },
                                 child: const Icon(
                                   Icons.edit_outlined,
                                   size: 24,
                                 ),
-                                onPressed: () => buildPopUpImage(context, () {
-                                  getImageBottom(ImageSource.camera);
-                                  Navigator.pop(context);
-                                }, () {
-                                  getImageBottom(ImageSource.gallery);
-                                  Navigator.pop(context);
-                                }),
                               ),
-                            ),
-                          )
-                        : Positioned(
-                            bottom: height * 0.18,
-                            left: width * 0.42,
-                            child: SizedBox(
-                              height: 48,
-                              child: FloatingActionButton(
-                                elevation: 3.66,
-                                backgroundColor: wColor.mapColors["500BASE"],
-                                child: const Icon(
-                                  Icons.edit_outlined,
-                                  size: 24,
+                            ))
+                          : Positioned(
+                              bottom: height * 0.18,
+                              left: width * 0.34,
+                              child: SizedBox(
+                                height: 48,
+                                child: FloatingActionButton(
+                                  elevation: 3.66,
+                                  backgroundColor: wColor.mapColors["500BASE"],
+                                  child: const Icon(
+                                    Icons.edit_outlined,
+                                    size: 24,
+                                  ),
+                                  onPressed: () => buildPopUpImage(context, () {
+                                    getImageBottom(ImageSource.camera);
+                                    Navigator.pop(context);
+                                  }, () {
+                                    getImageBottom(ImageSource.gallery);
+                                    Navigator.pop(context);
+                                  }),
                                 ),
-                                onPressed: () => buildPopUpImage(context, () {
-                                  getImageBottom(ImageSource.camera);
-                                  Navigator.pop(context);
-                                }, () {
-                                  getImageBottom(ImageSource.gallery);
-                                  Navigator.pop(context);
-                                }),
-                              ),
-                            )),
-                  ]),
-                  SizedBox(height: height * 0.060),
-                  const InfoColumnWidget(),
-                  SizedBox(height: height * 0.070),
-                  TextFieldFormMyUser(
-                    textTitle: 'my_user_text_field_hint',
-                    iconTextField:
-                        const Icon(Icons.keyboard_arrow_down_rounded),
-                    hintText: "my_user_text_field_label",
-                    imageState: state.image,
-                  )
-                ],
-              ),
-            );
+                              )),
+                    ]),
+                    SizedBox(height: height * 0.060),
+                    const InfoColumnWidget(),
+                    SizedBox(height: height * 0.070),
+                    TextFieldFormMyUser(
+                        textTitle: 'my_user_text_field_hint',
+                        iconTextField:
+                            const Icon(Icons.keyboard_arrow_down_rounded),
+                        hintText: "my_user_text_field_label",
+                        imageState: pathImageSave)
+                  ],
+                ),
+              );
+            }
           },
         ),
       ],

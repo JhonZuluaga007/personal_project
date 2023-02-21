@@ -59,6 +59,8 @@ class _$Injector extends Injector {
           (c) => AntigenRepositoryImpl(authDataSource: c<AntigenDataSource>()))
       ..registerFactory(
           (c) => AntigenValidateUseCase(authRepository: c<AntigenRepository>()))
+      ..registerFactory(
+          (c) => AntigenRegisterUseCase(authRepository: c<AntigenRepository>()))
       ..registerFactory((c) => AntigenDataSource());
   }
 

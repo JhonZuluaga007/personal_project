@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
+import 'package:personal_project/features/antigen/domain/use_cases/antigen_register_use_case.dart';
 
 import '../../domain/entities/antigen_entity.dart';
 import '../../../../config/helpers/injector/injector.dart';
@@ -11,13 +14,13 @@ part 'antigen_test_state.dart';
 
 class AntigenTestBloc extends Bloc<AntigenTestEvent, AntigenTestState> {
   final antigenUseCase = Injector.resolve<AntigenValidateUseCase>();
+  final antigenRegisterUseCase = Injector.resolve<AntigenRegisterUseCase>();
 
   AntigenTestBloc() : super(const AntigenTestState()) {
     on<AntigenValidateEvent>((event, emit) async {
       emit(state.copyWith(formStatus: FormSubmitting()));
-      final getMedicalHistoryResponse =
-          await antigenUseCase.callAntigen(event.userId, event.code);
-      getMedicalHistoryResponse.fold(
+      final antigenTest = await antigenUseCase.call(event.userId, event.code);
+      antigenTest.fold(
           (error) => emit(state.copyWith(
               formStatus: SubmissionFailed(exception: Exception(error.message)),
               errorMessage: error.message,
@@ -46,6 +49,39 @@ class AntigenTestBloc extends Bloc<AntigenTestEvent, AntigenTestState> {
                 question15: antigenModel.data!.lasttest!.question15!,
                 testTime: antigenModel.data!.testTime,
               )));
+    });
+
+    on<AntigenRegisterEvent>((event, emit) async {
+      emit(state.copyWith(formStatus: FormSubmitting()));
+      final antigenRegisterTest = await antigenRegisterUseCase.call(
+        state.code,
+        state.question1!,
+        state.question2!,
+        state.question3!,
+        state.question4!,
+        state.question5!,
+        state.question6!,
+        state.question7!,
+        state.question8!,
+        state.question9!,
+        state.question10!,
+        state.question11!,
+        state.question12!,
+        state.question13!,
+        state.question14!,
+        state.question15!,
+        state.stepHistory ?? "",
+        // state.files ?? File("") //TODO: Guardar el file en el estado
+      );
+      antigenRegisterTest.fold(
+          (error) => emit(state.copyWith(
+              formStatus: SubmissionFailed(exception: Exception(error.message)),
+              errorMessage: error.message,
+              statusCode: state.statusCode)),
+          (antigenRegister) => emit(state.copyWith(
+              formStatus: SubmissionSuccess(),
+              message: antigenRegister.message,
+              statusCode: antigenRegister.statusCode)));
     });
 
     on<AntigenQuestion1Event>((event, emit) async {
