@@ -108,11 +108,22 @@ class _MyUserPageState extends State<MyUserPage> {
                     : CircleAvatar(
                         radius: 110,
                         backgroundColor: wColor.mapColors["P01"],
-                        child: FadeInImage(
-                            image: NetworkImage(state.image!),
-                            placeholder:
-                                const AssetImage('assets/images/no_image.png')),
-                      ),
+                        child: Image.network(state.image!,
+                            errorBuilder: (context, error, stackTrace) {
+                          return Container(
+                            color: Colors.white,
+                            alignment: Alignment.center,
+                            child: Column(
+                              children: [
+                                Image.asset('assets/images/no_image.png'),
+                                const TextWidget(
+                                  text: 'error_image',
+                                  style: TextStyle(fontSize: 20),
+                                ),
+                              ],
+                            ),
+                          );
+                        })),
                 imageDisplayed != null
                     ? Positioned(
                         bottom: height * 0.18,
@@ -137,8 +148,8 @@ class _MyUserPageState extends State<MyUserPage> {
                         ),
                       )
                     : Positioned(
-                        bottom: height * 0.15,
-                        left: width * 0.33,
+                        bottom: height * 0.17,
+                        left: width * 0.42,
                         child: SizedBox(
                           height: 48,
                           child: FloatingActionButton(

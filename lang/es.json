@@ -189,6 +189,8 @@
 
     
     "pcr_test_text_one": "Register PCR Test",
+    "error_image": "Error cargando tu imagen",
+
     "pcr_test_text_two": "Scan Kit's QR Code",
     "pcr_test_text_three": "Scan",
     "pcr_test_text_four": "Manually type the 10-digit Kit ID",

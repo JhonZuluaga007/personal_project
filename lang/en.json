@@ -188,6 +188,8 @@
     "antigen_test_step_one_text":"Name:",
     "antigen_test_step_one_text_label": "Kit identifier",
     "antigen_test_step_one_text_hint": "Kit ID",
+    "error_image": "Error loading your image",
+
 
     "pcr_test_text_one": "Register PCR Test",
     "pcr_test_text_two": "Scan Kit's QR Code",
