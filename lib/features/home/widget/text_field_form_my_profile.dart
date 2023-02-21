@@ -8,6 +8,7 @@ import 'package:personal_project/features/auth/bloc/helper_tools_bloc.dart';
 import 'package:personal_project/features/auth/domain/entities/helper_tools_entity.dart';
 import 'package:personal_project/features/auth/domain/entities/user_entity.dart';
 import 'package:personal_project/features/home/page/covid_19_test/presentation/widgets/drop_down_questions_widget.dart';
+import 'package:personal_project/features/antigen/presentation/ui/widgets/drop_down_questions_widget.dart';
 import 'package:personal_project/navigationBar/bloc/navigation_bar_bloc.dart';
 
 import '../../auth/bloc/auth_bloc.dart';

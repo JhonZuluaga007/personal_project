@@ -1,7 +1,7 @@
 import 'package:either_dart/either.dart';
-import 'package:personal_project/features/antigen/domain/repository/antigen_repository.dart';
-import 'package:personal_project/features/antigen/data/models/antigen_model.dart';
 
+import '../../data/models/antigen_model.dart';
+import '../repository/antigen_repository.dart';
 import '../../../../config/helpers/errors/invalid_data.dart';
 
 class AntigenValidateUseCase {

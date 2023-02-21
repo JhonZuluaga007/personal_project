@@ -3,10 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:personal_project/common_ui/common_pages/splash_page.dart';
 import 'package:personal_project/features/antigen/presentation/bloc/antigen_test_bloc.dart';
+import 'package:personal_project/features/antigen/presentation/ui/pages/questions_antigen_page.dart';
 import 'package:personal_project/features/auth/bloc/auth_bloc.dart';
 import 'package:personal_project/features/auth/bloc/helper_tools_bloc.dart';
 import 'package:personal_project/features/home/page/covid_19_test/presentation/page/instructions_page.dart';
-import 'package:personal_project/features/home/page/covid_19_test/presentation/page/t_questions_page.dart';
+import 'package:personal_project/features/antigen/presentation/ui/pages/t_questions_page.dart';
 import 'package:personal_project/features/home/page/covid_19_test/presentation/page/start_counter_page.dart';
 import 'package:personal_project/features/home/page/covid_19_test/presentation/page/upload_final_step_page.dart';
 import 'package:personal_project/features/home/page/covid_19_test/presentation/page/upload_result_page.dart';
@@ -16,6 +17,7 @@ import 'package:personal_project/features/auth/presentation/pages/reset_password
 import 'package:personal_project/features/home/page/edit_profile/my_users_page.dart';
 import 'package:personal_project/features/antigen/presentation/pages/antigen_pages/antigen_register_info_page.dart';
 import 'package:personal_project/features/pcr/presentation/bloc/pcr_bloc.dart';
+import 'package:personal_project/features/antigen/presentation/ui/pages/antigen_register_info_page.dart';
 import 'package:personal_project/features/pcr/presentation/pages/pcr_test_register_page.dart';
 import 'package:personal_project/features/medical_history/presentation/bloc/medical_history_bloc.dart';
 import 'package:personal_project/features/medical_history/presentation/pages/medical_history_page.dart';
@@ -77,7 +79,8 @@ class MyApp extends StatelessWidget {
             "login": (_) => const LoginPage(),
             "resetInfo": (_) => const ResetPasswordPageInfo(),
             "reset": (_) => const ResetPasswordPage(),
-            "selfTestQuestions": (_) => const TQuestionsPage(),
+            "selfTestQuestions": (_) => QuestionsAntigenPage(),
+            //"selfTestQuestions": (_) => TQuestionsPage(),
             "instructionPage": (_) => const InstructionsPage(),
             "startCounter": (_) => const StartCounterPage(timerValue: 10),
             "uploadResult": (_) => const UploadResultPage(),

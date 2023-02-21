@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:personal_project/common_ui/common_widgets/buttons/main_button_widget.dart';
 
-import '../../../../../../common_ui/common_widgets/text/text_widget.dart';
 import '../../../../../../config/theme/theme.dart';
-import '../../../../../../navigationBar/bloc/navigation_bar_bloc.dart';
-import '../widgets/container_start_counter_widget.dart';
 import '../widgets/image_buttons_upload_widget.dart';
+import '../../../../../../common_ui/common_widgets/text/text_widget.dart';
+import '../../../../../../navigationBar/bloc/navigation_bar_bloc.dart';
+import '../../../../../../common_ui/common_widgets/buttons/main_button_widget.dart';
+import '../../../../../antigen/presentation/ui/widgets/container_start_counter_widget.dart';
 
 class UploadFinalResultPage extends StatefulWidget {
   final double valueLinear;

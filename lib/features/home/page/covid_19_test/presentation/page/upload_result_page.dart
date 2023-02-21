@@ -4,8 +4,8 @@ import 'package:personal_project/common_ui/common_widgets/buttons/main_button_wi
 
 import '../../../../../../common_ui/common_widgets/text/text_widget.dart';
 import '../../../../../../config/theme/theme.dart';
-import '../widgets/container_start_counter_widget.dart';
-import '../widgets/drop_down_questions_widget.dart';
+import '../../../../../antigen/presentation/ui/widgets/container_start_counter_widget.dart';
+import '../../../../../antigen/presentation/ui/widgets/drop_down_questions_widget.dart';
 
 class UploadResultPage extends StatelessWidget {
   final double valueLinear;

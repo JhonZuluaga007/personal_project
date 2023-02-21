@@ -74,4 +74,5 @@ class ConstLists {
     OpSchoolLevelEntity(id: '7', schoolLevel: 'Professional degree'),
     OpSchoolLevelEntity(id: '7', schoolLevel: '"Doctorate degree'),
   ];
+  static List<String> dropdownYes = ["Yes", "No"];
 }
