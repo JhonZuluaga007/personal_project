@@ -48,19 +48,140 @@ class AntigenTestBloc extends Bloc<AntigenTestEvent, AntigenTestState> {
     });
 
     on<AntigenQuestion1Event>((event, emit) async {
+      emit(state.copyWith(formStatus: FormSubmitting()));
       emit(state.copyWith(
+          formStatus: const InitialFormStatus(),
           question1: QuestionTypeOneEntity(
-        name: state.question1!.name,
-        value: event.question1,
-      )));
+            name: state.question1!.name,
+            value: event.question1,
+          )));
     });
 
     on<AntigenQuestion2Event>((event, emit) {
-      emit(state.copyWith(question2: event.question2));
+      emit(state.copyWith(
+        formStatus: const InitialFormStatus(),
+        question2: QuestionTypeTwoEntity(
+          name: state.question2!.name,
+          value: event.question2,
+        ),
+      ));
     });
 
     on<AntigenQuestion3Event>((event, emit) {
-      emit(state.copyWith(question3: event.question3));
+      emit(state.copyWith(
+          formStatus: const InitialFormStatus(),
+          question3: QuestionTypeOneEntity(
+            name: state.question3!.name,
+            value: event.question3,
+          )));
+    });
+
+    on<AntigenQuestion4Event>((event, emit) {
+      emit(state.copyWith(
+          formStatus: const InitialFormStatus(),
+          question4: QuestionTypeOneEntity(
+            name: state.question4!.name,
+            value: event.question4,
+          )));
+    });
+
+    on<AntigenQuestion5Event>((event, emit) {
+      emit(state.copyWith(
+          formStatus: const InitialFormStatus(),
+          question5: QuestionTypeOneEntity(
+            name: state.question5!.name,
+            value: event.question5,
+          )));
+    });
+
+    on<AntigenQuestion6Event>((event, emit) {
+      emit(state.copyWith(
+          formStatus: const InitialFormStatus(),
+          question6: QuestionTypeOneEntity(
+            name: state.question6!.name,
+            value: event.question6,
+          )));
+    });
+
+    on<AntigenQuestion7Event>((event, emit) {
+      emit(state.copyWith(
+          formStatus: const InitialFormStatus(),
+          question7: QuestionTypeOneEntity(
+            name: state.question7!.name,
+            value: event.question7,
+          )));
+    });
+
+    on<AntigenQuestion8Event>((event, emit) {
+      emit(state.copyWith(
+          formStatus: const InitialFormStatus(),
+          question8: QuestionTypeOneEntity(
+            name: state.question8!.name,
+            value: event.question8,
+          )));
+    });
+
+    on<AntigenQuestion9Event>((event, emit) {
+      emit(state.copyWith(
+          formStatus: const InitialFormStatus(),
+          question9: QuestionTypeOneEntity(
+            name: state.question9!.name,
+            value: event.question9,
+          )));
+    });
+
+    on<AntigenQuestion10Event>((event, emit) {
+      emit(state.copyWith(
+          formStatus: const InitialFormStatus(),
+          question10: QuestionTypeTwoEntity(
+            name: state.question10!.name,
+            value: event.question10,
+          )));
+    });
+
+    on<AntigenQuestion11Event>((event, emit) {
+      emit(state.copyWith(
+          formStatus: const InitialFormStatus(),
+          question11: QuestionTypeTwoEntity(
+            name: state.question11!.name,
+            value: event.question11,
+          )));
+    });
+
+    on<AntigenQuestion12Event>((event, emit) {
+      emit(state.copyWith(
+          formStatus: const InitialFormStatus(),
+          question12: QuestionTypeTwoEntity(
+            name: state.question12!.name,
+            value: event.question12,
+          )));
+    });
+
+    on<AntigenQuestion13Event>((event, emit) {
+      emit(state.copyWith(
+          formStatus: const InitialFormStatus(),
+          question13: QuestionTypeOneEntity(
+            name: state.question13!.name,
+            value: event.question13,
+          )));
+    });
+
+    on<AntigenQuestion14Event>((event, emit) {
+      emit(state.copyWith(
+          formStatus: const InitialFormStatus(),
+          question14: QuestionTypeOneEntity(
+            name: state.question14!.name,
+            value: event.question14,
+          )));
+    });
+
+    on<AntigenQuestion15Event>((event, emit) {
+      emit(state.copyWith(
+          formStatus: const InitialFormStatus(),
+          question15: QuestionTypeOneEntity(
+            name: state.question15!.name,
+            value: event.question15,
+          )));
     });
   }
 }
