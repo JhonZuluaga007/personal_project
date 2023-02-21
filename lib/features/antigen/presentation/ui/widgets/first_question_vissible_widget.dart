@@ -60,8 +60,9 @@ class _FirstVissibleQuestionWidgetState
         FormFieldDropdownWidget(
           question: antigenBloc.state.question1!.name!,
           generalColor: wColor.mapColors["S700"]!,
-          height: height * 0.08,
+          height: height * 0.07,
           listItems: const [
+            //TODO CHECK LANGUAGUE
             "",
             "Yes",
             "No",
@@ -75,6 +76,7 @@ class _FirstVissibleQuestionWidgetState
             });
           },
         ),
+        SizedBox(height: height * 0.021),
         Visibility(
           visible: _covidQuestionValue == "Yes",
           child: Column(
@@ -88,7 +90,7 @@ class _FirstVissibleQuestionWidgetState
                     letterSpacing: -0.2,
                     color: wColor.mapColors["S700"]!),
               ),
-              SizedBox(height: height * 0.031),
+              SizedBox(height: height * 0.011),
               MultiSelectedWidget(
                 listItem: firstQuestion,
                 onChanged: (value) {
@@ -105,29 +107,26 @@ class _FirstVissibleQuestionWidgetState
                 requiredTranslate: true,
               ),
               SizedBox(height: height * 0.028),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: width * 0.037),
-                child: DatePickerContainerWidget(
-                  textQuestions: antigenBloc.state.question3!.name!,
-                  onTap: () async {
-                    DateTime? newDate = await showDatePicker(
-                      context: context,
-                      initialDate: DateTime.now(),
-                      firstDate: DateTime(2019),
-                      lastDate: DateTime.now(),
-                    );
+              DatePickerContainerWidget(
+                textQuestions: antigenBloc.state.question3!.name!,
+                onTap: () async {
+                  DateTime? newDate = await showDatePicker(
+                    context: context,
+                    initialDate: DateTime.now(),
+                    firstDate: DateTime(2019),
+                    lastDate: DateTime.now(),
+                  );
 
-                    if (newDate == null) return;
+                  if (newDate == null) return;
 
-                    setState(() {
-                      date = newDate;
-                    });
+                  setState(() {
+                    date = newDate;
+                  });
 
-                    antigenBloc.add(
-                        AntigenQuestion3Event(question3: newDate.toString()));
-                  },
-                  date: date,
-                ),
+                  antigenBloc.add(
+                      AntigenQuestion3Event(question3: newDate.toString()));
+                },
+                date: date,
               ),
             ],
           ),

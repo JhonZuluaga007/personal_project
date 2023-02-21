@@ -44,7 +44,7 @@ class _DatePickerContainerWidgetState extends State<DatePickerContainerWidget> {
           onTap: widget.onTap,
           child: Container(
             width: width * 0.922,
-            height: height * 0.06,
+            height: height * 0.07,
             decoration: BoxDecoration(
               color: wColor.mapColors["P01"],
               border: Border(

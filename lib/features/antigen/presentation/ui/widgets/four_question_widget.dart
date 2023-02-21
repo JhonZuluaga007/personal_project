@@ -50,7 +50,7 @@ class _FourQuestionWidgetState extends State<FourQuestionWidget> {
               letterSpacing: -0.2,
               color: wColor.mapColors["S700"]!),
         ),
-        SizedBox(height: height * 0.031),
+        SizedBox(height: height * 0.011),
         MultiSelectedWidget(
           listItem: vaccinesList,
           onChanged: (value) {
@@ -95,7 +95,7 @@ class _FourQuestionWidgetState extends State<FourQuestionWidget> {
         FormFieldDropdownWidget(
           question: antigenBloc.state.question12!.name!,
           generalColor: wColor.mapColors["S700"]!,
-          height: height * 0.08,
+          height: height * 0.07,
           listItems: const [
             "",
             "Not Pregnant",

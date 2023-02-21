@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../../../common_ui/common_widgets/form_field_dropdown_widget.dart';
 import '../../../../../../config/theme/theme.dart';
+import '../../../../../antigen/presentation/bloc/antigen_test_bloc.dart';
 import '../widgets/image_buttons_upload_widget.dart';
 import '../../../../../../common_ui/common_widgets/text/text_widget.dart';
 import '../../../../../../navigationBar/bloc/navigation_bar_bloc.dart';
@@ -20,10 +22,14 @@ class UploadFinalResultPage extends StatefulWidget {
 }
 
 class _UploadFinalResultPageState extends State<UploadFinalResultPage> {
+  String _covidQuestionThreeValue = "";
+
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     final wColor = ThemesIdx20();
+    final antigenBloc = BlocProvider.of<AntigenTestBloc>(context);
+    final width = MediaQuery.of(context).size.width;
 
     return Scaffold(
       appBar: AppBar(
@@ -63,8 +69,28 @@ class _UploadFinalResultPageState extends State<UploadFinalResultPage> {
                     letterSpacing: -0.2,
                     color: wColor.mapColors["S800"]),
               ),
-              SizedBox(height: height * 0.075),
-              const ImageButtonsWidget()
+              SizedBox(height: height * 0.015),
+              const ImageButtonsWidget(),
+              SizedBox(height: height * 0.015),
+              FormFieldDropdownWidget(
+                question: antigenBloc.state.question15!.name!,
+                generalColor: wColor.mapColors["S700"]!,
+                height: height * 0.08,
+                listItems: const [
+                  "",
+                  "Yes",
+                  "No",
+                ],
+                selectedValue: _covidQuestionThreeValue,
+                width: width,
+                onChanged: (covidQuestionTwo) {
+                  antigenBloc.add(
+                      AntigenQuestion15Event(question15: covidQuestionTwo!));
+                  setState(() {
+                    _covidQuestionThreeValue = covidQuestionTwo;
+                  });
+                },
+              ),
             ],
           ),
         ),

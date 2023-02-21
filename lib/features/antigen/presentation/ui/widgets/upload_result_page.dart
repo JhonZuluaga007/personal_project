@@ -62,16 +62,7 @@ class _UploadResultPageState extends State<UploadResultPage> {
           widgetButton: buttonUpload(context),
           textContainer: "Upload_linear_text"),
       children: [
-        SizedBox(height: height * 0.05),
-        SizedBox(
-          height: height * 0.2,
-          width: width * 0.8,
-          child: Image.asset(
-            'assets/images/PrincipalBanner.png',
-            fit: BoxFit.fitHeight,
-          ),
-        ),
-        SizedBox(height: height * 0.05),
+        SizedBox(height: height * 0.02),
         FormFieldDropdownWidget(
           question: antigenBloc.state.question13!.name!,
           generalColor: wColor.mapColors["S700"]!,
@@ -91,7 +82,14 @@ class _UploadResultPageState extends State<UploadResultPage> {
             });
           },
         ),
-        SizedBox(height: height * 0.05),
+        SizedBox(
+          height: height * 0.2,
+          width: width * 0.9,
+          child: Image.asset(
+            'assets/images/cimage.png',
+            fit: BoxFit.contain,
+          ),
+        ),
         FormFieldDropdownWidget(
           question: antigenBloc.state.question14!.name!,
           generalColor: wColor.mapColors["S700"]!,
@@ -111,26 +109,15 @@ class _UploadResultPageState extends State<UploadResultPage> {
             });
           },
         ),
-        SizedBox(height: height * 0.05),
-        FormFieldDropdownWidget(
-          question: antigenBloc.state.question15!.name!,
-          generalColor: wColor.mapColors["S700"]!,
-          height: height * 0.08,
-          listItems: const [
-            "",
-            "Yes",
-            "No",
-          ],
-          selectedValue: _covidQuestionThreeValue,
-          width: width,
-          onChanged: (covidQuestionTwo) {
-            antigenBloc
-                .add(AntigenQuestion15Event(question15: covidQuestionTwo!));
-            setState(() {
-              _covidQuestionThreeValue = covidQuestionTwo;
-            });
-          },
+        SizedBox(
+          height: height * 0.2,
+          width: width * 0.95,
+          child: Image.asset(
+            'assets/images/timage.png',
+            fit: BoxFit.contain,
+          ),
         ),
+        SizedBox(height: height * 0.05),
       ],
     );
   }
