@@ -1,23 +1,20 @@
-// ignore_for_file: use_build_context_synchronously
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:personal_project/common_ui/common_pages/my_app_scaffold_page.dart';
-import 'package:personal_project/common_ui/common_widgets/buttons/button_widget.dart';
-import 'package:personal_project/config/helpers/form_submission_status.dart';
-import 'package:personal_project/features/antigen/presentation/bloc/antigen_test_bloc.dart';
-import 'package:personal_project/features/home/page/covid_19_test/presentation/page/t_questions_page.dart';
-import 'package:personal_project/features/home/page/covid_19_test/presentation/widgets/container_start_counter_widget.dart';
-import 'package:personal_project/features/medical_history/presentation/widgets/error_alert_widget.dart';
-import 'package:scan/scan.dart';
+import 'package:personal_project/features/antigen/presentation/ui/pages/questions_antigen_page.dart';
 
-import '../../../../../common_ui/common_widgets/buttons/main_button_widget.dart';
-import '../../../../../common_ui/common_widgets/text/text_widget.dart';
-import '../../../../../common_ui/common_widgets/text_field/text_field_with_border_widget.dart';
-import '../../../../../config/theme/theme.dart';
-import '../../../../../navigationBar/bloc/navigation_bar_bloc.dart';
+import '../../bloc/antigen_test_bloc.dart';
 import '../../../../auth/bloc/auth_bloc.dart';
+import '../../../../../config/theme/theme.dart';
+import '../widgets/container_start_counter_widget.dart';
 import '../../../../home/widget/test_widgets/app_bar_widget.dart';
+import '../../../../../config/helpers/form_submission_status.dart';
+import '../../../../../navigationBar/bloc/navigation_bar_bloc.dart';
+import '../../../../../common_ui/common_widgets/text/text_widget.dart';
+import '../../../../../common_ui/common_pages/my_app_scaffold_page.dart';
+import '../../../../../common_ui/common_widgets/buttons/button_widget.dart';
+import '../../../../../common_ui/common_widgets/buttons/main_button_widget.dart';
+import '../../../../medical_history/presentation/widgets/error_alert_widget.dart';
+import '../../../../../common_ui/common_widgets/text_field/text_field_with_border_widget.dart';
 
 class AntigenRegisterInfoPage extends StatefulWidget {
   const AntigenRegisterInfoPage(
@@ -33,11 +30,9 @@ class AntigenRegisterInfoPage extends StatefulWidget {
 
 class _AntigenRegisterInfoPageState extends State<AntigenRegisterInfoPage> {
   final TextEditingController testIdController = TextEditingController();
-  String qrCode = '';
-  ScanController scanController = ScanController();
+
   @override
   Widget build(BuildContext context) {
-    
     final size = MediaQuery.of(context).size;
     NavigationBarBloc navigationBloc =
         BlocProvider.of<NavigationBarBloc>(context);
@@ -125,18 +120,7 @@ class _AntigenRegisterInfoPageState extends State<AntigenRegisterInfoPage> {
                 textColor: Colors.black,
                 buttonString: 'test_part_one_text',
                 onPressed: () {
-                   Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) =>  ScanView(
-                                                    
-                                                    controller: scanController,
-                                                    scanAreaScale: .7,
-                                                    onCapture: (value) {
-                                                      String newValue = value.split('=').last;
-                                                        testIdController.text = newValue;
-                                                      Navigator.pop(context);
-                                                    },
-                                                            )));
+                  //TODO OPEN QR SCAN and paste it into the identifier
                 })
           ],
         )
@@ -154,7 +138,7 @@ class _AntigenRegisterInfoPageState extends State<AntigenRegisterInfoPage> {
         if (state.formStatus is SubmissionSuccess) {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => const TQuestionsPage()),
+            MaterialPageRoute(builder: (context) => QuestionsAntigenPage()),
           );
         } else if (state.formStatus is SubmissionFailed) {
           errorAlertInfoPop(
