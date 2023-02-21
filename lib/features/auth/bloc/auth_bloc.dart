@@ -44,8 +44,12 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           zip: user.user.addresses!.zip,
           cellphone: user.user.cellphone,
           email: user.user.email,
-          ethnicity: user.user.ethnicity![0],
-          gender: user.user.gender![0],
+          ethnicity: user.user.ethnicity!.isEmpty
+              ? EthnicityEntity(id: "", ethnicity: "")
+              : user.user.ethnicity![0],
+          gender: user.user.gender!.isEmpty
+              ? GenderEntity(id: "", gender: "")
+              : user.user.gender![0],
           image: user.user.image,
           informationUpdated: user.user.informationUpdated,
           isActive: user.user.isActive,
@@ -57,8 +61,12 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           organization: user.user.organization,
           participantId: user.user.participantId,
           levelSchool: user.user.levelSchool,
-          race: user.user.race![0],
-          sex: user.user.sex![0],
+          race: user.user.race!.isEmpty
+              ? RaceEntity(id: "", race: "")
+              : user.user.race![0],
+          sex: user.user.sex!.isEmpty
+              ? SexEntity(id: "", sex: "")
+              : user.user.sex![0],
         ));
       });
     });

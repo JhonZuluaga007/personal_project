@@ -9,6 +9,7 @@ class AntigenTestState {
   final int? statusCode;
   final FormSubmissionStatus? formStatus;
   final String? question1;
+  final String? errorMessage;
   final List<String>? question2;
   final DateTime? question3;
 
@@ -21,6 +22,7 @@ class AntigenTestState {
     this.question1,
     this.question2,
     this.question3,
+    this.errorMessage,
   });
 
   AntigenTestState copyWith({
@@ -30,6 +32,7 @@ class AntigenTestState {
     int? statusCode,
     FormSubmissionStatus? formStatus,
     String? question1,
+    String? errorMessage,
     List<String>? question2,
     DateTime? question3,
   }) {
@@ -40,6 +43,7 @@ class AntigenTestState {
       statusCode: statusCode ?? this.statusCode,
       formStatus: formStatus ?? this.formStatus,
       question1: question1 ?? this.question1,
+      errorMessage: errorMessage ?? this.errorMessage,
       question2: question2 ?? this.question2,
       question3: question3 ?? this.question3,
     );
