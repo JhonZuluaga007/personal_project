@@ -134,9 +134,43 @@ class _EditUserFromBottomPageState extends State<EditUserFromBottomPage> {
                                     getImageBottom(ImageSource.gallery);
                                     Navigator.pop(context);
                                   }),
+                          )))
+                        : CircleAvatar(
+                            radius: 110,
+                            backgroundColor: wColor.mapColors["P01"],
+                            backgroundImage: Image.network(state.image!).image,
+                            onBackgroundImageError: (exception, stackTrace) {
+                              Container(
+                                color: Colors.white,
+                                alignment: Alignment.center,
+                                child: Column(
+                                  children: [
+                                    Image.asset('assets/images/no_image.png'),
+                                    const TextWidget(
+                                      text: 'error_image',
+                                      style: TextStyle(fontSize: 20),
+                                    ),
+                                  ],
+                                ),
+                              );
+                            },
+                          ),
+                    imageDisplayed != null
+                        ? Positioned(
+                            bottom: height * 0.17,
+                            left: width * 0.37,
+                            child: SizedBox(
+                              height: 48,
+                              child: FloatingActionButton(
+                                elevation: 3.66,
+                                backgroundColor: wColor.mapColors["500BASE"],
+                                onPressed: () {  },
+                                child: const Icon(
+                                  Icons.edit_outlined,
+                                  size: 24,
                                 ),
                               ),
-                            )
+                            ))
                           : Positioned(
                               bottom: height * 0.18,
                               left: width * 0.34,
