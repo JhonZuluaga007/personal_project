@@ -1,6 +1,8 @@
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:personal_project/features/test_history/presentation/widgets/open_file_widget.dart';
 import 'package:syncfusion_flutter_pdf/pdf.dart';
@@ -89,8 +91,12 @@ class CardTestWidget extends StatelessWidget {
     final PdfPageTemplateElement headerTemplate =
         PdfPageTemplateElement(const Rect.fromLTWH(0, 0, 515, 50));
 //Draw text in the header.
+    final ByteData imageData = await rootBundle.load('assets/icons/tellMe.png');
+    final Uint8List imageBytes = imageData.buffer.asUint8List();
+    final PdfBitmap image = PdfBitmap(imageBytes);
+
     page.graphics.drawImage(
-        PdfBitmap(File('assets/icons/tellMe.png').readAsBytesSync()),
+        image,
         Rect.fromLTWH(
             0, 0, page.getClientSize().width, page.getClientSize().height));
     headerTemplate.graphics.drawString(
