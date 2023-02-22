@@ -198,6 +198,8 @@
     "history_test_result_title": "Test results",
     "history_test_result_text_one": "Status last test:",
     "history_test_result_text_two": "Show test",
+    "history_test_result_text_download": "Download",
+
     "history_test_result_text_three": "PCR",
     "history_test_result_text_four": "Antigen",
 

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:personal_project/features/test_history/presentation/widgets/open_file_widget.dart';
+import 'package:syncfusion_flutter_pdf/pdf.dart';
 
 import '../../../../config/theme/theme.dart';
 import '../../../../common_ui/common_widgets/buttons/button_widget.dart';
@@ -42,7 +44,19 @@ class CardTestWidget extends StatelessWidget {
                     textColor: wColor.mapColors['IDWhite'],
                     textStyle: const TextStyle(fontSize: 12),
                     iconSize: 14,
-                    width: width * 0.3,
+                    width: width * 0.265,
+                    icon: Icons.download,
+                    buttonString: 'history_test_result_text_download',
+                    onPressed: () {
+                      _createPDF();
+                    }),
+                ButtonWidget(
+                    buttonColor: wColor.mapColors['S800'],
+                    borderColor: wColor.mapColors['S800'],
+                    textColor: wColor.mapColors['IDWhite'],
+                    textStyle: const TextStyle(fontSize: 12),
+                    iconSize: 14,
+                    width: width * 0.27,
                     icon: Icons.remove_red_eye,
                     buttonString: 'history_button_icon',
                     onPressed: onPressed)
@@ -53,5 +67,16 @@ class CardTestWidget extends StatelessWidget {
             )
           ],
         ));
+  }
+
+  Future<void> _createPDF() async {
+    PdfDocument document = PdfDocument();
+    document.pages.add();
+    List<int> bytes = document.saveSync();
+    document.pages.add().graphics.drawString(
+          'Hello World!',
+          PdfStandardFont(PdfFontFamily.helvetica, 12),
+        );
+    saveAndLaunchFile(bytes, 'Output.pdf');
   }
 }
