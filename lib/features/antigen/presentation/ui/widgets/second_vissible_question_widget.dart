@@ -27,6 +27,7 @@ class _SecondVissibleQuestionWidgetState
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
     final wColor = ThemesIdx20();
+    final stateAntigen = BlocProvider.of<AntigenTestBloc>(context).state;
     final antigenBloc = BlocProvider.of<AntigenTestBloc>(context);
 
     return Column(
@@ -41,7 +42,9 @@ class _SecondVissibleQuestionWidgetState
             "Yes",
             "No",
           ],
-          selectedValue: _covidQuestionValue,
+          selectedValue: stateAntigen.question4!.value != _covidQuestionValue
+              ? stateAntigen.question4!.value!
+              : _covidQuestionValue,
           width: width,
           onChanged: (covidQuestion) {
             antigenBloc.add(AntigenQuestion4Event(question4: covidQuestion!));
@@ -88,7 +91,9 @@ class _SecondVissibleQuestionWidgetState
             "Yes",
             "No",
           ],
-          selectedValue: _covidQuestionTwoValue,
+          selectedValue: stateAntigen.question6!.value != _covidQuestionTwoValue
+              ? stateAntigen.question6!.value!
+              : _covidQuestionTwoValue,
           width: width,
           onChanged: (covidQuestionTwo) {
             antigenBloc

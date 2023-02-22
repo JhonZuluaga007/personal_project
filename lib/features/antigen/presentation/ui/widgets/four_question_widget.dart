@@ -17,10 +17,11 @@ class _FourQuestionWidgetState extends State<FourQuestionWidget> {
   String _covidQuestionPregnantValue = "";
   final List<String> covidBeforechipList = [];
   final List<String> covidBeforeAnswer = [
-    "covid_before_one",
-    "covid_before_two",
-    "covid_before_three",
-    "covid_before_four",
+    "No",
+    "Yes, 2020",
+    "Yes, 2021",
+    "Yes, 2022",
+    "Yes, 2023"
   ];
 
   final List<String> vacinneChipList = [];
@@ -37,6 +38,7 @@ class _FourQuestionWidgetState extends State<FourQuestionWidget> {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
     final wColor = ThemesIdx20();
+    final stateAntigen = BlocProvider.of<AntigenTestBloc>(context).state;
     final antigenBloc = BlocProvider.of<AntigenTestBloc>(context);
     return Column(
       children: [
@@ -63,7 +65,9 @@ class _FourQuestionWidgetState extends State<FourQuestionWidget> {
                 .add(AntigenQuestion10Event(question10: vacinneChipList));
           },
           requiredTranslate: false,
-          listChip: vacinneChipList,
+          listChip: stateAntigen.question10!.value != vacinneChipList
+              ? stateAntigen.question10!.value!
+              : vacinneChipList,
           valueDefaultList: "drop_down_select_option",
         ),
         SizedBox(height: height * 0.031),
@@ -87,8 +91,10 @@ class _FourQuestionWidgetState extends State<FourQuestionWidget> {
             antigenBloc
                 .add(AntigenQuestion11Event(question11: covidBeforechipList));
           },
-          requiredTranslate: true,
-          listChip: covidBeforechipList,
+          requiredTranslate: false,
+          listChip: stateAntigen.question11!.value != covidBeforechipList
+              ? stateAntigen.question11!.value!
+              : covidBeforechipList,
           valueDefaultList: "drop_down_select_option",
         ),
         SizedBox(height: height * 0.031),
@@ -105,11 +111,11 @@ class _FourQuestionWidgetState extends State<FourQuestionWidget> {
           ],
           selectedValue: _covidQuestionPregnantValue,
           width: width,
-          onChanged: (cryptoMonthlyAmount) {
+          onChanged: (covidQuestion12) {
             antigenBloc.add(
-                AntigenQuestion12Event(question12: [cryptoMonthlyAmount!]));
+                AntigenQuestion12Event(question12: [covidQuestion12!]));
             setState(() {
-              _covidQuestionPregnantValue = cryptoMonthlyAmount;
+              _covidQuestionPregnantValue = covidQuestion12;
             });
           },
         ),
