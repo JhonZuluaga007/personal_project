@@ -116,7 +116,7 @@ class CardTestWidget extends StatelessWidget {
         bounds: const Rect.fromLTWH(180, 55, 300, 50));
 
     final PdfPen pen = PdfPen(PdfColor(255, 0, 0), width: 2);
-    final PdfBrush brush = statusTest == 'positive'
+    final PdfBrush brush = statusTest == 'Positive'
         ? PdfSolidBrush(PdfColor(135, 18, 0))
         : PdfSolidBrush(PdfColor(36, 165, 70));
     graphics.drawRectangle(
