@@ -24,13 +24,13 @@ class UploadResultPage extends StatefulWidget {
 class _UploadResultPageState extends State<UploadResultPage> {
   String _covidQuestionOneValue = "";
   String _covidQuestionTwoValue = "";
-  String _covidQuestionThreeValue = "";
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
     final wColor = ThemesIdx20();
     final antigenBloc = BlocProvider.of<AntigenTestBloc>(context);
+    final stateAntigen = BlocProvider.of<AntigenTestBloc>(context).state;
 
     return MyAppScaffold(
       appBar: AppBar(
@@ -72,7 +72,9 @@ class _UploadResultPageState extends State<UploadResultPage> {
             "Yes",
             "No",
           ],
-          selectedValue: _covidQuestionOneValue,
+          selectedValue: stateAntigen.question13!.value != _covidQuestionOneValue
+              ? stateAntigen.question13!.value!
+              : _covidQuestionOneValue,
           width: width,
           onChanged: (covidQuestionTwo) {
             antigenBloc
@@ -99,7 +101,9 @@ class _UploadResultPageState extends State<UploadResultPage> {
             "Yes",
             "No",
           ],
-          selectedValue: _covidQuestionTwoValue,
+          selectedValue: stateAntigen.question14!.value != _covidQuestionTwoValue
+              ? stateAntigen.question14!.value!
+              : _covidQuestionTwoValue,
           width: width,
           onChanged: (covidQuestionTwo) {
             antigenBloc

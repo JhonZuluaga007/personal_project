@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'dart:async';
 
 import '../../../../../../icons/icons.dart';
 import '../../../../../../config/theme/theme.dart';
 import '../../../../../../common_ui/common_widgets/text/text_widget.dart';
 import '../../../../../../common_ui/common_widgets/buttons/main_button_widget.dart';
+import '../../../../../antigen/presentation/bloc/antigen_test_bloc.dart';
 import '../../../../../antigen/presentation/ui/widgets/container_start_counter_widget.dart';
 
 class StartCounterPage extends StatefulWidget {
@@ -23,9 +25,18 @@ class StartCounterPage extends StatefulWidget {
 }
 
 class _StartCounterPageState extends State<StartCounterPage> {
-  late Duration duration = Duration(minutes: widget.timerValue ?? 15);
-  late Duration startTimer = Duration(minutes: widget.timerValue ?? 15);
+  late Duration duration = const Duration(minutes: 15);
+  late Duration startTimer = const Duration(minutes: 15);
   Timer? timer;
+  late bool isPauseTimer = false;
+
+  @override
+  void initState() {
+    final stateAntigen = BlocProvider.of<AntigenTestBloc>(context).state;
+    duration = Duration(minutes: stateAntigen.testTime);
+    startTimer = Duration(minutes: stateAntigen.testTime);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -75,13 +86,10 @@ class _StartCounterPageState extends State<StartCounterPage> {
 
   Widget buildButtons() {
     final wColor = ThemesIdx20();
-
     final isRunning = timer == null ? false : timer!.isActive;
-
     return Column(
       children: [
         isRunning
-            // ignore: dead_code
             ? buildButtonsRunning()
             : MainButtonWidget(
                 buttonString: "start_counter_text_button_start_timer",
@@ -89,7 +97,9 @@ class _StartCounterPageState extends State<StartCounterPage> {
                 buttonColor: wColor.mapColors["P01"],
                 borderColor: wColor.mapColors["S800"],
                 onPressed: () {
-                  startTime();
+                  setState(() {
+                    startTime(context);
+                  });
                 }),
       ],
     );
@@ -99,12 +109,16 @@ class _StartCounterPageState extends State<StartCounterPage> {
     final width = MediaQuery.of(context).size.width;
     final wColor = ThemesIdx20();
 
+    final isRunning = timer == null ? false : timer!.isActive;
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         MainButtonWidget(
             width: width * 0.3,
-            buttonString: "start_counter_text_button_pause",
+            buttonString: isRunning
+                ? "start_counter_text_button_pause"
+                : "start_counter_text_button_continue",
             textColor: wColor.mapColors["S800"],
             borderColor: wColor.mapColors["S800"],
             buttonColor: wColor.mapColors["P01"],
@@ -133,14 +147,18 @@ class _StartCounterPageState extends State<StartCounterPage> {
     );
   }
 
-  void startTime() {
+  void startTime(BuildContext context) {
+    final stateAntigen = BlocProvider.of<AntigenTestBloc>(context).state;
+
     setState(() {
-      timer =
-          Timer.periodic(const Duration(seconds: 1), (timer) => decreaseTime());
+      duration = Duration(minutes: stateAntigen.testTime);
+      startTimer = Duration(minutes: stateAntigen.testTime);
+      timer = Timer.periodic(
+          const Duration(seconds: 1), (timer) => decreaseTime(context));
     });
   }
 
-  void decreaseTime() {
+  void decreaseTime(BuildContext context) {
     setState(() {
       late int decreaseTime = -1;
 
@@ -148,6 +166,7 @@ class _StartCounterPageState extends State<StartCounterPage> {
 
       if (seconds < 0) {
         timer?.cancel();
+        Navigator.pushNamed(context, "uploadResult");
       } else {
         duration = Duration(seconds: seconds);
       }
@@ -157,6 +176,7 @@ class _StartCounterPageState extends State<StartCounterPage> {
   void pauseTime() {
     setState(() {
       timer?.cancel();
+      isPauseTimer = true;
     });
   }
 
@@ -204,7 +224,7 @@ class _StartCounterPageState extends State<StartCounterPage> {
           value: duration.inSeconds.toDouble() / startTimer.inSeconds,
           valueColor: AlwaysStoppedAnimation(wColor.mapColors["Pink"]!),
           strokeWidth: 21,
-          backgroundColor: wColor.mapColors["T100"],
+          backgroundColor: Colors.grey[300],
         ),
         Center(child: buildTime())
       ]),

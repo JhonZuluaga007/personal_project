@@ -79,7 +79,7 @@ class _FormFieldDropdownWidgetState extends State<FormFieldDropdownWidget> {
                     items: widget.listItems.map((String value) {
                       return DropdownMenuItem<String>(
                         value: value,
-                        child: Text(value),
+                        child: Text(value, style: const TextStyle(fontSize: 16)),
                       );
                     }).toList(),
                   ),

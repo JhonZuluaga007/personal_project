@@ -31,6 +31,7 @@ class _UploadFinalResultPageState extends State<UploadFinalResultPage> {
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     final wColor = ThemesIdx20();
+    final stateAntigen = BlocProvider.of<AntigenTestBloc>(context).state;
     final antigenBloc = BlocProvider.of<AntigenTestBloc>(context);
     final width = MediaQuery.of(context).size.width;
 
@@ -84,7 +85,10 @@ class _UploadFinalResultPageState extends State<UploadFinalResultPage> {
                   "Yes",
                   "No",
                 ],
-                selectedValue: _covidQuestionThreeValue,
+                selectedValue:
+                    stateAntigen.question15!.value != _covidQuestionThreeValue
+                        ? stateAntigen.question15!.value!
+                        : _covidQuestionThreeValue,
                 width: width,
                 onChanged: (covidQuestionTwo) {
                   antigenBloc.add(

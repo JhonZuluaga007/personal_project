@@ -35,6 +35,7 @@ class _ThirdVissibleQuestionWidgetState
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
     final wColor = ThemesIdx20();
+    final stateAntigen = BlocProvider.of<AntigenTestBloc>(context).state;
     final antigenBloc = BlocProvider.of<AntigenTestBloc>(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -49,13 +50,15 @@ class _ThirdVissibleQuestionWidgetState
             "Yes, 1 Dose",
             "Yes, 2 Dose",
           ],
-          selectedValue: _covidQuestionValue,
+          selectedValue: stateAntigen.question7!.value != _covidQuestionValue
+              ? stateAntigen.question7!.value!
+              : _covidQuestionValue,
           width: width,
-          onChanged: (cryptoMonthlyAmount) {
+          onChanged: (question7Covid) {
             antigenBloc
-                .add(AntigenQuestion7Event(question7: cryptoMonthlyAmount!));
+                .add(AntigenQuestion7Event(question7: question7Covid!));
             setState(() {
-              _covidQuestionValue = cryptoMonthlyAmount;
+              _covidQuestionValue = question7Covid;
             });
           },
         ),
@@ -76,7 +79,9 @@ class _ThirdVissibleQuestionWidgetState
                     "2 Boosters.",
                     "More than 2 Boosters",
                   ],
-                  selectedValue: _covidQuestionTwoValue,
+                  selectedValue: stateAntigen.question8!.value != _covidQuestionTwoValue
+                          ? stateAntigen.question8!.value!
+                          : _covidQuestionTwoValue,
                   width: width,
                   onChanged: (cryptoMonthlyAmount) {
                     antigenBloc.add(

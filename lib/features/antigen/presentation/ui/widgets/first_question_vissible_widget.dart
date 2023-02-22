@@ -54,84 +54,92 @@ class _FirstVissibleQuestionWidgetState
     final wColor = ThemesIdx20();
     final antigenBloc = BlocProvider.of<AntigenTestBloc>(context);
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        FormFieldDropdownWidget(
-          question: antigenBloc.state.question1!.name!,
-          generalColor: wColor.mapColors["S700"]!,
-          height: height * 0.07,
-          listItems: const [
-            //TODO CHECK LANGUAGUE
-            "",
-            "Yes",
-            "No",
+    return BlocBuilder<AntigenTestBloc, AntigenTestState>(
+      builder: (context, state) {
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            FormFieldDropdownWidget(
+              question: antigenBloc.state.question1!.name!,
+              generalColor: wColor.mapColors["S700"]!,
+              height: height * 0.07,
+              listItems: const [
+                //TODO CHECK LANGUAGUE
+                "",
+                "Yes",
+                "No",
+              ],
+              selectedValue: state.question1!.value != _covidQuestionValue
+                  ? state.question1!.value!
+                  : _covidQuestionValue,
+              width: width,
+              onChanged: (cryptoMonthlyAmount) {
+                antigenBloc.add(AntigenQuestion1Event(cryptoMonthlyAmount!));
+                setState(() {
+                  _covidQuestionValue = cryptoMonthlyAmount;
+                });
+              },
+            ),
+            SizedBox(height: height * 0.021),
+            Visibility(
+              visible: _covidQuestionValue == "Yes",
+              child: Column(
+                children: [
+                  TextWidget(
+                    text: antigenBloc.state.question2!.name!,
+                    requiresTranslate: false,
+                    style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                        letterSpacing: -0.2,
+                        color: wColor.mapColors["S700"]!),
+                  ),
+                  SizedBox(height: height * 0.011),
+                  MultiSelectedWidget(
+                    listItem: firstQuestion,
+                    onChanged: (value) {
+                      setState(() {
+                        if (firstQuestionChipLIst.contains(value) != true) {
+                          firstQuestionChipLIst.add(value.toString());
+                        }
+                      });
+                      antigenBloc.add(AntigenQuestion2Event(
+                          question2: firstQuestionChipLIst));
+                    },
+                    valueDefaultList: "drop_down_select_option",
+                    listChip: state.question2!.value != firstQuestionChipLIst
+                        ? state.question2!.value!
+                        : firstQuestionChipLIst,
+                    requiredTranslate: true,
+                  ),
+                  SizedBox(height: height * 0.028),
+                  DatePickerContainerWidget(
+                    textQuestions: antigenBloc.state.question3!.name!,
+                    onTap: () async {
+                      DateTime? newDate = await showDatePicker(
+                        context: context,
+                        initialDate: DateTime.now(),
+                        firstDate: DateTime(2019),
+                        lastDate: DateTime.now(),
+                      );
+
+                      if (newDate == null) return;
+
+                      setState(() {
+                        date = newDate;
+                      });
+
+                      antigenBloc.add(
+                          AntigenQuestion3Event(question3: newDate.toString()));
+                    },
+                    date: date,
+                  ),
+                ],
+              ),
+            )
           ],
-          selectedValue: _covidQuestionValue,
-          width: width,
-          onChanged: (cryptoMonthlyAmount) {
-            antigenBloc.add(AntigenQuestion1Event(cryptoMonthlyAmount!));
-            setState(() {
-              _covidQuestionValue = cryptoMonthlyAmount;
-            });
-          },
-        ),
-        SizedBox(height: height * 0.021),
-        Visibility(
-          visible: _covidQuestionValue == "Yes",
-          child: Column(
-            children: [
-              TextWidget(
-                text: antigenBloc.state.question2!.name!,
-                requiresTranslate: false,
-                style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
-                    letterSpacing: -0.2,
-                    color: wColor.mapColors["S700"]!),
-              ),
-              SizedBox(height: height * 0.011),
-              MultiSelectedWidget(
-                listItem: firstQuestion,
-                onChanged: (value) {
-                  setState(() {
-                    if (firstQuestionChipLIst.contains(value) != true) {
-                      firstQuestionChipLIst.add(value.toString());
-                    }
-                  });
-                  antigenBloc.add(
-                      AntigenQuestion2Event(question2: firstQuestionChipLIst));
-                },
-                valueDefaultList: "drop_down_select_option",
-                listChip: firstQuestionChipLIst,
-                requiredTranslate: true,
-              ),
-              SizedBox(height: height * 0.028),
-              DatePickerContainerWidget(
-                textQuestions: antigenBloc.state.question3!.name!,
-                onTap: () async {
-                  DateTime? newDate = await showDatePicker(
-                    context: context,
-                    initialDate: DateTime.now(),
-                    firstDate: DateTime(2019),
-                    lastDate: DateTime.now(),
-                  );
-
-                  if (newDate == null) return;
-
-                  setState(() {
-                    date = newDate;
-                  });
-
-                  antigenBloc.add(
-                      AntigenQuestion3Event(question3: newDate.toString()));
-                },
-                date: date,
-              ),
-            ],
-          ),
-        )
-      ],
+        );
+      },
     );
   }
 }

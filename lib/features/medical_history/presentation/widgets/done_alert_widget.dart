@@ -13,6 +13,7 @@ Future<dynamic> doneSendInfo({
   required String infoText,
   required String? mainButton,
   required VoidCallback mainButtonFunction,
+  bool? requiresTranslateText = false,
 }) {
   final height = MediaQuery.of(context).size.height;
   final width = MediaQuery.of(context).size.width;
@@ -53,7 +54,7 @@ Future<dynamic> doneSendInfo({
             ),
             SizedBox(height: height * 0.02),
             TextWidget(
-              requiresTranslate: false,
+              requiresTranslate: requiresTranslateText ?? true,
               text: infoText,
               style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                   color: color.mapColors['IDGrey'],

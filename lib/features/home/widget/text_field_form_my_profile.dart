@@ -214,6 +214,7 @@ class _TextFieldFormMyUserState extends State<TextFieldFormMyUser> {
                       //REVISAR QUE TENGA EXITO Y ACTUALIZAR ESTADO
                       // EN LO CONTRARIO MOSTRAR ERROR ALERTA.
                       doneSendInfo(
+                        requiresTranslateText: true,
                         context: context,
                         mainIcon: Icon(
                           Icons.check,
