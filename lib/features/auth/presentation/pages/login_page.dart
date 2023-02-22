@@ -51,7 +51,7 @@ class _LoginPageState extends State<LoginPage> {
         elevation: 0,
       ),
       children: [
-        Center(child: Image.asset('assets/icons/idxLogo.png')),
+        Center(child: Image.asset('assets/icons/tellMe.png')),
         SizedBox(height: height * 0.06),
         SizedBox(
           width: double.infinity,

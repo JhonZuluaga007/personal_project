@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:personal_project/features/test_history/presentation/widgets/open_file_widget.dart';
@@ -79,10 +81,18 @@ class CardTestWidget extends StatelessWidget {
     //Add page to the PDF
     final PdfGraphics graphics = page.graphics;
     final Size pageSize = page.size;
+    print(pageSize.width);
+    print(pageSize.height);
+    print(pageSize);
+
     //Get page client size
     final PdfPageTemplateElement headerTemplate =
         PdfPageTemplateElement(const Rect.fromLTWH(0, 0, 515, 50));
 //Draw text in the header.
+    page.graphics.drawImage(
+        PdfBitmap(File('assets/icons/tellMe.png').readAsBytesSync()),
+        Rect.fromLTWH(
+            0, 0, page.getClientSize().width, page.getClientSize().height));
     headerTemplate.graphics.drawString(
         'Summary of Test Results', PdfStandardFont(PdfFontFamily.helvetica, 24),
         format: PdfStringFormat(lineAlignment: PdfVerticalAlignment.middle),
@@ -104,7 +114,7 @@ class CardTestWidget extends StatelessWidget {
             alignment: PdfTextAlignment.center));
 //Add the header element to the document.
     final PdfPageTemplateElement footerTemplate =
-        PdfPageTemplateElement(const Rect.fromLTWH(0, 0, 515, 50));
+        PdfPageTemplateElement(const Rect.fromLTWH(0, 0, 400, 100));
     String text =
         '${authBloc.state.name} ${authBloc.state.lastname} \n\n\nHELPFUL INFORMATION FOR THE PARTICIPANT \nThe US Centers for Disease Control and Prevention (CDC) has provided useful information on how to care for yourself at home and how others in your household may protect themselves, the cDC has also provided infornsation on when to seek medical attention. Key points are outlined below for your reference, and you can find more information at ntps://www.ede gov/coronavirus /2010-ncov \nThe CDC recommends that individuals experiencing the following symptoms get medical attention immediately: \n. Trouble breathing \n- Persistent pain or pressure in the chest \n• New confusion \n• Inability to stay awake or wake after sleeping \n- Bluish lips or face \nAs the CDC instructs, before seeking medical care at an office, clinic, or hospital, please alert healthcare providers to the results of this test. However, do not delay seeking care if you are experiencing a medical emergency. \nCDC: FOR PEOPLE WHO ARE SICK . The CDC recommends that if you are or might be sick with COVID-19 stay home except to get medical care, and avaid using public transportation if you must leave your home, even if you have no symptoms, you can pass the infection on to others. \n- Separate yoursell from other people in your home as much as possible \n* Wear a face mask over your nose and mouth if you are around other people, even at home \n* Cover your coughs and sneezes with a tissue. Dispose of the tissue in o lined trash can. clean your hands often with soap and water for at least 20 seconds, and avoid sharing household items (for example, utensils, towels glasses) as much as possible. \n*Clean and disinfect all frequently touched surfaces in your home often. if you are able, clean your bathroom and bedroom yourself and let others clean common areas. \nPlease work with your provider to determine appropriate next steps, including when to and self-isolation. ';
 
@@ -129,6 +139,6 @@ class CardTestWidget extends StatelessWidget {
 
     List<int> bytes = document.saveSync();
 
-    saveAndLaunchFile(bytes, 'Test: $textTestKit.pdf');
+    saveAndLaunchFile(bytes, 'Test: $textTestKit result.pdf');
   }
 }

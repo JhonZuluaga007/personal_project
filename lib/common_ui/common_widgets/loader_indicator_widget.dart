@@ -19,7 +19,7 @@ class LoaderIndicatorWidget extends StatelessWidget {
                 top: 40,
               ),
               child: Image.asset(
-                'assets/icons/idxLogo.png',
+                'assets/icons/tellMe.png',
               ),
             ),
           ),

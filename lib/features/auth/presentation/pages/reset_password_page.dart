@@ -59,7 +59,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
         ),
       ),
       children: [
-        Center(child: Image.asset('assets/icons/idxLogo.png')),
+        Center(child: Image.asset('assets/icons/tellMe.png')),
         SizedBox(height: height * 0.06),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
