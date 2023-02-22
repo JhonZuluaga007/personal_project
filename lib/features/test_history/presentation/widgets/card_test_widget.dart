@@ -76,9 +76,8 @@ class CardTestWidget extends StatelessWidget {
     //Create a PDF document.
     final PdfDocument document = PdfDocument();
     //Add page to the PDF
-    final PdfPage page = document.pages.add();
+    // final PdfPage page = document.pages.add();
     //Get page client size
-    final Size pageSize = page.getClientSize();
     final PdfPageTemplateElement headerTemplate =
         PdfPageTemplateElement(const Rect.fromLTWH(0, 0, 515, 50));
 //Draw text in the header.
@@ -90,12 +89,11 @@ class CardTestWidget extends StatelessWidget {
     final PdfPageTemplateElement footerTemplate =
         PdfPageTemplateElement(const Rect.fromLTWH(0, 0, 515, 50));
     String text =
-        'HELPFUL INFORMATION FOR THE PARTICIPANT The US Centers for Disease Control and Prevention (CDC) has provided useful information on how to care for yourself at home and how others in your household may protect themselves, the cDC has also provided infornsation on when to seek medical attention. Key points are outlined below for your reference, and you can find more information at ntps://www.ede gov/coronavirus /2010-ncov The CDC recommends that individuals experiencing the following symptoms get medical attention immediately: . Trouble breathing - Persistent pain or pressure in the chest • New confusion • Inability to stay awake or wake after sleeping - Bluish lips or face As the CDC instructs, before seeking medical care at an office, clinic, or hospital, please alert healthcare providers to the results of this test. However, do not delay seeking care if you are experiencing a medical emergency. CDC: FOR PEOPLE WHO ARE SICK . The CDC recommends that if you are or might be sick with COVID-19 stay home except to get medical care, and avaid using public transportation if you must leave your home, even if you have no symptoms, you can pass the infection on to others. - Separate yoursell from other people in your home as much as possible * Wear a face mask over your nose and mouth if you are around other people, even at home * Cover your coughs and sneezes with a tissue. Dispose of the tissue in o lined trash can. clean your hands often with soap and water for at least 20 seconds, and avoid sharing household items (for example, utensils, towels glasses) as much as possible. *Clean and disinfect all frequently touched surfaces in your home often. if you are able, clean your bathroom and bedroom yourself and let others clean common areas. Please work with your provider to determine appropriate next steps, including when to and self-isolation. ';
+        '${authBloc.state.name} ${authBloc.state.lastname} \nHELPFUL INFORMATION FOR THE PARTICIPANT The US Centers for Disease Control and Prevention (CDC) has provided useful information on how to care for yourself at home and how others in your household may protect themselves, the cDC has also provided infornsation on when to seek medical attention. Key points are outlined below for your reference, and you can find more information at ntps://www.ede gov/coronavirus /2010-ncov The CDC recommends that individuals experiencing the following symptoms get medical attention immediately: . Trouble breathing - Persistent pain or pressure in the chest • New confusion • Inability to stay awake or wake after sleeping - Bluish lips or face As the CDC instructs, before seeking medical care at an office, clinic, or hospital, please alert healthcare providers to the results of this test. However, do not delay seeking care if you are experiencing a medical emergency. CDC: FOR PEOPLE WHO ARE SICK . The CDC recommends that if you are or might be sick with COVID-19 stay home except to get medical care, and avaid using public transportation if you must leave your home, even if you have no symptoms, you can pass the infection on to others. - Separate yoursell from other people in your home as much as possible * Wear a face mask over your nose and mouth if you are around other people, even at home * Cover your coughs and sneezes with a tissue. Dispose of the tissue in o lined trash can. clean your hands often with soap and water for at least 20 seconds, and avoid sharing household items (for example, utensils, towels glasses) as much as possible. *Clean and disinfect all frequently touched surfaces in your home often. if you are able, clean your bathroom and bedroom yourself and let others clean common areas. Please work with your provider to determine appropriate next steps, including when to and self-isolation. ';
     document.pages.add().graphics.drawString(
         text, PdfStandardFont(PdfFontFamily.helvetica, 14),
         brush: PdfSolidBrush(PdfColor(0, 0, 0)),
-        bounds: const Rect.fromLTWH(0, 0, 500, 500)
-        );
+        bounds: const Rect.fromLTWH(0, 0, 500, 500));
 //Draw text in the footer.
 
     footerTemplate.graphics.drawString(
@@ -105,13 +103,11 @@ class CardTestWidget extends StatelessWidget {
     document.template.bottom = footerTemplate;
     document.template.top = headerTemplate;
 
-    document.pages.add().graphics.drawString(
-        '${authBloc.state.name} ${authBloc.state.lastname} ',
-        PdfStandardFont(PdfFontFamily.helvetica, 12),
-        brush: PdfSolidBrush(PdfColor(0, 0, 0)),
-        bounds: const Rect.fromLTWH(0, 0, 150, 20));
-
-
+    // document.pages.add().graphics.drawString(
+    //     '${authBloc.state.name} ${authBloc.state.lastname} ',
+    //     PdfStandardFont(PdfFontFamily.helvetica, 12),
+    //     brush: PdfSolidBrush(PdfColor(0, 0, 0)),
+    //     bounds: const Rect.fromLTWH(0, 0, 150, 20));
 
     List<int> bytes = document.saveSync();
 
