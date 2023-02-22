@@ -75,7 +75,7 @@ class CardTestWidget extends StatelessWidget {
   Future<void> _createPDF(AuthBloc authBloc, String textTestKit) async {
     //Create a PDF document.
     final PdfDocument document = PdfDocument();
-    final PdfPage page = document.pages[0];
+    final PdfPage page = document.pages.add();
     //Add page to the PDF
     final PdfGraphics graphics = page.graphics;
     final Size pageSize = page.size;
@@ -93,15 +93,16 @@ class CardTestWidget extends StatelessWidget {
     graphics.drawRectangle(
         pen: pen,
         brush: brush,
-        bounds: Rect.fromLTWH(pageSize.width - 150, 50, 100, 50));
+        bounds: Rect.fromLTWH(pageSize.width - 400, 50, 700, 50));
     final PdfBrush textBrush = PdfSolidBrush(PdfColor(255, 255, 255));
+    //TODO GET THE ACTUAL STATUS FROM THE TEST
     final PdfFont font = PdfStandardFont(PdfFontFamily.helvetica, 14);
     graphics.drawString('Ejemplo de texto', font,
         brush: textBrush,
         bounds: Rect.fromLTWH(pageSize.width - 140, 60, 80, 30),
         format: PdfStringFormat(
             lineAlignment: PdfVerticalAlignment.middle,
-            alignment: PdfTextAlignment.center));
+            alignment: PdfTextAlignment.left));
 //Add the header element to the document.
     final PdfPageTemplateElement footerTemplate =
         PdfPageTemplateElement(const Rect.fromLTWH(0, 0, 515, 50));
