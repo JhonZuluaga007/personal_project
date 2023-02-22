@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:personal_project/features/test_history/presentation/widgets/open_file_widget.dart';
 import 'package:syncfusion_flutter_pdf/pdf.dart';
 
 import '../../../../config/theme/theme.dart';
 import '../../../../common_ui/common_widgets/buttons/button_widget.dart';
+import '../../../auth/bloc/auth_bloc.dart';
 
 class CardTestWidget extends StatelessWidget {
   const CardTestWidget({
@@ -20,7 +22,8 @@ class CardTestWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final wColor = ThemesIdx20();
-
+    final authBloc = BlocProvider.of<AuthBloc>(context);
+    final stateUserId = BlocProvider.of<AuthBloc>(context).state;
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
     return Container(
@@ -48,7 +51,7 @@ class CardTestWidget extends StatelessWidget {
                     icon: Icons.download,
                     buttonString: 'history_test_result_text_download',
                     onPressed: () {
-                      _createPDF();
+                      _createPDF(authBloc);
                     }),
                 ButtonWidget(
                     buttonColor: wColor.mapColors['S800'],
@@ -69,14 +72,33 @@ class CardTestWidget extends StatelessWidget {
         ));
   }
 
-  Future<void> _createPDF() async {
+  Future<void> _createPDF(AuthBloc authBloc) async {
     PdfDocument document = PdfDocument();
-    document.pages.add();
-    List<int> bytes = document.saveSync();
+    final PdfPageTemplateElement headerTemplate =
+        PdfPageTemplateElement(const Rect.fromLTWH(0, 0, 515, 50));
+//Draw text in the header.
+    headerTemplate.graphics.drawString(
+        '${authBloc.state.name} ${authBloc.state.lastname} ',
+        PdfStandardFont(PdfFontFamily.helvetica, 12),
+        bounds: const Rect.fromLTWH(0, 15, 200, 20));
+//Add the header element to the document.
+    final PdfPageTemplateElement footerTemplate =
+        PdfPageTemplateElement(const Rect.fromLTWH(0, 0, 515, 50));
+//Draw text in the footer.
+    footerTemplate.graphics.drawString(
+        'This is page footer', PdfStandardFont(PdfFontFamily.helvetica, 12),
+        bounds: const Rect.fromLTWH(0, 15, 200, 20));
+//Set footer in the document.
+    document.template.bottom = footerTemplate;
+    document.template.top = headerTemplate;
+
     document.pages.add().graphics.drawString(
-          'Hello World!',
-          PdfStandardFont(PdfFontFamily.helvetica, 12),
-        );
+        'Hello World!', PdfStandardFont(PdfFontFamily.helvetica, 12),
+        brush: PdfSolidBrush(PdfColor(0, 0, 0)),
+        bounds: const Rect.fromLTWH(0, 0, 150, 20));
+
+    List<int> bytes = document.saveSync();
+
     saveAndLaunchFile(bytes, 'Output.pdf');
   }
 }
