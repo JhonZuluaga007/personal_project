@@ -96,7 +96,7 @@ class CardTestWidget extends StatelessWidget {
     headerTemplate.graphics.drawString(
         'Summary of Test Results', PdfStandardFont(PdfFontFamily.helvetica, 24),
         format: PdfStringFormat(lineAlignment: PdfVerticalAlignment.middle),
-        bounds: const Rect.fromLTWH(0, 15, 200, 20));
+        bounds: const Rect.fromLTWH(0, 40, 200, 20));
 
     final PdfPen pen = PdfPen(PdfColor(255, 0, 0), width: 2);
     final PdfBrush brush = PdfSolidBrush(PdfColor(255, 0, 0));
