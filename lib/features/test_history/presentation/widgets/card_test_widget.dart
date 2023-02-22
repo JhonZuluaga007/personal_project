@@ -113,7 +113,7 @@ class CardTestWidget extends StatelessWidget {
     headerTemplate.graphics.drawString(
         'Summary of Test Results', PdfStandardFont(PdfFontFamily.helvetica, 20),
         format: PdfStringFormat(lineAlignment: PdfVerticalAlignment.middle),
-        bounds: const Rect.fromLTWH(180, 45, 300, 50));
+        bounds: const Rect.fromLTWH(150, 45, 300, 50));
 
     final PdfPen pen = statusTest == 'Positive'
         ? PdfPen(PdfColor(135, 18, 0), width: 2)
@@ -124,7 +124,7 @@ class CardTestWidget extends StatelessWidget {
     graphics.drawRectangle(
         pen: pen,
         brush: brush,
-        bounds: Rect.fromLTWH(pageSize.width - 400, 120, 700, 50));
+        bounds: Rect.fromLTWH(pageSize.width - 370, 120, 340, 40));
     final PdfBrush textBrush = PdfSolidBrush(PdfColor(255, 255, 255));
     //TODO GET THE ACTUAL STATUS FROM THE TEST
     final PdfFont font = PdfStandardFont(PdfFontFamily.helvetica, 14);
@@ -155,12 +155,12 @@ class CardTestWidget extends StatelessWidget {
         ? graphics.drawString(
             positiveContentText, PdfStandardFont(PdfFontFamily.helvetica, 12),
             brush: PdfSolidBrush(PdfColor(0, 0, 0)),
-            bounds: Rect.fromLTWH(0, 135, 500, pageSize.height))
+            bounds: Rect.fromLTWH(0, 170, 500, pageSize.height))
         //Negative content Text
         : graphics.drawString(
             negativeContentText, PdfStandardFont(PdfFontFamily.helvetica, 12),
             brush: PdfSolidBrush(PdfColor(0, 0, 0)),
-            bounds: Rect.fromLTWH(0, 135, 500, pageSize.height));
+            bounds: Rect.fromLTWH(0, 170, 500, pageSize.height));
 //END CONTENT TEXT
 //Draw text in the footer.
 
