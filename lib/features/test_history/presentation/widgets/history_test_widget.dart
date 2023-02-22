@@ -30,9 +30,13 @@ class HistoryTestWidget extends StatelessWidget {
               itemBuilder: (_, index) {
                 return CardTestWidget(
                   onPressed: () {
+                  print(testList[index]);
+
                     popUpWidget(context, testList[index]);
                   },
                   textTestKit: testList[index].code!,
+                  statusTest: testList[index].result![0]!.result!,
+                  sampleDate: testList[index].sampleDate!.date,
                 );
               },
               itemCount: testList.length,
