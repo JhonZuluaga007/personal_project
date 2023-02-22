@@ -47,7 +47,7 @@ class CardTestWidget extends StatelessWidget {
                     textColor: wColor.mapColors['IDWhite'],
                     textStyle: const TextStyle(fontSize: 12),
                     iconSize: 14,
-                    width: width * 0.265,
+                    width: width * 0.295,
                     icon: Icons.download,
                     buttonString: 'history_test_result_text_download',
                     onPressed: () {
@@ -59,7 +59,7 @@ class CardTestWidget extends StatelessWidget {
                     textColor: wColor.mapColors['IDWhite'],
                     textStyle: const TextStyle(fontSize: 12),
                     iconSize: 14,
-                    width: width * 0.27,
+                    width: width * 0.295,
                     icon: Icons.remove_red_eye,
                     buttonString: 'history_button_icon',
                     onPressed: onPressed)
