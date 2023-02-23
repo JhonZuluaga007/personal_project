@@ -145,6 +145,7 @@ class _PcrRegisterPageState extends State<PcrRegisterPage> {
                     state.success == true) {
                   doneSendInfo(
                     context: context,
+                    requiresTranslateText: true,
                     mainIcon: Icon(
                       Icons.check,
                       size: height * 0.15,

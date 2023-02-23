@@ -25,7 +25,7 @@ class UploadFinalResultPage extends StatefulWidget {
 }
 
 class _UploadFinalResultPageState extends State<UploadFinalResultPage> {
-  String _covidQuestionThreeValue = "";
+  String _covidQuestionThreeValue = "Select option";
 
   @override
   Widget build(BuildContext context) {
@@ -81,21 +81,20 @@ class _UploadFinalResultPageState extends State<UploadFinalResultPage> {
                 generalColor: wColor.mapColors["S700"]!,
                 height: height * 0.08,
                 listItems: const [
-                  "",
+                  "Select option",
                   "Yes",
                   "No",
                 ],
-                selectedValue:
-                    stateAntigen.question15!.value != _covidQuestionThreeValue
-                        ? stateAntigen.question15!.value!
-                        : _covidQuestionThreeValue,
+                selectedValue: _covidQuestionThreeValue,
                 width: width,
-                onChanged: (covidQuestionTwo) {
-                  antigenBloc.add(
-                      AntigenQuestion15Event(question15: covidQuestionTwo!));
-                  setState(() {
-                    _covidQuestionThreeValue = covidQuestionTwo;
-                  });
+                onChanged: (covidQuestionThree) {
+                  if (covidQuestionThree != "Select option") {
+                    antigenBloc.add(AntigenQuestion15Event(
+                        question15: covidQuestionThree!));
+                    setState(() {
+                      _covidQuestionThreeValue = covidQuestionThree;
+                    });
+                  }
                 },
               ),
             ],

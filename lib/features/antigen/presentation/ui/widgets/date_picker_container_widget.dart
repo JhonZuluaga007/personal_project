@@ -62,7 +62,7 @@ class _DatePickerContainerWidgetState extends State<DatePickerContainerWidget> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    "${widget.date.day}/${widget.date.month}/${widget.date.year}",
+                    "${widget.date.day}-${widget.date.month}-${widget.date.year}",
                     style: TextStyle(
                         color: wColor.mapColors["S600"],
                         fontWeight: FontWeight.w500,

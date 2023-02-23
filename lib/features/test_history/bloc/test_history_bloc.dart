@@ -10,7 +10,7 @@ part 'test_history_event.dart';
 part 'test_history_state.dart';
 
 class TestHistoryBloc extends Bloc<TestHistoryEvent, TestHistoryState> {
-  TestHistoryBloc() : super(const TestHistoryState()) {
+  TestHistoryBloc() : super(TestHistoryState()) {
     final getTestHistoryUseCase = Injector.resolve<TestHistoryUseCases>();
 
     on<GetHistoryTestEvent>((event, emit) async {
@@ -22,15 +22,19 @@ class TestHistoryBloc extends Bloc<TestHistoryEvent, TestHistoryState> {
                 formStatus:
                     SubmissionFailed(exception: Exception(error.message)),
               )), (testHistory) {
+        //TODO: VERIFICATION DATE ALLTESTHISTORY
+        final allTestList = testHistory..sort((a, b) => b.sampleDate!.date.compareTo(a.sampleDate!.date));
         final antigenList = testHistory
             .where((antigenTest) => antigenTest.type!.type == 'Antigen')
-            .toList();
+            .toList()
+          ..sort((a, b) => b.sampleDate!.date.compareTo(a.sampleDate!.date));
         final pcrList = testHistory
             .where((pcrTest) => pcrTest.type!.type == 'PCR')
-            .toList();
+            .toList()
+          ..sort((a, b) => b.sampleDate!.date.compareTo(a.sampleDate!.date));
 
         emit(state.copyWith(
-          allTestHistoryList: testHistory,
+          allTestHistoryList: allTestList,
           antigenTestHistoryList: antigenList,
           pcrTestHistoryList: pcrList,
           formStatus: SubmissionSuccess(),

@@ -61,7 +61,7 @@ class _FormFieldDropdownWidgetState extends State<FormFieldDropdownWidget> {
                     borderRadius: BorderRadius.circular(5.0),
                   ),
                 ),
-                isEmpty: widget.selectedValue == '',
+                isEmpty: widget.selectedValue == "Select option",
                 child: DropdownButtonHideUnderline(
                   child: DropdownButton<String>(
                     icon: Icon(

@@ -104,20 +104,29 @@ class _HistoryPageState extends State<HistoryPage> {
                       SizedBox(
                         width: size.width * 0.025,
                       ),
-                      const Icon(Icons.check),
-                      const TextWidget(
-                        text: 'Positive',
+                      state.allTestHistoryList.last.result!.isNotEmpty
+                          ? state.allTestHistoryList.last.result!.first!
+                                      .result ==
+                                  "Negative"
+                              ? const Icon(Icons.cancel)
+                              : const Icon(Icons.check_circle)
+                          : const SizedBox(),
+                      TextWidget(
+                        text: state.allTestHistoryList.last.result!.isNotEmpty
+                            ? state
+                                .allTestHistoryList.last.result!.first!.result!
+                            : "In progress",
                         requiresTranslate: false,
-                        style: TextStyle(
+                        style: const TextStyle(
                             fontSize: 14, fontWeight: FontWeight.w400),
                       ),
                       SizedBox(
                         width: size.width * 0.025,
                       ),
-                      const TextWidget(
-                        text: '1/11/2023',
+                      TextWidget(
+                        text:"${state.allTestHistoryList.last.created!.date.day}/${state.allTestHistoryList.last.created!.date.month}/${state.allTestHistoryList.last.created!.date.year}",
                         requiresTranslate: false,
-                        style: TextStyle(
+                        style: const TextStyle(
                             fontSize: 14, fontWeight: FontWeight.w400),
                       ),
                     ],
@@ -143,7 +152,7 @@ class _HistoryPageState extends State<HistoryPage> {
                                   width: allTestHistory == true
                                       ? selectedBorder
                                       : unselectedBorder),
-                              borderRadius: BorderRadius.circular(5),
+                              borderRadius: BorderRadius.circular(8),
                               color: Colors.white),
                           height: size.height * 0.05,
                           width: size.width * 0.27,
@@ -165,7 +174,7 @@ class _HistoryPageState extends State<HistoryPage> {
                                   width: antigenTestHistoy == true
                                       ? selectedBorder
                                       : unselectedBorder),
-                              borderRadius: BorderRadius.circular(5),
+                              borderRadius: BorderRadius.circular(8),
                               color: Colors.white),
                           height: size.height * 0.05,
                           width: size.width * 0.27,
@@ -187,7 +196,7 @@ class _HistoryPageState extends State<HistoryPage> {
                                   width: pcrTestHistory == true
                                       ? selectedBorder
                                       : unselectedBorder),
-                              borderRadius: BorderRadius.circular(5),
+                              borderRadius: BorderRadius.circular(8),
                               color: Colors.white),
                           height: size.height * 0.05,
                           width: size.width * 0.27,
@@ -197,31 +206,37 @@ class _HistoryPageState extends State<HistoryPage> {
                     ],
                   ),
                   SizedBox(height: size.height * 0.030),
-                  state.formStatus is FormSubmitting
-                      ? const Padding(
-                          padding: EdgeInsets.only(top: 32.0),
-                          child: Center(child: CircularProgressIndicator()),
-                        )
-                      : SizedBox(
-                          height: size.height * 0.48,
-                          child: PageView(
-                              scrollDirection: Axis.vertical,
-                              children: [
-                                Stack(children: [
-                                  HistoryTestWidget(
-                                    isSelect: allTestHistory,
-                                    testList: state.allTestHistoryList,
-                                  ),
-                                  HistoryTestWidget(
-                                    isSelect: antigenTestHistoy,
-                                    testList: state.antigenTestHistoryList,
-                                  ),
-                                  HistoryTestWidget(
-                                    isSelect: pcrTestHistory,
-                                    testList: state.pcrTestHistoryList,
-                                  ),
-                                ]),
-                              ])),
+                  state.allTestHistoryList.isEmpty ||
+                          state.pcrTestHistoryList.isEmpty ||
+                          state.antigenTestHistoryList.isEmpty
+                      ? SizedBox(
+                          child:
+                              Text("there is no test you have at the moment"))
+                      : state.formStatus is FormSubmitting
+                          ? const Padding(
+                              padding: EdgeInsets.only(top: 32.0),
+                              child: Center(child: CircularProgressIndicator()),
+                            )
+                          : SizedBox(
+                              height: size.height * 0.48,
+                              child: PageView(
+                                  scrollDirection: Axis.vertical,
+                                  children: [
+                                    Stack(children: [
+                                      HistoryTestWidget(
+                                        isSelect: allTestHistory,
+                                        testList: state.allTestHistoryList,
+                                      ),
+                                      HistoryTestWidget(
+                                        isSelect: antigenTestHistoy,
+                                        testList: state.antigenTestHistoryList,
+                                      ),
+                                      HistoryTestWidget(
+                                        isSelect: pcrTestHistory,
+                                        testList: state.pcrTestHistoryList,
+                                      ),
+                                    ]),
+                                  ])),
                 ],
               );
             },

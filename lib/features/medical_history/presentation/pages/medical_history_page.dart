@@ -97,6 +97,7 @@ class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
 
             if (state.infoUploaded is SubmissionSuccess) {
               doneSendInfo(
+                requiresTranslateText: true,
                 context: context,
                 mainIcon: Icon(
                   Icons.check,

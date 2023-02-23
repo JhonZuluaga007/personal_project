@@ -15,7 +15,7 @@ Future popUpWidget(BuildContext context, TestHistoryEntity testView) {
 
   final stateUserId = BlocProvider.of<AuthBloc>(context).state;
 
-  final dateCreate = testView.created!.date;
+  final dateCreate = testView.sampleDate!.date;
 
   return showDialog(
       context: context,
@@ -117,7 +117,7 @@ Future popUpWidget(BuildContext context, TestHistoryEntity testView) {
                             SizedBox(height: height * 0.011),
                             TextWidget(
                               text:
-                                  "${dateCreate.day} / ${dateCreate.month} / ${dateCreate.year}",
+                                  "${dateCreate.month} / ${dateCreate.day}  / ${dateCreate.year}",
                               textAlign: TextAlign.center,
                               requiresTranslate: false,
                               style: TextStyle(
