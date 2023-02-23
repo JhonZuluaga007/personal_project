@@ -58,6 +58,10 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+flutter_icons:dependencies:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/icons/tellMe.png"
   kiwi_generator: ^4.0.3
   build_runner: ^2.3.2
 
