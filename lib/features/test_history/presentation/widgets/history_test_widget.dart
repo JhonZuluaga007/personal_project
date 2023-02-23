@@ -28,6 +28,7 @@ class HistoryTestWidget extends StatelessWidget {
                 return SizedBox(height: height * 0.018);
               },
               itemBuilder: (_, index) {
+                //TODO check if is PCR dont send
                 return CardTestWidget(
                   onPressed: () {
                     String positiveContentText =
@@ -38,7 +39,8 @@ class HistoryTestWidget extends StatelessWidget {
                     popUpWidget(context, testList[index]);
                   },
                   textTestKit: testList[index].code!,
-                  statusTest: testList[index].result![0]!.result!,
+                  testHistoryEntity: testList[index],
+                  //statusTest: testList[index].result![0]!.result!,
                   sampleDate: testList[index].sampleDate!.date,
                 );
               },

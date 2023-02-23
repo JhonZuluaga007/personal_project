@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
+import 'package:personal_project/features/test_history/domain/entities/test_history_entity.dart';
 import 'package:personal_project/features/test_history/presentation/widgets/open_file_widget.dart';
 import 'package:syncfusion_flutter_pdf/pdf.dart';
 
@@ -22,6 +23,7 @@ class CardTestWidget extends StatelessWidget {
     this.statusTest,
     this.sampleDate,
     this.styleText,
+    this.testHistoryEntity
   }) : super(key: key);
 
   final dynamic Function() onPressed;
@@ -29,6 +31,7 @@ class CardTestWidget extends StatelessWidget {
   final String? statusTest;
   final DateTime? sampleDate;
   final TextStyle? styleText;
+  final TestHistoryEntity? testHistoryEntity;
 
   @override
   Widget build(BuildContext context) {
@@ -37,6 +40,7 @@ class CardTestWidget extends StatelessWidget {
     final stateUserId = BlocProvider.of<AuthBloc>(context).state;
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
+    final String testStatus = testHistoryEntity!.result![0]!.result == '' ? 'Processing' : testHistoryEntity!.result![0]!.result!;
 
     return Container(
         height: height * 0.075,
@@ -64,7 +68,7 @@ class CardTestWidget extends StatelessWidget {
                     buttonString: 'history_test_result_text_download',
                     onPressed: () {
                       _createPDF(
-                          authBloc, textTestKit, statusTest!, sampleDate!);
+                          authBloc, textTestKit, testStatus, sampleDate!);
                     }),
                 ButtonWidget(
                     buttonColor: wColor.mapColors['S800'],

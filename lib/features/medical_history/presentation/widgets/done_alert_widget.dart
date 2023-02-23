@@ -13,7 +13,7 @@ Future<dynamic> doneSendInfo({
   required String infoText,
   required String? mainButton,
   required VoidCallback mainButtonFunction,
-  bool? requiresTranslateText = false,
+  bool? requiresTranslateText,
 }) {
   final height = MediaQuery.of(context).size.height;
   final width = MediaQuery.of(context).size.width;

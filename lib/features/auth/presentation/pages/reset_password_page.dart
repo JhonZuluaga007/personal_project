@@ -239,14 +239,11 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                       color: wColor.mapColors['C00'],
                     ),
                     titleText: 'alert_text_one',
-                    paddingHeight: height * 0.25,
+                    paddingHeight: height * 0.23,
                     infoText: 'alert_text_password_updated',
                     mainButton: 'alert_text_three',
                     mainButtonFunction: () {
                       // Navigator.pushReplacementNamed(context, 'login');
-
-                      authBloc.add(LogOut());
-
                       Navigator.pop(context);
                     });
               } else if (state.formChangePasswordStatus is SubmissionFailed) {
