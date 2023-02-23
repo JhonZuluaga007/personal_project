@@ -103,15 +103,19 @@ class _MultiSelectedWidgetState extends State<MultiSelectedWidget> {
           return InputChip(
             label: TextWidget(
                 text: listChip[index],
+                style: TextStyle(color: wColor.mapColors["P01"]),
                 requiresTranslate: widget.requiredTranslate),
             onDeleted: () {
               setState(() {
                 listChip.removeAt(index);
               });
             },
-            backgroundColor: Colors.green,
-            selected: true,
-            selectedColor: wColor.mapColors["T300"],
+            deleteIconColor: wColor.mapColors["P01"],
+            deleteIcon: const Icon(Icons.clear, size: 15),
+            backgroundColor: wColor.mapColors["Pink"],
+            selectedColor: wColor.mapColors["Pink"],
+            shape: StadiumBorder(
+                side: BorderSide(color: wColor.mapColors["P01"]!, width: 3)),
           );
         }));
   }

@@ -140,6 +140,7 @@
     "start_counter_text_1": "minutes left",
     "start_counter_text_button_start_timer": "Start timer",
     "start_counter_text_button_pause": "Pause",
+    "start_counter_text_button_continue": "Continue",
     "start_counter_text_button_reset": "Reset",
     "start_counter_text_button_skip_timer": "Skip timer",
     "start_counter_text_finish_linear": "Start the counter (make sure you finish it)",
