@@ -60,6 +60,7 @@ class _DropDownQuestionsWidgetState extends State<DropDownQuestionsWidget> {
             width: width * 0.9,
             height: height * 0.07,
             child: DropdownButtonFormField(
+              isExpanded: true,
               decoration: InputDecoration(
                   enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(4),
