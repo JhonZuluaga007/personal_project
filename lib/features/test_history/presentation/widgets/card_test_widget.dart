@@ -136,7 +136,7 @@ class CardTestWidget extends StatelessWidget {
             alignment: PdfTextAlignment.left));
 
     graphics.drawString(
-        initialText, PdfStandardFont(PdfFontFamily.helvetica, 14),
+        initialText, PdfStandardFont(PdfFontFamily.helvetica, 12),
         brush: PdfSolidBrush(PdfColor(0, 0, 0)),
         bounds: Rect.fromLTWH(0, 90, 700, pageSize.height));
 
@@ -174,12 +174,12 @@ class CardTestWidget extends StatelessWidget {
           ? graphics.drawString(
               positiveContentText, PdfStandardFont(PdfFontFamily.helvetica, 12),
               brush: colorBrush,
-              bounds: Rect.fromLTWH(0, 135, 500, pageSize.height))
+              bounds: Rect.fromLTWH(0, 165, 500, pageSize.height))
           //Negative content Text
           : graphics.drawString(
               negativeContentText, PdfStandardFont(PdfFontFamily.helvetica, 12),
               brush: PdfSolidBrush(PdfColor(0, 0, 0)),
-              bounds: Rect.fromLTWH(0, 135, 500, pageSize.height));
+              bounds: Rect.fromLTWH(0, 165, 500, pageSize.height));
     }
 //END CONTENT TEXT
 //Draw text in the footer.
@@ -190,7 +190,7 @@ class CardTestWidget extends StatelessWidget {
         format: PdfStringFormat(
             lineAlignment: PdfVerticalAlignment.middle,
             alignment: PdfTextAlignment.center),
-        bounds: const Rect.fromLTWH(180, 0, 200, 20));
+        bounds: const Rect.fromLTWH(100, 0, 200, 20));
 //Set footer in the document.
     document.template.bottom = footerTemplate;
     document.template.top = headerTemplate;
