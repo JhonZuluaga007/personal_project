@@ -157,11 +157,11 @@ class CardTestWidget extends StatelessWidget {
     final List<String> positiveColoredWords = positiveContentText.split(' ');
 
     for (String word in positiveColoredWords) {
-      final PdfFont biggerFont = word == 'INFORMATION'
+      final PdfFont biggerFont = word == 'HELPFUL'
           ? PdfStandardFont(PdfFontFamily.timesRoman, 20)
           : PdfStandardFont(PdfFontFamily.helvetica, 12);
       const String coloredWord = 'https://www.cdc.gov/coronavirus/2019-ncov.';
-      final PdfBrush colorBrush = word == coloredWord
+      final PdfBrush colorBrush = word == ' https://www.cdc.gov/coronavirus/2019-ncov.'
           ? PdfSolidBrush(PdfColor(244, 145, 163))
           : PdfSolidBrush(PdfColor(0, 0, 0));
       String negativeContentText =
