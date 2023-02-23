@@ -24,7 +24,7 @@ class ContainerStartCounterWidget extends StatelessWidget {
     final wColor = ThemesIdx20();
 
     return Container(
-      height: height * 0.192,
+      height: height * 0.23,
       width: width * double.infinity,
       decoration: BoxDecoration(
         color: wColor.mapColors["P01"],
@@ -33,13 +33,16 @@ class ContainerStartCounterWidget extends StatelessWidget {
         SizedBox(height: height * 0.020),
         Text("Step $numberPageText of 6"),
         SizedBox(height: height * 0.0064),
-        TextWidget(
-          text: textContainer,
-          style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.w400,
-              letterSpacing: -0.2,
-              color: wColor.mapColors["S600"]),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal:8.0),
+          child: TextWidget(
+            text: textContainer,
+            style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.w400,
+                letterSpacing: -0.2,
+                color: wColor.mapColors["S600"]),
+          ),
         ),
         SizedBox(height: height * 0.0075),
         Padding(

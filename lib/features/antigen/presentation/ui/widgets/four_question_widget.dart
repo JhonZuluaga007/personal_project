@@ -21,6 +21,7 @@ class _FourQuestionWidgetState extends State<FourQuestionWidget> {
     "covid_before_two",
     "covid_before_three",
     "covid_before_four",
+    "covid_before_five",
   ];
 
   final List<String> vacinneChipList = [];
