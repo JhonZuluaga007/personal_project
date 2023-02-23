@@ -128,6 +128,7 @@ Widget buttonUpload(BuildContext context) {
           Navigator.pushReplacementNamed(context, 'navBar');
         }
         doneSendInfo(
+          requiresTranslateText: false,
           context: context,
           mainIcon: Icon(
             Icons.check,

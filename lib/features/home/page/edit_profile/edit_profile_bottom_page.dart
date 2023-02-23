@@ -80,31 +80,46 @@ class _EditUserFromBottomPageState extends State<EditUserFromBottomPage> {
                   children: [
                     Stack(alignment: AlignmentDirectional.center, children: [
                       state.image != null
-                          ? Container(
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(12)),
-                              child: CircleAvatar(
-                                backgroundColor: wColor.mapColors["P01"],
-                                backgroundImage: NetworkImage(state.image!),
-                                radius: 110,
-                                onBackgroundImageError:
-                                    (exception, stackTrace) {
-                                  Container(
-                                    color: Colors.white,
-                                    alignment: Alignment.center,
-                                    child: Column(
-                                      children: [
-                                        Image.asset(
-                                            'assets/images/no_image.png'),
-                                        const TextWidget(
-                                          text: 'error_image',
-                                          style: TextStyle(fontSize: 20),
-                                        ),
-                                      ],
-                                    ),
-                                  );
+                          ? CircleAvatar(
+                              radius: 100,
+                              backgroundColor: wColor.mapColors["P01"],
+                              child: FadeInImage(
+                                width: width * 0.79,
+                                height: height * 0.30,
+                                placeholder: AssetImage(imagePath),
+                                image: NetworkImage(state.image!),
+                                imageErrorBuilder: (BuildContext context,
+                                    Object exception, StackTrace? stackTrace) {
+                                  return Image.asset(imagePath);
                                 },
-                              ))
+                                fit: BoxFit.cover,
+                              ),
+                            )
+                          // Container(
+                          //     decoration: BoxDecoration(
+                          //         borderRadius: BorderRadius.circular(12)),
+                          //     child: CircleAvatar(
+                          //       backgroundColor: wColor.mapColors["P01"],
+                          //       backgroundImage: NetworkImage(state.image!),
+                          //       radius: 110,
+                          //       onBackgroundImageError:
+                          //           (exception, stackTrace) {
+                          //         Container(
+                          //           color: Colors.white,
+                          //           alignment: Alignment.center,
+                          //           child: Column(
+                          //             children: [
+                          //               Image.asset(
+                          //                   'assets/images/no_image.png'),
+                          //               const TextWidget(
+                          //                 text: 'error_image',
+                          //                 style: TextStyle(fontSize: 20),
+                          //               ),
+                          //             ],
+                          //           ),
+                          //         );
+                          //       },
+                          //     ))
                           : Container(
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(12)),
@@ -112,7 +127,7 @@ class _EditUserFromBottomPageState extends State<EditUserFromBottomPage> {
                                 backgroundColor: wColor.mapColors["P01"],
                                 backgroundImage:
                                     Image.file(imageDisplayed!).image,
-                                radius: 110,
+                                radius: 100,
                               ),
                             ),
                       imageDisplayed != null
@@ -127,24 +142,19 @@ class _EditUserFromBottomPageState extends State<EditUserFromBottomPage> {
                               ),
                             )
                           : CircleAvatar(
+                              radius: 100,
                               backgroundColor: wColor.mapColors["P01"],
-                              backgroundImage: Image.network(state.image!).image,
-                              radius: 110,
-                              onBackgroundImageError: (exception, stackTrace) {
-                                Container(
-                                  color: Colors.white,
-                                  alignment: Alignment.center,
-                                  child: Column(
-                                    children: [
-                                      Image.asset('assets/images/no_image.png'),
-                                      const TextWidget(
-                                        text: 'error_image',
-                                        style: TextStyle(fontSize: 20),
-                                      ),
-                                    ],
-                                  ),
-                                );
-                              },
+                              child: FadeInImage(
+                                width: width * 0.79,
+                                height: height * 0.30,
+                                placeholder: AssetImage(imagePath),
+                                image: NetworkImage(state.image!),
+                                imageErrorBuilder: (BuildContext context,
+                                    Object exception, StackTrace? stackTrace) {
+                                  return Image.asset(imagePath);
+                                },
+                                fit: BoxFit.cover,
+                              ),
                             ),
                       imageDisplayed != null
                           ? Positioned(
@@ -170,26 +180,41 @@ class _EditUserFromBottomPageState extends State<EditUserFromBottomPage> {
                                     }),
                                   )))
                           : CircleAvatar(
-                              radius: 110,
+                              radius: 100,
                               backgroundColor: wColor.mapColors["P01"],
-                              backgroundImage:
-                                  Image.network(state.image!).image,
-                              onBackgroundImageError: (exception, stackTrace) {
-                                Container(
-                                  color: Colors.white,
-                                  alignment: Alignment.center,
-                                  child: Column(
-                                    children: [
-                                      Image.asset('assets/images/no_image.png'),
-                                      const TextWidget(
-                                        text: 'error_image',
-                                        style: TextStyle(fontSize: 20),
-                                      ),
-                                    ],
-                                  ),
-                                );
-                              },
+                              child: FadeInImage(
+                                width: width * 0.79,
+                                height: height * 0.30,
+                                placeholder: AssetImage(imagePath),
+                                image: NetworkImage(state.image!),
+                                imageErrorBuilder: (context, Object exception,
+                                    StackTrace? stackTrace) {
+                                  return Image.asset(imagePath);
+                                },
+                                fit: BoxFit.cover,
+                              ),
                             ),
+                      // CircleAvatar(
+                      //     radius: 110,
+                      //     backgroundColor: wColor.mapColors["P01"],
+                      //     backgroundImage:
+                      //         Image.network(state.image!).image,
+                      //     onBackgroundImageError: (exception, stackTrace) {
+                      //       Container(
+                      //         color: Colors.white,
+                      //         alignment: Alignment.center,
+                      //         child: Column(
+                      //           children: [
+                      //             Image.asset('assets/images/no_image.png'),
+                      //             const TextWidget(
+                      //               text: 'error_image',
+                      //               style: TextStyle(fontSize: 20),
+                      //             ),
+                      //           ],
+                      //         ),
+                      //       );
+                      //     },
+                      //   ),
                       imageDisplayed != null
                           ? Positioned(
                               bottom: height * 0.17,
@@ -207,7 +232,7 @@ class _EditUserFromBottomPageState extends State<EditUserFromBottomPage> {
                                 ),
                               ))
                           : Positioned(
-                              bottom: height * 0.18,
+                              bottom: height * 0.16,
                               left: width * 0.34,
                               child: SizedBox(
                                 height: 48,

@@ -326,5 +326,5 @@
     "email_text_invalid": "Email no valido",
 
     "test_history_empty": "En este momento no tienes ninguna prueba en tu historial",
-    "test_history_search_delegate": "No hay resultados de los que buscas"
+    "test_history_search_delegate": "No tienes test disponibles en el momento, por favor registre uno"
 }
