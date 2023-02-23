@@ -26,12 +26,10 @@ class TestHistoryBloc extends Bloc<TestHistoryEvent, TestHistoryState> {
         final allTestList = testHistory..sort((a, b) => b.sampleDate!.date.compareTo(a.sampleDate!.date));
         final antigenList = testHistory
             .where((antigenTest) => antigenTest.type!.type == 'Antigen')
-            .toList()
-          ..sort((a, b) => b.sampleDate!.date.compareTo(a.sampleDate!.date));
+            .toList()..sort((a, b) => b.sampleDate!.date.compareTo(a.sampleDate!.date));
         final pcrList = testHistory
             .where((pcrTest) => pcrTest.type!.type == 'PCR')
-            .toList()
-          ..sort((a, b) => b.sampleDate!.date.compareTo(a.sampleDate!.date));
+            .toList()..sort((a, b) => b.sampleDate!.date.compareTo(a.sampleDate!.date));
 
         emit(state.copyWith(
           allTestHistoryList: allTestList,

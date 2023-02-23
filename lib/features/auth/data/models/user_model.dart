@@ -131,7 +131,7 @@ class User extends UserData {
         acceptsTerms: json["accepts_terms"],
         addresses: Addresses.fromMap(json["addresses"]),
         cellphone: json["cellphone"] ?? '',
-        dateOfBirth: DateOfBirth.fromJson(json["date_of_birth"]),
+        dateOfBirth: DateOfBirth.fromJson(json["date_of_birth"] ?? ""),
         firstLogin: json["first_login"] ?? false,
         // json["date_of_birth"] != null
         //     ? DateOfBirth.fromJson(json["date_of_birth"])

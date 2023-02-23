@@ -125,6 +125,7 @@ class _ResetPasswordPageInfoState extends State<ResetPasswordPageInfo> {
             if (state.formResetPassword is SubmissionSuccess) {
               Navigator.pushNamed(context, 'login');
               doneSendInfo(
+                  requiresTranslateText: true,
                   context: context,
                   mainIcon: Icon(
                     Icons.check,

@@ -232,6 +232,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
             BlocConsumer<AuthBloc, AuthState>(listener: (context, state) {
               if (state.formChangePasswordStatus is SubmissionSuccess) {
                 doneSendInfo(
+                  requiresTranslateText: true,
                     context: context,
                     mainIcon: Icon(
                       Icons.check,
