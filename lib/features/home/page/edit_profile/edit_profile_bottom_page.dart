@@ -230,7 +230,7 @@ class _EditUserFromBottomPageState extends State<EditUserFromBottomPage> {
                     ]),
                     SizedBox(height: height * 0.060),
                     const InfoColumnWidget(),
-                    SizedBox(height: height * 0.070),
+                    SizedBox(height: height * 0.030),
                     TextFieldFormMyUser(
                         textTitle: 'my_user_text_field_hint',
                         iconTextField:

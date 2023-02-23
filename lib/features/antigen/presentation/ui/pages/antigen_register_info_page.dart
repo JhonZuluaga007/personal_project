@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:personal_project/features/antigen/presentation/ui/pages/questions_antigen_page.dart';
 import 'package:scan/scan.dart';
+import 'package:personal_project/features/antigen/presentation/ui/pages/questions_antigen_page.dart';
 
 import '../../bloc/antigen_test_bloc.dart';
 import '../../../../auth/bloc/auth_bloc.dart';
