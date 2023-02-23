@@ -132,27 +132,32 @@ class DrawerWidget extends StatelessWidget {
             //   ),
             // ),
             const Spacer(),
-            InkWell(
-              onTap: () {
-                Navigator.pushReplacementNamed(context, 'login');
-                authBloc.add(LogOut());
+            WillPopScope(
+              onWillPop: () async {
+                return false;
               },
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                child: Row(
-                  children: [
-                    const Icon(
-                      Icons.logout_outlined,
-                      size: 24,
-                    ),
-                    SizedBox(
-                      width: size.width * 0.01,
-                    ),
-                    const TextWidget(
-                      text: 'drawer_item_four',
-                      style: TextStyle(),
-                    ),
-                  ],
+              child: InkWell(
+                onTap: () {
+                  Navigator.pushReplacementNamed(context, 'login');
+                  authBloc.add(LogOut());
+                },
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                  child: Row(
+                    children: [
+                      const Icon(
+                        Icons.logout_outlined,
+                        size: 24,
+                      ),
+                      SizedBox(
+                        width: size.width * 0.01,
+                      ),
+                      const TextWidget(
+                        text: 'drawer_item_four',
+                        style: TextStyle(),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),

@@ -199,6 +199,8 @@
     "history_test_result_title": "Test results",
     "history_test_result_text_one": "Status last test:",
     "history_test_result_text_two": "Show test",
+    "history_test_result_text_download": "Download",
+
     "history_test_result_text_three": "PCR",
     "history_test_result_text_four": "Antigen",
 
@@ -244,6 +246,8 @@
     "covid_before_two": "Yes, 2020",
     "covid_before_three": "Yes, 2021",
     "covid_before_four": "Yes, 2022",
+    "covid_before_five": "Yes, 2023",
+
     
     "pregnant_question" : "Are you currently pregnant",
     "pregnant_question_answer_one" : "Pregnant",
