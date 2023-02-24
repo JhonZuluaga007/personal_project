@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'package:personal_project/config/helpers/models/server_validate_data.dart';
 
@@ -27,25 +28,24 @@ class AntigenDataSource {
   }
 
   Future<ServerValidate> registerTest(
-    String code,
-    QuestionTypeOneEntity question1,
-    QuestionTypeTwoEntity question2,
-    QuestionTypeOneEntity question3,
-    QuestionTypeOneEntity question4,
-    QuestionTypeOneEntity question5,
-    QuestionTypeOneEntity question6,
-    QuestionTypeOneEntity question7,
-    QuestionTypeOneEntity question8,
-    QuestionTypeOneEntity question9,
-    QuestionTypeTwoEntity question10,
-    QuestionTypeTwoEntity question11,
-    QuestionTypeTwoEntity question12,
-    QuestionTypeOneEntity question13,
-    QuestionTypeOneEntity question14,
-    QuestionTypeOneEntity question15,
-    String? stepHistory,
-    // File files //TODO: Agregar la imagen of the test
-  ) async {
+      String code,
+      QuestionTypeOneEntity question1,
+      QuestionTypeTwoEntity question2,
+      QuestionTypeOneEntity question3,
+      QuestionTypeOneEntity question4,
+      QuestionTypeOneEntity question5,
+      QuestionTypeOneEntity question6,
+      QuestionTypeOneEntity question7,
+      QuestionTypeOneEntity question8,
+      QuestionTypeOneEntity question9,
+      QuestionTypeTwoEntity question10,
+      QuestionTypeTwoEntity question11,
+      QuestionTypeTwoEntity question12,
+      QuestionTypeOneEntity question13,
+      QuestionTypeOneEntity question14,
+      QuestionTypeOneEntity question15,
+      String? stepHistory,
+      File files) async {
     var request =
         http.MultipartRequest('POST', Uri.parse(Endpoints.registerTest));
     request.fields.addAll({
@@ -67,6 +67,9 @@ class AntigenDataSource {
       "question15": question15.toJson(),
       "step_history": "",
     });
+
+    var file = files.path;
+    request.files.add(await http.MultipartFile.fromPath("file", file));
 
     http.StreamedResponse response = await request.send();
     final responseString = await response.stream.bytesToString();

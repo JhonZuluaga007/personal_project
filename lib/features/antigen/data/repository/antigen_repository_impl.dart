@@ -30,25 +30,24 @@ class AntigenRepositoryImpl implements AntigenRepository {
 
   @override
   Future<Either<InvalidData, ServerValidate>> registerTest(
-    String code,
-    QuestionTypeOneEntity question1,
-    QuestionTypeTwoEntity question2,
-    QuestionTypeOneEntity question3,
-    QuestionTypeOneEntity question4,
-    QuestionTypeOneEntity question5,
-    QuestionTypeOneEntity question6,
-    QuestionTypeOneEntity question7,
-    QuestionTypeOneEntity question8,
-    QuestionTypeOneEntity question9,
-    QuestionTypeTwoEntity question10,
-    QuestionTypeTwoEntity question11,
-    QuestionTypeTwoEntity question12,
-    QuestionTypeOneEntity question13,
-    QuestionTypeOneEntity question14,
-    QuestionTypeOneEntity question15,
-    String? stepHistory,
-    // File files
-  ) async {
+      String code,
+      QuestionTypeOneEntity question1,
+      QuestionTypeTwoEntity question2,
+      QuestionTypeOneEntity question3,
+      QuestionTypeOneEntity question4,
+      QuestionTypeOneEntity question5,
+      QuestionTypeOneEntity question6,
+      QuestionTypeOneEntity question7,
+      QuestionTypeOneEntity question8,
+      QuestionTypeOneEntity question9,
+      QuestionTypeTwoEntity question10,
+      QuestionTypeTwoEntity question11,
+      QuestionTypeTwoEntity question12,
+      QuestionTypeOneEntity question13,
+      QuestionTypeOneEntity question14,
+      QuestionTypeOneEntity question15,
+      String? stepHistory,
+      File files) async {
     try {
       final ServerValidate response = await authDataSource.registerTest(
           code,
@@ -67,9 +66,8 @@ class AntigenRepositoryImpl implements AntigenRepository {
           question13,
           question14,
           question15,
-          stepHistory!
-          // files
-          );
+          stepHistory!,
+          files);
       return Right(response);
     } on InvalidData catch (invalidData) {
       return Left(invalidData);

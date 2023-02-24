@@ -31,3 +31,9 @@ class ChangePassword extends AuthEvent {
 
   ChangePassword(this.userId, this.oldPassword, this.newPassword);
 }
+
+class UpdateImage extends AuthEvent {
+  final String file;
+
+  UpdateImage(this.file);
+}
