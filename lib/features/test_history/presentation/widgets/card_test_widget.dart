@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
+import 'package:personal_project/features/home/widget/dynamic_container_copy_widget.dart';
 import 'package:personal_project/features/test_history/domain/entities/test_history_entity.dart';
 import 'package:personal_project/features/test_history/presentation/widgets/open_file_widget.dart';
 import 'package:syncfusion_flutter_pdf/pdf.dart';
@@ -38,98 +39,90 @@ class CardTestWidget extends StatelessWidget {
     final width = MediaQuery.of(context).size.width;
     final DateFormat formatter = DateFormat('MM-dd-yyyy');
 
-    return Container(
-        height: height * 0.075,
-        decoration: BoxDecoration(
-            border: Border(
-                bottom:
-                    BorderSide(width: 4, color: wColor.mapColors["T100"]!))),
-        child: Column(
-          children: [
-            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-              Text(
-                textTestKit,
-                style: styleText ?? const TextStyle(fontSize: 14),
-              ),
-              testHistoryEntity!.result!.isEmpty
-                  ? testHistoryEntity!.type!.type == "PCR"
-                      ? Padding(
-                          padding: EdgeInsets.only(right: width * 0.093),
-                          child: Text(formatter
-                              .format(testHistoryEntity!.sampleDate!.date)),
-                        )
-                      : Row(
-                          children: [
-                            ButtonWidget(
-                                buttonColor: wColor.mapColors['S800'],
-                                borderColor: wColor.mapColors['S800'],
-                                textColor: wColor.mapColors['IDWhite'],
-                                textStyle: const TextStyle(fontSize: 12),
-                                iconSize: 14,
-                                width: width * 0.295,
-                                icon: Icons.download,
-                                buttonString:
-                                    'history_test_result_text_download',
-                                onPressed: () {
-                                  final String testStatus = testHistoryEntity!
-                                              .result![0]!.result ==
-                                          ''
-                                      ? 'Processing'
-                                      : testHistoryEntity!.result![0]!.result!;
-                                  _createPDF(authBloc, textTestKit, testStatus,
-                                      sampleDate!);
-                                }),
-                            SizedBox(width: width * 0.046),
-                            ButtonWidget(
-                                buttonColor: wColor.mapColors['S800'],
-                                borderColor: wColor.mapColors['S800'],
-                                textColor: wColor.mapColors['IDWhite'],
-                                textStyle: const TextStyle(fontSize: 12),
-                                iconSize: 14,
-                                width: width * 0.295,
-                                icon: Icons.remove_red_eye,
-                                buttonString: 'history_button_icon',
-                                onPressed: onPressed)
-                          ],
-                        )
-                  : Row(
-                      children: [
-                        ButtonWidget(
-                            buttonColor: wColor.mapColors['S800'],
-                            borderColor: wColor.mapColors['S800'],
-                            textColor: wColor.mapColors['IDWhite'],
-                            textStyle: const TextStyle(fontSize: 12),
-                            iconSize: 14,
-                            width: width * 0.295,
-                            icon: Icons.download,
-                            buttonString: 'history_test_result_text_download',
-                            onPressed: () {
-                              final String testStatus =
-                                  testHistoryEntity!.result![0]!.result == ''
-                                      ? 'Processing'
-                                      : testHistoryEntity!.result![0]!.result!;
-                              _createPDF(authBloc, textTestKit, testStatus,
-                                  sampleDate!);
-                            }),
-                        SizedBox(width: width * 0.046),
-                        ButtonWidget(
-                            buttonColor: wColor.mapColors['S800'],
-                            borderColor: wColor.mapColors['S800'],
-                            textColor: wColor.mapColors['IDWhite'],
-                            textStyle: const TextStyle(fontSize: 12),
-                            iconSize: 14,
-                            width: width * 0.295,
-                            icon: Icons.remove_red_eye,
-                            buttonString: 'history_button_icon',
-                            onPressed: onPressed)
-                      ],
-                    )
-            ]),
-            SizedBox(
-              height: height * 0.01,
-            )
-          ],
-        ));
+    return DynamicContainerCopyWidget(
+      minHeight: height * 0.075,
+      children: [
+      Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+        Text(
+          textTestKit,
+          style: styleText ?? const TextStyle(fontSize: 14),
+        ),
+        testHistoryEntity!.result!.isEmpty
+            ? testHistoryEntity!.type!.type == "PCR"
+                ? Padding(
+                    padding: EdgeInsets.only(right: width * 0.093),
+                    child: Text(
+                        formatter.format(testHistoryEntity!.sampleDate!.date)),
+                  )
+                : Row(
+                    children: [
+                      ButtonWidget(
+                          buttonColor: wColor.mapColors['S800'],
+                          borderColor: wColor.mapColors['S800'],
+                          textColor: wColor.mapColors['IDWhite'],
+                          textStyle: const TextStyle(fontSize: 12),
+                          iconSize: 14,
+                          width: width * 0.295,
+                          icon: Icons.download,
+                          buttonString: 'history_test_result_text_download',
+                          onPressed: () {
+                            final String testStatus =
+                                testHistoryEntity!.result![0]!.result == ''
+                                    ? 'Processing'
+                                    : testHistoryEntity!.result![0]!.result!;
+                            _createPDF(
+                                authBloc, textTestKit, testStatus, sampleDate!);
+                          }),
+                      SizedBox(width: width * 0.046),
+                      ButtonWidget(
+                          buttonColor: wColor.mapColors['S800'],
+                          borderColor: wColor.mapColors['S800'],
+                          textColor: wColor.mapColors['IDWhite'],
+                          textStyle: const TextStyle(fontSize: 12),
+                          iconSize: 14,
+                          width: width * 0.295,
+                          icon: Icons.remove_red_eye,
+                          buttonString: 'history_button_icon',
+                          onPressed: onPressed)
+                    ],
+                  )
+            : Row(
+                children: [
+                  ButtonWidget(
+                      buttonColor: wColor.mapColors['S800'],
+                      borderColor: wColor.mapColors['S800'],
+                      textColor: wColor.mapColors['IDWhite'],
+                      textStyle: const TextStyle(fontSize: 12),
+                      iconSize: 14,
+                      width: width * 0.295,
+                      icon: Icons.download,
+                      buttonString: 'history_test_result_text_download',
+                      onPressed: () {
+                        final String testStatus =
+                            testHistoryEntity!.result![0]!.result == ''
+                                ? 'Processing'
+                                : testHistoryEntity!.result![0]!.result!;
+                        _createPDF(
+                            authBloc, textTestKit, testStatus, sampleDate!);
+                      }),
+                  SizedBox(width: width * 0.046),
+                  ButtonWidget(
+                      buttonColor: wColor.mapColors['S800'],
+                      borderColor: wColor.mapColors['S800'],
+                      textColor: wColor.mapColors['IDWhite'],
+                      textStyle: const TextStyle(fontSize: 12),
+                      iconSize: 14,
+                      width: width * 0.295,
+                      icon: Icons.remove_red_eye,
+                      buttonString: 'history_button_icon',
+                      onPressed: onPressed)
+                ],
+              )
+      ]),
+      SizedBox(
+        height: height * 0.01,
+      )
+    ]);
   }
 
   Future<void> _createPDF(AuthBloc authBloc, String textTestKit,

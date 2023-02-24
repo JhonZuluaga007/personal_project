@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:bloc/bloc.dart';
 // ignore: depend_on_referenced_packages
 import 'package:meta/meta.dart';
@@ -71,19 +73,27 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       });
     });
 
-    on<UserUpdateEvent>((event, emit) {
+    on<UpdateImage>((event, emit) async {
       emit(state.copyWith(
-          userId: state.userId,
-          address: event.userUpdateEntity.address,
-          city: event.userUpdateEntity.city,
-          state: event.userUpdateEntity.state,
-          zip: event.userUpdateEntity.zip,
-          race: event.userUpdateEntity.race,
-          ethnicity: event.userUpdateEntity.ethnicity,
-          sex: event.userUpdateEntity.sex,
-          gender: event.userUpdateEntity.gender,
-          image: event.userUpdateEntity.file));
+        formStatus: const InitialFormStatus(),
+        image: event.file,
+      ));
+    });
+
+    on<UserUpdateEvent>((event, emit) {
       userUpdateUseCase.call(event.userUpdateEntity);
+      emit(state.copyWith(
+        userId: state.userId,
+        address: event.userUpdateEntity.address,
+        city: event.userUpdateEntity.city,
+        state: event.userUpdateEntity.state,
+        zip: event.userUpdateEntity.zip,
+        race: event.userUpdateEntity.race,
+        ethnicity: event.userUpdateEntity.ethnicity,
+        sex: event.userUpdateEntity.sex,
+        gender: event.userUpdateEntity.gender,
+        image: event.userUpdateEntity.file,
+      ));
     });
     on<ChangePassword>((event, emit) async {
       emit(state.copyWith(formChangePasswordStatus: FormSubmitting()));

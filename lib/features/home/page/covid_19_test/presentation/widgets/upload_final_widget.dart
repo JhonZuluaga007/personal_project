@@ -23,7 +23,7 @@ class PhotoItem extends StatelessWidget {
           ),
           GestureDetector(
               onTap: () {
-                //TODO delete image
+                
               },
               child: const Icon(
                 Icons.cancel,

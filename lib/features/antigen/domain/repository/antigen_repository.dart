@@ -29,6 +29,6 @@ abstract class AntigenRepository {
     QuestionTypeOneEntity question14,
     QuestionTypeOneEntity question15,
     String? stepHistory,
-    // File files
+    File files
   );
 }
