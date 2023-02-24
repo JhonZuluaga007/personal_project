@@ -52,6 +52,7 @@ dependencies:
   syncfusion_flutter_pdf: ^20.4.51
   open_file: ^3.2.1
   flutter_launcher_icons: ^0.11.0
+  flutter_image_compress: ^1.1.3
 
   
 
