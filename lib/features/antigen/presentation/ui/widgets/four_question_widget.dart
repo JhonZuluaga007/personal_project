@@ -14,7 +14,7 @@ class FourQuestionWidget extends StatefulWidget {
 }
 
 class _FourQuestionWidgetState extends State<FourQuestionWidget> {
-  String _covidQuestionPregnantValue = "";
+  String _covidQuestionPregnantValue = "Select option";
   final List<String> covidBeforechipList = [];
   final List<String> covidBeforeAnswer = [
     "No",
@@ -103,20 +103,25 @@ class _FourQuestionWidgetState extends State<FourQuestionWidget> {
           generalColor: wColor.mapColors["S700"]!,
           height: height * 0.07,
           listItems: const [
-            "",
+            "Select option",
             "Not Pregnant",
             "Pregnant",
             "Unknown",
             "Not Applicable",
           ],
-          selectedValue: _covidQuestionPregnantValue,
+          selectedValue:
+              stateAntigen.question12!.value != _covidQuestionPregnantValue || stateAntigen.question12!.value!.isNotEmpty
+                  ? stateAntigen.question12!.value!
+                  : _covidQuestionPregnantValue,
           width: width,
           onChanged: (covidQuestion12) {
-            antigenBloc.add(
-                AntigenQuestion12Event(question12: [covidQuestion12!]));
-            setState(() {
-              _covidQuestionPregnantValue = covidQuestion12;
-            });
+            if (covidQuestion12 != "Select option") {
+              antigenBloc
+                  .add(AntigenQuestion12Event(question12: covidQuestion12!));
+              setState(() {
+                _covidQuestionPregnantValue = covidQuestion12;
+              });
+            }
           },
         ),
       ],

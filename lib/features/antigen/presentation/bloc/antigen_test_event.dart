@@ -80,7 +80,7 @@ class AntigenQuestion11Event extends AntigenTestEvent {
 }
 
 class AntigenQuestion12Event extends AntigenTestEvent {
-  final List<String> question12;
+  final String question12;
 
   AntigenQuestion12Event({required this.question12});
 }
