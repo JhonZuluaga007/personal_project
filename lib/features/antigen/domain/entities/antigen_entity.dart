@@ -51,7 +51,7 @@ class LasttestEntity {
   final QuestionTypeOneEntity? question9;
   final QuestionTypeTwoEntity? question10;
   final QuestionTypeTwoEntity? question11;
-  final QuestionTypeTwoEntity? question12;
+  final QuestionTypeOneEntity? question12;
   final QuestionTypeOneEntity? question13;
   final QuestionTypeOneEntity? question14;
   final QuestionTypeOneEntity? question15;

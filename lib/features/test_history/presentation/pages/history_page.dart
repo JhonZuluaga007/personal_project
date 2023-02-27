@@ -104,27 +104,23 @@ class _HistoryPageState extends State<HistoryPage> {
                       SizedBox(
                         width: size.width * 0.025,
                       ),
-                      // state.allTestHistoryList.last.result!.isNotEmpty
-                      //     ? state.allTestHistoryList
-                      //             .where((element) =>
-                      //                 element ==
-                      //                 state.allTestHistoryList.last.result)
-                      //             .isNotEmpty
-                      //         ? const Icon(Icons.cancel)
-                      //         : const Icon(Icons.check_circle)
-                      //     : const SizedBox(),
-                      Icon(Icons.check_circle),
+                      state.allTestHistoryList.isEmpty ? Icon(Icons.cancel) :
+                      state.allTestHistoryList.first.result!.isNotEmpty
+                          ? state.allTestHistoryList.first.result![0]!.result == "Negative"
+                              ? const Icon(Icons.cancel)
+                              : const Icon(Icons.check_circle)
+                          : const SizedBox(),
                       SizedBox(width: size.width * 0.018),
                       TextWidget(
-                        text: "Positive",
-                        // state.allTestHistoryList.last.result!.isNotEmpty
-                        //     ? state.allTestHistoryList.where((element) =>
-                        //         element ==
-                        //         state
-                        //             .allTestHistoryList.last.result).isNotEmpty
-                        //             ? " Negative"
-                        //             : " Positive"
-                        //     : "In progress",
+                        text: state.allTestHistoryList.isEmpty ? "Negative" :
+                        state.allTestHistoryList.first.result!.isNotEmpty
+                            ? state.allTestHistoryList.firstWhere((element) =>
+                                element ==
+                                state
+                                    .allTestHistoryList.first).result!.isEmpty
+                                    ? " Negative"
+                                    : " Positive"
+                            : "In progress",
                         requiresTranslate: false,
                         style: const TextStyle(
                             fontSize: 14, fontWeight: FontWeight.w400),
@@ -133,8 +129,9 @@ class _HistoryPageState extends State<HistoryPage> {
                         width: size.width * 0.025,
                       ),
                       TextWidget(
-                        text: "10/2/2023",
-                        //"${state.allTestHistoryList.last.created!.date.day}/${state.allTestHistoryList.last.created!.date.month}/${state.allTestHistoryList.last.created!.date.year}",
+                        text:
+                        state.allTestHistoryList.isEmpty ? "26-02-2023" :
+                        "${state.allTestHistoryList.first.sampleDate!.date.day}-${state.allTestHistoryList.first.sampleDate!.date.month}-${state.allTestHistoryList.first.sampleDate!.date.year}",
                         requiresTranslate: false,
                         style: const TextStyle(
                             fontSize: 14, fontWeight: FontWeight.w400),
@@ -244,7 +241,7 @@ class _HistoryPageState extends State<HistoryPage> {
                                   ]),
                                 ])),
                   if (state.formStatus is SubmissionFailed)
-                    Text("Error loading your information"),
+                    Text("Error loading your information of the test"),
                   if (state.formStatus is FormSubmitting)
                     Padding(
                       padding: EdgeInsets.only(top: 32.0),

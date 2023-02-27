@@ -39,9 +39,7 @@ class CardTestWidget extends StatelessWidget {
     final width = MediaQuery.of(context).size.width;
     final DateFormat formatter = DateFormat('MM-dd-yyyy');
 
-    return DynamicContainerCopyWidget(
-      minHeight: height * 0.075,
-      children: [
+    return DynamicContainerCopyWidget(minHeight: height * 0.075, children: [
       Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
         Text(
           textTestKit,
@@ -62,7 +60,9 @@ class CardTestWidget extends StatelessWidget {
                           textColor: wColor.mapColors['IDWhite'],
                           textStyle: const TextStyle(fontSize: 12),
                           iconSize: 14,
-                          width: width * 0.295,
+                          width: width * 0.27,
+                          height: height * 0.049,
+                          borderRadiusButton: 25,
                           icon: Icons.download,
                           buttonString: 'history_test_result_text_download',
                           onPressed: () {
@@ -80,6 +80,8 @@ class CardTestWidget extends StatelessWidget {
                           textColor: wColor.mapColors['IDWhite'],
                           textStyle: const TextStyle(fontSize: 12),
                           iconSize: 14,
+                          height: height * 0.049,
+                          borderRadiusButton: 25,
                           width: width * 0.295,
                           icon: Icons.remove_red_eye,
                           buttonString: 'history_button_icon',
@@ -94,6 +96,8 @@ class CardTestWidget extends StatelessWidget {
                       textColor: wColor.mapColors['IDWhite'],
                       textStyle: const TextStyle(fontSize: 12),
                       iconSize: 14,
+                      height: height * 0.049,
+                      borderRadiusButton: 25,
                       width: width * 0.295,
                       icon: Icons.download,
                       buttonString: 'history_test_result_text_download',
@@ -112,6 +116,8 @@ class CardTestWidget extends StatelessWidget {
                       textColor: wColor.mapColors['IDWhite'],
                       textStyle: const TextStyle(fontSize: 12),
                       iconSize: 14,
+                      height: height * 0.049,
+                      borderRadiusButton: 25,
                       width: width * 0.295,
                       icon: Icons.remove_red_eye,
                       buttonString: 'history_button_icon',
