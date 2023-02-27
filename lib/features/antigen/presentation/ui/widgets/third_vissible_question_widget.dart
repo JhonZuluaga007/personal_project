@@ -18,7 +18,7 @@ class ThirdVissibleQuestionWidget extends StatefulWidget {
 class _ThirdVissibleQuestionWidgetState
     extends State<ThirdVissibleQuestionWidget> {
   String _covidQuestionValue = "";
-  String _covidQuestionTwoValue = "";
+  String _covidQuestionTwoValue = "Select option";
 
   final List<String> vacinneChipList = [];
   final List<String> vaccinesList = [
@@ -55,8 +55,7 @@ class _ThirdVissibleQuestionWidgetState
               : _covidQuestionValue,
           width: width,
           onChanged: (question7Covid) {
-            antigenBloc
-                .add(AntigenQuestion7Event(question7: question7Covid!));
+            antigenBloc.add(AntigenQuestion7Event(question7: question7Covid!));
             setState(() {
               _covidQuestionValue = question7Covid;
             });
@@ -73,22 +72,25 @@ class _ThirdVissibleQuestionWidgetState
                   generalColor: wColor.mapColors["S700"]!,
                   height: height * 0.08,
                   listItems: const [
-                    "",
+                    "Select option",
                     "None",
                     "1 Booster.",
                     "2 Boosters.",
                     "More than 2 Boosters",
                   ],
-                  selectedValue: stateAntigen.question8!.value != _covidQuestionTwoValue
+                  selectedValue:
+                      stateAntigen.question8!.value != _covidQuestionTwoValue || stateAntigen.question8!.value!.isNotEmpty
                           ? stateAntigen.question8!.value!
                           : _covidQuestionTwoValue,
                   width: width,
-                  onChanged: (cryptoMonthlyAmount) {
-                    antigenBloc.add(
-                        AntigenQuestion8Event(question8: cryptoMonthlyAmount!));
-                    setState(() {
-                      _covidQuestionTwoValue = cryptoMonthlyAmount;
-                    });
+                  onChanged: (covidQuestion8) {
+                    if (covidQuestion8 != "Select option") {
+                      antigenBloc.add(
+                          AntigenQuestion8Event(question8: covidQuestion8!));
+                      setState(() {
+                        _covidQuestionTwoValue = covidQuestion8;
+                      });
+                    }
                   },
                 ),
                 SizedBox(height: height * 0.028),

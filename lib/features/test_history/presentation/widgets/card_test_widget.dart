@@ -1,12 +1,8 @@
-import 'dart:io';
-import 'dart:math';
-import 'dart:typed_data';
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
+import 'package:personal_project/features/home/widget/dynamic_container_copy_widget.dart';
 import 'package:personal_project/features/test_history/domain/entities/test_history_entity.dart';
 import 'package:personal_project/features/test_history/presentation/widgets/open_file_widget.dart';
 import 'package:syncfusion_flutter_pdf/pdf.dart';
@@ -14,17 +10,18 @@ import 'package:syncfusion_flutter_pdf/pdf.dart';
 import '../../../../config/theme/theme.dart';
 import '../../../../common_ui/common_widgets/buttons/button_widget.dart';
 import '../../../auth/bloc/auth_bloc.dart';
+import '../../bloc/test_history_bloc.dart';
 
 class CardTestWidget extends StatelessWidget {
-  const CardTestWidget({
-    Key? key,
-    required this.onPressed,
-    required this.textTestKit,
-    this.statusTest,
-    this.sampleDate,
-    this.styleText,
-    this.testHistoryEntity
-  }) : super(key: key);
+  const CardTestWidget(
+      {Key? key,
+      required this.onPressed,
+      required this.textTestKit,
+      this.statusTest,
+      this.sampleDate,
+      this.styleText,
+      this.testHistoryEntity})
+      : super(key: key);
 
   final dynamic Function() onPressed;
   final String textTestKit;
@@ -37,56 +34,101 @@ class CardTestWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final wColor = ThemesIdx20();
     final authBloc = BlocProvider.of<AuthBloc>(context);
-    final stateUserId = BlocProvider.of<AuthBloc>(context).state;
+    final stateTestHistory = BlocProvider.of<TestHistoryBloc>(context).state;
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
-    final String testStatus = testHistoryEntity!.result![0]!.result == '' ? 'Processing' : testHistoryEntity!.result![0]!.result!;
+    final DateFormat formatter = DateFormat('MM-dd-yyyy');
 
-    return Container(
-        height: height * 0.075,
-        decoration: BoxDecoration(
-            border: Border(
-                bottom:
-                    BorderSide(width: 4, color: wColor.mapColors["T100"]!))),
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  textTestKit,
-                  style: styleText ?? const TextStyle(fontSize: 14),
-                ),
-                ButtonWidget(
-                    buttonColor: wColor.mapColors['S800'],
-                    borderColor: wColor.mapColors['S800'],
-                    textColor: wColor.mapColors['IDWhite'],
-                    textStyle: const TextStyle(fontSize: 12),
-                    iconSize: 14,
-                    width: width * 0.295,
-                    icon: Icons.download,
-                    buttonString: 'history_test_result_text_download',
-                    onPressed: () {
-                      _createPDF(
-                          authBloc, textTestKit, testStatus, sampleDate!);
-                    }),
-                ButtonWidget(
-                    buttonColor: wColor.mapColors['S800'],
-                    borderColor: wColor.mapColors['S800'],
-                    textColor: wColor.mapColors['IDWhite'],
-                    textStyle: const TextStyle(fontSize: 12),
-                    iconSize: 14,
-                    width: width * 0.295,
-                    icon: Icons.remove_red_eye,
-                    buttonString: 'history_button_icon',
-                    onPressed: onPressed)
-              ],
-            ),
-            SizedBox(
-              height: height * 0.01,
-            )
-          ],
-        ));
+    return DynamicContainerCopyWidget(minHeight: height * 0.075, children: [
+      Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+        Text(
+          textTestKit,
+          style: styleText ?? const TextStyle(fontSize: 14),
+        ),
+        testHistoryEntity!.result!.isEmpty
+            ? testHistoryEntity!.type!.type == "PCR"
+                ? Padding(
+                    padding: EdgeInsets.only(right: width * 0.093),
+                    child: Text(
+                        formatter.format(testHistoryEntity!.sampleDate!.date)),
+                  )
+                : Row(
+                    children: [
+                      ButtonWidget(
+                          buttonColor: wColor.mapColors['S800'],
+                          borderColor: wColor.mapColors['S800'],
+                          textColor: wColor.mapColors['IDWhite'],
+                          textStyle: const TextStyle(fontSize: 12),
+                          iconSize: 14,
+                          width: width * 0.27,
+                          height: height * 0.049,
+                          borderRadiusButton: 25,
+                          icon: Icons.download,
+                          buttonString: 'history_test_result_text_download',
+                          onPressed: () {
+                            final String testStatus =
+                                testHistoryEntity!.result![0]!.result == ''
+                                    ? 'Processing'
+                                    : testHistoryEntity!.result![0]!.result!;
+                            _createPDF(
+                                authBloc, textTestKit, testStatus, sampleDate!);
+                          }),
+                      SizedBox(width: width * 0.046),
+                      ButtonWidget(
+                          buttonColor: wColor.mapColors['S800'],
+                          borderColor: wColor.mapColors['S800'],
+                          textColor: wColor.mapColors['IDWhite'],
+                          textStyle: const TextStyle(fontSize: 12),
+                          iconSize: 14,
+                          height: height * 0.049,
+                          borderRadiusButton: 25,
+                          width: width * 0.295,
+                          icon: Icons.remove_red_eye,
+                          buttonString: 'history_button_icon',
+                          onPressed: onPressed)
+                    ],
+                  )
+            : Row(
+                children: [
+                  ButtonWidget(
+                      buttonColor: wColor.mapColors['S800'],
+                      borderColor: wColor.mapColors['S800'],
+                      textColor: wColor.mapColors['IDWhite'],
+                      textStyle: const TextStyle(fontSize: 12),
+                      iconSize: 14,
+                      height: height * 0.049,
+                      borderRadiusButton: 25,
+                      width: width * 0.295,
+                      icon: Icons.download,
+                      buttonString: 'history_test_result_text_download',
+                      onPressed: () {
+                        final String testStatus =
+                            testHistoryEntity!.result![0]!.result == ''
+                                ? 'Processing'
+                                : testHistoryEntity!.result![0]!.result!;
+                        _createPDF(
+                            authBloc, textTestKit, testStatus, sampleDate!);
+                      }),
+                  SizedBox(width: width * 0.046),
+                  ButtonWidget(
+                      buttonColor: wColor.mapColors['S800'],
+                      borderColor: wColor.mapColors['S800'],
+                      textColor: wColor.mapColors['IDWhite'],
+                      textStyle: const TextStyle(fontSize: 12),
+                      iconSize: 14,
+                      height: height * 0.049,
+                      borderRadiusButton: 25,
+                      width: width * 0.295,
+                      icon: Icons.remove_red_eye,
+                      buttonString: 'history_button_icon',
+                      onPressed: onPressed)
+                ],
+              )
+      ]),
+      SizedBox(
+        height: height * 0.01,
+      )
+    ]);
   }
 
   Future<void> _createPDF(AuthBloc authBloc, String textTestKit,

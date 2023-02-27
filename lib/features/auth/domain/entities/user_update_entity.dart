@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:personal_project/features/auth/domain/entities/user_entity.dart';
 
 class UserUpdateEntity {

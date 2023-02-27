@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:personal_project/features/auth/data/models/helper_tools_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -43,6 +45,7 @@ class AuthDataSource {
       UserUpdateEntity userUpdateEntity) async {
     var request = http.MultipartRequest(
         'PUT', Uri.parse(Endpoints.getUser + userUpdateEntity.userdId!));
+
     request.fields.addAll(
       {
         'address': userUpdateEntity.address!,
@@ -53,8 +56,17 @@ class AuthDataSource {
         'ethnicity': userUpdateEntity.ethnicity!.id!,
         'sex': userUpdateEntity.sex!.id!,
         'gender': userUpdateEntity.gender!.id!,
-        'level_school': "Trade/technical/vocational training"
+        'level_school': "Trade/technical/vocational training",
       },
+    );
+
+    var file = File(userUpdateEntity.file!);
+
+    request.files.add(
+      await http.MultipartFile.fromPath(
+        'files',
+        file.path,
+      ),
     );
 
     http.StreamedResponse response = await request.send();

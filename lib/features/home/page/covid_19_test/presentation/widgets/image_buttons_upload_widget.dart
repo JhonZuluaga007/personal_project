@@ -2,7 +2,9 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:personal_project/features/antigen/presentation/bloc/antigen_test_bloc.dart';
 import 'package:personal_project/features/home/page/covid_19_test/presentation/widgets/upload_final_widget.dart';
 
 import '../../../../../../common_ui/common_widgets/buttons/button_widget.dart';
@@ -21,7 +23,6 @@ class _ImageButtonsWidgetState extends State<ImageButtonsWidget> {
   late String imagePath;
   @override
   void initState() {
-    // TODO: implement initState
     imagePath = 'assets/images/no_image.png';
     super.initState();
   }
@@ -29,10 +30,10 @@ class _ImageButtonsWidgetState extends State<ImageButtonsWidget> {
   File? imageDisplayed;
   Future getImage(ImageSource source) async {
     try {
-      final image = await ImagePicker().pickImage(source: source);
+      final image = await ImagePicker().pickImage(source: source, imageQuality: 4);
       if (image == null) return;
       final imageCameraTemporary = File(image.path);
-      // final imagePermanent = await saveFilePerma(image.path);
+      BlocProvider.of<AntigenTestBloc>(context).add(AntigenImageEvent(image: imageCameraTemporary));
       setState(() {
         imageDisplayed = imageCameraTemporary;
       });
@@ -40,13 +41,6 @@ class _ImageButtonsWidgetState extends State<ImageButtonsWidget> {
       debugPrint('Failed to pick image: $e');
     }
   }
-  //TODO CHECK IF necessary
-  // Future<File> saveFilePerma(String imagePath) async {
-  //   final directory = await getApplicationDocumentsDirectory();
-  //   final name = basename(imagePath);
-  //   final image = File('${directory.path}$name');
-  //   return File(imagePath).copy(image.path);
-  // }
 
   @override
   Widget build(BuildContext context) {

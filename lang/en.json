@@ -323,5 +323,5 @@
     "email_text_invalid": "Invalid email",
 
     "test_history_empty": "At this moment you dont have any test in your history",
-    "test_history_search_delegate": "There are no results of what you are looking for"
+    "test_history_search_delegate": "You have no current tests at the moment, please register a new test"
 }

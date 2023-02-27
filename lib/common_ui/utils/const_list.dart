@@ -63,8 +63,7 @@ class ConstLists {
     OpSchoolLevelEntity(id: '7', schoolLevel: 'Some high school, no diploma'),
     OpSchoolLevelEntity(
         id: '7',
-        schoolLevel:
-            'High school graduate, diploma or the equivalent (For example: GED)'),
+        schoolLevel: 'High school graduate, diploma or the equivalent (For example: GED)'),
     OpSchoolLevelEntity(id: '7', schoolLevel: 'Some college credit, no degree'),
     OpSchoolLevelEntity(
         id: '7', schoolLevel: 'Trade/technical/vocational training'),

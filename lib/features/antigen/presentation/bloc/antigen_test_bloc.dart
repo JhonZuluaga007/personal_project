@@ -71,7 +71,7 @@ class AntigenTestBloc extends Bloc<AntigenTestEvent, AntigenTestState> {
         state.question14!,
         state.question15!,
         state.stepHistory ?? "",
-        // state.files ?? File("") //TODO: Guardar el file en el estado
+        state.files! 
       );
       antigenRegisterTest.fold(
           (error) => emit(state.copyWith(
@@ -188,7 +188,7 @@ class AntigenTestBloc extends Bloc<AntigenTestEvent, AntigenTestState> {
     on<AntigenQuestion12Event>((event, emit) {
       emit(state.copyWith(
           formStatus: const InitialFormStatus(),
-          question12: QuestionTypeTwoEntity(
+          question12: QuestionTypeOneEntity(
             name: state.question12!.name,
             value: event.question12,
           )));
@@ -219,6 +219,13 @@ class AntigenTestBloc extends Bloc<AntigenTestEvent, AntigenTestState> {
             name: state.question15!.name,
             value: event.question15,
           )));
+    });
+
+    on<AntigenImageEvent>((event, emit) {
+      emit(state.copyWith(
+        formStatus: const InitialFormStatus(),
+        files: event.image
+      ));
     });
   }
 }

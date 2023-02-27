@@ -22,8 +22,8 @@ class UploadResultPage extends StatefulWidget {
 }
 
 class _UploadResultPageState extends State<UploadResultPage> {
-  String _covidQuestionOneValue = "";
-  String _covidQuestionTwoValue = "";
+  String _covidQuestionOneValue = "Select option";
+  String _covidQuestionTwoValue = "Select option";
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
@@ -68,20 +68,20 @@ class _UploadResultPageState extends State<UploadResultPage> {
           generalColor: wColor.mapColors["S700"]!,
           height: height * 0.08,
           listItems: const [
-            "",
+            "Select option",
             "Yes",
             "No",
           ],
-          selectedValue: stateAntigen.question13!.value != _covidQuestionOneValue
-              ? stateAntigen.question13!.value!
-              : _covidQuestionOneValue,
+          selectedValue: _covidQuestionOneValue,
           width: width,
-          onChanged: (covidQuestionTwo) {
-            antigenBloc
-                .add(AntigenQuestion13Event(question13: covidQuestionTwo!));
-            setState(() {
-              _covidQuestionOneValue = covidQuestionTwo;
-            });
+          onChanged: (covidQuestionOne) {
+            if (covidQuestionOne != "Select option") {
+              antigenBloc
+                  .add(AntigenQuestion13Event(question13: covidQuestionOne!));
+              setState(() {
+                _covidQuestionOneValue = covidQuestionOne;
+              });
+            }
           },
         ),
         SizedBox(
@@ -97,20 +97,20 @@ class _UploadResultPageState extends State<UploadResultPage> {
           generalColor: wColor.mapColors["S700"]!,
           height: height * 0.08,
           listItems: const [
-            "",
+            "Select option",
             "Yes",
             "No",
           ],
-          selectedValue: stateAntigen.question14!.value != _covidQuestionTwoValue
-              ? stateAntigen.question14!.value!
-              : _covidQuestionTwoValue,
+          selectedValue: _covidQuestionTwoValue,
           width: width,
           onChanged: (covidQuestionTwo) {
-            antigenBloc
-                .add(AntigenQuestion14Event(question14: covidQuestionTwo!));
-            setState(() {
-              _covidQuestionTwoValue = covidQuestionTwo;
-            });
+            if (covidQuestionTwo != "Select option") {
+              antigenBloc
+                  .add(AntigenQuestion14Event(question14: covidQuestionTwo!));
+              setState(() {
+                _covidQuestionTwoValue = covidQuestionTwo;
+              });
+            }
           },
         ),
         SizedBox(

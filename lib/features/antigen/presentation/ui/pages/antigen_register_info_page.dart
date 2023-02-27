@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:personal_project/features/antigen/presentation/ui/pages/questions_antigen_page.dart';
 import 'package:scan/scan.dart';
+import 'package:personal_project/features/antigen/presentation/ui/pages/questions_antigen_page.dart';
 
 import '../../bloc/antigen_test_bloc.dart';
 import '../../../../auth/bloc/auth_bloc.dart';
@@ -62,23 +63,6 @@ class _AntigenRegisterInfoPageState extends State<AntigenRegisterInfoPage> {
           style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
         ),
         SizedBox(height: size.height * 0.05),
-        // Row(
-        //   children: [
-        //     const TextWidget(
-        //       text: 'antigen_test_step_one_text',
-        //       style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-        //     ),
-        //     SizedBox(
-        //       width: size.width * 0.01,
-        //     ),
-        //     const TextWidget(
-        //       //TODO GET THE USER FROM THE BACKEND
-        //       text: 'Mateo Bonnet',
-        //       requiresTranslate: false,
-        //       style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
-        //     )
-        //   ],
-        // ),
         Center(
           child: SizedBox(
             height: size.height * 0.22,

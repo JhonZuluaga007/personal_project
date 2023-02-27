@@ -1,10 +1,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.personal_project">
+    package="com.personal_project.personal_project">
     <uses-permission android:name="android.permission.CAMERA"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.INTERNET"/>
    <application
-        android:label="personal_project"
+        android:label="TellMe Testing"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

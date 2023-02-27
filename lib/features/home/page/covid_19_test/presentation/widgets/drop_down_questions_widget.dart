@@ -96,7 +96,7 @@ class _DropDownQuestionsWidgetState extends State<DropDownQuestionsWidget> {
                     letterSpacing: -0.2,
                     color: wColor.mapColors["S600"]),
               ),
-              icon: const Icon(Icons.arrow_downward),
+              icon: const Icon(Icons.keyboard_arrow_down_sharp),
               iconSize: 16,
               borderRadius: BorderRadius.circular(5),
               style: TextStyle(

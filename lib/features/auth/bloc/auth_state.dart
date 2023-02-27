@@ -16,6 +16,7 @@ class AuthState {
   final EthnicityEntity? ethnicity;
   final GenderEntity? gender;
   final String? image;
+  // final String? fileImage;
   final DateOfBirth? birthDate;
   final bool? informationUpdated;
   final bool? isActive;
@@ -50,6 +51,7 @@ class AuthState {
     this.ethnicity,
     this.gender,
     this.image = "",
+    // this.fileImage = "",
     this.informationUpdated = false,
     this.isActive = false,
     this.isConfirmed = false,
@@ -84,6 +86,7 @@ class AuthState {
     EthnicityEntity? ethnicity,
     GenderEntity? gender,
     String? image,
+    // String? fileImage,
     bool? informationUpdated,
     bool? isActive,
     bool? isConfirmed,
@@ -117,6 +120,7 @@ class AuthState {
       ethnicity: ethnicity ?? this.ethnicity,
       gender: gender ?? this.gender,
       image: image ?? this.image,
+      // fileImage: fileImage ?? this.fileImage,
       informationUpdated: informationUpdated ?? this.informationUpdated,
       isActive: isActive ?? isActive,
       isConfirmed: isConfirmed ?? isConfirmed,
@@ -153,6 +157,7 @@ class AuthState {
           EthnicityEntity? ethnicity,
           GenderEntity? gender,
           String? image,
+          String? fileImage,
           bool? informationUpdated,
           bool? isActive,
           bool? isConfirmed,
@@ -184,6 +189,7 @@ class AuthState {
           ethnicity: EthnicityEntity(id: '', ethnicity: ''),
           gender: GenderEntity(id: '', gender: ''),
           image: '',
+          // fileImage: "",
           informationUpdated: true,
           isActive: false,
           isConfirmed: false,

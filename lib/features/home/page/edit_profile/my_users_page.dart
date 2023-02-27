@@ -25,7 +25,6 @@ class _MyUserPageState extends State<MyUserPage> {
   late String imagePath;
   @override
   void initState() {
-    // TODO: implement initState
     imagePath = 'assets/images/no_image.png';
     super.initState();
   }
@@ -77,37 +76,30 @@ class _MyUserPageState extends State<MyUserPage> {
           builder: (context, state) {
             return Center(
               child: Stack(alignment: AlignmentDirectional.center, children: [
+                //TODO: CHECK EDIT IMAGE PENCIL
                 state.image != null
-                    ? Container(
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(12)),
-                        child: CircleAvatar(
-                          backgroundColor: wColor.mapColors["P01"],
-                          backgroundImage: NetworkImage(state.image!),
-                          radius: 110,
-                          onBackgroundImageError: (exception, stackTrace) {
-                            Container(
-                              color: Colors.white,
-                              alignment: Alignment.center,
-                              child: Column(
-                                children: [
-                                  Image.asset('assets/images/no_image.png'),
-                                  const TextWidget(
-                                    text: 'error_image',
-                                    style: TextStyle(fontSize: 20),
-                                  ),
-                                ],
-                              ),
-                            );
+                    ? CircleAvatar(
+                        radius: 100,
+                        backgroundColor: wColor.mapColors["P01"],
+                        child: FadeInImage(
+                          width: width * 0.79,
+                          height: height * 0.30,
+                          placeholder: AssetImage(imagePath),
+                          image: NetworkImage(state.image!),
+                          imageErrorBuilder: (BuildContext context,
+                              Object exception, StackTrace? stackTrace) {
+                            return Image.asset(imagePath);
                           },
-                        ))
+                          fit: BoxFit.fill,
+                        ),
+                      )
                     : Container(
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(12)),
                         child: CircleAvatar(
                           backgroundColor: wColor.mapColors["P01"],
                           backgroundImage: Image.file(imageDisplayed!).image,
-                          radius: 110,
+                          radius: 100,
                         ),
                       ),
                 imageDisplayed != null
@@ -121,54 +113,44 @@ class _MyUserPageState extends State<MyUserPage> {
                         ),
                       )
                     : CircleAvatar(
+                        radius: 100,
                         backgroundColor: wColor.mapColors["P01"],
-                        backgroundImage: Image.network(state.image!).image,
-                        radius: 110,
-                        onBackgroundImageError: (exception, stackTrace) {
-                          Container(
-                            color: Colors.white,
-                            alignment: Alignment.center,
-                            child: Column(
-                              children: [
-                                Image.asset('assets/images/no_image.png'),
-                                const TextWidget(
-                                  text: 'error_image',
-                                  style: TextStyle(fontSize: 20),
-                                ),
-                              ],
-                            ),
-                          );
-                        },
+                        child: FadeInImage(
+                          width: width * 0.79,
+                          height: height * 0.30,
+                          placeholder: AssetImage(imagePath),
+                          image: NetworkImage(state.image!),
+                          imageErrorBuilder: (BuildContext context,
+                              Object exception, StackTrace? stackTrace) {
+                            return Image.asset(imagePath);
+                          },
+                          fit: BoxFit.fill,
+                        ),
                       ),
                 imageDisplayed != null
                     ? Positioned(
-                        bottom: height * 0.18,
-                        left: width * 0.38,
+                        bottom: height * 0.17,
+                        left: width * 0.37,
                         child: SizedBox(
                           height: 48,
                           child: FloatingActionButton(
+                            heroTag: "Boton3",
                             elevation: 3.66,
                             backgroundColor: wColor.mapColors["500BASE"],
+                            onPressed: () {},
                             child: const Icon(
                               Icons.edit_outlined,
                               size: 24,
                             ),
-                            onPressed: () => buildPopUpImage(context, () {
-                              getImage(ImageSource.camera);
-                              Navigator.pop(context);
-                            }, () {
-                              getImage(ImageSource.gallery);
-                              Navigator.pop(context);
-                            }),
                           ),
-                        ),
-                      )
+                        ))
                     : Positioned(
-                        bottom: height * 0.17,
-                        left: width * 0.42,
+                        bottom: height * 0.16,
+                        left: width * 0.34,
                         child: SizedBox(
                           height: 48,
                           child: FloatingActionButton(
+                            heroTag: "Boton2",
                             elevation: 3.66,
                             backgroundColor: wColor.mapColors["500BASE"],
                             child: const Icon(

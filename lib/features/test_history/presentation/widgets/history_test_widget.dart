@@ -17,6 +17,7 @@ class HistoryTestWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
+
     return Visibility(
       visible: isSelect,
       child: Row(
@@ -28,7 +29,6 @@ class HistoryTestWidget extends StatelessWidget {
                 return SizedBox(height: height * 0.018);
               },
               itemBuilder: (_, index) {
-                //TODO check if is PCR dont send
                 return CardTestWidget(
                   onPressed: () {
                     String positiveContentText =

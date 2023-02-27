@@ -121,6 +121,7 @@ class ItemTestData extends StatelessWidget {
             popUpWidget(context, testView);
           },
           textTestKit: testView.code!,
+          testHistoryEntity: testView,
         ),
       ),
     );
