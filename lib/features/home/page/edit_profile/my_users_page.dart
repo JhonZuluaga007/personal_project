@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:personal_project/common_ui/common_pages/my_app_scaffold_page.dart';
-import 'package:personal_project/common_ui/common_widgets/text/text_widget.dart';
-import 'package:personal_project/config/theme/theme.dart';
-import 'package:personal_project/features/home/page/edit_profile/widgets/build_pop_up_image_widget.dart';
-import 'package:personal_project/features/home/widget/text_field_form_my_profile.dart';
+import 'package:Tellme/common_ui/common_pages/my_app_scaffold_page.dart';
+import 'package:Tellme/common_ui/common_widgets/text/text_widget.dart';
+import 'package:Tellme/config/theme/theme.dart';
+import 'package:Tellme/features/home/page/edit_profile/widgets/build_pop_up_image_widget.dart';
+import 'package:Tellme/features/home/widget/text_field_form_my_profile.dart';
 
 import '../../../../navigationBar/bloc/navigation_bar_bloc.dart';
 import '../../../auth/bloc/auth_bloc.dart';

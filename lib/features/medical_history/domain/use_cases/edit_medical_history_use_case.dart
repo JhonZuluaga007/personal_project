@@ -1,5 +1,5 @@
 import 'package:either_dart/either.dart';
-import 'package:personal_project/config/helpers/models/server_validate_data.dart';
+import 'package:Tellme/config/helpers/models/server_validate_data.dart';
 
 import '../repository/medical_history_repository.dart';
 import '../../../../config/helpers/errors/invalid_data.dart';

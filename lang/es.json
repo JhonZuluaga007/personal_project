@@ -325,6 +325,17 @@
     "user_name_text_one": "Email no valido, tiene que ser mayor a 4 caracteres",
     "email_text_invalid": "Email no valido",
 
+    
+    "support_text_one": "Support",
+    "support_text_two": "Name",
+    "support_text_three": "Email",
+    "support_text_four": "Phone",
+    "support_text_five": "Description",
+    "support_text_six": "Enter something...",
+    "support_text_seven": "Load support files",
+    "support_text_eight": "Choose file",
+    "support_text_nine": "Send",
+
     "test_history_empty": "En este momento no tienes ninguna prueba en tu historial",
     "test_history_search_delegate": "No tienes test disponibles en el momento, por favor registre uno"
 }

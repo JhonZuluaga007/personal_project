@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:personal_project/config/theme/theme.dart';
+import 'package:Tellme/config/theme/theme.dart';
 
 import '../../../app_localizations.dart';
 
@@ -17,8 +17,8 @@ class ButtonWidget extends StatelessWidget {
     this.buttonColor,
     required this.onPressed,
     this.icon,
-    this.iconSize, 
-    this.iconColor, 
+    this.iconSize,
+    this.iconColor,
     this.borderRadiusButton,
   }) : super(key: key);
   final double? width;

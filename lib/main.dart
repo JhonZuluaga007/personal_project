@@ -1,29 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:personal_project/common_ui/common_pages/splash_page.dart';
-import 'package:personal_project/features/antigen/presentation/bloc/antigen_test_bloc.dart';
-import 'package:personal_project/features/antigen/presentation/ui/pages/antigen_register_info_page.dart';
-import 'package:personal_project/features/antigen/presentation/ui/pages/questions_antigen_page.dart';
-import 'package:personal_project/features/auth/bloc/auth_bloc.dart';
-import 'package:personal_project/features/auth/bloc/helper_tools_bloc.dart';
-import 'package:personal_project/features/home/page/covid_19_test/presentation/page/instructions_page.dart';
-import 'package:personal_project/features/home/page/covid_19_test/presentation/page/start_counter_page.dart';
-import 'package:personal_project/features/home/page/covid_19_test/presentation/page/upload_final_step_page.dart';
-import 'package:personal_project/features/antigen/presentation/ui/widgets/upload_result_page.dart';
-import 'package:personal_project/features/auth/presentation/pages/login_page.dart';
-import 'package:personal_project/features/auth/presentation/pages/reset_password_page.dart';
-import 'package:personal_project/features/auth/presentation/pages/reset_password_page_info_1.dart';
-import 'package:personal_project/features/home/page/edit_profile/my_users_page.dart';
-import 'package:personal_project/features/pcr/presentation/bloc/pcr_bloc.dart';
-import 'package:personal_project/features/pcr/presentation/pages/pcr_test_register_page.dart';
-import 'package:personal_project/features/medical_history/presentation/bloc/medical_history_bloc.dart';
-import 'package:personal_project/features/medical_history/presentation/pages/medical_history_page.dart';
-import 'package:personal_project/features/test_history/bloc/test_history_bloc.dart';
-import 'package:personal_project/navigationBar/bloc/navigation_bar_bloc.dart';
-import 'package:personal_project/navigationBar/navigation_bar_widget.dart';
-import 'package:personal_project/features/home/page/home_page.dart';
-import 'package:personal_project/onboarding/pages/intro_onboarding_page.dart';
+import 'package:Tellme/common_ui/common_pages/splash_page.dart';
+import 'package:Tellme/features/antigen/presentation/bloc/antigen_test_bloc.dart';
+import 'package:Tellme/features/antigen/presentation/ui/pages/antigen_register_info_page.dart';
+import 'package:Tellme/features/antigen/presentation/ui/pages/questions_antigen_page.dart';
+import 'package:Tellme/features/auth/bloc/auth_bloc.dart';
+import 'package:Tellme/features/auth/bloc/helper_tools_bloc.dart';
+import 'package:Tellme/features/home/page/covid_19_test/presentation/page/instructions_page.dart';
+import 'package:Tellme/features/home/page/covid_19_test/presentation/page/start_counter_page.dart';
+import 'package:Tellme/features/home/page/covid_19_test/presentation/page/upload_final_step_page.dart';
+import 'package:Tellme/features/antigen/presentation/ui/widgets/upload_result_page.dart';
+import 'package:Tellme/features/auth/presentation/pages/login_page.dart';
+import 'package:Tellme/features/auth/presentation/pages/reset_password_page.dart';
+import 'package:Tellme/features/auth/presentation/pages/reset_password_page_info_1.dart';
+import 'package:Tellme/features/home/page/edit_profile/my_users_page.dart';
+import 'package:Tellme/features/pcr/presentation/bloc/pcr_bloc.dart';
+import 'package:Tellme/features/pcr/presentation/pages/pcr_test_register_page.dart';
+import 'package:Tellme/features/medical_history/presentation/bloc/medical_history_bloc.dart';
+import 'package:Tellme/features/medical_history/presentation/pages/medical_history_page.dart';
+import 'package:Tellme/features/support/presentation/pages/support_page.dart';
+import 'package:Tellme/features/test_history/bloc/test_history_bloc.dart';
+import 'package:Tellme/navigationBar/bloc/navigation_bar_bloc.dart';
+import 'package:Tellme/navigationBar/navigation_bar_widget.dart';
+import 'package:Tellme/features/home/page/home_page.dart';
+import 'package:Tellme/onboarding/pages/intro_onboarding_page.dart';
 
 import 'app_localizations.dart';
 import 'config/helpers/injector/injector.dart';
@@ -73,6 +74,7 @@ class MyApp extends StatelessWidget {
             "splash": (_) => const SplashScreenPage(),
             "onboarding": (_) => const IntroOnboardingPage(),
             "home": (_) => const HomePage(),
+            "support": (_) => const SupportPage(),
             "navBar": (_) => const NavBarPage(),
             "login": (_) => const LoginPage(),
             "resetInfo": (_) => const ResetPasswordPageInfo(),

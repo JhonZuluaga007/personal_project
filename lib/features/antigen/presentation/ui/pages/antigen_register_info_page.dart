@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:scan/scan.dart';
-import 'package:personal_project/features/antigen/presentation/ui/pages/questions_antigen_page.dart';
+import 'package:Tellme/features/antigen/presentation/ui/pages/questions_antigen_page.dart';
 
 import '../../bloc/antigen_test_bloc.dart';
 import '../../../../auth/bloc/auth_bloc.dart';
@@ -74,7 +74,6 @@ class _AntigenRegisterInfoPageState extends State<AntigenRegisterInfoPage> {
           ),
         ),
         SizedBox(height: size.height * 0.05),
-
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -136,7 +135,8 @@ class _AntigenRegisterInfoPageState extends State<AntigenRegisterInfoPage> {
         if (state.formStatus is SubmissionSuccess) {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => const QuestionsAntigenPage()),
+            MaterialPageRoute(
+                builder: (context) => const QuestionsAntigenPage()),
           );
         } else if (state.formStatus is SubmissionFailed) {
           errorAlertInfoPop(

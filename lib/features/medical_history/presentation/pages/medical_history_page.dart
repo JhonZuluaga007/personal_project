@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:http/http.dart';
-import 'package:personal_project/features/auth/bloc/auth_bloc.dart';
+import 'package:Tellme/features/auth/bloc/auth_bloc.dart';
 import '../../../../config/helpers/form_submission_status.dart';
 import '../bloc/medical_history_bloc.dart';
 import '../../../../config/theme/theme.dart';

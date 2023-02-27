@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:personal_project/features/antigen/presentation/bloc/antigen_test_bloc.dart';
-import 'package:personal_project/features/home/page/covid_19_test/presentation/widgets/upload_final_widget.dart';
+import 'package:Tellme/features/antigen/presentation/bloc/antigen_test_bloc.dart';
+import 'package:Tellme/features/home/page/covid_19_test/presentation/widgets/upload_final_widget.dart';
 
 import '../../../../../../common_ui/common_widgets/buttons/button_widget.dart';
 import '../../../../../../config/theme/theme.dart';
@@ -30,10 +30,12 @@ class _ImageButtonsWidgetState extends State<ImageButtonsWidget> {
   File? imageDisplayed;
   Future getImage(ImageSource source) async {
     try {
-      final image = await ImagePicker().pickImage(source: source, imageQuality: 4);
+      final image =
+          await ImagePicker().pickImage(source: source, imageQuality: 4);
       if (image == null) return;
       final imageCameraTemporary = File(image.path);
-      BlocProvider.of<AntigenTestBloc>(context).add(AntigenImageEvent(image: imageCameraTemporary));
+      BlocProvider.of<AntigenTestBloc>(context)
+          .add(AntigenImageEvent(image: imageCameraTemporary));
       setState(() {
         imageDisplayed = imageCameraTemporary;
       });

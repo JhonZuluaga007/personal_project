@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:personal_project/features/auth/presentation/pages/login_page.dart';
+import 'package:Tellme/features/auth/presentation/pages/login_page.dart';
 
 import '../../../../app_localizations.dart';
 import '../../../../common_ui/utils/utils_email.dart';

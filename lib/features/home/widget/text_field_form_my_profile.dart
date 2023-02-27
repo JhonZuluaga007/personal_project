@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:personal_project/common_ui/common_widgets/buttons/main_button_widget.dart';
-import 'package:personal_project/common_ui/common_widgets/text_field/text_field_with_border_widget.dart';
-import 'package:personal_project/common_ui/utils/const_list.dart';
-import 'package:personal_project/config/theme/theme.dart';
-import 'package:personal_project/features/auth/bloc/helper_tools_bloc.dart';
-import 'package:personal_project/features/auth/domain/entities/helper_tools_entity.dart';
-import 'package:personal_project/features/auth/domain/entities/user_entity.dart';
-import 'package:personal_project/features/home/page/covid_19_test/presentation/widgets/drop_down_questions_widget.dart';
-import 'package:personal_project/navigationBar/bloc/navigation_bar_bloc.dart';
+import 'package:Tellme/common_ui/common_widgets/buttons/main_button_widget.dart';
+import 'package:Tellme/common_ui/common_widgets/text_field/text_field_with_border_widget.dart';
+import 'package:Tellme/common_ui/utils/const_list.dart';
+import 'package:Tellme/config/theme/theme.dart';
+import 'package:Tellme/features/auth/bloc/helper_tools_bloc.dart';
+import 'package:Tellme/features/auth/domain/entities/helper_tools_entity.dart';
+import 'package:Tellme/features/auth/domain/entities/user_entity.dart';
+import 'package:Tellme/features/home/page/covid_19_test/presentation/widgets/drop_down_questions_widget.dart';
+import 'package:Tellme/navigationBar/bloc/navigation_bar_bloc.dart';
 
 import '../../auth/bloc/auth_bloc.dart';
 import '../../auth/domain/entities/user_update_entity.dart';
