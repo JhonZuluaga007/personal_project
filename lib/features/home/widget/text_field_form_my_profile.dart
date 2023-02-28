@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:Tellme/common_ui/common_widgets/buttons/main_button_widget.dart';
-import 'package:Tellme/common_ui/common_widgets/text_field/text_field_with_border_widget.dart';
 import 'package:Tellme/common_ui/utils/const_list.dart';
 import 'package:Tellme/config/theme/theme.dart';
 import 'package:Tellme/features/auth/bloc/helper_tools_bloc.dart';

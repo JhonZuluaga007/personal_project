@@ -6,6 +6,7 @@ import '../../../../config/theme/theme.dart';
 import '../../../../common_ui/common_widgets/text/text_widget.dart';
 import '../../../../common_ui/common_widgets/responsive/dynamic_container_widget.dart';
 
+// ignore: must_be_immutable
 class MultiSelectedWidget extends StatefulWidget {
   final List<String> listItem;
   final TextStyle? textStyleList;

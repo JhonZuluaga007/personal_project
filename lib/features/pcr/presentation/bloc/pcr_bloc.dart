@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 
@@ -13,7 +11,7 @@ part 'pcr_state.dart';
 class PcrBloc extends Bloc<PcrEvent, PcrState> {
   PcrBloc() : super(const PcrState()) {
     final pcrUseCase = Injector.resolve<PcrValidateUseCase>();
-    
+
     on<PcrValidateEvent>((event, emit) async {
       emit(state.copyWith(formStatus: FormSubmitting()));
       final getMedicalHistoryResponse =
@@ -27,8 +25,7 @@ class PcrBloc extends Bloc<PcrEvent, PcrState> {
           (pcrSuccess) => emit(state.copyWith(
               formStatus: SubmissionSuccess(),
               success: pcrSuccess,
-              statusCode: state.statusCode
-            )));
+              statusCode: state.statusCode)));
     });
   }
 }
