@@ -150,6 +150,7 @@ class _SupportPageState extends State<SupportPage> {
               borderColor: wColor.mapColors["Pink"],
               onPressed: () => getImage(ImageSource.gallery)),
         ),
+        SizedBox(height: height * 0.035),
       ],
     );
   }
