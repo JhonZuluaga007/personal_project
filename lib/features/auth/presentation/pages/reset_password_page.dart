@@ -37,7 +37,6 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     final wColor = ThemesIdx20();
-    final authBloc = BlocProvider.of<AuthBloc>(context);
     final passwordTraslate =
         AppLocalizations.of(context)!.translate("password_validate_text_one");
 
