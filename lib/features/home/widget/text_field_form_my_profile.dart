@@ -260,9 +260,6 @@ class _TextFieldFormMyUserState extends State<TextFieldFormMyUser> {
                                         ? selectedEtnichityValue
                                         : state.ethnicity,
                                 file: state.image,
-                                // != ''
-                                //     ? widget.imageState
-                                //     : state.image,
                               ),
                             ),
                           );
