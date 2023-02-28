@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:personal_project/features/auth/domain/entities/user_entity.dart';
+import 'package:Tellme/features/auth/domain/entities/user_entity.dart';
 
 class UserUpdateEntity {
   final String? userdId;

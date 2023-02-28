@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:personal_project/common_ui/common_widgets/text/text_widget.dart';
-import 'package:personal_project/icons/icons.dart';
+import 'package:Tellme/common_ui/common_widgets/text/text_widget.dart';
+import 'package:Tellme/icons/icons.dart';
 
 import '../../../config/theme/theme.dart';
 
@@ -33,8 +33,7 @@ class CardScanHome extends StatelessWidget {
           shadowColor: wColor.mapColors["IDWhite"],
           elevation: 4,
           child: Padding(
-            padding: EdgeInsets.symmetric(
-              vertical: height * 0.037),
+            padding: EdgeInsets.symmetric(vertical: height * 0.037),
             child: Row(mainAxisAlignment: MainAxisAlignment.start, children: [
               Padding(
                 padding: EdgeInsets.only(left: width * 0.039),

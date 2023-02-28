@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:personal_project/common_ui/common_widgets/text/text_widget.dart';
-import 'package:personal_project/features/auth/domain/entities/helper_tools_entity.dart';
+import 'package:Tellme/common_ui/common_widgets/text/text_widget.dart';
+import 'package:Tellme/features/auth/domain/entities/helper_tools_entity.dart';
 
 import '../../../../../../config/theme/theme.dart';
 

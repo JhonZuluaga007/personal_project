@@ -1,8 +1,8 @@
 import 'dart:io';
 
 import 'package:either_dart/either.dart';
-import 'package:personal_project/config/helpers/models/server_validate_data.dart';
-import 'package:personal_project/features/antigen/domain/entities/antigen_entity.dart';
+import 'package:Tellme/config/helpers/models/server_validate_data.dart';
+import 'package:Tellme/features/antigen/domain/entities/antigen_entity.dart';
 
 import '../../../../config/helpers/errors/invalid_data.dart';
 import '../repository/antigen_repository.dart';
