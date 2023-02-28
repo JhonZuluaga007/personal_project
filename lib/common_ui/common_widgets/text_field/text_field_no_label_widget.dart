@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:personal_project/common_ui/common_widgets/text/text_widget.dart';
-import 'package:personal_project/config/theme/theme.dart';
+import 'package:Tellme/common_ui/common_widgets/text/text_widget.dart';
+import 'package:Tellme/config/theme/theme.dart';
 
 import '../../../app_localizations.dart';
 
@@ -27,6 +27,7 @@ class TextFieldNoLabelWidget extends StatelessWidget {
       this.widthBorder,
       required this.requiresTranslate,
       required this.text,
+      this.maxLines,
       this.validator})
       : super(key: key);
 
@@ -51,6 +52,7 @@ class TextFieldNoLabelWidget extends StatelessWidget {
   final double? widthBorder;
   final bool requiresTranslate;
   final String text;
+  final int? maxLines;
 
   @override
   Widget build(BuildContext context) {
@@ -75,6 +77,7 @@ class TextFieldNoLabelWidget extends StatelessWidget {
           height: height ?? size.height * 0.06,
           child: TextFormField(
             controller: textEditingController,
+            maxLines: maxLines ?? 1,
             keyboardType: textInputType ?? TextInputType.emailAddress,
             autofocus: false,
             obscureText: isPassword ?? false,

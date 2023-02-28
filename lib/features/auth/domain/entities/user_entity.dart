@@ -1,4 +1,4 @@
-import 'package:personal_project/features/auth/data/models/user_model.dart';
+import 'package:Tellme/features/auth/data/models/user_model.dart';
 
 class UserEntity {
   UserEntity({

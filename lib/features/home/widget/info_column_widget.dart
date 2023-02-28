@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
-import 'package:personal_project/features/auth/bloc/auth_bloc.dart';
+import 'package:Tellme/features/auth/bloc/auth_bloc.dart';
 import 'info_container_widget.dart';
 
 class InfoColumnWidget extends StatelessWidget {

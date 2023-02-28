@@ -1,7 +1,7 @@
 import 'dart:convert';
 
-import 'package:personal_project/features/antigen/domain/entities/antigen_entity.dart';
-import 'package:personal_project/features/test_history/domain/entities/test_history_entity.dart';
+import 'package:Tellme/features/antigen/domain/entities/antigen_entity.dart';
+import 'package:Tellme/features/test_history/domain/entities/test_history_entity.dart';
 
 class AntigenModel {
   AntigenModel({

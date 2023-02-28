@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:http/http.dart' as http;
-import 'package:personal_project/config/helpers/models/server_validate_data.dart';
+import 'package:Tellme/config/helpers/models/server_validate_data.dart';
 
 import '../../domain/entities/antigen_entity.dart';
 import '../models/antigen_model.dart';

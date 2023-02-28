@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
-import 'package:personal_project/features/home/widget/dynamic_container_copy_widget.dart';
-import 'package:personal_project/features/test_history/domain/entities/test_history_entity.dart';
-import 'package:personal_project/features/test_history/presentation/widgets/open_file_widget.dart';
+import 'package:Tellme/features/home/widget/dynamic_container_copy_widget.dart';
+import 'package:Tellme/features/test_history/domain/entities/test_history_entity.dart';
+import 'package:Tellme/features/test_history/presentation/widgets/open_file_widget.dart';
 import 'package:syncfusion_flutter_pdf/pdf.dart';
 
 import '../../../../config/theme/theme.dart';

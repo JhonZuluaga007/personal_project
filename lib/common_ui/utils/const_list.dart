@@ -1,4 +1,4 @@
-import 'package:personal_project/features/auth/domain/entities/helper_tools_entity.dart';
+import 'package:Tellme/features/auth/domain/entities/helper_tools_entity.dart';
 
 class ConstLists {
   static List<OpStateEntity> stateList = [
@@ -63,7 +63,8 @@ class ConstLists {
     OpSchoolLevelEntity(id: '7', schoolLevel: 'Some high school, no diploma'),
     OpSchoolLevelEntity(
         id: '7',
-        schoolLevel: 'High school graduate, diploma or the equivalent (For example: GED)'),
+        schoolLevel:
+            'High school graduate, diploma or the equivalent (For example: GED)'),
     OpSchoolLevelEntity(id: '7', schoolLevel: 'Some college credit, no degree'),
     OpSchoolLevelEntity(
         id: '7', schoolLevel: 'Trade/technical/vocational training'),

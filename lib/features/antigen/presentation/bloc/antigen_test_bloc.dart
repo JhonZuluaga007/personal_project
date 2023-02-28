@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
-import 'package:personal_project/features/antigen/domain/use_cases/antigen_register_use_case.dart';
+import 'package:Tellme/features/antigen/domain/use_cases/antigen_register_use_case.dart';
 
 import '../../domain/entities/antigen_entity.dart';
 import '../../../../config/helpers/injector/injector.dart';
@@ -54,25 +54,24 @@ class AntigenTestBloc extends Bloc<AntigenTestEvent, AntigenTestState> {
     on<AntigenRegisterEvent>((event, emit) async {
       emit(state.copyWith(formStatus: FormSubmitting()));
       final antigenRegisterTest = await antigenRegisterUseCase.call(
-        state.code,
-        state.question1!,
-        state.question2!,
-        state.question3!,
-        state.question4!,
-        state.question5!,
-        state.question6!,
-        state.question7!,
-        state.question8!,
-        state.question9!,
-        state.question10!,
-        state.question11!,
-        state.question12!,
-        state.question13!,
-        state.question14!,
-        state.question15!,
-        state.stepHistory ?? "",
-        state.files! 
-      );
+          state.code,
+          state.question1!,
+          state.question2!,
+          state.question3!,
+          state.question4!,
+          state.question5!,
+          state.question6!,
+          state.question7!,
+          state.question8!,
+          state.question9!,
+          state.question10!,
+          state.question11!,
+          state.question12!,
+          state.question13!,
+          state.question14!,
+          state.question15!,
+          state.stepHistory ?? "",
+          state.files!);
       antigenRegisterTest.fold(
           (error) => emit(state.copyWith(
               formStatus: SubmissionFailed(exception: Exception(error.message)),
@@ -223,9 +222,7 @@ class AntigenTestBloc extends Bloc<AntigenTestEvent, AntigenTestState> {
 
     on<AntigenImageEvent>((event, emit) {
       emit(state.copyWith(
-        formStatus: const InitialFormStatus(),
-        files: event.image
-      ));
+          formStatus: const InitialFormStatus(), files: event.image));
     });
   }
 }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:personal_project/common_ui/common_widgets/text/text_widget.dart';
+import 'package:Tellme/common_ui/common_widgets/text/text_widget.dart';
 
 import '../widget/faq_container_widget.dart';
 

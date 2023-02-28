@@ -1,4 +1,4 @@
-package com.personal_project.personal_project
+package com.tellme.tellme
 
 import io.flutter.embedding.android.FlutterActivity
 
