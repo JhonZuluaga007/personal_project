@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:personal_project/config/theme/theme.dart';
-import 'package:personal_project/features/home/widget/test_widgets/app_bar_widget.dart';
+import 'package:Tellme/config/theme/theme.dart';
+import 'package:Tellme/features/home/widget/test_widgets/app_bar_widget.dart';
 
 import '../../../app_localizations.dart';
 

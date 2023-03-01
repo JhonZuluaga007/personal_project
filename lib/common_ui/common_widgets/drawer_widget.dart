@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:personal_project/common_ui/common_widgets/text/text_widget.dart';
+import 'package:Tellme/common_ui/common_widgets/text/text_widget.dart';
 import '../../features/auth/bloc/auth_bloc.dart';
 import '../../features/medical_history/presentation/bloc/medical_history_bloc.dart';
 
@@ -117,11 +117,17 @@ class DrawerWidget extends StatelessWidget {
                 height: 2,
               ),
             ),
+            //NOT USED AT THE MOMENT
             // ListTile(
-            //   title: const Text('Item 4'),
+            //   title: const TextWidget(
+            //     text: 'support_text_one',
+            //   ),
+            //   trailing: const Padding(
+            //     padding: EdgeInsets.only(right: 16.0),
+            //     child: Icon(Icons.help_center),
+            //   ),
             //   onTap: () {
-            //     // Actualiza el estado de la aplicación
-            //     // ...
+            //     Navigator.pushNamed(context, 'support');
             //   },
             // ),
             // const Padding(

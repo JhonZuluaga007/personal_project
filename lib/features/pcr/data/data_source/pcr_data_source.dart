@@ -1,9 +1,9 @@
-import 'package:personal_project/config/helpers/endpoints.dart';
+import 'package:Tellme/config/helpers/endpoints.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-import 'package:personal_project/config/helpers/errors/invalid_data.dart';
-import 'package:personal_project/config/helpers/models/server_error.dart';
+import 'package:Tellme/config/helpers/errors/invalid_data.dart';
+import 'package:Tellme/config/helpers/models/server_error.dart';
 
 class PcrDataSource {
   Future<bool> validatePcr(String userId, String code) async {

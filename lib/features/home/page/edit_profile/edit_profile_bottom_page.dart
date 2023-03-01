@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:personal_project/common_ui/common_pages/my_app_scaffold_page.dart';
-import 'package:personal_project/common_ui/common_widgets/text/text_widget.dart';
-import 'package:personal_project/config/helpers/form_submission_status.dart';
-import 'package:personal_project/config/theme/theme.dart';
-import 'package:personal_project/features/home/page/edit_profile/widgets/build_pop_up_image_widget.dart';
-import 'package:personal_project/features/home/widget/text_field_form_my_profile.dart';
+import 'package:Tellme/common_ui/common_pages/my_app_scaffold_page.dart';
+import 'package:Tellme/common_ui/common_widgets/text/text_widget.dart';
+import 'package:Tellme/config/helpers/form_submission_status.dart';
+import 'package:Tellme/config/theme/theme.dart';
+import 'package:Tellme/features/home/page/edit_profile/widgets/build_pop_up_image_widget.dart';
+import 'package:Tellme/features/home/widget/text_field_form_my_profile.dart';
 
 import '../../../auth/bloc/auth_bloc.dart';
 import '../../widget/info_column_widget.dart';
@@ -40,7 +40,8 @@ class _EditUserFromBottomPageState extends State<EditUserFromBottomPage> {
 
     Future getImageBottom(ImageSource source) async {
       try {
-        final image = await ImagePicker().pickImage(source: source, imageQuality: 5);
+        final image =
+            await ImagePicker().pickImage(source: source, imageQuality: 5);
         if (image == null) return;
         final imageCameraTemporary = File(image.path);
         // final imagePermanent = await saveFilePerma(image.path);
@@ -54,8 +55,6 @@ class _EditUserFromBottomPageState extends State<EditUserFromBottomPage> {
         debugPrint('Failed to pick image: $e');
       }
     }
-
-
 
     return MyAppScaffold(
       children: [

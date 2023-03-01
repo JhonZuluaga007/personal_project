@@ -1,7 +1,7 @@
 // ignore: must_be_immutable
 import 'package:flutter/material.dart';
-import 'package:personal_project/config/theme/theme.dart';
-import 'package:personal_project/features/home/widget/dynamic_container_copy_widget.dart';
+import 'package:Tellme/config/theme/theme.dart';
+import 'package:Tellme/features/home/widget/dynamic_container_copy_widget.dart';
 
 import '../../../common_ui/common_widgets/text/text_widget.dart';
 

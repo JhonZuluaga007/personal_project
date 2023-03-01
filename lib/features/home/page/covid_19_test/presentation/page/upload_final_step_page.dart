@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:personal_project/config/helpers/form_submission_status.dart';
+import 'package:Tellme/config/helpers/form_submission_status.dart';
 
 import '../../../../../../common_ui/common_widgets/form_field_dropdown_widget.dart';
 import '../../../../../../config/theme/theme.dart';
@@ -31,7 +31,6 @@ class _UploadFinalResultPageState extends State<UploadFinalResultPage> {
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     final wColor = ThemesIdx20();
-    final stateAntigen = BlocProvider.of<AntigenTestBloc>(context).state;
     final antigenBloc = BlocProvider.of<AntigenTestBloc>(context);
     final width = MediaQuery.of(context).size.width;
 

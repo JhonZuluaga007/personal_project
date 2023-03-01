@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 
-import 'package:personal_project/features/medical_history/domain/use_cases/edit_medical_history_use_case.dart';
+import 'package:Tellme/features/medical_history/domain/use_cases/edit_medical_history_use_case.dart';
 
 import '../../../../config/helpers/injector/injector.dart';
 import '../../domain/entities/medical_history_entity.dart';

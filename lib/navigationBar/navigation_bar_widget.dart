@@ -1,16 +1,17 @@
+import 'package:Tellme/features/support/presentation/pages/support_bottom_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:personal_project/app_localizations.dart';
-import 'package:personal_project/common_ui/common_widgets/drawer_widget.dart';
-import 'package:personal_project/config/theme/theme.dart';
-import 'package:personal_project/features/home/page/edit_profile/edit_profile_bottom_page.dart';
-import 'package:personal_project/features/home/page/faqs_page.dart';
-import 'package:personal_project/navigationBar/bloc/navigation_bar_bloc.dart';
-import 'package:personal_project/navigationBar/floating_nav_bar_item.dart';
-import 'package:personal_project/features/home/page/tests_pages/register_antigen_test_page.dart';
-import 'package:personal_project/features/home/page/home_page.dart';
-import 'package:personal_project/features/test_history/presentation/pages/history_page.dart';
-import 'package:personal_project/icons/icons.dart';
+import 'package:Tellme/app_localizations.dart';
+import 'package:Tellme/common_ui/common_widgets/drawer_widget.dart';
+import 'package:Tellme/config/theme/theme.dart';
+import 'package:Tellme/features/home/page/edit_profile/edit_profile_bottom_page.dart';
+import 'package:Tellme/features/home/page/faqs_page.dart';
+import 'package:Tellme/navigationBar/bloc/navigation_bar_bloc.dart';
+import 'package:Tellme/navigationBar/floating_nav_bar_item.dart';
+import 'package:Tellme/features/home/page/tests_pages/register_antigen_test_page.dart';
+import 'package:Tellme/features/home/page/home_page.dart';
+import 'package:Tellme/features/test_history/presentation/pages/history_page.dart';
+import 'package:Tellme/icons/icons.dart';
 
 class NavBarPage extends StatefulWidget {
   const NavBarPage({Key? key, this.initialPage}) : super(key: key);
@@ -44,7 +45,9 @@ class _NavBarPageState extends State<NavBarPage> {
       {'pageName': const HistoryPage(), 'title': 'History'},
       {'pageName': const RegisterTestPage(), 'title': 'Tests'},
       {'pageName': const EditUserFromBottomPage(), 'title': 'UserEdit'},
-      {'pageName': const FAQSPage(), 'title': 'FAQs'},
+      {'pageName': const SupportBottomPage(), 'title': 'support'},
+
+      // {'pageName': const FAQSPage(), 'title': 'FAQs'}, //TODO NOT USED AT THE MOMENT
     ];
 
     return BlocBuilder<NavigationBarBloc, NavigationBarState>(

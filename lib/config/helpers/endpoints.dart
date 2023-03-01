@@ -1,4 +1,4 @@
-import 'package:personal_project/config/config.dart';
+import 'package:Tellme/config/config.dart';
 
 class Endpoints {
   //  Endpoint para autenticarse (Login). Acepta POST.

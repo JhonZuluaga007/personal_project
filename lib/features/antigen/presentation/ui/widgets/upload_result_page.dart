@@ -30,7 +30,6 @@ class _UploadResultPageState extends State<UploadResultPage> {
     final height = MediaQuery.of(context).size.height;
     final wColor = ThemesIdx20();
     final antigenBloc = BlocProvider.of<AntigenTestBloc>(context);
-    final stateAntigen = BlocProvider.of<AntigenTestBloc>(context).state;
 
     return MyAppScaffold(
       appBar: AppBar(

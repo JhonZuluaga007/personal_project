@@ -50,7 +50,7 @@
     "nav_bar_02": "History",
     "nav_bar_03": "New test",
     "nav_bar_04": "Profile",
-    "nav_bar_05": "FAQs",
+    "nav_bar_05": "Support",
 
     "home_hi": "Hi ",
     "home_welcome": ", welcome",
@@ -321,6 +321,17 @@
 
     "user_name_text_one": "Invalid email, it must be greater than 4 characters",
     "email_text_invalid": "Invalid email",
+
+    "support_text_one": "Support",
+    "support_text_two": "Name",
+    "support_text_three": "Email",
+    "support_text_four": "Phone",
+    "support_text_five": "Description",
+    "support_text_six": "Enter something...",
+    "support_text_seven": "Load support image",
+    "support_text_eight": "Choose file",
+    "support_text_nine": "Send",
+
 
     "test_history_empty": "At this moment you dont have any test in your history",
     "test_history_search_delegate": "You have no current tests at the moment, please register a new test"

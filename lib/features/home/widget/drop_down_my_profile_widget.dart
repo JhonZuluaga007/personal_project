@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:personal_project/config/theme/theme.dart';
+import 'package:Tellme/config/theme/theme.dart';
 
 import '../../../common_ui/common_widgets/drop_down_widget.dart';
 import '../../../common_ui/common_widgets/text/text_widget.dart';

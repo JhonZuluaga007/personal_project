@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:personal_project/common_ui/common_widgets/form_field_dropdown_widget.dart';
-import 'package:personal_project/features/antigen/presentation/bloc/antigen_test_bloc.dart';
+import 'package:Tellme/common_ui/common_widgets/form_field_dropdown_widget.dart';
+import 'package:Tellme/features/antigen/presentation/bloc/antigen_test_bloc.dart';
 import 'date_picker_container_widget.dart';
 
 import '../../../../../config/theme/theme.dart';

@@ -1,13 +1,13 @@
 import 'package:kiwi/kiwi.dart';
-import 'package:personal_project/features/antigen/data/data_source/antigen_data_source.dart';
-import 'package:personal_project/features/antigen/domain/repository/antigen_repository.dart';
-import 'package:personal_project/features/antigen/domain/use_cases/antigen_register_use_case.dart';
-import 'package:personal_project/features/antigen/domain/use_cases/antigen_validate_use_case.dart';
-import 'package:personal_project/features/medical_history/domain/use_cases/edit_medical_history_use_case.dart';
-import 'package:personal_project/features/pcr/data/data_source/pcr_data_source.dart';
-import 'package:personal_project/features/pcr/data/repository/pcr_repository_impl.dart';
-import 'package:personal_project/features/pcr/domain/repository/pcr_repository.dart';
-import 'package:personal_project/features/pcr/domain/use_case/pcr_validate_use_case.dart';
+import 'package:Tellme/features/antigen/data/data_source/antigen_data_source.dart';
+import 'package:Tellme/features/antigen/domain/repository/antigen_repository.dart';
+import 'package:Tellme/features/antigen/domain/use_cases/antigen_register_use_case.dart';
+import 'package:Tellme/features/antigen/domain/use_cases/antigen_validate_use_case.dart';
+import 'package:Tellme/features/medical_history/domain/use_cases/edit_medical_history_use_case.dart';
+import 'package:Tellme/features/pcr/data/data_source/pcr_data_source.dart';
+import 'package:Tellme/features/pcr/data/repository/pcr_repository_impl.dart';
+import 'package:Tellme/features/pcr/domain/repository/pcr_repository.dart';
+import 'package:Tellme/features/pcr/domain/use_case/pcr_validate_use_case.dart';
 
 import '../../../features/antigen/data/repository/antigen_repository_impl.dart';
 

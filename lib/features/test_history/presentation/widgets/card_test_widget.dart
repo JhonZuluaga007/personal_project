@@ -2,15 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
-import 'package:personal_project/features/home/widget/dynamic_container_copy_widget.dart';
-import 'package:personal_project/features/test_history/domain/entities/test_history_entity.dart';
-import 'package:personal_project/features/test_history/presentation/widgets/open_file_widget.dart';
+import 'package:Tellme/features/home/widget/dynamic_container_copy_widget.dart';
+import 'package:Tellme/features/test_history/domain/entities/test_history_entity.dart';
+import 'package:Tellme/features/test_history/presentation/widgets/open_file_widget.dart';
 import 'package:syncfusion_flutter_pdf/pdf.dart';
 
 import '../../../../config/theme/theme.dart';
 import '../../../../common_ui/common_widgets/buttons/button_widget.dart';
 import '../../../auth/bloc/auth_bloc.dart';
-import '../../bloc/test_history_bloc.dart';
 
 class CardTestWidget extends StatelessWidget {
   const CardTestWidget(
@@ -34,7 +33,6 @@ class CardTestWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final wColor = ThemesIdx20();
     final authBloc = BlocProvider.of<AuthBloc>(context);
-    final stateTestHistory = BlocProvider.of<TestHistoryBloc>(context).state;
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
     final DateFormat formatter = DateFormat('MM-dd-yyyy');
@@ -170,7 +168,6 @@ class CardTestWidget extends StatelessWidget {
     final PdfBrush brush = statusTest == 'Positive'
         ? PdfSolidBrush(PdfColor(135, 18, 0))
         : PdfSolidBrush(PdfColor(36, 165, 70));
-    //CREATE BORDER RECTANGLE
 
     graphics.drawRectangle(
         pen: pen,

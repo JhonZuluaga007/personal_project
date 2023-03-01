@@ -4,6 +4,7 @@ import '../../../../../config/theme/theme.dart';
 import '../../../../auth/domain/entities/helper_tools_entity.dart';
 import '../../../../../common_ui/common_widgets/text/text_widget.dart';
 
+// ignore: must_be_immutable
 class DropDownQuestionsWidget extends StatefulWidget {
   final List<OpDropdown> dropDownItem;
   final String textQuestion;

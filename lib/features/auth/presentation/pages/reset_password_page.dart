@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:personal_project/common_ui/common_widgets/buttons/main_button_widget.dart';
-import 'package:personal_project/common_ui/common_widgets/text_field/text_field_with_border_widget.dart';
-import 'package:personal_project/common_ui/utils/utils_string_password.dart';
-import 'package:personal_project/config/theme/theme.dart';
+import 'package:Tellme/common_ui/common_widgets/buttons/main_button_widget.dart';
+import 'package:Tellme/common_ui/common_widgets/text_field/text_field_with_border_widget.dart';
+import 'package:Tellme/common_ui/utils/utils_string_password.dart';
+import 'package:Tellme/config/theme/theme.dart';
 
 import '../../../../app_localizations.dart';
 import '../../../../common_ui/common_pages/my_app_scaffold_page.dart';
@@ -37,7 +37,6 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     final wColor = ThemesIdx20();
-    final authBloc = BlocProvider.of<AuthBloc>(context);
     final passwordTraslate =
         AppLocalizations.of(context)!.translate("password_validate_text_one");
 
@@ -232,7 +231,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
             BlocConsumer<AuthBloc, AuthState>(listener: (context, state) {
               if (state.formChangePasswordStatus is SubmissionSuccess) {
                 doneSendInfo(
-                  requiresTranslateText: true,
+                    requiresTranslateText: true,
                     context: context,
                     mainIcon: Icon(
                       Icons.check,
