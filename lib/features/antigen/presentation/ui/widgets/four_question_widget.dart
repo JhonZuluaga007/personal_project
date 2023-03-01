@@ -109,16 +109,12 @@ class _FourQuestionWidgetState extends State<FourQuestionWidget> {
             "Unknown",
             "Not Applicable",
           ],
-          selectedValue:
-              stateAntigen.question12!.value != _covidQuestionPregnantValue ||
-                      stateAntigen.question12!.value!.isNotEmpty
-                  ? stateAntigen.question12!.value!
-                  : _covidQuestionPregnantValue,
+          selectedValue:_covidQuestionPregnantValue,
           width: width,
           onChanged: (covidQuestion12) {
             if (covidQuestion12 != "Select option") {
               antigenBloc
-                  .add(AntigenQuestion12Event(question12: covidQuestion12!));
+                  .add(AntigenQuestion12Event(question12: [covidQuestion12!]));
               setState(() {
                 _covidQuestionPregnantValue = covidQuestion12;
               });

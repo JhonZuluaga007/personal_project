@@ -62,7 +62,7 @@ class _ImageButtonsWidgetState extends State<ImageButtonsWidget> {
                   ? Image.file(
                       imageDisplayed!,
                       width: width * 0.7,
-                      height: 250,
+                      height: height * 0.307,
                       fit: BoxFit.cover,
                     )
                   : BackgroundImage(imagePath: imagePath),
