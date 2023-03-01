@@ -22,7 +22,7 @@ class AntigenTestState {
   final QuestionTypeOneEntity? question9;
   final QuestionTypeTwoEntity? question10;
   final QuestionTypeTwoEntity? question11;
-  final QuestionTypeOneEntity? question12;
+  final QuestionTypeTwoEntity? question12;
   final QuestionTypeOneEntity? question13;
   final QuestionTypeOneEntity? question14;
   final QuestionTypeOneEntity? question15;
@@ -81,7 +81,7 @@ class AntigenTestState {
     QuestionTypeOneEntity? question9,
     QuestionTypeTwoEntity? question10,
     QuestionTypeTwoEntity? question11,
-    QuestionTypeOneEntity? question12,
+    QuestionTypeTwoEntity? question12,
     QuestionTypeOneEntity? question13,
     QuestionTypeOneEntity? question14,
     QuestionTypeOneEntity? question15,
