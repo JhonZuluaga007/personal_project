@@ -74,7 +74,7 @@ class MyApp extends StatelessWidget {
             "splash": (_) => const SplashScreenPage(),
             "onboarding": (_) => const IntroOnboardingPage(),
             "home": (_) => const HomePage(),
-            "support": (_) => const SupportPage(),
+            // "support": (_) => const SupportPage(), //Not used at the moment
             "navBar": (_) => const NavBarPage(),
             "login": (_) => const LoginPage(),
             "resetInfo": (_) => const ResetPasswordPageInfo(),

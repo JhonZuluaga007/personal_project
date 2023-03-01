@@ -117,25 +117,26 @@ class DrawerWidget extends StatelessWidget {
                 height: 2,
               ),
             ),
-            ListTile(
-              title: const TextWidget(
-                text: 'support_text_one',
-              ),
-              trailing: const Padding(
-                padding: EdgeInsets.only(right: 16.0),
-                child: Icon(Icons.help_center),
-              ),
-              onTap: () {
-                Navigator.pushNamed(context, 'support');
-              },
-            ),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.0),
-              child: Divider(
-                thickness: 1,
-                height: 2,
-              ),
-            ),
+            //NOT USED AT THE MOMENT
+            // ListTile(
+            //   title: const TextWidget(
+            //     text: 'support_text_one',
+            //   ),
+            //   trailing: const Padding(
+            //     padding: EdgeInsets.only(right: 16.0),
+            //     child: Icon(Icons.help_center),
+            //   ),
+            //   onTap: () {
+            //     Navigator.pushNamed(context, 'support');
+            //   },
+            // ),
+            // const Padding(
+            //   padding: EdgeInsets.symmetric(horizontal: 16.0),
+            //   child: Divider(
+            //     thickness: 1,
+            //     height: 2,
+            //   ),
+            // ),
             const Spacer(),
             WillPopScope(
               onWillPop: () async {

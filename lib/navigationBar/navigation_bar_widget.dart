@@ -1,3 +1,4 @@
+import 'package:Tellme/features/support/presentation/pages/support_bottom_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:Tellme/app_localizations.dart';
@@ -44,7 +45,9 @@ class _NavBarPageState extends State<NavBarPage> {
       {'pageName': const HistoryPage(), 'title': 'History'},
       {'pageName': const RegisterTestPage(), 'title': 'Tests'},
       {'pageName': const EditUserFromBottomPage(), 'title': 'UserEdit'},
-      {'pageName': const FAQSPage(), 'title': 'FAQs'},
+      {'pageName': const SupportBottomPage(), 'title': 'support'},
+
+      // {'pageName': const FAQSPage(), 'title': 'FAQs'}, //TODO NOT USED AT THE MOMENT
     ];
 
     return BlocBuilder<NavigationBarBloc, NavigationBarState>(
