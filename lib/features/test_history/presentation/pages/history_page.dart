@@ -102,10 +102,13 @@ class _HistoryPageState extends State<HistoryPage> {
                             fontSize: 14, fontWeight: FontWeight.w400),
                       ),
                       SizedBox(
-                        width: size.width * 0.025,
+                        width: size.width * 0.020,
                       ),
-                      state.allTestHistoryList.isEmpty
-                          ? Icon(Icons.cancel)
+                      state.allTestHistoryList.isEmpty ||
+                              state.allTestHistoryList.first.result![0]!
+                                      .result ==
+                                  "Inconclusive"
+                          ? SizedBox()
                           : state.allTestHistoryList.first.result!.isNotEmpty
                               ? state.allTestHistoryList.first.result![0]!
                                           .result ==

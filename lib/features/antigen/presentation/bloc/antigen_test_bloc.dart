@@ -187,7 +187,7 @@ class AntigenTestBloc extends Bloc<AntigenTestEvent, AntigenTestState> {
     on<AntigenQuestion12Event>((event, emit) {
       emit(state.copyWith(
           formStatus: const InitialFormStatus(),
-          question12: QuestionTypeOneEntity(
+          question12: QuestionTypeTwoEntity(
             name: state.question12!.name,
             value: event.question12,
           )));
