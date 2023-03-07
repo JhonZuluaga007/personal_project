@@ -2,9 +2,9 @@ import 'package:Tellme/config/config.dart';
 
 class Endpoints {
   //  Endpoint para autenticarse (Login). Acepta POST.
-  static const String login = '${Config.baseURL}login';
+  static const String login = '${Config.baseURL}auth/login';
   static const String getUser = '${Config.baseURL}users/';
-  static const String resetPassword = '${Config.baseURL}users/reset-password';
+  static const String resetPassword = '${Config.baseURL}auth/reset-password';
   static const String changePassword = '${Config.baseURL}users/reset';
   //  Endpoint para editMedicalHistory (EditMedicalHistory). Acepta POST.
   static const String editMedicalHistory = '${Config.baseURL}formmedical/';
