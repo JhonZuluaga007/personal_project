@@ -26,17 +26,17 @@
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-	<key>NSMicrophoneUsageDescription</key>
-	<string>Used to capture audio for image picker.</string>
 	<key>LSSupportsOpeningDocumentsInPlace</key>
 	<true/>
-	<key>UIFileSharingEnabled</key>
-	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>This app requires to access your photo library to show image on profile and send via chat</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Used to capture audio for image picker.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Choose photo from gallery.</string>
-	<key>NSCameraUsageDescription</key>
-      <string>This app requires to access your photo library to show image on profile and send via chat</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
+	<true/>
+	<key>UIFileSharingEnabled</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
