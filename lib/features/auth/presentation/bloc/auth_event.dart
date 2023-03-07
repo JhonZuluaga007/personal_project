@@ -10,10 +10,10 @@ class LoginUserE extends AuthEvent {
   LoginUserE(this.userName, this.password);
 }
 
-class UserUpdateEvent extends AuthEvent {
+/*class UserUpdateEvent extends AuthEvent {
   final UserUpdateEntity userUpdateEntity;
   UserUpdateEvent(this.userUpdateEntity);
-}
+}*/
 
 class ResetPassword extends AuthEvent {
   final String email;

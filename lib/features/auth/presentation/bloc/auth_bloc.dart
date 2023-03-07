@@ -1,17 +1,15 @@
-import 'package:bloc/bloc.dart';
-// ignore: depend_on_referenced_packages
+import 'package:Tellme/features/auth/domain/entities/user_entity_login.dart';
 import 'package:meta/meta.dart';
-import 'package:Tellme/features/auth/data/models/user_model.dart';
-import 'package:Tellme/features/auth/domain/entities/change_password_entity.dart';
-import 'package:Tellme/features/auth/domain/entities/user_entity.dart';
-import 'package:Tellme/features/auth/domain/use_cases/change_password_use_case.dart';
+import 'package:bloc/bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../domain/use_cases/login_use_case.dart';
-import '../domain/entities/user_update_entity.dart';
-import '../domain/use_cases/user_update_use_case.dart';
-import '../domain/use_cases/reset_password_use_case.dart';
-import '../../../config/helpers/injector/injector.dart';
-import '../../../config/helpers/form_submission_status.dart';
+
+import '../../domain/use_cases/login_use_case.dart';
+import '../../domain/use_cases/user_update_use_case.dart';
+import '../../domain/entities/change_password_entity.dart';
+import '../../../../config/helpers/injector/injector.dart';
+import '../../domain/use_cases/reset_password_use_case.dart';
+import '../../domain/use_cases/change_password_use_case.dart';
+import '../../../../config/helpers/form_submission_status.dart';
 
 part 'auth_event.dart';
 part 'auth_state.dart';
@@ -32,53 +30,64 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           errorMessage: error.message,
         ));
       }, (user) {
+        final userResponse = user.data.user;
         emit(state.copyWith(
-          formStatus: SubmissionSuccess(),
-          statusCode: user.statusCode,
-          birthDate: user.user.dateOfBirth,
-          token: user.token,
-          userId: user.user.id,
-          address: user.user.addresses!.address,
-          city: user.user.addresses!.city,
-          state: user.user.addresses!.state,
-          zip: user.user.addresses!.zip,
-          cellphone: user.user.cellphone,
-          email: user.user.email,
-          ethnicity: user.user.ethnicity!.isEmpty
-              ? EthnicityEntity(id: "", ethnicity: "")
-              : user.user.ethnicity![0],
-          gender: user.user.gender!.isEmpty
-              ? GenderEntity(id: "", gender: "")
-              : user.user.gender![0],
-          image: user.user.image,
-          informationUpdated: user.user.informationUpdated,
-          isActive: user.user.isActive,
-          isConfirmed: user.user.isConfirmed,
-          lastname: user.user.lastname,
-          loginId: user.user.loginId,
-          middleName: user.user.middleName,
-          name: user.user.name,
-          organization: user.user.organization,
-          participantId: user.user.participantId,
-          levelSchool: user.user.levelSchool,
-          race: user.user.race!.isEmpty
-              ? RaceEntity(id: "", race: "")
-              : user.user.race![0],
-          sex: user.user.sex!.isEmpty
-              ? SexEntity(id: "", sex: "")
-              : user.user.sex![0],
-        ));
+            formStatus: SubmissionSuccess(),
+            project: user.data.project.project,
+            statusCode: user.statusCode,
+            token: user.data.token,
+            userId: userResponse.id.oid,
+            acceptsTerms: userResponse.acceptsTerms,
+            address: userResponse.address,
+            cellphone: userResponse.cellphone,
+            dateOfBirth: userResponse.dateOfBirth,
+            email: userResponse.email,
+            ethnicity: userResponse.ethnicity.isNotEmpty
+                ? userResponse.ethnicity.first
+                : EthnicityEntity(id: IdEntity(oid: ''), ethnicity: ''),
+            firstLogin: userResponse.firstLogin,
+            gender: GenderEntity(id: IdEntity(oid: ''), gender: ''),
+            informationUpdated: userResponse.informationUpdated,
+            isActive: userResponse.isActive,
+            isConfirmed: userResponse.isConfirmed,
+            lastname: userResponse.lastname,
+            loginId: userResponse.loginId,
+            middleName: userResponse.middleName,
+            name: userResponse.name,
+            participantId: userResponse.participantId,
+            password: userResponse.password,
+            passwordReset: userResponse.passwordReset,
+            profileImage: userResponse.profileImage,
+            projects: userResponse.projects.isNotEmpty
+                ? userResponse.projects.first
+                : IdEntity(oid: ''),
+            race: userResponse.race.isNotEmpty
+                ? userResponse.race.first
+                : RaceEntity(id: IdEntity(oid: ''), race: ''),
+            roles: userResponse.roles.first,
+            schoolLevel: userResponse.schoolLevel.isNotEmpty
+                ? userResponse.schoolLevel.first
+                : '',
+            schoolLevels: userResponse.schoolLevels.isNotEmpty
+                ? userResponse.schoolLevels.first
+                : '',
+            sex: userResponse.sex.isNotEmpty
+                ? userResponse.sex.first
+                : SexEntity(
+                    id: IdEntity(oid: ''),
+                    sex: '',
+                  )));
       });
     });
 
-    on<UpdateImage>((event, emit) async {
+    /*on<UpdateImage>((event, emit) async {
       emit(state.copyWith(
         formStatus: const InitialFormStatus(),
         image: event.file,
       ));
-    });
+    });*/
 
-    on<UserUpdateEvent>((event, emit) {
+    /*on<UserUpdateEvent>((event, emit) {
       userUpdateUseCase.call(event.userUpdateEntity);
       emit(state.copyWith(
         userId: state.userId,
@@ -92,7 +101,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         gender: event.userUpdateEntity.gender,
         image: event.userUpdateEntity.file,
       ));
-    });
+    });*/
+
     on<ChangePassword>((event, emit) async {
       emit(state.copyWith(formChangePasswordStatus: FormSubmitting()));
       ChangePasswordEntity updatedPassword = ChangePasswordEntity(
@@ -113,9 +123,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
               },
           (successfull) => {
                 emit(state.copyWith(
-                    formChangePasswordStatus: SubmissionSuccess(),
-                    statusCode: successfull.statusCode,
-                    message: successfull.message))
+                  formChangePasswordStatus: SubmissionSuccess(),
+                  statusCode: successfull.statusCode,
+                  message: successfull.message,
+                ))
               });
     });
     on<ResetPassword>((event, emit) async {
@@ -137,6 +148,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         ));
       });
     });
+
     on<LogOut>((event, emit) async {
       final prefs = await SharedPreferences.getInstance();
       prefs.clear();
