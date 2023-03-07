@@ -26,7 +26,7 @@ class AntigenRegisterUseCase {
       QuestionTypeOneEntity question9,
       QuestionTypeTwoEntity question10,
       QuestionTypeTwoEntity question11,
-      QuestionTypeOneEntity question12,
+      QuestionTypeTwoEntity question12,
       QuestionTypeOneEntity question13,
       QuestionTypeOneEntity question14,
       QuestionTypeOneEntity question15,
