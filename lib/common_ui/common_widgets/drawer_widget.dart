@@ -1,7 +1,7 @@
+import 'package:Tellme/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:Tellme/common_ui/common_widgets/text/text_widget.dart';
-import '../../features/auth/bloc/auth_bloc.dart';
 import '../../features/medical_history/presentation/bloc/medical_history_bloc.dart';
 
 class DrawerWidget extends StatelessWidget {
@@ -84,7 +84,7 @@ class DrawerWidget extends StatelessWidget {
               ),
               onTap: () {
                 BlocProvider.of<MedicalHistoryBloc>(context).add(
-                    GetMedicalHistoryEvent(stateUserId.userId,
+                    GetMedicalHistoryEvent(stateUserId.userId!,
                         questions2: const []));
                 Navigator.pushNamed(context, 'medicalHistory');
               },

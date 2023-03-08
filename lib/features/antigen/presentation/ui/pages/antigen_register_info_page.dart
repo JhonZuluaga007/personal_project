@@ -1,3 +1,4 @@
+import 'package:Tellme/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -5,7 +6,6 @@ import 'package:scan/scan.dart';
 import 'package:Tellme/features/antigen/presentation/ui/pages/questions_antigen_page.dart';
 
 import '../../bloc/antigen_test_bloc.dart';
-import '../../../../auth/bloc/auth_bloc.dart';
 import '../../../../../config/theme/theme.dart';
 import '../widgets/container_start_counter_widget.dart';
 import '../../../../home/widget/test_widgets/app_bar_widget.dart';
@@ -171,9 +171,11 @@ class _AntigenRegisterInfoPageState extends State<AntigenRegisterInfoPage> {
                 if (testIdController.text.isEmpty) {
                   return;
                 }
-                BlocProvider.of<AntigenTestBloc>(context).add(
-                    AntigenValidateEvent(
-                        userId: userState.userId, code: testIdController.text));
+                BlocProvider.of<AntigenTestBloc>(context)
+                    .add(AntigenValidateEvent(
+                  userId: userState.userId!,
+                  code: testIdController.text,
+                ));
               });
         }
       },

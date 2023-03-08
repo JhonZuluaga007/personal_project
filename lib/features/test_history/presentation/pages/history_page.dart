@@ -1,8 +1,8 @@
+import 'package:Tellme/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:Tellme/config/helpers/form_submission_status.dart';
 
-import '../../../auth/bloc/auth_bloc.dart';
 import '../../bloc/test_history_bloc.dart';
 import '../../../../config/theme/theme.dart';
 import '../widgets/history_test_widget.dart';
@@ -31,7 +31,7 @@ class _HistoryPageState extends State<HistoryPage> {
     final stateUserId = BlocProvider.of<AuthBloc>(context).state;
 
     BlocProvider.of<TestHistoryBloc>(context)
-        .add(GetHistoryTestEvent(stateUserId.userId));
+        .add(GetHistoryTestEvent(stateUserId.userId!));
 
     return Material(
       child: SafeArea(

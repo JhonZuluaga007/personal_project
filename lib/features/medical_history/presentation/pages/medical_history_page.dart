@@ -1,6 +1,6 @@
+import 'package:Tellme/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:Tellme/features/auth/bloc/auth_bloc.dart';
 import '../../../../config/helpers/form_submission_status.dart';
 import '../bloc/medical_history_bloc.dart';
 import '../../../../config/theme/theme.dart';
@@ -231,11 +231,12 @@ class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
               infoText: 'alert_confirm_text_two',
               mainButton: 'alert_confirm_text_three',
               mainButtonFunction: () {
-                BlocProvider.of<MedicalHistoryBloc>(context).add(
-                    EditMedicalHistoryEvent(
-                        userId: stateUserId.userId,
-                        responseOne: defaultValueEng,
-                        responseTwo: chipListText));
+                BlocProvider.of<MedicalHistoryBloc>(context)
+                    .add(EditMedicalHistoryEvent(
+                  userId: stateUserId.userId!,
+                  responseOne: defaultValueEng,
+                  responseTwo: chipListText,
+                ));
               },
               secondButton: 'alert_confirm_text_four',
               secondButtonFunction: () {

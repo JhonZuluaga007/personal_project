@@ -1,9 +1,9 @@
+import 'package:Tellme/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:Tellme/app_localizations.dart';
 import 'package:Tellme/common_ui/common_widgets/text/text_widget.dart';
 import 'package:Tellme/config/theme/theme.dart';
-import 'package:Tellme/features/auth/bloc/auth_bloc.dart';
 import 'package:Tellme/features/antigen/presentation/ui/pages/antigen_register_info_page.dart';
 import 'package:Tellme/features/pcr/presentation/pages/pcr_test_register_page.dart';
 import 'package:Tellme/features/home/widget/card_scan_home.dart';

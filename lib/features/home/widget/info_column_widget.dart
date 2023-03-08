@@ -1,7 +1,7 @@
+import 'package:Tellme/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
-import 'package:Tellme/features/auth/bloc/auth_bloc.dart';
 import 'info_container_widget.dart';
 
 class InfoColumnWidget extends StatelessWidget {
@@ -19,7 +19,7 @@ class InfoColumnWidget extends StatelessWidget {
         return Column(
           children: [
             //TODO translate hintText
-            InfoContainerWidget(
+           InfoContainerWidget(
               hintText: 'First name',
               text: state.name!,
             ),
@@ -36,15 +36,15 @@ class InfoColumnWidget extends StatelessWidget {
             SizedBox(height: size.height * 0.015),
             InfoContainerWidget(
               hintText: 'Date of birth',
-              text: state.birthDate != null
-                  ? formatter.format(state.birthDate!.date)
+              text: state.dateOfBirth != null
+                  ? formatter.format(state.dateOfBirth!.date)
                   : 'mm/dd/yyyy',
               icon: Icons.calendar_month,
             ),
             SizedBox(height: size.height * 0.015),
             InfoContainerWidget(
               hintText: 'Phone number',
-              text: state.cellphone ?? '000 000 000',
+              text: state.cellphone.toString(),
             ),
             SizedBox(height: size.height * 0.015),
             InfoContainerWidget(

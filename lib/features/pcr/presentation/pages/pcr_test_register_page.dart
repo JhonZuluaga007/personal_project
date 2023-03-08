@@ -1,5 +1,6 @@
 // ignore_for_file: use_build_context_synchronously
 
+import 'package:Tellme/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:scan/scan.dart';
 
@@ -12,7 +13,6 @@ import '../../../../common_ui/common_widgets/text/text_widget.dart';
 import '../../../../common_ui/common_widgets/text_field/text_field_with_border_widget.dart';
 import '../../../../config/theme/theme.dart';
 import '../../../../navigationBar/bloc/navigation_bar_bloc.dart';
-import '../../../auth/bloc/auth_bloc.dart';
 import '../../../home/widget/test_widgets/app_bar_widget.dart';
 import '../../../medical_history/presentation/widgets/done_alert_widget.dart';
 import '../../../medical_history/presentation/widgets/error_alert_widget.dart';
@@ -193,8 +193,9 @@ class _PcrRegisterPageState extends State<PcrRegisterPage> {
                           return;
                         }
                         BlocProvider.of<PcrBloc>(context).add(PcrValidateEvent(
-                            userId: userState.userId,
-                            code: pcrIdController.text));
+                          userId: userState.userId!,
+                          code: pcrIdController.text,
+                        ));
                       });
                 }
               },

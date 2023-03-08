@@ -1,15 +1,13 @@
+import 'package:Tellme/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:Tellme/features/auth/presentation/bloc/helper_tools_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:Tellme/common_ui/common_widgets/buttons/main_button_widget.dart';
 import 'package:Tellme/common_ui/utils/const_list.dart';
 import 'package:Tellme/config/theme/theme.dart';
-import 'package:Tellme/features/auth/bloc/helper_tools_bloc.dart';
 import 'package:Tellme/features/auth/domain/entities/helper_tools_entity.dart';
-import 'package:Tellme/features/auth/domain/entities/user_entity.dart';
 import 'package:Tellme/features/home/page/covid_19_test/presentation/widgets/drop_down_questions_widget.dart';
 import 'package:Tellme/navigationBar/bloc/navigation_bar_bloc.dart';
-
-import '../../auth/bloc/auth_bloc.dart';
 import '../../auth/domain/entities/user_update_entity.dart';
 import '../../medical_history/presentation/widgets/confirm_alert_widget.dart';
 import '../../medical_history/presentation/widgets/done_alert_widget.dart';
@@ -38,11 +36,11 @@ class _TextFieldFormMyUserState extends State<TextFieldFormMyUser> {
   String defaultValueRace = 'Select option';
   String defaultValueEthnicity = 'Select option';
   String defaultValueSchool = 'Select option';
-  SexEntity selectedSexValue = SexEntity(id: '', sex: '');
+  /*SexEntity selectedSexValue = SexEntity(id: '', sex: '');
   GenderEntity selectedGenderValue = GenderEntity(id: '', gender: '');
   RaceEntity selectedRaceValue = RaceEntity(id: '', race: '');
   EthnicityEntity selectedEtnichityValue =
-      EthnicityEntity(id: '', ethnicity: '');
+      EthnicityEntity(id: '', ethnicity: '');*/
   String selectedStateValue = '';
   String selectedSchoolLevel = '';
 
@@ -58,13 +56,13 @@ class _TextFieldFormMyUserState extends State<TextFieldFormMyUser> {
     NavigationBarBloc navigationBloc =
         BlocProvider.of<NavigationBarBloc>(context);
 
-    final helperToolsState = BlocProvider.of<HelperToolsBloc>(context).state;
-
+    //final helperToolsState = BlocProvider.of<HelperToolsBloc>(context).state;
+/*
     final List<OpGenderEntity> genderAnswer = helperToolsState.opGender;
     final List<OpSexEntity> sexAnswer = helperToolsState.opSex;
     final List<OpRaceEntity> raceAnswer = helperToolsState.opRace;
     final List<OpEthnicityEntity> ethnicityAnswer =
-        helperToolsState.opEthnicity;
+        helperToolsState.opEthnicity;*/
 
     return BlocBuilder<AuthBloc, AuthState>(
       builder: (context, state) {
@@ -114,7 +112,7 @@ class _TextFieldFormMyUserState extends State<TextFieldFormMyUser> {
             //   widthBorder: 3,
             // ),
             // SizedBox(height: height * 0.0250),
-            DropDownQuestionsWidget(
+            /*DropDownQuestionsWidget(
                 dropDownItem: ConstLists.stateList,
                 textQuestion: "profile_text_hint_nine",
                 width: width,
@@ -274,7 +272,7 @@ class _TextFieldFormMyUserState extends State<TextFieldFormMyUser> {
                   );
                 },
               ),
-            ),
+            ),*/
             SizedBox(height: height * 0.0485),
           ],
         );

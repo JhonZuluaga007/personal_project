@@ -11,8 +11,8 @@ class UserUpdateUseCase {
     required this.authRepository,
   });
 
-  Future<Either<InvalidData, ServerValidate>> call(
+  /*Future<Either<InvalidData, ServerValidate>> call(
       UserUpdateEntity userUpdateEntity) async {
     return await authRepository.userUpdateEntity(userUpdateEntity);
-  }
+  }*/
 }

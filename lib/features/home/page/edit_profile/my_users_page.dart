@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:Tellme/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -7,11 +8,9 @@ import 'package:image_picker/image_picker.dart';
 import 'package:Tellme/common_ui/common_pages/my_app_scaffold_page.dart';
 import 'package:Tellme/common_ui/common_widgets/text/text_widget.dart';
 import 'package:Tellme/config/theme/theme.dart';
-import 'package:Tellme/features/home/page/edit_profile/widgets/build_pop_up_image_widget.dart';
 import 'package:Tellme/features/home/widget/text_field_form_my_profile.dart';
 
 import '../../../../navigationBar/bloc/navigation_bar_bloc.dart';
-import '../../../auth/bloc/auth_bloc.dart';
 import '../../widget/info_column_widget.dart';
 
 class MyUserPage extends StatefulWidget {
@@ -77,7 +76,7 @@ class _MyUserPageState extends State<MyUserPage> {
             return Center(
               child: Stack(alignment: AlignmentDirectional.center, children: [
                 //TODO: CHECK EDIT IMAGE PENCIL
-                state.image != null
+               /* state.image != null
                     ? CircleAvatar(
                         radius: 100,
                         backgroundColor: wColor.mapColors["P01"],
@@ -165,7 +164,7 @@ class _MyUserPageState extends State<MyUserPage> {
                               Navigator.pop(context);
                             }),
                           ),
-                        )),
+                        )),*/
               ]),
             );
           },
