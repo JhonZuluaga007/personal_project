@@ -1,4 +1,5 @@
 import 'package:kiwi/kiwi.dart';
+import 'package:Tellme/features/auth/domain/use_cases/get_user_use_case.dart';
 import 'package:Tellme/features/antigen/data/data_source/antigen_data_source.dart';
 import 'package:Tellme/features/antigen/domain/repository/antigen_repository.dart';
 import 'package:Tellme/features/antigen/domain/use_cases/antigen_register_use_case.dart';
@@ -80,6 +81,7 @@ abstract class Injector {
 
   @Register.factory(AuthRepository, from: AuthRepositoryImpl)
   @Register.factory(LoginUseCase)
+  @Register.factory(GetUserUseCase)
   @Register.factory(AuthDataSource)
   @Register.factory(UserUpdateUseCase)
   @Register.factory(ResetPasswordUseCase)

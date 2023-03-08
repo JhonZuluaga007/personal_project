@@ -27,6 +27,16 @@ class AuthRepositoryImpl implements AuthRepository {
     }
   }
 
+  @override
+  Future<Either<InvalidData, UserEntityLogin>> getUser() async {
+    try {
+      final UserEntityLogin response = await authDataSource.getUser();
+      return Right(response);
+    } on InvalidData catch (invalidData) {
+      return Left(invalidData);
+    }
+  }
+
   /*@override
   Future<Either<InvalidData, ServerValidate>> userUpdateEntity(
       UserUpdateEntity userUpdateEntity) async {

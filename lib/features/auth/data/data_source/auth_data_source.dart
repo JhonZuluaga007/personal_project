@@ -21,6 +21,8 @@ class AuthDataSource {
     });
     if (response["statusCode"] == 200) {
       UserModelLogin userResponse = UserModelLogin.fromJson(response);
+      final prefs = await SharedPreferences.getInstance();
+      prefs.setString('Basic', userResponse.data.token);
       return userResponse;
     } else {
       throw InvalidData(
@@ -28,14 +30,18 @@ class AuthDataSource {
       );
     }
   }
-/*
-  Future<UserModel> getUser(String userId, String token) async {
-    final prefs = await SharedPreferences.getInstance();
-    prefs.setString('Basic', token);
-    final response = await Api.get('${Endpoints.getUser}$userId');
-    UserModel userModel = UserModel.fromMap(response);
-    return userModel;
-  }*/
+
+  Future<UserModelLogin> getUser() async {
+    final response = await Api.get(Endpoints.getUser);
+    if (response["statusCode"] == 200) {
+      UserModelLogin userResponse = UserModelLogin.fromJson(response);
+      return userResponse;
+    } else {
+      throw InvalidData(
+        ServerError.fromMap(response).errorMessage,
+      );
+    }
+  }
 
   /*Future<ServerValidate> userUpdateEntity(
       UserUpdateEntity userUpdateEntity) async {

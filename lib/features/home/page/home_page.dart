@@ -43,6 +43,8 @@ class _HomePageState extends State<HomePage> {
     final authState = context.read<AuthBloc>().state;
     NavigationBarBloc navigationBloc =
         BlocProvider.of<NavigationBarBloc>(context);
+
+    BlocProvider.of<AuthBloc>(context).add(GetUser());
     return Material(
       child: Container(
         height: height,
