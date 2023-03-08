@@ -1,83 +1,132 @@
-import 'dart:convert';
-import '../../domain/entities/user_entity.dart';
+import '../../domain/entities/user_entity_login.dart';
 
-UserModel userModelFromMap(String str) => UserModel.fromMap(json.decode(str));
-UserModelLogin userModelLoginFromMap(String str) =>
-    UserModelLogin.fromMap(json.decode(str));
-
-class UserModelLogin {
+class UserModelLogin extends UserEntityLogin {
   UserModelLogin({
-    required this.project,
-    required this.statusCode,
-    required this.token,
-    required this.user,
-  });
+    required Data data,
+    required Message message,
+    required int statusCode,
+  }) : super(
+          data: data,
+          message: message,
+          statusCode: statusCode,
+        );
 
-  String? project;
-  int? statusCode;
-  String token;
-  UserLogin user;
-
-  factory UserModelLogin.fromMap(Map<String, dynamic> json) => UserModelLogin(
-        project: json["project"],
+  factory UserModelLogin.fromJson(Map<String, dynamic> json) => UserModelLogin(
+        data: Data.fromJson(json["data"]),
+        message: Message.fromJson(json["message"]),
         statusCode: json["statusCode"],
-        token: json["token"],
-        user: UserLogin.fromMap(json["user"]),
       );
-
-  Map<String, dynamic> toMap() => {
-        "project": project,
-        "statusCode": statusCode,
-        "token": token,
-        "user": user.toMap(),
-      };
 }
 
-class UserModel extends UserEntity {
-  UserModel({
-    required int statusCode,
+class Data extends DataEntity {
+  Data({
+    required Project project,
     required String token,
     required User user,
   }) : super(
-          statusCode: statusCode,
+          project: project,
           token: token,
           user: user,
         );
 
-  factory UserModel.fromMap(Map<String, dynamic> json) => UserModel(
-        statusCode: json["statusCode"],
-        token: json["token"] ?? "",
-        user: User.fromMap(json["data"]),
+  factory Data.fromJson(Map<String, dynamic> json) => Data(
+        project: Project.fromJson(json["project"]),
+        token: json["token"],
+        user: User.fromJson(json["user"]),
       );
 }
 
-class UserLogin {
-  UserLogin({
-    required this.id,
-  });
+class Project extends ProjectEntity {
+  Project({
+    required Id id,
+    required Description description,
+    required List<String> disease,
+    required bool isActive,
+    required Description logo,
+    required String project,
+    required List<Type> type,
+    required String url,
+  }) : super(
+            id: id,
+            description: description,
+            disease: disease,
+            isActive: isActive,
+            logo: logo,
+            project: project,
+            type: type,
+            url: url);
 
-  String id;
+  factory Project.fromJson(Map<String, dynamic> json) => Project(
+        id: Id.fromJson(json["_id"]),
+        description: Description.fromJson(json["description"]),
+        disease: List<String>.from(json["disease"].map((x) => x)),
+        isActive: json["is_active"],
+        logo: Description.fromJson(json["logo"]),
+        project: json["project"],
+        type: List<Type>.from(json["type"].map((x) => Type.fromJson(x))),
+        url: json["url"],
+      );
+}
 
-  factory UserLogin.fromMap(Map<String, dynamic> json) => UserLogin(
-        id: Id.fromMap(json["_id"]).oid!,
+class Description extends DescriptionEntity {
+  Description({
+    required String numberDouble,
+  }) : super(
+          numberDouble: numberDouble,
+        );
+
+  factory Description.fromJson(Map<String, dynamic> json) => Description(
+        numberDouble: json["\u0024numberDouble"],
       );
 
-  Map<String, dynamic> toMap() => {
-        "_id": id,
+  Map<String, dynamic> toJson() => {
+        "\u0024numberDouble": numberDouble,
       };
 }
 
-class User extends UserData {
+class Id extends IdEntity {
+  Id({
+    required String oid,
+  }) : super(oid: oid);
+
+  factory Id.fromJson(Map<String, dynamic> json) => Id(
+        oid: json["\u0024oid"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "\u0024oid": oid,
+      };
+}
+
+class Type extends TypeEntity {
+  Type({
+    required Id id,
+    required String type,
+    required bool userRegistrationAvailable,
+  }) : super(
+          id: id,
+          type: type,
+          userRegistrationAvailable: userRegistrationAvailable,
+        );
+
+  factory Type.fromJson(Map<String, dynamic> json) => Type(
+        id: Id.fromJson(json["_id"]),
+        type: json["type"],
+        userRegistrationAvailable: json["user_registration_available"],
+      );
+}
+
+class User extends UserEntity {
   User({
-    required String id,
+    required Id id,
     required bool acceptsTerms,
-    required Addresses addresses,
-    required String cellphone,
+    required Address address,
+    required int cellphone,
     required DateOfBirth dateOfBirth,
     required String email,
-    required List<Ethnicity?>? ethnicity,
-    required List<Gender?>? gender,
-    required String image,
+    required List<Ethnicity> ethnicity,
+    required bool firstLogin,
+    required List<Gender> gender,
     required bool informationUpdated,
     required bool isActive,
     required bool isConfirmed,
@@ -85,27 +134,26 @@ class User extends UserData {
     required String loginId,
     required String middleName,
     required String name,
-    required dynamic organization,
     required String participantId,
     required String password,
     required bool passwordReset,
-    required bool firstLogin,
-    required List<String> projects,
-    required List<Race?>? race,
-    required Roles roles,
-    required String levelSchool,
-    required List<Sex?>? sex,
-    //required DateOfBirth updated,
+    required String profileImage,
+    required List<Id> projects,
+    required List<Race> race,
+    required List<String> roles,
+    required List<String> schoolLevel,
+    required List<String> schoolLevels,
+    required List<Sex> sex,
   }) : super(
           id: id,
           acceptsTerms: acceptsTerms,
-          addresses: addresses,
+          address: address,
           cellphone: cellphone,
           dateOfBirth: dateOfBirth,
           email: email,
           ethnicity: ethnicity,
+          firstLogin: firstLogin,
           gender: gender,
-          image: image,
           informationUpdated: informationUpdated,
           isActive: isActive,
           isConfirmed: isConfirmed,
@@ -113,66 +161,52 @@ class User extends UserData {
           loginId: loginId,
           middleName: middleName,
           name: name,
-          organization: organization,
           participantId: participantId,
           password: password,
           passwordReset: passwordReset,
-          firstLogin: firstLogin,
+          profileImage: profileImage,
           projects: projects,
           race: race,
           roles: roles,
+          schoolLevel: schoolLevel,
+          schoolLevels: schoolLevels,
           sex: sex,
-          levelSchool: levelSchool,
-          //updated: updated,
         );
 
-  factory User.fromMap(Map<String, dynamic> json) => User(
-        id: json["_id"] == Map ? Id.fromMap(json["_id"]).oid : json["_id"],
+  factory User.fromJson(Map<String, dynamic> json) => User(
+        id: Id.fromJson(json["_id"]),
         acceptsTerms: json["accepts_terms"],
-        addresses: Addresses.fromMap(json["addresses"]),
-        cellphone: json["cellphone"] ?? '',
-        dateOfBirth: DateOfBirth.fromJson(json["date_of_birth"] ?? ""),
-        firstLogin: json["first_login"] ?? false,
-        // json["date_of_birth"] != null
-        //     ? DateOfBirth.fromJson(json["date_of_birth"])
-        //     : DateOfBirth(date: Date(numberLong: '')),
-        email: json["email"] ?? '',
-        ethnicity: json["ethnicity"] == null
-            ? []
-            : List<Ethnicity?>.from(
-                json["ethnicity"]!.map((x) => Ethnicity.fromMap(x))),
-        gender: json["gender"] == null
-            ? []
-            : List<Gender?>.from(json["gender"]!.map((x) => Gender.fromMap(x))),
-        image: json["image"],
-        informationUpdated: json["information_updated"] ?? false,
-        isActive: json["is_active"] ?? false,
-        isConfirmed: json["is_confirmed"] ?? false,
-        lastname: json["lastname"] ?? '',
-        loginId: json["login_id"] ?? '',
-        middleName: json["middle_name"] ?? '',
-        name: json["name"] ?? '',
-        organization: json["organization"] ?? '',
-        participantId: json["participant_id"] ?? '',
-        password: json["password"] ?? '',
-        passwordReset: json["password_reset"] ?? false,
-        levelSchool: json["level_school"] ?? "",
-        projects: json["projects"] == null
-            ? []
-            : List<String>.from(json["projects"]!.map((x) => x)),
-        race: json["race"] == null
-            ? []
-            : List<Race?>.from(json["race"]!.map((x) => Race.fromMap(x))),
-        roles: Roles.fromMap(json["roles"]),
-        sex: json["sex"] == null
-            ? []
-            : List<Sex?>.from(json["sex"]!.map((x) => Sex.fromMap(x))),
-        //updated: DateOfBirth.fromMap(json["updated"]),
+        address: Address.fromJson(json["address"]),
+        cellphone: json["cellphone"],
+        dateOfBirth: DateOfBirth.fromJson(json["date_of_birth"]),
+        email: json["email"],
+        ethnicity: List<Ethnicity>.from(
+            json["ethnicity"].map((x) => Ethnicity.fromJson(x))),
+        firstLogin: json["first_login"],
+        gender:
+            List<Gender>.from(json["gender"].map((x) => Gender.fromJson(x))),
+        informationUpdated: json["information_updated"],
+        isActive: json["is_active"],
+        isConfirmed: json["is_confirmed"],
+        lastname: json["lastname"],
+        loginId: json["login_id"],
+        middleName: json["middle_name"],
+        name: json["name"],
+        participantId: json["participant_id"],
+        password: json["password"],
+        passwordReset: json["password_reset"],
+        profileImage: json["profile_image"],
+        projects: List<Id>.from(json["projects"].map((x) => Id.fromJson(x))),
+        race: List<Race>.from(json["race"].map((x) => Race.fromJson(x))),
+        roles: List<String>.from(json["roles"].map((x) => x)),
+        schoolLevel: List<String>.from(json["school_level"].map((x) => x)),
+        schoolLevels: List<String>.from(json["school_levels"].map((x) => x)),
+        sex: List<Sex>.from(json["sex"].map((x) => Sex.fromJson(x))),
       );
 }
 
-class Addresses extends AddressesEntity {
-  Addresses({
+class Address extends AddressEntity {
+  Address({
     required String address,
     required String city,
     required String state,
@@ -184,14 +218,14 @@ class Addresses extends AddressesEntity {
           zip: zip,
         );
 
-  factory Addresses.fromMap(Map<String, dynamic> json) => Addresses(
-        address: json["address"] ?? "",
-        city: json["city"] ?? "",
-        state: json["state"] ?? "",
-        zip: json["zip"] ?? "",
+  factory Address.fromJson(Map<String, dynamic> json) => Address(
+        address: json["address"],
+        city: json["city"],
+        state: json["state"],
+        zip: json["zip"],
       );
 
-  Map<String, dynamic> toMap() => {
+  Map<String, dynamic> toJson() => {
         "address": address,
         "city": city,
         "state": state,
@@ -199,13 +233,10 @@ class Addresses extends AddressesEntity {
       };
 }
 
-class DateOfBirth {
-  // TODO Need to extends from Entity.
+class DateOfBirth extends DateOfBirthEntity {
   DateOfBirth({
-    required this.date,
-  });
-
-  final DateTime date;
+    required DateTime date,
+  }) : super(date: date);
 
   factory DateOfBirth.fromJson(Map<String, dynamic> json) => DateOfBirth(
         date: DateTime.parse(json["\u0024date"]),
@@ -215,141 +246,83 @@ class DateOfBirth {
         "\u0024date": date.toIso8601String(),
       };
 }
-// class DateOfBirth extends DateEntity {
-//   DateOfBirth({
-//     required Date date,
-//   }) : super(date: date);
-//  DateOfBirth({
-//         required this.date,
-//     });
-
-//     final DateTime date;
-
-//     factory DateOfBirth.fromJson(Map<String, dynamic> json) => DateOfBirth(
-//         date: DateTime.parse(json["\u0024date"]),
-//     );
-
-//     Map<String, dynamic> toJson() => {
-//         "\u0024date": date.toIso8601String(),
-//     };
-// }
-
-class Date {
-  Date({
-    required this.numberLong,
-  });
-
-  final String numberLong;
-
-  factory Date.fromMap(Map<String, dynamic> json) => Date(
-        numberLong: json["\u0024numberLong"],
-      );
-  factory Date.fromJson(Map<String, dynamic> json) => Date(
-        numberLong: json["\u0024numberLong"],
-      );
-
-  Map<String, dynamic> toJson() => {
-        "\u0024numberLong": numberLong,
-      };
-}
 
 class Ethnicity extends EthnicityEntity {
   Ethnicity({
-    required String id,
+    required Id id,
     required String ethnicity,
-  }) : super(id: id, ethnicity: ethnicity);
+  }) : super(
+          id: id,
+          ethnicity: ethnicity,
+        );
 
-  factory Ethnicity.fromMap(Map<String, dynamic> json) => Ethnicity(
-        id: json["_id"] == Map ? Id.fromMap(json["_id"]).oid : json["_id"],
+  factory Ethnicity.fromJson(Map<String, dynamic> json) => Ethnicity(
+        id: Id.fromJson(json["_id"]),
         ethnicity: json["ethnicity"],
       );
-
-  Map<String, dynamic> toMap() => {
-        "_id": id,
-        "ethnicity": ethnicity,
-      };
-}
-
-class Id {
-  Id({
-    this.oid,
-  });
-
-  String? oid;
-
-  factory Id.fromMap(Map<String, dynamic> json) => Id(
-        oid: json["\u0024oid"] ?? "",
-      );
-
-  Map<String, dynamic> toMap() => {
-        "\u0024oid": oid,
-      };
 }
 
 class Gender extends GenderEntity {
   Gender({
-    required String id,
+    required Id id,
     required String gender,
-  }) : super(id: id, gender: gender);
+  }) : super(
+          id: id,
+          gender: gender,
+        );
 
-  factory Gender.fromMap(Map<String, dynamic> json) => Gender(
-        id: json["_id"] == Map ? Id.fromMap(json["_id"]).oid : json["_id"],
+  factory Gender.fromJson(Map<String, dynamic> json) => Gender(
+        id: Id.fromJson(json["_id"]),
         gender: json["gender"],
       );
-
-  Map<String, dynamic> toMap() => {
-        "_id": id,
-        "gender": gender,
-      };
 }
 
 class Race extends RaceEntity {
   Race({
-    required String id,
+    required Id id,
     required String race,
-  }) : super(id: id, race: race);
+  }) : super(
+          id: id,
+          race: race,
+        );
 
-  factory Race.fromMap(Map<String, dynamic> json) => Race(
-        id: json["_id"] == Map ? Id.fromMap(json["_id"]).oid : json["_id"],
+  factory Race.fromJson(Map<String, dynamic> json) => Race(
+        id: Id.fromJson(json["_id"]),
         race: json["race"],
       );
-
-  Map<String, dynamic> toMap() => {
-        "_id": id,
-        "race": race,
-      };
-}
-
-class Roles extends RolesEntity {
-  Roles({
-    required String id,
-    required String role,
-  }) : super(id: id, role: role);
-
-  factory Roles.fromMap(Map<String, dynamic> json) => Roles(
-        id: json["_id"] == Map ? Id.fromMap(json["_id"]).oid : json["_id"],
-        role: json["role"],
-      );
-
-  Map<String, dynamic> toMap() => {
-        "_id": id,
-        "role": role,
-      };
 }
 
 class Sex extends SexEntity {
   Sex({
-    required String id,
+    required Id id,
     required String sex,
-  }) : super(id: id, sex: sex);
+  }) : super(
+          id: id,
+          sex: sex,
+        );
 
-  factory Sex.fromMap(Map<String, dynamic> json) => Sex(
-        id: json["_id"] == Map ? Id.fromMap(json["_id"]).oid : json["_id"],
+  factory Sex.fromJson(Map<String, dynamic> json) => Sex(
+        id: Id.fromJson(json["_id"]),
         sex: json["sex"],
       );
+}
 
-  Map<String, dynamic> toMap() => {
-        "_id": id,
-        "sex": sex,
+class Message extends MessageEntity {
+  Message({
+    required String text,
+    required String type,
+  }) : super(
+          text: text,
+          type: type,
+        );
+
+  factory Message.fromJson(Map<String, dynamic> json) => Message(
+        text: json["text"],
+        type: json["type"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "text": text,
+        "type": type,
       };
 }

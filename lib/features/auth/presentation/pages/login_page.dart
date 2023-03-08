@@ -1,3 +1,5 @@
+import 'package:Tellme/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:Tellme/features/auth/presentation/bloc/helper_tools_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:Tellme/common_ui/common_widgets/buttons/main_button_widget.dart';
@@ -6,12 +8,10 @@ import 'package:Tellme/common_ui/utils/utils_string_password.dart';
 import 'package:Tellme/common_ui/utils/utils_email.dart';
 import 'package:Tellme/config/helpers/form_submission_status.dart';
 import 'package:Tellme/config/theme/theme.dart';
-import 'package:Tellme/features/auth/bloc/helper_tools_bloc.dart';
 import '../../../../app_localizations.dart';
 import '../../../../common_ui/common_pages/my_app_scaffold_page.dart';
 import '../../../../common_ui/common_widgets/text/text_widget.dart';
 import '../../../../navigationBar/navigation_bar_widget.dart';
-import '../../bloc/auth_bloc.dart';
 import '../widgets/line_row_widget.dart';
 import '../widgets/login_text_widget.dart';
 
@@ -192,7 +192,7 @@ class _LoginPageState extends State<LoginPage> {
         BlocConsumer<AuthBloc, AuthState>(
           listener: (BuildContext context, state) {
             if (state.formStatus is SubmissionSuccess) {
-              BlocProvider.of<HelperToolsBloc>(context).add(GetTestTools());
+              //BlocProvider.of<HelperToolsBloc>(context).add(GetTestTools());
               Navigator.push(
                 context,
                 MaterialPageRoute(
@@ -202,7 +202,7 @@ class _LoginPageState extends State<LoginPage> {
               );
             } else if (state.formStatus is SubmissionFailed) {
               final snackBar = SnackBar(
-                  content: Text(state.errorMessage),
+                  content: Text(state.errorMessage!),
                   action: SnackBarAction(
                     label: 'Cerrar',
                     onPressed: () {},

@@ -1,9 +1,10 @@
+import '../bloc/auth_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:Tellme/common_ui/common_widgets/buttons/main_button_widget.dart';
-import 'package:Tellme/common_ui/common_widgets/text_field/text_field_with_border_widget.dart';
-import 'package:Tellme/common_ui/utils/utils_string_password.dart';
-import 'package:Tellme/config/theme/theme.dart';
+import '../../../../common_ui/common_widgets/buttons/main_button_widget.dart';
+import '../../../../common_ui/common_widgets/text_field/text_field_with_border_widget.dart';
+import '../../../../common_ui/utils/utils_string_password.dart';
+import '../../../../config/theme/theme.dart';
 
 import '../../../../app_localizations.dart';
 import '../../../../common_ui/common_pages/my_app_scaffold_page.dart';
@@ -13,7 +14,6 @@ import '../../../../config/helpers/form_submission_status.dart';
 
 import '../../../medical_history/presentation/widgets/done_alert_widget.dart';
 import '../../../medical_history/presentation/widgets/error_alert_widget.dart';
-import '../../bloc/auth_bloc.dart';
 
 class ResetPasswordPage extends StatefulWidget {
   const ResetPasswordPage({Key? key}) : super(key: key);
@@ -281,9 +281,12 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                             confirmPassword.text.isNotEmpty &&
                             confirmPassword.text.length >= 6) {
                           if (confirmPassword.text == newPassword.text) {
-                            BlocProvider.of<AuthBloc>(context).add(
-                                ChangePassword(state.userId, oldPassword.text,
-                                    newPassword.text));
+                            BlocProvider.of<AuthBloc>(context)
+                                .add(ChangePassword(
+                              state.userId!,
+                              oldPassword.text,
+                              newPassword.text,
+                            ));
                           } else {
                             if (confirmPassword.text != newPassword.text) {
                               final snackBar = SnackBar(

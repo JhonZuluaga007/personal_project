@@ -1,7 +1,7 @@
 import 'package:either_dart/either.dart';
 
-import '../entities/user_entity.dart';
 import '../repository/auth_repository.dart';
+import '../../domain/entities/user_entity_login.dart';
 import '../../../../config/helpers/errors/invalid_data.dart';
 
 class LoginUseCase {
@@ -10,7 +10,7 @@ class LoginUseCase {
     required this.authRepository,
   });
 
-  Future<Either<InvalidData, UserEntity>> call(
+  Future<Either<InvalidData, UserEntityLogin>> call(
       String username, String password) async {
     return await authRepository.login(username, password);
   }

@@ -1,6 +1,3 @@
-import 'dart:io';
-
-import 'package:flutter/material.dart';
 import 'package:Tellme/features/auth/data/models/helper_tools_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
@@ -16,32 +13,31 @@ import '../../../../config/helpers/models/server_error.dart';
 import '../../../../config/helpers/models/server_validate_data.dart';
 
 class AuthDataSource {
-  Future<UserModel> login(String username, String password) async {
+  Future<UserModelLogin> login(String username, String password) async {
     final response = await Api.post(Endpoints.login, {
       "email": username,
       "password": password,
+      "project": "ChelseaProject",
     });
     if (response["statusCode"] == 200) {
-      UserModelLogin userResponse = UserModelLogin.fromMap(response);
-      debugPrint("result data response login: ${userResponse.user.id}");
-
-      return getUser(userResponse.user.id, userResponse.token);
+      UserModelLogin userResponse = UserModelLogin.fromJson(response);
+      return userResponse;
     } else {
       throw InvalidData(
         ServerError.fromMap(response).errorMessage,
       );
     }
   }
-
+/*
   Future<UserModel> getUser(String userId, String token) async {
     final prefs = await SharedPreferences.getInstance();
     prefs.setString('Basic', token);
     final response = await Api.get('${Endpoints.getUser}$userId');
     UserModel userModel = UserModel.fromMap(response);
     return userModel;
-  }
+  }*/
 
-  Future<ServerValidate> userUpdateEntity(
+  /*Future<ServerValidate> userUpdateEntity(
       UserUpdateEntity userUpdateEntity) async {
     var request = http.MultipartRequest(
         'PUT', Uri.parse(Endpoints.getUser + userUpdateEntity.userdId!));
@@ -86,7 +82,7 @@ class AuthDataSource {
       throw InvalidData(
           "We could not update your password. Make sure your current password is correct");
     }
-  }
+  }*/
 
   Future<ServerValidate> resetPassword(String email) async {
     Api.clearHeaders();
@@ -95,6 +91,7 @@ class AuthDataSource {
       Endpoints.resetPassword,
       {
         "email": email,
+        "project": "ChelseaProject",
       },
     );
     if (response["statusCode"] == 200) {
