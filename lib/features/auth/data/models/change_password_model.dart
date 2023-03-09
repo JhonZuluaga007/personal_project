@@ -1,16 +1,3 @@
-// To parse this JSON data, do
-//
-//     final changePasswordModel = changePasswordModelFromJson(jsonString);
-
-import 'package:meta/meta.dart';
-import 'dart:convert';
-
-ChangePasswordModel changePasswordModelFromJson(String str) =>
-    ChangePasswordModel.fromJson(json.decode(str));
-
-String changePasswordModelToJson(ChangePasswordModel data) =>
-    json.encode(data.toJson());
-
 class ChangePasswordModel {
   ChangePasswordModel({
     required this.data,
