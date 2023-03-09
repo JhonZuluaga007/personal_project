@@ -97,7 +97,7 @@ class UserEntity {
     required this.projects,
     required this.race,
     required this.roles,
-    required this.schoolLevel,
+    //required this.schoolLevel,
     required this.schoolLevels,
     required this.sex,
   });
@@ -125,7 +125,7 @@ class UserEntity {
   final List<IdEntity> projects;
   final List<RaceEntity> race;
   final List<String> roles;
-  final List<String> schoolLevel;
+  //final List<String> schoolLevel;
   final List<String> schoolLevels;
   final List<SexEntity> sex;
 }

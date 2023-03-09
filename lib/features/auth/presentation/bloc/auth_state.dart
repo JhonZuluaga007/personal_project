@@ -29,7 +29,6 @@ class AuthState {
   final IdEntity? projects;
   final RaceEntity? race;
   final String? roles;
-  final String? schoolLevel;
   final String? schoolLevels;
   final SexEntity? sex;
   final String? errorMessage;
@@ -65,7 +64,6 @@ class AuthState {
     this.projects,
     this.race,
     this.roles = '',
-    this.schoolLevel = '',
     this.schoolLevels = '',
     this.sex,
     this.errorMessage = '',
@@ -102,7 +100,6 @@ class AuthState {
     IdEntity? projects,
     RaceEntity? race,
     String? roles,
-    String? schoolLevel,
     String? schoolLevels,
     SexEntity? sex,
     String? errorMessage,
@@ -138,7 +135,6 @@ class AuthState {
         projects: null,
         race: RaceEntity(id: IdEntity(oid: ''), race: ''),
         roles: '',
-        schoolLevel: '',
         schoolLevels: '',
         sex: SexEntity(id: IdEntity(oid: ''), sex: ''),
         errorMessage: '',
@@ -181,7 +177,6 @@ class AuthState {
     IdEntity? projects,
     RaceEntity? race,
     String? roles,
-    String? schoolLevel,
     String? schoolLevels,
     SexEntity? sex,
     String? errorMessage,
@@ -217,7 +212,6 @@ class AuthState {
       projects: projects ?? this.projects,
       race: race ?? this.race,
       roles: roles ?? this.roles,
-      schoolLevel: schoolLevel ?? this.schoolLevel,
       schoolLevels: schoolLevels ?? this.schoolLevels,
       sex: sex ?? this.sex,
       errorMessage: errorMessage ?? this.errorMessage,

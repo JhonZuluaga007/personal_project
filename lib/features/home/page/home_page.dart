@@ -7,7 +7,6 @@ import 'package:Tellme/config/theme/theme.dart';
 import 'package:Tellme/features/antigen/presentation/ui/pages/antigen_register_info_page.dart';
 import 'package:Tellme/features/pcr/presentation/pages/pcr_test_register_page.dart';
 import 'package:Tellme/features/home/widget/card_scan_home.dart';
-import 'package:Tellme/features/home/widget/main_banner_description_onboarding.dart';
 import 'package:Tellme/icons/icons.dart';
 
 import '../../../navigationBar/bloc/navigation_bar_bloc.dart';
@@ -20,19 +19,10 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  late final PageController _pageController;
-  int pageNumber = 0;
-
   @override
   void initState() {
-    _pageController = PageController();
+    //BlocProvider.of<AuthBloc>(context).add(GetUser());
     super.initState();
-  }
-
-  @override
-  void dispose() {
-    _pageController.dispose();
-    super.dispose();
   }
 
   @override
@@ -43,8 +33,6 @@ class _HomePageState extends State<HomePage> {
     final authState = context.read<AuthBloc>().state;
     NavigationBarBloc navigationBloc =
         BlocProvider.of<NavigationBarBloc>(context);
-
-    BlocProvider.of<AuthBloc>(context).add(GetUser());
     return Material(
       child: Container(
         height: height,
@@ -90,69 +78,7 @@ class _HomePageState extends State<HomePage> {
                       ],
                     ),
                   ),
-
-                  /*TextWidget(
-                    text: "home_name_user",
-                    style: TextStyle(
-                        letterSpacing: -0.02,
-                        fontSize: 20,
-                        fontWeight: FontWeight.w600,
-                        color: wColor.mapColors["S800"]),
-                  ),*/
                 ),
-                // Padding(
-                //   padding: EdgeInsets.symmetric(horizontal: width * 0.03),
-                //   child: TextWidget(
-                //     text: "home_description",
-                //     style: TextStyle(
-                //         fontSize: 13,
-                //         fontWeight: FontWeight.w500,
-                //         color: wColor.mapColors["S500"]),
-                //   ),
-                // ),
-                // SizedBox(height: height * 0.031),
-                // Center(
-                //   child: SizedBox(
-                //     height: height * 0.14,
-                //     child: PageView.builder(
-                //       controller: _pageController,
-                //       onPageChanged: (value) {
-                //         pageNumber = value;
-                //         setState(() {});
-                //       },
-                //       itemBuilder: (context, index) {
-                //         return AnimatedBuilder(
-                //           animation: _pageController,
-                //           builder: (context, child) {
-                //             return child!;
-                //           },
-                //           child: onboardingDescription(pageNumber),
-                //         );
-                //       },
-                //       itemCount: 3,
-                //     ),
-                //   ),
-                // ),
-                // SizedBox(height: height * 0.021),
-                // Row(
-                //   mainAxisAlignment: MainAxisAlignment.center,
-                //   children: List.generate(
-                //     3,
-                //     (index) => GestureDetector(
-                //       child: Container(
-                //           margin:
-                //               EdgeInsets.symmetric(horizontal: width * 0.010),
-                //           child: Icon(
-                //             Icons.circle,
-                //             size: 12,
-                //             color: pageNumber == index
-                //                 ? wColor.mapColors['T400']
-                //                 : wColor.mapColors['T100'],
-                //           )),
-                //     ),
-                //   ),
-                // ),
-                // SizedBox(height: height * 0.039),
                 Padding(
                   padding:
                       EdgeInsets.only(left: width * 0.03, top: height * 0.018),
@@ -208,26 +134,5 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
     );
-  }
-}
-
-Widget onboardingDescription(int pageNumber) {
-  switch (pageNumber) {
-    case 0:
-      return const MainBannerDescriptionOnboarding(
-        imageMainBanner: 'assets/images/home_principal_banner.png',
-      );
-    case 1:
-      return const MainBannerDescriptionOnboarding(
-        imageMainBanner: 'assets/images/home_principal_banner.png',
-      );
-    case 2:
-      return const MainBannerDescriptionOnboarding(
-        imageMainBanner: 'assets/images/home_principal_banner.png',
-      );
-    default:
-      return const MainBannerDescriptionOnboarding(
-        imageMainBanner: 'assets/images/home_principal_banner.png',
-      );
   }
 }

@@ -10,7 +10,7 @@ class MyAppScaffold extends StatelessWidget {
     this.preferredSizeWidget,
     this.appBar,
     this.drawer,
-    Key? key, 
+    Key? key,
     this.bottomNavigationBar,
   }) : super(key: key);
 
@@ -26,28 +26,31 @@ class MyAppScaffold extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Drawer? drawer = _buildDrawer();
-    return Scaffold(
-      backgroundColor: color ?? Colors.white,
-      appBar: appBar,
-      drawer: drawer,
-      body: SafeArea(
-        child: Scrollbar(
-          thumbVisibility: true,
-          child: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: Column(
-                mainAxisAlignment: mainAxisAlignment ?? MainAxisAlignment.start,
-                crossAxisAlignment:
-                    crossAxisAlignment ?? CrossAxisAlignment.center,
-                children: children,
+    return WillPopScope(
+      onWillPop: () async => false,
+      child: Scaffold(
+        backgroundColor: color ?? Colors.white,
+        appBar: appBar,
+        drawer: drawer,
+        body: SafeArea(
+          child: Scrollbar(
+            thumbVisibility: true,
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: Column(
+                  mainAxisAlignment:
+                      mainAxisAlignment ?? MainAxisAlignment.start,
+                  crossAxisAlignment:
+                      crossAxisAlignment ?? CrossAxisAlignment.center,
+                  children: children,
+                ),
               ),
             ),
           ),
         ),
+        bottomNavigationBar: bottomNavigationBar,
       ),
-      bottomNavigationBar: bottomNavigationBar,
     );
   }
 }

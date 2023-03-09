@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 part of 'auth_bloc.dart';
 
 @immutable
@@ -10,7 +9,9 @@ class LoginUserE extends AuthEvent {
   LoginUserE(this.userName, this.password);
 }
 
-class GetUser extends AuthEvent {}
+class GetUser extends AuthEvent {
+  GetUser();
+}
 
 /*class UserUpdateEvent extends AuthEvent {
   final UserUpdateEntity userUpdateEntity;

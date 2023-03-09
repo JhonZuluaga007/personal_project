@@ -1,4 +1,3 @@
-import '../../../../navigationBar/navigation_bar_widget.dart';
 import '../bloc/auth_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -246,15 +245,9 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                     infoText: 'alert_text_password_updated',
                     mainButton: 'alert_text_three',
                     mainButtonFunction: () {
-                      // Navigator.push(
-                      //   context,
-                      //   MaterialPageRoute(
-                      //       builder: (context) => const NavBarPage(
-                      //             initialPage: 'HomePage',
-                      //           )),
-                      // );
-
-                      Navigator.pop(context);
+                      authBloc.add(LogOut());
+                      //Navigator.pop(context);
+                      Navigator.pushReplacementNamed(context, 'login');
                     });
               } else if (state.formChangePasswordStatus is SubmissionFailed) {
                 errorAlertInfoPop(

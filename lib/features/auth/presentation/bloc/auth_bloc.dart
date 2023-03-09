@@ -68,9 +68,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
                 ? userResponse.race.first
                 : RaceEntity(id: IdEntity(oid: ''), race: ''),
             roles: userResponse.roles.first,
-            schoolLevel: userResponse.schoolLevel.isNotEmpty
-                ? userResponse.schoolLevel.first
-                : '',
             schoolLevels: userResponse.schoolLevels.isNotEmpty
                 ? userResponse.schoolLevels.first
                 : '',
@@ -94,51 +91,49 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       }, (user) {
         final userResponse = user.data.user;
         emit(state.copyWith(
-            formStatus: SubmissionSuccess(),
-            project: user.data.project.project,
-            statusCode: user.statusCode,
-            token: user.data.token,
-            userId: userResponse.id.oid,
-            acceptsTerms: userResponse.acceptsTerms,
-            address: userResponse.address,
-            cellphone: userResponse.cellphone,
-            dateOfBirth: userResponse.dateOfBirth,
-            email: userResponse.email,
-            ethnicity: userResponse.ethnicity.isNotEmpty
-                ? userResponse.ethnicity.first
-                : EthnicityEntity(id: IdEntity(oid: ''), ethnicity: ''),
-            firstLogin: userResponse.firstLogin,
-            gender: GenderEntity(id: IdEntity(oid: ''), gender: ''),
-            informationUpdated: userResponse.informationUpdated,
-            isActive: userResponse.isActive,
-            isConfirmed: userResponse.isConfirmed,
-            lastname: userResponse.lastname,
-            loginId: userResponse.loginId,
-            middleName: userResponse.middleName,
-            name: userResponse.name,
-            participantId: userResponse.participantId,
-            password: userResponse.password,
-            passwordReset: userResponse.passwordReset,
-            profileImage: userResponse.profileImage,
-            projects: userResponse.projects.isNotEmpty
-                ? userResponse.projects.first
-                : IdEntity(oid: ''),
-            race: userResponse.race.isNotEmpty
-                ? userResponse.race.first
-                : RaceEntity(id: IdEntity(oid: ''), race: ''),
-            roles: userResponse.roles.first,
-            schoolLevel: userResponse.schoolLevel.isNotEmpty
-                ? userResponse.schoolLevel.first
-                : '',
-            schoolLevels: userResponse.schoolLevels.isNotEmpty
-                ? userResponse.schoolLevels.first
-                : '',
-            sex: userResponse.sex.isNotEmpty
-                ? userResponse.sex.first
-                : SexEntity(
-                    id: IdEntity(oid: ''),
-                    sex: '',
-                  )));
+          formStatus: SubmissionSuccess(),
+          project: user.data.project.project,
+          statusCode: user.statusCode,
+          token: user.data.token,
+          userId: userResponse.id.oid,
+          acceptsTerms: userResponse.acceptsTerms,
+          address: userResponse.address,
+          cellphone: userResponse.cellphone,
+          dateOfBirth: userResponse.dateOfBirth,
+          email: userResponse.email,
+          ethnicity: userResponse.ethnicity.isNotEmpty
+              ? userResponse.ethnicity.first
+              : EthnicityEntity(id: IdEntity(oid: ''), ethnicity: ''),
+          firstLogin: userResponse.firstLogin,
+          gender: GenderEntity(id: IdEntity(oid: ''), gender: ''),
+          informationUpdated: userResponse.informationUpdated,
+          isActive: userResponse.isActive,
+          isConfirmed: userResponse.isConfirmed,
+          lastname: userResponse.lastname,
+          loginId: userResponse.loginId,
+          middleName: userResponse.middleName,
+          name: userResponse.name,
+          participantId: userResponse.participantId,
+          password: userResponse.password,
+          passwordReset: userResponse.passwordReset,
+          profileImage: userResponse.profileImage,
+          projects: userResponse.projects.isNotEmpty
+              ? userResponse.projects.first
+              : IdEntity(oid: ''),
+          race: userResponse.race.isNotEmpty
+              ? userResponse.race.first
+              : RaceEntity(id: IdEntity(oid: ''), race: ''),
+          roles: userResponse.roles.first,
+          schoolLevels: userResponse.schoolLevels.isNotEmpty
+              ? userResponse.schoolLevels.first
+              : '',
+          sex: userResponse.sex.isNotEmpty
+              ? userResponse.sex.first
+              : SexEntity(
+                  id: IdEntity(oid: ''),
+                  sex: '',
+                ),
+        ));
       });
     });
 

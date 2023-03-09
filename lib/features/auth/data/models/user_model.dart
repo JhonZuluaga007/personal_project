@@ -151,7 +151,7 @@ class User extends UserEntity {
     required List<Id> projects,
     required List<Race> race,
     required List<String> roles,
-    required List<String> schoolLevel,
+    //required List<String> schoolLevel,
     required List<String> schoolLevels,
     required List<Sex> sex,
   }) : super(
@@ -178,7 +178,7 @@ class User extends UserEntity {
           projects: projects,
           race: race,
           roles: roles,
-          schoolLevel: schoolLevel,
+          //schoolLevel: schoolLevel,
           schoolLevels: schoolLevels,
           sex: sex,
         );
@@ -209,7 +209,7 @@ class User extends UserEntity {
         projects: List<Id>.from(json["projects"].map((x) => Id.fromJson(x))),
         race: List<Race>.from(json["race"].map((x) => Race.fromJson(x))),
         roles: List<String>.from(json["roles"].map((x) => x)),
-        schoolLevel: List<String>.from(json["school_level"].map((x) => x)),
+        //schoolLevel: List<String>.from(json["school_level"].map((x) => x)),
         schoolLevels: List<String>.from(json["school_levels"].map((x) => x)),
         sex: List<Sex>.from(json["sex"].map((x) => Sex.fromJson(x))),
       );
