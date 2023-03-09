@@ -30,8 +30,9 @@ class Data extends DataEntity {
         );
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
-        project: Project.fromJson(json["project"]) ??
-            Project(
+        project: json["project"] != null
+            ? Project.fromJson(json["project"])
+            : Project(
                 id: Id(oid: ''),
                 description: Description(numberDouble: ''),
                 disease: [],

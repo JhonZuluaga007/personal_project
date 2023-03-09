@@ -445,6 +445,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.0.3"
+  kiwi_generator:
+    dependency: "direct dev"
+    description:
+      name: kiwi_generator
+      sha256: "2c008f46bcb08bf82b3646a149fd575b5d921cf346fb2467e4870850c8941cbb"
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.0.3"
   logging:
     dependency: transitive
     description:
@@ -754,6 +762,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.99"
+  source_gen:
+    dependency: transitive
+    description:
+      name: source_gen
+      sha256: c2bea18c95cfa0276a366270afaa2850b09b4a76db95d546f3d003dcc7011298
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.2.7"
   source_span:
     dependency: transitive
     description:

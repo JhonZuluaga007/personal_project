@@ -1,33 +1,32 @@
-import 'package:kiwi/kiwi.dart';
-import 'package:Tellme/features/auth/domain/use_cases/get_user_use_case.dart';
 import 'package:Tellme/features/antigen/data/data_source/antigen_data_source.dart';
+import 'package:Tellme/features/antigen/data/repository/antigen_repository_impl.dart';
 import 'package:Tellme/features/antigen/domain/repository/antigen_repository.dart';
 import 'package:Tellme/features/antigen/domain/use_cases/antigen_register_use_case.dart';
 import 'package:Tellme/features/antigen/domain/use_cases/antigen_validate_use_case.dart';
+import 'package:Tellme/features/auth/data/data_source/auth_data_source.dart';
+import 'package:Tellme/features/auth/data/repository/auth_repository_impl.dart';
+import 'package:Tellme/features/auth/domain/repository/auth_repository.dart';
+import 'package:Tellme/features/auth/domain/use_cases/change_password_use_case.dart';
+import 'package:Tellme/features/auth/domain/use_cases/get_user_use_case.dart';
+import 'package:Tellme/features/auth/domain/use_cases/helper_tools_use_cases.dart';
+import 'package:Tellme/features/auth/domain/use_cases/login_use_case.dart';
+import 'package:Tellme/features/auth/domain/use_cases/reset_password_use_case.dart';
+import 'package:Tellme/features/auth/domain/use_cases/user_update_use_case.dart';
+import 'package:Tellme/features/medical_history/data/data_source/medical_data_source.dart';
+import 'package:Tellme/features/medical_history/data/repository/medical_history_repository_impl.dart';
+import 'package:Tellme/features/medical_history/domain/repository/medical_history_repository.dart';
 import 'package:Tellme/features/medical_history/domain/use_cases/edit_medical_history_use_case.dart';
+import 'package:Tellme/features/medical_history/domain/use_cases/medical_history_use_case.dart';
 import 'package:Tellme/features/pcr/data/data_source/pcr_data_source.dart';
 import 'package:Tellme/features/pcr/data/repository/pcr_repository_impl.dart';
 import 'package:Tellme/features/pcr/domain/repository/pcr_repository.dart';
 import 'package:Tellme/features/pcr/domain/use_case/pcr_validate_use_case.dart';
+import 'package:Tellme/features/test_history/data/data_source/test_history_data_source.dart';
+import 'package:Tellme/features/test_history/data/repository/test_history_repository_impl.dart';
+import 'package:Tellme/features/test_history/domain/repository/test_history_repository.dart';
+import 'package:Tellme/features/test_history/domain/use_cases/test_history_use_cases.dart';
+import 'package:kiwi/kiwi.dart';
 
-import '../../../features/antigen/data/repository/antigen_repository_impl.dart';
-
-import '../../../features/auth/domain/use_cases/helper_tools_use_cases.dart';
-import '../../../features/auth/domain/use_cases/change_password_use_case.dart';
-import '../../../features/auth/domain/use_cases/reset_password_use_case.dart';
-import '../../../features/auth/domain/use_cases/user_update_use_case.dart';
-import '../../../features/medical_history/data/data_source/medical_data_source.dart';
-import '../../../features/medical_history/data/repository/medical_history_repository_impl.dart';
-import '../../../features/medical_history/domain/repository/medical_history_repository.dart';
-import '../../../features/medical_history/domain/use_cases/medical_history_use_case.dart';
-import '../../../features/test_history/data/data_source/test_history_data_source.dart';
-import '../../../features/test_history/data/repository/test_history_repository_impl.dart';
-import '../../../features/test_history/domain/repository/test_history_repository.dart';
-import '../../../features/test_history/domain/use_cases/test_history_use_cases.dart';
-import '../../../features/auth/data/data_source/auth_data_source.dart';
-import '../../../features/auth/data/repository/auth_repository_impl.dart';
-import '../../../features/auth/domain/repository/auth_repository.dart';
-import '../../../features/auth/domain/use_cases/login_use_case.dart';
 
 part 'injector.g.dart';
 
