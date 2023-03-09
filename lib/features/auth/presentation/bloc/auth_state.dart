@@ -148,6 +148,12 @@ class AuthState {
         formResetPassword: const InitialFormStatus(),
       );
 
+  AuthState successPasswordChanged({
+    final FormSubmissionStatus? formChangePasswordStatus,
+  }) {
+    return AuthState(formChangePasswordStatus: const InitialFormStatus());
+  }
+
   AuthState copyWith({
     String? project,
     int? statusCode,

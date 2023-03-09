@@ -39,3 +39,7 @@ class UpdateImage extends AuthEvent {
 
   UpdateImage(this.file);
 }
+
+class SuccessChangePassword extends AuthEvent {
+  SuccessChangePassword();
+}

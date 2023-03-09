@@ -1,3 +1,4 @@
+import '../../../../navigationBar/navigation_bar_widget.dart';
 import '../bloc/auth_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -36,6 +37,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
+    final authBloc = BlocProvider.of<AuthBloc>(context);
     final wColor = ThemesIdx20();
     final passwordTraslate =
         AppLocalizations.of(context)!.translate("password_validate_text_one");
@@ -230,6 +232,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
             SizedBox(height: height * 0.049),
             BlocConsumer<AuthBloc, AuthState>(listener: (context, state) {
               if (state.formChangePasswordStatus is SubmissionSuccess) {
+                //TODO CHECK WHAT  TO DO HERE
                 doneSendInfo(
                     requiresTranslateText: true,
                     context: context,
@@ -243,7 +246,14 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                     infoText: 'alert_text_password_updated',
                     mainButton: 'alert_text_three',
                     mainButtonFunction: () {
-                      // Navigator.pushReplacementNamed(context, 'login');
+                      // Navigator.push(
+                      //   context,
+                      //   MaterialPageRoute(
+                      //       builder: (context) => const NavBarPage(
+                      //             initialPage: 'HomePage',
+                      //           )),
+                      // );
+
                       Navigator.pop(context);
                     });
               } else if (state.formChangePasswordStatus is SubmissionFailed) {

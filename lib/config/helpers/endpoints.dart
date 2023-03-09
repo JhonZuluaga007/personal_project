@@ -6,12 +6,14 @@ class Endpoints {
   static const String getUser =
       '${Config.baseURL}profile?project=ChelseaProject';
   static const String resetPassword = '${Config.baseURL}auth/reset-password';
-  static const String changePassword = '${Config.baseURL}users/reset';
+  static const String changePassword =
+      '${Config.baseURL}profile/change-password';
   //  Endpoint para editMedicalHistory (EditMedicalHistory). Acepta POST.
   static const String editMedicalHistory = '${Config.baseURL}formmedical/';
   //  Endpoint para viewMedicalHistory (ViewMedicalHistory). Acepta GET.
   static const String viewMedicalHistory = '${Config.baseURL}formmedical/list/';
-  static const String testHistory = '${Config.baseURL}tests/list/';
+  static const String testHistory =
+      '${Config.baseURL}profile/medical-history?project=ChelseaProject';
   static const String viewTest = '${Config.baseURL}tests/detail/';
 
 //Validate antigen Endpoint

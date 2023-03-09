@@ -1,3 +1,4 @@
+import 'package:Tellme/features/auth/data/models/change_password_model.dart';
 import 'package:Tellme/features/auth/data/models/helper_tools_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
@@ -113,12 +114,13 @@ class AuthDataSource {
     String bearerToken = prefs.getString('Basic')!;
     var headers = {'Authorization': 'Bearer $bearerToken'};
     var request =
-        http.MultipartRequest('POST', Uri.parse(Endpoints.changePassword));
+        http.MultipartRequest('PUT', Uri.parse(Endpoints.changePassword));
     request.fields.addAll(
       {
-        'userId': changePassword.userId,
-        'pass': changePassword.pass,
-        'newpass': changePassword.newpass
+        'project': 'ChelseaProject',
+        'currentPassword': changePassword.pass,
+        'newPassword': changePassword.newpass,
+        'confirmPassword': changePassword.newpass
       },
     );
 
@@ -128,8 +130,11 @@ class AuthDataSource {
     if (response.statusCode == 200) {
       final responseString = await response.stream.bytesToString();
       final decodedMap = json.decode(responseString);
+      ChangePasswordModel statusAnswer =
+          ChangePasswordModel.fromJson(decodedMap);
+
       bool success = false;
-      if (decodedMap['statusCode'] == 200) {
+      if (statusAnswer.message.type == 'success') {
         success = true;
       }
       return success

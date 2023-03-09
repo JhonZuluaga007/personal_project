@@ -191,6 +191,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
                 ))
               });
     });
+    on<SuccessChangePassword>((event, emit) async {
+      emit(state.successPasswordChanged(
+          formChangePasswordStatus: InitialFormStatus()));
+    });
 
     on<ResetPassword>((event, emit) async {
       emit(state.copyWith(formResetPassword: FormSubmitting()));
