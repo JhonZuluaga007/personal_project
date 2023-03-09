@@ -131,7 +131,7 @@ class User extends UserEntity {
     required Id id,
     required bool acceptsTerms,
     required Address address,
-    required int cellphone,
+    required String cellphone,
     required DateOfBirth dateOfBirth,
     required String email,
     required List<Ethnicity> ethnicity,

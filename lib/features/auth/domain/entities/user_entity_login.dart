@@ -105,7 +105,7 @@ class UserEntity {
   final IdEntity id;
   final bool acceptsTerms;
   final AddressEntity address;
-  final int cellphone;
+  final String cellphone;
   final DateOfBirthEntity dateOfBirth;
   final String email;
   final List<EthnicityEntity> ethnicity;

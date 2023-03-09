@@ -9,7 +9,7 @@ class AuthState {
   final String? userId;
   final bool? acceptsTerms;
   final AddressEntity? address;
-  final int? cellphone;
+  final String? cellphone;
   final DateOfBirthEntity? dateOfBirth;
   final String? email;
   final EthnicityEntity? ethnicity;
@@ -45,7 +45,7 @@ class AuthState {
     this.userId = '',
     this.acceptsTerms = false,
     this.address,
-    this.cellphone = 0,
+    this.cellphone = '',
     this.dateOfBirth,
     this.email = '',
     this.ethnicity,
@@ -82,7 +82,7 @@ class AuthState {
     String? userId,
     bool? acceptsTerms,
     AddressEntity? address,
-    int? cellphone,
+    String? cellphone,
     DateOfBirthEntity? dateOfBirth,
     String? email,
     EthnicityEntity? ethnicity,
@@ -118,7 +118,7 @@ class AuthState {
         userId: '',
         acceptsTerms: false,
         address: AddressEntity(address: '', city: '', state: '', zip: ''),
-        cellphone: 0,
+        cellphone: '',
         dateOfBirth: DateOfBirthEntity(date: DateTime.now()),
         email: '',
         ethnicity: EthnicityEntity(id: IdEntity(oid: ''), ethnicity: ''),
@@ -155,7 +155,7 @@ class AuthState {
     String? userId,
     bool? acceptsTerms,
     AddressEntity? address,
-    int? cellphone,
+    String? cellphone,
     DateOfBirthEntity? dateOfBirth,
     String? email,
     EthnicityEntity? ethnicity,
