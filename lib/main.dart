@@ -1,5 +1,6 @@
 import 'package:Tellme/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:Tellme/features/auth/presentation/bloc/helper_tools_bloc.dart';
+import 'package:Tellme/features/support/presentation/bloc/support_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -47,6 +48,7 @@ class MyApp extends StatelessWidget {
           BlocProvider(create: (_) => AntigenTestBloc()),
           BlocProvider(create: (_) => PcrBloc()),
           BlocProvider(create: (_) => HelperToolsBloc()),
+          BlocProvider(create: (_) => SupportBloc())
         ],
         child: MaterialApp(
           title: 'Idx20',
