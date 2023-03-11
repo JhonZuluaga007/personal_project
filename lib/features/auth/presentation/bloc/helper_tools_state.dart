@@ -2,49 +2,69 @@ part of 'helper_tools_bloc.dart';
 
 @immutable
 class HelperToolsState {
-  final List<OpEthnicityEntity> opEthnicity;
-  final List<OpGenderEntity> opGender;
-  final List<OpLaboratoryEntity> opLaboratory;
-  final List<OpManufacturerEntity> opManufacturer;
-  final List<OpRaceEntity> opRace;
-  final List<OpRoleEntity> opRoles;
-  final List<OpSexEntity> opSex;
-  final List<OpSwabTypeEntity> opSwabType;
-  final List<OpTestTypeEntity> opTestType;
+  final List<OpEthnicityEntity> ethnicities;
+  final List<OpGenderEntity> genders;
+  final List<OpRaceEntity> races;
+  final List<OpRiskFactorEntity> riskFactors;
+  final List<OpSchoolLevelEntity> schoolLevels;
+  final List<OpSexEntity> sexes;
+  final List<OpSymptomEntity> symptoms;
+  final List<OpTestResultEntity> testResults;
+  final List<OpTestStatusEntity> testStatus;
+  final List<OpTestTypeEntity> testTypes;
+  final List<OpTestValidityEntity> testValidities;
+  final List<OpVaccineEntity> vaccines;
+  final List<OpStateEntity> state;
+  final List<String> answer;
 
   const HelperToolsState({
-    this.opEthnicity = const [],
-    this.opGender = const [],
-    this.opLaboratory = const [],
-    this.opManufacturer = const [],
-    this.opRace = const [],
-    this.opRoles = const [],
-    this.opSex = const [],
-    this.opSwabType = const [],
-    this.opTestType = const [],
+    this.ethnicities = const [],
+    this.genders = const [],
+    this.races = const [],
+    this.riskFactors = const [],
+    this.schoolLevels = const [],
+    this.sexes = const [],
+    this.symptoms = const [],
+    this.testResults = const [],
+    this.testStatus = const [],
+    this.testTypes = const [],
+    this.testValidities = const [],
+    this.vaccines = const [],
+    this.state = const [],
+    this.answer = const [],
   });
 
   HelperToolsState copyWith({
-    List<OpEthnicityEntity>? opEthnicity,
-    List<OpGenderEntity>? opGender,
-    List<OpLaboratoryEntity>? opLaboratory,
-    List<OpManufacturerEntity>? opManufacturer,
-    List<OpRaceEntity>? opRace,
-    List<OpRoleEntity>? opRoles,
-    List<OpSexEntity>? opSex,
-    List<OpSwabTypeEntity>? opSwabType,
-    List<OpTestTypeEntity>? opTestType,
+    List<OpEthnicityEntity>? ethnicities,
+    List<OpGenderEntity>? genders,
+    List<OpRaceEntity>? races,
+    List<OpRiskFactorEntity>? riskFactors,
+    List<OpSchoolLevelEntity>? schoolLevels,
+    List<OpSexEntity>? sexes,
+    List<OpSymptomEntity>? symptoms,
+    List<OpTestResultEntity>? testResults,
+    List<OpTestStatusEntity>? testStatus,
+    List<OpTestTypeEntity>? testTypes,
+    List<OpTestValidityEntity>? testValidities,
+    List<OpVaccineEntity>? vaccines,
+    List<OpStateEntity>? state,
+    List<String>? answer,
   }) {
     return HelperToolsState(
-      opEthnicity: opEthnicity ?? this.opEthnicity,
-      opGender: opGender ?? this.opGender,
-      opLaboratory: opLaboratory ?? this.opLaboratory,
-      opManufacturer: opManufacturer ?? this.opManufacturer,
-      opRace: opRace ?? this.opRace,
-      opRoles: opRoles ?? this.opRoles,
-      opSex: opSex ?? this.opSex,
-      opSwabType: opSwabType ?? this.opSwabType,
-      opTestType: opTestType ?? this.opTestType,
+      ethnicities: ethnicities ?? this.ethnicities,
+      genders: genders ?? this.genders,
+      races: races ?? this.races,
+      riskFactors: riskFactors ?? this.riskFactors,
+      schoolLevels: schoolLevels ?? this.schoolLevels,
+      sexes: sexes ?? this.sexes,
+      symptoms: symptoms ?? this.symptoms,
+      testResults: testResults ?? this.testResults,
+      testStatus: testStatus ?? this.testStatus,
+      testTypes: testTypes ?? this.testTypes,
+      testValidities: testValidities ?? this.testValidities,
+      vaccines: vaccines ?? this.vaccines,
+      state: state ?? this.state,
+      answer: answer ?? this.answer,
     );
   }
 }

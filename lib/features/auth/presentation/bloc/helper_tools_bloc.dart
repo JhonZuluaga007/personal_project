@@ -1,7 +1,8 @@
-import 'package:Tellme/features/auth/domain/entities/helper_tools_entity.dart';
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 
+import '../../../../common_ui/utils/const_list.dart';
+import '../../domain/entities/options_tools_entity.dart';
 import '../../../../config/helpers/injector/injector.dart';
 import '../../domain/use_cases/helper_tools_use_cases.dart';
 
@@ -17,15 +18,20 @@ class HelperToolsBloc extends Bloc<HelperToolsEvent, HelperToolsState> {
           (left) => {},
           (helperToolsList) => {
                 emit(state.copyWith(
-                  opEthnicity: helperToolsList.data.opEthnicity,
-                  opGender: helperToolsList.data.opGender,
-                  opLaboratory: helperToolsList.data.opLaboratory,
-                  opManufacturer: helperToolsList.data.opManufacturer,
-                  opRace: helperToolsList.data.opRace,
-                  opRoles: helperToolsList.data.opRoles,
-                  opSex: helperToolsList.data.opSex,
-                  opSwabType: helperToolsList.data.opSwabType,
-                  opTestType: helperToolsList.data.opTestType,
+                  ethnicities: helperToolsList.data.ethnicities,
+                  genders: helperToolsList.data.genders,
+                  races: helperToolsList.data.races,
+                  riskFactors: helperToolsList.data.riskFactors,
+                  schoolLevels: helperToolsList.data.schoolLevels,
+                  sexes: helperToolsList.data.sexes,
+                  symptoms: helperToolsList.data.symptoms,
+                  testResults: helperToolsList.data.testResults,
+                  testStatus: helperToolsList.data.testStatus,
+                  testTypes: helperToolsList.data.testTypes,
+                  testValidities: helperToolsList.data.testValidities,
+                  vaccines: helperToolsList.data.vaccines,
+                  state: ConstLists.stateList,
+                  answer: ConstLists.dropdownYes,
                 ))
               });
     });
