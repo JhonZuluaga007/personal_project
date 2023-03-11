@@ -1,15 +1,16 @@
-import 'package:Tellme/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:Tellme/app_localizations.dart';
-import 'package:Tellme/common_ui/common_widgets/text/text_widget.dart';
-import 'package:Tellme/config/theme/theme.dart';
-import 'package:Tellme/features/antigen/presentation/ui/pages/antigen_register_info_page.dart';
-import 'package:Tellme/features/pcr/presentation/pages/pcr_test_register_page.dart';
-import 'package:Tellme/features/home/widget/card_scan_home.dart';
 import 'package:Tellme/icons/icons.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../widget/card_scan_home.dart';
+import '../../../app_localizations.dart';
+import '../../../config/theme/theme.dart';
+import '../../auth/presentation/bloc/auth_bloc.dart';
+import '../../auth/presentation/bloc/helper_tools_bloc.dart';
 import '../../../navigationBar/bloc/navigation_bar_bloc.dart';
+import '../../../common_ui/common_widgets/text/text_widget.dart';
+import '../../pcr/presentation/pages/pcr_test_register_page.dart';
+import '../../antigen/presentation/ui/pages/antigen_register_info_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -21,7 +22,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   void initState() {
-    //BlocProvider.of<AuthBloc>(context).add(GetUser());
+    BlocProvider.of<HelperToolsBloc>(context).add(GetTestTools());
     super.initState();
   }
 

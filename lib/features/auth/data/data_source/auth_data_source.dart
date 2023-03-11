@@ -1,5 +1,6 @@
 import 'package:Tellme/features/auth/data/models/change_password_model.dart';
-import 'package:Tellme/features/auth/data/models/helper_tools_model.dart';
+import 'package:Tellme/features/auth/data/models/options_tools_model.dart';
+
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -147,10 +148,10 @@ class AuthDataSource {
     }
   }
 
-  Future<HelperToolsModel> getTestools() async {
-    final response = await Api.get(Endpoints.testools);
+  Future<OptionsToolsModel> getTestools() async {
+    final response = await Api.get(Endpoints.optionsTools);
     if (response["statusCode"] == 200) {
-      HelperToolsModel helperToolsModel = HelperToolsModel.fromJson(response);
+      OptionsToolsModel helperToolsModel = OptionsToolsModel.fromJson(response);
       return helperToolsModel;
     } else {
       throw InvalidData(

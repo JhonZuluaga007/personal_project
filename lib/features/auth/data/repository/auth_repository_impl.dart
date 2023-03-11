@@ -1,9 +1,8 @@
+import 'package:Tellme/features/auth/domain/entities/options_tools_entity.dart';
 import 'package:Tellme/features/auth/domain/entities/user_entity_login.dart';
 import 'package:either_dart/either.dart';
 import '../data_source/auth_data_source.dart';
 import '../../domain/repository/auth_repository.dart';
-import '../../domain/entities/user_update_entity.dart';
-import '../../domain/entities/helper_tools_entity.dart';
 import '../../domain/entities/change_password_entity.dart';
 import '../../../../config/helpers/errors/invalid_data.dart';
 import '../../../../config/helpers/models/server_validate_data.dart';
@@ -73,9 +72,9 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<Either<InvalidData, HelperToolsEntity>> getTestools() async {
+  Future<Either<InvalidData, OptionsToolsEntity>> getTestools() async {
     try {
-      final HelperToolsEntity response = await authDataSource.getTestools();
+      final OptionsToolsEntity response = await authDataSource.getTestools();
       return Right(response);
     } on InvalidData catch (invalidData) {
       return Left(invalidData);
