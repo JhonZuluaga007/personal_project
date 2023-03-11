@@ -1,23 +1,43 @@
 import 'dart:convert';
 
 class ServerError {
-    ServerError({
-        required this.errorMessage,
-        required this.statusCode,
-    });
+  ServerError({
+    required this.errorMessage,
+    required this.statusCode,
+  });
 
-    String errorMessage;
-    int statusCode;
+  Message errorMessage;
+  int statusCode;
 
-    String toJson() => json.encode(toMap());
+  factory ServerError.fromJson(String str) =>
+      ServerError.fromMap(json.decode(str));
 
-    factory ServerError.fromMap(Map<String, dynamic> json) => ServerError(
-        errorMessage: json["message"],
+  factory ServerError.fromMap(Map<String, dynamic> json) => ServerError(
+        errorMessage: Message.fromMap(json["message"]),
         statusCode: json["statusCode"],
-    );
+      );
+}
 
-    Map<String, dynamic> toMap() => {
-        "message": errorMessage,
-        "statusCode": statusCode,
-    };
+class Message {
+  Message({
+    required this.text,
+    required this.type,
+  });
+
+  final String text;
+  final String type;
+
+  factory Message.fromJson(String str) => Message.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory Message.fromMap(Map<String, dynamic> json) => Message(
+        text: json["text"],
+        type: json["type"],
+      );
+
+  Map<String, dynamic> toMap() => {
+        "text": text,
+        "type": type,
+      };
 }

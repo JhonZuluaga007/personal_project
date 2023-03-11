@@ -15,21 +15,23 @@ class TestHistoryBloc extends Bloc<TestHistoryEvent, TestHistoryState> {
 
     on<GetHistoryTestEvent>((event, emit) async {
       emit(state.copyWith(formStatus: FormSubmitting()));
-      final getTestHistoryResponse =
-          await getTestHistoryUseCase.call(event.userId);
+      final getTestHistoryResponse = await getTestHistoryUseCase.call();
       getTestHistoryResponse.fold(
           (error) => emit(state.copyWith(
                 formStatus:
                     SubmissionFailed(exception: Exception(error.message)),
               )), (testHistory) {
         //TODO: VERIFICATION DATE ALLTESTHISTORY
-        final allTestList = testHistory..sort((a, b) => b.sampleDate!.date.compareTo(a.sampleDate!.date));
+        final allTestList = testHistory
+          ..sort((a, b) => b.sampleDate!.date.compareTo(a.sampleDate!.date));
         final antigenList = testHistory
-            .where((antigenTest) => antigenTest.type!.type == 'Antigen')
-            .toList()..sort((a, b) => b.sampleDate!.date.compareTo(a.sampleDate!.date));
+            .where((antigenTest) => antigenTest.type![0].type == 'Antigen')
+            .toList()
+          ..sort((a, b) => b.sampleDate!.date.compareTo(a.sampleDate!.date));
         final pcrList = testHistory
-            .where((pcrTest) => pcrTest.type!.type == 'PCR')
-            .toList()..sort((a, b) => b.sampleDate!.date.compareTo(a.sampleDate!.date));
+            .where((pcrTest) => pcrTest.type![0].type == 'PCR')
+            .toList()
+          ..sort((a, b) => b.sampleDate!.date.compareTo(a.sampleDate!.date));
 
         emit(state.copyWith(
           allTestHistoryList: allTestList,

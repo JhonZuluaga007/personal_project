@@ -37,7 +37,7 @@ Future popUpWidget(BuildContext context, TestHistoryEntity testView) {
                       child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Image.network(testView.photo!,
+                            Image.network(testView.photo![0],
                                 errorBuilder: (context, error, stackTrace) {
                               return Container(
                                 color: Colors.white,
@@ -89,7 +89,7 @@ Future popUpWidget(BuildContext context, TestHistoryEntity testView) {
                                     visible: testView.result!.isNotEmpty,
                                     child: testView.result!.isNotEmpty
                                         ? SizedBox(
-                                            child: testView.result!.first!
+                                            child: testView.result!.first
                                                         .result ==
                                                     "Negative"
                                                 ? const Icon(Icons.cancel)
@@ -101,7 +101,7 @@ Future popUpWidget(BuildContext context, TestHistoryEntity testView) {
                                   SizedBox(width: width * 0.01),
                                   TextWidget(
                                     text: testView.result!.isNotEmpty
-                                        ? testView.result!.first!.result!
+                                        ? testView.result!.first.result
                                         : "In progress",
                                     textAlign: TextAlign.center,
                                     requiresTranslate: false,

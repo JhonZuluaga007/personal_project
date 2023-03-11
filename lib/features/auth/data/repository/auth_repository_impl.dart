@@ -2,7 +2,6 @@ import 'package:Tellme/features/auth/domain/entities/user_entity_login.dart';
 import 'package:either_dart/either.dart';
 import '../data_source/auth_data_source.dart';
 import '../../domain/repository/auth_repository.dart';
-import '../../domain/entities/user_update_entity.dart';
 import '../../domain/entities/helper_tools_entity.dart';
 import '../../domain/entities/change_password_entity.dart';
 import '../../../../config/helpers/errors/invalid_data.dart';

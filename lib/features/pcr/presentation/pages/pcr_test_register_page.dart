@@ -193,7 +193,7 @@ class _PcrRegisterPageState extends State<PcrRegisterPage> {
                           return;
                         }
                         BlocProvider.of<PcrBloc>(context).add(PcrValidateEvent(
-                          userId: userState.userId!,
+                          project: "ChelseaProject",
                           code: pcrIdController.text,
                         ));
                       });

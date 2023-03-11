@@ -113,6 +113,7 @@ class _ResetPasswordPageInfoState extends State<ResetPasswordPageInfo> {
                       emailValidateError = true;
                     });
                   }
+                  return null;
                 },
               ),
               SizedBox(height: height * 0.03),

@@ -23,7 +23,7 @@ class AntigenDataSource {
       AntigenModel antigenModel = AntigenModel.fromMap(decodedMap);
       return antigenModel;
     } else {
-      throw InvalidData(ServerError.fromMap(decodedMap).errorMessage);
+      throw InvalidData(ServerError.fromMap(decodedMap).errorMessage.text);
     }
   }
 
@@ -79,7 +79,7 @@ class AntigenDataSource {
       ServerValidate success = ServerValidate.fromMap(decodedMap);
       return success;
     } else {
-      throw InvalidData(ServerError.fromMap(decodedMap).errorMessage);
+      throw InvalidData(ServerError.fromMap(decodedMap).errorMessage.text);
     }
   }
 }

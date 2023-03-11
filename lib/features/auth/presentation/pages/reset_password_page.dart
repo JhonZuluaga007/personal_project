@@ -122,6 +122,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                           oldPasswordValidateError = false;
                         });
                       }
+                      return null;
                     },
                     validator: (oldPasswordValidate) {
                       if (UtilsStringPasword.isValidPassword(
@@ -168,6 +169,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                           newPasswordValidateError = false;
                         });
                       }
+                      return null;
                     },
                     validator: (newPasswordValidate) {
                       if (UtilsStringPasword.isValidPassword(
@@ -214,6 +216,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                           confirmPasswordValidateError = false;
                         });
                       }
+                      return null;
                     },
                     validator: (confirmPasswordValidate) {
                       if (UtilsStringPasword.isValidPassword(
