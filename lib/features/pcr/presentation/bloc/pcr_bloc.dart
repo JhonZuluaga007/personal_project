@@ -15,7 +15,7 @@ class PcrBloc extends Bloc<PcrEvent, PcrState> {
     on<PcrValidateEvent>((event, emit) async {
       emit(state.copyWith(formStatus: FormSubmitting()));
       final getMedicalHistoryResponse =
-          await pcrUseCase.callPcr(event.userId, event.code);
+          await pcrUseCase.callPcr(event.project, event.code);
       getMedicalHistoryResponse.fold(
           (error) => emit(state.copyWith(
               formStatus: SubmissionFailed(exception: Exception(error.message)),

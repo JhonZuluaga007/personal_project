@@ -6,10 +6,10 @@ abstract class PcrEvent {}
 
 class PcrValidateEvent extends PcrEvent {
   final String code;
-  final String userId;
+  final String project;
   
   PcrValidateEvent({
     required this.code,
-    required this.userId,
+    required this.project,
   });
 }
