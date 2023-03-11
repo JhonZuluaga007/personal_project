@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:Tellme/features/support/data/data_source/support_data_source.dart';
@@ -200,13 +201,27 @@ class _SupportBottomPageState extends State<SupportBottomPage> {
                         buttonColor: wColor.mapColors["Pink"],
                         borderColor: wColor.mapColors["Pink"],
                         onPressed: () {
-                          BlocProvider.of<SupportBloc>(context).add(
-                              CreateSupportTicketEvent(
-                                  name: nameController.text,
-                                  email: emailController.text,
-                                  phone: phoneController.text,
-                                  description: descriptionController.text,
-                                  image: ''));
+                          if (imageDisplayed != null) {
+                            final bytes = imageDisplayed!.readAsBytesSync();
+                            String img64 = base64Encode(bytes);
+                            BlocProvider.of<SupportBloc>(context).add(
+                                CreateSupportTicketEvent(
+                                    name: nameController.text,
+                                    email: emailController.text,
+                                    phone: phoneController.text,
+                                    description: descriptionController.text,
+                                    image: img64));
+                          }
+                          if (imageDisplayed == '' || imageDisplayed == null) {
+                            String image64 = base64.encode(imagePath.codeUnits);
+                            BlocProvider.of<SupportBloc>(context).add(
+                                CreateSupportTicketEvent(
+                                    name: nameController.text,
+                                    email: emailController.text,
+                                    phone: phoneController.text,
+                                    description: descriptionController.text,
+                                    image: image64));
+                          }
                         }),
                   );
                 }
