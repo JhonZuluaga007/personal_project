@@ -8,7 +8,6 @@ import 'dart:convert';
 import '../models/user_model.dart';
 import '../../../../config/helpers/api.dart';
 import '../../../../config/helpers/endpoints.dart';
-import '../../domain/entities/user_update_entity.dart';
 import '../../domain/entities/change_password_entity.dart';
 import '../../../../config/helpers/errors/invalid_data.dart';
 import '../../../../config/helpers/models/server_error.dart';
@@ -28,7 +27,7 @@ class AuthDataSource {
       return userResponse;
     } else {
       throw InvalidData(
-        ServerError.fromMap(response).errorMessage,
+        ServerError.fromMap(response).errorMessage.text,
       );
     }
   }
@@ -40,7 +39,7 @@ class AuthDataSource {
       return userResponse;
     } else {
       throw InvalidData(
-        ServerError.fromMap(response).errorMessage,
+        ServerError.fromMap(response).errorMessage.text,
       );
     }
   }
@@ -155,7 +154,7 @@ class AuthDataSource {
       return helperToolsModel;
     } else {
       throw InvalidData(
-        ServerError.fromMap(response).errorMessage,
+        ServerError.fromMap(response).errorMessage.text,
       );
     }
   }

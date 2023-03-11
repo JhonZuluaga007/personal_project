@@ -5,7 +5,6 @@ import 'package:bloc/bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../domain/use_cases/login_use_case.dart';
-import '../../domain/use_cases/user_update_use_case.dart';
 import '../../domain/entities/change_password_entity.dart';
 import '../../../../config/helpers/injector/injector.dart';
 import '../../domain/use_cases/reset_password_use_case.dart';
@@ -19,7 +18,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   AuthBloc() : super(AuthState()) {
     final loginUseCase = Injector.resolve<LoginUseCase>();
     final getUserUseCase = Injector.resolve<GetUserUseCase>();
-    final userUpdateUseCase = Injector.resolve<UserUpdateUseCase>();
     final resetPasswordUseCase = Injector.resolve<ResetPasswordUseCase>();
     final changePasswordUseCase = Injector.resolve<ChangePasswordUseCase>();
 

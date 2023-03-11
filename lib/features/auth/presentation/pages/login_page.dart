@@ -1,5 +1,4 @@
 import 'package:Tellme/features/auth/presentation/bloc/auth_bloc.dart';
-import 'package:Tellme/features/auth/presentation/bloc/helper_tools_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:Tellme/common_ui/common_widgets/buttons/main_button_widget.dart';
@@ -136,6 +135,7 @@ class _LoginPageState extends State<LoginPage> {
                       passwordValidateError = false;
                     });
                   }
+                  return null;
                 },
                 validator: (password) {
                   if (UtilsStringPasword.isValidPassword(password!) ||

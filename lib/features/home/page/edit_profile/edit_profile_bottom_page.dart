@@ -2,13 +2,10 @@ import 'dart:io';
 
 import 'package:Tellme/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:Tellme/common_ui/common_pages/my_app_scaffold_page.dart';
 import 'package:Tellme/common_ui/common_widgets/text/text_widget.dart';
 import 'package:Tellme/config/helpers/form_submission_status.dart';
-import 'package:Tellme/config/theme/theme.dart';
 import 'package:Tellme/features/home/widget/text_field_form_my_profile.dart';
 import '../../widget/info_column_widget.dart';
 
@@ -32,27 +29,25 @@ class _EditUserFromBottomPageState extends State<EditUserFromBottomPage> {
 
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
-    final wColor = ThemesIdx20();
 
-    Future getImageBottom(ImageSource source) async {
-      try {
-        final image =
-            await ImagePicker().pickImage(source: source, imageQuality: 5);
-        if (image == null) return;
-        final imageCameraTemporary = File(image.path);
-        // final imagePermanent = await saveFilePerma(image.path);
-        BlocProvider.of<AuthBloc>(context)
-            .add(UpdateImage(imageCameraTemporary.path));
-        setState(() {
-          imageDisplayed = imageCameraTemporary;
-          print(imageDisplayed!.path);
-        });
-      } on PlatformException catch (e) {
-        debugPrint('Failed to pick image: $e');
-      }
-    }
+    // Future getImageBottom(ImageSource source) async {
+    //   try {
+    //     final image =
+    //         await ImagePicker().pickImage(source: source, imageQuality: 5);
+    //     if (image == null) return;
+    //     final imageCameraTemporary = File(image.path);
+    //     // final imagePermanent = await saveFilePerma(image.path);
+    //     BlocProvider.of<AuthBloc>(context)
+    //         .add(UpdateImage(imageCameraTemporary.path));
+    //     setState(() {
+    //       imageDisplayed = imageCameraTemporary;
+    //       print(imageDisplayed!.path);
+    //     });
+    //   } on PlatformException catch (e) {
+    //     debugPrint('Failed to pick image: $e');
+    //   }
+    // }
 
     return MyAppScaffold(
       children: [

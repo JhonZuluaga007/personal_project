@@ -76,4 +76,15 @@ class _$Injector extends Injector {
           (c) => PcrValidateUseCase(authRepository: c<PcrRepository>()))
       ..registerFactory((c) => PcrDataSource());
   }
+
+  @override
+  void _configureSupportFactories() {
+    final KiwiContainer container = KiwiContainer();
+    container
+      ..registerFactory<SupportRepository>((c) =>
+          SupportRepositoryImpl(supportDataSource: c<SupportDataSource>()))
+      ..registerFactory((c) => SupportDataSource())
+      ..registerFactory((c) => CreateSupportTicketUseCase(
+          supportRepository: c<SupportRepository>()));
+  }
 }

@@ -1,4 +1,3 @@
-import 'package:Tellme/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:Tellme/config/helpers/form_submission_status.dart';
@@ -28,10 +27,9 @@ class _HistoryPageState extends State<HistoryPage> {
   Widget build(BuildContext context) {
     final wColor = ThemesIdx20();
     final size = MediaQuery.of(context).size;
-    final stateUserId = BlocProvider.of<AuthBloc>(context).state;
+    // final stateUserId = BlocProvider.of<AuthBloc>(context).state;
 
-    BlocProvider.of<TestHistoryBloc>(context)
-        .add(GetHistoryTestEvent(stateUserId.userId!));
+    BlocProvider.of<TestHistoryBloc>(context).add(GetHistoryTestEvent());
 
     return Material(
       child: SafeArea(
@@ -105,12 +103,12 @@ class _HistoryPageState extends State<HistoryPage> {
                         width: size.width * 0.020,
                       ),
                       state.allTestHistoryList.isEmpty ||
-                              state.allTestHistoryList.first.result![0]!
+                              state.allTestHistoryList.first.result![0]
                                       .result ==
                                   "Inconclusive"
                           ? SizedBox()
                           : state.allTestHistoryList.first.result!.isNotEmpty
-                              ? state.allTestHistoryList.first.result![0]!
+                              ? state.allTestHistoryList.first.result![0]
                                           .result ==
                                       "Negative"
                                   ? const Icon(Icons.cancel)
@@ -127,10 +125,10 @@ class _HistoryPageState extends State<HistoryPage> {
                                             state.allTestHistoryList.first)
                                         .result!
                                         .isEmpty
-                                    ? state.allTestHistoryList.first.result![0]!
-                                        .result!
-                                    : state.allTestHistoryList.first.result![0]!
-                                        .result!
+                                    ? state.allTestHistoryList.first.result![0]
+                                        .result
+                                    : state.allTestHistoryList.first.result![0]
+                                        .result
                                 : "In progress",
                         requiresTranslate: false,
                         style: const TextStyle(
@@ -252,7 +250,15 @@ class _HistoryPageState extends State<HistoryPage> {
                             child: Text(
                                 "You have no current tests at the moment, please register a new test")),
                   if (state.formStatus is SubmissionFailed)
-                    Text("Error loading your information of the test"),
+                    Center(
+                        child: Text(
+                      "Error loading your information of the test",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 30,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    )),
                   if (state.formStatus is FormSubmitting)
                     Padding(
                       padding: EdgeInsets.only(top: 32.0),
