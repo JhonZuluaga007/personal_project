@@ -127,7 +127,7 @@ class Created extends CreatedEntity {
 class Id extends IdEntity {
   Id({
     required String? oid,
-  }) : super(oid: oid);
+  }) : super(oid: oid!);
 
   factory Id.fromJson(String str) => Id.fromMap(json.decode(str));
 
