@@ -8,7 +8,7 @@ class MedicalHistoryUseCase {
   MedicalHistoryRepository medicalHistoryRepository;
   MedicalHistoryUseCase({required this.medicalHistoryRepository});
 
-  Future<Either<InvalidData, MedicalHistoryEntity>> call(String userId) async {
-    return await medicalHistoryRepository.getMedicalHistory(userId);
+  Future<Either<InvalidData, MedicalHistoryResponseEntity>> call() async {
+    return await medicalHistoryRepository.getMedicalHistory();
   }
 }

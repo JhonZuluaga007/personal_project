@@ -20,55 +20,48 @@ class MedicalHistoryBloc
 
     on<GetMedicalHistoryEvent>((event, emit) async {
       emit(state.copyWith(formStatus: FormSubmitting()));
-      final getMedicalHistoryResponse =
-          await getMedicalHistoryUseCase.call(event.userId);
+      final getMedicalHistoryResponse = await getMedicalHistoryUseCase.call();
       getMedicalHistoryResponse.fold(
           (error) => emit(state.copyWith(
                 formStatus:
                     SubmissionFailed(exception: Exception(error.message)),
               )),
           (medicalHistory) => emit(state.copyWith(
-                userId: medicalHistory.userId,
+                medicalHistoryEntity: medicalHistory.data.medicalHistory,
                 formStatus: SubmissionSuccess(),
-                status: medicalHistory.status,
-                id: medicalHistory.id,
-                created: medicalHistory.created,
-                updated: medicalHistory.updated,
-                question1: medicalHistory.question1,
-                question2: medicalHistory.question2,
               )));
     });
 
-    on<EditMedicalHistoryEvent>((event, emit) async {
-      emit(state.copyWith(
-        infoUploaded: FormSubmitting(),
-      ));
-      final editMedicalHistory =
-          await editMedicalHistoryUseCase.editMedicalHistory(
-              event.userId, event.responseOne, event.responseTwo);
-      editMedicalHistory.fold(
-          (error) => emit(state.copyWith(
-                infoUploaded: SubmissionFailed(
-                  exception: Exception(error.message),
-                ),
-                // errorMessage: error.message, // TODO CHECK
-              )), (medicalHistory) {
-        emit(
-          state.copyWith(
-            infoUploaded: SubmissionSuccess(),
-            question1: Question1Entity(
-              name: state.question1!.name,
-              value: event.responseOne,
-            ),
-            question2: Question2Entity(
-              name: state.question2!.name,
-              value: event.responseTwo,
-            ),
-          ),
-        );
-      });
-      add(ResetStatesMedicalHistoryEvent());
-    });
+    // on<EditMedicalHistoryEvent>((event, emit) async {
+    //   emit(state.copyWith(
+    //     infoUploaded: FormSubmitting(),
+    //   ));
+    //   final editMedicalHistory =
+    //       await editMedicalHistoryUseCase.editMedicalHistory(
+    //           event.userId, event.responseOne, event.responseTwo);
+    //   editMedicalHistory.fold(
+    //       (error) => emit(state.copyWith(
+    //             infoUploaded: SubmissionFailed(
+    //               exception: Exception(error.message),
+    //             ),
+    //             // errorMessage: error.message, // TODO CHECK
+    //           )), (medicalHistory) {
+    //     emit(
+    //       state.copyWith(
+    //         infoUploaded: SubmissionSuccess(),
+    //         question1: Question1Entity(
+    //           name: state.question1!.name,
+    //           value: event.responseOne,
+    //         ),
+    //         question2: Question2Entity(
+    //           name: state.question2!.name,
+    //           value: event.responseTwo,
+    //         ),
+    //       ),
+    //     );
+    //   });
+    //   add(ResetStatesMedicalHistoryEvent());
+    // });
 
     on<ResetStatesMedicalHistoryEvent>((event, emit) async {
       emit(state.initialState());

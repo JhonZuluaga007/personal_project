@@ -11,11 +11,11 @@ class MedicalHistoryRepositoryImpl implements MedicalHistoryRepository {
   MedicalHistoryRepositoryImpl({required this.medicalHistoryDataSource});
 
   @override
-  Future<Either<InvalidData, MedicalHistoryEntity>> getMedicalHistory(
-      String userId) async {
+  Future<Either<InvalidData, MedicalHistoryResponseEntity>>
+      getMedicalHistory() async {
     try {
-      final MedicalHistoryEntity response =
-          await medicalHistoryDataSource.getMedicalHistory(userId);
+      final MedicalHistoryResponseEntity response =
+          await medicalHistoryDataSource.getMedicalHistory();
       return Right(response);
     } on InvalidData catch (invalidData) {
       return Left(invalidData);

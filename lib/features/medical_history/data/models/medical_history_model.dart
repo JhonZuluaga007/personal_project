@@ -1,115 +1,96 @@
-import 'dart:convert';
+import 'package:Tellme/features/medical_history/domain/entities/medical_history_entity.dart';
+import '../../../auth/domain/entities/options_tools_entity.dart';
 
-import '../../domain/entities/medical_history_entity.dart';
-
-MedicalHistoryModel medicalHistoryModelFromJson(String str) =>
-    MedicalHistoryModel.fromJson(json.decode(str));
-
-class MedicalHistoryModel extends MedicalHistoryEntity {
+class MedicalHistoryModel extends MedicalHistoryResponseEntity {
   MedicalHistoryModel({
-    required String id,
-    required Ated created,
-    required Question1 question1,
-    required Question2 question2,
-    required bool status,
-    required Ated updated,
-    required UserId userId,
-  }) : super(
-            id: id,
-            created: created,
-            question1: question1,
-            question2: question2,
-            status: status,
-            updated: updated,
-            userId: userId);
+    required Data data,
+    required Message message,
+    required int statusCode,
+  }) : super(data: data, message: message, statusCode: statusCode);
 
   factory MedicalHistoryModel.fromJson(Map<String, dynamic> json) =>
       MedicalHistoryModel(
-        id: json["_id"],
-        created: Ated.fromJson(json["created"]),
-        question1: Question1.fromJson(json["question1"]),
-        question2: Question2.fromJson(json["question2"]),
-        status: json["status"],
-        updated: Ated.fromJson(json["updated"]),
-        userId: UserId.fromJson(json["user_id"]),
+        data: Data.fromJson(json["data"]),
+        message: Message.fromJson(json["message"]),
+        statusCode: json["statusCode"],
       );
 }
 
-class Ated extends AtedEntity {
-  Ated({
-    required DateTime date,
-  }) : super(date: date);
+class Data extends DataMedicalHistoryEntity {
+  Data({
+    required MedicalHistory medicalHistory,
+  }) : super(medicalHistory: medicalHistory);
 
-  factory Ated.fromJson(Map<String, dynamic> json) => Ated(
-        date: DateTime.parse(json["\u0024date"]),
+  factory Data.fromJson(Map<String, dynamic> json) => Data(
+        medicalHistory: MedicalHistory.fromJson(json["medical_history"]),
       );
-
-  Map<String, dynamic> toJson() => {
-        "\u0024date": date.toIso8601String(),
-      };
 }
 
-enum AnswerType { Yes, No }
+class MedicalHistory extends MedicalHistoryEntity {
+  MedicalHistory({
+    required Id id,
+    required bool additionalInformation,
+    required List<RiskFactor> riskFactors,
+    required Id user,
+  }) : super(
+            id: id,
+            additionalInformation: additionalInformation,
+            riskFactors: riskFactors,
+            user: user);
 
-final answerTypeValues =
-    EnumValues({"Yes": AnswerType.Yes, "No": AnswerType.No});
-
-class EnumValues<T> {
-  Map<String, T> map;
-  late Map<T, String> reverseMap;
-
-  EnumValues(this.map);
-
-  Map<T, String> get reverse {
-    reverseMap = map.map((k, v) => MapEntry(v, k));
-    return reverseMap;
-  }
-}
-
-class Question1 extends Question1Entity {
-  Question1({
-    required String name,
-    required String value,
-  }) : super(name: name, value: value);
-
-  factory Question1.fromJson(Map<String, dynamic> json) => Question1(
-        name: json["name"],
-        value: json["value"],
+  factory MedicalHistory.fromJson(Map<String, dynamic> json) => MedicalHistory(
+        id: Id.fromJson(json["_id"]),
+        additionalInformation: json["additional_information"],
+        riskFactors: List<RiskFactor>.from(json["risk_factors"].map((x) => x)),
+        user: Id.fromJson(json["user"]),
       );
-
-  Map<String, dynamic> toJson() => {
-        "name": name,
-        "value": value,
-      };
 }
 
-class Question2 extends Question2Entity {
-  Question2({
-    required String name,
-    required List<String> value,
-  }) : super(name: name, value: value);
-
-  factory Question2.fromJson(Map<String, dynamic> json) => Question2(
-        name: json["name"],
-        value: List<String>.from(json["value"].map((x) => x)),
-      );
-
-  Map<String, dynamic> toJson() => {
-        "name": name,
-        "value": List<dynamic>.from(value.map((x) => x)),
-      };
-}
-
-class UserId extends UserIdEntity {
-  UserId({
+class Id extends IdEntity {
+  Id({
     required String oid,
-  }) : super(oid: oid);
+  }) : super(
+          oid: oid,
+        );
 
-  factory UserId.fromJson(Map<String, dynamic> json) => UserId(
+  factory Id.fromJson(Map<String, dynamic> json) => Id(
         oid: json["\u0024oid"],
       );
 
   Map<String, dynamic> toJson() => {
         "\u0024oid": oid,
       };
+}
+
+class RiskFactor extends OpRiskFactorEntity {
+  RiskFactor({
+    required Id id,
+    required Id disease,
+    required Id project,
+    required String riskFactor,
+  }) : super(
+          id: id.oid,
+          disease: disease,
+          project: project,
+          riskFactor: riskFactor,
+        );
+
+  factory RiskFactor.fromJson(Map<String, dynamic> json) => RiskFactor(
+        id: Id.fromJson(json["_id"]),
+        disease: Id.fromJson(json["disease"]),
+        project: Id.fromJson(json["project"]),
+        riskFactor: json["risk_factor"],
+      );
+}
+
+class Message extends MessageMedicalHistoryEntity {
+  Message({
+    required String text,
+    required String type,
+  }) : super(text: text, type: type);
+
+  factory Message.fromJson(Map<String, dynamic> json) => Message(
+        text: json["text"],
+        type: json["type"],
+      );
 }

@@ -8,11 +8,11 @@ import '../../../../config/helpers/models/server_validate_data.dart';
 import 'package:http/http.dart' as http;
 
 class MedicalHistoryDataSource {
-  Future<MedicalHistoryModel> getMedicalHistory(String userId) async {
-    final response = await Api.get('${Endpoints.viewMedicalHistory}$userId');
+  Future<MedicalHistoryModel> getMedicalHistory() async {
+    final response = await Api.get(Endpoints.viewMedicalHistory);
     try {
       MedicalHistoryModel medicalHistoryModel =
-          MedicalHistoryModel.fromJson(response[0]);
+          MedicalHistoryModel.fromJson(response);
       return medicalHistoryModel;
     } on InvalidData catch (invalidData) {
       throw InvalidData(invalidData.toString());
