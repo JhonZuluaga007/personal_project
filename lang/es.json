@@ -292,6 +292,8 @@
     
     "alert_text_one": "Listo!",
     "alert_text_two": "Cambios guardados ",
+    "alert_text_support": "Tu petición ha sido enviada con exito",
+
     "alert_text_three": "Ok",
     "alert_text_reset": "Password has been sent to your email.",
     "alert_text_error": "There was an error reseting your password please try again.",

@@ -15,6 +15,9 @@ class Endpoints {
   static const String testHistory =
       '${Config.baseURL}tests?project=ChelseaProject';
   static const String viewTest = '${Config.baseURL}tests/detail/';
+  //endpoint to create Support ticket.
+  static const String createSupportCase =
+      '${Config.baseURL}support/create-support-case';
 
 //Validate antigen Endpoint
   static const String validateAntigen = '${Config.baseURL}codevalidator';

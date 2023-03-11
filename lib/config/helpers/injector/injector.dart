@@ -21,12 +21,15 @@ import 'package:Tellme/features/pcr/data/data_source/pcr_data_source.dart';
 import 'package:Tellme/features/pcr/data/repository/pcr_repository_impl.dart';
 import 'package:Tellme/features/pcr/domain/repository/pcr_repository.dart';
 import 'package:Tellme/features/pcr/domain/use_case/pcr_validate_use_case.dart';
+import 'package:Tellme/features/support/data/data_source/support_data_source.dart';
+import 'package:Tellme/features/support/data/repository/support_repository_impl.dart';
+import 'package:Tellme/features/support/domain/repository/support_repository.dart';
+import 'package:Tellme/features/support/domain/use_cases/create_ticket_use_case.dart';
 import 'package:Tellme/features/test_history/data/data_source/test_history_data_source.dart';
 import 'package:Tellme/features/test_history/data/repository/test_history_repository_impl.dart';
 import 'package:Tellme/features/test_history/domain/repository/test_history_repository.dart';
 import 'package:Tellme/features/test_history/domain/use_cases/test_history_use_cases.dart';
 import 'package:kiwi/kiwi.dart';
-
 
 part 'injector.g.dart';
 
@@ -56,6 +59,7 @@ abstract class Injector {
     _configureTestHistoryModule();
     _configureAntigenModule();
     _configurePcrModule();
+    _configureSupportModule();
   }
 
   void _configureAuthsModule() {
@@ -76,6 +80,10 @@ abstract class Injector {
 
   void _configurePcrModule() {
     _configurePcrFactories();
+  }
+
+  void _configureSupportModule() {
+    _configureSupportFactories();
   }
 
   @Register.factory(AuthRepository, from: AuthRepositoryImpl)
@@ -110,4 +118,9 @@ abstract class Injector {
   @Register.factory(PcrValidateUseCase)
   @Register.factory(PcrDataSource)
   void _configurePcrFactories();
+
+  @Register.factory(SupportRepository, from: SupportRepositoryImpl)
+  @Register.factory(SupportDataSource)
+  @Register.factory(CreateSupportTicketUseCase)
+  void _configureSupportFactories();
 }
