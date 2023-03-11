@@ -13,14 +13,14 @@ class Endpoints {
   //  Endpoint para viewMedicalHistory (ViewMedicalHistory). Acepta GET.
   static const String viewMedicalHistory = '${Config.baseURL}formmedical/list/';
   static const String testHistory =
-      '${Config.baseURL}profile/medical-history?project=ChelseaProject';
+      '${Config.baseURL}tests?project=ChelseaProject';
   static const String viewTest = '${Config.baseURL}tests/detail/';
 
 //Validate antigen Endpoint
   static const String validateAntigen = '${Config.baseURL}codevalidator';
 
 //Validate pcr endpoint
-  static const String validatePcr = '${Config.baseURL}codepcrvalidator';
+  static const String validatePcr = '${Config.baseURL}tests/validate-pcr-code';
   static const String registerTest = "${Config.baseURL}forms";
 
   static const String testools = '${Config.baseURL}testools';
