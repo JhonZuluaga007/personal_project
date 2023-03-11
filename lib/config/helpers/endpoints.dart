@@ -3,9 +3,12 @@ import 'package:Tellme/config/config.dart';
 class Endpoints {
   //  Endpoint para autenticarse (Login). Acepta POST.
   static const String login = '${Config.baseURL}auth/login';
+
   static const String getUser =
       '${Config.baseURL}profile?project=ChelseaProject';
+
   static const String resetPassword = '${Config.baseURL}auth/reset-password';
+
   static const String changePassword =
       '${Config.baseURL}profile/change-password';
   //  Endpoint para editMedicalHistory (EditMedicalHistory). Acepta POST.
@@ -15,6 +18,7 @@ class Endpoints {
       '${Config.baseURL}profile/medical-history?project=ChelseaProject';
   static const String testHistory =
       '${Config.baseURL}tests?project=ChelseaProject';
+
   static const String viewTest = '${Config.baseURL}tests/detail/';
   //endpoint to create Support ticket.
   static const String createSupportCase =
@@ -25,7 +29,9 @@ class Endpoints {
 
 //Validate pcr endpoint
   static const String validatePcr = '${Config.baseURL}tests/validate-pcr-code';
+
   static const String registerTest = "${Config.baseURL}forms";
 
-  static const String testools = '${Config.baseURL}testools';
+  static const String optionsTools =
+      '${Config.baseURL}options?project=ChelseaProject';
 }
