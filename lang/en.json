@@ -291,6 +291,8 @@
 
     "alert_text_one": "Done!",
     "alert_text_two": "Changes saved",
+    "alert_text_support": "Your support ticket has been successfully sended.",
+
     "alert_text_three": "Ok",
 
     "alert_text_reset": "Password has been sent to your email",

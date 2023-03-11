@@ -12,6 +12,9 @@ import '../../../../common_ui/common_widgets/buttons/main_button_widget.dart';
 import '../../../../common_ui/common_widgets/text_field/text_field_no_label_widget.dart';
 import '../../../../config/helpers/form_submission_status.dart';
 import '../../../../config/theme/theme.dart';
+import '../../../../navigationBar/bloc/navigation_bar_bloc.dart';
+import '../../../medical_history/presentation/widgets/done_alert_widget.dart';
+import '../../../medical_history/presentation/widgets/error_alert_widget.dart';
 import '../bloc/support_bloc.dart';
 
 class SupportBottomPage extends StatefulWidget {
@@ -48,7 +51,9 @@ class _SupportBottomPageState extends State<SupportBottomPage> {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
     final wColor = ThemesIdx20();
-
+    final size = MediaQuery.of(context).size;
+    NavigationBarBloc navigationBloc =
+        BlocProvider.of<NavigationBarBloc>(context);
     return Material(
       child: SafeArea(
           child: SingleChildScrollView(
@@ -146,7 +151,41 @@ class _SupportBottomPageState extends State<SupportBottomPage> {
               SizedBox(height: height * 0.035),
               BlocConsumer<SupportBloc, SupportState>(
                   listener: (context, state) {
-                // TODO: implement listener
+                if (state.formStatus is SubmissionSuccess) {
+                  doneSendInfo(
+                    requiresTranslateText: true,
+                    context: context,
+                    mainIcon: Icon(
+                      Icons.check,
+                      size: size.height * 0.15,
+                      color: wColor.mapColors['C00'],
+                    ),
+                    titleText: 'alert_text_one',
+                    paddingHeight: size.height * 0.25,
+                    infoText: 'alert_text_two',
+                    mainButton: 'alert_text_three',
+                    mainButtonFunction: () {
+                      navigationBloc.add(PageChanged(indexNavigation: 0));
+                      Navigator.pushNamed(context, 'navBar');
+                    },
+                  );
+                }
+                if (state.formStatus is SubmissionFailed) {
+                  errorAlertInfoPop(
+                      context: context,
+                      mainIcon: Icon(
+                        Icons.cancel,
+                        color: wColor.mapColors['C01'],
+                        size: 46,
+                      ),
+                      titleText: 'alert_text_error_one',
+                      paddingHeight: size.height * 0.25,
+                      infoText: 'alert_text_error_update',
+                      mainButton: 'alert_text_error_three',
+                      mainButtonFunction: () {
+                        Navigator.pop(context);
+                      });
+                }
               }, builder: (context, state) {
                 if (state.formStatus is FormSubmitting) {
                   return const Center(child: CircularProgressIndicator());
@@ -161,12 +200,13 @@ class _SupportBottomPageState extends State<SupportBottomPage> {
                         buttonColor: wColor.mapColors["Pink"],
                         borderColor: wColor.mapColors["Pink"],
                         onPressed: () {
-                          SupportDataSource().createSupportTicket(
-                              nameController.text,
-                              emailController.text,
-                              phoneController.text,
-                              descriptionController.text,
-                              '');
+                          BlocProvider.of<SupportBloc>(context).add(
+                              CreateSupportTicketEvent(
+                                  name: nameController.text,
+                                  email: emailController.text,
+                                  phone: phoneController.text,
+                                  description: descriptionController.text,
+                                  image: ''));
                         }),
                   );
                 }
