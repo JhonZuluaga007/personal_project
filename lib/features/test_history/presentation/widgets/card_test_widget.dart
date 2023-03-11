@@ -44,7 +44,7 @@ class CardTestWidget extends StatelessWidget {
           style: styleText ?? const TextStyle(fontSize: 14),
         ),
         testHistoryEntity!.result!.isEmpty
-            ? testHistoryEntity!.type!.type == "PCR"
+            ? testHistoryEntity!.type![0].type == "PCR"
                 ? Padding(
                     padding: EdgeInsets.only(right: width * 0.093),
                     child: Text(
@@ -65,9 +65,9 @@ class CardTestWidget extends StatelessWidget {
                           buttonString: 'history_test_result_text_download',
                           onPressed: () {
                             final String testStatus =
-                                testHistoryEntity!.result![0]!.result == ''
+                                testHistoryEntity!.result![0].result == ''
                                     ? 'Processing'
-                                    : testHistoryEntity!.result![0]!.result!;
+                                    : testHistoryEntity!.result![0].result;
                             _createPDF(
                                 authBloc, textTestKit, testStatus, sampleDate!);
                           }),
@@ -101,9 +101,9 @@ class CardTestWidget extends StatelessWidget {
                       buttonString: 'history_test_result_text_download',
                       onPressed: () {
                         final String testStatus =
-                            testHistoryEntity!.result![0]!.result == ''
+                            testHistoryEntity!.result![0].result == ''
                                 ? 'Processing'
-                                : testHistoryEntity!.result![0]!.result!;
+                                : testHistoryEntity!.result![0].result;
                         _createPDF(
                             authBloc, textTestKit, testStatus, sampleDate!);
                       }),

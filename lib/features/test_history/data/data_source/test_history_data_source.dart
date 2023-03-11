@@ -7,14 +7,14 @@ import '../../domain/entities/test_history_entity.dart';
 import '../../../../config/helpers/errors/invalid_data.dart';
 
 class TestHistoryDataSource {
-  Future<List<TestHistoryEntity>> getHistoryTest(String userId) async {
+  Future<List<TestHistoryEntity>?> getHistoryTest() async {
     try {
-      final response = await Api.get('${Endpoints.testHistory}$userId');
+      final response = await Api.get('${Endpoints.testHistory}');
       if (response["statusCode"] == 200) {
-        HistoryTestModel historyTest = HistoryTestModel.fromJson(response);
+        TestHistoryModel historyTest = TestHistoryModel.fromJson(response);
         debugPrint(
-            "result data response historyTest.data.length: ${historyTest.data.length}");
-        return historyTest.data;
+            "result data response historyTest.data.length: ${historyTest.data!.tests!.length}");
+        return historyTest.data!.tests!;
       } else {
         throw InvalidData("No se encontro datos");
       }

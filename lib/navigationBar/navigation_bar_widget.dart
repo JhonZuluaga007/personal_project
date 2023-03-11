@@ -5,7 +5,6 @@ import 'package:Tellme/app_localizations.dart';
 import 'package:Tellme/common_ui/common_widgets/drawer_widget.dart';
 import 'package:Tellme/config/theme/theme.dart';
 import 'package:Tellme/features/home/page/edit_profile/edit_profile_bottom_page.dart';
-import 'package:Tellme/features/home/page/faqs_page.dart';
 import 'package:Tellme/navigationBar/bloc/navigation_bar_bloc.dart';
 import 'package:Tellme/navigationBar/floating_nav_bar_item.dart';
 import 'package:Tellme/features/home/page/tests_pages/register_antigen_test_page.dart';
