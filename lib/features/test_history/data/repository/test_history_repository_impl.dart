@@ -12,11 +12,11 @@ class TestHistoryRepositoryImpl extends TestHistoryRepository {
     required this.testHistoryDataSource,
   });
   @override
-  Future<Either<InvalidData, List<TestHistoryEntity>>> getHistoryTest() async {
+  Future<Either<InvalidData, TestHistoryResponseEntity>> getHistoryTest() async {
     try {
-      final List<TestHistoryEntity>? response =
+      final TestHistoryResponseEntity response =
           await testHistoryDataSource.getHistoryTest();
-      return Right(response!);
+      return Right(response);
     } on InvalidData catch (invalidData) {
       return Left(invalidData);
     }

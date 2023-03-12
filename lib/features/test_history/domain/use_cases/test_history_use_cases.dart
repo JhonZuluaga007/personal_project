@@ -11,7 +11,7 @@ class TestHistoryUseCases {
     required this.testHistoryRepository,
   });
 
-  Future<Either<InvalidData, List<TestHistoryEntity>>> call() async {
+  Future<Either<InvalidData, TestHistoryResponseEntity>> call() async {
     return await testHistoryRepository.getHistoryTest();
   }
 }

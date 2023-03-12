@@ -4,5 +4,5 @@ import '../entities/test_history_entity.dart';
 import '../../../../config/helpers/errors/invalid_data.dart';
 
 abstract class TestHistoryRepository {
-  Future<Either<InvalidData, List<TestHistoryEntity>>> getHistoryTest();
+  Future<Either<InvalidData, TestHistoryResponseEntity>> getHistoryTest();
 }

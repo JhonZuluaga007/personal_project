@@ -102,13 +102,10 @@ class _HistoryPageState extends State<HistoryPage> {
                       SizedBox(
                         width: size.width * 0.020,
                       ),
-                      state.allTestHistoryList.isEmpty ||
-                              state.allTestHistoryList.first.result![0]
-                                      .result ==
-                                  "Inconclusive"
+                      state.allTestHistoryList.isEmpty
                           ? SizedBox()
-                          : state.allTestHistoryList.first.result!.isNotEmpty
-                              ? state.allTestHistoryList.first.result![0]
+                          : state.allTestHistoryList.first.result.isNotEmpty
+                              ? state.allTestHistoryList.first.result.first
                                           .result ==
                                       "Negative"
                                   ? const Icon(Icons.cancel)
@@ -118,16 +115,16 @@ class _HistoryPageState extends State<HistoryPage> {
                       TextWidget(
                         text: state.allTestHistoryList.isEmpty
                             ? "Negative"
-                            : state.allTestHistoryList.first.result!.isNotEmpty
+                            : state.allTestHistoryList.first.result.isNotEmpty
                                 ? state.allTestHistoryList
                                         .firstWhere((element) =>
                                             element ==
                                             state.allTestHistoryList.first)
-                                        .result!
-                                        .isEmpty
-                                    ? state.allTestHistoryList.first.result![0]
                                         .result
-                                    : state.allTestHistoryList.first.result![0]
+                                        .isEmpty
+                                    ? state.allTestHistoryList.first.result[0]
+                                        .result
+                                    : state.allTestHistoryList.first.result[0]
                                         .result
                                 : "In progress",
                         requiresTranslate: false,
@@ -140,7 +137,7 @@ class _HistoryPageState extends State<HistoryPage> {
                       TextWidget(
                         text: state.allTestHistoryList.isEmpty
                             ? "26-02-2023"
-                            : "${state.allTestHistoryList.first.sampleDate!.date.day}-${state.allTestHistoryList.first.sampleDate!.date.month}-${state.allTestHistoryList.first.sampleDate!.date.year}",
+                            : "${state.allTestHistoryList.first.sampleDate.date.day}-${state.allTestHistoryList.first.sampleDate.date.month}-${state.allTestHistoryList.first.sampleDate.date.year}",
                         requiresTranslate: false,
                         style: const TextStyle(
                             fontSize: 14, fontWeight: FontWeight.w400),
@@ -221,7 +218,7 @@ class _HistoryPageState extends State<HistoryPage> {
                       ),
                     ],
                   ),
-                  SizedBox(height: size.height * 0.030),
+                  SizedBox(height: size.height * 0.050),
                   if (state.formStatus is SubmissionSuccess)
                     state.allTestHistoryList.isNotEmpty ||
                             state.antigenTestHistoryList.isNotEmpty ||
@@ -248,7 +245,13 @@ class _HistoryPageState extends State<HistoryPage> {
                                 ]))
                         : Center(
                             child: Text(
-                                "You have no current tests at the moment, please register a new test")),
+                            "You have no current tests at the moment, please register a new test",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 25,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          )),
                   if (state.formStatus is SubmissionFailed)
                     Center(
                         child: Text(
