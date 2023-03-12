@@ -21,17 +21,17 @@ class TestHistoryBloc extends Bloc<TestHistoryEvent, TestHistoryState> {
                 formStatus:
                     SubmissionFailed(exception: Exception(error.message)),
               )), (testHistory) {
-        //TODO: VERIFICATION DATE ALLTESTHISTORY
-        final allTestList = testHistory
-          ..sort((a, b) => b.sampleDate!.date.compareTo(a.sampleDate!.date));
-        final antigenList = testHistory
-            .where((antigenTest) => antigenTest.type![0].type == 'Antigen')
+        // TODO: VERIFICATION DATE ALLTESTHISTORY
+        final allTestList = testHistory.data.tests
+          ..sort((a, b) => b.sampleDate.date.compareTo(a.sampleDate.date));
+        final antigenList = testHistory.data.tests
+            .where((antigenTest) => antigenTest.type.first.type == 'Antigen')
             .toList()
-          ..sort((a, b) => b.sampleDate!.date.compareTo(a.sampleDate!.date));
-        final pcrList = testHistory
-            .where((pcrTest) => pcrTest.type![0].type == 'PCR')
+          ..sort((a, b) => b.sampleDate.date.compareTo(a.sampleDate.date));
+        final pcrList = testHistory.data.tests
+            .where((pcrTest) => pcrTest.type.first.type == 'PCR')
             .toList()
-          ..sort((a, b) => b.sampleDate!.date.compareTo(a.sampleDate!.date));
+          ..sort((a, b) => b.sampleDate.date.compareTo(a.sampleDate.date));
 
         emit(state.copyWith(
           allTestHistoryList: allTestList,

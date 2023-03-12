@@ -38,10 +38,10 @@ class HistoryTestWidget extends StatelessWidget {
                     print(positiveColoredWords);
                     popUpWidget(context, testList[index]);
                   },
-                  textTestKit: testList[index].code!,
+                  textTestKit: testList[index].code,
                   testHistoryEntity: testList[index],
                   //statusTest: testList[index].result![0]!.result!,
-                  sampleDate: testList[index].sampleDate!.date,
+                  sampleDate: testList[index].sampleDate.date,
                 );
               },
               itemCount: testList.length,

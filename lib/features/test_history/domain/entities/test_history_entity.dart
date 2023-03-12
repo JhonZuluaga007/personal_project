@@ -1,149 +1,221 @@
-class TestEntity {
-  TestEntity({
-    required this.data,
-    required this.message,
-    required this.statusCode,
-  });
+class TestHistoryResponseEntity {
+    TestHistoryResponseEntity({
+        required this.data,
+        required this.message,
+        required this.statusCode,
+    });
 
-  final DataHistoryEntity? data;
-  final MessageEntity message;
-  final int statusCode;
+    final DataHistoryEntity data;
+    final MessageTestEntity message;
+    final int statusCode;
 }
 
-class DataHistoryEntity {
-  final List<TestHistoryEntity>? tests;
 
-  DataHistoryEntity({this.tests});
+
+class DataHistoryEntity {
+    DataHistoryEntity({
+        required this.tests,
+    });
+
+    final List<TestHistoryEntity> tests;
 }
 
 class TestHistoryEntity {
-  TestHistoryEntity({
-    required this.ic,
-    required this.n,
-    required this.orf1Ab,
-    required this.id,
-    required this.associatedTests,
-    required this.batch,
-    required this.code,
-    required this.created,
-    required this.laboratory,
-    required this.manufacturer,
-    required this.preparedBy,
-    required this.project,
-    required this.result,
-    required this.sampleDate,
-    required this.status,
-    required this.statusHistory,
-    required this.swabType,
-    required this.symptoms,
-    required this.type,
-    required this.updated,
-    required this.user,
-    required this.validity,
-    required this.vialName,
-    required this.form,
-    required this.photo,
-    required this.stepHistory,
-    required this.vaccines,
-  });
+    TestHistoryEntity({
+        required this.ic,
+        required this.n,
+        required this.orf1Ab,
+        required this.id,
+        required this.associatedTests,
+        required this.batch,
+        required this.code,
+        required this.created,
+        required this.laboratory,
+        required this.manufacturer,
+        required this.preparedBy,
+        required this.project,
+        required this.result,
+        required this.sampleDate,
+        required this.status,
+        required this.statusHistory,
+        required this.swabType,
+        required this.symptoms,
+        required this.type,
+        required this.updated,
+        required this.vaccines,
+        required this.validity,
+        required this.vialName,
+        required this.form,
+        required this.photo,
+        required this.stepHistory,
+    });
 
-  final int? ic;
-  final int? n;
-  final int? orf1Ab;
-  final IdEntity? id;
-  final List<IdEntity>? associatedTests;
-  final IdEntity? batch;
-  final String? code;
-  final CreatedEntity? created;
-  final List<dynamic>? laboratory;
-  final List<dynamic>? manufacturer;
-  final IdEntity? preparedBy;
-  final IdEntity? project;
-  final List<ResultEntity>? result;
-  final CreatedEntity? sampleDate;
-  final List<StatusEntity>? status;
-  final List<StatusEntity>? statusHistory;
-  final List<dynamic>? swabType;
-  final List<dynamic>? symptoms;
-  final List<TypeEntity>? type;
-  final CreatedEntity? updated;
-  final IdEntity? user;
-  final List<ValidityEntity>? validity;
-  final String? vialName;
-  final IdEntity? form;
-  final List<String>? photo;
-  final List<dynamic>? stepHistory;
-  final List<dynamic>? vaccines;
+    final int ic;
+    final int n;
+    final int orf1Ab;
+    final IdTestEntity id;
+    final List<AssociatedTestEntity> associatedTests;
+    final IdTestEntity batch;
+    final String code;
+    final CreatedTestEntity created;
+    final List<LaboratoryTestEntity> laboratory;
+    final List<dynamic> manufacturer;
+    final IdTestEntity preparedBy;
+    final IdTestEntity project;
+    final List<ResultTestEntity> result;
+    final CreatedTestEntity sampleDate;
+    final List<StatusTestEntity> status;
+    final List<StatusHistoryEntity> statusHistory;
+    final List<dynamic> swabType;
+    final List<dynamic> symptoms;
+    final List<TypeTestEntity> type;
+    final CreatedTestEntity updated;
+    final List<dynamic> vaccines;
+    final List<ValidityTestEntity> validity;
+    final String vialName;
+    final IdTestEntity form;
+    final List<String> photo;
+    final List<dynamic> stepHistory;
 }
 
-class IdEntity {
-  IdEntity({
-    required this.oid,
-  });
+class AssociatedTestEntity {
+    AssociatedTestEntity({
+        required this.id,
+        required this.associatedTests,
+        required this.batch,
+        required this.code,
+        required this.created,
+        required this.form,
+        required this.manufacturer,
+        required this.photo,
+        required this.preparedBy,
+        required this.project,
+        required this.result,
+        required this.sampleDate,
+        required this.status,
+        required this.statusHistory,
+        required this.stepHistory,
+        required this.swabType,
+        required this.symptoms,
+        required this.type,
+        required this.updated,
+        required this.vaccines,
+        required this.validity,
+    });
 
-  final String? oid;
+    final IdTestEntity id;
+    final List<dynamic> associatedTests;
+    final IdTestEntity batch;
+    final String code;
+    final CreatedTestEntity created;
+    final IdTestEntity form;
+    final String manufacturer;
+    final List<String> photo;
+    final IdTestEntity preparedBy;
+    final IdTestEntity project;
+    final IdTestEntity result;
+    final CreatedTestEntity sampleDate;
+    final IdTestEntity status;
+    final List<StatusHistoryEntity> statusHistory;
+    final List<dynamic> stepHistory;
+    final String swabType;
+    final List<IdTestEntity> symptoms;
+    final IdTestEntity type;
+    final CreatedTestEntity updated;
+    final List<dynamic> vaccines;
+    final IdTestEntity validity;
 }
 
-class CreatedEntity {
-  CreatedEntity({
-    required this.date,
-  });
+class IdTestEntity {
+    IdTestEntity({
+        required this.oid,
+    });
 
-  final DateTime date;
+    final String oid;
 }
 
-class ResultEntity {
-  ResultEntity({
-    required this.id,
-    required this.result,
-  });
+class CreatedTestEntity {
+    CreatedTestEntity({
+        required this.date,
+    });
 
-  final IdEntity id;
-  final String result;
+    final DateTime date;
 }
 
-class StatusEntity {
-  StatusEntity({
-    required this.id,
-    required this.status,
-  });
+class StatusHistoryEntity {
+    StatusHistoryEntity({
+        required this.date,
+        required this.status,
+    });
 
-  final IdEntity id;
-  final String status;
+    final CreatedTestEntity date;
+    final IdTestEntity status;
 }
 
-class TypeEntity {
-  TypeEntity({
-    required this.id,
-    required this.hasBandType,
-    required this.hasGeneCycle,
-    required this.testLetter,
-    required this.type,
-  });
+class LaboratoryTestEntity {
+    LaboratoryTestEntity({
+        required this.id,
+        required this.name,
+        required this.project,
+    });
 
-  final IdEntity id;
-  final bool hasBandType;
-  final bool hasGeneCycle;
-  final String testLetter;
-  final String type;
+    final IdTestEntity id;
+    final String name;
+    final IdTestEntity project;
 }
 
-class ValidityEntity {
-  ValidityEntity({
-    required this.id,
-    required this.validity,
-  });
+class ResultTestEntity {
+    ResultTestEntity({
+        required this.id,
+        required this.result,
+    });
 
-  final IdEntity id;
-  final String validity;
+    final IdTestEntity id;
+    final String result;
 }
 
-class MessageEntity {
-  MessageEntity({
-    required this.text,
-    required this.type,
-  });
+class StatusTestEntity {
+    StatusTestEntity({
+        required this.id,
+        required this.status,
+    });
 
-  final String text;
-  final String type;
+    final IdTestEntity id;
+    final String status;
+}
+
+class TypeTestEntity {
+    TypeTestEntity({
+        required this.id,
+        required this.hasBandType,
+        required this.hasGeneCycle,
+        required this.testLetter,
+        required this.type,
+    });
+
+    final IdTestEntity id;
+    final bool hasBandType;
+    final bool hasGeneCycle;
+    final String testLetter;
+    final String type;
+}
+
+class ValidityTestEntity {
+    ValidityTestEntity({
+        required this.id,
+        required this.validity,
+    });
+
+    final IdTestEntity id;
+    final String validity;
+}
+
+class MessageTestEntity {
+    MessageTestEntity({
+        required this.text,
+        required this.type,
+    });
+
+    final String text;
+    final String type;
 }

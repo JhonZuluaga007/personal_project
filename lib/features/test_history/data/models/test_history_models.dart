@@ -1,61 +1,64 @@
 import 'package:Tellme/features/test_history/domain/entities/test_history_entity.dart';
 import 'dart:convert';
 
-class TestHistoryModel extends TestEntity {
+class TestHistoryModel extends TestHistoryResponseEntity {
   TestHistoryModel({
-    required Data? data,
-    required Message message,
+    required DataHistory data,
+    required MessageHistory message,
     required int statusCode,
   }) : super(data: data, message: message, statusCode: statusCode);
 
-  factory TestHistoryModel.fromJson(Map<String, dynamic> json) =>
+  factory TestHistoryModel.fromJson(String str) =>
+      TestHistoryModel.fromMap(json.decode(str));
+
+  factory TestHistoryModel.fromMap(Map<String, dynamic> json) =>
       TestHistoryModel(
-        data: Data.fromJson(json["data"]),
-        message: Message.fromJson(json["message"]),
+        data: DataHistory.fromMap(json["data"]),
+        message: MessageHistory.fromMap(json["message"]),
         statusCode: json["statusCode"],
       );
 }
 
-class Data extends DataHistoryEntity {
-  Data({
+class DataHistory extends DataHistoryEntity {
+  DataHistory({
     required List<TestHistory> tests,
   }) : super(tests: tests);
 
-  factory Data.fromJson(Map<String, dynamic> json) => Data(
-        tests: List<TestHistory>.from(
-            json["tests"].map((x) => TestHistory.fromJson(x)) ?? ""),
+  factory DataHistory.fromJson(String str) => DataHistory.fromMap(json.decode(str));
+
+  factory DataHistory.fromMap(Map<String, dynamic> json) => DataHistory(
+        tests: List<TestHistory>.from(json["tests"].map((x) => TestHistory.fromMap(x))),
       );
 }
 
 class TestHistory extends TestHistoryEntity {
   TestHistory({
-    required int? ic,
-    required int? n,
-    required int? orf1Ab,
-    required Id? id,
-    required List<Id>? associatedTests,
-    required Id? batch,
-    required String? code,
-    required Created? created,
-    required List<dynamic>? laboratory,
-    required List<dynamic>? manufacturer,
-    required Id? preparedBy,
-    required Id? project,
-    required List<Result>? result,
-    required Created? sampleDate,
-    required List<Status>? status,
-    required List<Status>? statusHistory,
-    required List<dynamic>? swabType,
-    required List<dynamic>? symptoms,
-    required List<Type>? type,
-    required Created? updated,
-    required Id? user,
-    required List<Validity>? validity,
-    required String? vialName,
-    required Id? form,
-    required List<String>? photo,
-    required List<dynamic>? stepHistory,
-    required List<dynamic>? vaccines,
+    required int ic,
+    required int n,
+    required int orf1Ab,
+    required IdHistory id,
+    required List<AssociatedTestHistory> associatedTests,
+    required IdHistory batch,
+    required String code,
+    required CreatedHistory created,
+    required List<LaboratoryHistory> laboratory,
+    required List<dynamic> manufacturer,
+    required IdHistory preparedBy,
+    required IdHistory project,
+    required List<ResultHistory> result,
+    required CreatedHistory sampleDate,
+    required List<StatusHistory> status,
+    required List<StatusTestHistory> statusHistory,
+    required List<dynamic> swabType,
+    required List<dynamic> symptoms,
+    required List<TypeHistory> type,
+    required CreatedHistory updated,
+    required List<dynamic> vaccines,
+    required List<ValidityHistory> validity,
+    required String vialName,
+    required IdHistory form,
+    required List<String> photo,
+    required List<dynamic> stepHistory,
   }) : super(
             ic: ic,
             n: n,
@@ -77,107 +80,199 @@ class TestHistory extends TestHistoryEntity {
             symptoms: symptoms,
             type: type,
             updated: updated,
-            user: user,
+            vaccines: vaccines,
             validity: validity,
             vialName: vialName,
             form: form,
             photo: photo,
-            stepHistory: stepHistory,
-            vaccines: vaccines);
+            stepHistory: stepHistory);
 
-  factory TestHistory.fromJson(Map<String, dynamic> json) => TestHistory(
-        ic: json["IC"] ?? json[""],
-        n: json["N"] ?? json[""],
-        orf1Ab: json["ORF1ab"] ?? json[""],
-        id: Id.fromJson(json["_id"]),
-        associatedTests:
-            List<Id>.from(json["associated_tests"].map((x) => Id.fromJson(x))),
-        batch: Id.fromJson(json["batch"]),
+  factory TestHistory.fromJson(String str) => TestHistory.fromMap(json.decode(str));
+
+  factory TestHistory.fromMap(Map<String, dynamic> json) => TestHistory(
+        ic: json["IC"] ?? 0,
+        n: json["N"] ?? 0,
+        orf1Ab: json["ORF1ab"] ?? 0,
+        id: IdHistory.fromMap(json["_id"]),
+        associatedTests: List<AssociatedTestHistory>.from(
+            json["associated_tests"].map((x) => AssociatedTestHistory.fromMap(x))),
+        batch: IdHistory.fromMap(json["batch"]),
         code: json["code"],
-        created: Created.fromJson(json["created"]),
-        laboratory: List<dynamic>.from(json["laboratory"].map((x) => x)),
+        created: CreatedHistory.fromMap(json["created"]),
+        laboratory: List<LaboratoryHistory>.from(
+            json["laboratory"].map((x) => LaboratoryHistory.fromMap(x))),
         manufacturer: List<dynamic>.from(json["manufacturer"].map((x) => x)),
-        preparedBy: Id.fromJson(json["prepared_by"]),
-        project: Id.fromJson(json["project"]),
-        result: List<Result>.from(json["result"].map((x) => Result.fromJson(x))),
-        sampleDate: Created.fromJson(json["sample_date"]),
-        status: List<Status>.from(json["status"].map((x) => Status.fromJson(x))),
-        statusHistory: List<Status>.from(
-            json["status_history"].map((x) => Status.fromJson(x))),
+        preparedBy: IdHistory.fromMap(json["prepared_by"]),
+        project: IdHistory.fromMap(json["project"]),
+        result: List<ResultHistory>.from(json["result"].map((x) => ResultHistory.fromMap(x))),
+        sampleDate: CreatedHistory.fromMap(json["sample_date"]),
+        status: List<StatusHistory>.from(json["status"].map((x) => StatusHistory.fromMap(x))),
+        statusHistory: List<StatusTestHistory>.from(
+            json["status_history"].map((x) => StatusTestHistory.fromMap(x))),
         swabType: List<dynamic>.from(json["swab_type"].map((x) => x)),
         symptoms: List<dynamic>.from(json["symptoms"].map((x) => x)),
-        type: List<Type>.from(json["type"].map((x) => Type.fromJson(x))),
-        updated: Created.fromJson(json["updated"]),
-        user: Id.fromJson(json["user"]),
-        validity: List<Validity>.from(
-            json["validity"].map((x) => Validity.fromJson(x)) ?? json[""]),
-        vialName: json["vial_name"],
-        form: json["form"] != null ? Id.fromJson(json["form"]) : Id(oid: ''),
-        photo: List<String>.from(json["photo"].map((x) => x)),
-        stepHistory: List<dynamic>.from(json["step_history"].map((x) => x)),
+        type: List<TypeHistory>.from(json["type"].map((x) => TypeHistory.fromMap(x))),
+        updated: CreatedHistory.fromMap(json["updated"]),
         vaccines: List<dynamic>.from(json["vaccines"].map((x) => x)),
+        validity: List<ValidityHistory>.from(
+            json["validity"].map((x) => ValidityHistory.fromMap(x))),
+        vialName: json["vial_name"] ?? "",
+        form: json["form"] != null ? IdHistory.fromMap(json["form"]) : IdHistory(oid: ""),
+        photo: json["photo"] != null ? List<String>.from(json["photo"].map((x) => x)) : [],
+        stepHistory: json["step_history"] != null ? List<dynamic>.from(json["step_history"].map((x) => x)) : [],
       );
 }
 
-class Id extends IdEntity {
-  Id({
-    required String? oid,
+class AssociatedTestHistory extends AssociatedTestEntity {
+  AssociatedTestHistory({
+    required IdHistory id,
+    required List<dynamic> associatedTests,
+    required IdHistory batch,
+    required String code,
+    required CreatedHistory created,
+    required IdHistory form,
+    required String manufacturer,
+    required List<String> photo,
+    required IdHistory preparedBy,
+    required IdHistory project,
+    required IdHistory result,
+    required CreatedHistory sampleDate,
+    required IdHistory status,
+    required List<StatusTestHistory> statusHistory,
+    required List<dynamic> stepHistory,
+    required String swabType,
+    required List<IdHistory> symptoms,
+    required IdHistory type,
+    required CreatedHistory updated,
+    required List<dynamic> vaccines,
+    required IdHistory validity,
+  }) : super(
+            id: id,
+            associatedTests: associatedTests,
+            batch: batch,
+            code: code,
+            created: created,
+            form: form,
+            manufacturer: manufacturer,
+            photo: photo,
+            preparedBy: preparedBy,
+            project: project,
+            result: result,
+            sampleDate: sampleDate,
+            status: status,
+            statusHistory: statusHistory,
+            stepHistory: stepHistory,
+            swabType: swabType,
+            symptoms: symptoms,
+            type: type,
+            updated: updated,
+            vaccines: vaccines,
+            validity: validity);
+
+  factory AssociatedTestHistory.fromJson(String str) =>
+      AssociatedTestHistory.fromMap(json.decode(str));
+
+  factory AssociatedTestHistory.fromMap(Map<String, dynamic> json) => AssociatedTestHistory(
+        id: IdHistory.fromMap(json["_id"]),
+        associatedTests:
+            List<dynamic>.from(json["associated_tests"].map((x) => x)),
+        batch: IdHistory.fromMap(json["batch"]),
+        code: json["code"],
+        created: CreatedHistory.fromMap(json["created"]),
+        form: IdHistory.fromMap(json["form"]),
+        manufacturer: json["manufacturer"],
+        photo: List<String>.from(json["photo"].map((x) => x)),
+        preparedBy: IdHistory.fromMap(json["prepared_by"]),
+        project: IdHistory.fromMap(json["project"]),
+        result: IdHistory.fromMap(json["result"]),
+        sampleDate: CreatedHistory.fromMap(json["sample_date"]),
+        status: IdHistory.fromMap(json["status"]),
+        statusHistory: List<StatusTestHistory>.from(
+            json["status_history"].map((x) => StatusTestHistory.fromMap(x))),
+        stepHistory: List<dynamic>.from(json["step_history"].map((x) => x)),
+        swabType: json["swab_type"],
+        symptoms: List<IdHistory>.from(json["symptoms"].map((x) => IdHistory.fromMap(x))),
+        type: IdHistory.fromMap(json["type"]),
+        updated: CreatedHistory.fromMap(json["updated"]),
+        vaccines: List<dynamic>.from(json["vaccines"].map((x) => x)),
+        validity: IdHistory.fromMap(json["validity"]),
+      );
+}
+
+class IdHistory extends IdTestEntity {
+  IdHistory({
+    required String oid,
   }) : super(oid: oid);
 
-  String toJson() => json.encode(toMap());
-
-  factory Id.fromJson(Map<String, dynamic> json) => Id(
+  factory IdHistory.fromMap(Map<String, dynamic> json) => IdHistory(
         oid: json["\u0024oid"],
       );
-
-  Map<String, dynamic> toMap() => {
-        "\u0024oid": oid,
-      };
 }
 
-class Created extends CreatedEntity {
-  Created({
+class CreatedHistory extends CreatedTestEntity {
+  CreatedHistory({
     required DateTime date,
   }) : super(date: date);
 
-  String toJson() => json.encode(toMap());
-
-  factory Created.fromJson(Map<String, dynamic> json) => Created(
+  factory CreatedHistory.fromMap(Map<String, dynamic> json) => CreatedHistory(
         date: DateTime.parse(json["\u0024date"]),
       );
-
-  Map<String, dynamic> toMap() => {
-        "\u0024date": date.toIso8601String(),
-      };
 }
 
-class Result extends ResultEntity {
-  Result({
-    required Id id,
+class StatusTestHistory extends StatusHistoryEntity {
+  StatusTestHistory({
+    required CreatedHistory date,
+    required IdHistory status,
+  }) : super(date: date, status: status);
+
+
+  factory StatusTestHistory.fromMap(Map<String, dynamic> json) => StatusTestHistory(
+        date: CreatedHistory.fromMap(json["date"]),
+        status: IdHistory.fromMap(json["status"]),
+      );
+}
+
+class LaboratoryHistory extends LaboratoryTestEntity {
+  LaboratoryHistory({
+    required IdHistory id,
+    required String name,
+    required IdHistory project,
+  }) : super(id: id, name: name, project: project);
+
+  factory LaboratoryHistory.fromMap(Map<String, dynamic> json) => LaboratoryHistory(
+        id: IdHistory.fromMap(json["_id"]),
+        name: json["name"],
+        project: IdHistory.fromMap(json["project"]),
+      );
+}
+
+class ResultHistory extends ResultTestEntity {
+  ResultHistory({
+    required IdHistory id,
     required String result,
   }) : super(id: id, result: result);
 
-  factory Result.fromJson(Map<String, dynamic> json) => Result(
-        id: Id.fromJson(json["_id"]),
+  factory ResultHistory.fromMap(Map<String, dynamic> json) => ResultHistory(
+        id: IdHistory.fromMap(json["_id"]),
         result: json["result"],
       );
 }
 
-class Status extends StatusEntity {
-  Status({
-    required Id id,
+class StatusHistory extends StatusTestEntity {
+  StatusHistory({
+    required IdHistory id,
     required String status,
   }) : super(id: id, status: status);
 
-  factory Status.fromJson(Map<String, dynamic> json) => Status(
-        id: Id.fromJson(json["_id"]),
+  factory StatusHistory.fromMap(Map<String, dynamic> json) => StatusHistory(
+        id: json["_id"] != null ? IdHistory.fromMap(json["_id"]) : IdHistory(oid: ""),
         status: json["status"],
       );
 }
 
-class Type extends TypeEntity {
-  Type({
-    required Id id,
+class TypeHistory extends TypeTestEntity {
+  TypeHistory({
+    required IdHistory id,
     required bool hasBandType,
     required bool hasGeneCycle,
     required String testLetter,
@@ -189,8 +284,8 @@ class Type extends TypeEntity {
             testLetter: testLetter,
             type: type);
 
-  factory Type.fromJson(Map<String, dynamic> json) => Type(
-        id: Id.fromJson(json["_id"]),
+  factory TypeHistory.fromMap(Map<String, dynamic> json) => TypeHistory(
+        id: IdHistory.fromMap(json["_id"]),
         hasBandType: json["has_band_type"],
         hasGeneCycle: json["has_gene_cycle"],
         testLetter: json["test_letter"],
@@ -198,33 +293,26 @@ class Type extends TypeEntity {
       );
 }
 
-class Validity extends ValidityEntity {
-  Validity({
-    required Id id,
+class ValidityHistory extends ValidityTestEntity {
+  ValidityHistory({
+    required IdHistory id,
     required String validity,
   }) : super(id: id, validity: validity);
 
-  factory Validity.fromJson(Map<String, dynamic> json) => Validity(
-        id: Id.fromJson(json["_id"]),
+  factory ValidityHistory.fromMap(Map<String, dynamic> json) => ValidityHistory(
+        id: IdHistory.fromMap(json["_id"]),
         validity: json["validity"],
       );
 }
 
-class Message extends MessageEntity {
-  Message({
+class MessageHistory extends MessageTestEntity {
+  MessageHistory({
     required String text,
     required String type,
   }) : super(text: text, type: type);
 
-  String toJson() => json.encode(toMap());
-
-  factory Message.fromJson(Map<String, dynamic> json) => Message(
+  factory MessageHistory.fromMap(Map<String, dynamic> json) => MessageHistory(
         text: json["text"],
         type: json["type"],
       );
-
-  Map<String, dynamic> toMap() => {
-        "text": text,
-        "type": type,
-      };
 }
