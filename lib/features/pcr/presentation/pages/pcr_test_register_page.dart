@@ -1,6 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:Tellme/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:Tellme/features/test_history/bloc/test_history_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:scan/scan.dart';
 
@@ -38,6 +39,7 @@ class _PcrRegisterPageState extends State<PcrRegisterPage> {
     final height = MediaQuery.of(context).size.height;
     final wColor = ThemesIdx20();
     final userState = BlocProvider.of<AuthBloc>(context).state;
+    final stateTestHistory = BlocProvider.of<TestHistoryBloc>(context).state;
 
     NavigationBarBloc navigationBloc =
         BlocProvider.of<NavigationBarBloc>(context);
@@ -140,8 +142,7 @@ class _PcrRegisterPageState extends State<PcrRegisterPage> {
             SizedBox(height: size.height * 0.15),
             BlocConsumer<PcrBloc, PcrState>(
               listener: (context, state) {
-                if (state.formStatus is SubmissionSuccess &&
-                    state.success == true) {
+                if (state.formStatus is SubmissionSuccess) {
                   doneSendInfo(
                     context: context,
                     requiresTranslateText: true,
@@ -189,13 +190,13 @@ class _PcrRegisterPageState extends State<PcrRegisterPage> {
                       buttonColor: wColor.mapColors["500BASE"],
                       borderColor: wColor.mapColors["500BASE"],
                       onPressed: () async {
-                        if (pcrIdController.text.isEmpty) {
-                          return;
+                        if (pcrIdController.text.isNotEmpty) {
+                          BlocProvider.of<PcrBloc>(context)
+                              .add(PcrValidateEvent(
+                            project: "ChelseaProject",
+                            code: pcrIdController.text,
+                          ));
                         }
-                        BlocProvider.of<PcrBloc>(context).add(PcrValidateEvent(
-                          project: "ChelseaProject",
-                          code: pcrIdController.text,
-                        ));
                       });
                 }
               },

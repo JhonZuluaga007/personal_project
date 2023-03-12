@@ -3,6 +3,7 @@ import 'package:Tellme/features/pcr/data/data_source/pcr_data_source.dart';
 import 'package:Tellme/features/pcr/domain/repository/pcr_repository.dart';
 
 import '../../../../config/helpers/errors/invalid_data.dart';
+import '../models/pcr_test_model.dart';
 
 class PcrRepositoryImpl implements PcrRepository {
   final PcrDataSource authDataSource;
@@ -12,7 +13,7 @@ class PcrRepositoryImpl implements PcrRepository {
   });
 
   @override
-  Future<Either<InvalidData, bool>> validatePcr(
+  Future<Either<InvalidData, PcrTestModel>> validatePcr(
       String userId, String code) async {
     try {
       final response = await authDataSource.validatePcr(userId, code);
