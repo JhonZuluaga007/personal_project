@@ -4,10 +4,10 @@ import 'package:http/http.dart' as http;
 import 'package:Tellme/config/helpers/models/server_validate_data.dart';
 
 import '../../domain/entities/antigen_entity.dart';
-import '../models/antigen_model.dart';
 import '../../../../config/helpers/endpoints.dart';
 import '../../../../config/helpers/errors/invalid_data.dart';
 import '../../../../config/helpers/models/server_error.dart';
+import '../models/antigen_model.dart';
 
 class AntigenDataSource {
   Future<AntigenModel> validateAntigen(String userId, String code) async {

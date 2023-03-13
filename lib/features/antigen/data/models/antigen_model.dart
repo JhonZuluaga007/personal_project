@@ -1,7 +1,8 @@
 import 'dart:convert';
 
 import 'package:Tellme/features/antigen/domain/entities/antigen_entity.dart';
-import 'package:Tellme/features/test_history/domain/entities/test_history_entity.dart';
+
+import '../../../test_history/data/models/test_history_models.dart';
 
 class AntigenModel {
   AntigenModel({
@@ -40,9 +41,9 @@ class Data extends DataEntity {
 
 class Lasttest extends LasttestEntity {
   Lasttest({
-    required Id id,
-    required Created created,
-    required Id idTest,
+    required IdHistory id,
+    required CreatedHistory created,
+    required IdHistory idTest,
     required String ip,
     required QuestionTypeOne question1,
     required QuestionTypeTwo question10,
@@ -59,7 +60,7 @@ class Lasttest extends LasttestEntity {
     required QuestionTypeOne question7,
     required QuestionTypeOne question8,
     required QuestionTypeOne question9,
-    required Created updated,
+    required CreatedHistory updated,
   }) : super(
             id: id,
             created: created,
@@ -84,9 +85,9 @@ class Lasttest extends LasttestEntity {
   factory Lasttest.fromJson(String str) => Lasttest.fromMap(json.decode(str));
 
   factory Lasttest.fromMap(Map<String, dynamic> json) => Lasttest(
-        id: Id.fromMap(json["_id"]),
-        created: Created.fromMap(json["created"]),
-        idTest: Id.fromMap(json["idTest"]),
+        id: IdHistory.fromMap(json["_id"]),
+        created: CreatedHistory.fromMap(json["created"]),
+        idTest: IdHistory.fromMap(json["idTest"]),
         ip: json["ip"],
         question1: QuestionTypeOne.fromMap(json["question1"]),
         question10: QuestionTypeTwo.fromMap(json["question10"]),
@@ -103,43 +104,8 @@ class Lasttest extends LasttestEntity {
         question7: QuestionTypeOne.fromMap(json["question7"]),
         question8: QuestionTypeOne.fromMap(json["question8"]),
         question9: QuestionTypeOne.fromMap(json["question9"]),
-        updated: Created.fromMap(json["updated"]),
+        updated: CreatedHistory.fromMap(json["updated"]),
       );
-}
-
-class Created extends CreatedEntity {
-  Created({
-    required DateTime? date,
-  }) : super(date: date!);
-  factory Created.fromJson(String str) => Created.fromMap(json.decode(str));
-
-  String toJson() => json.encode(toMap());
-
-  factory Created.fromMap(Map<String, dynamic> json) => Created(
-        date: DateTime.parse(json["\u0024date"]),
-      );
-
-  Map<String, dynamic> toMap() => {
-        "\u0024date": date.toIso8601String(),
-      };
-}
-
-class Id extends IdEntity {
-  Id({
-    required String? oid,
-  }) : super(oid: oid!);
-
-  factory Id.fromJson(String str) => Id.fromMap(json.decode(str));
-
-  String toJson() => json.encode(toMap());
-
-  factory Id.fromMap(Map<String, dynamic> json) => Id(
-        oid: json["\u0024oid"],
-      );
-
-  Map<String, dynamic> toMap() => {
-        "\u0024oid": oid,
-      };
 }
 
 class QuestionTypeOne extends QuestionTypeOneEntity {

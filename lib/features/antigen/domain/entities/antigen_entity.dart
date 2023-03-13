@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import '../../../test_history/domain/entities/test_history_entity.dart';
+import 'package:Tellme/features/test_history/domain/entities/test_history_entity.dart';
 
 class DataEntity {
   DataEntity({
@@ -36,9 +36,9 @@ class LasttestEntity {
     required this.updated,
   });
 
-  final IdEntity? id;
-  final CreatedEntity? created;
-  final IdEntity? idTest;
+  final IdTestEntity? id;
+  final CreatedTestEntity? created;
+  final IdTestEntity? idTest;
   final String? ip;
   final QuestionTypeOneEntity? question1;
   final QuestionTypeTwoEntity? question2;
@@ -55,7 +55,7 @@ class LasttestEntity {
   final QuestionTypeOneEntity? question13;
   final QuestionTypeOneEntity? question14;
   final QuestionTypeOneEntity? question15;
-  final CreatedEntity? updated;
+  final CreatedTestEntity? updated;
 }
 
 class QuestionTypeOneEntity {
