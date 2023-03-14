@@ -4,8 +4,8 @@ part of 'medical_history_bloc.dart';
 class MedicalHistoryState {
   final FormSubmissionStatus? formStatus;
   final String? id;
-  final MedicalHistoryEntity? medicalHistoryEntity;
-
+  final bool? question1;
+  final List<OpRiskFactorEntity>? question2;
   final String? message;
   final FormSubmissionStatus? infoUploaded;
 
@@ -14,20 +14,23 @@ class MedicalHistoryState {
       this.message,
       this.id,
       this.infoUploaded = const InitialFormStatus(),
-      this.medicalHistoryEntity});
+      this.question1,
+      this.question2
+    });
 
   MedicalHistoryState copyWith({
     FormSubmissionStatus? formStatus,
     String? id,
-    MedicalHistoryEntity? medicalHistoryEntity,
-    bool? status,
+    bool? question1,
+    List<OpRiskFactorEntity>? question2,
     FormSubmissionStatus? infoUploaded,
     String? message,
   }) {
     return MedicalHistoryState(
       formStatus: formStatus ?? this.formStatus,
       id: id ?? this.id,
-      medicalHistoryEntity: medicalHistoryEntity ?? this.medicalHistoryEntity,
+      question1: question1 ?? this.question1,
+      question2: question2 ?? this.question2,
       infoUploaded: infoUploaded ?? this.infoUploaded,
       message: message ?? this.message,
     );

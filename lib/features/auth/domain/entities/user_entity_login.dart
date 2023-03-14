@@ -1,3 +1,5 @@
+import 'package:Tellme/features/auth/data/models/options_tools_model.dart';
+
 class UserEntityLogin {
   UserEntityLogin({
     required this.data,
@@ -126,7 +128,7 @@ class UserEntity {
   final List<RaceEntity> race;
   final List<String> roles;
   //final List<String> schoolLevel;
-  final List<String> schoolLevels;
+  final List<IdEntity> schoolLevels;
   final List<SexEntity> sex;
 }
 
@@ -140,7 +142,7 @@ class AddressEntity {
 
   final String address;
   final String city;
-  final String state;
+  final List<dynamic> state;
   final String zip;
 }
 

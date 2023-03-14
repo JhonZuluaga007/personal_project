@@ -68,7 +68,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
             roles: userResponse.roles.first,
             schoolLevels: userResponse.schoolLevels.isNotEmpty
                 ? userResponse.schoolLevels.first
-                : '',
+                : IdEntity(oid: ""),
             sex: userResponse.sex.isNotEmpty
                 ? userResponse.sex.first
                 : SexEntity(
@@ -124,7 +124,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           roles: userResponse.roles.first,
           schoolLevels: userResponse.schoolLevels.isNotEmpty
               ? userResponse.schoolLevels.first
-              : '',
+              : IdEntity(oid: ""),
           sex: userResponse.sex.isNotEmpty
               ? userResponse.sex.first
               : SexEntity(

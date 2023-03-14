@@ -53,23 +53,23 @@ class _FourQuestionWidgetState extends State<FourQuestionWidget> {
               color: wColor.mapColors["S700"]!),
         ),
         SizedBox(height: height * 0.011),
-        MultiSelectedWidget(
-          listItem: vaccinesList,
-          onChanged: (value) {
-            setState(() {
-              if (vacinneChipList.contains(value) != true) {
-                vacinneChipList.add(value.toString());
-              }
-            });
-            antigenBloc
-                .add(AntigenQuestion10Event(question10: vacinneChipList));
-          },
-          requiredTranslate: false,
-          listChip: stateAntigen.question10!.value != vacinneChipList
-              ? stateAntigen.question10!.value!
-              : vacinneChipList,
-          valueDefaultList: "drop_down_select_option",
-        ),
+        // MultiSelectedWidget(
+        //   listItem: vaccinesList,
+        //   onChanged: (value) {
+        //     setState(() {
+        //       if (vacinneChipList.contains(value) != true) {
+        //         vacinneChipList.add(value.toString());
+        //       }
+        //     });
+        //     antigenBloc
+        //         .add(AntigenQuestion10Event(question10: vacinneChipList));
+        //   },
+        //   requiredTranslate: false,
+        //   listChip: stateAntigen.question10!.value != vacinneChipList
+        //       ? stateAntigen.question10!.value!
+        //       : vacinneChipList,
+        //   valueDefaultList: "drop_down_select_option",
+        // ),
         SizedBox(height: height * 0.031),
         TextWidget(
           text: antigenBloc.state.question11!.name!,
@@ -80,23 +80,23 @@ class _FourQuestionWidgetState extends State<FourQuestionWidget> {
               letterSpacing: -0.2,
               color: wColor.mapColors["S700"]!),
         ),
-        MultiSelectedWidget(
-          listItem: covidBeforeAnswer,
-          onChanged: (value) {
-            setState(() {
-              if (covidBeforechipList.contains(value) != true) {
-                covidBeforechipList.add(value.toString());
-              }
-            });
-            antigenBloc
-                .add(AntigenQuestion11Event(question11: covidBeforechipList));
-          },
-          requiredTranslate: false,
-          listChip: stateAntigen.question11!.value != covidBeforechipList
-              ? stateAntigen.question11!.value!
-              : covidBeforechipList,
-          valueDefaultList: "drop_down_select_option",
-        ),
+        // MultiSelectedWidget(
+        //   listItem: covidBeforeAnswer,
+        //   onChanged: (value) {
+        //     setState(() {
+        //       if (covidBeforechipList.contains(value) != true) {
+        //         covidBeforechipList.add(value.toString());
+        //       }
+        //     });
+        //     antigenBloc
+        //         .add(AntigenQuestion11Event(question11: covidBeforechipList));
+        //   },
+        //   requiredTranslate: false,
+        //   listChip: stateAntigen.question11!.value != covidBeforechipList
+        //       ? stateAntigen.question11!.value!
+        //       : covidBeforechipList,
+        //   valueDefaultList: "drop_down_select_option",
+        // ),
         SizedBox(height: height * 0.031),
         FormFieldDropdownWidget(
           question: antigenBloc.state.question12!.name!,

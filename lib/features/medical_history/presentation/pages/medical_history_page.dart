@@ -1,7 +1,8 @@
-import 'package:Tellme/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:Tellme/features/auth/presentation/bloc/helper_tools_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../config/helpers/form_submission_status.dart';
+import '../../../auth/domain/entities/options_tools_entity.dart';
 import '../bloc/medical_history_bloc.dart';
 import '../../../../config/theme/theme.dart';
 import '../widgets/confirm_alert_widget.dart';
@@ -31,13 +32,14 @@ class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
   bool visibilityYes = false;
   bool yesSevere = false;
   bool noSevere = false;
-  List<String> chipListText = [];
+  List<OpRiskFactorEntity> chipListText = [];
   @override
   Widget build(BuildContext context) {
     final wColor = ThemesIdx20();
     NavigationBarBloc navigationBloc =
         BlocProvider.of<NavigationBarBloc>(context);
-    final stateUserId = BlocProvider.of<AuthBloc>(context).state;
+    // final stateUserId = BlocProvider.of<AuthBloc>(context).state;
+    final stateTools = BlocProvider.of<HelperToolsBloc>(context).state;
     final size = MediaQuery.of(context).size;
     return MyAppScaffold(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -58,16 +60,16 @@ class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
         BlocConsumer<MedicalHistoryBloc, MedicalHistoryState>(
           listener: (context, state) {
             if (state.formStatus is SubmissionSuccess) {
-              if (state.question1!.value == 'Yes') {
+              if (state.question1! == true) {
                 setState(() {
                   visibilityYes = true;
-                  chipListText = state.question2!.value;
+                  chipListText = state.question2!;
                   defaultValueEng = 'Yes';
                 });
               } else {
                 setState(() {
                   visibilityYes = false;
-                  chipListText = state.question2!.value;
+                  chipListText = state.question2!;
                   defaultValueEng = 'No';
                 });
               }
@@ -160,7 +162,6 @@ class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
                               visibilityYes = true;
                             } else {
                               visibilityYes = false;
-                              //chipListText.clear();
                             }
                           })
                         }),
@@ -182,27 +183,14 @@ class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
                         MultiSelectedWidget(
                           onChanged: (value) {
                             setState(() {
-                              if (state.question2!.value
-                                      .contains(value.toString()) !=
+                              if (state.question2!.contains(value.toString()) !=
                                   true) {
-                                chipListText.add(value.toString());
+                                chipListText.add(value!);
                                 debugPrint(chipListText.toString());
-                              }
-                              if (state.question1!.value == 'no') {
-                                chipListText.clear();
                               }
                             });
                           },
-                          listItem: const [
-                            "Cerebrovascular disease",
-                            "Asthma",
-                            "Cancer",
-                            "Chronic kidney disease",
-                            "Tuberculosis",
-                            "Smoking (current and former)",
-                            "Neurologic conditions",
-                            "Hiv"
-                          ],
+                          listItem: stateTools.riskFactors,
                           valueDefaultList: "medical_history_drop_down_select",
                           listChip: chipListText,
                           requiredTranslate: false,
@@ -220,29 +208,27 @@ class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
           navigationBloc: navigationBloc,
           onPressed: () {
             confirmSendInfo(
-              context: context,
-              mainIcon: Icon(
-                Icons.warning_amber,
-                size: size.height * 0.12,
-                color: wColor.mapColors['Warning'],
-              ),
-              titleText: "alert_confirm_text_one",
-              paddingHeight: size.height * 0.25,
-              infoText: 'alert_confirm_text_two',
-              mainButton: 'alert_confirm_text_three',
-              mainButtonFunction: () {
-                BlocProvider.of<MedicalHistoryBloc>(context)
-                    .add(EditMedicalHistoryEvent(
-                  userId: stateUserId.userId!,
-                  responseOne: defaultValueEng,
-                  responseTwo: chipListText,
-                ));
-              },
-              secondButton: 'alert_confirm_text_four',
-              secondButtonFunction: () {
-                Navigator.pop(context);
-              },
-            );
+                context: context,
+                mainIcon: Icon(
+                  Icons.warning_amber,
+                  size: size.height * 0.12,
+                  color: wColor.mapColors['Warning'],
+                ),
+                titleText: "alert_confirm_text_one",
+                paddingHeight: size.height * 0.25,
+                infoText: 'alert_confirm_text_two',
+                mainButton: 'alert_confirm_text_three',
+                secondButton: 'alert_confirm_text_four',
+                secondButtonFunction: () {},
+                mainButtonFunction: () {
+                  //   BlocProvider.of<MedicalHistoryBloc>(context)
+                  //       .add(EditMedicalHistoryEvent(
+                  //     userId: stateUserId.userId!,
+                  //     responseOne: defaultValueEng,
+                  //     responseTwo: chipListText,
+                  //   ));
+                  // },
+                });
           },
         ),
       ],

@@ -1,10 +1,11 @@
+import 'package:Tellme/features/medical_history/data/models/medical_history_model.dart';
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 
 import 'package:Tellme/features/medical_history/domain/use_cases/edit_medical_history_use_case.dart';
 
 import '../../../../config/helpers/injector/injector.dart';
-import '../../domain/entities/medical_history_entity.dart';
+import '../../../auth/domain/entities/options_tools_entity.dart';
 import '../../domain/use_cases/medical_history_use_case.dart';
 import '../../../../config/helpers/form_submission_status.dart';
 
@@ -27,7 +28,8 @@ class MedicalHistoryBloc
                     SubmissionFailed(exception: Exception(error.message)),
               )),
           (medicalHistory) => emit(state.copyWith(
-                medicalHistoryEntity: medicalHistory.data.medicalHistory,
+                question1: medicalHistory.data.medicalHistory.additionalInformation,
+                question2: medicalHistory.data.medicalHistory.riskFactors,
                 formStatus: SubmissionSuccess(),
               )));
     });
@@ -44,7 +46,7 @@ class MedicalHistoryBloc
     //             infoUploaded: SubmissionFailed(
     //               exception: Exception(error.message),
     //             ),
-    //             // errorMessage: error.message, // TODO CHECK
+    //             errorMessage: error.message, // TODO CHECK
     //           )), (medicalHistory) {
     //     emit(
     //       state.copyWith(
