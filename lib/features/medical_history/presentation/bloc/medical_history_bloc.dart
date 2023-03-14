@@ -14,7 +14,7 @@ part 'medical_history_state.dart';
 
 class MedicalHistoryBloc
     extends Bloc<MedicalHistoryEvent, MedicalHistoryState> {
-  MedicalHistoryBloc() : super(const MedicalHistoryState()) {
+  MedicalHistoryBloc() : super(MedicalHistoryState()) {
     final getMedicalHistoryUseCase = Injector.resolve<MedicalHistoryUseCase>();
     final editMedicalHistoryUseCase =
         Injector.resolve<EditMedicalHistoryUseCase>();
@@ -34,36 +34,30 @@ class MedicalHistoryBloc
               )));
     });
 
-    // on<EditMedicalHistoryEvent>((event, emit) async {
-    //   emit(state.copyWith(
-    //     infoUploaded: FormSubmitting(),
-    //   ));
-    //   final editMedicalHistory =
-    //       await editMedicalHistoryUseCase.editMedicalHistory(
-    //           event.userId, event.responseOne, event.responseTwo);
-    //   editMedicalHistory.fold(
-    //       (error) => emit(state.copyWith(
-    //             infoUploaded: SubmissionFailed(
-    //               exception: Exception(error.message),
-    //             ),
-    //             errorMessage: error.message, // TODO CHECK
-    //           )), (medicalHistory) {
-    //     emit(
-    //       state.copyWith(
-    //         infoUploaded: SubmissionSuccess(),
-    //         question1: Question1Entity(
-    //           name: state.question1!.name,
-    //           value: event.responseOne,
-    //         ),
-    //         question2: Question2Entity(
-    //           name: state.question2!.name,
-    //           value: event.responseTwo,
-    //         ),
-    //       ),
-    //     );
-    //   });
-    //   add(ResetStatesMedicalHistoryEvent());
-    // });
+    on<EditMedicalHistoryEvent>((event, emit) async {
+      emit(state.copyWith(
+        infoUploaded: FormSubmitting(),
+      ));
+      final editMedicalHistory =
+          await editMedicalHistoryUseCase.editMedicalHistory(
+            event.responseOne, event.responseTwo);
+      editMedicalHistory.fold(
+          (error) => emit(state.copyWith(
+                infoUploaded: SubmissionFailed(
+                  exception: Exception(error.message),
+                ),
+                errorMessage: error.message, // TODO CHECK
+              )), (medicalHistory) {
+        emit(
+          state.copyWith(
+            infoUploaded: SubmissionSuccess(),
+            question1: medicalHistory.data.medicalHistory.additionalInformation,
+            question2: medicalHistory.data.medicalHistory.riskFactors
+          ),
+        );
+      });
+      add(ResetStatesMedicalHistoryEvent());
+    });
 
     on<ResetStatesMedicalHistoryEvent>((event, emit) async {
       emit(state.initialState());

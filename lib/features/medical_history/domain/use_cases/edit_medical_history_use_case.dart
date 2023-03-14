@@ -1,6 +1,7 @@
+import 'package:Tellme/features/auth/domain/entities/options_tools_entity.dart';
 import 'package:either_dart/either.dart';
-import 'package:Tellme/config/helpers/models/server_validate_data.dart';
 
+import '../entities/medical_history_entity.dart';
 import '../repository/medical_history_repository.dart';
 import '../../../../config/helpers/errors/invalid_data.dart';
 
@@ -8,9 +9,9 @@ class EditMedicalHistoryUseCase {
   MedicalHistoryRepository editMedicalHistoryRepo;
   EditMedicalHistoryUseCase({required this.editMedicalHistoryRepo});
 
-  Future<Either<InvalidData, ServerValidate>> editMedicalHistory(
-      String userId, String responseOne, List<String> responseTwo) async {
+  Future<Either<InvalidData, MedicalHistoryResponseEntity>> editMedicalHistory(
+      bool responseOne, List<String> responseTwo) async {
     return await editMedicalHistoryRepo.editMedicalHistory(
-        userId, responseOne, responseTwo);
+        responseOne, responseTwo);
   }
 }

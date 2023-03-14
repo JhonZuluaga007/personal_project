@@ -9,11 +9,9 @@ class GetMedicalHistoryEvent extends MedicalHistoryEvent {
 }
 
 class EditMedicalHistoryEvent extends MedicalHistoryEvent {
-  final String userId;
-  final String responseOne;
+  final bool responseOne;
   final List<String> responseTwo;
   EditMedicalHistoryEvent({
-    required this.userId,
     required this.responseOne,
     required this.responseTwo,
   });

@@ -1,3 +1,4 @@
+import 'package:Tellme/features/auth/data/models/options_tools_model.dart';
 import 'package:Tellme/features/medical_history/domain/entities/medical_history_entity.dart';
 import '../../../auth/domain/entities/options_tools_entity.dart';
 
@@ -41,7 +42,7 @@ class MedicalHistory extends MedicalHistoryEntity {
   factory MedicalHistory.fromJson(Map<String, dynamic> json) => MedicalHistory(
         id: Id.fromJson(json["_id"]),
         additionalInformation: json["additional_information"],
-        riskFactors: List<RiskFactor>.from(json["risk_factors"].map((x) => x)),
+        riskFactors: List<RiskFactor>.from(json["risk_factors"].map((x) => RiskFactor.fromJson(x))),
         user: Id.fromJson(json["user"]),
       );
 }
@@ -60,27 +61,6 @@ class Id extends IdEntity {
   Map<String, dynamic> toJson() => {
         "\u0024oid": oid,
       };
-}
-
-class RiskFactor extends OpRiskFactorEntity {
-  RiskFactor({
-    required Id id,
-    required Id disease,
-    required Id project,
-    required String riskFactor,
-  }) : super(
-          id: id.oid,
-          disease: disease,
-          project: project,
-          riskFactor: riskFactor,
-        );
-
-  factory RiskFactor.fromJson(Map<String, dynamic> json) => RiskFactor(
-        id: Id.fromJson(json["_id"]),
-        disease: Id.fromJson(json["disease"]),
-        project: Id.fromJson(json["project"]),
-        riskFactor: json["risk_factor"],
-      );
 }
 
 class Message extends MessageMedicalHistoryEntity {

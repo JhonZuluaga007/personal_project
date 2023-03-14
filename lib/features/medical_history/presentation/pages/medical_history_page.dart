@@ -32,7 +32,9 @@ class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
   bool visibilityYes = false;
   bool yesSevere = false;
   bool noSevere = false;
-  List<OpRiskFactorEntity> chipListText = [];
+  List<OpDropdown> chipListText = [];
+  List<String> chipListId = [];
+
   @override
   Widget build(BuildContext context) {
     final wColor = ThemesIdx20();
@@ -158,7 +160,7 @@ class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
                     onChanged: (value) => {
                           setState(() {
                             defaultValueEng = value.toString();
-                            if (defaultValueEng == 'Yes') {
+                            if (state.question1 == true) {
                               visibilityYes = true;
                             } else {
                               visibilityYes = false;
@@ -183,9 +185,9 @@ class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
                         MultiSelectedWidget(
                           onChanged: (value) {
                             setState(() {
-                              if (state.question2!.contains(value.toString()) !=
-                                  true) {
+                              if (state.question2!.contains(value) != true) {
                                 chipListText.add(value!);
+                                state.question2 = chipListText;
                                 debugPrint(chipListText.toString());
                               }
                             });
@@ -198,37 +200,38 @@ class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
                       ],
                     )),
                 SizedBox(height: size.height * 0.05),
+                ButtonActionsWidgets(
+                    size: size,
+                    wColor: wColor,
+                    navigationBloc: navigationBloc,
+                    onPressed: () {
+                      for (var i = 0; i < chipListText.length; i++) {
+                        chipListId = [state.question2![i].id];
+                        i++;
+                      }
+                      confirmSendInfo(
+                          context: context,
+                          mainIcon: Icon(
+                            Icons.warning_amber,
+                            size: size.height * 0.12,
+                            color: wColor.mapColors['Warning'],
+                          ),
+                          titleText: "alert_confirm_text_one",
+                          paddingHeight: size.height * 0.25,
+                          infoText: 'alert_confirm_text_two',
+                          mainButton: 'alert_confirm_text_three',
+                          secondButton: 'alert_confirm_text_four',
+                          secondButtonFunction: () {},
+                          mainButtonFunction: () {
+                            BlocProvider.of<MedicalHistoryBloc>(context)
+                                .add(EditMedicalHistoryEvent(
+                              responseOne: state.question1!,
+                              responseTwo: chipListId,
+                            ));
+                          });
+                    }),
               ],
             );
-          },
-        ),
-        ButtonActionsWidgets(
-          size: size,
-          wColor: wColor,
-          navigationBloc: navigationBloc,
-          onPressed: () {
-            confirmSendInfo(
-                context: context,
-                mainIcon: Icon(
-                  Icons.warning_amber,
-                  size: size.height * 0.12,
-                  color: wColor.mapColors['Warning'],
-                ),
-                titleText: "alert_confirm_text_one",
-                paddingHeight: size.height * 0.25,
-                infoText: 'alert_confirm_text_two',
-                mainButton: 'alert_confirm_text_three',
-                secondButton: 'alert_confirm_text_four',
-                secondButtonFunction: () {},
-                mainButtonFunction: () {
-                  //   BlocProvider.of<MedicalHistoryBloc>(context)
-                  //       .add(EditMedicalHistoryEvent(
-                  //     userId: stateUserId.userId!,
-                  //     responseOne: defaultValueEng,
-                  //     responseTwo: chipListText,
-                  //   ));
-                  // },
-                });
           },
         ),
       ],

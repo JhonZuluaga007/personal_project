@@ -9,11 +9,11 @@ import '../../../../common_ui/common_widgets/responsive/dynamic_container_widget
 
 // ignore: must_be_immutable
 class MultiSelectedWidget extends StatefulWidget {
-  final List<OpRiskFactorEntity> listItem;
+  final List<OpDropdown> listItem;
   final TextStyle? textStyleList;
   String? valueDefaultList;
-  final Function(OpRiskFactorEntity?)? onChanged;
-  final List<OpRiskFactorEntity> listChip;
+  final Function(OpDropdown?)? onChanged;
+  final List<OpDropdown> listChip;
   final bool requiredTranslate;
 
   MultiSelectedWidget({
@@ -62,9 +62,9 @@ class _MultiSelectedWidgetState extends State<MultiSelectedWidget> {
                             selected = selectedValue!;
                           }),
                       isExpanded: false,
-                      items: widget.listItem.map<DropdownMenuItem<OpRiskFactorEntity>>(
-                          (OpRiskFactorEntity? value) {
-                        return DropdownMenuItem<OpRiskFactorEntity>(
+                      items: widget.listItem.map<DropdownMenuItem<OpDropdown>>(
+                          (OpDropdown? value) {
+                        return DropdownMenuItem<OpDropdown>(
                             value: value,
                             child: Padding(
                               padding: EdgeInsets.only(left: width * 0.028),
@@ -99,7 +99,7 @@ class _MultiSelectedWidgetState extends State<MultiSelectedWidget> {
     );
   }
 
-  Widget buildChoiceChip(List<OpRiskFactorEntity> listChip) {
+  Widget buildChoiceChip(List<OpDropdown> listChip) {
     final wColor = ThemesIdx20();
 
     return Wrap(

@@ -12,7 +12,7 @@ class Endpoints {
   static const String changePassword =
       '${Config.baseURL}profile/change-password';
   //  Endpoint para editMedicalHistory (EditMedicalHistory). Acepta POST.
-  static const String editMedicalHistory = '${Config.baseURL}formmedical/';
+  static const String editMedicalHistory = '${Config.baseURL}profile/edit-medical-history';
   //  Endpoint para viewMedicalHistory (ViewMedicalHistory). Acepta GET.
   static const String viewMedicalHistory =
       '${Config.baseURL}profile/medical-history?project=ChelseaProject';

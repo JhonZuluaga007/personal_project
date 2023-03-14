@@ -1,3 +1,4 @@
+import 'package:Tellme/features/auth/domain/entities/options_tools_entity.dart';
 import 'package:either_dart/either.dart';
 
 import '../data_source/medical_data_source.dart';
@@ -23,11 +24,12 @@ class MedicalHistoryRepositoryImpl implements MedicalHistoryRepository {
   }
 
   @override
-  Future<Either<InvalidData, ServerValidate>> editMedicalHistory(
-      String userId, String responseOne, List<String> responseTwo) async {
+  Future<Either<InvalidData, MedicalHistoryResponseEntity>> editMedicalHistory(
+      bool responseOne, List<String> responseTwo) async {
     try {
-      final ServerValidate response = await medicalHistoryDataSource
-          .editMedicalHistory(userId, responseOne, responseTwo);
+      final MedicalHistoryResponseEntity response =
+          await medicalHistoryDataSource.editMedicalHistory(
+              responseOne, responseTwo);
       return Right(response);
     } on InvalidData catch (invalidData) {
       return Left(invalidData);
