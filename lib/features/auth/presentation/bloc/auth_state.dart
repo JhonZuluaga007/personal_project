@@ -29,7 +29,7 @@ class AuthState {
   final IdEntity? projects;
   final RaceEntity? race;
   final String? roles;
-  final String? schoolLevels;
+  final IdEntity? schoolLevels;
   final SexEntity? sex;
   final String? errorMessage;
   final String? message;
@@ -64,7 +64,7 @@ class AuthState {
     this.projects,
     this.race,
     this.roles = '',
-    this.schoolLevels = '',
+    this.schoolLevels,
     this.sex,
     this.errorMessage = '',
     this.message = '',
@@ -114,7 +114,7 @@ class AuthState {
         token: '',
         userId: '',
         acceptsTerms: false,
-        address: AddressEntity(address: '', city: '', state: '', zip: ''),
+        address: AddressEntity(address: '', city: '', state: [""], zip: ''),
         cellphone: '',
         dateOfBirth: DateOfBirthEntity(date: DateTime.now()),
         email: '',
@@ -135,7 +135,7 @@ class AuthState {
         projects: null,
         race: RaceEntity(id: IdEntity(oid: ''), race: ''),
         roles: '',
-        schoolLevels: '',
+        schoolLevels: IdEntity(oid: ""),
         sex: SexEntity(id: IdEntity(oid: ''), sex: ''),
         errorMessage: '',
         message: '',
@@ -177,7 +177,7 @@ class AuthState {
     IdEntity? projects,
     RaceEntity? race,
     String? roles,
-    String? schoolLevels,
+    IdEntity? schoolLevels,
     SexEntity? sex,
     String? errorMessage,
     String? message,

@@ -152,7 +152,7 @@ class User extends UserEntity {
     required List<Race> race,
     required List<String> roles,
     //required List<String> schoolLevel,
-    required List<String> schoolLevels,
+    required List<Id> schoolLevels,
     required List<Sex> sex,
   }) : super(
           id: id,
@@ -210,7 +210,7 @@ class User extends UserEntity {
         race: List<Race>.from(json["race"].map((x) => Race.fromJson(x))),
         roles: List<String>.from(json["roles"].map((x) => x)),
         //schoolLevel: List<String>.from(json["school_level"].map((x) => x)),
-        schoolLevels: List<String>.from(json["school_levels"].map((x) => x)),
+        schoolLevels: List<Id>.from(json["school_levels"].map((x) => Id.fromJson(x))),
         sex: List<Sex>.from(json["sex"].map((x) => Sex.fromJson(x))),
       );
 }
@@ -219,7 +219,7 @@ class Address extends AddressEntity {
   Address({
     required String address,
     required String city,
-    required String state,
+    required List<dynamic> state,
     required String zip,
   }) : super(
           address: address,
@@ -231,7 +231,7 @@ class Address extends AddressEntity {
   factory Address.fromJson(Map<String, dynamic> json) => Address(
         address: json["address"],
         city: json["city"],
-        state: json["state"],
+        state: List<dynamic>.from(json["state"].map((x) => x)),
         zip: json["zip"],
       );
 
