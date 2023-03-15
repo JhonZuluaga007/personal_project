@@ -95,23 +95,23 @@ class _FirstVissibleQuestionWidgetState
                         color: wColor.mapColors["S700"]!),
                   ),
                   SizedBox(height: height * 0.011),
-                  MultiSelectedWidget(
-                    listItem: firstQuestion,
-                    onChanged: (value) {
-                      setState(() {
-                        if (firstQuestionChipLIst.contains(value) != true) {
-                          firstQuestionChipLIst.add(value.toString());
-                        }
-                      });
-                      antigenBloc.add(AntigenQuestion2Event(
-                          question2: firstQuestionChipLIst));
-                    },
-                    valueDefaultList: "drop_down_select_option",
-                    listChip: state.question2!.value != firstQuestionChipLIst
-                        ? state.question2!.value!
-                        : firstQuestionChipLIst,
-                    requiredTranslate: true,
-                  ),
+                  // MultiSelectedWidget(
+                  //   listItem: firstQuestion,
+                  //   onChanged: (value) {
+                  //     setState(() {
+                  //       if (firstQuestionChipLIst.contains(value) != true) {
+                  //         firstQuestionChipLIst.add(value.toString());
+                  //       }
+                  //     });
+                  //     antigenBloc.add(AntigenQuestion2Event(
+                  //         question2: firstQuestionChipLIst));
+                  //   },
+                  //   valueDefaultList: "drop_down_select_option",
+                  //   listChip: state.question2!.value != firstQuestionChipLIst
+                  //       ? state.question2!.value!
+                  //       : firstQuestionChipLIst,
+                  //   requiredTranslate: true,
+                  // ),
                   SizedBox(height: height * 0.028),
                   DatePickerContainerWidget(
                     textQuestions: antigenBloc.state.question3!.name!,

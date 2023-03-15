@@ -4,55 +4,39 @@ part of 'medical_history_bloc.dart';
 class MedicalHistoryState {
   final FormSubmissionStatus? formStatus;
   final String? id;
-  final AtedEntity? created;
-  final Question1Entity? question1;
-  final Question2Entity? question2;
-  final bool? status;
-  final AtedEntity? updated;
-  final UserIdEntity? userId;
-  final String? message;
+  final bool? question1;
+  List<OpDropdown>? question2;
+  final String? errorMessage;
   final FormSubmissionStatus? infoUploaded;
 
-  const MedicalHistoryState({
-    this.formStatus = const InitialFormStatus(),
-    this.message,
-    this.id,
-    this.created,
-    this.question1,
-    this.question2,
-    this.status,
-    this.updated,
-    this.infoUploaded = const InitialFormStatus(),
-    this.userId,
-  });
+  MedicalHistoryState(
+      {this.formStatus = const InitialFormStatus(),
+      this.errorMessage,
+      this.id,
+      this.infoUploaded = const InitialFormStatus(),
+      this.question1,
+      this.question2
+    });
 
   MedicalHistoryState copyWith({
     FormSubmissionStatus? formStatus,
     String? id,
-    AtedEntity? created,
-    Question1Entity? question1,
-    Question2Entity? question2,
-    bool? status,
-    AtedEntity? updated,
-    UserIdEntity? userId,
+    bool? question1,
+    List<OpRiskFactorEntity>? question2,
     FormSubmissionStatus? infoUploaded,
-    String? message,
+    String? errorMessage,
   }) {
     return MedicalHistoryState(
       formStatus: formStatus ?? this.formStatus,
       id: id ?? this.id,
-      created: created ?? this.created,
       question1: question1 ?? this.question1,
       question2: question2 ?? this.question2,
-      updated: updated ?? this.updated,
-      status: status ?? this.status,
-      userId: userId ?? this.userId,
       infoUploaded: infoUploaded ?? this.infoUploaded,
-      message: message ?? this.message,
+      errorMessage: errorMessage ?? this.errorMessage,
     );
   }
 
-  MedicalHistoryState initialState() => const MedicalHistoryState(
+  MedicalHistoryState initialState() => MedicalHistoryState(
         infoUploaded: InitialFormStatus(),
       );
 }

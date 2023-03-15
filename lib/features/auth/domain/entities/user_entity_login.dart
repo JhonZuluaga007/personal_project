@@ -1,3 +1,5 @@
+import 'package:Tellme/features/auth/data/models/options_tools_model.dart';
+
 class UserEntityLogin {
   UserEntityLogin({
     required this.data,

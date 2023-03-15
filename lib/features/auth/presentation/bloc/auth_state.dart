@@ -100,7 +100,7 @@ class AuthState {
     IdEntity? projects,
     RaceEntity? race,
     String? roles,
-    String? schoolLevels,
+    IdEntity? schoolLevels,
     SexEntity? sex,
     String? errorMessage,
     String? message,

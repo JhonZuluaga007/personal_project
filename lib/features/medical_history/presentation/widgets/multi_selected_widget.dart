@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../auth/domain/entities/options_tools_entity.dart';
 import '../bloc/medical_history_bloc.dart';
 import '../../../../config/theme/theme.dart';
 import '../../../../common_ui/common_widgets/text/text_widget.dart';
@@ -8,11 +9,11 @@ import '../../../../common_ui/common_widgets/responsive/dynamic_container_widget
 
 // ignore: must_be_immutable
 class MultiSelectedWidget extends StatefulWidget {
-  final List<String> listItem;
+  final List<OpDropdown> listItem;
   final TextStyle? textStyleList;
   String? valueDefaultList;
-  final Function(Object?)? onChanged;
-  final List<String> listChip;
+  final Function(OpDropdown?)? onChanged;
+  final List<OpDropdown> listChip;
   final bool requiredTranslate;
 
   MultiSelectedWidget({
@@ -47,7 +48,7 @@ class _MultiSelectedWidgetState extends State<MultiSelectedWidget> {
                 maxWidth: width * 0.922,
                 minWidth: width * 0.922,
                 children: [buildChoiceChip(widget.listChip)]),
-            SizedBox(height: heigth * 0.01),
+            SizedBox(height: heigth * 0.02),
             Container(
               width: width * 0.922,
               decoration: BoxDecoration(
@@ -60,19 +61,20 @@ class _MultiSelectedWidgetState extends State<MultiSelectedWidget> {
                           onChanged: (selectedValue) {
                             selected = selectedValue!;
                           }),
-                      isExpanded: false,
-                      items: widget.listItem
-                          .map<DropdownMenuItem<Object>>((Object? value) {
-                        return DropdownMenuItem<Object>(
-                            value: value.toString(),
+                      isExpanded: true,
+                      items: widget.listItem.map<DropdownMenuItem<OpDropdown>>(
+                          (OpDropdown? value) {
+                        return DropdownMenuItem<OpDropdown>(
+                            value: value,
                             child: Padding(
                               padding: EdgeInsets.only(left: width * 0.028),
                               child: TextWidget(
-                                text: value.toString(),
-                                textAlign: TextAlign.center,
+                                text: value!.valor,
+                                textAlign: TextAlign.left,
                                 requiresTranslate: widget.requiredTranslate,
                                 style: widget.textStyleList ??
                                     TextStyle(
+                                        overflow: TextOverflow.ellipsis,
                                         fontSize: 16,
                                         fontWeight: FontWeight.w500,
                                         letterSpacing: -0.2,
@@ -84,6 +86,9 @@ class _MultiSelectedWidgetState extends State<MultiSelectedWidget> {
                         padding: EdgeInsets.only(left: width * 0.037),
                         child: TextWidget(
                           text: widget.valueDefaultList!,
+                          style: TextStyle(
+                            overflow: TextOverflow.ellipsis,
+                          ),
                         ),
                       ),
                       onChanged: widget.onChanged)),
@@ -94,7 +99,7 @@ class _MultiSelectedWidgetState extends State<MultiSelectedWidget> {
     );
   }
 
-  Widget buildChoiceChip(List<String> listChip) {
+  Widget buildChoiceChip(List<OpDropdown> listChip) {
     final wColor = ThemesIdx20();
 
     return Wrap(
@@ -103,8 +108,10 @@ class _MultiSelectedWidgetState extends State<MultiSelectedWidget> {
         children: List<Widget>.generate(listChip.length, (index) {
           return InputChip(
             label: TextWidget(
-                text: listChip[index],
-                style: TextStyle(color: wColor.mapColors["P01"]),
+                text: listChip[index].valor,
+                style: TextStyle(
+                    color: wColor.mapColors["P01"],
+                    overflow: TextOverflow.ellipsis),
                 requiresTranslate: widget.requiredTranslate),
             onDeleted: () {
               setState(() {
