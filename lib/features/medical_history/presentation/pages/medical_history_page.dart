@@ -40,7 +40,6 @@ class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
     final wColor = ThemesIdx20();
     NavigationBarBloc navigationBloc =
         BlocProvider.of<NavigationBarBloc>(context);
-    // final stateUserId = BlocProvider.of<AuthBloc>(context).state;
     final stateTools = BlocProvider.of<HelperToolsBloc>(context).state;
     final size = MediaQuery.of(context).size;
     return MyAppScaffold(
@@ -62,13 +61,14 @@ class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
         BlocConsumer<MedicalHistoryBloc, MedicalHistoryState>(
           listener: (context, state) {
             if (state.formStatus is SubmissionSuccess) {
-              if (state.question1! == true) {
+              if (defaultValueEng == 'Yes') {
                 setState(() {
                   visibilityYes = true;
                   chipListText = state.question2!;
                   defaultValueEng = 'Yes';
                 });
-              } else {
+              }
+              if (defaultValueEng == 'No') {
                 setState(() {
                   visibilityYes = false;
                   chipListText = state.question2!;
@@ -160,7 +160,7 @@ class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
                     onChanged: (value) => {
                           setState(() {
                             defaultValueEng = value.toString();
-                            if (state.question1 == true) {
+                            if (defaultValueEng == 'Yes') {
                               visibilityYes = true;
                             } else {
                               visibilityYes = false;
@@ -232,6 +232,9 @@ class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
               ],
             );
           },
+        ),
+        SizedBox(
+          height: size.height * 0.035,
         ),
       ],
     );

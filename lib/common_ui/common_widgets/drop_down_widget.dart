@@ -33,13 +33,15 @@ class _DropDownContainerWidgetState extends State<DropDownContainerWidget> {
             borderRadius: BorderRadius.circular(5)),
         child: Padding(
           padding: const EdgeInsets.only(right: 8.0),
-          child: DropdownButton(
-            items: widget.listItems.map((String item) {
-              return DropdownMenuItem(value: item, child: Text(item));
-            }).toList(),
-            hint: Text(widget.mainValue),
-            value: widget.mainValue,
-            onChanged: widget.onChanged,
+          child: DropdownButtonHideUnderline(
+            child: DropdownButton(
+              items: widget.listItems.map((String item) {
+                return DropdownMenuItem(value: item, child: Text(item));
+              }).toList(),
+              hint: Text(widget.mainValue),
+              value: widget.mainValue,
+              onChanged: widget.onChanged,
+            ),
           ),
         ));
   }
