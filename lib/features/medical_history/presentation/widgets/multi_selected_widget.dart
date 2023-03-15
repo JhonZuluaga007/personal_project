@@ -61,7 +61,7 @@ class _MultiSelectedWidgetState extends State<MultiSelectedWidget> {
                           onChanged: (selectedValue) {
                             selected = selectedValue!;
                           }),
-                      isExpanded: false,
+                      isExpanded: true,
                       items: widget.listItem.map<DropdownMenuItem<OpDropdown>>(
                           (OpDropdown? value) {
                         return DropdownMenuItem<OpDropdown>(

@@ -206,29 +206,28 @@ class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
                     navigationBloc: navigationBloc,
                     onPressed: () {
                       for (var i = 0; i < chipListText.length; i++) {
-                        chipListId = [state.question2![i].id];
-                        i++;
+                        chipListId.addAll([state.question2![i].id]);
+                        confirmSendInfo(
+                            context: context,
+                            mainIcon: Icon(
+                              Icons.warning_amber,
+                              size: size.height * 0.12,
+                              color: wColor.mapColors['Warning'],
+                            ),
+                            titleText: "alert_confirm_text_one",
+                            paddingHeight: size.height * 0.25,
+                            infoText: 'alert_confirm_text_two',
+                            mainButton: 'alert_confirm_text_three',
+                            secondButton: 'alert_confirm_text_four',
+                            secondButtonFunction: () {},
+                            mainButtonFunction: () {
+                              BlocProvider.of<MedicalHistoryBloc>(context)
+                                  .add(EditMedicalHistoryEvent(
+                                responseOne: state.question1!,
+                                responseTwo: chipListId,
+                              ));
+                            });
                       }
-                      confirmSendInfo(
-                          context: context,
-                          mainIcon: Icon(
-                            Icons.warning_amber,
-                            size: size.height * 0.12,
-                            color: wColor.mapColors['Warning'],
-                          ),
-                          titleText: "alert_confirm_text_one",
-                          paddingHeight: size.height * 0.25,
-                          infoText: 'alert_confirm_text_two',
-                          mainButton: 'alert_confirm_text_three',
-                          secondButton: 'alert_confirm_text_four',
-                          secondButtonFunction: () {},
-                          mainButtonFunction: () {
-                            BlocProvider.of<MedicalHistoryBloc>(context)
-                                .add(EditMedicalHistoryEvent(
-                              responseOne: state.question1!,
-                              responseTwo: chipListId,
-                            ));
-                          });
                     }),
               ],
             );
