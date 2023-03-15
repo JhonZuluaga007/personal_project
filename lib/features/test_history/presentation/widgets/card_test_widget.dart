@@ -1,26 +1,26 @@
-import 'package:Tellme/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:intl/intl.dart';
-import 'package:Tellme/features/home/widget/dynamic_container_copy_widget.dart';
-import 'package:Tellme/features/test_history/domain/entities/test_history_entity.dart';
-import 'package:Tellme/features/test_history/presentation/widgets/open_file_widget.dart';
 import 'package:syncfusion_flutter_pdf/pdf.dart';
 
 import '../../../../config/theme/theme.dart';
+import '../../domain/entities/test_history_entity.dart';
+import '../../../auth/presentation/bloc/auth_bloc.dart';
+import '../../presentation/widgets/open_file_widget.dart';
+import '../../../home/widget/dynamic_container_copy_widget.dart';
 import '../../../../common_ui/common_widgets/buttons/button_widget.dart';
 
 class CardTestWidget extends StatelessWidget {
-  const CardTestWidget(
-      {Key? key,
-      required this.onPressed,
-      required this.textTestKit,
-      this.statusTest,
-      this.sampleDate,
-      this.styleText,
-      this.testHistoryEntity})
-      : super(key: key);
+  const CardTestWidget({
+    Key? key,
+    required this.onPressed,
+    required this.textTestKit,
+    this.statusTest,
+    this.sampleDate,
+    this.styleText,
+    this.testHistoryEntity,
+  }) : super(key: key);
 
   final dynamic Function() onPressed;
   final String textTestKit;

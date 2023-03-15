@@ -1,9 +1,9 @@
-import 'package:Tellme/config/helpers/form_submission_status.dart';
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 
 import '../../../../config/helpers/injector/injector.dart';
 import '../../domain/use_cases/create_ticket_use_case.dart';
+import '../../../../config/helpers/form_submission_status.dart';
 
 part 'support_event.dart';
 part 'support_state.dart';

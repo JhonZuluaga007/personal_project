@@ -1,7 +1,8 @@
-import 'package:Tellme/config/helpers/errors/invalid_data.dart';
-import 'package:Tellme/features/support/data/data_source/support_data_source.dart';
-import 'package:Tellme/features/support/domain/repository/support_repository.dart';
 import 'package:either_dart/either.dart';
+
+import '../../data/data_source/support_data_source.dart';
+import '../../domain/repository/support_repository.dart';
+import '../../../../config/helpers/errors/invalid_data.dart';
 
 class SupportRepositoryImpl implements SupportRepository {
   final SupportDataSource supportDataSource;

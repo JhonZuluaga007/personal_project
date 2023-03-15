@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:Tellme/common_ui/common_pages/my_app_scaffold_page.dart';
-import 'package:Tellme/config/theme/theme.dart';
-import 'package:Tellme/onboarding/widgets/onboarding_description.dart';
+
+import '../../config/theme/theme.dart';
+import '../../onboarding/widgets/onboarding_description.dart';
+import '../../common_ui/common_pages/my_app_scaffold_page.dart';
 
 class IntroOnboardingPage extends StatefulWidget {
   const IntroOnboardingPage({super.key});

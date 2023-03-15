@@ -1,23 +1,23 @@
 // ignore_for_file: use_build_context_synchronously
 
-import 'package:Tellme/features/auth/presentation/bloc/auth_bloc.dart';
-import 'package:Tellme/features/test_history/bloc/test_history_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:scan/scan.dart';
 
+import '../bloc/pcr_bloc.dart';
+import '../../../../config/theme/theme.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:Tellme/common_ui/common_pages/my_app_scaffold_page.dart';
-import 'package:Tellme/config/helpers/form_submission_status.dart';
+import '../../../auth/presentation/bloc/auth_bloc.dart';
+import '../../../test_history/bloc/test_history_bloc.dart';
+import '../../../home/widget/test_widgets/app_bar_widget.dart';
+import '../../../../config/helpers/form_submission_status.dart';
+import '../../../../navigationBar/bloc/navigation_bar_bloc.dart';
+import '../../../../common_ui/common_widgets/text/text_widget.dart';
+import '../../../../common_ui/common_pages/my_app_scaffold_page.dart';
 import '../../../../common_ui/common_widgets/buttons/button_widget.dart';
 import '../../../../common_ui/common_widgets/buttons/main_button_widget.dart';
-import '../../../../common_ui/common_widgets/text/text_widget.dart';
-import '../../../../common_ui/common_widgets/text_field/text_field_with_border_widget.dart';
-import '../../../../config/theme/theme.dart';
-import '../../../../navigationBar/bloc/navigation_bar_bloc.dart';
-import '../../../home/widget/test_widgets/app_bar_widget.dart';
 import '../../../medical_history/presentation/widgets/done_alert_widget.dart';
 import '../../../medical_history/presentation/widgets/error_alert_widget.dart';
-import '../bloc/pcr_bloc.dart';
+import '../../../../common_ui/common_widgets/text_field/text_field_with_border_widget.dart';
 
 class PcrRegisterPage extends StatefulWidget {
   const PcrRegisterPage({super.key, this.isHomeNavigation});

@@ -1,16 +1,3 @@
-// To parse this JSON data, do
-//
-//     final supportResponseModel = supportResponseModelFromJson(jsonString);
-
-import 'package:meta/meta.dart';
-import 'dart:convert';
-
-SupportResponseModel supportResponseModelFromJson(String str) =>
-    SupportResponseModel.fromJson(json.decode(str));
-
-String supportResponseModelToJson(SupportResponseModel data) =>
-    json.encode(data.toJson());
-
 class SupportResponseModel {
   SupportResponseModel({
     required this.statusCode,

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:Tellme/common_ui/common_widgets/buttons/button_widget.dart';
-import 'package:Tellme/common_ui/common_widgets/text/text_widget.dart';
-import 'package:Tellme/config/theme/theme.dart';
+
+import '../../config/theme/theme.dart';
+import '../../common_ui/common_widgets/text/text_widget.dart';
+import '../../common_ui/common_widgets/buttons/button_widget.dart';
 
 class OnboardingDescription extends StatelessWidget {
   final String tOnboarding;

@@ -1,10 +1,10 @@
-import 'package:Tellme/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:Tellme/features/test_history/domain/entities/test_history_entity.dart';
 
 import '../../../../icons/icons.dart';
 import '../../../../config/theme/theme.dart';
+import '../../domain/entities/test_history_entity.dart';
+import '../../../auth/presentation/bloc/auth_bloc.dart';
 import '../../../../common_ui/common_widgets/text/text_widget.dart';
 import '../../../../common_ui/common_widgets/buttons/main_button_widget.dart';
 
@@ -89,12 +89,12 @@ Future popUpWidget(BuildContext context, TestHistoryEntity testView) {
                                     visible: testView.result.isNotEmpty,
                                     child: testView.result.isNotEmpty
                                         ? SizedBox(
-                                            child: testView.result.first
-                                                        .result ==
-                                                    "Negative"
-                                                ? const Icon(Icons.cancel)
-                                                : const Icon(
-                                                    Icons.check_circle),
+                                            child:
+                                                testView.result.first.result ==
+                                                        "Negative"
+                                                    ? const Icon(Icons.cancel)
+                                                    : const Icon(
+                                                        Icons.check_circle),
                                           )
                                         : const SizedBox(),
                                   ),

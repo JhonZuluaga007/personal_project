@@ -1,22 +1,20 @@
-import 'dart:convert';
 import 'dart:io';
-
-import 'package:Tellme/features/support/data/data_source/support_data_source.dart';
+import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:Tellme/common_ui/common_widgets/text/text_widget.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 
-import '../../../../common_ui/common_widgets/buttons/button_widget.dart';
-import '../../../../common_ui/common_widgets/buttons/main_button_widget.dart';
-import '../../../../common_ui/common_widgets/text_field/text_field_no_label_widget.dart';
-import '../../../../config/helpers/form_submission_status.dart';
-import '../../../../config/theme/theme.dart';
-import '../../../../navigationBar/bloc/navigation_bar_bloc.dart';
-import '../../../medical_history/presentation/widgets/done_alert_widget.dart';
-import '../../../medical_history/presentation/widgets/error_alert_widget.dart';
 import '../bloc/support_bloc.dart';
+import '../../../../config/theme/theme.dart';
+import '../../../../config/helpers/form_submission_status.dart';
+import '../../../../navigationBar/bloc/navigation_bar_bloc.dart';
+import '../../../../common_ui/common_widgets/text/text_widget.dart';
+import '../../../../common_ui/common_widgets/buttons/button_widget.dart';
+import '../../../medical_history/presentation/widgets/done_alert_widget.dart';
+import '../../../../common_ui/common_widgets/buttons/main_button_widget.dart';
+import '../../../medical_history/presentation/widgets/error_alert_widget.dart';
+import '../../../../common_ui/common_widgets/text_field/text_field_no_label_widget.dart';
 
 class SupportBottomPage extends StatefulWidget {
   const SupportBottomPage({super.key});

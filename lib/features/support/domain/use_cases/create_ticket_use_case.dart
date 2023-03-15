@@ -1,6 +1,6 @@
-import 'package:Tellme/features/support/domain/repository/support_repository.dart';
 import 'package:either_dart/either.dart';
 
+import '../../domain/repository/support_repository.dart';
 import '../../../../config/helpers/errors/invalid_data.dart';
 
 class CreateSupportTicketUseCase {

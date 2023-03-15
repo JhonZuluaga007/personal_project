@@ -1,6 +1,5 @@
-import 'package:Tellme/config/helpers/api.dart';
-import 'package:Tellme/config/helpers/endpoints.dart';
-
+import '../../../../config/helpers/api.dart';
+import '../../../../config/helpers/endpoints.dart';
 import '../../../../config/helpers/errors/invalid_data.dart';
 
 class SupportDataSource {
