@@ -1,5 +1,5 @@
-import 'package:Tellme/features/auth/data/models/options_tools_model.dart';
-import 'package:Tellme/features/medical_history/domain/entities/medical_history_entity.dart';
+import '../../domain/entities/medical_history_entity.dart';
+import '../../../auth/data/models/options_tools_model.dart';
 import '../../../auth/domain/entities/options_tools_entity.dart';
 
 class MedicalHistoryModel extends MedicalHistoryResponseEntity {
@@ -42,7 +42,8 @@ class MedicalHistory extends MedicalHistoryEntity {
   factory MedicalHistory.fromJson(Map<String, dynamic> json) => MedicalHistory(
         id: Id.fromJson(json["_id"]),
         additionalInformation: json["additional_information"],
-        riskFactors: List<RiskFactor>.from(json["risk_factors"].map((x) => RiskFactor.fromJson(x))),
+        riskFactors: List<RiskFactor>.from(
+            json["risk_factors"].map((x) => RiskFactor.fromJson(x))),
         user: Id.fromJson(json["user"]),
       );
 }

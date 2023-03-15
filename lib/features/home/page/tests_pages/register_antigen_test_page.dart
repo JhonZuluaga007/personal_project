@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:Tellme/common_ui/common_widgets/buttons/main_button_widget.dart';
-import 'package:Tellme/common_ui/common_widgets/text/text_widget.dart';
-import 'package:Tellme/config/theme/theme.dart';
-import 'package:Tellme/features/antigen/presentation/ui/pages/antigen_register_info_page.dart';
-import 'package:Tellme/features/pcr/presentation/pages/pcr_test_register_page.dart';
-import 'package:Tellme/icons/icons.dart';
 
+import '../../../../icons/icons.dart';
+import '../../../../config/theme/theme.dart';
 import '../../../../common_ui/common_widgets/drop_down_widget.dart';
+import '../../../../common_ui/common_widgets/text/text_widget.dart';
+import '../../../pcr/presentation/pages/pcr_test_register_page.dart';
+import '../../../../common_ui/common_widgets/buttons/main_button_widget.dart';
+import '../../../antigen/presentation/ui/pages/antigen_register_info_page.dart';
 
 class RegisterTestPage extends StatefulWidget {
   const RegisterTestPage({super.key});

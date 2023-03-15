@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../../common_ui/common_widgets/text/text_widget.dart';
 import '../../../../config/theme/theme.dart';
+import '../../../../common_ui/common_widgets/text/text_widget.dart';
 
 final wColor = ThemesIdx20();
 

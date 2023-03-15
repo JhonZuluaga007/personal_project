@@ -4,7 +4,6 @@ import 'package:Tellme/common_ui/common_widgets/form_field_dropdown_widget.dart'
 import 'package:Tellme/common_ui/common_widgets/text/text_widget.dart';
 import 'package:Tellme/config/theme/theme.dart';
 import 'package:Tellme/features/antigen/presentation/bloc/antigen_test_bloc.dart';
-import 'package:Tellme/features/medical_history/presentation/widgets/multi_selected_widget.dart';
 
 class FourQuestionWidget extends StatefulWidget {
   const FourQuestionWidget({Key? key}) : super(key: key);
@@ -109,7 +108,7 @@ class _FourQuestionWidgetState extends State<FourQuestionWidget> {
             "Unknown",
             "Not Applicable",
           ],
-          selectedValue:_covidQuestionPregnantValue,
+          selectedValue: _covidQuestionPregnantValue,
           width: width,
           onChanged: (covidQuestion12) {
             if (covidQuestion12 != "Select option") {

@@ -1,4 +1,4 @@
-import 'package:Tellme/features/auth/domain/entities/options_tools_entity.dart';
+import '../../../auth/domain/entities/options_tools_entity.dart';
 
 class MedicalHistoryResponseEntity {
   MedicalHistoryResponseEntity({

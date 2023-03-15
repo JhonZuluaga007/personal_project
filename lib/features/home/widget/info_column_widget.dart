@@ -1,8 +1,9 @@
-import 'package:Tellme/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:intl/intl.dart';
+
 import 'info_container_widget.dart';
+import '../../auth/presentation/bloc/auth_bloc.dart';
 
 class InfoColumnWidget extends StatelessWidget {
   const InfoColumnWidget({
@@ -19,7 +20,7 @@ class InfoColumnWidget extends StatelessWidget {
         return Column(
           children: [
             //TODO translate hintText
-           InfoContainerWidget(
+            InfoContainerWidget(
               hintText: 'First name',
               text: state.name!,
             ),

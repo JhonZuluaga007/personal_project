@@ -1,10 +1,8 @@
-import 'package:Tellme/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:Tellme/config/theme/theme.dart';
-import 'package:Tellme/features/auth/domain/entities/options_tools_entity.dart';
-import 'package:Tellme/features/home/page/covid_19_test/presentation/widgets/drop_down_questions_widget.dart';
-import 'package:Tellme/navigationBar/bloc/navigation_bar_bloc.dart';
+
+import '../../auth/presentation/bloc/auth_bloc.dart';
+import '../../../navigationBar/bloc/navigation_bar_bloc.dart';
 
 class TextFieldFormMyUser extends StatefulWidget {
   const TextFieldFormMyUser(

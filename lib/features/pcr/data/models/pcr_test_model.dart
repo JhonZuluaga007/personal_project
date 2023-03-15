@@ -1,5 +1,5 @@
-import 'package:Tellme/features/pcr/domain/entities/pcr_test_entities.dart';
-import 'package:Tellme/features/test_history/data/models/test_history_models.dart';
+import '../../../pcr/domain/entities/pcr_test_entities.dart';
+import '../../../test_history/data/models/test_history_models.dart';
 
 class PcrTestModel {
   PcrTestModel({
@@ -85,7 +85,9 @@ class Test extends TestPcrEntity {
         ic: json["IC"],
         n: json["N"],
         orf1Ab: json["ORF1ab"],
-        id: json["_id"] != null ? IdHistory.fromMap(json["_id"]) : IdHistory(oid: ""),
+        id: json["_id"] != null
+            ? IdHistory.fromMap(json["_id"])
+            : IdHistory(oid: ""),
         associatedTests: List<AssociatedTest>.from(
             json["associated_tests"].map((x) => AssociatedTest.fromMap(x))),
         batch: IdHistory.fromMap(json["batch"]),
@@ -98,7 +100,8 @@ class Test extends TestPcrEntity {
         result: List<ResultHistory>.from(json["result"].map((x) => x)),
         sampleDate: CreatedHistory.fromMap(json["sample_date"]),
         status: json["status"] != null
-            ? List<StatusHistory>.from(json["status"].map((x) => StatusHistory.fromMap(x)))
+            ? List<StatusHistory>.from(
+                json["status"].map((x) => StatusHistory.fromMap(x)))
             : [],
         statusHistory: json["status_history"] != null
             ? List<StatusTestHistory>.from(

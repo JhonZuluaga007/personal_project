@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:Tellme/config/helpers/form_submission_status.dart';
 
-import '../../../../../../common_ui/common_widgets/form_field_dropdown_widget.dart';
 import '../../../../../../config/theme/theme.dart';
-import '../../../../../antigen/presentation/bloc/antigen_test_bloc.dart';
-import '../../../../../medical_history/presentation/widgets/done_alert_widget.dart';
-import '../../../../../medical_history/presentation/widgets/error_alert_widget.dart';
 import '../widgets/image_buttons_upload_widget.dart';
-import '../../../../../../common_ui/common_widgets/text/text_widget.dart';
 import '../../../../../../navigationBar/bloc/navigation_bar_bloc.dart';
+import '../../../../../antigen/presentation/bloc/antigen_test_bloc.dart';
+import '../../../../../../common_ui/common_widgets/text/text_widget.dart';
+import '../../../../../medical_history/presentation/widgets/done_alert_widget.dart';
+import '../../../../../../common_ui/common_widgets/form_field_dropdown_widget.dart';
 import '../../../../../../common_ui/common_widgets/buttons/main_button_widget.dart';
+import '../../../../../medical_history/presentation/widgets/error_alert_widget.dart';
 import '../../../../../antigen/presentation/ui/widgets/container_start_counter_widget.dart';
 
 class UploadFinalResultPage extends StatefulWidget {

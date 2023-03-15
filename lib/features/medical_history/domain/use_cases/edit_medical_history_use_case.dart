@@ -1,4 +1,3 @@
-import 'package:Tellme/features/auth/domain/entities/options_tools_entity.dart';
 import 'package:either_dart/either.dart';
 
 import '../entities/medical_history_entity.dart';

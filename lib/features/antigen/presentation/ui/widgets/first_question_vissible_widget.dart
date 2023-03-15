@@ -6,7 +6,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../bloc/antigen_test_bloc.dart';
 import '../../../../../config/theme/theme.dart';
 import '../../../../../common_ui/common_widgets/text/text_widget.dart';
-import '../../../../medical_history/presentation/widgets/multi_selected_widget.dart';
 
 class FirstVissibleQuestionWidget extends StatefulWidget {
   const FirstVissibleQuestionWidget({Key? key}) : super(key: key);

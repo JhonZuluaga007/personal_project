@@ -1,11 +1,9 @@
-import 'package:Tellme/features/auth/domain/entities/options_tools_entity.dart';
 import 'package:either_dart/either.dart';
 
 import '../data_source/medical_data_source.dart';
 import '../../domain/entities/medical_history_entity.dart';
 import '../../../../config/helpers/errors/invalid_data.dart';
 import '../../domain/repository/medical_history_repository.dart';
-import '../../../../config/helpers/models/server_validate_data.dart';
 
 class MedicalHistoryRepositoryImpl implements MedicalHistoryRepository {
   final MedicalHistoryDataSource medicalHistoryDataSource;

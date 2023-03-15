@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:Tellme/common_ui/common_widgets/text/text_widget.dart';
-import 'package:Tellme/icons/icons.dart';
-
+import '../../../icons/icons.dart';
 import '../../../config/theme/theme.dart';
+import '../../../common_ui/common_widgets/text/text_widget.dart';
 
 class CardScanHome extends StatelessWidget {
   final String textTitle;

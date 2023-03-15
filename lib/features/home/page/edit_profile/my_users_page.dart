@@ -1,17 +1,17 @@
 import 'dart:io';
 
-import 'package:Tellme/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:Tellme/common_ui/common_pages/my_app_scaffold_page.dart';
-import 'package:Tellme/common_ui/common_widgets/text/text_widget.dart';
-import 'package:Tellme/config/theme/theme.dart';
-import 'package:Tellme/features/home/widget/text_field_form_my_profile.dart';
 
-import '../../../../navigationBar/bloc/navigation_bar_bloc.dart';
+import '../../../../config/theme/theme.dart';
 import '../../widget/info_column_widget.dart';
+import '../../widget/text_field_form_my_profile.dart';
+import '../../../auth/presentation/bloc/auth_bloc.dart';
+import '../../../../navigationBar/bloc/navigation_bar_bloc.dart';
+import '../../../../common_ui/common_widgets/text/text_widget.dart';
+import '../../../../common_ui/common_pages/my_app_scaffold_page.dart';
 
 class MyUserPage extends StatefulWidget {
   const MyUserPage({super.key});

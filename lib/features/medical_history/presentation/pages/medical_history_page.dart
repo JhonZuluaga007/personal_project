@@ -1,20 +1,21 @@
-import 'package:Tellme/features/auth/presentation/bloc/helper_tools_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../config/helpers/form_submission_status.dart';
-import '../../../auth/domain/entities/options_tools_entity.dart';
+
 import '../bloc/medical_history_bloc.dart';
-import '../../../../config/theme/theme.dart';
-import '../widgets/confirm_alert_widget.dart';
-import '../widgets/button_actions_widget.dart';
 import '../widgets/done_alert_widget.dart';
 import '../widgets/error_alert_widget.dart';
+import '../widgets/text_column_widget.dart';
+import '../../../../config/theme/theme.dart';
+import '../widgets/confirm_alert_widget.dart';
 import '../widgets/multi_selected_widget.dart';
+import '../widgets/button_actions_widget.dart';
+import '../../../../config/helpers/form_submission_status.dart';
+import '../../../auth/presentation/bloc/helper_tools_bloc.dart';
+import '../../../auth/domain/entities/options_tools_entity.dart';
 import '../../../../navigationBar/bloc/navigation_bar_bloc.dart';
 import '../../../../common_ui/common_widgets/text/text_widget.dart';
 import '../../../../common_ui/common_widgets/drop_down_widget.dart';
 import '../../../../common_ui/common_pages/my_app_scaffold_page.dart';
-import '../widgets/text_column_widget.dart';
 
 class MedicalHistoryPage extends StatefulWidget {
   const MedicalHistoryPage({super.key});

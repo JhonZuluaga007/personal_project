@@ -1,12 +1,12 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'dart:async';
 
 import '../../../../../../icons/icons.dart';
 import '../../../../../../config/theme/theme.dart';
+import '../../../../../antigen/presentation/bloc/antigen_test_bloc.dart';
 import '../../../../../../common_ui/common_widgets/text/text_widget.dart';
 import '../../../../../../common_ui/common_widgets/buttons/main_button_widget.dart';
-import '../../../../../antigen/presentation/bloc/antigen_test_bloc.dart';
 import '../../../../../antigen/presentation/ui/widgets/container_start_counter_widget.dart';
 
 class StartCounterPage extends StatefulWidget {

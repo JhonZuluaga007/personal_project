@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:Tellme/common_ui/common_widgets/text/text_widget.dart';
 
 import '../widget/faq_container_widget.dart';
+import '../../../common_ui/common_widgets/text/text_widget.dart';
 
 class FAQSPage extends StatefulWidget {
   const FAQSPage({super.key});

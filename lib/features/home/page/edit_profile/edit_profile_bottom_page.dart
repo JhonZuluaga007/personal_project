@@ -1,13 +1,13 @@
 import 'dart:io';
-
-import 'package:Tellme/features/auth/presentation/bloc/auth_bloc.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:Tellme/common_ui/common_pages/my_app_scaffold_page.dart';
-import 'package:Tellme/common_ui/common_widgets/text/text_widget.dart';
-import 'package:Tellme/config/helpers/form_submission_status.dart';
-import 'package:Tellme/features/home/widget/text_field_form_my_profile.dart';
+
+import 'package:flutter/material.dart';
 import '../../widget/info_column_widget.dart';
+import '../../widget/text_field_form_my_profile.dart';
+import '../../../auth/presentation/bloc/auth_bloc.dart';
+import '../../../../config/helpers/form_submission_status.dart';
+import '../../../../common_ui/common_widgets/text/text_widget.dart';
+import '../../../../common_ui/common_pages/my_app_scaffold_page.dart';
 
 class EditUserFromBottomPage extends StatefulWidget {
   const EditUserFromBottomPage({super.key});
