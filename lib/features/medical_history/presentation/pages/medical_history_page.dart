@@ -31,7 +31,7 @@ class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
   final List<String> listsYesNoSpanish = ['Seleccionar opción', 'Si', 'No'];
   bool visibilityYes = false;
   bool yesSevere = false;
-  bool noSevere = false;
+  bool firstOption = false;
   List<OpDropdown> chipListText = [];
   List<String> chipListId = [];
 
@@ -61,7 +61,7 @@ class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
         BlocConsumer<MedicalHistoryBloc, MedicalHistoryState>(
           listener: (context, state) {
             if (state.formStatus is SubmissionSuccess) {
-              if (defaultValueEng == 'Yes') {
+              if (state.question1 == true) {
                 setState(() {
                   visibilityYes = true;
                   chipListText = state.question2!;
@@ -161,8 +161,12 @@ class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
                           setState(() {
                             defaultValueEng = value.toString();
                             if (defaultValueEng == 'Yes') {
+                              firstOption = true;
                               visibilityYes = true;
+                              chipListText = state.question2!;
                             } else {
+                              firstOption = false;
+                              chipListText = state.question2!;
                               visibilityYes = false;
                             }
                           })
@@ -223,7 +227,7 @@ class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
                             mainButtonFunction: () {
                               BlocProvider.of<MedicalHistoryBloc>(context)
                                   .add(EditMedicalHistoryEvent(
-                                responseOne: state.question1!,
+                                responseOne: firstOption,
                                 responseTwo: chipListId,
                               ));
                             });
