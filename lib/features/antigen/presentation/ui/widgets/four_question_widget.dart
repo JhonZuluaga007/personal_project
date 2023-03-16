@@ -1,3 +1,4 @@
+import 'package:Tellme/features/antigen/presentation/ui/widgets/multi_selector_string_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:Tellme/common_ui/common_widgets/form_field_dropdown_widget.dart';
@@ -43,7 +44,7 @@ class _FourQuestionWidgetState extends State<FourQuestionWidget> {
       children: [
         SizedBox(height: height * 0.031),
         TextWidget(
-          text: antigenBloc.state.question10!.name!,
+          text: antigenBloc.state.question10!.name,
           requiresTranslate: false,
           style: TextStyle(
               fontSize: 16,
@@ -52,26 +53,26 @@ class _FourQuestionWidgetState extends State<FourQuestionWidget> {
               color: wColor.mapColors["S700"]!),
         ),
         SizedBox(height: height * 0.011),
-        // MultiSelectedWidget(
-        //   listItem: vaccinesList,
-        //   onChanged: (value) {
-        //     setState(() {
-        //       if (vacinneChipList.contains(value) != true) {
-        //         vacinneChipList.add(value.toString());
-        //       }
-        //     });
-        //     antigenBloc
-        //         .add(AntigenQuestion10Event(question10: vacinneChipList));
-        //   },
-        //   requiredTranslate: false,
-        //   listChip: stateAntigen.question10!.value != vacinneChipList
-        //       ? stateAntigen.question10!.value!
-        //       : vacinneChipList,
-        //   valueDefaultList: "drop_down_select_option",
-        // ),
+        MultiSelectedStringWidget(
+          listItem: vaccinesList,
+          onChanged: (value) {
+            setState(() {
+              if (vacinneChipList.contains(value) != true) {
+                vacinneChipList.add(value.toString());
+              }
+            });
+            antigenBloc
+                .add(AntigenQuestion10Event(question10: vacinneChipList));
+          },
+          requiredTranslate: false,
+          listChip: stateAntigen.question10!.value != vacinneChipList
+              ? stateAntigen.question10!.value
+              : vacinneChipList,
+          valueDefaultList: "drop_down_select_option",
+        ),
         SizedBox(height: height * 0.031),
         TextWidget(
-          text: antigenBloc.state.question11!.name!,
+          text: antigenBloc.state.question11!.name,
           requiresTranslate: false,
           style: TextStyle(
               fontSize: 16,
@@ -79,26 +80,26 @@ class _FourQuestionWidgetState extends State<FourQuestionWidget> {
               letterSpacing: -0.2,
               color: wColor.mapColors["S700"]!),
         ),
-        // MultiSelectedWidget(
-        //   listItem: covidBeforeAnswer,
-        //   onChanged: (value) {
-        //     setState(() {
-        //       if (covidBeforechipList.contains(value) != true) {
-        //         covidBeforechipList.add(value.toString());
-        //       }
-        //     });
-        //     antigenBloc
-        //         .add(AntigenQuestion11Event(question11: covidBeforechipList));
-        //   },
-        //   requiredTranslate: false,
-        //   listChip: stateAntigen.question11!.value != covidBeforechipList
-        //       ? stateAntigen.question11!.value!
-        //       : covidBeforechipList,
-        //   valueDefaultList: "drop_down_select_option",
-        // ),
+        MultiSelectedStringWidget(
+          listItem: covidBeforeAnswer,
+          onChanged: (value) {
+            setState(() {
+              if (covidBeforechipList.contains(value) != true) {
+                covidBeforechipList.add(value.toString());
+              }
+            });
+            antigenBloc
+                .add(AntigenQuestion11Event(question11: covidBeforechipList));
+          },
+          requiredTranslate: false,
+          listChip: stateAntigen.question11!.value != covidBeforechipList
+              ? stateAntigen.question11!.value
+              : covidBeforechipList,
+          valueDefaultList: "drop_down_select_option",
+        ),
         SizedBox(height: height * 0.031),
         FormFieldDropdownWidget(
-          question: antigenBloc.state.question12!.name!,
+          question: antigenBloc.state.question12!.name,
           generalColor: wColor.mapColors["S700"]!,
           height: height * 0.07,
           listItems: const [

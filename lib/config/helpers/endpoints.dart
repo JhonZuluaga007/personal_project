@@ -25,7 +25,7 @@ class Endpoints {
       '${Config.baseURL}support/create-support-case';
 
 //Validate antigen Endpoint
-  static const String validateAntigen = '${Config.baseURL}codevalidator';
+  static const String validateAntigen = '${Config.baseURL}tests/validate-antigen-code';
 
 //Validate pcr endpoint
   static const String validatePcr = '${Config.baseURL}tests/validate-pcr-code';

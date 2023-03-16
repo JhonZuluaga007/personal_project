@@ -76,7 +76,7 @@ class _UploadFinalResultPageState extends State<UploadFinalResultPage> {
               const ImageButtonsWidget(),
               SizedBox(height: height * 0.015),
               FormFieldDropdownWidget(
-                question: antigenBloc.state.question15!.name!,
+                question: antigenBloc.state.question15!.name,
                 generalColor: wColor.mapColors["S700"]!,
                 height: height * 0.08,
                 listItems: const [

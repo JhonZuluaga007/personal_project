@@ -63,7 +63,7 @@ class _UploadResultPageState extends State<UploadResultPage> {
       children: [
         SizedBox(height: height * 0.02),
         FormFieldDropdownWidget(
-          question: antigenBloc.state.question13!.name!,
+          question: antigenBloc.state.question13!.name,
           generalColor: wColor.mapColors["S700"]!,
           height: height * 0.08,
           listItems: const [
@@ -92,7 +92,7 @@ class _UploadResultPageState extends State<UploadResultPage> {
           ),
         ),
         FormFieldDropdownWidget(
-          question: antigenBloc.state.question14!.name!,
+          question: antigenBloc.state.question14!.name,
           generalColor: wColor.mapColors["S700"]!,
           height: height * 0.08,
           listItems: const [

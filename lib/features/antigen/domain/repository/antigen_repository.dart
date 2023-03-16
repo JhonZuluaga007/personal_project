@@ -8,26 +8,25 @@ import '../../../../config/helpers/errors/invalid_data.dart';
 import '../entities/antigen_entity.dart';
 
 abstract class AntigenRepository {
-  Future<Either<InvalidData, AntigenModel>> validateAntigen(
-      String userId, String code);
+  Future<Either<InvalidData, AntigenResponseEntity>> validateAntigen(String code);
 
-  Future<Either<InvalidData, ServerValidate>> registerTest(
-      String code,
-      QuestionTypeOneEntity question1,
-      QuestionTypeTwoEntity question2,
-      QuestionTypeOneEntity question3,
-      QuestionTypeOneEntity question4,
-      QuestionTypeOneEntity question5,
-      QuestionTypeOneEntity question6,
-      QuestionTypeOneEntity question7,
-      QuestionTypeOneEntity question8,
-      QuestionTypeOneEntity question9,
-      QuestionTypeTwoEntity question10,
-      QuestionTypeTwoEntity question11,
-      QuestionTypeTwoEntity question12,
-      QuestionTypeOneEntity question13,
-      QuestionTypeOneEntity question14,
-      QuestionTypeOneEntity question15,
-      String? stepHistory,
-      File files);
+  // Future<Either<InvalidData, ServerValidate>> registerTest(
+  //     String code,
+  //     QuestionTypeOneEntity question1,
+  //     QuestionTypeTwoEntity question2,
+  //     QuestionTypeOneEntity question3,
+  //     QuestionTypeOneEntity question4,
+  //     QuestionTypeOneEntity question5,
+  //     QuestionTypeOneEntity question6,
+  //     QuestionTypeOneEntity question7,
+  //     QuestionTypeOneEntity question8,
+  //     QuestionTypeOneEntity question9,
+  //     QuestionTypeTwoEntity question10,
+  //     QuestionTypeTwoEntity question11,
+  //     QuestionTypeTwoEntity question12,
+  //     QuestionTypeOneEntity question13,
+  //     QuestionTypeOneEntity question14,
+  //     QuestionTypeOneEntity question15,
+  //     String? stepHistory,
+  //     File files);
 }

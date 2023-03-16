@@ -157,6 +157,13 @@ class OpStateEntity extends OpDropdown {
   }) : super(id: id, valor: state);
 }
 
+class OpSymptomsAntigenEntity extends OpDropdown {
+  OpSymptomsAntigenEntity({
+    required String id,
+    required String symptoms,
+  }) : super(id: id, valor: symptoms);
+}
+
 class MessageEntity {
   MessageEntity({
     required this.text,

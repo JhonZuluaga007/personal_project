@@ -41,7 +41,7 @@ class _ThirdVissibleQuestionWidgetState
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         FormFieldDropdownWidget(
-          question: antigenBloc.state.question7!.name!,
+          question: antigenBloc.state.question7!.name,
           generalColor: wColor.mapColors["S700"]!,
           height: height * 0.08,
           listItems: const [
@@ -51,7 +51,7 @@ class _ThirdVissibleQuestionWidgetState
             "Yes, 2 Dose",
           ],
           selectedValue: stateAntigen.question7!.value != _covidQuestionValue
-              ? stateAntigen.question7!.value!
+              ? stateAntigen.question7!.value
               : _covidQuestionValue,
           width: width,
           onChanged: (question7Covid) {
@@ -62,13 +62,13 @@ class _ThirdVissibleQuestionWidgetState
           },
         ),
         Visibility(
-            visible: _covidQuestionValue != "No",
+            visible: stateAntigen.question7!.value == "No" || _covidQuestionValue != "No",
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(height: height * 0.025),
                 FormFieldDropdownWidget(
-                  question: antigenBloc.state.question8!.name!,
+                  question: antigenBloc.state.question8!.name,
                   generalColor: wColor.mapColors["S700"]!,
                   height: height * 0.08,
                   listItems: const [
@@ -80,8 +80,8 @@ class _ThirdVissibleQuestionWidgetState
                   ],
                   selectedValue:
                       stateAntigen.question8!.value != _covidQuestionTwoValue ||
-                              stateAntigen.question8!.value!.isNotEmpty
-                          ? stateAntigen.question8!.value!
+                              stateAntigen.question8!.value.isNotEmpty
+                          ? stateAntigen.question8!.value
                           : _covidQuestionTwoValue,
                   width: width,
                   onChanged: (covidQuestion8) {
@@ -96,7 +96,7 @@ class _ThirdVissibleQuestionWidgetState
                 ),
                 SizedBox(height: height * 0.028),
                 DatePickerContainerWidget(
-                  textQuestions: antigenBloc.state.question9!.name!,
+                  textQuestions: antigenBloc.state.question9!.name,
                   date: date,
                   onTap: () async {
                     DateTime? newDate = await showDatePicker(

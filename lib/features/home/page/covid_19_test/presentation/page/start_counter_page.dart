@@ -4,9 +4,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../../icons/icons.dart';
 import '../../../../../../config/theme/theme.dart';
-import '../../../../../antigen/presentation/bloc/antigen_test_bloc.dart';
 import '../../../../../../common_ui/common_widgets/text/text_widget.dart';
 import '../../../../../../common_ui/common_widgets/buttons/main_button_widget.dart';
+import '../../../../../antigen/presentation/bloc/antigen_test_bloc.dart';
 import '../../../../../antigen/presentation/ui/widgets/container_start_counter_widget.dart';
 
 class StartCounterPage extends StatefulWidget {
@@ -26,15 +26,15 @@ class StartCounterPage extends StatefulWidget {
 
 class _StartCounterPageState extends State<StartCounterPage> {
   late Duration duration = const Duration(minutes: 15);
-  late Duration startTimer = const Duration(minutes: 15);
+  late Duration startTimer = duration;
   Timer? timer;
   late bool isPauseTimer = false;
 
   @override
   void initState() {
     final stateAntigen = BlocProvider.of<AntigenTestBloc>(context).state;
-    duration = Duration(minutes: stateAntigen.testTime);
-    startTimer = Duration(minutes: stateAntigen.testTime);
+    duration = Duration(minutes: stateAntigen.testTime ?? 15);
+    startTimer = Duration(minutes: stateAntigen.testTime ?? 15);
     super.initState();
   }
 
@@ -151,8 +151,8 @@ class _StartCounterPageState extends State<StartCounterPage> {
     final stateAntigen = BlocProvider.of<AntigenTestBloc>(context).state;
 
     setState(() {
-      duration = Duration(minutes: stateAntigen.testTime);
-      startTimer = Duration(minutes: stateAntigen.testTime);
+      duration = Duration(minutes: stateAntigen.testTime!);
+      startTimer = Duration(minutes: stateAntigen.testTime!);
       timer = Timer.periodic(
           const Duration(seconds: 1), (timer) => decreaseTime(context));
     });
@@ -164,7 +164,7 @@ class _StartCounterPageState extends State<StartCounterPage> {
 
       final seconds = duration.inSeconds + decreaseTime;
 
-      if (seconds < 0) {
+      if (seconds < 0 ) {
         timer?.cancel();
         Navigator.pushNamed(context, "uploadResult");
       } else {
@@ -176,7 +176,6 @@ class _StartCounterPageState extends State<StartCounterPage> {
   void pauseTime() {
     setState(() {
       timer?.cancel();
-      isPauseTimer = true;
     });
   }
 
@@ -221,7 +220,7 @@ class _StartCounterPageState extends State<StartCounterPage> {
       height: height * 0.28,
       child: Stack(fit: StackFit.expand, children: [
         CircularProgressIndicator(
-          value: duration.inSeconds.toDouble() / startTimer.inSeconds,
+          value: duration.inSeconds / startTimer.inSeconds,
           valueColor: AlwaysStoppedAnimation(wColor.mapColors["Pink"]!),
           strokeWidth: 21,
           backgroundColor: Colors.grey[300],

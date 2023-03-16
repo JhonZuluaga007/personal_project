@@ -8,7 +8,7 @@ import '../../../../common_ui/common_widgets/text/text_widget.dart';
 import '../../../../common_ui/common_widgets/responsive/dynamic_container_widget.dart';
 
 // ignore: must_be_immutable
-class MultiSelectedWidget extends StatefulWidget {
+class MultiSelectedOpDropDownWidget extends StatefulWidget {
   final List<OpDropdown> listItem;
   final TextStyle? textStyleList;
   String? valueDefaultList;
@@ -16,7 +16,7 @@ class MultiSelectedWidget extends StatefulWidget {
   final List<OpDropdown> listChip;
   final bool requiredTranslate;
 
-  MultiSelectedWidget({
+  MultiSelectedOpDropDownWidget({
     super.key,
     required this.listItem,
     this.textStyleList,
@@ -27,10 +27,10 @@ class MultiSelectedWidget extends StatefulWidget {
   });
 
   @override
-  State<MultiSelectedWidget> createState() => _MultiSelectedWidgetState();
+  State<MultiSelectedOpDropDownWidget> createState() => _MultiSelectedOpDropDownWidgetState();
 }
 
-class _MultiSelectedWidgetState extends State<MultiSelectedWidget> {
+class _MultiSelectedOpDropDownWidgetState extends State<MultiSelectedOpDropDownWidget> {
   bool isSelected = false;
   bool selected = false;
 
