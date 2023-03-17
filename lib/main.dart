@@ -20,7 +20,7 @@ import 'package:Tellme/features/pcr/presentation/bloc/pcr_bloc.dart';
 import 'package:Tellme/features/pcr/presentation/pages/pcr_test_register_page.dart';
 import 'package:Tellme/features/medical_history/presentation/bloc/medical_history_bloc.dart';
 import 'package:Tellme/features/medical_history/presentation/pages/medical_history_page.dart';
-import 'package:Tellme/features/test_history/bloc/test_history_bloc.dart';
+import 'package:Tellme/features/test_history/presentation/bloc/test_history_bloc.dart';
 import 'package:Tellme/navigationBar/bloc/navigation_bar_bloc.dart';
 import 'package:Tellme/navigationBar/navigation_bar_widget.dart';
 import 'package:Tellme/features/home/page/home_page.dart';

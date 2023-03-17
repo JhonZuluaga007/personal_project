@@ -1,11 +1,9 @@
-import 'dart:io';
-
 import 'package:either_dart/either.dart';
-import 'package:Tellme/config/helpers/models/server_validate_data.dart';
-import 'package:Tellme/features/antigen/domain/entities/antigen_entity.dart';
 
-import '../../../../config/helpers/errors/invalid_data.dart';
 import '../repository/antigen_repository.dart';
+import '../entities/antigen_register_entity.dart';
+import '../../domain/entities/antigen_entity.dart';
+import '../../../../config/helpers/errors/invalid_data.dart';
 
 class AntigenRegisterUseCase {
   AntigenRepository authRepository;
@@ -13,25 +11,25 @@ class AntigenRegisterUseCase {
     required this.authRepository,
   });
 
-  Future<Either<InvalidData, ServerValidate>> call(
+  Future<Either<InvalidData, AntigenRegisterResponseEntity>> call(
       String code,
-      QuestionTypeOneEntity question1,
-      QuestionTypeTwoEntity question2,
-      QuestionTypeOneEntity question3,
-      QuestionTypeOneEntity question4,
-      QuestionTypeOneEntity question5,
-      QuestionTypeOneEntity question6,
-      QuestionTypeOneEntity question7,
-      QuestionTypeOneEntity question8,
-      QuestionTypeOneEntity question9,
-      QuestionTypeTwoEntity question10,
-      QuestionTypeTwoEntity question11,
-      QuestionTypeTwoEntity question12,
-      QuestionTypeOneEntity question13,
-      QuestionTypeOneEntity question14,
-      QuestionTypeOneEntity question15,
-      String? stepHistory,
-      File files) async {
+      QuestionType1StringEntity question1,
+      QuestionType10ListEntity question2,
+      QuestionType1StringEntity question3,
+      QuestionType1StringEntity question4,
+      QuestionType1StringEntity question5,
+      QuestionType1StringEntity question6,
+      QuestionType1StringEntity question7,
+      QuestionType1StringEntity question8,
+      QuestionType1StringEntity question9,
+      QuestionType10ListEntity question10,
+      QuestionType10ListEntity question11,
+      QuestionType10ListEntity question12,
+      QuestionType1StringEntity question13,
+      QuestionType1StringEntity question14,
+      QuestionType1StringEntity question15,
+      List<String>? stepHistory,
+      String? testImage) async {
     return await authRepository.registerTest(
         code,
         question1,
@@ -50,6 +48,6 @@ class AntigenRegisterUseCase {
         question14,
         question15,
         stepHistory!,
-        files);
+        testImage);
   }
 }

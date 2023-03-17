@@ -1,3 +1,5 @@
+import 'package:Tellme/common_ui/utils/const_list.dart';
+import 'package:Tellme/features/antigen/presentation/ui/widgets/multi_selector_string_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:Tellme/common_ui/common_widgets/form_field_dropdown_widget.dart';
 import 'date_picker_container_widget.dart';
@@ -16,26 +18,6 @@ class FirstVissibleQuestionWidget extends StatefulWidget {
 
 class _FirstVissibleQuestionWidgetState
     extends State<FirstVissibleQuestionWidget> {
-  final List<String> firstQuestion = [
-    "symptoms_dropdown_one",
-    "symptoms_dropdown_two",
-    "symptoms_dropdown_three",
-    "symptoms_dropdown_four",
-    "symptoms_dropdown_five",
-    "symptoms_dropdown_six",
-    "symptoms_dropdown_seven",
-    "symptoms_dropdown_eight",
-    "symptoms_dropdown_nine",
-    "symptoms_dropdown_ten",
-    "symptoms_dropdown_eleven",
-    "symptoms_dropdown_twelve",
-    "symptoms_dropdown_thirdteen",
-    "symptoms_dropdown_fourteen",
-    "symptoms_dropdown_fiveteen",
-    "symptoms_dropdown_sixteen",
-    "symptoms_dropdown_seventeen"
-  ];
-
   final List<String> firstQuestionChipLIst = [];
 
   late DateTime date = DateTime.now();
@@ -59,7 +41,7 @@ class _FirstVissibleQuestionWidgetState
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             FormFieldDropdownWidget(
-              question: antigenBloc.state.question1!.name!,
+              question: antigenBloc.state.question1!.name,
               generalColor: wColor.mapColors["S700"]!,
               height: height * 0.07,
               listItems: const [
@@ -69,7 +51,7 @@ class _FirstVissibleQuestionWidgetState
                 "No",
               ],
               selectedValue: state.question1!.value != _covidQuestionValue
-                  ? state.question1!.value!
+                  ? state.question1!.value
                   : _covidQuestionValue,
               width: width,
               onChanged: (cryptoMonthlyAmount) {
@@ -81,11 +63,12 @@ class _FirstVissibleQuestionWidgetState
             ),
             SizedBox(height: height * 0.021),
             Visibility(
-              visible: _covidQuestionValue == "Yes",
+              visible: state.question1!.value == "Yes" ||
+                  _covidQuestionValue == "Yes",
               child: Column(
                 children: [
                   TextWidget(
-                    text: antigenBloc.state.question2!.name!,
+                    text: antigenBloc.state.question2!.name,
                     requiresTranslate: false,
                     style: TextStyle(
                         fontSize: 16,
@@ -94,26 +77,26 @@ class _FirstVissibleQuestionWidgetState
                         color: wColor.mapColors["S700"]!),
                   ),
                   SizedBox(height: height * 0.011),
-                  // MultiSelectedWidget(
-                  //   listItem: firstQuestion,
-                  //   onChanged: (value) {
-                  //     setState(() {
-                  //       if (firstQuestionChipLIst.contains(value) != true) {
-                  //         firstQuestionChipLIst.add(value.toString());
-                  //       }
-                  //     });
-                  //     antigenBloc.add(AntigenQuestion2Event(
-                  //         question2: firstQuestionChipLIst));
-                  //   },
-                  //   valueDefaultList: "drop_down_select_option",
-                  //   listChip: state.question2!.value != firstQuestionChipLIst
-                  //       ? state.question2!.value!
-                  //       : firstQuestionChipLIst,
-                  //   requiredTranslate: true,
-                  // ),
+                  MultiSelectedStringWidget(
+                    listItem: ConstLists.symptomsAssociatedList,
+                    onChanged: (value) {
+                      setState(() {
+                        if (firstQuestionChipLIst.contains(value) != true) {
+                          firstQuestionChipLIst.add(value.toString());
+                        }
+                      });
+                      antigenBloc.add(AntigenQuestion2Event(
+                          question2: firstQuestionChipLIst));
+                    },
+                    valueDefaultList: "drop_down_select_option",
+                    listChip: state.question2!.value != firstQuestionChipLIst
+                        ? state.question2!.value
+                        : firstQuestionChipLIst,
+                    requiredTranslate: false,
+                  ),
                   SizedBox(height: height * 0.028),
                   DatePickerContainerWidget(
-                    textQuestions: antigenBloc.state.question3!.name!,
+                    textQuestions: antigenBloc.state.question3!.name,
                     onTap: () async {
                       DateTime? newDate = await showDatePicker(
                         context: context,

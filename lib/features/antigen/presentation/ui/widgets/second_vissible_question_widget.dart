@@ -34,7 +34,7 @@ class _SecondVissibleQuestionWidgetState
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         FormFieldDropdownWidget(
-          question: antigenBloc.state.question4!.name!,
+          question: antigenBloc.state.question4!.name,
           generalColor: wColor.mapColors["S700"]!,
           height: height * 0.08,
           listItems: const [
@@ -43,7 +43,7 @@ class _SecondVissibleQuestionWidgetState
             "No",
           ],
           selectedValue: stateAntigen.question4!.value != _covidQuestionValue
-              ? stateAntigen.question4!.value!
+              ? stateAntigen.question4!.value
               : _covidQuestionValue,
           width: width,
           onChanged: (covidQuestion) {
@@ -54,12 +54,12 @@ class _SecondVissibleQuestionWidgetState
           },
         ),
         Visibility(
-          visible: _covidQuestionValue == "Yes",
+          visible: stateAntigen.question4!.value == "Yes" || _covidQuestionValue == "Yes",
           child: Column(
             children: [
               SizedBox(height: height * 0.028),
               DatePickerContainerWidget(
-                textQuestions: antigenBloc.state.question5!.name!,
+                textQuestions: antigenBloc.state.question5!.name,
                 date: date,
                 onTap: () async {
                   DateTime? newDate = await showDatePicker(
@@ -83,7 +83,7 @@ class _SecondVissibleQuestionWidgetState
         ),
         SizedBox(height: height * 0.015),
         FormFieldDropdownWidget(
-          question: antigenBloc.state.question6!.name!,
+          question: antigenBloc.state.question6!.name,
           generalColor: wColor.mapColors["S700"]!,
           height: height * 0.07,
           listItems: const [
@@ -92,7 +92,7 @@ class _SecondVissibleQuestionWidgetState
             "No",
           ],
           selectedValue: stateAntigen.question6!.value != _covidQuestionTwoValue
-              ? stateAntigen.question6!.value!
+              ? stateAntigen.question6!.value
               : _covidQuestionTwoValue,
           width: width,
           onChanged: (covidQuestionTwo) {

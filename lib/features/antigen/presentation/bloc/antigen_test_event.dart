@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 part of 'antigen_test_bloc.dart';
 
 @immutable
@@ -106,7 +105,7 @@ class AntigenQuestion15Event extends AntigenTestEvent {
 class AntigenRegisterEvent extends AntigenTestEvent {}
 
 class AntigenImageEvent extends AntigenTestEvent {
-  final File image;
+  final String testImage;
 
-  AntigenImageEvent({required this.image});
+  AntigenImageEvent({required this.testImage});
 }

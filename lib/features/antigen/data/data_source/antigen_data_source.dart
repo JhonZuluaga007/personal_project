@@ -1,55 +1,48 @@
-import 'dart:convert';
-import 'dart:io';
-import 'package:http/http.dart' as http;
-import 'package:Tellme/config/helpers/models/server_validate_data.dart';
-
-import '../../domain/entities/antigen_entity.dart';
-import '../../../../config/helpers/endpoints.dart';
-import '../../../../config/helpers/errors/invalid_data.dart';
-import '../../../../config/helpers/models/server_error.dart';
 import '../models/antigen_model.dart';
+import '../../../../config/helpers/api.dart';
+import '../models/antigen_register_model.dart';
+import '../../../../config/helpers/endpoints.dart';
+import '../../../../config/helpers/models/server_error.dart';
+import '../../../../config/helpers/errors/invalid_data.dart';
+import '../../../antigen/domain/entities/antigen_entity.dart';
 
 class AntigenDataSource {
-  Future<AntigenModel> validateAntigen(String userId, String code) async {
-    var request =
-        http.MultipartRequest('POST', Uri.parse(Endpoints.validateAntigen));
-    request.fields.addAll({'code': code, 'userId': userId});
+  Future<AntigenModel> validateAntigen(String code) async {
+    var response = await Api.post(
+        Endpoints.validateAntigen, {"project": "ChelseaProject", "code": code});
 
-    http.StreamedResponse response = await request.send();
-    final responseString = await response.stream.bytesToString();
-    final decodedMap = json.decode(responseString);
-
-    if (decodedMap["statusCode"] == 200) {
-      AntigenModel antigenModel = AntigenModel.fromMap(decodedMap);
+    if (response["statusCode"] == 200) {
+      AntigenModel antigenModel = AntigenModel.fromMap(response);
       return antigenModel;
     } else {
-      throw InvalidData(ServerError.fromMap(decodedMap).errorMessage.text);
+      throw InvalidData(ServerError.fromMap(response).errorMessage.text);
     }
   }
 
-  Future<ServerValidate> registerTest(
+  Future<AntigenRegisterModel> registerTest(
       String code,
-      QuestionTypeOneEntity question1,
-      QuestionTypeTwoEntity question2,
-      QuestionTypeOneEntity question3,
-      QuestionTypeOneEntity question4,
-      QuestionTypeOneEntity question5,
-      QuestionTypeOneEntity question6,
-      QuestionTypeOneEntity question7,
-      QuestionTypeOneEntity question8,
-      QuestionTypeOneEntity question9,
-      QuestionTypeTwoEntity question10,
-      QuestionTypeTwoEntity question11,
-      QuestionTypeTwoEntity question12,
-      QuestionTypeOneEntity question13,
-      QuestionTypeOneEntity question14,
-      QuestionTypeOneEntity question15,
-      String? stepHistory,
-      File files) async {
-    var request =
-        http.MultipartRequest('POST', Uri.parse(Endpoints.registerTest));
-    request.fields.addAll({
+      QuestionType1StringEntity question1,
+      QuestionType10ListEntity question2,
+      QuestionType1StringEntity question3,
+      QuestionType1StringEntity question4,
+      QuestionType1StringEntity question5,
+      QuestionType1StringEntity question6,
+      QuestionType1StringEntity question7,
+      QuestionType1StringEntity question8,
+      QuestionType1StringEntity question9,
+      QuestionType10ListEntity question10,
+      QuestionType10ListEntity question11,
+      QuestionType10ListEntity question12,
+      QuestionType1StringEntity question13,
+      QuestionType1StringEntity question14,
+      QuestionType1StringEntity question15,
+      List<String>? stepHistory,
+      String? testImage) async {
+    var response = await Api.post(Endpoints.registerTest, {
+      "project": "ChelseaProject",
       "code": code,
+      "symptoms": [],
+      "vaccines": [],
       "question1": question1.toJson(),
       "question2": question2.toJson(),
       "question3": question3.toJson(),
@@ -65,21 +58,16 @@ class AntigenDataSource {
       "question13": question13.toJson(),
       "question14": question14.toJson(),
       "question15": question15.toJson(),
-      "step_history": "",
+      "step_history": stepHistory,
+      "testImage": testImage
     });
 
-    var file = files.path;
-    request.files.add(await http.MultipartFile.fromPath("file", file));
-
-    http.StreamedResponse response = await request.send();
-    final responseString = await response.stream.bytesToString();
-    final decodedMap = json.decode(responseString);
-
-    if (response.statusCode == 200) {
-      ServerValidate success = ServerValidate.fromMap(decodedMap);
-      return success;
+    if (response["statusCode"] == 200) {
+      AntigenRegisterModel antigenModel =
+          AntigenRegisterModel.fromMap(response);
+      return antigenModel;
     } else {
-      throw InvalidData(ServerError.fromMap(decodedMap).errorMessage.text);
+      throw InvalidData(ServerError.fromMap(response).errorMessage.text);
     }
   }
 }

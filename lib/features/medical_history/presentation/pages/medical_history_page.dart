@@ -7,7 +7,7 @@ import '../widgets/error_alert_widget.dart';
 import '../widgets/text_column_widget.dart';
 import '../../../../config/theme/theme.dart';
 import '../widgets/confirm_alert_widget.dart';
-import '../widgets/multi_selected_widget.dart';
+import '../widgets/multi_selected_opdropdown_widget.dart';
 import '../widgets/button_actions_widget.dart';
 import '../../../../config/helpers/form_submission_status.dart';
 import '../../../auth/presentation/bloc/helper_tools_bloc.dart';
@@ -187,7 +187,7 @@ class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
                               letterSpacing: -0.2),
                         ),
                         SizedBox(height: size.height * 0.02),
-                        MultiSelectedWidget(
+                        MultiSelectedOpDropDownWidget(
                           onChanged: (value) {
                             setState(() {
                               if (state.question2!.contains(value) != true) {

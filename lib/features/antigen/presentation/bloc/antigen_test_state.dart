@@ -1,35 +1,35 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 part of 'antigen_test_bloc.dart';
 
 @immutable
 class AntigenTestState {
   final String code;
-  final String id;
-  final String idTest;
+  final String? id;
+  final String? idTest;
   final String errorMessage;
   final String message;
   final DateTime? created;
   final int statusCode;
   final FormSubmissionStatus formStatus;
-  final QuestionTypeOneEntity? question1;
-  final QuestionTypeTwoEntity? question2;
-  final QuestionTypeOneEntity? question3;
-  final QuestionTypeOneEntity? question4;
-  final QuestionTypeOneEntity? question5;
-  final QuestionTypeOneEntity? question6;
-  final QuestionTypeOneEntity? question7;
-  final QuestionTypeOneEntity? question8;
-  final QuestionTypeOneEntity? question9;
-  final QuestionTypeTwoEntity? question10;
-  final QuestionTypeTwoEntity? question11;
-  final QuestionTypeTwoEntity? question12;
-  final QuestionTypeOneEntity? question13;
-  final QuestionTypeOneEntity? question14;
-  final QuestionTypeOneEntity? question15;
+  final QuestionType1StringEntity? question1;
+  final QuestionType10ListEntity? question2;
+  final QuestionType1StringEntity? question3;
+  final QuestionType1StringEntity? question4;
+  final QuestionType1StringEntity? question5;
+  final QuestionType1StringEntity? question6;
+  final QuestionType1StringEntity? question7;
+  final QuestionType1StringEntity? question8;
+  final QuestionType1StringEntity? question9;
+  final QuestionType10ListEntity? question10;
+  final QuestionType10ListEntity? question11;
+  final QuestionType10ListEntity? question12;
+  final QuestionType1StringEntity? question13;
+  final QuestionType1StringEntity? question14;
+  final QuestionType1StringEntity? question15;
   final DateTime? updatedValue;
-  final int testTime;
-  final String? stepHistory;
-  final File? files;
+  final int? testTime;
+  final List<String>? stepHistory;
+  final String testImage;
+  final AntigenRegisterResponseEntity? antigenResponse;
 
   const AntigenTestState({
     this.message = "",
@@ -57,8 +57,9 @@ class AntigenTestState {
     this.question14,
     this.question15,
     this.updatedValue,
-    this.stepHistory = "",
-    this.files
+    this.stepHistory,
+    this.testImage = "",
+    this.antigenResponse,
   });
 
   AntigenTestState copyWith({
@@ -70,25 +71,26 @@ class AntigenTestState {
     DateTime? created,
     int? statusCode,
     FormSubmissionStatus? formStatus,
-    QuestionTypeOneEntity? question1,
-    QuestionTypeTwoEntity? question2,
-    QuestionTypeOneEntity? question3,
-    QuestionTypeOneEntity? question4,
-    QuestionTypeOneEntity? question5,
-    QuestionTypeOneEntity? question6,
-    QuestionTypeOneEntity? question7,
-    QuestionTypeOneEntity? question8,
-    QuestionTypeOneEntity? question9,
-    QuestionTypeTwoEntity? question10,
-    QuestionTypeTwoEntity? question11,
-    QuestionTypeTwoEntity? question12,
-    QuestionTypeOneEntity? question13,
-    QuestionTypeOneEntity? question14,
-    QuestionTypeOneEntity? question15,
+    QuestionType1StringEntity? question1,
+    QuestionType10ListEntity? question2,
+    QuestionType1StringEntity? question3,
+    QuestionType1StringEntity? question4,
+    QuestionType1StringEntity? question5,
+    QuestionType1StringEntity? question6,
+    QuestionType1StringEntity? question7,
+    QuestionType1StringEntity? question8,
+    QuestionType1StringEntity? question9,
+    QuestionType10ListEntity? question10,
+    QuestionType10ListEntity? question11,
+    QuestionType10ListEntity? question12,
+    QuestionType1StringEntity? question13,
+    QuestionType1StringEntity? question14,
+    QuestionType1StringEntity? question15,
     DateTime? updatedValue,
     int? testTime,
-    String? stepHistory,
-    File? files,
+    List<String>? stepHistory,
+    String? testImage,
+    AntigenRegisterResponseEntity? antigenResponse,
   }) {
     return AntigenTestState(
       code: code ?? this.code,
@@ -117,7 +119,8 @@ class AntigenTestState {
       updatedValue: updatedValue ?? this.updatedValue,
       testTime: testTime ?? this.testTime,
       stepHistory: stepHistory ?? this.stepHistory,
-      files: files ?? this.files,
+      testImage: testImage ?? this.testImage,
+      antigenResponse: antigenResponse ?? this.antigenResponse,
     );
   }
 }

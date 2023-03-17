@@ -1,3 +1,5 @@
+import '../../../antigen/domain/entities/antigen_entity.dart';
+
 class TestHistoryResponseEntity {
     TestHistoryResponseEntity({
         required this.data,
@@ -59,14 +61,14 @@ class TestHistoryEntity {
     final String code;
     final CreatedTestEntity created;
     final List<LaboratoryTestEntity> laboratory;
-    final List<dynamic> manufacturer;
+    final List<ManufacturerAntigenEntity> manufacturer;
     final IdTestEntity preparedBy;
     final IdTestEntity project;
     final List<ResultTestEntity> result;
     final CreatedTestEntity sampleDate;
     final List<StatusTestEntity> status;
     final List<StatusHistoryEntity> statusHistory;
-    final List<dynamic> swabType;
+    final List<SwabTypeHistoryEntity> swabType;
     final List<dynamic> symptoms;
     final List<TypeTestEntity> type;
     final CreatedTestEntity updated;
@@ -109,7 +111,7 @@ class AssociatedTestEntity {
     final String code;
     final CreatedTestEntity created;
     final IdTestEntity form;
-    final String manufacturer;
+    final IdTestEntity manufacturer;
     final List<String> photo;
     final IdTestEntity preparedBy;
     final IdTestEntity project;
@@ -118,7 +120,7 @@ class AssociatedTestEntity {
     final IdTestEntity status;
     final List<StatusHistoryEntity> statusHistory;
     final List<dynamic> stepHistory;
-    final String swabType;
+    final IdTestEntity swabType;
     final List<IdTestEntity> symptoms;
     final IdTestEntity type;
     final CreatedTestEntity updated;
@@ -150,6 +152,16 @@ class StatusHistoryEntity {
 
     final CreatedTestEntity date;
     final IdTestEntity status;
+}
+
+class SwabTypeHistoryEntity {
+    SwabTypeHistoryEntity({
+        required this.id,
+        required this.type,
+    });
+
+    final IdTestEntity id;
+    final String type;
 }
 
 class LaboratoryTestEntity {

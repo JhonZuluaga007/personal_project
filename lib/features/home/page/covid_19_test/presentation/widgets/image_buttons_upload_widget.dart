@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -33,8 +34,18 @@ class _ImageButtonsWidgetState extends State<ImageButtonsWidget> {
           await ImagePicker().pickImage(source: source, imageQuality: 4);
       if (image == null) return;
       final imageCameraTemporary = File(image.path);
-      BlocProvider.of<AntigenTestBloc>(context)
-          .add(AntigenImageEvent(image: imageCameraTemporary));
+      imageDisplayed = imageCameraTemporary;
+      if (imageDisplayed != null) {
+        final bytes = imageCameraTemporary.readAsBytesSync();
+        String img64 = base64Encode(bytes);
+        BlocProvider.of<AntigenTestBloc>(context)
+            .add(AntigenImageEvent(testImage: img64));
+      }
+      if (imageDisplayed == '' || imageDisplayed == null) {
+        String image64 = base64.encode(imagePath.codeUnits);
+        BlocProvider.of<AntigenTestBloc>(context)
+            .add(AntigenImageEvent(testImage: image64));
+      }
       setState(() {
         imageDisplayed = imageCameraTemporary;
       });
