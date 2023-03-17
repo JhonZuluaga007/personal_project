@@ -1,12 +1,10 @@
-import 'dart:io';
-
-import 'package:Tellme/features/antigen/domain/entities/antigen_register_entity.dart';
 import 'package:either_dart/either.dart';
 
-import '../../domain/entities/antigen_entity.dart';
 import '../data_source/antigen_data_source.dart';
-import '../../../../config/helpers/errors/invalid_data.dart';
+import '../../domain/entities/antigen_entity.dart';
 import '../../domain/repository/antigen_repository.dart';
+import '../../domain/entities/antigen_register_entity.dart';
+import '../../../../config/helpers/errors/invalid_data.dart';
 
 class AntigenRepositoryImpl implements AntigenRepository {
   final AntigenDataSource authDataSource;
@@ -16,7 +14,8 @@ class AntigenRepositoryImpl implements AntigenRepository {
   });
 
   @override
-  Future<Either<InvalidData, AntigenResponseEntity>> validateAntigen(String code) async {
+  Future<Either<InvalidData, AntigenResponseEntity>> validateAntigen(
+      String code) async {
     try {
       final AntigenResponseEntity response =
           await authDataSource.validateAntigen(code);
@@ -47,25 +46,26 @@ class AntigenRepositoryImpl implements AntigenRepository {
       List<String>? stepHistory,
       String? testImage) async {
     try {
-      final AntigenRegisterResponseEntity response = await authDataSource.registerTest(
-          code,
-          question1,
-          question2,
-          question3,
-          question4,
-          question5,
-          question6,
-          question7,
-          question8,
-          question9,
-          question10,
-          question11,
-          question12,
-          question13,
-          question14,
-          question15,
-          stepHistory!,
-          testImage);
+      final AntigenRegisterResponseEntity response =
+          await authDataSource.registerTest(
+              code,
+              question1,
+              question2,
+              question3,
+              question4,
+              question5,
+              question6,
+              question7,
+              question8,
+              question9,
+              question10,
+              question11,
+              question12,
+              question13,
+              question14,
+              question15,
+              stepHistory!,
+              testImage);
       return Right(response);
     } on InvalidData catch (invalidData) {
       return Left(invalidData);

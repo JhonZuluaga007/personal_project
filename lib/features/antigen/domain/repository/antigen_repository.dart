@@ -1,7 +1,8 @@
 import 'package:either_dart/either.dart';
-import '../../../../config/helpers/errors/invalid_data.dart';
+
 import '../entities/antigen_entity.dart';
 import '../entities/antigen_register_entity.dart';
+import '../../../../config/helpers/errors/invalid_data.dart';
 
 abstract class AntigenRepository {
   Future<Either<InvalidData, AntigenResponseEntity>> validateAntigen(String code);

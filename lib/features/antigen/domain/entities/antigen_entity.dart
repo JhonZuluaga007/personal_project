@@ -1,4 +1,4 @@
-import 'package:Tellme/features/test_history/domain/entities/test_history_entity.dart';
+import '../../../test_history/domain/entities/test_history_entity.dart';
 
 class AntigenResponseEntity {
   AntigenResponseEntity({

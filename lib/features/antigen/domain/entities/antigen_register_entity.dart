@@ -1,5 +1,4 @@
-import 'package:Tellme/features/antigen/domain/entities/antigen_entity.dart';
-
+import '../../domain/entities/antigen_entity.dart';
 import '../../../test_history/domain/entities/test_history_entity.dart';
 
 class AntigenRegisterResponseEntity {

@@ -1,7 +1,7 @@
 import 'dart:convert';
 
-import 'package:Tellme/features/antigen/domain/entities/antigen_entity.dart';
-import 'package:Tellme/features/test_history/data/models/test_history_models.dart';
+import '../../domain/entities/antigen_entity.dart';
+import '../../../test_history/data/models/test_history_models.dart';
 
 class AntigenModel extends AntigenResponseEntity {
   AntigenModel({
@@ -33,26 +33,63 @@ class DataAntigen extends DataAntigenEntity {
                 code: "",
                 created: CreatedHistory(date: DateTime.now()),
                 form: [
-                  // FormAntigen(
-                      // id: id,
-                      // ip: ip,
-                      // question1: question1,
-                      // question10: question10,
-                      // question11: question11,
-                      // question12: question12,
-                      // question13: question13,
-                      // question14: question14,
-                      // question15: question15,
-                      // question2: question2,
-                      // question3: question3,
-                      // question4: question4,
-                      // question5: question5,
-                      // question6: question6,
-                      // question7: question7,
-                      // question8: question8,
-                      // question9: question9,
-                      // test: test
-                  //   )
+                  FormAntigen(
+                    id: IdHistory(oid: ''),
+                    ip: '',
+                    question1: QuestionType1String(
+                        name:
+                            'Are you currently experiencing any symptoms related to Covid-19?',
+                        value: ''),
+                    question2: QuestionType10List(
+                        name:
+                            'Please check all symptoms associated with Covid-19 you’re currently experiencing.',
+                        value: []),
+                    question3: QuestionType1String(
+                        name: 'When did you start experiencing these symptoms?',
+                        value: ''),
+                    question4: QuestionType1String(
+                        name:
+                            'In the last 14 days, have you tested positive for COVID-19?',
+                        value: ''),
+                    question5: QuestionType1String(
+                        name: 'When did you test positive for COVID-19?',
+                        value: ''),
+                    question6: QuestionType1String(
+                        name:
+                            'In the last 14 days, have you been in contact with anyone who has tested positive for COVID-19?',
+                        value: ''),
+                    question7: QuestionType1String(
+                        name: 'Have you received a COVID-19 vaccine?',
+                        value: ''),
+                    question8: QuestionType1String(
+                        name: 'How many Boosters have you had so far?',
+                        value: 'Select option'),
+                    question9: QuestionType1String(
+                        name:
+                            'When did you receive your most recent COVID-19 vaccine?',
+                        value: ''),
+                    question10: QuestionType10List(
+                        name:
+                            'Which vaccine(s) did you receive? (Please select all that apply)',
+                        value: []),
+                    question11: QuestionType10List(
+                        name:
+                            'Did you have Covid before? (Please select all that apply)',
+                        value: []),
+                    question12: QuestionType10List(
+                        name: 'Are you currently pregnant', value: []),
+                    question13: QuestionType1String(
+                        name:
+                            'Do you see a line next to the control band, indicated as C on your test?',
+                        value: ''),
+                    question14: QuestionType1String(
+                        name:
+                            'Do you to see a line next to the test band, indicated as T on your test?',
+                        value: ''),
+                    question15: QuestionType1String(
+                        name: 'Do you have a PCR test?', value: ''),
+                    test: IdHistory(oid: ''),
+                  )
                 ],
                 laboratory: [],
                 manufacturer: [],
@@ -160,12 +197,6 @@ class FormAntigen extends FormAntigenEntity {
     required IdHistory id,
     required String ip,
     required QuestionType1String question1,
-    required QuestionType10List question10,
-    required QuestionType10List question11,
-    required QuestionType10List question12,
-    required QuestionType1String question13,
-    required QuestionType1String question14,
-    required QuestionType1String question15,
     required QuestionType10List question2,
     required QuestionType1String question3,
     required QuestionType1String question4,
@@ -174,6 +205,12 @@ class FormAntigen extends FormAntigenEntity {
     required QuestionType1String question7,
     required QuestionType1String question8,
     required QuestionType1String question9,
+    required QuestionType10List question10,
+    required QuestionType10List question11,
+    required QuestionType10List question12,
+    required QuestionType1String question13,
+    required QuestionType1String question14,
+    required QuestionType1String question15,
     required IdHistory test,
   }) : super(
             id: id,

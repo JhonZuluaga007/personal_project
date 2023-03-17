@@ -107,17 +107,21 @@ class TestHistory extends TestHistoryEntity {
         created: CreatedHistory.fromMap(json["created"]),
         laboratory: List<LaboratoryHistory>.from(
             json["laboratory"].map((x) => LaboratoryHistory.fromMap(x))),
-        manufacturer: List<ManufacturerAntigen>.from(json["manufacturer"].map((x) => ManufacturerAntigen.fromMap(x))),
+        manufacturer: List<ManufacturerAntigen>.from(
+            json["manufacturer"].map((x) => ManufacturerAntigen.fromMap(x))),
         preparedBy: IdHistory.fromMap(json["prepared_by"]),
         project: IdHistory.fromMap(json["project"]),
         result: List<ResultHistory>.from(
             json["result"].map((x) => ResultHistory.fromMap(x))),
-        sampleDate: CreatedHistory.fromMap(json["sample_date"]),
+        sampleDate: json["sample_date"].toString().isNotEmpty
+            ? CreatedHistory.fromMap(json["sample_date"])
+            : CreatedHistory(date: DateTime.now()),
         status: List<StatusHistory>.from(
             json["status"].map((x) => StatusHistory.fromMap(x))),
         statusHistory: List<StatusTestHistory>.from(
             json["status_history"].map((x) => StatusTestHistory.fromMap(x))),
-        swabType: List<SwabTypeHistory>.from(json["swab_type"].map((x) => SwabTypeHistory.fromMap(x))),
+        swabType: List<SwabTypeHistory>.from(
+            json["swab_type"].map((x) => SwabTypeHistory.fromMap(x))),
         symptoms: List<dynamic>.from(json["symptoms"].map((x) => x)),
         type: List<TypeHistory>.from(
             json["type"].map((x) => TypeHistory.fromMap(x))),
@@ -126,7 +130,7 @@ class TestHistory extends TestHistoryEntity {
         validity: List<ValidityHistory>.from(
             json["validity"].map((x) => ValidityHistory.fromMap(x))),
         vialName: json["vial_name"] ?? "",
-        form: json["form"] != null
+        form: (json["form"] != null && json["form"].toString().isNotEmpty)
             ? IdHistory.fromMap(json["form"])
             : IdHistory(oid: ""),
         photo: json["photo"] != null
@@ -205,8 +209,12 @@ class AssociatedTestHistory extends AssociatedTestEntity {
         status: IdHistory.fromMap(json["status"]),
         statusHistory: List<StatusTestHistory>.from(
             json["status_history"].map((x) => StatusTestHistory.fromMap(x))),
-        stepHistory: json["step_history"] != null ? List<dynamic>.from(json["step_history"].map((x) => x)) : [],
-        swabType: json["swab_type"] != null ? IdHistory.fromMap(json["swab_type"]) : IdHistory(oid: ""),
+        stepHistory: json["step_history"] != null
+            ? List<dynamic>.from(json["step_history"].map((x) => x))
+            : [],
+        swabType: json["swab_type"] != null
+            ? IdHistory.fromMap(json["swab_type"])
+            : IdHistory(oid: ""),
         symptoms: List<IdHistory>.from(
             json["symptoms"].map((x) => IdHistory.fromMap(x))),
         type: IdHistory.fromMap(json["type"]),
@@ -255,8 +263,7 @@ class SwabTypeHistory extends SwabTypeHistoryEntity {
     required String status,
   }) : super(id: date, type: status);
 
-  factory SwabTypeHistory.fromMap(Map<String, dynamic> json) =>
-      SwabTypeHistory(
+  factory SwabTypeHistory.fromMap(Map<String, dynamic> json) => SwabTypeHistory(
         date: IdHistory.fromMap(json["_id"]),
         status: json["type"],
       );

@@ -1,13 +1,13 @@
-import 'package:Tellme/features/antigen/data/models/antigen_model.dart';
-import 'package:Tellme/features/antigen/domain/entities/antigen_register_entity.dart';
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
-import 'package:Tellme/features/antigen/domain/use_cases/antigen_register_use_case.dart';
 
 import '../../domain/entities/antigen_entity.dart';
+import '../../../antigen/data/models/antigen_model.dart';
 import '../../../../config/helpers/injector/injector.dart';
 import '../../domain/use_cases/antigen_validate_use_case.dart';
 import '../../../../config/helpers/form_submission_status.dart';
+import '../../../antigen/domain/entities/antigen_register_entity.dart';
+import '../../../antigen/domain/use_cases/antigen_register_use_case.dart';
 
 part 'antigen_test_event.dart';
 part 'antigen_test_state.dart';

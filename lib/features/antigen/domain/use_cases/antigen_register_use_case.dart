@@ -1,9 +1,9 @@
 import 'package:either_dart/either.dart';
-import 'package:Tellme/features/antigen/domain/entities/antigen_entity.dart';
 
-import '../../../../config/helpers/errors/invalid_data.dart';
-import '../entities/antigen_register_entity.dart';
 import '../repository/antigen_repository.dart';
+import '../entities/antigen_register_entity.dart';
+import '../../domain/entities/antigen_entity.dart';
+import '../../../../config/helpers/errors/invalid_data.dart';
 
 class AntigenRegisterUseCase {
   AntigenRepository authRepository;

@@ -1,19 +1,15 @@
-import 'package:Tellme/config/helpers/api.dart';
-import 'package:Tellme/features/antigen/domain/entities/antigen_entity.dart';
-
-import '../../../../config/helpers/endpoints.dart';
-import '../../../../config/helpers/errors/invalid_data.dart';
-import '../../../../config/helpers/models/server_error.dart';
 import '../models/antigen_model.dart';
+import '../../../../config/helpers/api.dart';
 import '../models/antigen_register_model.dart';
+import '../../../../config/helpers/endpoints.dart';
+import '../../../../config/helpers/models/server_error.dart';
+import '../../../../config/helpers/errors/invalid_data.dart';
+import '../../../antigen/domain/entities/antigen_entity.dart';
 
 class AntigenDataSource {
   Future<AntigenModel> validateAntigen(String code) async {
-    var response = await Api.post(Endpoints.validateAntigen,
-    {
-      "project": "ChelseaProject", 
-      "code": code
-    });
+    var response = await Api.post(
+        Endpoints.validateAntigen, {"project": "ChelseaProject", "code": code});
 
     if (response["statusCode"] == 200) {
       AntigenModel antigenModel = AntigenModel.fromMap(response);
@@ -43,7 +39,7 @@ class AntigenDataSource {
       List<String>? stepHistory,
       String? testImage) async {
     var response = await Api.post(Endpoints.registerTest, {
-      "project" : "ChelseaProject",
+      "project": "ChelseaProject",
       "code": code,
       "symptoms": [],
       "vaccines": [],
@@ -67,7 +63,8 @@ class AntigenDataSource {
     });
 
     if (response["statusCode"] == 200) {
-      AntigenRegisterModel antigenModel = AntigenRegisterModel.fromMap(response);
+      AntigenRegisterModel antigenModel =
+          AntigenRegisterModel.fromMap(response);
       return antigenModel;
     } else {
       throw InvalidData(ServerError.fromMap(response).errorMessage.text);

@@ -1,13 +1,9 @@
-// ignore_for_file: use_build_context_synchronously
-
 import 'package:flutter/material.dart';
 import 'package:scan/scan.dart';
 
 import '../bloc/pcr_bloc.dart';
 import '../../../../config/theme/theme.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../auth/presentation/bloc/auth_bloc.dart';
-import '../../../test_history/bloc/test_history_bloc.dart';
 import '../../../home/widget/test_widgets/app_bar_widget.dart';
 import '../../../../config/helpers/form_submission_status.dart';
 import '../../../../navigationBar/bloc/navigation_bar_bloc.dart';
@@ -38,8 +34,6 @@ class _PcrRegisterPageState extends State<PcrRegisterPage> {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
     final wColor = ThemesIdx20();
-    final userState = BlocProvider.of<AuthBloc>(context).state;
-    final stateTestHistory = BlocProvider.of<TestHistoryBloc>(context).state;
 
     NavigationBarBloc navigationBloc =
         BlocProvider.of<NavigationBarBloc>(context);

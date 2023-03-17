@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../bloc/test_history_bloc.dart';
+import '../bloc/test_history_bloc.dart';
 import '../../../../config/theme/theme.dart';
 import '../widgets/history_test_widget.dart';
 import '../widgets/search_delgate_widget.dart';
@@ -24,12 +24,15 @@ class _HistoryPageState extends State<HistoryPage> {
   bool pcrTestHistory = false;
 
   @override
+  void initState() {
+    super.initState();
+    BlocProvider.of<TestHistoryBloc>(context).add(GetHistoryTestEvent());
+  }
+
+  @override
   Widget build(BuildContext context) {
     final wColor = ThemesIdx20();
     final size = MediaQuery.of(context).size;
-    // final stateUserId = BlocProvider.of<AuthBloc>(context).state;
-
-    BlocProvider.of<TestHistoryBloc>(context).add(GetHistoryTestEvent());
 
     return Material(
       child: SafeArea(
