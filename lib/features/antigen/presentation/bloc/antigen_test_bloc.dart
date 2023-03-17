@@ -1,6 +1,5 @@
-import 'dart:io';
-
 import 'package:Tellme/features/antigen/data/models/antigen_model.dart';
+import 'package:Tellme/features/antigen/domain/entities/antigen_register_entity.dart';
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:Tellme/features/antigen/domain/use_cases/antigen_register_use_case.dart';
@@ -28,11 +27,11 @@ class AntigenTestBloc extends Bloc<AntigenTestEvent, AntigenTestState> {
               statusCode: state.statusCode)),
           (antigenModel) => emit(state.copyWith(
                 code: event.code,
-                created: antigenModel.data.lastTest!.created.date,
+                created: antigenModel.data.test.created.date,
                 formStatus: SubmissionSuccess(),
                 statusCode: antigenModel.statusCode,
-                id: antigenModel.data.lastTest!.id.oid,
-                idTest: antigenModel.data.lastTest!.id.oid,
+                id: antigenModel.data.test.id.oid,
+                idTest: antigenModel.data.test.id.oid,
                 question1: antigenModel.data.lastTest!.form[0].question1,
                 question2: antigenModel.data.lastTest!.form[0].question2,
                 question3: antigenModel.data.lastTest!.form[0].question3,
@@ -52,37 +51,38 @@ class AntigenTestBloc extends Bloc<AntigenTestEvent, AntigenTestState> {
               )));
     });
 
-    // on<AntigenRegisterEvent>((event, emit) async {
-    //   emit(state.copyWith(formStatus: FormSubmitting()));
-    //   final antigenRegisterTest = await antigenRegisterUseCase.call(
-    //       state.code,
-    //       state.question1!,
-    //       state.question2!,
-    //       state.question3!,
-    //       state.question4!,
-    //       state.question5!,
-    //       state.question6!,
-    //       state.question7!,
-    //       state.question8!,
-    //       state.question9!,
-    //       state.question10!,
-    //       state.question11!,
-    //       state.question12!,
-    //       state.question13!,
-    //       state.question14!,
-    //       state.question15!,
-    //       state.stepHistory ?? "",
-    //       state.files!);
-    //   antigenRegisterTest.fold(
-    //       (error) => emit(state.copyWith(
-    //           formStatus: SubmissionFailed(exception: Exception(error.message)),
-    //           errorMessage: error.message,
-    //           statusCode: state.statusCode)),
-    //       (antigenRegister) => emit(state.copyWith(
-    //           formStatus: SubmissionSuccess(),
-    //           message: antigenRegister.message,
-    //           statusCode: antigenRegister.statusCode)));
-    // });
+    on<AntigenRegisterEvent>((event, emit) async {
+      emit(state.copyWith(formStatus: FormSubmitting()));
+      final antigenRegisterTest = await antigenRegisterUseCase.call(
+          state.code,
+          state.question1!,
+          state.question2!,
+          state.question3!,
+          state.question4!,
+          state.question5!,
+          state.question6!,
+          state.question7!,
+          state.question8!,
+          state.question9!,
+          state.question10!,
+          state.question11!,
+          state.question12!,
+          state.question13!,
+          state.question14!,
+          state.question15!,
+          state.stepHistory ?? [],
+          state.testImage);
+      antigenRegisterTest.fold(
+          (error) => emit(state.copyWith(
+              formStatus: SubmissionFailed(exception: Exception(error.message)),
+              errorMessage: error.message,
+              statusCode: state.statusCode)),
+          (antigenRegister) => emit(state.copyWith(
+              formStatus: SubmissionSuccess(),
+              antigenResponse: antigenRegister,
+              message: antigenRegister.message.text,
+              statusCode: antigenRegister.statusCode)));
+    });
 
     on<AntigenQuestion1Event>((event, emit) async {
       emit(state.copyWith(formStatus: FormSubmitting()));
@@ -223,7 +223,7 @@ class AntigenTestBloc extends Bloc<AntigenTestEvent, AntigenTestState> {
 
     on<AntigenImageEvent>((event, emit) {
       emit(state.copyWith(
-          formStatus: const InitialFormStatus(), files: event.image));
+          formStatus: const InitialFormStatus(), testImage: event.testImage));
     });
   }
 }

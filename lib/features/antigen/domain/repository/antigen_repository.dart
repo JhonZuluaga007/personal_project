@@ -1,32 +1,28 @@
-import 'dart:io';
-
 import 'package:either_dart/either.dart';
-import 'package:Tellme/config/helpers/models/server_validate_data.dart';
-
-import '../../data/models/antigen_model.dart';
 import '../../../../config/helpers/errors/invalid_data.dart';
 import '../entities/antigen_entity.dart';
+import '../entities/antigen_register_entity.dart';
 
 abstract class AntigenRepository {
   Future<Either<InvalidData, AntigenResponseEntity>> validateAntigen(String code);
 
-  // Future<Either<InvalidData, ServerValidate>> registerTest(
-  //     String code,
-  //     QuestionTypeOneEntity question1,
-  //     QuestionTypeTwoEntity question2,
-  //     QuestionTypeOneEntity question3,
-  //     QuestionTypeOneEntity question4,
-  //     QuestionTypeOneEntity question5,
-  //     QuestionTypeOneEntity question6,
-  //     QuestionTypeOneEntity question7,
-  //     QuestionTypeOneEntity question8,
-  //     QuestionTypeOneEntity question9,
-  //     QuestionTypeTwoEntity question10,
-  //     QuestionTypeTwoEntity question11,
-  //     QuestionTypeTwoEntity question12,
-  //     QuestionTypeOneEntity question13,
-  //     QuestionTypeOneEntity question14,
-  //     QuestionTypeOneEntity question15,
-  //     String? stepHistory,
-  //     File files);
+  Future<Either<InvalidData, AntigenRegisterResponseEntity>> registerTest(
+      String code,
+      QuestionType1StringEntity question1,
+      QuestionType10ListEntity question2,
+      QuestionType1StringEntity question3,
+      QuestionType1StringEntity question4,
+      QuestionType1StringEntity question5,
+      QuestionType1StringEntity question6,
+      QuestionType1StringEntity question7,
+      QuestionType1StringEntity question8,
+      QuestionType1StringEntity question9,
+      QuestionType10ListEntity question10,
+      QuestionType10ListEntity question11,
+      QuestionType10ListEntity question12,
+      QuestionType1StringEntity question13,
+      QuestionType1StringEntity question14,
+      QuestionType1StringEntity question15,
+      List<String>? stepHistory,
+      String? testImage);
 }

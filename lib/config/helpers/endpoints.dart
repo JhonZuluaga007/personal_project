@@ -30,7 +30,7 @@ class Endpoints {
 //Validate pcr endpoint
   static const String validatePcr = '${Config.baseURL}tests/validate-pcr-code';
 
-  static const String registerTest = "${Config.baseURL}forms";
+  static const String registerTest = "${Config.baseURL}tests/register-antigen-test";
 
   static const String optionsTools =
       '${Config.baseURL}options?project=ChelseaProject';

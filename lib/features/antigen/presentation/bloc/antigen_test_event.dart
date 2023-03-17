@@ -106,7 +106,7 @@ class AntigenQuestion15Event extends AntigenTestEvent {
 class AntigenRegisterEvent extends AntigenTestEvent {}
 
 class AntigenImageEvent extends AntigenTestEvent {
-  final File image;
+  final String testImage;
 
-  AntigenImageEvent({required this.image});
+  AntigenImageEvent({required this.testImage});
 }

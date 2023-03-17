@@ -32,7 +32,28 @@ class DataAntigen extends DataAntigenEntity {
                 batch: IdHistory(oid: ""),
                 code: "",
                 created: CreatedHistory(date: DateTime.now()),
-                form: [],
+                form: [
+                  // FormAntigen(
+                      // id: id,
+                      // ip: ip,
+                      // question1: question1,
+                      // question10: question10,
+                      // question11: question11,
+                      // question12: question12,
+                      // question13: question13,
+                      // question14: question14,
+                      // question15: question15,
+                      // question2: question2,
+                      // question3: question3,
+                      // question4: question4,
+                      // question5: question5,
+                      // question6: question6,
+                      // question7: question7,
+                      // question8: question8,
+                      // question9: question9,
+                      // test: test
+                  //   )
+                ],
                 laboratory: [],
                 manufacturer: [],
                 photo: [],
@@ -280,18 +301,14 @@ class TestAntigen extends TestAntigenEntity {
         batch: IdHistory.fromMap(json["batch"]),
         code: json["code"],
         created: CreatedHistory.fromMap(json["created"]),
-        form: json["form"] != []
-            ? List<dynamic>.from(json["form"].map((x) => x))
-            : IdHistory.fromMap(json["form"]),
+        form: List<dynamic>.from(json["form"].map((x) => x)),
         laboratory: List<dynamic>.from(json["laboratory"].map((x) => x)),
-        manufacturer: List<ManufacturerAntigen>.from(json["manufacturer"].map((x) => ManufacturerAntigen.fromMap(x))),
+        manufacturer: List<ManufacturerAntigen>.from(
+            json["manufacturer"].map((x) => ManufacturerAntigen.fromMap(x))),
         photo: List<dynamic>.from(json["photo"].map((x) => x)),
         preparedBy: IdHistory.fromMap(json["prepared_by"]),
         project: IdHistory.fromMap(json["project"]),
-        result: json["result"] != []
-            ? List<dynamic>.from(json["result"].map((x) => x))
-            : List<ResultHistory>.from(
-                json["result"].map((x) => ResultHistory.fromMap(x))),
+        result: List<dynamic>.from(json["result"].map((x) => x)),
         sampleDate: json["sample_date"],
         status: List<StatusHistory>.from(
             json["status"].map((x) => StatusHistory.fromMap(x))),

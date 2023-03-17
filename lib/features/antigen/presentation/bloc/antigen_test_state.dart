@@ -4,8 +4,8 @@ part of 'antigen_test_bloc.dart';
 @immutable
 class AntigenTestState {
   final String code;
-  final String id;
-  final String idTest;
+  final String? id;
+  final String? idTest;
   final String errorMessage;
   final String message;
   final DateTime? created;
@@ -28,8 +28,9 @@ class AntigenTestState {
   final QuestionType1StringEntity? question15;
   final DateTime? updatedValue;
   final int? testTime;
-  final String? stepHistory;
-  final File? files;
+  final List<String>? stepHistory;
+  final String testImage;
+  final AntigenRegisterResponseEntity? antigenResponse;
 
   const AntigenTestState({
     this.message = "",
@@ -57,8 +58,9 @@ class AntigenTestState {
     this.question14,
     this.question15,
     this.updatedValue,
-    this.stepHistory = "",
-    this.files
+    this.stepHistory,
+    this.testImage = "",
+    this.antigenResponse,
   });
 
   AntigenTestState copyWith({
@@ -87,8 +89,9 @@ class AntigenTestState {
     QuestionType1StringEntity? question15,
     DateTime? updatedValue,
     int? testTime,
-    String? stepHistory,
-    File? files,
+    List<String>? stepHistory,
+    String? testImage,
+    AntigenRegisterResponseEntity? antigenResponse,
   }) {
     return AntigenTestState(
       code: code ?? this.code,
@@ -117,7 +120,8 @@ class AntigenTestState {
       updatedValue: updatedValue ?? this.updatedValue,
       testTime: testTime ?? this.testTime,
       stepHistory: stepHistory ?? this.stepHistory,
-      files: files ?? this.files,
+      testImage: testImage ?? this.testImage,
+      antigenResponse: antigenResponse ?? this.antigenResponse,
     );
   }
 }
