@@ -31,7 +31,7 @@ class _HomePageState extends State<HomePage> {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
     final wColor = ThemesIdx20();
-    final authState = context.read<AuthBloc>().state;
+    final authState = BlocProvider.of<AuthBloc>(context).state;
     NavigationBarBloc navigationBloc =
         BlocProvider.of<NavigationBarBloc>(context);
     return Material(

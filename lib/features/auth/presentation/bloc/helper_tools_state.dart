@@ -6,7 +6,7 @@ class HelperToolsState {
   final List<OpGenderEntity> genders;
   final List<OpRaceEntity> races;
   final List<OpRiskFactorEntity> riskFactors;
-  final List<OpSchoolLevelEntity> schoolLevels;
+  final List<OpSchoolLevelsEntity> schoolLevels;
   final List<OpSexEntity> sexes;
   final List<OpSymptomEntity> symptoms;
   final List<OpTestResultEntity> testResults;
@@ -39,7 +39,7 @@ class HelperToolsState {
     List<OpGenderEntity>? genders,
     List<OpRaceEntity>? races,
     List<OpRiskFactorEntity>? riskFactors,
-    List<OpSchoolLevelEntity>? schoolLevels,
+    List<OpSchoolLevelsEntity>? schoolLevels,
     List<OpSexEntity>? sexes,
     List<OpSymptomEntity>? symptoms,
     List<OpTestResultEntity>? testResults,

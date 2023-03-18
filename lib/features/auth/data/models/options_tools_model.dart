@@ -25,7 +25,7 @@ class Data extends DataEntity {
     required List<Gender> genders,
     required List<Race> races,
     required List<RiskFactor> riskFactors,
-    required List<SchoolLevel> schoolLevels,
+    required List<SchoolLevels> schoolLevels,
     required List<Sex> sexes,
     required List<States> states,
     required List<Symptom> symptoms,
@@ -58,8 +58,8 @@ class Data extends DataEntity {
         races: List<Race>.from(json["races"].map((x) => Race.fromJson(x))),
         riskFactors: List<RiskFactor>.from(
             json["risk_factors"].map((x) => RiskFactor.fromJson(x))),
-        schoolLevels: List<SchoolLevel>.from(
-            json["school_levels"].map((x) => SchoolLevel.fromJson(x))),
+        schoolLevels: List<SchoolLevels>.from(
+            json["school_levels"].map((x) => SchoolLevels.fromJson(x))),
         sexes: List<Sex>.from(json["sexes"].map((x) => Sex.fromJson(x))),
         states:
             List<States>.from(json["states"].map((x) => States.fromJson(x))),
@@ -160,8 +160,8 @@ class RiskFactor extends OpRiskFactorEntity {
       );
 }
 
-class SchoolLevel extends OpSchoolLevelEntity {
-  SchoolLevel({
+class SchoolLevels extends OpSchoolLevelsEntity {
+  SchoolLevels({
     required Id id,
     required String level,
     required int order,
@@ -173,7 +173,7 @@ class SchoolLevel extends OpSchoolLevelEntity {
           project: project,
         );
 
-  factory SchoolLevel.fromJson(Map<String, dynamic> json) => SchoolLevel(
+  factory SchoolLevels.fromJson(Map<String, dynamic> json) => SchoolLevels(
         id: Id.fromJson(json["_id"]),
         level: json["level"],
         order: json["order"],

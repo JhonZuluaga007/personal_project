@@ -127,7 +127,6 @@ class UserEntity {
   final List<IdTestEntity> projects;
   final List<RaceEntity> race;
   final List<String> roles;
-  //final List<String> schoolLevel;
   final List<SchoolLevelsEntity> schoolLevels;
   final List<SexEntity> sex;
 }

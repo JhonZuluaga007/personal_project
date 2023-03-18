@@ -31,7 +31,7 @@ class DataEntity {
   final List<OpGenderEntity> genders;
   final List<OpRaceEntity> races;
   final List<OpRiskFactorEntity> riskFactors;
-  final List<OpSchoolLevelEntity> schoolLevels;
+  final List<OpSchoolLevelsEntity> schoolLevels;
   final List<OpSexEntity> sexes;
   final List<OpStatesEntity> states;
   final List<OpSymptomEntity> symptoms;
@@ -103,8 +103,8 @@ class OpRiskFactorEntity extends OpDropdown {
   }) : super(id: id, valor: riskFactor);
 }
 
-class OpSchoolLevelEntity extends OpDropdown {
-  OpSchoolLevelEntity({
+class OpSchoolLevelsEntity extends OpDropdown {
+  OpSchoolLevelsEntity({
     required String id,
     required String level,
     required int order,

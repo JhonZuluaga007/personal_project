@@ -39,69 +39,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       }, (user) {
         final userResponse = user.data.user;
         emit(state.copyWith(
-            formStatus: SubmissionSuccess(),
-            project: user.data.project.project,
-            statusCode: user.statusCode,
-            token: user.data.token,
-            userId: userResponse.id.oid,
-            acceptsTerms: userResponse.acceptsTerms,
-            address: userResponse.address.address,
-            city: userResponse.address.city,
-            zip: userResponse.address.zip,
-            state: userResponse.address.state.isNotEmpty
-                ? userResponse.address.state.first
-                : StateEntity(id: IdTestEntity(oid: ""), state: ''),
-            cellphone: userResponse.cellphone,
-            dateOfBirth: userResponse.dateOfBirth,
-            email: userResponse.email,
-            ethnicity: userResponse.ethnicity.isNotEmpty
-                ? userResponse.ethnicity.first
-                : EthnicityEntity(id: IdTestEntity(oid: ""), ethnicity: ''),
-            firstLogin: userResponse.firstLogin,
-            gender: userResponse.gender.isNotEmpty
-                ? userResponse.gender.first
-                : GenderEntity(id: IdTestEntity(oid: ""), gender: ''),
-            informationUpdated: userResponse.informationUpdated,
-            isActive: userResponse.isActive,
-            isConfirmed: userResponse.isConfirmed,
-            lastname: userResponse.lastname,
-            loginId: userResponse.loginId,
-            middleName: userResponse.middleName,
-            name: userResponse.name,
-            participantId: userResponse.participantId,
-            password: userResponse.password,
-            passwordReset: userResponse.passwordReset,
-            profileImage: userResponse.profileImage,
-            projects: userResponse.projects.isNotEmpty
-                ? userResponse.projects.first
-                : IdTestEntity(oid: ""),
-            race: userResponse.race.isNotEmpty
-                ? userResponse.race.first
-                : RaceEntity(id: IdTestEntity(oid: ""), race: ''),
-            roles: userResponse.roles.first,
-            // schoolLevels: userResponse.schoolLevels.isNotEmpty
-            //     ? userResponse.schoolLevels.first
-            //     : IdEntity(oid: ""),
-            sex: userResponse.sex.isNotEmpty
-                ? userResponse.sex.first
-                : SexEntity(
-                    id: IdTestEntity(oid: ""),
-                    sex: '',
-                  )));
-      });
-    });
-
-    on<GetUser>((event, emit) async {
-      emit(state.copyWith(formStatus: FormSubmitting()));
-      final loginResponse = await getUserUseCase.call();
-      loginResponse.fold((error) {
-        emit(state.copyWith(
-          formStatus: SubmissionFailed(exception: Exception(error.message)),
-          errorMessage: error.message,
-        ));
-      }, (user) {
-        final userResponse = user.data.user;
-        emit(state.copyWith(
           formStatus: SubmissionSuccess(),
           project: user.data.project.project,
           statusCode: user.statusCode,
@@ -109,6 +46,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           userId: userResponse.id.oid,
           acceptsTerms: userResponse.acceptsTerms,
           address: userResponse.address.address,
+          city: userResponse.address.city,
+          zip: userResponse.address.zip,
+          state: userResponse.address.state.isNotEmpty
+              ? userResponse.address.state.first
+              : StateEntity(id: IdTestEntity(oid: ""), state: ''),
           cellphone: userResponse.cellphone,
           dateOfBirth: userResponse.dateOfBirth,
           email: userResponse.email,
@@ -116,7 +58,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
               ? userResponse.ethnicity.first
               : EthnicityEntity(id: IdTestEntity(oid: ""), ethnicity: ''),
           firstLogin: userResponse.firstLogin,
-          gender: GenderEntity(id: IdTestEntity(oid: ""), gender: ''),
+          gender: userResponse.gender.isNotEmpty
+              ? userResponse.gender.first
+              : GenderEntity(id: IdTestEntity(oid: ""), gender: ''),
           informationUpdated: userResponse.informationUpdated,
           isActive: userResponse.isActive,
           isConfirmed: userResponse.isConfirmed,
@@ -130,17 +74,98 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           profileImage: userResponse.profileImage,
           projects: userResponse.projects.isNotEmpty
               ? userResponse.projects.first
-              : IdTestEntity(oid: ''),
+              : IdTestEntity(oid: ""),
           race: userResponse.race.isNotEmpty
               ? userResponse.race.first
-              : RaceEntity(id: IdTestEntity(oid: ""), race: ""),
+              : RaceEntity(id: IdTestEntity(oid: ""), race: ''),
           roles: userResponse.roles.first,
-          // schoolLevels: userResponse.schoolLevels.isNotEmpty
-          //     ? userResponse.schoolLevels.first
-          //     : IdEntity(oid: ""),
+          schoolLevels: userResponse.schoolLevels.isNotEmpty
+              ? userResponse.schoolLevels.last
+              : SchoolLevelsEntity(
+                  id: IdTestEntity(oid: ""),
+                  level: '',
+                  order: 0,
+                  project: IdTestEntity(oid: ''),
+                ),
           sex: userResponse.sex.isNotEmpty
               ? userResponse.sex.first
-              : SexEntity(id: IdTestEntity(oid: ""), sex: ""),
+              : SexEntity(
+                  id: IdTestEntity(oid: ""),
+                  sex: '',
+                ),
+        ));
+      });
+    });
+
+    on<InitialStateForm>((event, emit) async {
+      emit(state.copyWith(formStatus: InitialFormStatus()));
+    });
+
+    on<GetUser>((event, emit) async {
+      //emit(state.copyWith(formStatus: FormSubmitting()));
+      final getUserResponse = await getUserUseCase.call();
+      getUserResponse.fold((error) {
+        emit(state.copyWith(
+          formStatus: SubmissionFailed(exception: Exception(error.message)),
+          errorMessage: error.message,
+        ));
+      }, (user) {
+        final userResponse = user.data.user;
+        emit(state.copyWith(
+          //formStatus: SubmissionSuccess(),
+          project: user.data.project.project,
+          statusCode: user.statusCode,
+          token: user.data.token,
+          userId: userResponse.id.oid,
+          acceptsTerms: userResponse.acceptsTerms,
+          address: userResponse.address.address,
+          city: userResponse.address.city,
+          zip: userResponse.address.zip,
+          state: userResponse.address.state.isNotEmpty
+              ? userResponse.address.state.first
+              : StateEntity(id: IdTestEntity(oid: ""), state: ''),
+          cellphone: userResponse.cellphone,
+          dateOfBirth: userResponse.dateOfBirth,
+          email: userResponse.email,
+          ethnicity: userResponse.ethnicity.isNotEmpty
+              ? userResponse.ethnicity.first
+              : EthnicityEntity(id: IdTestEntity(oid: ""), ethnicity: ''),
+          firstLogin: userResponse.firstLogin,
+          gender: userResponse.gender.isNotEmpty
+              ? userResponse.gender.first
+              : GenderEntity(id: IdTestEntity(oid: ""), gender: ''),
+          informationUpdated: userResponse.informationUpdated,
+          isActive: userResponse.isActive,
+          isConfirmed: userResponse.isConfirmed,
+          lastname: userResponse.lastname,
+          loginId: userResponse.loginId,
+          middleName: userResponse.middleName,
+          name: userResponse.name,
+          participantId: userResponse.participantId,
+          password: userResponse.password,
+          passwordReset: userResponse.passwordReset,
+          profileImage: userResponse.profileImage,
+          projects: userResponse.projects.isNotEmpty
+              ? userResponse.projects.first
+              : IdTestEntity(oid: ""),
+          race: userResponse.race.isNotEmpty
+              ? userResponse.race.first
+              : RaceEntity(id: IdTestEntity(oid: ""), race: ''),
+          roles: userResponse.roles.first,
+          schoolLevels: userResponse.schoolLevels.isNotEmpty
+              ? userResponse.schoolLevels.last
+              : SchoolLevelsEntity(
+                  id: IdTestEntity(oid: ""),
+                  level: '',
+                  order: 0,
+                  project: IdTestEntity(oid: ''),
+                ),
+          sex: userResponse.sex.isNotEmpty
+              ? userResponse.sex.first
+              : SexEntity(
+                  id: IdTestEntity(oid: ""),
+                  sex: '',
+                ),
         ));
       });
     });
@@ -160,6 +185,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         ethnicity: event.userUpdateEntity.ethnicity,
         sex: event.userUpdateEntity.sex,
         gender: event.userUpdateEntity.gender,
+        schoolLevels: event.userUpdateEntity.levelSchool,
         profileImage: event.userUpdateEntity.profileImage ?? "",
       ));
     });

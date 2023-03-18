@@ -1,18 +1,19 @@
-import 'package:Tellme/features/auth/presentation/bloc/auth_bloc.dart';
+import '../bloc/auth_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:Tellme/common_ui/common_widgets/buttons/main_button_widget.dart';
-import 'package:Tellme/common_ui/common_widgets/text_field/text_field_with_border_widget.dart';
-import 'package:Tellme/common_ui/utils/utils_string_password.dart';
-import 'package:Tellme/common_ui/utils/utils_email.dart';
-import 'package:Tellme/config/helpers/form_submission_status.dart';
-import 'package:Tellme/config/theme/theme.dart';
-import '../../../../app_localizations.dart';
-import '../../../../common_ui/common_pages/my_app_scaffold_page.dart';
-import '../../../../common_ui/common_widgets/text/text_widget.dart';
-import '../../../../navigationBar/navigation_bar_widget.dart';
+
 import '../widgets/line_row_widget.dart';
 import '../widgets/login_text_widget.dart';
+import '../../../../app_localizations.dart';
+import '../../../../config/theme/theme.dart';
+import '../../../../common_ui/utils/utils_email.dart';
+import '../../../../navigationBar/navigation_bar_widget.dart';
+import '../../../../config/helpers/form_submission_status.dart';
+import '../../../../common_ui/utils/utils_string_password.dart';
+import '../../../../common_ui/common_widgets/text/text_widget.dart';
+import '../../../../common_ui/common_pages/my_app_scaffold_page.dart';
+import '../../../../common_ui/common_widgets/buttons/main_button_widget.dart';
+import '../../../../common_ui/common_widgets/text_field/text_field_with_border_widget.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -192,7 +193,7 @@ class _LoginPageState extends State<LoginPage> {
         BlocConsumer<AuthBloc, AuthState>(
           listener: (BuildContext context, state) {
             if (state.formStatus is SubmissionSuccess) {
-              //BlocProvider.of<HelperToolsBloc>(context).add(GetTestTools());
+              //BlocProvider.of<AuthBloc>(context).add(GetUser());
               Navigator.push(
                 context,
                 MaterialPageRoute(
