@@ -1,10 +1,9 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:Tellme/features/auth/presentation/pages/login_page.dart';
 
-import '../common_widgets/loader_indicator_widget.dart';
 import 'my_app_scaffold_page.dart';
+import '../common_widgets/loader_indicator_widget.dart';
+import '../../features/auth/presentation/pages/login_page.dart';
 
 class SplashScreenPage extends StatefulWidget {
   const SplashScreenPage({super.key});

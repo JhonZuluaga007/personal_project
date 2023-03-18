@@ -27,6 +27,7 @@ class Data extends DataEntity {
     required List<RiskFactor> riskFactors,
     required List<SchoolLevel> schoolLevels,
     required List<Sex> sexes,
+    required List<States> states,
     required List<Symptom> symptoms,
     required List<TestResult> testResults,
     required List<TestStatus> testStatus,
@@ -40,6 +41,7 @@ class Data extends DataEntity {
           riskFactors: riskFactors,
           schoolLevels: schoolLevels,
           sexes: sexes,
+          states: states,
           symptoms: symptoms,
           testResults: testResults,
           testStatus: testStatus,
@@ -59,6 +61,8 @@ class Data extends DataEntity {
         schoolLevels: List<SchoolLevel>.from(
             json["school_levels"].map((x) => SchoolLevel.fromJson(x))),
         sexes: List<Sex>.from(json["sexes"].map((x) => Sex.fromJson(x))),
+        states:
+            List<States>.from(json["states"].map((x) => States.fromJson(x))),
         symptoms: List<Symptom>.from(
             json["symptoms"].map((x) => Symptom.fromJson(x))),
         testResults: List<TestResult>.from(
@@ -189,6 +193,21 @@ class Sex extends OpSexEntity {
   factory Sex.fromJson(Map<String, dynamic> json) => Sex(
         id: Id.fromJson(json["_id"]),
         sex: json["sex"],
+      );
+}
+
+class States extends OpStatesEntity {
+  States({
+    required Id id,
+    required String states,
+  }) : super(
+          id: id.oid,
+          states: states,
+        );
+
+  factory States.fromJson(Map<String, dynamic> json) => States(
+        id: Id.fromJson(json["_id"]),
+        states: json["state"],
       );
 }
 

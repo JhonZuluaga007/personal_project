@@ -1,3 +1,5 @@
+import 'package:Tellme/features/test_history/data/models/test_history_models.dart';
+
 import '../../domain/entities/user_entity_login.dart';
 
 class UserModelLogin extends UserEntityLogin {
@@ -148,11 +150,11 @@ class User extends UserEntity {
     required String password,
     required bool passwordReset,
     required String profileImage,
-    required List<Id> projects,
+    required List<IdHistory> projects,
     required List<Race> race,
     required List<String> roles,
     //required List<String> schoolLevel,
-    required List<Id> schoolLevels,
+    required List<SchoolLevels> schoolLevels,
     required List<Sex> sex,
   }) : super(
           id: id,
@@ -206,11 +208,14 @@ class User extends UserEntity {
         password: json["password"],
         passwordReset: json["password_reset"],
         profileImage: json["profile_image"],
-        projects: List<Id>.from(json["projects"].map((x) => Id.fromJson(x))),
+        projects: List<IdHistory>.from(json["projects"].map((x) => IdHistory.fromMap(x))),
         race: List<Race>.from(json["race"].map((x) => Race.fromJson(x))),
         roles: List<String>.from(json["roles"].map((x) => x)),
         //schoolLevel: List<String>.from(json["school_level"].map((x) => x)),
-        schoolLevels: List<Id>.from(json["school_levels"].map((x) => Id.fromJson(x))),
+        schoolLevels: json["school_levels"] != null
+            ? List<SchoolLevels>.from(
+                json["school_levels"].map((x) => SchoolLevels.fromJson(x)))
+            : [],
         sex: List<Sex>.from(json["sex"].map((x) => Sex.fromJson(x))),
       );
 }
@@ -219,7 +224,7 @@ class Address extends AddressEntity {
   Address({
     required String address,
     required String city,
-    required List<dynamic> state,
+    required List<State> state,
     required String zip,
   }) : super(
           address: address,
@@ -231,16 +236,45 @@ class Address extends AddressEntity {
   factory Address.fromJson(Map<String, dynamic> json) => Address(
         address: json["address"],
         city: json["city"],
-        state: List<dynamic>.from(json["state"].map((x) => x)),
+        state: List<State>.from(json["state"].map((x) => State.fromJson(x))),
         zip: json["zip"],
       );
+}
 
-  Map<String, dynamic> toJson() => {
-        "address": address,
-        "city": city,
-        "state": state,
-        "zip": zip,
-      };
+class SchoolLevels extends SchoolLevelsEntity {
+  SchoolLevels({
+    required IdHistory id,
+    required String level,
+    required int order,
+    required IdHistory project,
+  }) : super(
+          id: id,
+          level: level,
+          order: order,
+          project: project,
+        );
+
+  factory SchoolLevels.fromJson(Map<String, dynamic> json) => SchoolLevels(
+        id: json["_id"] != null ? IdHistory.fromMap(json["_id"]) : IdHistory(oid: ""),
+        level: json["level"] ?? "",
+        order: json["order"] ?? 1,
+        project: json["project"] != null ? IdHistory.fromMap(json["project"]) : IdHistory(oid: ""),
+      );
+}
+
+class State extends StateEntity {
+  State({
+    required IdHistory id,
+    required String ethnicity,
+  }) : super(
+          id: id,
+          state: ethnicity,
+        );
+
+  factory State.fromJson(Map<String, dynamic> json) => State(
+        id: IdHistory.fromMap(json["_id"]),
+        ethnicity: json["state"],
+      );
 }
 
 class DateOfBirth extends DateOfBirthEntity {
@@ -259,7 +293,7 @@ class DateOfBirth extends DateOfBirthEntity {
 
 class Ethnicity extends EthnicityEntity {
   Ethnicity({
-    required Id id,
+    required IdHistory id,
     required String ethnicity,
   }) : super(
           id: id,
@@ -267,14 +301,14 @@ class Ethnicity extends EthnicityEntity {
         );
 
   factory Ethnicity.fromJson(Map<String, dynamic> json) => Ethnicity(
-        id: Id.fromJson(json["_id"]),
+        id: IdHistory.fromMap(json["_id"]),
         ethnicity: json["ethnicity"],
       );
 }
 
 class Gender extends GenderEntity {
   Gender({
-    required Id id,
+    required IdHistory id,
     required String gender,
   }) : super(
           id: id,
@@ -282,14 +316,14 @@ class Gender extends GenderEntity {
         );
 
   factory Gender.fromJson(Map<String, dynamic> json) => Gender(
-        id: Id.fromJson(json["_id"]),
+        id: IdHistory.fromMap(json["_id"]),
         gender: json["gender"],
       );
 }
 
 class Race extends RaceEntity {
   Race({
-    required Id id,
+    required IdHistory id,
     required String race,
   }) : super(
           id: id,
@@ -297,14 +331,14 @@ class Race extends RaceEntity {
         );
 
   factory Race.fromJson(Map<String, dynamic> json) => Race(
-        id: Id.fromJson(json["_id"]),
+        id: IdHistory.fromMap(json["_id"]),
         race: json["race"],
       );
 }
 
 class Sex extends SexEntity {
   Sex({
-    required Id id,
+    required IdHistory id,
     required String sex,
   }) : super(
           id: id,
@@ -312,7 +346,7 @@ class Sex extends SexEntity {
         );
 
   factory Sex.fromJson(Map<String, dynamic> json) => Sex(
-        id: Id.fromJson(json["_id"]),
+        id: IdHistory.fromMap(json["_id"]),
         sex: json["sex"],
       );
 }

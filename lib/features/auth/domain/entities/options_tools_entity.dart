@@ -18,6 +18,7 @@ class DataEntity {
     required this.riskFactors,
     required this.schoolLevels,
     required this.sexes,
+    required this.states,
     required this.symptoms,
     required this.testResults,
     required this.testStatus,
@@ -32,6 +33,7 @@ class DataEntity {
   final List<OpRiskFactorEntity> riskFactors;
   final List<OpSchoolLevelEntity> schoolLevels;
   final List<OpSexEntity> sexes;
+  final List<OpStatesEntity> states;
   final List<OpSymptomEntity> symptoms;
   final List<OpTestResultEntity> testResults;
   final List<OpTestStatusEntity> testStatus;
@@ -83,6 +85,13 @@ class OpSexEntity extends OpDropdown {
     required String id,
     required String sex,
   }) : super(id: id, valor: sex);
+}
+
+class OpStatesEntity extends OpDropdown {
+  OpStatesEntity({
+    required String id,
+    required String states,
+  }) : super(id: id, valor: states);
 }
 
 class OpRiskFactorEntity extends OpDropdown {
@@ -148,13 +157,6 @@ class OpVaccineEntity extends OpDropdown {
     required IdEntity project,
     required String vaccine,
   }) : super(id: id, valor: vaccine);
-}
-
-class OpStateEntity extends OpDropdown {
-  OpStateEntity({
-    required String id,
-    required String state,
-  }) : super(id: id, valor: state);
 }
 
 class OpSymptomsAntigenEntity extends OpDropdown {

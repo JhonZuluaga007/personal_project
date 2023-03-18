@@ -1,6 +1,7 @@
 import 'package:Tellme/features/auth/domain/entities/options_tools_entity.dart';
 import 'package:Tellme/features/auth/domain/entities/user_entity_login.dart';
 import 'package:either_dart/either.dart';
+import '../../domain/entities/user_update_entity.dart';
 import '../data_source/auth_data_source.dart';
 import '../../domain/repository/auth_repository.dart';
 import '../../domain/entities/change_password_entity.dart';
@@ -36,17 +37,16 @@ class AuthRepositoryImpl implements AuthRepository {
     }
   }
 
-  /*@override
-  Future<Either<InvalidData, ServerValidate>> userUpdateEntity(
+  Future<Either<InvalidData, UserEntityLogin>> userUpdateEntity(
       UserUpdateEntity userUpdateEntity) async {
     try {
-      final ServerValidate response =
+      final UserEntityLogin response =
           await authDataSource.userUpdateEntity(userUpdateEntity);
       return Right(response);
     } on InvalidData catch (invalidData) {
       return Left(invalidData);
     }
-  }*/
+  }
 
   @override
   Future<Either<InvalidData, ServerValidate>> resetPassword(

@@ -1,28 +1,29 @@
-import 'package:Tellme/features/auth/domain/entities/user_entity_login.dart';
+import 'user_entity_login.dart';
+import 'options_tools_entity.dart';
 
 class UserUpdateEntity {
   final String? userdId;
   final String? address;
   final String? city;
-  final String? state;
+  final OpStatesEntity? state;
   final String? zip;
-  final RaceEntity? race;
-  final EthnicityEntity? ethnicity;
-  final SexEntity? sex;
-  final GenderEntity? gender;
-  final String? levelSchool;
-  final String? file;
+  final OpRaceEntity? race;
+  final OpEthnicityEntity? ethnicity;
+  final OpSexEntity? sex;
+  final OpGenderEntity? gender;
+  final SchoolLevelsEntity? levelSchool;
+  final String? profileImage;
 
   UserUpdateEntity(
       {this.userdId,
-      required this.address,
-      required this.city,
-      required this.state,
-      required this.zip,
-      required this.race,
-      required this.ethnicity,
-      required this.sex,
-      required this.levelSchool,
-      required this.gender,
-      this.file});
+      this.address,
+      this.race,
+      this.ethnicity,
+      this.sex,
+      this.levelSchool,
+      this.gender,
+      this.city,
+      this.state,
+      this.zip,
+      this.profileImage});
 }

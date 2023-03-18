@@ -30,7 +30,7 @@ class HelperToolsBloc extends Bloc<HelperToolsEvent, HelperToolsState> {
                   testTypes: helperToolsList.data.testTypes,
                   testValidities: helperToolsList.data.testValidities,
                   vaccines: helperToolsList.data.vaccines,
-                  state: ConstLists.stateList,
+                  state: helperToolsList.data.states,
                   answer: ConstLists.dropdownYes,
                 ))
               });

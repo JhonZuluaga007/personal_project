@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 part of 'auth_bloc.dart';
 
 @immutable
@@ -8,13 +7,16 @@ class AuthState {
   final String? token;
   final String? userId;
   final bool? acceptsTerms;
-  final AddressEntity? address;
+  final String? address;
+  final String? city;
+  final String? zip;
+  final OpStatesEntity? state;
   final String? cellphone;
   final DateOfBirthEntity? dateOfBirth;
   final String? email;
-  final EthnicityEntity? ethnicity;
+  final OpEthnicityEntity? ethnicity;
   final bool? firstLogin;
-  final GenderEntity? gender;
+  final OpGenderEntity? gender;
   final bool? informationUpdated;
   final bool? isActive;
   final bool? isConfirmed;
@@ -26,11 +28,11 @@ class AuthState {
   final String? password;
   final bool? passwordReset;
   final String? profileImage;
-  final IdEntity? projects;
-  final RaceEntity? race;
+  final IdTestEntity? projects;
+  final OpRaceEntity? race;
   final String? roles;
-  final IdEntity? schoolLevels;
-  final SexEntity? sex;
+  final SchoolLevelsEntity? schoolLevels;
+  final OpSexEntity? sex;
   final String? errorMessage;
   final String? message;
   final FormSubmissionStatus formStatus;
@@ -43,7 +45,10 @@ class AuthState {
     this.token = '',
     this.userId = '',
     this.acceptsTerms = false,
-    this.address,
+    this.address = "",
+    this.city = "",
+    this.zip = "",
+    this.state,
     this.cellphone = '',
     this.dateOfBirth,
     this.email = '',
@@ -79,13 +84,16 @@ class AuthState {
     String? token,
     String? userId,
     bool? acceptsTerms,
-    AddressEntity? address,
+    String? address,
+    String? city,
+    String? zip,
+    OpStatesEntity? state,
     String? cellphone,
     DateOfBirthEntity? dateOfBirth,
     String? email,
-    EthnicityEntity? ethnicity,
+    OpEthnicityEntity? ethnicity,
     bool? firstLogin,
-    GenderEntity? gender,
+    OpGenderEntity? gender,
     bool? informationUpdated,
     bool? isActive,
     bool? isConfirmed,
@@ -97,11 +105,11 @@ class AuthState {
     String? password,
     bool? passwordReset,
     String? profileImage,
-    IdEntity? projects,
-    RaceEntity? race,
+    IdTestEntity? projects,
+    OpRaceEntity? race,
     String? roles,
-    IdEntity? schoolLevels,
-    SexEntity? sex,
+    SchoolLevelsEntity? schoolLevels,
+    OpSexEntity? sex,
     String? errorMessage,
     String? message,
     FormSubmissionStatus? formStatus,
@@ -114,13 +122,15 @@ class AuthState {
         token: '',
         userId: '',
         acceptsTerms: false,
-        address: AddressEntity(address: '', city: '', state: [""], zip: ''),
+        address: "",
+        city: "",
+        zip: "",
         cellphone: '',
         dateOfBirth: DateOfBirthEntity(date: DateTime.now()),
         email: '',
-        ethnicity: EthnicityEntity(id: IdEntity(oid: ''), ethnicity: ''),
+        ethnicity: OpEthnicityEntity(id: "", ethnicity: ""),
         firstLogin: false,
-        gender: GenderEntity(id: IdEntity(oid: ''), gender: ''),
+        gender: OpGenderEntity(id: "", gender: ""),
         informationUpdated: false,
         isActive: false,
         isConfirmed: false,
@@ -133,10 +143,10 @@ class AuthState {
         passwordReset: false,
         profileImage: '',
         projects: null,
-        race: RaceEntity(id: IdEntity(oid: ''), race: ''),
+        race: OpRaceEntity(id: "", race: ""),
         roles: '',
-        schoolLevels: IdEntity(oid: ""),
-        sex: SexEntity(id: IdEntity(oid: ''), sex: ''),
+        schoolLevels: SchoolLevelsEntity(id: IdTestEntity(oid: ""), level: "", order: 1, project: IdTestEntity(oid: "")),
+        sex: OpSexEntity(id: "", sex: ""),
         errorMessage: '',
         message: '',
         formChangePasswordStatus: const InitialFormStatus(),
@@ -156,13 +166,16 @@ class AuthState {
     String? token,
     String? userId,
     bool? acceptsTerms,
-    AddressEntity? address,
+    String? address,
+    String? city,
+    OpStatesEntity? state,
+    String? zip,
     String? cellphone,
     DateOfBirthEntity? dateOfBirth,
     String? email,
-    EthnicityEntity? ethnicity,
+    OpEthnicityEntity? ethnicity,
     bool? firstLogin,
-    GenderEntity? gender,
+    OpGenderEntity? gender,
     bool? informationUpdated,
     bool? isActive,
     bool? isConfirmed,
@@ -174,11 +187,11 @@ class AuthState {
     String? password,
     bool? passwordReset,
     String? profileImage,
-    IdEntity? projects,
-    RaceEntity? race,
+    IdTestEntity? projects,
+    OpRaceEntity? race,
     String? roles,
-    IdEntity? schoolLevels,
-    SexEntity? sex,
+    SchoolLevelsEntity? schoolLevels,
+    OpSexEntity? sex,
     String? errorMessage,
     String? message,
     FormSubmissionStatus? formStatus,
@@ -192,6 +205,9 @@ class AuthState {
       userId: userId ?? this.userId,
       acceptsTerms: acceptsTerms ?? this.acceptsTerms,
       address: address ?? this.address,
+      city: city ?? this.city,
+      zip: zip ?? this.zip,
+      state: state ?? this.state,
       cellphone: cellphone ?? this.cellphone,
       dateOfBirth: dateOfBirth ?? this.dateOfBirth,
       email: email ?? this.email,

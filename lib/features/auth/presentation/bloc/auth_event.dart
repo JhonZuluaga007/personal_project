@@ -13,10 +13,10 @@ class GetUser extends AuthEvent {
   GetUser();
 }
 
-/*class UserUpdateEvent extends AuthEvent {
+class UserUpdateEvent extends AuthEvent {
   final UserUpdateEntity userUpdateEntity;
   UserUpdateEvent(this.userUpdateEntity);
-}*/
+}
 
 class ResetPassword extends AuthEvent {
   final String email;
@@ -36,9 +36,9 @@ class ChangePassword extends AuthEvent {
 }
 
 class UpdateImage extends AuthEvent {
-  final String file;
+  final String profileImage;
 
-  UpdateImage(this.file);
+  UpdateImage(this.profileImage);
 }
 
 class SuccessChangePassword extends AuthEvent {

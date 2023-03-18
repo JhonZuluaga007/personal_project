@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:Tellme/features/home/page/edit_profile/widgets/build_pop_up_image_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -76,7 +77,7 @@ class _MyUserPageState extends State<MyUserPage> {
             return Center(
               child: Stack(alignment: AlignmentDirectional.center, children: [
                 //TODO: CHECK EDIT IMAGE PENCIL
-               /* state.image != null
+               state.profileImage != null
                     ? CircleAvatar(
                         radius: 100,
                         backgroundColor: wColor.mapColors["P01"],
@@ -84,7 +85,7 @@ class _MyUserPageState extends State<MyUserPage> {
                           width: width * 0.79,
                           height: height * 0.30,
                           placeholder: AssetImage(imagePath),
-                          image: NetworkImage(state.image!),
+                          image: NetworkImage(state.profileImage!),
                           imageErrorBuilder: (BuildContext context,
                               Object exception, StackTrace? stackTrace) {
                             return Image.asset(imagePath);
@@ -118,7 +119,7 @@ class _MyUserPageState extends State<MyUserPage> {
                           width: width * 0.79,
                           height: height * 0.30,
                           placeholder: AssetImage(imagePath),
-                          image: NetworkImage(state.image!),
+                          image: NetworkImage(state.profileImage!),
                           imageErrorBuilder: (BuildContext context,
                               Object exception, StackTrace? stackTrace) {
                             return Image.asset(imagePath);
@@ -164,7 +165,7 @@ class _MyUserPageState extends State<MyUserPage> {
                               Navigator.pop(context);
                             }),
                           ),
-                        )),*/
+                        )),
               ]),
             );
           },
