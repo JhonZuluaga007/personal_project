@@ -4,25 +4,25 @@ class UserUpdateEntity {
   final String? userdId;
   final String? address;
   final String? city;
-  final String? state;
+  final List<StateEntity>? state;
   final String? zip;
   final RaceEntity? race;
   final EthnicityEntity? ethnicity;
   final SexEntity? sex;
   final GenderEntity? gender;
-  final String? levelSchool;
-  final String? file;
+  final SchoolLevelsEntity? levelSchool;
+  final String? profileImage;
 
   UserUpdateEntity(
       {this.userdId,
-      required this.address,
-      required this.city,
-      required this.state,
-      required this.zip,
-      required this.race,
-      required this.ethnicity,
-      required this.sex,
-      required this.levelSchool,
-      required this.gender,
-      this.file});
+      this.address,
+      this.race,
+      this.ethnicity,
+      this.sex,
+      this.levelSchool,
+      this.gender,
+      this.city,
+      this.state,
+      this.zip,
+      this.profileImage});
 }

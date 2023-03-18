@@ -1,4 +1,5 @@
-import 'package:Tellme/features/auth/data/models/options_tools_model.dart';
+import 'package:Tellme/features/auth/domain/entities/options_tools_entity.dart';
+import 'package:Tellme/features/test_history/domain/entities/test_history_entity.dart';
 
 class UserEntityLogin {
   UserEntityLogin({
@@ -124,11 +125,11 @@ class UserEntity {
   final String password;
   final bool passwordReset;
   final String profileImage;
-  final List<IdEntity> projects;
+  final List<IdTestEntity> projects;
   final List<RaceEntity> race;
   final List<String> roles;
   //final List<String> schoolLevel;
-  final List<IdEntity> schoolLevels;
+  final List<SchoolLevelsEntity> schoolLevels;
   final List<SexEntity> sex;
 }
 
@@ -140,10 +141,24 @@ class AddressEntity {
     required this.zip,
   });
 
-  final String address;
-  final String city;
-  final List<dynamic> state;
-  final String zip;
+  final String? address;
+  final String? city;
+  final List<StateEntity>? state;
+  final String? zip;
+}
+
+class SchoolLevelsEntity {
+  SchoolLevelsEntity({
+    required this.id,
+    required this.level,
+    required this.order,
+    required this.project,
+  });
+
+  final IdTestEntity id;
+  final String level;
+  final int? order;
+  final IdTestEntity? project;
 }
 
 class DateOfBirthEntity {
@@ -154,44 +169,42 @@ class DateOfBirthEntity {
   final DateTime date;
 }
 
-class EthnicityEntity {
+class EthnicityEntity extends OpEthnicityEntity {
   EthnicityEntity({
-    required this.id,
-    required this.ethnicity,
-  });
-
-  final IdEntity id;
-  final String ethnicity;
+    required IdTestEntity id,
+    required String ethnicity,
+  }) : super(id: id.oid, ethnicity: ethnicity);
 }
 
-class GenderEntity {
+class StateEntity {
+  StateEntity({
+    required this.id,
+    required this.state,
+  });
+
+  final IdTestEntity id;
+  final String? state;
+}
+
+class GenderEntity extends OpGenderEntity {
   GenderEntity({
-    required this.id,
-    required this.gender,
-  });
-
-  final IdEntity id;
-  final String gender;
+    required IdTestEntity id,
+    required String gender,
+  }) : super(id: id.oid, gender: gender);
 }
 
-class RaceEntity {
+class RaceEntity extends OpRaceEntity {
   RaceEntity({
-    required this.id,
-    required this.race,
-  });
-
-  final IdEntity id;
-  final String race;
+    required IdTestEntity id,
+    required String race,
+  }) : super(id: id.oid, race: race);
 }
 
-class SexEntity {
+class SexEntity extends OpSexEntity {
   SexEntity({
-    required this.id,
-    required this.sex,
-  });
-
-  final IdEntity id;
-  final String sex;
+    required IdTestEntity id,
+    required String sex,
+  }) : super(id: id.oid, sex: sex);
 }
 
 class MessageEntity {

@@ -1,8 +1,14 @@
+import 'dart:convert';
 import 'dart:io';
+import 'package:Tellme/config/theme/theme.dart';
+import 'package:Tellme/features/home/page/edit_profile/widgets/build_pop_up_image_widget.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import '../../widget/info_column_widget.dart';
+import '../../widget/test_widgets/app_bar_widget.dart';
 import '../../widget/text_field_form_my_profile.dart';
 import '../../../auth/presentation/bloc/auth_bloc.dart';
 import '../../../../config/helpers/form_submission_status.dart';
@@ -30,24 +36,32 @@ class _EditUserFromBottomPageState extends State<EditUserFromBottomPage> {
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.height;
+    final wColor = ThemesIdx20();
 
-    // Future getImageBottom(ImageSource source) async {
-    //   try {
-    //     final image =
-    //         await ImagePicker().pickImage(source: source, imageQuality: 5);
-    //     if (image == null) return;
-    //     final imageCameraTemporary = File(image.path);
-    //     // final imagePermanent = await saveFilePerma(image.path);
-    //     BlocProvider.of<AuthBloc>(context)
-    //         .add(UpdateImage(imageCameraTemporary.path));
-    //     setState(() {
-    //       imageDisplayed = imageCameraTemporary;
-    //       print(imageDisplayed!.path);
-    //     });
-    //   } on PlatformException catch (e) {
-    //     debugPrint('Failed to pick image: $e');
-    //   }
-    // }
+    Future getImageBottom(ImageSource source) async {
+      try {
+        final image =
+            await ImagePicker().pickImage(source: source, imageQuality: 5);
+        if (image == null) return;
+        final imageCameraTemporary = File(image.path);
+        if (imageCameraTemporary != null) {
+          final bytes = imageCameraTemporary.readAsBytesSync();
+          String img64 = base64Encode(bytes);
+          BlocProvider.of<AuthBloc>(context).add(UpdateImage(img64));
+        }
+        if (imageDisplayed == '' || imageDisplayed == null) {
+          String image64 = base64.encode(imagePath.codeUnits);
+          BlocProvider.of<AuthBloc>(context).add(UpdateImage(image64));
+        }
+        setState(() {
+          imageDisplayed = imageCameraTemporary;
+          print(imageDisplayed!.path);
+        });
+      } on PlatformException catch (e) {
+        debugPrint('Failed to pick image: $e');
+      }
+    }
 
     return MyAppScaffold(
       children: [
@@ -75,7 +89,7 @@ class _EditUserFromBottomPageState extends State<EditUserFromBottomPage> {
                   children: [
                     Stack(alignment: AlignmentDirectional.center, children: [
                       //TODO: CHECK EDIT IMAGE PENCIL
-                      /*state.image != null
+                      state.profileImage != null
                           ? CircleAvatar(
                               radius: 100,
                               backgroundColor: wColor.mapColors["P01"],
@@ -83,7 +97,7 @@ class _EditUserFromBottomPageState extends State<EditUserFromBottomPage> {
                                 width: width * 0.79,
                                 height: height * 0.30,
                                 placeholder: AssetImage(imagePath),
-                                image: NetworkImage(state.image!),
+                                image: NetworkImage(state.profileImage!),
                                 imageErrorBuilder: (BuildContext context,
                                     Object exception, StackTrace? stackTrace) {
                                   return Image.asset(imagePath);
@@ -119,7 +133,7 @@ class _EditUserFromBottomPageState extends State<EditUserFromBottomPage> {
                                 width: width * 0.79,
                                 height: height * 0.30,
                                 placeholder: AssetImage(imagePath),
-                                image: NetworkImage(state.image!),
+                                image: NetworkImage(state.profileImage!),
                                 imageErrorBuilder: (BuildContext context,
                                     Object exception, StackTrace? stackTrace) {
                                   return Image.asset(imagePath);
@@ -158,7 +172,7 @@ class _EditUserFromBottomPageState extends State<EditUserFromBottomPage> {
                                 width: width * 0.79,
                                 height: height * 0.30,
                                 placeholder: AssetImage(imagePath),
-                                image: NetworkImage(state.image!),
+                                image: NetworkImage(state.profileImage!),
                                 imageErrorBuilder: (context, Object exception,
                                     StackTrace? stackTrace) {
                                   return Image.asset(imagePath);
@@ -204,18 +218,17 @@ class _EditUserFromBottomPageState extends State<EditUserFromBottomPage> {
                                     Navigator.pop(context);
                                   }),
                                 ),
-                              )),*/
+                              )),
                     ]),
                     SizedBox(height: height * 0.060),
                     const InfoColumnWidget(),
                     SizedBox(height: height * 0.030),
                     TextFieldFormMyUser(
-                      textTitle: 'my_user_text_field_hint',
-                      iconTextField:
-                          const Icon(Icons.keyboard_arrow_down_rounded),
-                      hintText: "my_user_text_field_label",
-                      //imageState: state.image == null ? imageDisplayed!.path : state.image
-                    )
+                        textTitle: 'my_user_text_field_hint',
+                        iconTextField:
+                            const Icon(Icons.keyboard_arrow_down_rounded),
+                        hintText: "my_user_text_field_label",
+                        imageState: state.profileImage)
                   ],
                 ),
               );

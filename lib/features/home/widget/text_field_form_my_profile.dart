@@ -1,8 +1,19 @@
+import 'package:Tellme/features/auth/presentation/bloc/helper_tools_bloc.dart';
+import 'package:Tellme/features/home/widget/test_widgets/app_bar_widget.dart';
+import 'package:Tellme/features/test_history/domain/entities/test_history_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../auth/presentation/bloc/auth_bloc.dart';
+import '../../../common_ui/common_widgets/buttons/main_button_widget.dart';
+import '../../../common_ui/common_widgets/text_field/text_field_with_border_widget.dart';
+import '../../../common_ui/utils/const_list.dart';
+import '../../antigen/presentation/ui/widgets/drop_down_questions_widget.dart';
 import '../../../navigationBar/bloc/navigation_bar_bloc.dart';
+import '../../auth/domain/entities/user_entity_login.dart';
+import '../../auth/domain/entities/user_update_entity.dart';
+import '../../auth/presentation/bloc/auth_bloc.dart';
+import '../../medical_history/presentation/widgets/confirm_alert_widget.dart';
+import '../../medical_history/presentation/widgets/done_alert_widget.dart';
 
 class TextFieldFormMyUser extends StatefulWidget {
   const TextFieldFormMyUser(
@@ -17,7 +28,7 @@ class TextFieldFormMyUser extends StatefulWidget {
   final Icon? iconTextField;
   final String? imageState;
 
-  @override
+  // @override
   State<TextFieldFormMyUser> createState() => _TextFieldFormMyUserState();
 }
 
@@ -28,13 +39,13 @@ class _TextFieldFormMyUserState extends State<TextFieldFormMyUser> {
   String defaultValueRace = 'Select option';
   String defaultValueEthnicity = 'Select option';
   String defaultValueSchool = 'Select option';
-  /*SexEntity selectedSexValue = SexEntity(id: '', sex: '');
-  GenderEntity selectedGenderValue = GenderEntity(id: '', gender: '');
-  RaceEntity selectedRaceValue = RaceEntity(id: '', race: '');
+  SexEntity selectedSexValue = SexEntity(id: IdTestEntity(oid: ""), sex: '');
+  GenderEntity selectedGenderValue = GenderEntity(id: IdTestEntity(oid: ""), gender: '');
+  RaceEntity selectedRaceValue = RaceEntity(id: IdTestEntity(oid: ""), race: '');
   EthnicityEntity selectedEtnichityValue =
-      EthnicityEntity(id: '', ethnicity: '');*/
-  String selectedStateValue = '';
-  String selectedSchoolLevel = '';
+      EthnicityEntity(id: IdTestEntity(oid: ""), ethnicity: '');
+  StateEntity selectedStateValue = StateEntity(id: IdTestEntity(oid: ""), state: "");
+  SchoolLevelsEntity selectedSchoolLevel = SchoolLevelsEntity(id: IdTestEntity(oid: ""), level: "", order: 1, project: IdTestEntity(oid: ""));
 
   TextEditingController addressController = TextEditingController(text: "");
   TextEditingController cityController = TextEditingController(text: "");
@@ -42,142 +53,145 @@ class _TextFieldFormMyUserState extends State<TextFieldFormMyUser> {
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.height;
     final height = MediaQuery.of(context).size.height;
+    final stateHelperTools = BlocProvider.of<HelperToolsBloc>(context).state;
     NavigationBarBloc navigationBloc =
         BlocProvider.of<NavigationBarBloc>(context);
-
-    //final helperToolsState = BlocProvider.of<HelperToolsBloc>(context).state;
-/*
-    final List<OpGenderEntity> genderAnswer = helperToolsState.opGender;
-    final List<OpSexEntity> sexAnswer = helperToolsState.opSex;
-    final List<OpRaceEntity> raceAnswer = helperToolsState.opRace;
-    final List<OpEthnicityEntity> ethnicityAnswer =
-        helperToolsState.opEthnicity;*/
 
     return BlocBuilder<AuthBloc, AuthState>(
       builder: (context, state) {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            //TODO: CHECK
-            // TextFieldWithBorderWidget(
-            //   borderColor: wColor.mapColors["T100"],
-            //   requiresTranslate: false,
-            //   textEditingController: addressController,
-            //   hintStyle: TextStyle(
-            //       fontSize: 16,
-            //       fontWeight: FontWeight.w400,
-            //       color: wColor.mapColors["S600"]),
-            //   hintText: state.address ?? "",
-            //   textStyle: const TextStyle(fontSize: 18),
-            //   labelText: 'profile_text_seven',
-            //   widthBorder: 3,
-            // ),
-            // SizedBox(height: height * 0.0250),
-            // TextFieldWithBorderWidget(
-            //   borderColor: wColor.mapColors["T100"],
-            //   requiresTranslate: false,
-            //   textEditingController: cityController,
-            //   hintStyle: TextStyle(
-            //       fontSize: 16,
-            //       fontWeight: FontWeight.w400,
-            //       color: wColor.mapColors["S600"]),
-            //   hintText: state.city ?? "",
-            //   textStyle: const TextStyle(fontSize: 18),
-            //   labelText: 'profile_text_hint_eigth',
-            //   widthBorder: 3,
-            // ),
-            // SizedBox(height: height * 0.0250),
-            // TextFieldWithBorderWidget(
-            //   requiresTranslate: false,
-            //   borderColor: wColor.mapColors["T100"],
-            //   textEditingController: zipController,
-            //   hintStyle: TextStyle(
-            //       fontSize: 16,
-            //       fontWeight: FontWeight.w400,
-            //       color: wColor.mapColors["S600"]),
-            //   hintText: state.zip ?? "050001",
-            //   textStyle: const TextStyle(fontSize: 18),
-            //   labelText: "profile_text_hint_ten",
-            //   widthBorder: 3,
-            // ),
-            // SizedBox(height: height * 0.0250),
-            /*DropDownQuestionsWidget(
+            TextFieldWithBorderWidget(
+              borderColor: wColor.mapColors["T100"],
+              requiresTranslate: false,
+              textEditingController: addressController,
+              hintStyle: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w400,
+                  color: wColor.mapColors["S600"]),
+              hintText: state.address ?? "",
+              textStyle: const TextStyle(fontSize: 18),
+              labelText: 'profile_text_seven',
+              widthBorder: 3,
+            ),
+            SizedBox(height: height * 0.0250),
+            TextFieldWithBorderWidget(
+              borderColor: wColor.mapColors["T100"],
+              requiresTranslate: false,
+              textEditingController: cityController,
+              hintStyle: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w400,
+                  color: wColor.mapColors["S600"]),
+              hintText: state.city ?? "",
+              textStyle: const TextStyle(fontSize: 18),
+              labelText: 'profile_text_hint_eigth',
+              widthBorder: 3,
+            ),
+            SizedBox(height: height * 0.0250),
+            TextFieldWithBorderWidget(
+              requiresTranslate: false,
+              borderColor: wColor.mapColors["T100"],
+              textEditingController: zipController,
+              hintStyle: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w400,
+                  color: wColor.mapColors["S600"]),
+              hintText: state.zip ?? "050001",
+              textStyle: const TextStyle(fontSize: 18),
+              labelText: "profile_text_hint_ten",
+              widthBorder: 3,
+            ),
+            SizedBox(height: height * 0.0250),
+            DropDownQuestionsWidget(
                 dropDownItem: ConstLists.stateList,
                 textQuestion: "profile_text_hint_nine",
                 width: width,
                 onChanged: (valueDropdown) {
                   setState(() {
                     defaultValueState = valueDropdown!.valor;
-                    selectedStateValue = valueDropdown.valor;
+                    selectedStateValue = StateEntity(id: IdTestEntity(oid: ""), state: valueDropdown.valor);
                   });
                 },
-                dropDownValue: state.state ?? 'Select option'),
+                dropDownValue: state.state != null
+                    ? state.state![0].state!
+                    : selectedStateValue.state!),
             SizedBox(height: height * 0.0250),
             DropDownQuestionsWidget(
-                dropDownItem: sexAnswer,
+                dropDownItem: stateHelperTools.sexes,
                 textQuestion: "sex_question",
                 width: width,
-                selectedString: selectedSexValue.sex,
+                selectedString: selectedSexValue.valor,
                 onChanged: (valueDropdown) {
                   setState(() {
                     defaultValueSex = valueDropdown!.valor;
                     selectedSexValue = SexEntity(
-                        id: valueDropdown.id, sex: valueDropdown.valor);
+                        id: IdTestEntity(oid: valueDropdown.id), sex: valueDropdown.valor);
                   });
                 },
-                dropDownValue: state.sex!.sex ?? 'Select option'),
+                dropDownValue:
+                    state.sex != null ? state.sex!.valor : defaultValueSex),
             SizedBox(height: height * 0.0250),
             DropDownQuestionsWidget(
-                dropDownItem: genderAnswer,
+                dropDownItem: stateHelperTools.genders,
                 textQuestion: "gender_answer_question",
                 width: width,
                 onChanged: (valueDropdown) {
                   setState(() {
                     defaultValueSex = valueDropdown!.valor;
                     selectedGenderValue = GenderEntity(
-                        id: valueDropdown.id, gender: valueDropdown.valor);
+                        id: IdTestEntity(oid: valueDropdown.id), gender: valueDropdown.valor);
                   });
                 },
-                dropDownValue: state.gender!.gender ?? 'Select option'),
+                dropDownValue: state.gender != null
+                    ? state.gender!.valor
+                    : defaultValueGender),
             SizedBox(height: height * 0.0250),
             DropDownQuestionsWidget(
-                dropDownItem: raceAnswer,
+                dropDownItem: stateHelperTools.races,
                 textQuestion: "race_answer_question",
                 width: width,
                 onChanged: (valueDropdown) {
                   setState(() {
                     defaultValueSex = valueDropdown!.valor;
                     selectedRaceValue = RaceEntity(
-                        id: valueDropdown.id, race: valueDropdown.valor);
+                        id: IdTestEntity(oid: valueDropdown.id), race: valueDropdown.valor);
                   });
                 },
-                dropDownValue: state.race!.race ?? 'Select option'),
+                dropDownValue:
+                    state.race != null ? state.race!.valor : defaultValueRace),
             SizedBox(height: height * 0.0250),
             DropDownQuestionsWidget(
-                dropDownItem: ethnicityAnswer,
+                dropDownItem: stateHelperTools.ethnicities,
                 textQuestion: "ethnicity_question",
                 width: width,
                 onChanged: (valueDropdown) {
                   setState(() {
                     defaultValueSex = valueDropdown!.valor;
                     selectedEtnichityValue = EthnicityEntity(
-                        id: valueDropdown.id, ethnicity: valueDropdown.valor);
+                        id: IdTestEntity(oid: valueDropdown.id), ethnicity: valueDropdown.valor);
                   });
                 },
-                dropDownValue: state.ethnicity!.ethnicity ?? 'Select option'),
+                dropDownValue: state.ethnicity != null
+                    ? state.ethnicity!.valor
+                    : defaultValueEthnicity),
             SizedBox(height: height * 0.025),
             DropDownQuestionsWidget(
-                dropDownItem: ConstLists.schoolLevelList,
+                dropDownItem: stateHelperTools.schoolLevels,
                 textQuestion: "graduate_level",
                 width: width,
                 onChanged: (valueDropdown) {
                   setState(() {
                     defaultValueSchool = valueDropdown!.valor;
-                    selectedSchoolLevel = valueDropdown.id;
+                    selectedSchoolLevel = SchoolLevelsEntity(id: IdTestEntity(oid: ""), level: valueDropdown.id, order: 1, project: IdTestEntity(oid: ""));
                   });
                 },
-                dropDownValue: state.levelSchool ?? 'Select option'),
+                dropDownValue: state.schoolLevels != null
+                    ? state.schoolLevels!.level
+                    : defaultValueSchool),
             SizedBox(height: height * 0.010),
             SizedBox(height: height * 0.0485),
             Center(
@@ -227,26 +241,26 @@ class _TextFieldFormMyUserState extends State<TextFieldFormMyUser> {
                                 zip: zipController.text != ''
                                     ? zipController.text
                                     : state.zip,
-                                state: selectedStateValue != ''
-                                    ? selectedStateValue
-                                    : state.state,
-                                sex: selectedSexValue.sex != ''
+                                state: selectedStateValue != []
+                                    ? state.state
+                                    : [selectedStateValue],
+                                sex: selectedSexValue.valor != ''
                                     ? selectedSexValue
                                     : state.sex,
-                                gender: selectedGenderValue.gender != ''
+                                gender: selectedGenderValue.valor != ''
                                     ? selectedGenderValue
                                     : state.gender,
-                                race: selectedRaceValue.race != ''
+                                race: selectedRaceValue.valor != ''
                                     ? selectedRaceValue
                                     : state.race,
-                                levelSchool: selectedSchoolLevel != ''
+                                levelSchool: [selectedSchoolLevel] != []
                                     ? selectedSchoolLevel
-                                    : state.levelSchool,
+                                    : state.schoolLevels,
                                 ethnicity:
-                                    selectedEtnichityValue.ethnicity != ''
+                                    selectedEtnichityValue.valor != ''
                                         ? selectedEtnichityValue
                                         : state.ethnicity,
-                                file: state.image,
+                                profileImage: state.profileImage,
                               ),
                             ),
                           );
@@ -262,7 +276,7 @@ class _TextFieldFormMyUserState extends State<TextFieldFormMyUser> {
                   );
                 },
               ),
-            ),*/
+            ),
             SizedBox(height: height * 0.0485),
           ],
         );

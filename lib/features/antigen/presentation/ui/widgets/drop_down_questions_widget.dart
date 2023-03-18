@@ -58,7 +58,9 @@ class _DropDownQuestionsWidgetState extends State<DropDownQuestionsWidget> {
           width: width,
           height: height * 0.072,
           child: DropdownButtonFormField(
+            isExpanded: true,
             decoration: InputDecoration(
+                floatingLabelBehavior: FloatingLabelBehavior.always,
                 enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(4),
                     borderSide: BorderSide(
@@ -73,10 +75,11 @@ class _DropDownQuestionsWidgetState extends State<DropDownQuestionsWidget> {
                     padding: EdgeInsets.only(left: width * 0.01),
                     child: TextWidget(
                       requiresTranslate: false,
-                      textAlign: TextAlign.center,
+                      textAlign: TextAlign.right,
                       text: value.valor,
                       style: widget.dropTextStyle ??
                           TextStyle(
+                              overflow: TextOverflow.ellipsis,
                               fontSize: 16,
                               fontWeight: FontWeight.w500,
                               letterSpacing: -0.2,
@@ -86,8 +89,9 @@ class _DropDownQuestionsWidgetState extends State<DropDownQuestionsWidget> {
             }).toList(),
             hint: Text(
               widget.dropDownValue,
-              textAlign: TextAlign.center,
+              textAlign: TextAlign.right,
               style: TextStyle(
+                  overflow: TextOverflow.ellipsis,
                   fontSize: 16,
                   fontWeight: FontWeight.w500,
                   letterSpacing: -0.2,
@@ -97,6 +101,7 @@ class _DropDownQuestionsWidgetState extends State<DropDownQuestionsWidget> {
             iconSize: 16,
             borderRadius: BorderRadius.circular(5),
             style: TextStyle(
+                overflow: TextOverflow.ellipsis,
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
                 letterSpacing: -0.2,

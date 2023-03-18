@@ -5,6 +5,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+import '../../domain/entities/user_entity_login.dart';
+import '../../domain/entities/user_update_entity.dart';
 import '../models/user_model.dart';
 import '../../../../config/helpers/api.dart';
 import '../../../../config/helpers/endpoints.dart';
@@ -44,52 +46,28 @@ class AuthDataSource {
     }
   }
 
-  /*Future<ServerValidate> userUpdateEntity(
+  Future<UserModelLogin> userUpdateEntity(
       UserUpdateEntity userUpdateEntity) async {
-    var request = http.MultipartRequest(
-        'PUT', Uri.parse(Endpoints.getUser + userUpdateEntity.userdId!));
+    var response = await Api.put(Endpoints.editProfile, {
+      "project": "ChelseaProject",
+      "address": userUpdateEntity.address,
+      "city": userUpdateEntity.city,
+      "state": userUpdateEntity.state,
+      "zip": userUpdateEntity.zip,
+      "gender": userUpdateEntity.gender!.id,
+      "sex": userUpdateEntity.sex!.id,
+      "ethnicity": userUpdateEntity.ethnicity!.id,
+      "race": userUpdateEntity.race!.id,
+      "school_level": userUpdateEntity.levelSchool,
+      "profileImage": userUpdateEntity.profileImage
+    });
 
-    request.fields.addAll(
-      {
-        'address': userUpdateEntity.address!,
-        'city': userUpdateEntity.city!,
-        'state': userUpdateEntity.state!,
-        'zip': userUpdateEntity.zip!,
-        'race': userUpdateEntity.race!.id!,
-        'ethnicity': userUpdateEntity.ethnicity!.id!,
-        'sex': userUpdateEntity.sex!.id!,
-        'gender': userUpdateEntity.gender!.id!,
-        'level_school': "Trade/technical/vocational training",
-      },
-    );
-
-    var file = File(userUpdateEntity.file!);
-
-    request.files.add(
-      await http.MultipartFile.fromPath(
-        'files',
-        file.path,
-      ),
-    );
-
-    http.StreamedResponse response = await request.send();
-
-    if (response.statusCode == 200) {
-      final responseString = await response.stream.bytesToString();
-      final decodedMap = json.decode(responseString);
-      bool success = false;
-      if (decodedMap['statusCode'] == 200) {
-        success = true;
-      }
-      return success
-          ? ServerValidate(message: "Changes saved", statusCode: 200)
-          : throw InvalidData(
-              "We could not update your password. Make sure your current password is correct");
+    if (response["statusCode"] == 200) {
+      return UserModelLogin.fromJson(response);
     } else {
-      throw InvalidData(
-          "We could not update your password. Make sure your current password is correct");
+      throw InvalidData("Data not saved correctly");
     }
-  }*/
+  }
 
   Future<ServerValidate> resetPassword(String email) async {
     Api.clearHeaders();

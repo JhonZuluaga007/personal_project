@@ -8,7 +8,10 @@ class AuthState {
   final String? token;
   final String? userId;
   final bool? acceptsTerms;
-  final AddressEntity? address;
+  final String? address;
+  final String? city;
+  final String? zip;
+  final List<StateEntity>? state;
   final String? cellphone;
   final DateOfBirthEntity? dateOfBirth;
   final String? email;
@@ -26,10 +29,10 @@ class AuthState {
   final String? password;
   final bool? passwordReset;
   final String? profileImage;
-  final IdEntity? projects;
+  final IdTestEntity? projects;
   final RaceEntity? race;
   final String? roles;
-  final IdEntity? schoolLevels;
+  final SchoolLevelsEntity? schoolLevels;
   final SexEntity? sex;
   final String? errorMessage;
   final String? message;
@@ -43,7 +46,10 @@ class AuthState {
     this.token = '',
     this.userId = '',
     this.acceptsTerms = false,
-    this.address,
+    this.address = "",
+    this.city = "",
+    this.zip = "",
+    this.state,
     this.cellphone = '',
     this.dateOfBirth,
     this.email = '',
@@ -79,7 +85,10 @@ class AuthState {
     String? token,
     String? userId,
     bool? acceptsTerms,
-    AddressEntity? address,
+    String? address,
+    String? city,
+    String? zip,
+    List<StateEntity>? state,
     String? cellphone,
     DateOfBirthEntity? dateOfBirth,
     String? email,
@@ -97,10 +106,10 @@ class AuthState {
     String? password,
     bool? passwordReset,
     String? profileImage,
-    IdEntity? projects,
+    IdTestEntity? projects,
     RaceEntity? race,
     String? roles,
-    IdEntity? schoolLevels,
+    SchoolLevelsEntity? schoolLevels,
     SexEntity? sex,
     String? errorMessage,
     String? message,
@@ -114,13 +123,16 @@ class AuthState {
         token: '',
         userId: '',
         acceptsTerms: false,
-        address: AddressEntity(address: '', city: '', state: [""], zip: ''),
+        address: "",
+        city: "",
+        state: [],
+        zip: "",
         cellphone: '',
         dateOfBirth: DateOfBirthEntity(date: DateTime.now()),
         email: '',
-        ethnicity: EthnicityEntity(id: IdEntity(oid: ''), ethnicity: ''),
+        ethnicity: EthnicityEntity(id: IdTestEntity(oid: ""), ethnicity: ""),
         firstLogin: false,
-        gender: GenderEntity(id: IdEntity(oid: ''), gender: ''),
+        gender: GenderEntity(id: IdTestEntity(oid: ""), gender: ""),
         informationUpdated: false,
         isActive: false,
         isConfirmed: false,
@@ -133,10 +145,10 @@ class AuthState {
         passwordReset: false,
         profileImage: '',
         projects: null,
-        race: RaceEntity(id: IdEntity(oid: ''), race: ''),
+        race: RaceEntity(id: IdTestEntity(oid: ""), race: ""),
         roles: '',
-        schoolLevels: IdEntity(oid: ""),
-        sex: SexEntity(id: IdEntity(oid: ''), sex: ''),
+        schoolLevels: SchoolLevelsEntity(id: IdTestEntity(oid: ""), level: "", order: 1, project: IdTestEntity(oid: "")),
+        sex: SexEntity(id: IdTestEntity(oid: ""), sex: ""),
         errorMessage: '',
         message: '',
         formChangePasswordStatus: const InitialFormStatus(),
@@ -156,7 +168,10 @@ class AuthState {
     String? token,
     String? userId,
     bool? acceptsTerms,
-    AddressEntity? address,
+    String? address,
+    String? city,
+    List<StateEntity>? state,
+    String? zip,
     String? cellphone,
     DateOfBirthEntity? dateOfBirth,
     String? email,
@@ -174,10 +189,10 @@ class AuthState {
     String? password,
     bool? passwordReset,
     String? profileImage,
-    IdEntity? projects,
+    IdTestEntity? projects,
     RaceEntity? race,
     String? roles,
-    IdEntity? schoolLevels,
+    SchoolLevelsEntity? schoolLevels,
     SexEntity? sex,
     String? errorMessage,
     String? message,
@@ -192,6 +207,9 @@ class AuthState {
       userId: userId ?? this.userId,
       acceptsTerms: acceptsTerms ?? this.acceptsTerms,
       address: address ?? this.address,
+      city: city ?? this.city,
+      zip: zip ?? this.zip,
+      state: state ?? this.state,
       cellphone: cellphone ?? this.cellphone,
       dateOfBirth: dateOfBirth ?? this.dateOfBirth,
       email: email ?? this.email,
