@@ -15,9 +15,9 @@ class AuthState {
   final String? cellphone;
   final DateOfBirthEntity? dateOfBirth;
   final String? email;
-  final EthnicityEntity? ethnicity;
+  final OpEthnicityEntity? ethnicity;
   final bool? firstLogin;
-  final GenderEntity? gender;
+  final OpGenderEntity? gender;
   final bool? informationUpdated;
   final bool? isActive;
   final bool? isConfirmed;
@@ -30,10 +30,10 @@ class AuthState {
   final bool? passwordReset;
   final String? profileImage;
   final IdTestEntity? projects;
-  final RaceEntity? race;
+  final OpRaceEntity? race;
   final String? roles;
   final SchoolLevelsEntity? schoolLevels;
-  final SexEntity? sex;
+  final OpSexEntity? sex;
   final String? errorMessage;
   final String? message;
   final FormSubmissionStatus formStatus;
@@ -92,9 +92,9 @@ class AuthState {
     String? cellphone,
     DateOfBirthEntity? dateOfBirth,
     String? email,
-    EthnicityEntity? ethnicity,
+    OpEthnicityEntity? ethnicity,
     bool? firstLogin,
-    GenderEntity? gender,
+    OpGenderEntity? gender,
     bool? informationUpdated,
     bool? isActive,
     bool? isConfirmed,
@@ -107,10 +107,10 @@ class AuthState {
     bool? passwordReset,
     String? profileImage,
     IdTestEntity? projects,
-    RaceEntity? race,
+    OpRaceEntity? race,
     String? roles,
     SchoolLevelsEntity? schoolLevels,
-    SexEntity? sex,
+    OpSexEntity? sex,
     String? errorMessage,
     String? message,
     FormSubmissionStatus? formStatus,
@@ -175,9 +175,9 @@ class AuthState {
     String? cellphone,
     DateOfBirthEntity? dateOfBirth,
     String? email,
-    EthnicityEntity? ethnicity,
+    OpEthnicityEntity? ethnicity,
     bool? firstLogin,
-    GenderEntity? gender,
+    OpGenderEntity? gender,
     bool? informationUpdated,
     bool? isActive,
     bool? isConfirmed,
@@ -190,10 +190,10 @@ class AuthState {
     bool? passwordReset,
     String? profileImage,
     IdTestEntity? projects,
-    RaceEntity? race,
+    OpRaceEntity? race,
     String? roles,
     SchoolLevelsEntity? schoolLevels,
-    SexEntity? sex,
+    OpSexEntity? sex,
     String? errorMessage,
     String? message,
     FormSubmissionStatus? formStatus,

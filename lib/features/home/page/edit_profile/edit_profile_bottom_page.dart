@@ -8,7 +8,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import '../../widget/info_column_widget.dart';
-import '../../widget/test_widgets/app_bar_widget.dart';
 import '../../widget/text_field_form_my_profile.dart';
 import '../../../auth/presentation/bloc/auth_bloc.dart';
 import '../../../../config/helpers/form_submission_status.dart';
@@ -89,136 +88,95 @@ class _EditUserFromBottomPageState extends State<EditUserFromBottomPage> {
                   children: [
                     Stack(alignment: AlignmentDirectional.center, children: [
                       //TODO: CHECK EDIT IMAGE PENCIL
-                      state.profileImage != null
-                          ? CircleAvatar(
-                              radius: 100,
-                              backgroundColor: wColor.mapColors["P01"],
-                              child: FadeInImage(
-                                width: width * 0.79,
-                                height: height * 0.30,
-                                placeholder: AssetImage(imagePath),
-                                image: NetworkImage(state.profileImage!),
-                                imageErrorBuilder: (BuildContext context,
-                                    Object exception, StackTrace? stackTrace) {
-                                  return Image.asset(imagePath);
-                                },
-                                fit: BoxFit.fill,
-                              ),
-                            )
-                          : Container(
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(12)),
-                              child: CircleAvatar(
-                                backgroundColor: wColor.mapColors["P01"],
-                                backgroundImage:
-                                    Image.file(imageDisplayed!).image,
-                                radius: 100,
-                              ),
+               state.profileImage != null
+                    ? CircleAvatar(
+                        radius: 100,
+                        backgroundColor: wColor.mapColors["P01"],
+                        child: FadeInImage(
+                          width: width * 0.79,
+                          height: height * 0.30,
+                          placeholder: AssetImage(imagePath),
+                          image: NetworkImage(state.profileImage!),
+                          imageErrorBuilder: (BuildContext context,
+                              Object exception, StackTrace? stackTrace) {
+                            return Image.asset(imagePath);
+                          },
+                          fit: BoxFit.fill,
+                        ),
+                      )
+                    : Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12)),
+                        child: CircleAvatar(
+                          backgroundColor: wColor.mapColors["P01"],
+                          backgroundImage: Image.file(imageDisplayed!).image,
+                          radius: 100,
+                        ),
+                      ),
+                imageDisplayed != null
+                    ? Container(
+                        decoration: const BoxDecoration(
+                            shape: BoxShape.circle, color: Colors.white),
+                        child: CircleAvatar(
+                          backgroundColor: wColor.mapColors["P01"],
+                          backgroundImage: Image.file(imageDisplayed!).image,
+                          radius: 110,
+                        ),
+                      )
+                    : CircleAvatar(
+                        radius: 100,
+                        backgroundColor: wColor.mapColors["P01"],
+                        child: FadeInImage(
+                          width: width * 0.79,
+                          height: height * 0.30,
+                          placeholder: AssetImage(imagePath),
+                          image: NetworkImage(state.profileImage!),
+                          imageErrorBuilder: (BuildContext context,
+                              Object exception, StackTrace? stackTrace) {
+                            return Image.asset(imagePath);
+                          },
+                          fit: BoxFit.fill,
+                        ),
+                      ),
+                imageDisplayed != null
+                    ? Positioned(
+                        bottom: height * 0.17,
+                        left: width * 0.37,
+                        child: SizedBox(
+                          height: 48,
+                          child: FloatingActionButton(
+                            heroTag: "Boton3",
+                            elevation: 3.66,
+                            backgroundColor: wColor.mapColors["500BASE"],
+                            onPressed: () {},
+                            child: const Icon(
+                              Icons.edit_outlined,
+                              size: 24,
                             ),
-                      imageDisplayed != null
-                          ? Container(
-                              decoration: const BoxDecoration(
-                                  shape: BoxShape.circle, color: Colors.white),
-                              child: CircleAvatar(
-                                backgroundColor: wColor.mapColors["P01"],
-                                backgroundImage:
-                                    Image.file(imageDisplayed!).image,
-                                radius: 110,
-                              ),
-                            )
-                          : CircleAvatar(
-                              radius: 100,
-                              backgroundColor: wColor.mapColors["P01"],
-                              child: FadeInImage(
-                                width: width * 0.79,
-                                height: height * 0.30,
-                                placeholder: AssetImage(imagePath),
-                                image: NetworkImage(state.profileImage!),
-                                imageErrorBuilder: (BuildContext context,
-                                    Object exception, StackTrace? stackTrace) {
-                                  return Image.asset(imagePath);
-                                },
-                                fit: BoxFit.fill,
-                              ),
+                          ),
+                        ))
+                    : Positioned(
+                        bottom: height * 0.16,
+                        left: width * 0.34,
+                        child: SizedBox(
+                          height: 48,
+                          child: FloatingActionButton(
+                            heroTag: "Boton2",
+                            elevation: 3.66,
+                            backgroundColor: wColor.mapColors["500BASE"],
+                            child: const Icon(
+                              Icons.edit_outlined,
+                              size: 24,
                             ),
-                      imageDisplayed != null
-                          ? Positioned(
-                              bottom: height * 0.17,
-                              left: width * 0.37,
-                              child: SizedBox(
-                                  height: 48,
-                                  child: FloatingActionButton(
-                                    heroTag: "Boton1",
-                                    elevation: 3.66,
-                                    backgroundColor:
-                                        wColor.mapColors["500BASE"],
-                                    child: const Icon(
-                                      Icons.edit_outlined,
-                                      size: 24,
-                                    ),
-                                    onPressed: () =>
-                                        buildPopUpImage(context, () {
-                                      getImageBottom(ImageSource.camera);
-                                      Navigator.pop(context);
-                                    }, () {
-                                      getImageBottom(ImageSource.gallery);
-                                      Navigator.pop(context);
-                                    }),
-                                  )))
-                          : CircleAvatar(
-                              radius: 100,
-                              backgroundColor: wColor.mapColors["P01"],
-                              child: FadeInImage(
-                                width: width * 0.79,
-                                height: height * 0.30,
-                                placeholder: AssetImage(imagePath),
-                                image: NetworkImage(state.profileImage!),
-                                imageErrorBuilder: (context, Object exception,
-                                    StackTrace? stackTrace) {
-                                  return Image.asset(imagePath);
-                                },
-                                fit: BoxFit.fill,
-                              ),
-                            ),
-                      imageDisplayed != null
-                          ? Positioned(
-                              bottom: height * 0.17,
-                              left: width * 0.37,
-                              child: SizedBox(
-                                height: 48,
-                                child: FloatingActionButton(
-                                  heroTag: "Boton3",
-                                  elevation: 3.66,
-                                  backgroundColor: wColor.mapColors["500BASE"],
-                                  onPressed: () {},
-                                  child: const Icon(
-                                    Icons.edit_outlined,
-                                    size: 24,
-                                  ),
-                                ),
-                              ))
-                          : Positioned(
-                              bottom: height * 0.16,
-                              left: width * 0.34,
-                              child: SizedBox(
-                                height: 48,
-                                child: FloatingActionButton(
-                                  heroTag: "Boton2",
-                                  elevation: 3.66,
-                                  backgroundColor: wColor.mapColors["500BASE"],
-                                  child: const Icon(
-                                    Icons.edit_outlined,
-                                    size: 24,
-                                  ),
-                                  onPressed: () => buildPopUpImage(context, () {
-                                    getImageBottom(ImageSource.camera);
-                                    Navigator.pop(context);
-                                  }, () {
-                                    getImageBottom(ImageSource.gallery);
-                                    Navigator.pop(context);
-                                  }),
-                                ),
-                              )),
+                            onPressed: () => buildPopUpImage(context, () {
+                              getImageBottom(ImageSource.camera);
+                              Navigator.pop(context);
+                            }, () {
+                              getImageBottom(ImageSource.gallery);
+                              Navigator.pop(context);
+                            }),
+                          ),
+                        )),
                     ]),
                     SizedBox(height: height * 0.060),
                     const InfoColumnWidget(),

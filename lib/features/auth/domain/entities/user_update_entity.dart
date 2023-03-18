@@ -1,3 +1,4 @@
+import 'package:Tellme/features/auth/domain/entities/options_tools_entity.dart';
 import 'package:Tellme/features/auth/domain/entities/user_entity_login.dart';
 
 class UserUpdateEntity {
@@ -6,10 +7,10 @@ class UserUpdateEntity {
   final String? city;
   final List<StateEntity>? state;
   final String? zip;
-  final RaceEntity? race;
-  final EthnicityEntity? ethnicity;
-  final SexEntity? sex;
-  final GenderEntity? gender;
+  final OpRaceEntity? race;
+  final OpEthnicityEntity? ethnicity;
+  final OpSexEntity? sex;
+  final OpGenderEntity? gender;
   final SchoolLevelsEntity? levelSchool;
   final String? profileImage;
 

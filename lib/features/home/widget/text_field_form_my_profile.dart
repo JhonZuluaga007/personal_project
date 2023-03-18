@@ -113,7 +113,7 @@ class _TextFieldFormMyUserState extends State<TextFieldFormMyUser> {
                 onChanged: (valueDropdown) {
                   setState(() {
                     defaultValueState = valueDropdown!.valor;
-                    selectedStateValue = StateEntity(id: IdTestEntity(oid: ""), state: valueDropdown.valor);
+                    selectedStateValue = StateEntity(id: IdTestEntity(oid: valueDropdown.id), state: valueDropdown.valor);
                   });
                 },
                 dropDownValue: state.state != null
@@ -186,7 +186,7 @@ class _TextFieldFormMyUserState extends State<TextFieldFormMyUser> {
                 onChanged: (valueDropdown) {
                   setState(() {
                     defaultValueSchool = valueDropdown!.valor;
-                    selectedSchoolLevel = SchoolLevelsEntity(id: IdTestEntity(oid: ""), level: valueDropdown.id, order: 1, project: IdTestEntity(oid: ""));
+                    selectedSchoolLevel = SchoolLevelsEntity(id: IdTestEntity(oid: valueDropdown.id), level: valueDropdown.valor, order: 1, project: IdTestEntity(oid: ""));
                   });
                 },
                 dropDownValue: state.schoolLevels != null
@@ -242,8 +242,8 @@ class _TextFieldFormMyUserState extends State<TextFieldFormMyUser> {
                                     ? zipController.text
                                     : state.zip,
                                 state: selectedStateValue != []
-                                    ? state.state
-                                    : [selectedStateValue],
+                                    ? [selectedStateValue]
+                                    : state.state,
                                 sex: selectedSexValue.valor != ''
                                     ? selectedSexValue
                                     : state.sex,

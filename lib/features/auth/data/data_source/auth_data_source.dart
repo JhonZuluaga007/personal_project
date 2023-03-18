@@ -58,7 +58,7 @@ class AuthDataSource {
       "sex": userUpdateEntity.sex!.id,
       "ethnicity": userUpdateEntity.ethnicity!.id,
       "race": userUpdateEntity.race!.id,
-      "school_level": userUpdateEntity.levelSchool,
+      "school_level": userUpdateEntity.levelSchool!.id,
       "profileImage": userUpdateEntity.profileImage
     });
 
