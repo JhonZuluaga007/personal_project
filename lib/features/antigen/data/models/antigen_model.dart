@@ -93,7 +93,7 @@ class DataAntigen extends DataAntigenEntity {
                 ],
                 laboratory: [],
                 manufacturer: [],
-                photo: [],
+                photo: '',
                 preparedBy: IdHistory(oid: ""),
                 project: IdHistory(oid: ""),
                 result: [],
@@ -121,7 +121,7 @@ class LastTestAntigen extends LastTestAntigenEntity {
     required List<FormAntigen> form,
     required List<dynamic> laboratory,
     required List<dynamic> manufacturer,
-    required List<String> photo,
+    required String photo,
     required IdHistory preparedBy,
     required IdHistory project,
     required List<ResultHistory> result,
@@ -170,7 +170,8 @@ class LastTestAntigen extends LastTestAntigenEntity {
             json["form"].map((x) => FormAntigen.fromMap(x))),
         laboratory: List<dynamic>.from(json["laboratory"].map((x) => x)),
         manufacturer: List<dynamic>.from(json["manufacturer"].map((x) => x)),
-        photo: List<String>.from(json["photo"].map((x) => x)),
+        photo: json["photo"],
+        /*List<String>.from(json["photo"].map((x) => x)),*/
         preparedBy: IdHistory.fromMap(json["prepared_by"]),
         project: IdHistory.fromMap(json["project"]),
         result: List<ResultHistory>.from(

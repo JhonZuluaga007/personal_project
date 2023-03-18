@@ -56,7 +56,7 @@ class LastTestAntigenEntity {
   final List<FormAntigenEntity> form;
   final List<dynamic> laboratory;
   final List<dynamic> manufacturer;
-  final List<String> photo;
+  final String photo;
   final IdTestEntity preparedBy;
   final IdTestEntity project;
   final List<ResultTestEntity> result;

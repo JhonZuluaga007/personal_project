@@ -61,7 +61,7 @@ class TestHistory extends TestHistoryEntity {
     required List<ValidityHistory> validity,
     required String vialName,
     required IdHistory form,
-    required List<String> photo,
+    required String photo,
     required List<dynamic> stepHistory,
   }) : super(
             ic: ic,
@@ -133,9 +133,7 @@ class TestHistory extends TestHistoryEntity {
         form: (json["form"] != null && json["form"].toString().isNotEmpty)
             ? IdHistory.fromMap(json["form"])
             : IdHistory(oid: ""),
-        photo: json["photo"] != null
-            ? List<String>.from(json["photo"].map((x) => x))
-            : [],
+        photo: json["photo"] ?? '',
         stepHistory: json["step_history"] != null
             ? List<dynamic>.from(json["step_history"].map((x) => x))
             : [],

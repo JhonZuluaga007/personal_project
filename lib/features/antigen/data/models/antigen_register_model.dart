@@ -38,7 +38,7 @@ class TestRegisterAntigen extends TestRegisterAntigenEntity {
     required IdHistory form,
     required List<dynamic> laboratory,
     required List<ManufacturerAntigen> manufacturer,
-    required List<dynamic> photo,
+    required String photo,
     required IdHistory preparedBy,
     required IdHistory project,
     required List<ResultHistory> result,
@@ -88,7 +88,8 @@ class TestRegisterAntigen extends TestRegisterAntigenEntity {
         laboratory: List<dynamic>.from(json["laboratory"].map((x) => x)),
         manufacturer: List<ManufacturerAntigen>.from(
             json["manufacturer"].map((x) => ManufacturerAntigen.fromMap(x))),
-        photo: List<dynamic>.from(json["photo"].map((x) => x)),
+        photo: json["photo"],
+        /*List<dynamic>.from(json["photo"].map((x) => x)),*/
         preparedBy: IdHistory.fromMap(json["prepared_by"]),
         project: IdHistory.fromMap(json["project"]),
         result: List<ResultHistory>.from(
