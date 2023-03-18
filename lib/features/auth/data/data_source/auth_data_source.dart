@@ -52,20 +52,20 @@ class AuthDataSource {
       "project": "ChelseaProject",
       "address": userUpdateEntity.address,
       "city": userUpdateEntity.city,
-      "state": userUpdateEntity.state,
+      "state": userUpdateEntity.state!.first.id.oid,
       "zip": userUpdateEntity.zip,
       "gender": userUpdateEntity.gender!.id,
       "sex": userUpdateEntity.sex!.id,
       "ethnicity": userUpdateEntity.ethnicity!.id,
       "race": userUpdateEntity.race!.id,
-      "school_level": userUpdateEntity.levelSchool!.id,
+      "school_level": userUpdateEntity.levelSchool!.id.oid,
       "profileImage": userUpdateEntity.profileImage
     });
 
     if (response["statusCode"] == 200) {
       return UserModelLogin.fromJson(response);
     } else {
-      throw InvalidData("Data not saved correctly");
+      throw InvalidData(ServerError.fromJson(response).errorMessage.text);
     }
   }
 
