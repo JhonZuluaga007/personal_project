@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 part of 'auth_bloc.dart';
 
 @immutable
@@ -11,7 +10,7 @@ class AuthState {
   final String? address;
   final String? city;
   final String? zip;
-  final List<StateEntity>? state;
+  final OpStatesEntity? state;
   final String? cellphone;
   final DateOfBirthEntity? dateOfBirth;
   final String? email;
@@ -88,7 +87,7 @@ class AuthState {
     String? address,
     String? city,
     String? zip,
-    List<StateEntity>? state,
+    OpStatesEntity? state,
     String? cellphone,
     DateOfBirthEntity? dateOfBirth,
     String? email,
@@ -125,7 +124,6 @@ class AuthState {
         acceptsTerms: false,
         address: "",
         city: "",
-        state: [],
         zip: "",
         cellphone: '',
         dateOfBirth: DateOfBirthEntity(date: DateTime.now()),
@@ -170,7 +168,7 @@ class AuthState {
     bool? acceptsTerms,
     String? address,
     String? city,
-    List<StateEntity>? state,
+    OpStatesEntity? state,
     String? zip,
     String? cellphone,
     DateOfBirthEntity? dateOfBirth,

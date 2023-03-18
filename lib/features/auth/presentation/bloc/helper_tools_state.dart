@@ -14,7 +14,7 @@ class HelperToolsState {
   final List<OpTestTypeEntity> testTypes;
   final List<OpTestValidityEntity> testValidities;
   final List<OpVaccineEntity> vaccines;
-  final List<OpStateEntity> state;
+  final List<OpStatesEntity> state;
   final List<String> answer;
 
   const HelperToolsState({
@@ -47,7 +47,7 @@ class HelperToolsState {
     List<OpTestTypeEntity>? testTypes,
     List<OpTestValidityEntity>? testValidities,
     List<OpVaccineEntity>? vaccines,
-    List<OpStateEntity>? state,
+    List<OpStatesEntity>? state,
     List<String>? answer,
   }) {
     return HelperToolsState(

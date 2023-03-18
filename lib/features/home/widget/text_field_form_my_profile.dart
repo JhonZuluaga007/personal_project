@@ -1,19 +1,18 @@
-import 'package:Tellme/features/auth/presentation/bloc/helper_tools_bloc.dart';
-import 'package:Tellme/features/home/widget/test_widgets/app_bar_widget.dart';
-import 'package:Tellme/features/test_history/domain/entities/test_history_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../common_ui/common_widgets/buttons/main_button_widget.dart';
-import '../../../common_ui/common_widgets/text_field/text_field_with_border_widget.dart';
-import '../../../common_ui/utils/const_list.dart';
-import '../../antigen/presentation/ui/widgets/drop_down_questions_widget.dart';
-import '../../../navigationBar/bloc/navigation_bar_bloc.dart';
-import '../../auth/domain/entities/user_entity_login.dart';
-import '../../auth/domain/entities/user_update_entity.dart';
 import '../../auth/presentation/bloc/auth_bloc.dart';
-import '../../medical_history/presentation/widgets/confirm_alert_widget.dart';
+import '../../auth/domain/entities/user_entity_login.dart';
+import '../../home/widget/test_widgets/app_bar_widget.dart';
+import '../../auth/domain/entities/user_update_entity.dart';
+import '../../auth/presentation/bloc/helper_tools_bloc.dart';
+import '../../../navigationBar/bloc/navigation_bar_bloc.dart';
+import '../../test_history/domain/entities/test_history_entity.dart';
+import '../../../common_ui/common_widgets/buttons/main_button_widget.dart';
 import '../../medical_history/presentation/widgets/done_alert_widget.dart';
+import '../../medical_history/presentation/widgets/confirm_alert_widget.dart';
+import '../../antigen/presentation/ui/widgets/drop_down_questions_widget.dart';
+import '../../../common_ui/common_widgets/text_field/text_field_with_border_widget.dart';
 
 class TextFieldFormMyUser extends StatefulWidget {
   const TextFieldFormMyUser(
@@ -40,12 +39,19 @@ class _TextFieldFormMyUserState extends State<TextFieldFormMyUser> {
   String defaultValueEthnicity = 'Select option';
   String defaultValueSchool = 'Select option';
   SexEntity selectedSexValue = SexEntity(id: IdTestEntity(oid: ""), sex: '');
-  GenderEntity selectedGenderValue = GenderEntity(id: IdTestEntity(oid: ""), gender: '');
-  RaceEntity selectedRaceValue = RaceEntity(id: IdTestEntity(oid: ""), race: '');
+  GenderEntity selectedGenderValue =
+      GenderEntity(id: IdTestEntity(oid: ""), gender: '');
+  RaceEntity selectedRaceValue =
+      RaceEntity(id: IdTestEntity(oid: ""), race: '');
   EthnicityEntity selectedEtnichityValue =
       EthnicityEntity(id: IdTestEntity(oid: ""), ethnicity: '');
-  StateEntity selectedStateValue = StateEntity(id: IdTestEntity(oid: ""), state: "");
-  SchoolLevelsEntity selectedSchoolLevel = SchoolLevelsEntity(id: IdTestEntity(oid: ""), level: "", order: 1, project: IdTestEntity(oid: ""));
+  StateEntity selectedStateValue =
+      StateEntity(id: IdTestEntity(oid: ""), state: "");
+  SchoolLevelsEntity selectedSchoolLevel = SchoolLevelsEntity(
+      id: IdTestEntity(oid: ""),
+      level: "",
+      order: 1,
+      project: IdTestEntity(oid: ""));
 
   TextEditingController addressController = TextEditingController(text: "");
   TextEditingController cityController = TextEditingController(text: "");
@@ -107,18 +113,20 @@ class _TextFieldFormMyUserState extends State<TextFieldFormMyUser> {
             ),
             SizedBox(height: height * 0.0250),
             DropDownQuestionsWidget(
-                dropDownItem: ConstLists.stateList,
+                dropDownItem: stateHelperTools.state,
                 textQuestion: "profile_text_hint_nine",
                 width: width,
                 onChanged: (valueDropdown) {
                   setState(() {
                     defaultValueState = valueDropdown!.valor;
-                    selectedStateValue = StateEntity(id: IdTestEntity(oid: valueDropdown.id), state: valueDropdown.valor);
+                    selectedStateValue = StateEntity(
+                        id: IdTestEntity(oid: valueDropdown.id),
+                        state: valueDropdown.valor);
                   });
                 },
                 dropDownValue: state.state != null
-                    ? state.state![0].state!
-                    : selectedStateValue.state!),
+                    ? state.state!.valor
+                    : defaultValueState),
             SizedBox(height: height * 0.0250),
             DropDownQuestionsWidget(
                 dropDownItem: stateHelperTools.sexes,
@@ -129,7 +137,8 @@ class _TextFieldFormMyUserState extends State<TextFieldFormMyUser> {
                   setState(() {
                     defaultValueSex = valueDropdown!.valor;
                     selectedSexValue = SexEntity(
-                        id: IdTestEntity(oid: valueDropdown.id), sex: valueDropdown.valor);
+                        id: IdTestEntity(oid: valueDropdown.id),
+                        sex: valueDropdown.valor);
                   });
                 },
                 dropDownValue:
@@ -143,7 +152,8 @@ class _TextFieldFormMyUserState extends State<TextFieldFormMyUser> {
                   setState(() {
                     defaultValueSex = valueDropdown!.valor;
                     selectedGenderValue = GenderEntity(
-                        id: IdTestEntity(oid: valueDropdown.id), gender: valueDropdown.valor);
+                        id: IdTestEntity(oid: valueDropdown.id),
+                        gender: valueDropdown.valor);
                   });
                 },
                 dropDownValue: state.gender != null
@@ -158,7 +168,8 @@ class _TextFieldFormMyUserState extends State<TextFieldFormMyUser> {
                   setState(() {
                     defaultValueSex = valueDropdown!.valor;
                     selectedRaceValue = RaceEntity(
-                        id: IdTestEntity(oid: valueDropdown.id), race: valueDropdown.valor);
+                        id: IdTestEntity(oid: valueDropdown.id),
+                        race: valueDropdown.valor);
                   });
                 },
                 dropDownValue:
@@ -172,7 +183,8 @@ class _TextFieldFormMyUserState extends State<TextFieldFormMyUser> {
                   setState(() {
                     defaultValueSex = valueDropdown!.valor;
                     selectedEtnichityValue = EthnicityEntity(
-                        id: IdTestEntity(oid: valueDropdown.id), ethnicity: valueDropdown.valor);
+                        id: IdTestEntity(oid: valueDropdown.id),
+                        ethnicity: valueDropdown.valor);
                   });
                 },
                 dropDownValue: state.ethnicity != null
@@ -186,7 +198,11 @@ class _TextFieldFormMyUserState extends State<TextFieldFormMyUser> {
                 onChanged: (valueDropdown) {
                   setState(() {
                     defaultValueSchool = valueDropdown!.valor;
-                    selectedSchoolLevel = SchoolLevelsEntity(id: IdTestEntity(oid: valueDropdown.id), level: valueDropdown.valor, order: 1, project: IdTestEntity(oid: ""));
+                    selectedSchoolLevel = SchoolLevelsEntity(
+                        id: IdTestEntity(oid: valueDropdown.id),
+                        level: valueDropdown.valor,
+                        order: 1,
+                        project: IdTestEntity(oid: ""));
                   });
                 },
                 dropDownValue: state.schoolLevels != null
@@ -241,8 +257,8 @@ class _TextFieldFormMyUserState extends State<TextFieldFormMyUser> {
                                 zip: zipController.text != ''
                                     ? zipController.text
                                     : state.zip,
-                                state: selectedStateValue != []
-                                    ? [selectedStateValue]
+                                state: selectedStateValue.valor != ''
+                                    ? selectedStateValue
                                     : state.state,
                                 sex: selectedSexValue.valor != ''
                                     ? selectedSexValue
@@ -256,10 +272,9 @@ class _TextFieldFormMyUserState extends State<TextFieldFormMyUser> {
                                 levelSchool: [selectedSchoolLevel] != []
                                     ? selectedSchoolLevel
                                     : state.schoolLevels,
-                                ethnicity:
-                                    selectedEtnichityValue.valor != ''
-                                        ? selectedEtnichityValue
-                                        : state.ethnicity,
+                                ethnicity: selectedEtnichityValue.valor != ''
+                                    ? selectedEtnichityValue
+                                    : state.ethnicity,
                                 profileImage: state.profileImage,
                               ),
                             ),

@@ -1,21 +1,20 @@
-import 'package:Tellme/features/auth/data/models/user_model.dart';
-import 'package:Tellme/features/auth/domain/entities/options_tools_entity.dart';
-import 'package:Tellme/features/auth/domain/entities/user_entity_login.dart';
-import 'package:Tellme/features/auth/domain/use_cases/get_user_use_case.dart';
-import 'package:Tellme/features/test_history/domain/entities/test_history_entity.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:meta/meta.dart';
 import 'package:bloc/bloc.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../domain/entities/user_update_entity.dart';
 import '../../domain/use_cases/login_use_case.dart';
+import '../../domain/entities/user_entity_login.dart';
+import '../../domain/use_cases/get_user_use_case.dart';
+import '../../domain/entities/user_update_entity.dart';
+import '../../domain/entities/options_tools_entity.dart';
+import '../../domain/use_cases/user_update_use_case.dart';
 import '../../domain/entities/change_password_entity.dart';
 import '../../../../config/helpers/injector/injector.dart';
 import '../../domain/use_cases/reset_password_use_case.dart';
 import '../../domain/use_cases/change_password_use_case.dart';
 import '../../../../config/helpers/form_submission_status.dart';
-import '../../domain/use_cases/user_update_use_case.dart';
+import '../../../test_history/domain/entities/test_history_entity.dart';
 
 part 'auth_event.dart';
 part 'auth_state.dart';
@@ -47,6 +46,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
             userId: userResponse.id.oid,
             acceptsTerms: userResponse.acceptsTerms,
             address: userResponse.address.address,
+            city: userResponse.address.city,
+            zip: userResponse.address.zip,
+            state: userResponse.address.state.isNotEmpty
+                ? userResponse.address.state.first
+                : StateEntity(id: IdTestEntity(oid: ""), state: ''),
             cellphone: userResponse.cellphone,
             dateOfBirth: userResponse.dateOfBirth,
             email: userResponse.email,
@@ -54,7 +58,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
                 ? userResponse.ethnicity.first
                 : EthnicityEntity(id: IdTestEntity(oid: ""), ethnicity: ''),
             firstLogin: userResponse.firstLogin,
-            gender: GenderEntity(id: IdTestEntity(oid: ""), gender: ''),
+            gender: userResponse.gender.isNotEmpty
+                ? userResponse.gender.first
+                : GenderEntity(id: IdTestEntity(oid: ""), gender: ''),
             informationUpdated: userResponse.informationUpdated,
             isActive: userResponse.isActive,
             isConfirmed: userResponse.isConfirmed,
@@ -139,11 +145,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       });
     });
 
-    on<UpdateImage>((event, emit) => {
-      emit(state.copyWith(
-        profileImage: event.profileImage
-      ))
-    });
+    on<UpdateImage>((event, emit) =>
+        {emit(state.copyWith(profileImage: event.profileImage))});
 
     on<UserUpdateEvent>((event, emit) {
       userUpdateUseCase.call(event.userUpdateEntity);
@@ -151,7 +154,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         userId: state.userId,
         address: event.userUpdateEntity.address ?? "",
         city: event.userUpdateEntity.city ?? "",
-        state: event.userUpdateEntity.state ?? [],
+        state: event.userUpdateEntity.state,
         zip: event.userUpdateEntity.zip ?? "",
         race: event.userUpdateEntity.race,
         ethnicity: event.userUpdateEntity.ethnicity,

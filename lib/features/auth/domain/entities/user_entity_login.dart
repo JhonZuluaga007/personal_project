@@ -1,5 +1,5 @@
-import 'package:Tellme/features/auth/domain/entities/options_tools_entity.dart';
-import 'package:Tellme/features/test_history/domain/entities/test_history_entity.dart';
+import '../../domain/entities/options_tools_entity.dart';
+import '../../../test_history/domain/entities/test_history_entity.dart';
 
 class UserEntityLogin {
   UserEntityLogin({
@@ -100,7 +100,6 @@ class UserEntity {
     required this.projects,
     required this.race,
     required this.roles,
-    //required this.schoolLevel,
     required this.schoolLevels,
     required this.sex,
   });
@@ -141,10 +140,10 @@ class AddressEntity {
     required this.zip,
   });
 
-  final String? address;
-  final String? city;
-  final List<StateEntity>? state;
-  final String? zip;
+  final String address;
+  final String city;
+  final List<StateEntity> state;
+  final String zip;
 }
 
 class SchoolLevelsEntity {
@@ -176,14 +175,11 @@ class EthnicityEntity extends OpEthnicityEntity {
   }) : super(id: id.oid, ethnicity: ethnicity);
 }
 
-class StateEntity {
+class StateEntity extends OpStatesEntity {
   StateEntity({
-    required this.id,
-    required this.state,
-  });
-
-  final IdTestEntity id;
-  final String? state;
+    required IdTestEntity id,
+    required String state,
+  }) : super(id: id.oid, states: state);
 }
 
 class GenderEntity extends OpGenderEntity {

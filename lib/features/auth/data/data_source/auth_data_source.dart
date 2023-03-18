@@ -1,15 +1,13 @@
-import 'package:Tellme/features/auth/data/models/change_password_model.dart';
-import 'package:Tellme/features/auth/data/models/options_tools_model.dart';
-
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-import '../../domain/entities/user_entity_login.dart';
-import '../../domain/entities/user_update_entity.dart';
 import '../models/user_model.dart';
+import '../models/options_tools_model.dart';
 import '../../../../config/helpers/api.dart';
+import '../models/change_password_model.dart';
 import '../../../../config/helpers/endpoints.dart';
+import '../../domain/entities/user_update_entity.dart';
 import '../../domain/entities/change_password_entity.dart';
 import '../../../../config/helpers/errors/invalid_data.dart';
 import '../../../../config/helpers/models/server_error.dart';
@@ -52,7 +50,7 @@ class AuthDataSource {
       "project": "ChelseaProject",
       "address": userUpdateEntity.address,
       "city": userUpdateEntity.city,
-      "state": userUpdateEntity.state!.first.id.oid,
+      "state": userUpdateEntity.state!.id,
       "zip": userUpdateEntity.zip,
       "gender": userUpdateEntity.gender!.id,
       "sex": userUpdateEntity.sex!.id,

@@ -1,11 +1,11 @@
-import 'package:Tellme/features/auth/domain/entities/options_tools_entity.dart';
-import 'package:Tellme/features/auth/domain/entities/user_entity_login.dart';
+import 'user_entity_login.dart';
+import 'options_tools_entity.dart';
 
 class UserUpdateEntity {
   final String? userdId;
   final String? address;
   final String? city;
-  final List<StateEntity>? state;
+  final OpStatesEntity? state;
   final String? zip;
   final OpRaceEntity? race;
   final OpEthnicityEntity? ethnicity;
