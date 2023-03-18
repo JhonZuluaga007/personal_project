@@ -37,26 +37,40 @@ Future popUpWidget(BuildContext context, TestHistoryEntity testView) {
                       child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Image.network(testView.photo[0],
-                                errorBuilder: (context, error, stackTrace) {
-                              return Container(
-                                color: Colors.white,
-                                alignment: Alignment.center,
-                                child: Column(
-                                  children: [
-                                    Image.asset(
-                                      IconsFolderCovid.popUpSkyTimer,
-                                      height: height * 0.2,
-                                      fit: BoxFit.cover,
+                            CircleAvatar(
+                              radius: 100,
+                              backgroundColor: wColor.mapColors["P01"],
+                              child: FadeInImage(
+                                width: width * 0.79,
+                                height: height * 0.30,
+                                placeholder:
+                                    AssetImage(IconsFolderCovid.popUpSkyTimer),
+                                image: NetworkImage(testView.photo),
+                                imageErrorBuilder: (BuildContext context,
+                                    Object exception, StackTrace? stackTrace) {
+                                  return Container(
+                                    color: Colors.white,
+                                    height: height * 0.35,
+                                    alignment: Alignment.center,
+                                    child: Column(
+                                      children: [
+                                        Image.asset(
+                                          IconsFolderCovid.popUpSkyTimer,
+                                          height: height * 0.2,
+                                          fit: BoxFit.cover,
+                                        ),
+                                        SizedBox(height: height * 0.01),
+                                        const TextWidget(
+                                          text: 'error_image',
+                                          style: TextStyle(fontSize: 18),
+                                        ),
+                                      ],
                                     ),
-                                    const TextWidget(
-                                      text: 'error_image',
-                                      style: TextStyle(fontSize: 20),
-                                    ),
-                                  ],
-                                ),
-                              );
-                            }),
+                                  );
+                                },
+                                fit: BoxFit.fill,
+                              ),
+                            ),
                             SizedBox(height: height * 0.031),
                             TextWidget(
                               text:
