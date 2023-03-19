@@ -178,7 +178,7 @@ class TestAntigenEntity {
   final Object form;
   final List<dynamic> laboratory;
   final List<ManufacturerAntigenEntity> manufacturer;
-  final List<dynamic> photo;
+  final String photo;
   final IdTestEntity preparedBy;
   final IdTestEntity project;
   final Object result;

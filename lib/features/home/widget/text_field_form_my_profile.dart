@@ -15,17 +15,16 @@ import '../../antigen/presentation/ui/widgets/drop_down_questions_widget.dart';
 import '../../../common_ui/common_widgets/text_field/text_field_with_border_widget.dart';
 
 class TextFieldFormMyUser extends StatefulWidget {
-  const TextFieldFormMyUser(
-      {super.key,
-      required this.textTitle,
-      this.iconTextField,
-      required this.hintText,
-      this.imageState});
+  const TextFieldFormMyUser({
+    super.key,
+    required this.textTitle,
+    this.iconTextField,
+    required this.hintText,
+  });
 
   final String textTitle;
   final String hintText;
   final Icon? iconTextField;
-  final String? imageState;
 
   // @override
   State<TextFieldFormMyUser> createState() => _TextFieldFormMyUserState();

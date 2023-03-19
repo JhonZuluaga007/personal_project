@@ -26,11 +26,8 @@ class _EditUserFromBottomPageState extends State<EditUserFromBottomPage> {
   @override
   void initState() {
     imagePath = 'assets/images/no_image.png';
-
     super.initState();
   }
-
-  File? imageDisplayed;
 
   @override
   Widget build(BuildContext context) {
@@ -38,24 +35,29 @@ class _EditUserFromBottomPageState extends State<EditUserFromBottomPage> {
     final width = MediaQuery.of(context).size.height;
     final wColor = ThemesIdx20();
 
+    File? imageDisplayed;
+
     Future getImageBottom(ImageSource source) async {
       try {
         final image =
-            await ImagePicker().pickImage(source: source, imageQuality: 5);
+            await ImagePicker().pickImage(source: source, imageQuality: 4);
         if (image == null) return;
         final imageCameraTemporary = File(image.path);
-        if (imageCameraTemporary != null) {
+        imageDisplayed = imageCameraTemporary;
+
+        if (imageDisplayed != null) {
           final bytes = imageCameraTemporary.readAsBytesSync();
           String img64 = base64Encode(bytes);
-          BlocProvider.of<AuthBloc>(context).add(UpdateImage(img64));
+          BlocProvider.of<AuthBloc>(context)
+              .add(UpdateImage(profileImage: img64));
         }
         if (imageDisplayed == '' || imageDisplayed == null) {
           String image64 = base64.encode(imagePath.codeUnits);
-          BlocProvider.of<AuthBloc>(context).add(UpdateImage(image64));
+          BlocProvider.of<AuthBloc>(context)
+              .add(UpdateImage(profileImage: image64));
         }
         setState(() {
           imageDisplayed = imageCameraTemporary;
-          print(imageDisplayed!.path);
         });
       } on PlatformException catch (e) {
         debugPrint('Failed to pick image: $e');
@@ -87,106 +89,107 @@ class _EditUserFromBottomPageState extends State<EditUserFromBottomPage> {
                 child: Column(
                   children: [
                     Stack(alignment: AlignmentDirectional.center, children: [
-                      //TODO: CHECK EDIT IMAGE PENCIL
-               state.profileImage != null
-                    ? CircleAvatar(
-                        radius: 100,
-                        backgroundColor: wColor.mapColors["P01"],
-                        child: FadeInImage(
-                          width: width * 0.79,
-                          height: height * 0.30,
-                          placeholder: AssetImage(imagePath),
-                          image: NetworkImage(state.profileImage!),
-                          imageErrorBuilder: (BuildContext context,
-                              Object exception, StackTrace? stackTrace) {
-                            return Image.asset(imagePath);
-                          },
-                          fit: BoxFit.fill,
-                        ),
-                      )
-                    : Container(
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(12)),
-                        child: CircleAvatar(
-                          backgroundColor: wColor.mapColors["P01"],
-                          backgroundImage: Image.file(imageDisplayed!).image,
-                          radius: 100,
-                        ),
-                      ),
-                imageDisplayed != null
-                    ? Container(
-                        decoration: const BoxDecoration(
-                            shape: BoxShape.circle, color: Colors.white),
-                        child: CircleAvatar(
-                          backgroundColor: wColor.mapColors["P01"],
-                          backgroundImage: Image.file(imageDisplayed!).image,
-                          radius: 110,
-                        ),
-                      )
-                    : CircleAvatar(
-                        radius: 100,
-                        backgroundColor: wColor.mapColors["P01"],
-                        child: FadeInImage(
-                          width: width * 0.79,
-                          height: height * 0.30,
-                          placeholder: AssetImage(imagePath),
-                          image: NetworkImage(state.profileImage!),
-                          imageErrorBuilder: (BuildContext context,
-                              Object exception, StackTrace? stackTrace) {
-                            return Image.asset(imagePath);
-                          },
-                          fit: BoxFit.fill,
-                        ),
-                      ),
-                imageDisplayed != null
-                    ? Positioned(
-                        bottom: height * 0.17,
-                        left: width * 0.37,
-                        child: SizedBox(
-                          height: 48,
-                          child: FloatingActionButton(
-                            heroTag: "Boton3",
-                            elevation: 3.66,
-                            backgroundColor: wColor.mapColors["500BASE"],
-                            onPressed: () {},
-                            child: const Icon(
-                              Icons.edit_outlined,
-                              size: 24,
+                      state.profileImage != null
+                          ? CircleAvatar(
+                              radius: 100,
+                              backgroundColor: wColor.mapColors["P01"],
+                              child: FadeInImage(
+                                width: width * 0.79,
+                                height: height * 0.30,
+                                placeholder: AssetImage(imagePath),
+                                image: NetworkImage(state.profileImage!),
+                                imageErrorBuilder: (BuildContext context,
+                                    Object exception, StackTrace? stackTrace) {
+                                  return Image.asset(imagePath);
+                                },
+                                fit: BoxFit.fill,
+                              ),
+                            )
+                          : Container(
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(12)),
+                              child: CircleAvatar(
+                                backgroundColor: wColor.mapColors["P01"],
+                                backgroundImage:
+                                    Image.file(imageDisplayed!).image,
+                                radius: 100,
+                              ),
                             ),
-                          ),
-                        ))
-                    : Positioned(
-                        bottom: height * 0.16,
-                        left: width * 0.34,
-                        child: SizedBox(
-                          height: 48,
-                          child: FloatingActionButton(
-                            heroTag: "Boton2",
-                            elevation: 3.66,
-                            backgroundColor: wColor.mapColors["500BASE"],
-                            child: const Icon(
-                              Icons.edit_outlined,
-                              size: 24,
+                      imageDisplayed != null
+                          ? Container(
+                              decoration: const BoxDecoration(
+                                  shape: BoxShape.circle, color: Colors.white),
+                              child: CircleAvatar(
+                                backgroundColor: wColor.mapColors["P01"],
+                                backgroundImage:
+                                    Image.file(imageDisplayed!).image,
+                                radius: 110,
+                              ),
+                            )
+                          : CircleAvatar(
+                              radius: 100,
+                              backgroundColor: wColor.mapColors["P01"],
+                              child: FadeInImage(
+                                width: width * 0.79,
+                                height: height * 0.30,
+                                placeholder: AssetImage(imagePath),
+                                image: NetworkImage(state.profileImage!),
+                                imageErrorBuilder: (BuildContext context,
+                                    Object exception, StackTrace? stackTrace) {
+                                  return Image.asset(imagePath);
+                                },
+                                fit: BoxFit.fill,
+                              ),
                             ),
-                            onPressed: () => buildPopUpImage(context, () {
-                              getImageBottom(ImageSource.camera);
-                              Navigator.pop(context);
-                            }, () {
-                              getImageBottom(ImageSource.gallery);
-                              Navigator.pop(context);
-                            }),
-                          ),
-                        )),
+                      // imageDisplayed != null
+                      //     ? Positioned(
+                      //         bottom: height * 0.17,
+                      //         left: width * 0.37,
+                      //         child: SizedBox(
+                      //           height: 48,
+                      //           child: FloatingActionButton(
+                      //             heroTag: "Boton3",
+                      //             elevation: 3.66,
+                      //             backgroundColor: wColor.mapColors["500BASE"],
+                      //             onPressed: () {},
+                      //             child: const Icon(
+                      //               Icons.edit_outlined,
+                      //               size: 24,
+                      //             ),
+                      //           ),
+                      //         ))
+                      //     : Positioned(
+                      //         bottom: height * 0.16,
+                      //         left: width * 0.34,
+                      //         child: SizedBox(
+                      //           height: 48,
+                      //           child: FloatingActionButton(
+                      //             heroTag: "Boton2",
+                      //             elevation: 3.66,
+                      //             backgroundColor: wColor.mapColors["500BASE"],
+                      //             child: const Icon(
+                      //               Icons.edit_outlined,
+                      //               size: 24,
+                      //             ),
+                      //             onPressed: () => buildPopUpImage(context, () {
+                      //               getImageBottom(ImageSource.camera);
+                      //               Navigator.pop(context);
+                      //             }, () {
+                      //               getImageBottom(ImageSource.gallery);
+                      //               Navigator.pop(context);
+                      //             }),
+                      //           ),
+                      //         )),
                     ]),
                     SizedBox(height: height * 0.060),
                     const InfoColumnWidget(),
                     SizedBox(height: height * 0.030),
                     TextFieldFormMyUser(
-                        textTitle: 'my_user_text_field_hint',
-                        iconTextField:
-                            const Icon(Icons.keyboard_arrow_down_rounded),
-                        hintText: "my_user_text_field_label",
-                        imageState: state.profileImage)
+                      textTitle: 'my_user_text_field_hint',
+                      iconTextField:
+                          const Icon(Icons.keyboard_arrow_down_rounded),
+                      hintText: "my_user_text_field_label",
+                    )
                   ],
                 ),
               );

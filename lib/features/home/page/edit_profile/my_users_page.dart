@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:Tellme/features/home/page/edit_profile/widgets/build_pop_up_image_widget.dart';
@@ -32,12 +33,26 @@ class _MyUserPageState extends State<MyUserPage> {
   File? imageDisplayed;
   Future getImage(ImageSource source) async {
     try {
-      final image = await ImagePicker().pickImage(source: source);
+      final image =
+          await ImagePicker().pickImage(source: source, imageQuality: 4);
       if (image == null) return;
       final imageCameraTemporary = File(image.path);
-      // final imagePermanent = await saveFilePerma(image.path);
+      imageDisplayed = imageCameraTemporary;
+
+      if (imageDisplayed != null) {
+        final bytes = imageCameraTemporary.readAsBytesSync();
+        String image64 = base64Encode(bytes);
+        BlocProvider.of<AuthBloc>(context)
+            .add(UpdateImage(profileImage: image64));
+      }
+      if (imageDisplayed == '' || imageDisplayed == null) {
+        String image64 = base64.encode(imagePath.codeUnits);
+        BlocProvider.of<AuthBloc>(context)
+            .add(UpdateImage(profileImage: image64));
+      }
       setState(() {
         imageDisplayed = imageCameraTemporary;
+        print(imageDisplayed!.path);
       });
     } on PlatformException catch (e) {
       debugPrint('Failed to pick image: $e');
@@ -77,7 +92,7 @@ class _MyUserPageState extends State<MyUserPage> {
             return Center(
               child: Stack(alignment: AlignmentDirectional.center, children: [
                 //TODO: CHECK EDIT IMAGE PENCIL
-               state.profileImage != null
+                state.profileImage != null
                     ? CircleAvatar(
                         radius: 100,
                         backgroundColor: wColor.mapColors["P01"],
@@ -173,7 +188,7 @@ class _MyUserPageState extends State<MyUserPage> {
         SizedBox(height: height * 0.070),
         const InfoColumnWidget(),
         SizedBox(height: height * 0.040),
-        const TextFieldFormMyUser(
+        TextFieldFormMyUser(
           textTitle: 'my_user_text_field_hint',
           iconTextField: Icon(Icons.keyboard_arrow_down_rounded),
           hintText: "my_user_text_field_label",

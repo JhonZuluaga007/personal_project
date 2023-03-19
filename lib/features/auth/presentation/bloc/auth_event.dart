@@ -42,7 +42,7 @@ class ChangePassword extends AuthEvent {
 class UpdateImage extends AuthEvent {
   final String profileImage;
 
-  UpdateImage(this.profileImage);
+  UpdateImage({required this.profileImage});
 }
 
 class SuccessChangePassword extends AuthEvent {

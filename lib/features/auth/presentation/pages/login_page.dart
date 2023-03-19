@@ -193,14 +193,14 @@ class _LoginPageState extends State<LoginPage> {
         BlocConsumer<AuthBloc, AuthState>(
           listener: (BuildContext context, state) {
             if (state.formStatus is SubmissionSuccess) {
-              //BlocProvider.of<AuthBloc>(context).add(GetUser());
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => const NavBarPage(
-                          initialPage: 'HomePage',
-                        )),
-              );
+              BlocProvider.of<AuthBloc>(context).add(GetUser());
+              Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const NavBarPage(
+                            initialPage: 'HomePage',
+                          )),
+                  (route) => false);
             } else if (state.formStatus is SubmissionFailed) {
               final snackBar = SnackBar(
                   content: Text(state.errorMessage!),

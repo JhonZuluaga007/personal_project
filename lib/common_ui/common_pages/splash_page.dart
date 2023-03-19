@@ -26,6 +26,12 @@ class _SplashScreenPageState extends State<SplashScreenPage>
     startTimer();
   }
 
+  @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
+  }
+
   startTimer() async {
     var duration = const Duration(seconds: 5);
     return Timer(duration, route);
