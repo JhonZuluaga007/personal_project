@@ -52,10 +52,6 @@ class _TextFieldFormMyUserState extends State<TextFieldFormMyUser> {
       order: 1,
       project: IdTestEntity(oid: ""));
 
-  TextEditingController addressController = TextEditingController(text: "");
-  TextEditingController cityController = TextEditingController(text: "");
-  TextEditingController zipController = TextEditingController(text: "");
-
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.height;
@@ -238,12 +234,6 @@ class _TextFieldFormMyUserState extends State<TextFieldFormMyUser> {
                     infoText: 'alert_confirm_text_two',
                     mainButton: 'alert_confirm_text_three',
                     mainButtonFunction: () {
-                      //REVISAR QUE TENGA EXITO Y ACTUALIZAR ESTADO
-                      // EN LO CONTRARIO MOSTRAR ERROR ALERTA.
-                      // if ((selectedStateValue.valor != '' ||
-                      //         state.state!.valor.isNotEmpty) &&
-                      //     (state.profileImage!.isNotEmpty) &&
-                      //     (state.address!.isNotEmpty)) {}
                       doneSendInfo(
                         requiresTranslateText: true,
                         context: context,
@@ -262,18 +252,8 @@ class _TextFieldFormMyUserState extends State<TextFieldFormMyUser> {
                               UserUpdateEntity(
                                 userdId: state.userId,
                                 address: state.address,
-                                /*addressController.text != ''
-                                    ? addressController.text
-                                    : state.address,*/
                                 city: state.city,
-                                /*
-                                cityController.text != ''
-                                    ? cityController.text
-                                    : state.city, */
                                 zip: state.zip,
-                                /*zipController.text != ''
-                                    ? zipController.text
-                                    : state.zip,*/
                                 state: selectedStateValue.valor != ''
                                     ? selectedStateValue
                                     : state.state,
@@ -286,7 +266,6 @@ class _TextFieldFormMyUserState extends State<TextFieldFormMyUser> {
                                 race: selectedRaceValue.valor != ''
                                     ? selectedRaceValue
                                     : state.race,
-                                //TODO how to check we dont send a ''
                                 levelSchool: selectedSchoolLevel.level != ''
                                     ? selectedSchoolLevel
                                     : state.schoolLevels,
