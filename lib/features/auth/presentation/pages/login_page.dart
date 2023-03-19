@@ -1,7 +1,7 @@
-import '../bloc/auth_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../bloc/auth_bloc.dart';
 import '../widgets/line_row_widget.dart';
 import '../widgets/login_text_widget.dart';
 import '../../../../app_localizations.dart';
