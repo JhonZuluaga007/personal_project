@@ -105,7 +105,8 @@ class _TextFieldFormMyUserState extends State<TextFieldFormMyUser> {
                   fontSize: 16,
                   fontWeight: FontWeight.w400,
                   color: wColor.mapColors["S600"]),
-              hintText: state.zip ?? "050001",
+              hintText: "050001",
+              initialValue: state.zip,
               textStyle: const TextStyle(fontSize: 18),
               labelText: "profile_text_hint_ten",
               widthBorder: 3,
@@ -191,22 +192,23 @@ class _TextFieldFormMyUserState extends State<TextFieldFormMyUser> {
                     : defaultValueEthnicity),
             SizedBox(height: height * 0.025),
             DropDownQuestionsWidget(
-                dropDownItem: stateHelperTools.schoolLevels,
-                textQuestion: "graduate_level",
-                width: width,
-                onChanged: (valueDropdown) {
-                  setState(() {
-                    defaultValueSchool = valueDropdown!.valor;
-                    selectedSchoolLevel = SchoolLevelsEntity(
-                        id: IdTestEntity(oid: valueDropdown.id),
-                        level: valueDropdown.valor,
-                        order: 1,
-                        project: IdTestEntity(oid: ""));
-                  });
-                },
-                dropDownValue: state.schoolLevels != null
-                    ? state.schoolLevels!.level
-                    : defaultValueSchool),
+              dropDownItem: stateHelperTools.schoolLevels,
+              textQuestion: "graduate_level",
+              width: width,
+              onChanged: (valueDropdown) {
+                setState(() {
+                  defaultValueSchool = valueDropdown!.valor;
+                  selectedSchoolLevel = SchoolLevelsEntity(
+                      id: IdTestEntity(oid: valueDropdown.id),
+                      level: valueDropdown.valor,
+                      order: 1,
+                      project: IdTestEntity(oid: ""));
+                });
+              },
+              dropDownValue: state.schoolLevels != null
+                  ? state.schoolLevels!.level
+                  : defaultValueSchool,
+            ),
             SizedBox(height: height * 0.010),
             SizedBox(height: height * 0.0485),
             Center(

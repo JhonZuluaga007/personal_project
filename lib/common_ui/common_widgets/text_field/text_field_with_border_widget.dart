@@ -30,6 +30,7 @@ class TextFieldWithBorderWidget extends StatelessWidget {
     this.onChanged,
     this.textErrorValidate,
     this.textError,
+    this.initialValue,
   }) : super(key: key);
 
   final double? width;
@@ -55,6 +56,7 @@ class TextFieldWithBorderWidget extends StatelessWidget {
   final bool requiresTranslate;
   final bool? textErrorValidate;
   final String? textError;
+  final String? initialValue;
 
   @override
   Widget build(BuildContext context) {
@@ -67,6 +69,7 @@ class TextFieldWithBorderWidget extends StatelessWidget {
           width: width ?? size.width * 0.9,
           height: height ?? size.height * 0.06,
           child: TextFormField(
+            initialValue: initialValue,
             controller: textEditingController,
             keyboardType: textInputType ?? TextInputType.emailAddress,
             autofocus: false,
