@@ -102,7 +102,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     });
 
     on<GetUser>((event, emit) async {
-      //emit(state.copyWith(formStatus: FormSubmitting()));
+      emit(state.copyWith(formStatus: FormSubmitting()));
       final getUserResponse = await getUserUseCase.call();
       getUserResponse.fold((error) {
         emit(state.copyWith(
@@ -112,7 +112,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       }, (user) {
         final userResponse = user.data.user;
         emit(state.copyWith(
-          //formStatus: SubmissionSuccess(),
+          formStatus: SubmissionSuccess(),
           project: user.data.project.project,
           statusCode: user.statusCode,
           token: user.data.token,
@@ -172,6 +172,12 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
     on<UpdateImage>((event, emit) =>
         {emit(state.copyWith(profileImage: event.profileImage))});
+
+    on<UpdateAddress>(
+        (event, emit) => {emit(state.copyWith(address: event.userAddress))});
+    on<UpdateCity>(
+        (event, emit) => {emit(state.copyWith(city: event.userCity))});
+    on<UpdateZip>((event, emit) => {emit(state.copyWith(zip: event.userZip))});
 
     on<UserUpdateEvent>((event, emit) {
       userUpdateUseCase.call(event.userUpdateEntity);

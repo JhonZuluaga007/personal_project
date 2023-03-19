@@ -17,6 +17,24 @@ class GetUser extends AuthEvent {
   GetUser();
 }
 
+class UpdateAddress extends AuthEvent {
+  final String userAddress;
+
+  UpdateAddress(this.userAddress);
+}
+
+class UpdateCity extends AuthEvent {
+  final String userCity;
+
+  UpdateCity(this.userCity);
+}
+
+class UpdateZip extends AuthEvent {
+  final String userZip;
+
+  UpdateZip(this.userZip);
+}
+
 class UserUpdateEvent extends AuthEvent {
   final UserUpdateEntity userUpdateEntity;
   UserUpdateEvent(this.userUpdateEntity);

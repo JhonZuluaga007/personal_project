@@ -141,45 +141,45 @@ class _EditUserFromBottomPageState extends State<EditUserFromBottomPage> {
                                 fit: BoxFit.fill,
                               ),
                             ),
-                      // imageDisplayed != null
-                      //     ? Positioned(
-                      //         bottom: height * 0.17,
-                      //         left: width * 0.37,
-                      //         child: SizedBox(
-                      //           height: 48,
-                      //           child: FloatingActionButton(
-                      //             heroTag: "Boton3",
-                      //             elevation: 3.66,
-                      //             backgroundColor: wColor.mapColors["500BASE"],
-                      //             onPressed: () {},
-                      //             child: const Icon(
-                      //               Icons.edit_outlined,
-                      //               size: 24,
-                      //             ),
-                      //           ),
-                      //         ))
-                      //     : Positioned(
-                      //         bottom: height * 0.16,
-                      //         left: width * 0.34,
-                      //         child: SizedBox(
-                      //           height: 48,
-                      //           child: FloatingActionButton(
-                      //             heroTag: "Boton2",
-                      //             elevation: 3.66,
-                      //             backgroundColor: wColor.mapColors["500BASE"],
-                      //             child: const Icon(
-                      //               Icons.edit_outlined,
-                      //               size: 24,
-                      //             ),
-                      //             onPressed: () => buildPopUpImage(context, () {
-                      //               getImageBottom(ImageSource.camera);
-                      //               Navigator.pop(context);
-                      //             }, () {
-                      //               getImageBottom(ImageSource.gallery);
-                      //               Navigator.pop(context);
-                      //             }),
-                      //           ),
-                      //         )),
+                      imageDisplayed != null
+                          ? Positioned(
+                              bottom: height * 0.17,
+                              left: width * 0.19,
+                              child: SizedBox(
+                                height: 48,
+                                child: FloatingActionButton(
+                                  heroTag: "Boton3",
+                                  elevation: 3.66,
+                                  backgroundColor: wColor.mapColors["500BASE"],
+                                  onPressed: () {},
+                                  child: const Icon(
+                                    Icons.edit_outlined,
+                                    size: 24,
+                                  ),
+                                ),
+                              ))
+                          : Positioned(
+                              bottom: height * 0.16,
+                              left: width * 0.19,
+                              child: SizedBox(
+                                height: 48,
+                                child: FloatingActionButton(
+                                  heroTag: "Boton2",
+                                  elevation: 3.66,
+                                  backgroundColor: wColor.mapColors["500BASE"],
+                                  child: const Icon(
+                                    Icons.edit_outlined,
+                                    size: 24,
+                                  ),
+                                  onPressed: () => buildPopUpImage(context, () {
+                                    getImageBottom(ImageSource.camera);
+                                    Navigator.pop(context);
+                                  }, () {
+                                    getImageBottom(ImageSource.gallery);
+                                    Navigator.pop(context);
+                                  }),
+                                ),
+                              )),
                     ]),
                     SizedBox(height: height * 0.060),
                     const InfoColumnWidget(),
@@ -189,7 +189,7 @@ class _EditUserFromBottomPageState extends State<EditUserFromBottomPage> {
                       iconTextField:
                           const Icon(Icons.keyboard_arrow_down_rounded),
                       hintText: "my_user_text_field_label",
-                    )
+                    ),
                   ],
                 ),
               );

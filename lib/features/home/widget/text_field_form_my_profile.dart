@@ -63,6 +63,7 @@ class _TextFieldFormMyUserState extends State<TextFieldFormMyUser> {
     final stateHelperTools = BlocProvider.of<HelperToolsBloc>(context).state;
     NavigationBarBloc navigationBloc =
         BlocProvider.of<NavigationBarBloc>(context);
+    final authBloc = BlocProvider.of<AuthBloc>(context);
 
     return BlocBuilder<AuthBloc, AuthState>(
       builder: (context, state) {
@@ -72,12 +73,14 @@ class _TextFieldFormMyUserState extends State<TextFieldFormMyUser> {
             TextFieldWithBorderWidget(
               borderColor: wColor.mapColors["T100"],
               requiresTranslate: false,
-              textEditingController: addressController,
               hintStyle: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w400,
                   color: wColor.mapColors["S600"]),
-              hintText: state.address ?? "",
+              hintText: "Address",
+              initialValue: state.address,
+              onChanged: (newAddress) =>
+                  authBloc.add(UpdateAddress(newAddress)),
               textStyle: const TextStyle(fontSize: 18),
               labelText: 'profile_text_seven',
               widthBorder: 3,
@@ -86,12 +89,13 @@ class _TextFieldFormMyUserState extends State<TextFieldFormMyUser> {
             TextFieldWithBorderWidget(
               borderColor: wColor.mapColors["T100"],
               requiresTranslate: false,
-              textEditingController: cityController,
               hintStyle: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w400,
                   color: wColor.mapColors["S600"]),
-              hintText: state.city ?? "",
+              hintText: "City",
+              onChanged: (newCity) => authBloc.add(UpdateCity(newCity)),
+              initialValue: state.city,
               textStyle: const TextStyle(fontSize: 18),
               labelText: 'profile_text_hint_eigth',
               widthBorder: 3,
@@ -100,7 +104,7 @@ class _TextFieldFormMyUserState extends State<TextFieldFormMyUser> {
             TextFieldWithBorderWidget(
               requiresTranslate: false,
               borderColor: wColor.mapColors["T100"],
-              textEditingController: zipController,
+              onChanged: (newZip) => authBloc.add(UpdateZip(newZip)),
               hintStyle: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w400,
@@ -113,6 +117,7 @@ class _TextFieldFormMyUserState extends State<TextFieldFormMyUser> {
             ),
             SizedBox(height: height * 0.0250),
             DropDownQuestionsWidget(
+                key: const Key('stateQuestions'),
                 dropDownItem: stateHelperTools.state,
                 textQuestion: "profile_text_hint_nine",
                 width: width,
@@ -218,6 +223,9 @@ class _TextFieldFormMyUserState extends State<TextFieldFormMyUser> {
                 buttonColor: wColor.mapColors["500BASE"],
                 borderColor: wColor.mapColors["500BASE"],
                 onPressed: () {
+                  // if (state.address!.isNotEmpty  ){
+
+                  // }
                   confirmSendInfo(
                     context: context,
                     mainIcon: Icon(
@@ -232,6 +240,10 @@ class _TextFieldFormMyUserState extends State<TextFieldFormMyUser> {
                     mainButtonFunction: () {
                       //REVISAR QUE TENGA EXITO Y ACTUALIZAR ESTADO
                       // EN LO CONTRARIO MOSTRAR ERROR ALERTA.
+                      // if ((selectedStateValue.valor != '' ||
+                      //         state.state!.valor.isNotEmpty) &&
+                      //     (state.profileImage!.isNotEmpty) &&
+                      //     (state.address!.isNotEmpty)) {}
                       doneSendInfo(
                         requiresTranslateText: true,
                         context: context,
@@ -249,15 +261,19 @@ class _TextFieldFormMyUserState extends State<TextFieldFormMyUser> {
                             UserUpdateEvent(
                               UserUpdateEntity(
                                 userdId: state.userId,
-                                address: addressController.text != ''
+                                address: state.address,
+                                /*addressController.text != ''
                                     ? addressController.text
-                                    : state.address,
-                                city: cityController.text != ''
+                                    : state.address,*/
+                                city: state.city,
+                                /*
+                                cityController.text != ''
                                     ? cityController.text
-                                    : state.city,
-                                zip: zipController.text != ''
+                                    : state.city, */
+                                zip: state.zip,
+                                /*zipController.text != ''
                                     ? zipController.text
-                                    : state.zip,
+                                    : state.zip,*/
                                 state: selectedStateValue.valor != ''
                                     ? selectedStateValue
                                     : state.state,
@@ -270,7 +286,8 @@ class _TextFieldFormMyUserState extends State<TextFieldFormMyUser> {
                                 race: selectedRaceValue.valor != ''
                                     ? selectedRaceValue
                                     : state.race,
-                                levelSchool: [selectedSchoolLevel] != []
+                                //TODO how to check we dont send a ''
+                                levelSchool: selectedSchoolLevel.level != ''
                                     ? selectedSchoolLevel
                                     : state.schoolLevels,
                                 ethnicity: selectedEtnichityValue.valor != ''

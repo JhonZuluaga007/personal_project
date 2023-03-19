@@ -208,7 +208,8 @@ class User extends UserEntity {
         password: json["password"],
         passwordReset: json["password_reset"],
         profileImage: json["profile_image"],
-        projects: List<IdHistory>.from(json["projects"].map((x) => IdHistory.fromMap(x))),
+        projects: List<IdHistory>.from(
+            json["projects"].map((x) => IdHistory.fromMap(x))),
         race: List<Race>.from(json["race"].map((x) => Race.fromJson(x))),
         roles: List<String>.from(json["roles"].map((x) => x)),
         //schoolLevel: List<String>.from(json["school_level"].map((x) => x)),
@@ -234,10 +235,10 @@ class Address extends AddressEntity {
         );
 
   factory Address.fromJson(Map<String, dynamic> json) => Address(
-        address: json["address"],
-        city: json["city"],
+        address: json["address"] ?? '',
+        city: json["city"] ?? '',
         state: List<State>.from(json["state"].map((x) => State.fromJson(x))),
-        zip: json["zip"],
+        zip: json["zip"] ?? '',
       );
 }
 
@@ -255,10 +256,14 @@ class SchoolLevels extends SchoolLevelsEntity {
         );
 
   factory SchoolLevels.fromJson(Map<String, dynamic> json) => SchoolLevels(
-        id: json["_id"] != null ? IdHistory.fromMap(json["_id"]) : IdHistory(oid: ""),
+        id: json["_id"] != null
+            ? IdHistory.fromMap(json["_id"])
+            : IdHistory(oid: ""),
         level: json["level"] ?? "",
         order: json["order"] ?? 1,
-        project: json["project"] != null ? IdHistory.fromMap(json["project"]) : IdHistory(oid: ""),
+        project: json["project"] != null
+            ? IdHistory.fromMap(json["project"])
+            : IdHistory(oid: ""),
       );
 }
 

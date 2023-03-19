@@ -51,7 +51,7 @@ class TextFieldWithBorderWidget extends StatelessWidget {
   final Widget? suffixIcon;
   final bool? isPassword;
   final String? Function(String?)? validator;
-  final String? Function(String?)? onChanged;
+  final void Function(String)? onChanged;
   final double? widthBorder;
   final bool requiresTranslate;
   final bool? textErrorValidate;
