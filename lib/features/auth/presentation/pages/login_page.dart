@@ -193,7 +193,6 @@ class _LoginPageState extends State<LoginPage> {
         BlocConsumer<AuthBloc, AuthState>(
           listener: (BuildContext context, state) {
             if (state.formStatus is SubmissionSuccess) {
-              BlocProvider.of<AuthBloc>(context).add(GetUser());
               Navigator.pushAndRemoveUntil(
                   context,
                   MaterialPageRoute(

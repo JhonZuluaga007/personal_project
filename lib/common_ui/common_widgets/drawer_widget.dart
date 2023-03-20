@@ -142,7 +142,8 @@ class DrawerWidget extends StatelessWidget {
               onTap: () {
                 authBloc.add(LogOut());
 
-                Navigator.pushReplacementNamed(context, 'login');
+                Navigator.pushNamedAndRemoveUntil(
+                    context, 'login', (route) => false);
               },
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),

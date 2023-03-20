@@ -16,10 +16,12 @@ import '../../../../common_ui/common_widgets/text/text_widget.dart';
 import '../../../../common_ui/common_pages/my_app_scaffold_page.dart';
 
 class MyUserPage extends StatefulWidget {
-  const MyUserPage({super.key});
+  const MyUserPage({super.key, required this.isBottom});
 
   @override
   State<MyUserPage> createState() => _MyUserPageState();
+
+  final bool isBottom;
 }
 
 class _MyUserPageState extends State<MyUserPage> {
@@ -27,6 +29,7 @@ class _MyUserPageState extends State<MyUserPage> {
   @override
   void initState() {
     imagePath = 'assets/images/no_image.png';
+
     super.initState();
   }
 
@@ -67,26 +70,29 @@ class _MyUserPageState extends State<MyUserPage> {
     NavigationBarBloc navigationBloc =
         BlocProvider.of<NavigationBarBloc>(context);
     return MyAppScaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
-        leading: GestureDetector(
-          onTap: () {
-            navigationBloc.add(PageChanged(indexNavigation: 0));
-            Navigator.pushNamed(context, 'navBar');
-          },
-          child: Icon(
-            Icons.arrow_back_ios,
-            color: wColor.mapColors['P00'],
-          ),
-        ),
-        title: const TextWidget(
-          text: 'my_user_profile',
-          style: TextStyle(fontSize: 16, color: Colors.black),
-        ),
-        centerTitle: true,
-      ),
+      appBar: widget.isBottom
+          ? AppBar(
+              backgroundColor: Colors.white,
+              elevation: 0,
+              leading: GestureDetector(
+                onTap: () {
+                  navigationBloc.add(PageChanged(indexNavigation: 0));
+                  Navigator.pushNamed(context, 'navBar');
+                },
+                child: Icon(
+                  Icons.arrow_back_ios,
+                  color: wColor.mapColors['P00'],
+                ),
+              ),
+              title: const TextWidget(
+                text: 'my_user_profile',
+                style: TextStyle(fontSize: 16, color: Colors.black),
+              ),
+              centerTitle: true,
+            )
+          : null,
       children: [
+        SizedBox(height: height * 0.01),
         BlocBuilder<AuthBloc, AuthState>(
           builder: (context, state) {
             return Center(
@@ -109,6 +115,7 @@ class _MyUserPageState extends State<MyUserPage> {
                         ),
                       )
                     : Container(
+                        padding: EdgeInsets.only(top: 10),
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(12)),
                         child: CircleAvatar(
