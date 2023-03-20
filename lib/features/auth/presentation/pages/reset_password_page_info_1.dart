@@ -1,19 +1,19 @@
-import 'package:Tellme/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:Tellme/features/auth/presentation/pages/login_page.dart';
 
+import 'login_page.dart';
+import '../bloc/auth_bloc.dart';
 import '../../../../app_localizations.dart';
-import '../../../../common_ui/utils/utils_email.dart';
 import '../../../../config/theme/theme.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../../common_ui/utils/utils_email.dart';
 import '../../../../config/helpers/form_submission_status.dart';
 import '../../../../common_ui/common_widgets/text/text_widget.dart';
 import '../../../../common_ui/common_pages/my_app_scaffold_page.dart';
 import '../../../../common_ui/common_widgets/buttons/main_button_widget.dart';
-import '../../../../common_ui/common_widgets/responsive/dynamic_container_widget.dart';
-import '../../../../common_ui/common_widgets/text_field/text_field_with_border_widget.dart';
 import '../../../medical_history/presentation/widgets/done_alert_widget.dart';
 import '../../../medical_history/presentation/widgets/error_alert_widget.dart';
+import '../../../../common_ui/common_widgets/responsive/dynamic_container_widget.dart';
+import '../../../../common_ui/common_widgets/text_field/text_field_with_border_widget.dart';
 
 class ResetPasswordPageInfo extends StatefulWidget {
   const ResetPasswordPageInfo({Key? key}) : super(key: key);
@@ -104,7 +104,7 @@ class _ResetPasswordPageInfoState extends State<ResetPasswordPageInfo> {
                   }
                 },
                 onChanged: (emailValue) {
-                  if (UtilsEmailUser.validateEmail(emailValue!)) {
+                  if (UtilsEmailUser.validateEmail(emailValue)) {
                     setState(() {
                       emailValidateError = false;
                     });

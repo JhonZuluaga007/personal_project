@@ -42,8 +42,6 @@ class _SplashScreenPageState extends State<SplashScreenPage>
       context,
       MaterialPageRoute(builder: (context) => const LoginPage()),
     );
-
-    ///TODO check shared preferences if user has not done kyc avoid the intro.
   }
 
   @override

@@ -85,7 +85,7 @@ class _LoginPageState extends State<LoginPage> {
                   }
                 },
                 onChanged: (userName) {
-                  if (UtilsEmailUser.validateUserName(userName!) ||
+                  if (UtilsEmailUser.validateUserName(userName) ||
                       emailController.text.length < 4) {
                     setState(() {
                       emailValidateError = true;
@@ -126,7 +126,7 @@ class _LoginPageState extends State<LoginPage> {
               SizedBox(height: height * 0.03),
               TextFieldWithBorderWidget(
                 onChanged: (password) {
-                  if (UtilsStringPasword.isValidPassword(password!) ||
+                  if (UtilsStringPasword.isValidPassword(password) ||
                       password.length < 6) {
                     setState(() {
                       passwordValidateError = true;

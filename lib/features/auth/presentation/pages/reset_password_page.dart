@@ -1,19 +1,18 @@
-import '../bloc/auth_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../common_ui/common_widgets/buttons/main_button_widget.dart';
-import '../../../../common_ui/common_widgets/text_field/text_field_with_border_widget.dart';
-import '../../../../common_ui/utils/utils_string_password.dart';
-import '../../../../config/theme/theme.dart';
 
+import '../bloc/auth_bloc.dart';
 import '../../../../app_localizations.dart';
-import '../../../../common_ui/common_pages/my_app_scaffold_page.dart';
-import '../../../../common_ui/common_widgets/responsive/dynamic_container_widget.dart';
-import '../../../../common_ui/common_widgets/text/text_widget.dart';
+import '../../../../config/theme/theme.dart';
+import '../../../../common_ui/utils/utils_string_password.dart';
 import '../../../../config/helpers/form_submission_status.dart';
-
+import '../../../../common_ui/common_widgets/text/text_widget.dart';
+import '../../../../common_ui/common_pages/my_app_scaffold_page.dart';
+import '../../../../common_ui/common_widgets/buttons/main_button_widget.dart';
 import '../../../medical_history/presentation/widgets/done_alert_widget.dart';
 import '../../../medical_history/presentation/widgets/error_alert_widget.dart';
+import '../../../../common_ui/common_widgets/responsive/dynamic_container_widget.dart';
+import '../../../../common_ui/common_widgets/text_field/text_field_with_border_widget.dart';
 
 class ResetPasswordPage extends StatefulWidget {
   const ResetPasswordPage({Key? key}) : super(key: key);
@@ -113,7 +112,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                     onChanged: (oldPasswordValue) {
                       if (UtilsStringPasword.isValidPassword(
                               oldPassword.text) ||
-                          oldPasswordValue!.length < 6) {
+                          oldPasswordValue.length < 6) {
                         setState(() {
                           oldPasswordValidateError = true;
                         });
@@ -160,7 +159,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                     onChanged: (newPasswordValue) {
                       if (UtilsStringPasword.isValidPassword(
                               oldPassword.text) ||
-                          newPasswordValue!.length < 6) {
+                          newPasswordValue.length < 6) {
                         setState(() {
                           newPasswordValidateError = true;
                         });
@@ -206,7 +205,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                         fontSize: 14),
                     onChanged: (confirmPasswordValue) {
                       if (UtilsStringPasword.isValidPassword(
-                              confirmPasswordValue!) ||
+                              confirmPasswordValue) ||
                           confirmPasswordValue.length < 6) {
                         setState(() {
                           confirmPasswordValidateError = true;
