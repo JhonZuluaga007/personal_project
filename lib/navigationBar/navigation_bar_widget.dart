@@ -1,10 +1,10 @@
+import 'package:Tellme/features/home/page/edit_profile/my_users_page.dart';
 import 'package:Tellme/features/support/presentation/pages/support_bottom_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:Tellme/app_localizations.dart';
 import 'package:Tellme/common_ui/common_widgets/drawer_widget.dart';
 import 'package:Tellme/config/theme/theme.dart';
-import 'package:Tellme/features/home/page/edit_profile/edit_profile_bottom_page.dart';
 import 'package:Tellme/navigationBar/bloc/navigation_bar_bloc.dart';
 import 'package:Tellme/navigationBar/floating_nav_bar_item.dart';
 import 'package:Tellme/features/home/page/tests_pages/register_antigen_test_page.dart';
@@ -43,7 +43,7 @@ class _NavBarPageState extends State<NavBarPage> {
       {'pageName': const HomePage(), 'title': 'Home'},
       {'pageName': const HistoryPage(), 'title': 'History'},
       {'pageName': const RegisterTestPage(), 'title': 'Tests'},
-      {'pageName': const EditUserFromBottomPage(), 'title': 'UserEdit'},
+      {'pageName': const MyUserPage(isBottom: false), 'title': 'UserEdit'},
       {'pageName': const SupportBottomPage(), 'title': 'support'},
 
       // {'pageName': const FAQSPage(), 'title': 'FAQs'}, //TODO NOT USED AT THE MOMENT

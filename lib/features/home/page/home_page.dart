@@ -23,6 +23,8 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     BlocProvider.of<HelperToolsBloc>(context).add(GetTestTools());
+    BlocProvider.of<AuthBloc>(context).add(GetUser());
+
     super.initState();
   }
 

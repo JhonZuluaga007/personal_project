@@ -88,7 +88,9 @@ class MyApp extends StatelessWidget {
             "pcrInfo": (_) => const PcrRegisterPage(),
             "antigenInfo": (_) => const AntigenRegisterInfoPage(),
             "medicalHistory": (_) => const MedicalHistoryPage(),
-            "profile": (_) => const MyUserPage(),
+            "profile": (_) => const MyUserPage(
+                  isBottom: true,
+                ),
           },
         ));
   }
