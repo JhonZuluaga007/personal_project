@@ -1,7 +1,7 @@
-import '../bloc/auth_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../bloc/auth_bloc.dart';
 import '../widgets/line_row_widget.dart';
 import '../widgets/login_text_widget.dart';
 import '../../../../app_localizations.dart';
@@ -85,7 +85,7 @@ class _LoginPageState extends State<LoginPage> {
                   }
                 },
                 onChanged: (userName) {
-                  if (UtilsEmailUser.validateUserName(userName!) ||
+                  if (UtilsEmailUser.validateUserName(userName) ||
                       emailController.text.length < 4) {
                     setState(() {
                       emailValidateError = true;
@@ -126,7 +126,7 @@ class _LoginPageState extends State<LoginPage> {
               SizedBox(height: height * 0.03),
               TextFieldWithBorderWidget(
                 onChanged: (password) {
-                  if (UtilsStringPasword.isValidPassword(password!) ||
+                  if (UtilsStringPasword.isValidPassword(password) ||
                       password.length < 6) {
                     setState(() {
                       passwordValidateError = true;
@@ -193,14 +193,14 @@ class _LoginPageState extends State<LoginPage> {
         BlocConsumer<AuthBloc, AuthState>(
           listener: (BuildContext context, state) {
             if (state.formStatus is SubmissionSuccess) {
-              //BlocProvider.of<AuthBloc>(context).add(GetUser());
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => const NavBarPage(
-                          initialPage: 'HomePage',
-                        )),
-              );
+              BlocProvider.of<AuthBloc>(context).add(GetUser());
+              Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const NavBarPage(
+                            initialPage: 'HomePage',
+                          )),
+                  (route) => false);
             } else if (state.formStatus is SubmissionFailed) {
               final snackBar = SnackBar(
                   content: Text(state.errorMessage!),

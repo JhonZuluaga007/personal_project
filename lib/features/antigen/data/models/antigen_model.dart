@@ -291,7 +291,7 @@ class TestAntigen extends TestAntigenEntity {
     required Object form,
     required List<dynamic> laboratory,
     required List<ManufacturerAntigen> manufacturer,
-    required List<dynamic> photo,
+    required String photo,
     required IdHistory preparedBy,
     required IdHistory project,
     required Object result,
@@ -343,7 +343,7 @@ class TestAntigen extends TestAntigenEntity {
         laboratory: List<dynamic>.from(json["laboratory"].map((x) => x)),
         manufacturer: List<ManufacturerAntigen>.from(
             json["manufacturer"].map((x) => ManufacturerAntigen.fromMap(x))),
-        photo: List<dynamic>.from(json["photo"].map((x) => x)),
+        photo: json["photo"],
         preparedBy: IdHistory.fromMap(json["prepared_by"]),
         project: IdHistory.fromMap(json["project"]),
         result: List<dynamic>.from(json["result"].map((x) => x)),

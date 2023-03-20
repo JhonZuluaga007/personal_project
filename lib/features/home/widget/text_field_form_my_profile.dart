@@ -15,17 +15,16 @@ import '../../antigen/presentation/ui/widgets/drop_down_questions_widget.dart';
 import '../../../common_ui/common_widgets/text_field/text_field_with_border_widget.dart';
 
 class TextFieldFormMyUser extends StatefulWidget {
-  const TextFieldFormMyUser(
-      {super.key,
-      required this.textTitle,
-      this.iconTextField,
-      required this.hintText,
-      this.imageState});
+  const TextFieldFormMyUser({
+    super.key,
+    required this.textTitle,
+    this.iconTextField,
+    required this.hintText,
+  });
 
   final String textTitle;
   final String hintText;
   final Icon? iconTextField;
-  final String? imageState;
 
   // @override
   State<TextFieldFormMyUser> createState() => _TextFieldFormMyUserState();
@@ -53,10 +52,6 @@ class _TextFieldFormMyUserState extends State<TextFieldFormMyUser> {
       order: 1,
       project: IdTestEntity(oid: ""));
 
-  TextEditingController addressController = TextEditingController(text: "");
-  TextEditingController cityController = TextEditingController(text: "");
-  TextEditingController zipController = TextEditingController(text: "");
-
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.height;
@@ -64,6 +59,7 @@ class _TextFieldFormMyUserState extends State<TextFieldFormMyUser> {
     final stateHelperTools = BlocProvider.of<HelperToolsBloc>(context).state;
     NavigationBarBloc navigationBloc =
         BlocProvider.of<NavigationBarBloc>(context);
+    final authBloc = BlocProvider.of<AuthBloc>(context);
 
     return BlocBuilder<AuthBloc, AuthState>(
       builder: (context, state) {
@@ -73,12 +69,14 @@ class _TextFieldFormMyUserState extends State<TextFieldFormMyUser> {
             TextFieldWithBorderWidget(
               borderColor: wColor.mapColors["T100"],
               requiresTranslate: false,
-              textEditingController: addressController,
               hintStyle: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w400,
                   color: wColor.mapColors["S600"]),
-              hintText: state.address ?? "",
+              hintText: "Address",
+              initialValue: state.address,
+              onChanged: (newAddress) =>
+                  authBloc.add(UpdateAddress(newAddress)),
               textStyle: const TextStyle(fontSize: 18),
               labelText: 'profile_text_seven',
               widthBorder: 3,
@@ -87,12 +85,13 @@ class _TextFieldFormMyUserState extends State<TextFieldFormMyUser> {
             TextFieldWithBorderWidget(
               borderColor: wColor.mapColors["T100"],
               requiresTranslate: false,
-              textEditingController: cityController,
               hintStyle: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w400,
                   color: wColor.mapColors["S600"]),
-              hintText: state.city ?? "",
+              hintText: "City",
+              onChanged: (newCity) => authBloc.add(UpdateCity(newCity)),
+              initialValue: state.city,
               textStyle: const TextStyle(fontSize: 18),
               labelText: 'profile_text_hint_eigth',
               widthBorder: 3,
@@ -101,18 +100,20 @@ class _TextFieldFormMyUserState extends State<TextFieldFormMyUser> {
             TextFieldWithBorderWidget(
               requiresTranslate: false,
               borderColor: wColor.mapColors["T100"],
-              textEditingController: zipController,
+              onChanged: (newZip) => authBloc.add(UpdateZip(newZip)),
               hintStyle: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w400,
                   color: wColor.mapColors["S600"]),
-              hintText: state.zip ?? "050001",
+              hintText: "050001",
+              initialValue: state.zip,
               textStyle: const TextStyle(fontSize: 18),
               labelText: "profile_text_hint_ten",
               widthBorder: 3,
             ),
             SizedBox(height: height * 0.0250),
             DropDownQuestionsWidget(
+                key: const Key('stateQuestions'),
                 dropDownItem: stateHelperTools.state,
                 textQuestion: "profile_text_hint_nine",
                 width: width,
@@ -192,22 +193,23 @@ class _TextFieldFormMyUserState extends State<TextFieldFormMyUser> {
                     : defaultValueEthnicity),
             SizedBox(height: height * 0.025),
             DropDownQuestionsWidget(
-                dropDownItem: stateHelperTools.schoolLevels,
-                textQuestion: "graduate_level",
-                width: width,
-                onChanged: (valueDropdown) {
-                  setState(() {
-                    defaultValueSchool = valueDropdown!.valor;
-                    selectedSchoolLevel = SchoolLevelsEntity(
-                        id: IdTestEntity(oid: valueDropdown.id),
-                        level: valueDropdown.valor,
-                        order: 1,
-                        project: IdTestEntity(oid: ""));
-                  });
-                },
-                dropDownValue: state.schoolLevels != null
-                    ? state.schoolLevels!.level
-                    : defaultValueSchool),
+              dropDownItem: stateHelperTools.schoolLevels,
+              textQuestion: "graduate_level",
+              width: width,
+              onChanged: (valueDropdown) {
+                setState(() {
+                  defaultValueSchool = valueDropdown!.valor;
+                  selectedSchoolLevel = SchoolLevelsEntity(
+                      id: IdTestEntity(oid: valueDropdown.id),
+                      level: valueDropdown.valor,
+                      order: 1,
+                      project: IdTestEntity(oid: ""));
+                });
+              },
+              dropDownValue: state.schoolLevels != null
+                  ? state.schoolLevels!.level
+                  : defaultValueSchool,
+            ),
             SizedBox(height: height * 0.010),
             SizedBox(height: height * 0.0485),
             Center(
@@ -217,6 +219,9 @@ class _TextFieldFormMyUserState extends State<TextFieldFormMyUser> {
                 buttonColor: wColor.mapColors["500BASE"],
                 borderColor: wColor.mapColors["500BASE"],
                 onPressed: () {
+                  // if (state.address!.isNotEmpty  ){
+
+                  // }
                   confirmSendInfo(
                     context: context,
                     mainIcon: Icon(
@@ -229,8 +234,6 @@ class _TextFieldFormMyUserState extends State<TextFieldFormMyUser> {
                     infoText: 'alert_confirm_text_two',
                     mainButton: 'alert_confirm_text_three',
                     mainButtonFunction: () {
-                      //REVISAR QUE TENGA EXITO Y ACTUALIZAR ESTADO
-                      // EN LO CONTRARIO MOSTRAR ERROR ALERTA.
                       doneSendInfo(
                         requiresTranslateText: true,
                         context: context,
@@ -248,15 +251,9 @@ class _TextFieldFormMyUserState extends State<TextFieldFormMyUser> {
                             UserUpdateEvent(
                               UserUpdateEntity(
                                 userdId: state.userId,
-                                address: addressController.text != ''
-                                    ? addressController.text
-                                    : state.address,
-                                city: cityController.text != ''
-                                    ? cityController.text
-                                    : state.city,
-                                zip: zipController.text != ''
-                                    ? zipController.text
-                                    : state.zip,
+                                address: state.address,
+                                city: state.city,
+                                zip: state.zip,
                                 state: selectedStateValue.valor != ''
                                     ? selectedStateValue
                                     : state.state,
@@ -269,7 +266,7 @@ class _TextFieldFormMyUserState extends State<TextFieldFormMyUser> {
                                 race: selectedRaceValue.valor != ''
                                     ? selectedRaceValue
                                     : state.race,
-                                levelSchool: [selectedSchoolLevel] != []
+                                levelSchool: selectedSchoolLevel.level != ''
                                     ? selectedSchoolLevel
                                     : state.schoolLevels,
                                 ethnicity: selectedEtnichityValue.valor != ''
