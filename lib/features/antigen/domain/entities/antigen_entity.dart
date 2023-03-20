@@ -1,3 +1,4 @@
+import '../../../auth/domain/entities/options_tools_entity.dart';
 import '../../../test_history/domain/entities/test_history_entity.dart';
 
 class AntigenResponseEntity {
@@ -65,10 +66,10 @@ class LastTestAntigenEntity {
   final List<StatusHistoryEntity> statusHistory;
   final List<dynamic> stepHistory;
   final List<dynamic> swabType;
-  final List<dynamic> symptoms;
+  final List<SymptomEntity> symptoms;
   final List<TypeTestEntity> type;
   final CreatedTestEntity updated;
-  final List<dynamic> vaccines;
+  final List<VaccineEntity> vaccines;
   final List<ValidityTestEntity> validity;
 }
 
@@ -187,10 +188,10 @@ class TestAntigenEntity {
   final List<StatusHistoryEntity> statusHistory;
   final List<dynamic> stepHistory;
   final List<dynamic> swabType;
-  final List<dynamic> symptoms;
+  final List<SymptomEntity> symptoms;
   final List<TypeTestEntity> type;
   final CreatedTestEntity updated;
-  final List<dynamic> vaccines;
+  final List<VaccineEntity> vaccines;
   final List<dynamic> validity;
 }
 
@@ -206,4 +207,28 @@ class ManufacturerAntigenEntity {
   final String name;
   final IdTestEntity project;
   final int testTime;
+}
+
+class SymptomEntity extends OpSymptomEntity {
+  SymptomEntity({
+    required IdEntity id,
+    required IdEntity project,
+    required String symptom,
+  }) : super(
+          id: id.oid,
+          project: project,
+          symptom: symptom,
+        );
+}
+
+class VaccineEntity extends OpVaccineEntity {
+  VaccineEntity({
+    required IdEntity id,
+    required IdEntity project,
+    required String vaccine,
+  }) : super(
+          id: id.oid,
+          project: project,
+          vaccine: vaccine,
+        );
 }

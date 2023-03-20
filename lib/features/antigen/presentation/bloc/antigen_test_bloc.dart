@@ -6,6 +6,7 @@ import '../../../antigen/data/models/antigen_model.dart';
 import '../../../../config/helpers/injector/injector.dart';
 import '../../domain/use_cases/antigen_validate_use_case.dart';
 import '../../../../config/helpers/form_submission_status.dart';
+import '../../../auth/domain/entities/options_tools_entity.dart';
 import '../../../antigen/domain/entities/antigen_register_entity.dart';
 import '../../../antigen/domain/use_cases/antigen_register_use_case.dart';
 
@@ -16,7 +17,7 @@ class AntigenTestBloc extends Bloc<AntigenTestEvent, AntigenTestState> {
   final antigenUseCase = Injector.resolve<AntigenValidateUseCase>();
   final antigenRegisterUseCase = Injector.resolve<AntigenRegisterUseCase>();
 
-  AntigenTestBloc() : super(const AntigenTestState()) {
+  AntigenTestBloc() : super(AntigenTestState()) {
     on<AntigenValidateEvent>((event, emit) async {
       emit(state.copyWith(formStatus: FormSubmitting()));
       final antigenTest = await antigenUseCase.call(event.code);
@@ -32,6 +33,8 @@ class AntigenTestBloc extends Bloc<AntigenTestEvent, AntigenTestState> {
                 statusCode: antigenModel.statusCode,
                 id: antigenModel.data.test.id.oid,
                 idTest: antigenModel.data.test.id.oid,
+                symptoms: antigenModel.data.lastTest!.symptoms,
+                vaccines: antigenModel.data.lastTest!.vaccines,
                 question1: antigenModel.data.lastTest!.form[0].question1,
                 question2: antigenModel.data.lastTest!.form[0].question2,
                 question3: antigenModel.data.lastTest!.form[0].question3,
@@ -54,24 +57,27 @@ class AntigenTestBloc extends Bloc<AntigenTestEvent, AntigenTestState> {
     on<AntigenRegisterEvent>((event, emit) async {
       emit(state.copyWith(formStatus: FormSubmitting()));
       final antigenRegisterTest = await antigenRegisterUseCase.call(
-          state.code,
-          state.question1!,
-          state.question2!,
-          state.question3!,
-          state.question4!,
-          state.question5!,
-          state.question6!,
-          state.question7!,
-          state.question8!,
-          state.question9!,
-          state.question10!,
-          state.question11!,
-          state.question12!,
-          state.question13!,
-          state.question14!,
-          state.question15!,
-          state.stepHistory ?? [],
-          state.testImage);
+        state.code,
+        state.symptoms!,
+        state.vaccines!,
+        state.question1!,
+        state.question2!,
+        state.question3!,
+        state.question4!,
+        state.question5!,
+        state.question6!,
+        state.question7!,
+        state.question8!,
+        state.question9!,
+        state.question10!,
+        state.question11!,
+        state.question12!,
+        state.question13!,
+        state.question14!,
+        state.question15!,
+        state.stepHistory ?? [],
+        state.testImage,
+      );
       antigenRegisterTest.fold(
           (error) => emit(state.copyWith(
               formStatus: SubmissionFailed(exception: Exception(error.message)),
@@ -95,13 +101,16 @@ class AntigenTestBloc extends Bloc<AntigenTestEvent, AntigenTestState> {
     });
 
     on<AntigenQuestion2Event>((event, emit) {
-      emit(state.copyWith(
-        formStatus: const InitialFormStatus(),
-        question2: QuestionType10List(
-          name: state.question2!.name,
-          value: event.question2,
+      emit(
+        state.copyWith(
+          formStatus: const InitialFormStatus(),
+          question2: QuestionType10List(
+            name: state.question2!.name,
+            value: event.symptoms.map((e) => e.valor).toList(),
+          ),
+          symptoms: event.symptoms,
         ),
-      ));
+      );
     });
 
     on<AntigenQuestion3Event>((event, emit) {
@@ -168,12 +177,16 @@ class AntigenTestBloc extends Bloc<AntigenTestEvent, AntigenTestState> {
     });
 
     on<AntigenQuestion10Event>((event, emit) {
-      emit(state.copyWith(
+      emit(
+        state.copyWith(
           formStatus: const InitialFormStatus(),
           question10: QuestionType10ListEntity(
             name: state.question10!.name,
-            value: event.question10,
-          )));
+            value: event.vaccines.map((vaccine) => vaccine.valor).toList(),
+          ),
+          vaccines: event.vaccines,
+        ),
+      );
     });
 
     on<AntigenQuestion11Event>((event, emit) {

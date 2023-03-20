@@ -5,6 +5,7 @@ import '../../../../config/helpers/endpoints.dart';
 import '../../../../config/helpers/models/server_error.dart';
 import '../../../../config/helpers/errors/invalid_data.dart';
 import '../../../antigen/domain/entities/antigen_entity.dart';
+import '../../../auth/domain/entities/options_tools_entity.dart';
 
 class AntigenDataSource {
   Future<AntigenModel> validateAntigen(String code) async {
@@ -21,6 +22,8 @@ class AntigenDataSource {
 
   Future<AntigenRegisterModel> registerTest(
       String code,
+      List<OpSymptomEntity> symptoms,
+      List<OpVaccineEntity> vaccines,
       QuestionType1StringEntity question1,
       QuestionType10ListEntity question2,
       QuestionType1StringEntity question3,
@@ -41,8 +44,8 @@ class AntigenDataSource {
     var response = await Api.post(Endpoints.registerTest, {
       "project": "ChelseaProject",
       "code": code,
-      "symptoms": [],
-      "vaccines": [],
+      "symptoms": symptoms.map((symptom) => symptom.id).toList(),
+      "vaccines": vaccines.map((vaccine) => vaccine.id).toList(),
       "question1": question1.toJson(),
       "question2": question2.toJson(),
       "question3": question3.toJson(),

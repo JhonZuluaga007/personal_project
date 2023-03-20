@@ -1,10 +1,14 @@
-import 'package:Tellme/features/antigen/presentation/ui/widgets/multi_selector_string_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:Tellme/common_ui/common_widgets/form_field_dropdown_widget.dart';
-import 'package:Tellme/common_ui/common_widgets/text/text_widget.dart';
-import 'package:Tellme/config/theme/theme.dart';
-import 'package:Tellme/features/antigen/presentation/bloc/antigen_test_bloc.dart';
+
+import '../../../../../config/theme/theme.dart';
+import '../../../../auth/presentation/bloc/helper_tools_bloc.dart';
+import '../../../../auth/domain/entities/options_tools_entity.dart';
+import '../../../../antigen/presentation/bloc/antigen_test_bloc.dart';
+import '../../../../../common_ui/common_widgets/text/text_widget.dart';
+import '../../../../../common_ui/common_widgets/form_field_dropdown_widget.dart';
+import '../../../../antigen/presentation/ui/widgets/multi_selector_string_widget.dart';
+import '../../../../medical_history/presentation/widgets/multi_selected_opdropdown_widget.dart';
 
 class FourQuestionWidget extends StatefulWidget {
   const FourQuestionWidget({Key? key}) : super(key: key);
@@ -23,15 +27,7 @@ class _FourQuestionWidgetState extends State<FourQuestionWidget> {
     "Yes, 2022",
     "Yes, 2023"
   ];
-
-  final List<String> vacinneChipList = [];
-  final List<String> vaccinesList = [
-    "Pfizer",
-    "Moderna",
-    "Johnson & Johnson",
-    "Other",
-    "Do not know",
-  ];
+  List<OpVaccineEntity> vacinneChipList = [];
 
   @override
   Widget build(BuildContext context) {
@@ -40,6 +36,8 @@ class _FourQuestionWidgetState extends State<FourQuestionWidget> {
     final wColor = ThemesIdx20();
     final stateAntigen = BlocProvider.of<AntigenTestBloc>(context).state;
     final antigenBloc = BlocProvider.of<AntigenTestBloc>(context);
+    final stateHelperTools = BlocProvider.of<HelperToolsBloc>(context).state;
+
     return Column(
       children: [
         SizedBox(height: height * 0.031),
@@ -53,22 +51,22 @@ class _FourQuestionWidgetState extends State<FourQuestionWidget> {
               color: wColor.mapColors["S700"]!),
         ),
         SizedBox(height: height * 0.011),
-        MultiSelectedStringWidget(
-          listItem: vaccinesList,
+        MultiSelectedOpDropDownWidget(
           onChanged: (value) {
             setState(() {
-              if (vacinneChipList.contains(value) != true) {
-                vacinneChipList.add(value.toString());
+              if (stateAntigen.vaccines!.contains(value) != true) {
+                vacinneChipList.add(value! as OpVaccineEntity);
+                stateAntigen.vaccines = vacinneChipList;
+                debugPrint(vacinneChipList.toString());
               }
+              antigenBloc
+                  .add(AntigenQuestion10Event(vaccines: vacinneChipList));
             });
-            antigenBloc
-                .add(AntigenQuestion10Event(question10: vacinneChipList));
           },
-          requiredTranslate: false,
-          listChip: stateAntigen.question10!.value != vacinneChipList
-              ? stateAntigen.question10!.value
-              : vacinneChipList,
+          listItem: stateHelperTools.vaccines,
           valueDefaultList: "drop_down_select_option",
+          listChip: stateAntigen.vaccines ?? vacinneChipList,
+          requiredTranslate: false,
         ),
         SizedBox(height: height * 0.031),
         TextWidget(

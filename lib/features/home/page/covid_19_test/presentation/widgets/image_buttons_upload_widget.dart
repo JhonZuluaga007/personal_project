@@ -31,7 +31,7 @@ class _ImageButtonsWidgetState extends State<ImageButtonsWidget> {
   Future getImage(ImageSource source) async {
     try {
       final image =
-          await ImagePicker().pickImage(source: source, imageQuality: 4);
+          await ImagePicker().pickImage(source: source, imageQuality: 2);
       if (image == null) return;
       final imageCameraTemporary = File(image.path);
       imageDisplayed = imageCameraTemporary;

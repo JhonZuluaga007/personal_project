@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import '../../domain/entities/antigen_entity.dart';
+import '../../../auth/data/models/options_tools_model.dart';
 import '../../../test_history/data/models/test_history_models.dart';
 
 class AntigenModel extends AntigenResponseEntity {
@@ -130,10 +131,10 @@ class LastTestAntigen extends LastTestAntigenEntity {
     required List<StatusTestHistory> statusHistory,
     required List<dynamic> stepHistory,
     required List<dynamic> swabType,
-    required List<dynamic> symptoms,
+    required List<Symptom> symptoms,
     required List<TypeHistory> type,
     required CreatedHistory updated,
-    required List<dynamic> vaccines,
+    required List<Vaccine> vaccines,
     required List<ValidityHistory> validity,
   }) : super(
             id: id,
@@ -183,11 +184,13 @@ class LastTestAntigen extends LastTestAntigenEntity {
             json["status_history"].map((x) => StatusTestHistory.fromMap(x))),
         stepHistory: List<dynamic>.from(json["step_history"].map((x) => x)),
         swabType: List<dynamic>.from(json["swab_type"].map((x) => x)),
-        symptoms: List<dynamic>.from(json["symptoms"].map((x) => x)),
+        symptoms:
+            List<Symptom>.from(json["symptoms"].map((x) => Symptom.fromMap(x))),
         type: List<TypeHistory>.from(
             json["type"].map((x) => TypeHistory.fromMap(x))),
         updated: CreatedHistory.fromMap(json["updated"]),
-        vaccines: List<dynamic>.from(json["vaccines"].map((x) => x)),
+        vaccines:
+            List<Vaccine>.from(json["vaccines"].map((x) => Vaccine.fromMap(x))),
         validity: List<ValidityHistory>.from(
             json["validity"].map((x) => ValidityHistory.fromMap(x))),
       );
@@ -300,10 +303,10 @@ class TestAntigen extends TestAntigenEntity {
     required List<StatusTestHistory> statusHistory,
     required List<dynamic> stepHistory,
     required List<dynamic> swabType,
-    required List<dynamic> symptoms,
+    required List<Symptom> symptoms,
     required List<TypeHistory> type,
     required CreatedHistory updated,
-    required List<dynamic> vaccines,
+    required List<Vaccine> vaccines,
     required List<dynamic> validity,
   }) : super(
             id: id,
@@ -354,11 +357,13 @@ class TestAntigen extends TestAntigenEntity {
             json["status_history"].map((x) => StatusTestHistory.fromMap(x))),
         stepHistory: List<dynamic>.from(json["validity"].map((x) => x)),
         swabType: List<dynamic>.from(json["swab_type"].map((x) => x)),
-        symptoms: List<dynamic>.from(json["symptoms"].map((x) => x)),
+        symptoms:
+            List<Symptom>.from(json["symptoms"].map((x) => Symptom.fromMap(x))),
         type: List<TypeHistory>.from(
             json["type"].map((x) => TypeHistory.fromMap(x))),
         updated: CreatedHistory.fromMap(json["updated"]),
-        vaccines: List<dynamic>.from(json["vaccines"].map((x) => x)),
+        vaccines:
+            List<Vaccine>.from(json["vaccines"].map((x) => Vaccine.fromMap(x))),
         validity: List<dynamic>.from(json["validity"].map((x) => x)),
       );
 }
@@ -382,5 +387,37 @@ class ManufacturerAntigen extends ManufacturerAntigenEntity {
         name: json["name"],
         project: IdHistory.fromMap(json["project"]),
         testTime: json["test_time"],
+      );
+}
+
+class Symptom extends SymptomEntity {
+  Symptom({
+    required Id id,
+    required Id project,
+    required String symptom,
+  }) : super(id: id, project: project, symptom: symptom);
+
+  factory Symptom.fromMap(Map<String, dynamic> json) => Symptom(
+        id: Id.fromJson(json["_id"]),
+        project: Id.fromJson(json["project"]),
+        symptom: json["symptom"],
+      );
+}
+
+class Vaccine extends VaccineEntity {
+  Vaccine({
+    required Id id,
+    required Id project,
+    required String vaccine,
+  }) : super(
+          id: id,
+          project: project,
+          vaccine: vaccine,
+        );
+
+  factory Vaccine.fromMap(Map<String, dynamic> json) => Vaccine(
+        id: Id.fromJson(json["_id"]),
+        project: Id.fromJson(json["project"]),
+        vaccine: json["vaccine"],
       );
 }

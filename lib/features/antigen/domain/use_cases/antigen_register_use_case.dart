@@ -4,6 +4,7 @@ import '../repository/antigen_repository.dart';
 import '../entities/antigen_register_entity.dart';
 import '../../domain/entities/antigen_entity.dart';
 import '../../../../config/helpers/errors/invalid_data.dart';
+import '../../../auth/domain/entities/options_tools_entity.dart';
 
 class AntigenRegisterUseCase {
   AntigenRepository authRepository;
@@ -13,6 +14,8 @@ class AntigenRegisterUseCase {
 
   Future<Either<InvalidData, AntigenRegisterResponseEntity>> call(
       String code,
+      List<OpSymptomEntity> symptoms,
+      List<OpVaccineEntity> vaccines,
       QuestionType1StringEntity question1,
       QuestionType10ListEntity question2,
       QuestionType1StringEntity question3,
@@ -32,6 +35,8 @@ class AntigenRegisterUseCase {
       String? testImage) async {
     return await authRepository.registerTest(
         code,
+        symptoms,
+        vaccines,
         question1,
         question2,
         question3,

@@ -10,6 +10,8 @@ class AntigenTestState {
   final DateTime? created;
   final int statusCode;
   final FormSubmissionStatus formStatus;
+  List<OpSymptomEntity>? symptoms;
+  List<OpVaccineEntity>? vaccines;
   final QuestionType1StringEntity? question1;
   final QuestionType10ListEntity? question2;
   final QuestionType1StringEntity? question3;
@@ -31,7 +33,7 @@ class AntigenTestState {
   final String testImage;
   final AntigenRegisterResponseEntity? antigenResponse;
 
-  const AntigenTestState({
+  AntigenTestState({
     this.message = "",
     this.created,
     this.code = "",
@@ -40,6 +42,8 @@ class AntigenTestState {
     this.errorMessage = "",
     this.statusCode = 200,
     this.formStatus = const InitialFormStatus(),
+    this.symptoms,
+    this.vaccines,
     this.testTime = 0,
     this.question1,
     this.question2,
@@ -71,6 +75,8 @@ class AntigenTestState {
     DateTime? created,
     int? statusCode,
     FormSubmissionStatus? formStatus,
+    List<OpSymptomEntity>? symptoms,
+    List<OpVaccineEntity>? vaccines,
     QuestionType1StringEntity? question1,
     QuestionType10ListEntity? question2,
     QuestionType1StringEntity? question3,
@@ -101,6 +107,8 @@ class AntigenTestState {
       created: created ?? this.created,
       statusCode: statusCode ?? this.statusCode,
       formStatus: formStatus ?? this.formStatus,
+      symptoms: symptoms ?? this.symptoms,
+      vaccines: vaccines ?? this.vaccines,
       question1: question1 ?? this.question1,
       question2: question2 ?? this.question2,
       question3: question3 ?? this.question3,

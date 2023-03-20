@@ -5,6 +5,7 @@ import '../../domain/entities/antigen_entity.dart';
 import '../../domain/repository/antigen_repository.dart';
 import '../../domain/entities/antigen_register_entity.dart';
 import '../../../../config/helpers/errors/invalid_data.dart';
+import '../../../auth/domain/entities/options_tools_entity.dart';
 
 class AntigenRepositoryImpl implements AntigenRepository {
   final AntigenDataSource authDataSource;
@@ -28,6 +29,8 @@ class AntigenRepositoryImpl implements AntigenRepository {
   // @override
   Future<Either<InvalidData, AntigenRegisterResponseEntity>> registerTest(
       String code,
+      List<OpSymptomEntity> symptoms,
+      List<OpVaccineEntity> vaccines,
       QuestionType1StringEntity question1,
       QuestionType10ListEntity question2,
       QuestionType1StringEntity question3,
@@ -49,6 +52,8 @@ class AntigenRepositoryImpl implements AntigenRepository {
       final AntigenRegisterResponseEntity response =
           await authDataSource.registerTest(
               code,
+              symptoms,
+              vaccines,
               question1,
               question2,
               question3,

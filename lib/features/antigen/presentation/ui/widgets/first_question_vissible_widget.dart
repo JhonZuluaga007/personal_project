@@ -4,10 +4,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../bloc/antigen_test_bloc.dart';
 import '../../../../../config/theme/theme.dart';
-import '../../../../../common_ui/utils/const_list.dart';
+import '../../../../auth/presentation/bloc/helper_tools_bloc.dart';
+import '../../../../auth/domain/entities/options_tools_entity.dart';
 import '../../../../../common_ui/common_widgets/text/text_widget.dart';
-import '../../../presentation/ui/widgets/multi_selector_string_widget.dart';
 import '../../../../../common_ui/common_widgets/form_field_dropdown_widget.dart';
+import '../../../../medical_history/presentation/widgets/multi_selected_opdropdown_widget.dart';
 
 class FirstVissibleQuestionWidget extends StatefulWidget {
   const FirstVissibleQuestionWidget({Key? key}) : super(key: key);
@@ -19,6 +20,7 @@ class FirstVissibleQuestionWidget extends StatefulWidget {
 class _FirstVissibleQuestionWidgetState
     extends State<FirstVissibleQuestionWidget> {
   final List<String> firstQuestionChipLIst = [];
+  List<OpSymptomEntity> chipListText = [];
 
   late DateTime date = DateTime.now();
   String _covidQuestionValue = "";
@@ -34,6 +36,7 @@ class _FirstVissibleQuestionWidgetState
     final height = MediaQuery.of(context).size.height;
     final wColor = ThemesIdx20();
     final antigenBloc = BlocProvider.of<AntigenTestBloc>(context);
+    final stateHelperTools = BlocProvider.of<HelperToolsBloc>(context).state;
 
     return BlocBuilder<AntigenTestBloc, AntigenTestState>(
       builder: (context, state) {
@@ -77,21 +80,21 @@ class _FirstVissibleQuestionWidgetState
                         color: wColor.mapColors["S700"]!),
                   ),
                   SizedBox(height: height * 0.011),
-                  MultiSelectedStringWidget(
-                    listItem: ConstLists.symptomsAssociatedList,
+                  MultiSelectedOpDropDownWidget(
                     onChanged: (value) {
                       setState(() {
-                        if (firstQuestionChipLIst.contains(value) != true) {
-                          firstQuestionChipLIst.add(value.toString());
+                        if (state.symptoms!.contains(value) != true) {
+                          chipListText.add(value! as OpSymptomEntity);
+                          state.symptoms = chipListText;
+                          debugPrint(chipListText.toString());
                         }
+                        antigenBloc.add(
+                            AntigenQuestion2Event(symptoms: chipListText));
                       });
-                      antigenBloc.add(AntigenQuestion2Event(
-                          question2: firstQuestionChipLIst));
                     },
+                    listItem: stateHelperTools.symptoms,
                     valueDefaultList: "drop_down_select_option",
-                    listChip: state.question2!.value != firstQuestionChipLIst
-                        ? state.question2!.value
-                        : firstQuestionChipLIst,
+                    listChip: state.symptoms ?? chipListText,
                     requiredTranslate: false,
                   ),
                   SizedBox(height: height * 0.028),

@@ -19,9 +19,9 @@ class AntigenQuestion1Event extends AntigenTestEvent {
 }
 
 class AntigenQuestion2Event extends AntigenTestEvent {
-  final List<String> question2;
+  final List<OpSymptomEntity> symptoms;
 
-  AntigenQuestion2Event({required this.question2});
+  AntigenQuestion2Event({required this.symptoms});
 }
 
 class AntigenQuestion3Event extends AntigenTestEvent {
@@ -67,9 +67,9 @@ class AntigenQuestion9Event extends AntigenTestEvent {
 }
 
 class AntigenQuestion10Event extends AntigenTestEvent {
-  final List<String> question10;
+  final List<OpVaccineEntity> vaccines;
 
-  AntigenQuestion10Event({required this.question10});
+  AntigenQuestion10Event({required this.vaccines});
 }
 
 class AntigenQuestion11Event extends AntigenTestEvent {
