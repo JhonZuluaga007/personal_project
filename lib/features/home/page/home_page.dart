@@ -7,35 +7,21 @@ import '../../../app_localizations.dart';
 import '../../../config/theme/theme.dart';
 import '../../auth/presentation/bloc/auth_bloc.dart';
 import '../../auth/presentation/bloc/helper_tools_bloc.dart';
-import '../../../navigationBar/bloc/navigation_bar_bloc.dart';
 import '../../../common_ui/common_widgets/text/text_widget.dart';
 import '../../pcr/presentation/pages/pcr_test_register_page.dart';
 import '../../antigen/presentation/ui/pages/antigen_register_info_page.dart';
 
-class HomePage extends StatefulWidget {
+class HomePage extends StatelessWidget {
   const HomePage({super.key});
-
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  @override
-  void initState() {
-    BlocProvider.of<HelperToolsBloc>(context).add(GetTestTools());
-    BlocProvider.of<AuthBloc>(context).add(GetUser());
-
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
     final wColor = ThemesIdx20();
-    final authState = BlocProvider.of<AuthBloc>(context).state;
-    NavigationBarBloc navigationBloc =
-        BlocProvider.of<NavigationBarBloc>(context);
+    final authBloc = BlocProvider.of<AuthBloc>(context);
+    authBloc.add(GetUser());
+    BlocProvider.of<HelperToolsBloc>(context).add(GetTestTools());
     return Material(
       child: Container(
         height: height,
@@ -62,7 +48,7 @@ class _HomePageState extends State<HomePage> {
                               color: wColor.mapColors["S800"]),
                         ),
                         TextSpan(
-                          text: authState.name,
+                          text: authBloc.state.name,
                           style: TextStyle(
                               letterSpacing: -0.02,
                               fontSize: 20,
@@ -127,7 +113,7 @@ class _HomePageState extends State<HomePage> {
                   textDescription: "home_description_card_scan",
                   textTitle: "home_title_card_test_status",
                   onTap: () {
-                    navigationBloc.add(PageChanged(indexNavigation: 1));
+                    //navigationBloc.add(PageChanged(indexNavigation: 1));
                     Navigator.pushNamed(context, 'navBar');
                   },
                 ),
