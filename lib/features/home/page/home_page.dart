@@ -7,6 +7,7 @@ import '../../../app_localizations.dart';
 import '../../../config/theme/theme.dart';
 import '../../auth/presentation/bloc/auth_bloc.dart';
 import '../../auth/presentation/bloc/helper_tools_bloc.dart';
+import '../../../navigationBar/bloc/navigation_bar_bloc.dart';
 import '../../../common_ui/common_widgets/text/text_widget.dart';
 import '../../pcr/presentation/pages/pcr_test_register_page.dart';
 import '../../antigen/presentation/ui/pages/antigen_register_info_page.dart';
@@ -22,6 +23,9 @@ class HomePage extends StatelessWidget {
     final authBloc = BlocProvider.of<AuthBloc>(context);
     authBloc.add(GetUser());
     BlocProvider.of<HelperToolsBloc>(context).add(GetTestTools());
+    NavigationBarBloc navigationBloc =
+        BlocProvider.of<NavigationBarBloc>(context);
+
     return Material(
       child: Container(
         height: height,
@@ -113,7 +117,7 @@ class HomePage extends StatelessWidget {
                   textDescription: "home_description_card_scan",
                   textTitle: "home_title_card_test_status",
                   onTap: () {
-                    //navigationBloc.add(PageChanged(indexNavigation: 1));
+                    navigationBloc.add(PageChanged(indexNavigation: 1));
                     Navigator.pushNamed(context, 'navBar');
                   },
                 ),
