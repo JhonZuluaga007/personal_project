@@ -2,7 +2,7 @@
     "01_login_title" : "Ingresa tus credenciales",
     "01_login_text_one" : "Estamos contentos de tenerte aquí",
     "01_login_recover_password" : "Usuario por primera vez o contraseña olvidada?",
-    "01_login_input_one" : "Usuario",
+    "01_login_input_one" : "Usuario o Correo",
     "01_login_input_hint_one" : "salbisserc12",
     "01_login_input_two" : "Contraseña",
     "01_login_input_hint_two" : "12345786",
