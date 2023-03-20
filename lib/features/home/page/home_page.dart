@@ -13,8 +13,20 @@ import '../../../common_ui/common_widgets/text/text_widget.dart';
 import '../../pcr/presentation/pages/pcr_test_register_page.dart';
 import '../../antigen/presentation/ui/pages/antigen_register_info_page.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  @override
+  void initState() {
+    BlocProvider.of<AuthBloc>(context).add(GetUser());
+    BlocProvider.of<HelperToolsBloc>(context).add(GetTestTools());
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,8 +34,6 @@ class HomePage extends StatelessWidget {
     final height = MediaQuery.of(context).size.height;
     final wColor = ThemesIdx20();
     final authBloc = BlocProvider.of<AuthBloc>(context);
-    authBloc.add(GetUser());
-    BlocProvider.of<HelperToolsBloc>(context).add(GetTestTools());
     NavigationBarBloc navigationBloc =
         BlocProvider.of<NavigationBarBloc>(context);
 

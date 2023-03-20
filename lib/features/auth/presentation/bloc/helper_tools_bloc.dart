@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 
 import '../../../../common_ui/utils/const_list.dart';
+import '../../../../config/helpers/form_submission_status.dart';
 import '../../domain/entities/options_tools_entity.dart';
 import '../../../../config/helpers/injector/injector.dart';
 import '../../domain/use_cases/helper_tools_use_cases.dart';
@@ -13,11 +14,13 @@ class HelperToolsBloc extends Bloc<HelperToolsEvent, HelperToolsState> {
   HelperToolsBloc() : super(const HelperToolsState()) {
     final helperToolsUseCases = Injector.resolve<HelperToolsUseCases>();
     on<GetTestTools>((event, emit) async {
+      emit(state.copyWith(formStatus: FormSubmitting()));
       final helperTools = await helperToolsUseCases.call();
       helperTools.fold(
           (left) => {},
           (helperToolsList) => {
                 emit(state.copyWith(
+                  formStatus: SubmissionSuccess(),
                   ethnicities: helperToolsList.data.ethnicities,
                   genders: helperToolsList.data.genders,
                   races: helperToolsList.data.races,

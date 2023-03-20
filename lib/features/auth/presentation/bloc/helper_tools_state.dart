@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 part of 'helper_tools_bloc.dart';
 
 @immutable
@@ -16,6 +17,7 @@ class HelperToolsState {
   final List<OpVaccineEntity> vaccines;
   final List<OpStatesEntity> state;
   final List<String> answer;
+  final FormSubmissionStatus formStatus;
 
   const HelperToolsState({
     this.ethnicities = const [],
@@ -32,6 +34,7 @@ class HelperToolsState {
     this.vaccines = const [],
     this.state = const [],
     this.answer = const [],
+    this.formStatus = const InitialFormStatus(),
   });
 
   HelperToolsState copyWith({
@@ -49,6 +52,7 @@ class HelperToolsState {
     List<OpVaccineEntity>? vaccines,
     List<OpStatesEntity>? state,
     List<String>? answer,
+    FormSubmissionStatus? formStatus,
   }) {
     return HelperToolsState(
       ethnicities: ethnicities ?? this.ethnicities,
@@ -65,6 +69,7 @@ class HelperToolsState {
       vaccines: vaccines ?? this.vaccines,
       state: state ?? this.state,
       answer: answer ?? this.answer,
+      formStatus: formStatus ?? this.formStatus,
     );
   }
 }
