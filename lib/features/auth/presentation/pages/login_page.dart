@@ -200,7 +200,8 @@ class _LoginPageState extends State<LoginPage> {
                             initialPage: 'HomePage',
                           )),
                   (route) => false);
-            } else if (state.formStatus is SubmissionFailed) {
+            }
+            if (state.formStatus is SubmissionFailed) {
               final snackBar = SnackBar(
                   content: Text(state.errorMessage!),
                   action: SnackBarAction(

@@ -28,18 +28,18 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     final changePasswordUseCase = Injector.resolve<ChangePasswordUseCase>();
 
     on<LoginUserE>((event, emit) async {
-      emit(state.copyWith(formStatus: FormSubmitting()));
+      emit(state.copyWith(loginStatus: FormSubmitting()));
       final loginResponse =
           await loginUseCase.call(event.userName, event.password);
       loginResponse.fold((error) {
         emit(state.copyWith(
-          formStatus: SubmissionFailed(exception: Exception(error.message)),
+          loginStatus: SubmissionFailed(exception: Exception(error.message)),
           errorMessage: error.message,
         ));
       }, (user) {
         final userResponse = user.data.user;
         emit(state.copyWith(
-          formStatus: SubmissionSuccess(),
+          loginStatus: SubmissionSuccess(),
           project: user.data.project.project,
           statusCode: user.statusCode,
           token: user.data.token,
