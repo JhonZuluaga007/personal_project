@@ -28,18 +28,18 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     final changePasswordUseCase = Injector.resolve<ChangePasswordUseCase>();
 
     on<LoginUserE>((event, emit) async {
-      emit(state.copyWith(loginStatus: FormSubmitting()));
+      emit(state.copyWith(formStatus: FormSubmitting()));
       final loginResponse =
           await loginUseCase.call(event.userName, event.password);
       loginResponse.fold((error) {
         emit(state.copyWith(
-          loginStatus: SubmissionFailed(exception: Exception(error.message)),
+          formStatus: SubmissionFailed(exception: Exception(error.message)),
           errorMessage: error.message,
         ));
       }, (user) {
         final userResponse = user.data.user;
         emit(state.copyWith(
-          loginStatus: SubmissionSuccess(),
+          formStatus: SubmissionSuccess(),
           project: user.data.project.project,
           statusCode: user.statusCode,
           token: user.data.token,
@@ -102,17 +102,17 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     });
 
     on<GetUser>((event, emit) async {
-      emit(state.copyWith(formStatus: FormSubmitting()));
+      // emit(state.copyWith(formStatus: FormSubmitting()));
       final getUserResponse = await getUserUseCase.call();
       getUserResponse.fold((error) {
         emit(state.copyWith(
-          formStatus: SubmissionFailed(exception: Exception(error.message)),
+          // formStatus: SubmissionFailed(exception: Exception(error.message)),
           errorMessage: error.message,
         ));
       }, (user) {
         final userResponse = user.data.user;
         emit(state.copyWith(
-          formStatus: SubmissionSuccess(),
+          // formStatus: SubmissionSuccess(),
           project: user.data.project.project,
           statusCode: user.statusCode,
           token: user.data.token,

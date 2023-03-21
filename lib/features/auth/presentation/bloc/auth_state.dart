@@ -36,7 +36,7 @@ class AuthState {
   final String? errorMessage;
   final String? message;
   final FormSubmissionStatus formStatus;
-  final FormSubmissionStatus loginStatus;
+  // final FormSubmissionStatus loginStatus;
   final FormSubmissionStatus? formChangePasswordStatus;
   final FormSubmissionStatus? formResetPassword;
 
@@ -74,7 +74,7 @@ class AuthState {
     this.sex,
     this.errorMessage = '',
     this.message = '',
-    this.loginStatus = const InitialFormStatus(),
+    // this.loginStatus = const InitialFormStatus(),
     this.formChangePasswordStatus = const InitialFormStatus(),
     this.formStatus = const InitialFormStatus(),
     this.formResetPassword = const InitialFormStatus(),
@@ -114,7 +114,7 @@ class AuthState {
     OpSexEntity? sex,
     String? errorMessage,
     String? message,
-    FormSubmissionStatus? loginStatus,
+    // FormSubmissionStatus? loginStatus,
     FormSubmissionStatus? formStatus,
     FormSubmissionStatus? formChangePasswordStatus,
     FormSubmissionStatus? formResetPassword,
@@ -156,7 +156,7 @@ class AuthState {
         sex: OpSexEntity(id: "", sex: ""),
         errorMessage: '',
         message: '',
-        loginStatus: const InitialFormStatus(),
+        // loginStatus: const InitialFormStatus(),
         formChangePasswordStatus: const InitialFormStatus(),
         formStatus: const InitialFormStatus(),
         formResetPassword: const InitialFormStatus(),
@@ -202,7 +202,7 @@ class AuthState {
     OpSexEntity? sex,
     String? errorMessage,
     String? message,
-    FormSubmissionStatus? loginStatus,
+    // FormSubmissionStatus? loginStatus,
     FormSubmissionStatus? formStatus,
     FormSubmissionStatus? formChangePasswordStatus,
     FormSubmissionStatus? formResetPassword,
@@ -242,7 +242,7 @@ class AuthState {
       errorMessage: errorMessage ?? this.errorMessage,
       message: message ?? this.message,
       formStatus: formStatus ?? this.formStatus,
-      loginStatus: loginStatus ?? this.loginStatus,
+      // loginStatus: loginStatus ?? this.loginStatus,
       formChangePasswordStatus:
           formChangePasswordStatus ?? this.formChangePasswordStatus,
       formResetPassword: formResetPassword ?? this.formResetPassword,

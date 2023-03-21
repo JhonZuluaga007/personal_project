@@ -192,7 +192,7 @@ class _LoginPageState extends State<LoginPage> {
         SizedBox(height: height * 0.03),
         BlocConsumer<AuthBloc, AuthState>(
           listener: (BuildContext context, state) {
-            if (state.loginStatus is SubmissionSuccess) {
+            if (state.formStatus is SubmissionSuccess) {
               Navigator.pushAndRemoveUntil(
                   context,
                   MaterialPageRoute(
@@ -201,7 +201,7 @@ class _LoginPageState extends State<LoginPage> {
                           )),
                   (route) => false);
             }
-            if (state.loginStatus is SubmissionFailed) {
+            if (state.formStatus is SubmissionFailed) {
               final snackBar = SnackBar(
                   content: Text(state.errorMessage!),
                   action: SnackBarAction(
@@ -212,7 +212,7 @@ class _LoginPageState extends State<LoginPage> {
             }
           },
           builder: (context, state) {
-            if (state.loginStatus is FormSubmitting) {
+            if (state.formStatus is FormSubmitting) {
               return const Center(child: CircularProgressIndicator());
             } else {
               return Center(
