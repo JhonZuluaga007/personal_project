@@ -110,7 +110,7 @@ class AssociatedTestEntity {
   final CreatedTestEntity created;
   final IdTestEntity form;
   final IdTestEntity manufacturer;
-  final List<String> photo;
+  final String photo;
   final IdTestEntity preparedBy;
   final IdTestEntity project;
   final IdTestEntity result;

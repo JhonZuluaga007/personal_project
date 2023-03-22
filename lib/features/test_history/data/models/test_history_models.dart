@@ -149,7 +149,7 @@ class AssociatedTestHistory extends AssociatedTestEntity {
     required CreatedHistory created,
     required IdHistory form,
     required IdHistory manufacturer,
-    required List<String> photo,
+    required String photo,
     required IdHistory preparedBy,
     required IdHistory project,
     required IdHistory result,
@@ -197,12 +197,19 @@ class AssociatedTestHistory extends AssociatedTestEntity {
         batch: IdHistory.fromMap(json["batch"]),
         code: json["code"],
         created: CreatedHistory.fromMap(json["created"]),
-        form: IdHistory.fromMap(json["form"]),
-        manufacturer: IdHistory.fromMap(json["manufacturer"]),
-        photo: List<String>.from(json["photo"].map((x) => x)),
+        form: (json["form"] != null && json["form"].toString().isNotEmpty)
+            ? IdHistory.fromMap(json["form"])
+            : IdHistory(oid: ""),
+        manufacturer: (json["manufacturer"] != null &&
+                json["manufacturer"].toString().isNotEmpty)
+            ? IdHistory.fromMap(json["manufacturer"])
+            : IdHistory(oid: ""),
+        photo: json["photo"] ?? '',
         preparedBy: IdHistory.fromMap(json["prepared_by"]),
         project: IdHistory.fromMap(json["project"]),
-        result: IdHistory.fromMap(json["result"]),
+        result: (json["result"] != null && json["result"].toString().isNotEmpty)
+            ? IdHistory.fromMap(json["result"])
+            : IdHistory(oid: ""),
         sampleDate: CreatedHistory.fromMap(json["sample_date"]),
         status: IdHistory.fromMap(json["status"]),
         statusHistory: List<StatusTestHistory>.from(
@@ -213,12 +220,21 @@ class AssociatedTestHistory extends AssociatedTestEntity {
         swabType: json["swab_type"] != null
             ? IdHistory.fromMap(json["swab_type"])
             : IdHistory(oid: ""),
-        symptoms: List<IdHistory>.from(
-            json["symptoms"].map((x) => IdHistory.fromMap(x))),
+        symptoms:
+            (json["symptoms"] != null && json["symptoms"].toString().isNotEmpty)
+                ? List<IdHistory>.from(
+                    json["symptoms"].map((x) => IdHistory.fromMap(x)))
+                : <IdHistory>[],
         type: IdHistory.fromMap(json["type"]),
         updated: CreatedHistory.fromMap(json["updated"]),
-        vaccines: List<dynamic>.from(json["vaccines"].map((x) => x)),
-        validity: IdHistory.fromMap(json["validity"]),
+        vaccines:
+            (json["vaccines"] != null && json["vaccines"].toString().isNotEmpty)
+                ? List<dynamic>.from(json["vaccines"].map((x) => x))
+                : <dynamic>[],
+        validity:
+            (json["vaccines"] != null && json["vaccines"].toString().isNotEmpty)
+                ? IdHistory.fromMap(json["validity"])
+                : IdHistory(oid: ""),
       );
 }
 
