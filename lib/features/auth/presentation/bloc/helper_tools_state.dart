@@ -17,7 +17,7 @@ class HelperToolsState {
   final List<OpVaccineEntity> vaccines;
   final List<OpStatesEntity> state;
   final List<String> answer;
-  final FormSubmissionStatus formStatus;
+  final FormSubmissionStatus formStatusHelpers;
 
   const HelperToolsState({
     this.ethnicities = const [],
@@ -34,7 +34,7 @@ class HelperToolsState {
     this.vaccines = const [],
     this.state = const [],
     this.answer = const [],
-    this.formStatus = const InitialFormStatus(),
+    this.formStatusHelpers = const InitialFormStatus(),
   });
 
   HelperToolsState copyWith({
@@ -52,7 +52,7 @@ class HelperToolsState {
     List<OpVaccineEntity>? vaccines,
     List<OpStatesEntity>? state,
     List<String>? answer,
-    FormSubmissionStatus? formStatus,
+    FormSubmissionStatus? formStatusHelpers,
   }) {
     return HelperToolsState(
       ethnicities: ethnicities ?? this.ethnicities,
@@ -69,7 +69,7 @@ class HelperToolsState {
       vaccines: vaccines ?? this.vaccines,
       state: state ?? this.state,
       answer: answer ?? this.answer,
-      formStatus: formStatus ?? this.formStatus,
+      formStatusHelpers: formStatusHelpers ?? this.formStatusHelpers,
     );
   }
 }

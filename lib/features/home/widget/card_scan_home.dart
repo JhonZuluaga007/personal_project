@@ -1,3 +1,4 @@
+import 'package:Tellme/common_ui/common_widgets/responsive/dynamic_container_widget.dart';
 import 'package:flutter/material.dart';
 
 import '../../../icons/icons.dart';
@@ -28,53 +29,58 @@ class CardScanHome extends StatelessWidget {
       onTap: onTap,
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: width * 0.017),
-        child: Card(
-          shadowColor: wColor.mapColors["IDWhite"],
-          elevation: 4,
-          child: Padding(
-            padding: EdgeInsets.symmetric(vertical: height * 0.037),
-            child: Row(mainAxisAlignment: MainAxisAlignment.start, children: [
-              Padding(
-                padding: EdgeInsets.only(left: width * 0.039),
-                child: Image.asset(imageIcon),
-              ),
-              Row(
-                children: [
-                  SizedBox(
-                    width: width * 0.044,
+        child: DynamicContainerWidget(
+          children: [
+            Card(
+              shadowColor: wColor.mapColors["IDWhite"],
+              elevation: 4,
+              child: Padding(
+                padding: EdgeInsets.symmetric(vertical: height * 0.037),
+                child:
+                    Row(mainAxisAlignment: MainAxisAlignment.start, children: [
+                  Padding(
+                    padding: EdgeInsets.only(left: width * 0.039),
+                    child: Image.asset(imageIcon),
                   ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                  Row(
                     children: [
-                      TextWidget(
-                        text: textTitle,
-                        style: const TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w600,
-                            letterSpacing: -0.02,
-                            color: Colors.black),
-                      ),
                       SizedBox(
-                        height: height * 0.0043,
+                        width: width * 0.044,
                       ),
-                      TextWidget(
-                        text: textDescription,
-                        style: TextStyle(
-                            fontSize: 10,
-                            fontWeight: FontWeight.w500,
-                            letterSpacing: -0.02,
-                            color: wColor.mapColors["S600"]),
-                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          TextWidget(
+                            text: textTitle,
+                            style: const TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w600,
+                                letterSpacing: -0.02,
+                                color: Colors.black),
+                          ),
+                          SizedBox(
+                            height: height * 0.0043,
+                          ),
+                          TextWidget(
+                            text: textDescription,
+                            style: TextStyle(
+                                fontSize: 10,
+                                fontWeight: FontWeight.w500,
+                                letterSpacing: -0.02,
+                                color: wColor.mapColors["S600"]),
+                          ),
+                        ],
+                      )
                     ],
-                  )
-                ],
+                  ),
+                  SizedBox(
+                    width: width * 0.086,
+                  ),
+                  Image.asset(IconsFolderCovid.arrowCircleRight)
+                ]),
               ),
-              SizedBox(
-                width: width * 0.16,
-              ),
-              Image.asset(IconsFolderCovid.arrowCircleRight)
-            ]),
-          ),
+            ),
+          ],
         ),
       ),
     );

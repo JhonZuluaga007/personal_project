@@ -14,13 +14,13 @@ class HelperToolsBloc extends Bloc<HelperToolsEvent, HelperToolsState> {
   HelperToolsBloc() : super(const HelperToolsState()) {
     final helperToolsUseCases = Injector.resolve<HelperToolsUseCases>();
     on<GetTestTools>((event, emit) async {
-      emit(state.copyWith(formStatus: FormSubmitting()));
+      emit(state.copyWith(formStatusHelpers: FormSubmitting()));
       final helperTools = await helperToolsUseCases.call();
       helperTools.fold(
           (left) => {},
           (helperToolsList) => {
                 emit(state.copyWith(
-                  formStatus: SubmissionSuccess(),
+                  formStatusHelpers: SubmissionSuccess(),
                   ethnicities: helperToolsList.data.ethnicities,
                   genders: helperToolsList.data.genders,
                   races: helperToolsList.data.races,

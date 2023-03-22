@@ -1,4 +1,5 @@
 import 'package:Tellme/common_ui/common_pages/my_app_scaffold_page.dart';
+import 'package:Tellme/config/helpers/form_submission_status.dart';
 import 'package:flutter/material.dart';
 import 'package:Tellme/icons/icons.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -34,8 +35,7 @@ class _HomePageState extends State<HomePage> {
     final height = MediaQuery.of(context).size.height;
     final wColor = ThemesIdx20();
     final authBloc = BlocProvider.of<AuthBloc>(context);
-    NavigationBarBloc navigationBloc =
-        BlocProvider.of<NavigationBarBloc>(context);
+    final navigationBloc = BlocProvider.of<NavigationBarBloc>(context);
 
     return MyAppScaffold(
       children: [

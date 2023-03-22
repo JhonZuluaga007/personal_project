@@ -97,22 +97,17 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       });
     });
 
-    on<InitialStateForm>((event, emit) async {
-      emit(state.copyWith(formStatus: InitialFormStatus()));
-    });
-
     on<GetUser>((event, emit) async {
-      // emit(state.copyWith(formStatus: FormSubmitting()));
+      emit(state.copyWith(formStatus: FormSubmitting()));
       final getUserResponse = await getUserUseCase.call();
       getUserResponse.fold((error) {
         emit(state.copyWith(
-          // formStatus: SubmissionFailed(exception: Exception(error.message)),
-          errorMessage: error.message,
+          formStatus: SubmissionFailed(exception: Exception(error.message)),
         ));
       }, (user) {
         final userResponse = user.data.user;
         emit(state.copyWith(
-          // formStatus: SubmissionSuccess(),
+          formStatus: InitialFormStatus(),
           project: user.data.project.project,
           statusCode: user.statusCode,
           token: user.data.token,

@@ -9,10 +9,6 @@ class LoginUserE extends AuthEvent {
   LoginUserE(this.userName, this.password);
 }
 
-class InitialStateForm extends AuthEvent {
-  InitialStateForm();
-}
-
 class GetUser extends AuthEvent {
   GetUser();
 }

@@ -56,27 +56,43 @@ class CardTestWidget extends StatelessWidget {
                           buttonColor: wColor.mapColors['S800'],
                           borderColor: wColor.mapColors['S800'],
                           textColor: wColor.mapColors['IDWhite'],
-                          textStyle: const TextStyle(fontSize: 12),
+                          textStyle: const TextStyle(
+                              fontSize: 12, overflow: TextOverflow.ellipsis),
                           iconSize: 14,
-                          width: width * 0.27,
+                          width: width * 0.295,
                           height: height * 0.049,
                           borderRadiusButton: 25,
                           icon: Icons.download,
                           buttonString: 'history_test_result_text_download',
                           onPressed: () {
                             final String testStatus =
-                                testHistoryEntity!.result[0].result == ''
-                                    ? 'Processing'
-                                    : testHistoryEntity!.result[0].result;
-                            _createPDF(
-                                authBloc, textTestKit, testStatus, sampleDate!);
+                                testHistoryEntity!.result.isNotEmpty
+                                    ? testHistoryEntity!.result.first.result
+                                    : "In Progress";
+
+                            if (testStatus == "In Progress") {
+                              final snackBar = SnackBar(
+                                  duration: Duration(seconds: 2),
+                                  content: Text(
+                                      "There is no document at this moment for your test, contact support"),
+                                  action: SnackBarAction(
+                                    label: 'Cerrar',
+                                    onPressed: () {},
+                                  ));
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(snackBar);
+                            } else {
+                              _createPDF(authBloc, textTestKit, testStatus,
+                                  sampleDate!);
+                            }
                           }),
                       SizedBox(width: width * 0.046),
                       ButtonWidget(
                           buttonColor: wColor.mapColors['S800'],
                           borderColor: wColor.mapColors['S800'],
                           textColor: wColor.mapColors['IDWhite'],
-                          textStyle: const TextStyle(fontSize: 12),
+                          textStyle: const TextStyle(
+                              fontSize: 12, overflow: TextOverflow.ellipsis),
                           iconSize: 14,
                           height: height * 0.049,
                           borderRadiusButton: 25,
@@ -92,7 +108,8 @@ class CardTestWidget extends StatelessWidget {
                       buttonColor: wColor.mapColors['S800'],
                       borderColor: wColor.mapColors['S800'],
                       textColor: wColor.mapColors['IDWhite'],
-                      textStyle: const TextStyle(fontSize: 12),
+                      textStyle: const TextStyle(
+                          fontSize: 12, overflow: TextOverflow.ellipsis),
                       iconSize: 14,
                       height: height * 0.049,
                       borderRadiusButton: 25,
@@ -101,18 +118,31 @@ class CardTestWidget extends StatelessWidget {
                       buttonString: 'history_test_result_text_download',
                       onPressed: () {
                         final String testStatus =
-                            testHistoryEntity!.result[0].result == ''
-                                ? 'Processing'
-                                : testHistoryEntity!.result[0].result;
-                        _createPDF(
-                            authBloc, textTestKit, testStatus, sampleDate!);
+                            testHistoryEntity!.result.isNotEmpty
+                                ? testHistoryEntity!.result.first.result
+                                : "In Progress";
+                        if (testStatus == "In Progress") {
+                          final snackBar = SnackBar(
+                              duration: Duration(seconds: 2),
+                              content: Text(
+                                  "There is no document at this moment for your test, contact support"),
+                              action: SnackBarAction(
+                                label: 'Cerrar',
+                                onPressed: () {},
+                              ));
+                          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                        } else {
+                          _createPDF(
+                              authBloc, textTestKit, testStatus, sampleDate!);
+                        }
                       }),
                   SizedBox(width: width * 0.046),
                   ButtonWidget(
                       buttonColor: wColor.mapColors['S800'],
                       borderColor: wColor.mapColors['S800'],
                       textColor: wColor.mapColors['IDWhite'],
-                      textStyle: const TextStyle(fontSize: 12),
+                      textStyle: const TextStyle(
+                          fontSize: 12, overflow: TextOverflow.ellipsis),
                       iconSize: 14,
                       height: height * 0.049,
                       borderRadiusButton: 25,
