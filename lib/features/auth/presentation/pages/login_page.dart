@@ -229,7 +229,7 @@ class _LoginPageState extends State<LoginPage> {
                           emailController.text.length > 4) {
                         BlocProvider.of<AuthBloc>(context).add(LoginUserE(
                             emailController.text, passwordController.text));
-                      } else {}
+                      }
                     });
                   },
                   buttonColor: wColor.mapColors['IDPink'],
