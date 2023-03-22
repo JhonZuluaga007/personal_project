@@ -336,5 +336,7 @@
 
 
     "test_history_empty": "At this moment you dont have any test in your history",
-    "test_history_search_delegate": "You have no current tests at the moment, please register a new test"
+    "test_history_search_delegate": "You have no current tests at the moment, please register a new test",
+
+    "card_validate_pdf_snackbar": "Close"
 }

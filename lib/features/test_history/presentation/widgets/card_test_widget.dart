@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:syncfusion_flutter_pdf/pdf.dart';
 
+import '../../../../app_localizations.dart';
 import '../../../../config/theme/theme.dart';
 import '../../domain/entities/test_history_entity.dart';
 import '../../../auth/presentation/bloc/auth_bloc.dart';
@@ -76,7 +77,7 @@ class CardTestWidget extends StatelessWidget {
                                   content: Text(
                                       "There is no document at this moment for your test, contact support"),
                                   action: SnackBarAction(
-                                    label: 'Cerrar',
+                                    label: AppLocalizations.of(context)!.translate("card_validate_pdf_snackbar"),
                                     onPressed: () {},
                                   ));
                               ScaffoldMessenger.of(context)
@@ -127,7 +128,7 @@ class CardTestWidget extends StatelessWidget {
                               content: Text(
                                   "There is no document at this moment for your test, contact support"),
                               action: SnackBarAction(
-                                label: 'Cerrar',
+                                label: AppLocalizations.of(context)!.translate("card_validate_pdf_snackbar"),
                                 onPressed: () {},
                               ));
                           ScaffoldMessenger.of(context).showSnackBar(snackBar);
