@@ -116,7 +116,7 @@ Future popUpWidget(BuildContext context, TestHistoryEntity testView) {
                                   TextWidget(
                                     text: testView.result.isNotEmpty
                                         ? testView.result.first.result
-                                        : "In progress",
+                                        : "Inconclusive",
                                     textAlign: TextAlign.center,
                                     requiresTranslate: false,
                                     style: TextStyle(

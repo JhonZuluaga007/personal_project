@@ -185,11 +185,30 @@ class _PcrRegisterPageState extends State<PcrRegisterPage> {
                       borderColor: wColor.mapColors["500BASE"],
                       onPressed: () async {
                         if (pcrIdController.text.isNotEmpty) {
-                          BlocProvider.of<PcrBloc>(context)
-                              .add(PcrValidateEvent(
-                            project: "ChelseaProject",
-                            code: pcrIdController.text,
-                          ));
+                          if ((pcrIdController.text.startsWith('P') ||
+                                  pcrIdController.text.startsWith('p')) &&
+                              pcrIdController.text.length == 10) {
+                            BlocProvider.of<PcrBloc>(context)
+                                .add(PcrValidateEvent(
+                              project: "ChelseaProject",
+                              code: pcrIdController.text,
+                            ));
+                          } else {
+                            errorAlertInfoPop(
+                                context: context,
+                                mainIcon: Icon(
+                                  Icons.cancel,
+                                  color: wColor.mapColors['C01'],
+                                  size: 46,
+                                ),
+                                titleText: 'alert_text_error_one',
+                                paddingHeight: height * 0.25,
+                                infoText: 'Please provide a valid PCR code',
+                                mainButton: 'alert_text_error_three',
+                                mainButtonFunction: () {
+                                  Navigator.pop(context);
+                                });
+                          }
                         }
                       });
                 }

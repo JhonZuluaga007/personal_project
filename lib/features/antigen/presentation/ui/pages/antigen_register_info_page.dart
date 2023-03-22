@@ -171,11 +171,30 @@ class _AntigenRegisterInfoPageState extends State<AntigenRegisterInfoPage> {
                 if (testIdController.text.isEmpty) {
                   return;
                 }
-                BlocProvider.of<AntigenTestBloc>(context)
-                    .add(AntigenValidateEvent(
-                  userId: userState.userId!,
-                  code: testIdController.text,
-                ));
+                if ((testIdController.text.startsWith('A') ||
+                        testIdController.text.startsWith('a')) &&
+                    testIdController.text.length == 10) {
+                  BlocProvider.of<AntigenTestBloc>(context)
+                      .add(AntigenValidateEvent(
+                    userId: userState.userId!,
+                    code: testIdController.text,
+                  ));
+                } else {
+                  errorAlertInfoPop(
+                      context: context,
+                      mainIcon: Icon(
+                        Icons.cancel,
+                        color: wColor.mapColors['C01'],
+                        size: 46,
+                      ),
+                      titleText: 'alert_text_error_one',
+                      paddingHeight: height * 0.25,
+                      infoText: 'Please provide a valid Antigen code',
+                      mainButton: 'alert_text_error_three',
+                      mainButtonFunction: () {
+                        Navigator.pop(context);
+                      });
+                }
               });
         }
       },

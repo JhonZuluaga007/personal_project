@@ -205,7 +205,7 @@ class _LoginPageState extends State<LoginPage> {
               final snackBar = SnackBar(
                   content: Text(state.errorMessage!),
                   action: SnackBarAction(
-                    label: 'Cerrar',
+                    label: 'Close',
                     onPressed: () {},
                   ));
               ScaffoldMessenger.of(context).showSnackBar(snackBar);

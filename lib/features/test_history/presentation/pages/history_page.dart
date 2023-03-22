@@ -129,7 +129,7 @@ class _HistoryPageState extends State<HistoryPage> {
                                         .result
                                     : state.allTestHistoryList.first.result[0]
                                         .result
-                                : "In progress",
+                                : "Inconclusive",
                         requiresTranslate: false,
                         style: const TextStyle(
                             fontSize: 14, fontWeight: FontWeight.w400),
