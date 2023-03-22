@@ -70,6 +70,7 @@ class CardTestWidget extends StatelessWidget {
                                 testHistoryEntity!.result.isNotEmpty
                                     ? testHistoryEntity!.result.first.result
                                     : "In Progress";
+                            print(testStatus);
 
                             if (testStatus == "In Progress") {
                               final snackBar = SnackBar(
@@ -77,7 +78,9 @@ class CardTestWidget extends StatelessWidget {
                                   content: Text(
                                       "There is no document at this moment for your test, contact support"),
                                   action: SnackBarAction(
-                                    label: AppLocalizations.of(context)!.translate("card_validate_pdf_snackbar"),
+                                    label: AppLocalizations.of(context)!
+                                        .translate(
+                                            "card_validate_pdf_snackbar"),
                                     onPressed: () {},
                                   ));
                               ScaffoldMessenger.of(context)
@@ -122,13 +125,16 @@ class CardTestWidget extends StatelessWidget {
                             testHistoryEntity!.result.isNotEmpty
                                 ? testHistoryEntity!.result.first.result
                                 : "In Progress";
+                        print(testStatus);
+
                         if (testStatus == "In Progress") {
                           final snackBar = SnackBar(
                               duration: Duration(seconds: 2),
                               content: Text(
                                   "There is no document at this moment for your test, contact support"),
                               action: SnackBarAction(
-                                label: AppLocalizations.of(context)!.translate("card_validate_pdf_snackbar"),
+                                label: AppLocalizations.of(context)!
+                                    .translate("card_validate_pdf_snackbar"),
                                 onPressed: () {},
                               ));
                           ScaffoldMessenger.of(context).showSnackBar(snackBar);

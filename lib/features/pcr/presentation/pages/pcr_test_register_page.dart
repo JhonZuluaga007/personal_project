@@ -185,8 +185,8 @@ class _PcrRegisterPageState extends State<PcrRegisterPage> {
                       borderColor: wColor.mapColors["500BASE"],
                       onPressed: () async {
                         if (pcrIdController.text.isNotEmpty) {
-                          if ((pcrIdController.text.startsWith('P') ||
-                                  pcrIdController.text.startsWith('p')) &&
+                          if ((pcrIdController.text.startsWith('R') ||
+                                  pcrIdController.text.startsWith('r')) &&
                               pcrIdController.text.length == 10) {
                             BlocProvider.of<PcrBloc>(context)
                                 .add(PcrValidateEvent(
