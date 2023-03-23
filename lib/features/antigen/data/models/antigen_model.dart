@@ -77,8 +77,8 @@ class DataAntigen extends DataAntigenEntity {
                         name:
                             'Did you have Covid before? (Please select all that apply)',
                         value: []),
-                    question12: QuestionType10List(
-                        name: 'Are you currently pregnant', value: []),
+                    question12: QuestionType1String(
+                        name: 'Are you currently pregnant', value: ""),
                     question13: QuestionType1String(
                         name:
                             'Do you see a line next to the control band, indicated as C on your test?',
@@ -175,24 +175,24 @@ class LastTestAntigen extends LastTestAntigenEntity {
         /*List<String>.from(json["photo"].map((x) => x)),*/
         preparedBy: IdHistory.fromMap(json["prepared_by"]),
         project: IdHistory.fromMap(json["project"]),
-        result: List<ResultHistory>.from(
-            json["result"].map((x) => ResultHistory.fromMap(x))),
+        result: json["symptoms"] != null ? List<ResultHistory>.from(
+            json["result"].map((x) => ResultHistory.fromMap(x))) : [],
         sampleDate: CreatedHistory.fromMap(json["sample_date"]),
-        status: List<StatusHistory>.from(
-            json["status"].map((x) => StatusHistory.fromMap(x))),
-        statusHistory: List<StatusTestHistory>.from(
-            json["status_history"].map((x) => StatusTestHistory.fromMap(x))),
-        stepHistory: List<dynamic>.from(json["step_history"].map((x) => x)),
-        swabType: List<dynamic>.from(json["swab_type"].map((x) => x)),
-        symptoms:
-            List<Symptom>.from(json["symptoms"].map((x) => Symptom.fromMap(x))),
-        type: List<TypeHistory>.from(
-            json["type"].map((x) => TypeHistory.fromMap(x))),
+        status: json["symptoms"] != null ? List<StatusHistory>.from(
+            json["status"].map((x) => StatusHistory.fromMap(x))) : [],
+        statusHistory: json["symptoms"] != null ? List<StatusTestHistory>.from(
+            json["status_history"].map((x) => StatusTestHistory.fromMap(x))) : [],
+        stepHistory: json["step_history"] != null ? List<dynamic>.from(json["step_history"].map((x) => x)) : [],
+        swabType: json["symptoms"] != null ? List<dynamic>.from(json["swab_type"].map((x) => x)) : [],
+        symptoms: json["symptoms"] != null ?
+            List<Symptom>.from(json["symptoms"].map((x) => Symptom.fromMap(x))) : [],
+        type: json["symptoms"] != null ? List<TypeHistory>.from(
+            json["type"].map((x) => TypeHistory.fromMap(x))) : [],
         updated: CreatedHistory.fromMap(json["updated"]),
-        vaccines:
-            List<Vaccine>.from(json["vaccines"].map((x) => Vaccine.fromMap(x))),
-        validity: List<ValidityHistory>.from(
-            json["validity"].map((x) => ValidityHistory.fromMap(x))),
+        vaccines: json["symptoms"] != null ?
+            List<Vaccine>.from(json["vaccines"].map((x) => Vaccine.fromMap(x))) : [],
+        validity: json["symptoms"] != null ? List<ValidityHistory>.from(
+            json["validity"].map((x) => ValidityHistory.fromMap(x))) : [],
       );
 }
 
@@ -211,7 +211,7 @@ class FormAntigen extends FormAntigenEntity {
     required QuestionType1String question9,
     required QuestionType10List question10,
     required QuestionType10List question11,
-    required QuestionType10List question12,
+    required QuestionType1String question12,
     required QuestionType1String question13,
     required QuestionType1String question14,
     required QuestionType1String question15,
@@ -242,7 +242,7 @@ class FormAntigen extends FormAntigenEntity {
         question1: QuestionType1String.fromMap(json["question1"]),
         question10: QuestionType10List.fromMap(json["question10"]),
         question11: QuestionType10List.fromMap(json["question11"]),
-        question12: QuestionType10List.fromMap(json["question12"]),
+        question12: QuestionType1String.fromMap(json["question12"]),
         question13: QuestionType1String.fromMap(json["question13"]),
         question14: QuestionType1String.fromMap(json["question14"]),
         question15: QuestionType1String.fromMap(json["question15"]),

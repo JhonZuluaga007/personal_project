@@ -100,7 +100,7 @@ class FormAntigenEntity {
   final QuestionType1StringEntity question1;
   final QuestionType10ListEntity question10;
   final QuestionType10ListEntity question11;
-  final QuestionType10ListEntity question12;
+  final QuestionType1StringEntity question12;
   final QuestionType1StringEntity question13;
   final QuestionType1StringEntity question14;
   final QuestionType1StringEntity question15;

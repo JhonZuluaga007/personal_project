@@ -112,7 +112,7 @@ class _FourQuestionWidgetState extends State<FourQuestionWidget> {
           onChanged: (covidQuestion12) {
             if (covidQuestion12 != "Select option") {
               antigenBloc
-                  .add(AntigenQuestion12Event(question12: [covidQuestion12!]));
+                  .add(AntigenQuestion12Event(question12: covidQuestion12!));
               setState(() {
                 _covidQuestionPregnantValue = covidQuestion12;
               });

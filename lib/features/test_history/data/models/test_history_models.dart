@@ -115,7 +115,7 @@ class TestHistory extends TestHistoryEntity {
             json["result"].map((x) => ResultHistory.fromMap(x))),
         sampleDate: json["sample_date"].toString().isNotEmpty
             ? CreatedHistory.fromMap(json["sample_date"])
-            : CreatedHistory(date: DateTime.now()),
+            : CreatedHistory(date: DateTime(2021, 06, 22)),
         status: List<StatusHistory>.from(
             json["status"].map((x) => StatusHistory.fromMap(x))),
         statusHistory: List<StatusTestHistory>.from(

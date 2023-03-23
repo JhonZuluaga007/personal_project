@@ -122,6 +122,7 @@ class ItemTestData extends StatelessWidget {
           },
           textTestKit: testView.code,
           testHistoryEntity: testView,
+          sampleDate: testView.sampleDate.date,
         ),
       ),
     );
