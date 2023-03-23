@@ -24,7 +24,7 @@ class LoginTextWidget extends StatelessWidget {
               text: '01_login_recover_password',
               style: TextStyle(
                 color: Colors.grey,
-                fontSize: 13,
+                fontSize: 16,
                 fontWeight: FontWeight.normal,
               ),
               textAlign: TextAlign.center,
@@ -44,7 +44,7 @@ class LoginTextWidget extends StatelessWidget {
                 requiresTranslate: false,
                 style: TextStyle(
                     color: Colors.grey,
-                    fontSize: 13,
+                    fontSize: 16,
                     fontWeight: FontWeight.normal,
                     decoration: TextDecoration.underline),
                 textAlign: TextAlign.center,

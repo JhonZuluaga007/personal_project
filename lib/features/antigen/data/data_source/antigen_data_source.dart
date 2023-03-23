@@ -35,7 +35,7 @@ class AntigenDataSource {
       QuestionType1StringEntity question9,
       QuestionType10ListEntity question10,
       QuestionType10ListEntity question11,
-      QuestionType10ListEntity question12,
+      QuestionType1StringEntity question12,
       QuestionType1StringEntity question13,
       QuestionType1StringEntity question14,
       QuestionType1StringEntity question15,

@@ -50,19 +50,19 @@ Future popUpWidget(BuildContext context, TestHistoryEntity testView) {
                                     Object exception, StackTrace? stackTrace) {
                                   return Container(
                                     color: Colors.white,
-                                    height: height * 0.35,
+                                    height: height * 0.42,
                                     alignment: Alignment.center,
                                     child: Column(
                                       children: [
                                         Image.asset(
                                           IconsFolderCovid.popUpSkyTimer,
-                                          height: height * 0.2,
+                                          height: height * 0.16,
                                           fit: BoxFit.cover,
                                         ),
                                         SizedBox(height: height * 0.01),
                                         const TextWidget(
                                           text: 'error_image',
-                                          style: TextStyle(fontSize: 18),
+                                          style: TextStyle(fontSize: 16),
                                         ),
                                       ],
                                     ),
@@ -120,7 +120,7 @@ Future popUpWidget(BuildContext context, TestHistoryEntity testView) {
                                     textAlign: TextAlign.center,
                                     requiresTranslate: false,
                                     style: TextStyle(
-                                      fontSize: 13,
+                                      fontSize: 14,
                                       fontWeight: FontWeight.w400,
                                       color: wColor.mapColors["S600"],
                                     ),
@@ -131,11 +131,11 @@ Future popUpWidget(BuildContext context, TestHistoryEntity testView) {
                             SizedBox(height: height * 0.011),
                             TextWidget(
                               text:
-                                  "${dateCreate.month} / ${dateCreate.day}  / ${dateCreate.year}",
+                                  "${dateCreate.month}/${dateCreate.day}/${dateCreate.year}",
                               textAlign: TextAlign.center,
                               requiresTranslate: false,
                               style: TextStyle(
-                                fontSize: 13,
+                                fontSize: 15,
                                 fontWeight: FontWeight.w400,
                                 color: wColor.mapColors["S800"],
                               ),
@@ -146,7 +146,7 @@ Future popUpWidget(BuildContext context, TestHistoryEntity testView) {
                               textAlign: TextAlign.center,
                               requiresTranslate: false,
                               style: TextStyle(
-                                fontSize: 13,
+                                fontSize: 15,
                                 fontWeight: FontWeight.w400,
                                 color: wColor.mapColors["S800"],
                               ),

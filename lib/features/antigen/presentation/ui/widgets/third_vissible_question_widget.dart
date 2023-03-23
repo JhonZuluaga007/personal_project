@@ -48,7 +48,9 @@ class _ThirdVissibleQuestionWidgetState
             "",
             "No",
             "Yes, 1 Dose",
-            "Yes, 2 Dose",
+            "Yes, 2 Doses",
+            "Yes, 3 Doses",
+            "Yes, 4 Doses",
           ],
           selectedValue: stateAntigen.question7!.value != _covidQuestionValue
               ? stateAntigen.question7!.value

@@ -58,7 +58,7 @@ class CardTestWidget extends StatelessWidget {
                           borderColor: wColor.mapColors['S800'],
                           textColor: wColor.mapColors['IDWhite'],
                           textStyle: const TextStyle(
-                              fontSize: 12, overflow: TextOverflow.ellipsis),
+                              fontSize: 13, overflow: TextOverflow.ellipsis),
                           iconSize: 14,
                           width: width * 0.295,
                           height: height * 0.049,
@@ -96,7 +96,7 @@ class CardTestWidget extends StatelessWidget {
                           borderColor: wColor.mapColors['S800'],
                           textColor: wColor.mapColors['IDWhite'],
                           textStyle: const TextStyle(
-                              fontSize: 12, overflow: TextOverflow.ellipsis),
+                              fontSize: 13, overflow: TextOverflow.ellipsis),
                           iconSize: 14,
                           height: height * 0.049,
                           borderRadiusButton: 25,
@@ -113,7 +113,7 @@ class CardTestWidget extends StatelessWidget {
                       borderColor: wColor.mapColors['S800'],
                       textColor: wColor.mapColors['IDWhite'],
                       textStyle: const TextStyle(
-                          fontSize: 12, overflow: TextOverflow.ellipsis),
+                          fontSize: 13, overflow: TextOverflow.ellipsis),
                       iconSize: 14,
                       height: height * 0.049,
                       borderRadiusButton: 25,
@@ -149,7 +149,7 @@ class CardTestWidget extends StatelessWidget {
                       borderColor: wColor.mapColors['S800'],
                       textColor: wColor.mapColors['IDWhite'],
                       textStyle: const TextStyle(
-                          fontSize: 12, overflow: TextOverflow.ellipsis),
+                          fontSize: 13, overflow: TextOverflow.ellipsis),
                       iconSize: 14,
                       height: height * 0.049,
                       borderRadiusButton: 25,
