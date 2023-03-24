@@ -32,7 +32,7 @@ class TestPcrEntity {
     required this.code,
     required this.created,
     required this.laboratory,
-    required this.manufacturer,
+    // required this.manufacturer,
     required this.preparedBy,
     required this.project,
     required this.result,
@@ -57,7 +57,7 @@ class TestPcrEntity {
   final String code;
   final CreatedHistory created;
   final List<dynamic> laboratory;
-  final List<dynamic> manufacturer;
+  // final List<dynamic> manufacturer;
   final IdTestEntity preparedBy;
   final IdTestEntity project;
   final List<dynamic> result;
@@ -81,7 +81,7 @@ class AssociatedPcrEntity {
     required this.code,
     required this.created,
     required this.form,
-    required this.manufacturer,
+    // required this.manufacturer,
     required this.photo,
     required this.preparedBy,
     required this.project,
@@ -90,7 +90,7 @@ class AssociatedPcrEntity {
     required this.status,
     required this.statusHistory,
     required this.stepHistory,
-    required this.swabType,
+    // required this.swabType,
     required this.symptoms,
     required this.type,
     required this.updated,
@@ -104,8 +104,8 @@ class AssociatedPcrEntity {
   final String code;
   final CreatedTestEntity created;
   final IdTestEntity form;
-  final String manufacturer;
-  final List<String> photo;
+  // final String manufacturer;
+  final String photo;
   final IdTestEntity preparedBy;
   final IdTestEntity project;
   final IdTestEntity result;
@@ -113,7 +113,7 @@ class AssociatedPcrEntity {
   final IdTestEntity status;
   final List<StatusHistoryEntity> statusHistory;
   final List<dynamic> stepHistory;
-  final String swabType;
+  // final List<dynamic> swabType;
   final List<IdTestEntity> symptoms;
   final IdTestEntity type;
   final CreatedTestEntity updated;

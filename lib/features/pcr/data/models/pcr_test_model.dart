@@ -42,7 +42,7 @@ class Test extends TestPcrEntity {
     required String code,
     required CreatedHistory created,
     required List<dynamic> laboratory,
-    required List<dynamic> manufacturer,
+    // required List<dynamic> manufacturer,
     required IdHistory preparedBy,
     required IdHistory project,
     required List<dynamic> result,
@@ -66,7 +66,7 @@ class Test extends TestPcrEntity {
             code: code,
             created: created,
             laboratory: laboratory,
-            manufacturer: manufacturer,
+            // manufacturer: manufacturer,
             preparedBy: preparedBy,
             project: project,
             result: result,
@@ -94,10 +94,11 @@ class Test extends TestPcrEntity {
         code: json["code"],
         created: CreatedHistory.fromMap(json["created"]),
         laboratory: List<dynamic>.from(json["laboratory"].map((x) => x)),
-        manufacturer: List<dynamic>.from(json["manufacturer"].map((x) => x)),
+        // manufacturer: List<dynamic>.from(json["manufacturer"].map((x) => x)),
         preparedBy: IdHistory.fromMap(json["prepared_by"]),
         project: IdHistory.fromMap(json["project"]),
-        result: List<ResultHistory>.from(json["result"].map((x) => x)),
+        result: List<ResultHistory>.from(
+            json["result"].map((x) => ResultHistory.fromMap(x))),
         sampleDate: CreatedHistory.fromMap(json["sample_date"]),
         status: json["status"] != null
             ? List<StatusHistory>.from(
@@ -126,8 +127,8 @@ class AssociatedTest extends AssociatedPcrEntity {
     required String code,
     required CreatedHistory created,
     required IdHistory form,
-    required String manufacturer,
-    required List<String> photo,
+    // required String manufacturer,
+    required String photo,
     required IdHistory preparedBy,
     required IdHistory project,
     required IdHistory result,
@@ -135,7 +136,7 @@ class AssociatedTest extends AssociatedPcrEntity {
     required IdHistory status,
     required List<StatusTestHistory> statusHistory,
     required List<dynamic> stepHistory,
-    required String swabType,
+    // required List<dynamic> swabType,
     required List<IdHistory> symptoms,
     required IdHistory type,
     required CreatedHistory updated,
@@ -148,7 +149,7 @@ class AssociatedTest extends AssociatedPcrEntity {
             code: code,
             created: created,
             form: form,
-            manufacturer: manufacturer,
+            // manufacturer: manufacturer,
             photo: photo,
             preparedBy: preparedBy,
             project: project,
@@ -157,7 +158,7 @@ class AssociatedTest extends AssociatedPcrEntity {
             status: status,
             statusHistory: statusHistory,
             stepHistory: stepHistory,
-            swabType: swabType,
+            // swabType: swabType,
             symptoms: symptoms,
             type: type,
             updated: updated,
@@ -172,8 +173,9 @@ class AssociatedTest extends AssociatedPcrEntity {
         code: json["code"],
         created: CreatedHistory.fromMap(json["created"]),
         form: IdHistory.fromMap(json["form"]),
-        manufacturer: json["manufacturer"],
-        photo: List<String>.from(json["photo"].map((x) => x)),
+        // manufacturer: json["manufacturer"],
+        photo: json["photo"],
+
         preparedBy: IdHistory.fromMap(json["prepared_by"]),
         project: IdHistory.fromMap(json["project"]),
         result: IdHistory.fromMap(json["result"]),
@@ -181,10 +183,16 @@ class AssociatedTest extends AssociatedPcrEntity {
         status: IdHistory.fromMap(json["status"]),
         statusHistory: List<StatusTestHistory>.from(
             json["status_history"].map((x) => StatusTestHistory.fromMap(x))),
-        stepHistory: List<dynamic>.from(json["step_history"].map((x) => x)),
-        swabType: json["swab_type"],
-        symptoms: List<IdHistory>.from(
-            json["symptoms"].map((x) => IdHistory.fromMap(x))),
+        stepHistory: json["step_history"] != null
+            ? List<dynamic>.from(json["step_history"].map((x) => x))
+            : [],
+        // swabType: json["swab_type"] != null
+        //     ? List<dynamic>.from(json["swab_type"].map((x) => x))
+        //     : [],
+        symptoms: json["symptoms"] != null
+            ? List<IdHistory>.from(
+                json["symptoms"].map((x) => IdHistory.fromMap(x)))
+            : [],
         type: IdHistory.fromMap(json["type"]),
         updated: CreatedHistory.fromMap(json["updated"]),
         vaccines: List<IdHistory>.from(

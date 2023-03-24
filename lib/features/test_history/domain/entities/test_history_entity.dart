@@ -50,9 +50,9 @@ class TestHistoryEntity {
     required this.stepHistory,
   });
 
-  final int ic;
-  final int n;
-  final int orf1Ab;
+  final double ic;
+  final double n;
+  final double orf1Ab;
   final IdTestEntity id;
   final List<AssociatedTestEntity> associatedTests;
   final IdTestEntity batch;
