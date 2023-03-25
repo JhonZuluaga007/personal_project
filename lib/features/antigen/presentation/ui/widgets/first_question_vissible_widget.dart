@@ -21,10 +21,10 @@ class FirstVissibleQuestionWidget extends StatefulWidget {
 class _FirstVissibleQuestionWidgetState
     extends State<FirstVissibleQuestionWidget> {
   final List<String> firstQuestionChipLIst = [];
-  List<OpSymptomEntity> symptomChipListText = [];
 
   late DateTime date = DateTime.now();
   String _covidQuestionValue = "Select option";
+  List<OpSymptomEntity> symptomChipList = [];
 
   @override
   void initState() {
@@ -32,7 +32,7 @@ class _FirstVissibleQuestionWidgetState
     _covidQuestionValue = state.question1!.value.isNotEmpty
         ? state.question1!.value
         : 'Select option';
-    symptomChipListText.addAll(state.symptoms!);
+    symptomChipList.addAll(state.symptoms!);
     super.initState();
   }
 
@@ -42,15 +42,15 @@ class _FirstVissibleQuestionWidgetState
     final height = MediaQuery.of(context).size.height;
     final wColor = ThemesIdx20();
     final antigenBloc = BlocProvider.of<AntigenTestBloc>(context);
+    final antigenState = antigenBloc.state;
     final stateHelperTools = BlocProvider.of<HelperToolsBloc>(context).state;
 
-    return BlocBuilder<AntigenTestBloc, AntigenTestState>(
-      builder: (context, state) {
+ 
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             FormFieldDropdownWidget(
-              question: antigenBloc.state.question1!.name,
+              question: antigenState.question1!.name,
               generalColor: wColor.mapColors["S700"]!,
               height: height * 0.07,
               listItems: const [
@@ -64,18 +64,18 @@ class _FirstVissibleQuestionWidgetState
                 antigenBloc.add(AntigenQuestion1Event(cryptoMonthlyAmount!));
                 setState(() {
                   _covidQuestionValue = cryptoMonthlyAmount;
-                  symptomChipListText = antigenBloc.state.symptoms!;
+                  symptomChipList.addAll(antigenState.symptoms!);
                 });
               },
             ),
             SizedBox(height: height * 0.021),
             Visibility(
-              visible: state.question1!.value == "Yes" ||
+              visible: antigenState.question1!.value == "Yes" ||
                   _covidQuestionValue == "Yes",
               child: Column(
                 children: [
                   TextWidget(
-                    text: antigenBloc.state.question2!.name,
+                    text: antigenState.question2!.name,
                     requiresTranslate: false,
                     style: TextStyle(
                         fontSize: 16,
@@ -87,23 +87,23 @@ class _FirstVissibleQuestionWidgetState
                   MultiSelectedOpDropDownWidget(
                     onChanged: (value) {
                       setState(() {
-                        if (symptomChipListText
+                        if (symptomChipList
                             .where((symptom) => symptom.id == value!.id)
                             .isEmpty) {
-                          symptomChipListText.add(value! as OpSymptomEntity);
+                          symptomChipList.add(value as OpSymptomEntity);
                         }
-                        antigenBloc.add(AntigenQuestion2Event(
-                            symptoms: symptomChipListText));
+                        antigenBloc.add(
+                            AntigenQuestion2Event(symptoms: symptomChipList));
                       });
                     },
                     listItem: stateHelperTools.symptoms,
                     valueDefaultList: "drop_down_select_option",
-                    listChip: symptomChipListText,
+                    listChip: symptomChipList,
                     requiredTranslate: false,
                   ),
                   SizedBox(height: height * 0.028),
                   DatePickerContainerWidget(
-                    textQuestions: antigenBloc.state.question3!.name,
+                    textQuestions: antigenState.question3!.name,
                     onTap: () async {
                       DateTime? newDate = await showDatePicker(
                         context: context,
@@ -125,7 +125,6 @@ class _FirstVissibleQuestionWidgetState
             )
           ],
         );
-      },
-    );
+  
   }
 }

@@ -211,24 +211,6 @@ class States extends OpStatesEntity {
       );
 }
 
-class Symptom extends OpSymptomEntity {
-  Symptom({
-    required Id id,
-    required Id project,
-    required String symptom,
-  }) : super(
-          id: id.oid,
-          project: project,
-          symptom: symptom,
-        );
-
-  factory Symptom.fromJson(Map<String, dynamic> json) => Symptom(
-        id: Id.fromJson(json["_id"]),
-        project: Id.fromJson(json["project"]),
-        symptom: json["symptom"],
-      );
-}
-
 class TestResult extends OpTestResultEntity {
   TestResult({
     required Id id,
@@ -295,6 +277,24 @@ class TestValidity extends OpTestValidityEntity {
   factory TestValidity.fromJson(Map<String, dynamic> json) => TestValidity(
         id: Id.fromJson(json["_id"]),
         validity: json["validity"],
+      );
+}
+
+class Symptom extends OpSymptomEntity {
+  Symptom({
+    required Id id,
+    required Id project,
+    required String symptom,
+  }) : super(
+          id: id.oid,
+          project: project,
+          symptom: symptom,
+        );
+
+  factory Symptom.fromJson(Map<String, dynamic> json) => Symptom(
+        id: Id.fromJson(json["_id"]),
+        project: Id.fromJson(json["project"]),
+        symptom: json["symptom"],
       );
 }
 

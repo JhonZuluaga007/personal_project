@@ -408,7 +408,11 @@ class SymptomAntigen extends SymptomEntity {
     required Id id,
     required Id project,
     required String symptom,
-  }) : super(id: id, project: project, symptom: symptom);
+  }) : super(
+          id: id,
+          project: project,
+          symptom: symptom,
+        );
 
   factory SymptomAntigen.fromMap(Map<String, dynamic> json) => SymptomAntigen(
         id: Id.fromJson(json["_id"]),
