@@ -12,6 +12,7 @@ import '../../../../medical_history/presentation/widgets/multi_selected_opdropdo
 
 class FirstVissibleQuestionWidget extends StatefulWidget {
   const FirstVissibleQuestionWidget({Key? key}) : super(key: key);
+
   @override
   State<FirstVissibleQuestionWidget> createState() =>
       _FirstVissibleQuestionWidgetState();
@@ -20,13 +21,18 @@ class FirstVissibleQuestionWidget extends StatefulWidget {
 class _FirstVissibleQuestionWidgetState
     extends State<FirstVissibleQuestionWidget> {
   final List<String> firstQuestionChipLIst = [];
-  List<OpSymptomEntity> chipListText = [];
+  List<OpSymptomEntity> symptomChipListText = [];
 
   late DateTime date = DateTime.now();
   String _covidQuestionValue = "Select option";
 
   @override
   void initState() {
+    final state = BlocProvider.of<AntigenTestBloc>(context).state;
+    _covidQuestionValue = state.question1!.value.isNotEmpty
+        ? state.question1!.value
+        : 'Select option';
+    symptomChipListText.addAll(state.symptoms!);
     super.initState();
   }
 
@@ -48,20 +54,17 @@ class _FirstVissibleQuestionWidgetState
               generalColor: wColor.mapColors["S700"]!,
               height: height * 0.07,
               listItems: const [
-                //TODO CHECK LANGUAGUE
                 "Select option",
                 "Yes",
                 "No",
               ],
               selectedValue: _covidQuestionValue,
-              // state.question1!.value != _covidQuestionValue
-              //     ? state.question1!.value
-              //     : _covidQuestionValue,
               width: width,
               onChanged: (cryptoMonthlyAmount) {
                 antigenBloc.add(AntigenQuestion1Event(cryptoMonthlyAmount!));
                 setState(() {
                   _covidQuestionValue = cryptoMonthlyAmount;
+                  symptomChipListText = antigenBloc.state.symptoms!;
                 });
               },
             ),
@@ -84,18 +87,18 @@ class _FirstVissibleQuestionWidgetState
                   MultiSelectedOpDropDownWidget(
                     onChanged: (value) {
                       setState(() {
-                        if (state.symptoms!.contains(value) != true) {
-                          chipListText.add(value! as OpSymptomEntity);
-                          state.symptoms = chipListText;
-                          debugPrint(chipListText.toString());
+                        if (symptomChipListText
+                            .where((symptom) => symptom.id == value!.id)
+                            .isEmpty) {
+                          symptomChipListText.add(value! as OpSymptomEntity);
                         }
-                        antigenBloc
-                            .add(AntigenQuestion2Event(symptoms: chipListText));
+                        antigenBloc.add(AntigenQuestion2Event(
+                            symptoms: symptomChipListText));
                       });
                     },
                     listItem: stateHelperTools.symptoms,
                     valueDefaultList: "drop_down_select_option",
-                    listChip: chipListText,
+                    listChip: symptomChipListText,
                     requiredTranslate: false,
                   ),
                   SizedBox(height: height * 0.028),
@@ -108,13 +111,10 @@ class _FirstVissibleQuestionWidgetState
                         firstDate: DateTime(2019),
                         lastDate: DateTime.now(),
                       );
-
                       if (newDate == null) return;
-
                       setState(() {
                         date = newDate;
                       });
-
                       antigenBloc.add(
                           AntigenQuestion3Event(question3: newDate.toString()));
                     },

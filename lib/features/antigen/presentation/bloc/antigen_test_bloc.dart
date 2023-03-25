@@ -35,7 +35,9 @@ class AntigenTestBloc extends Bloc<AntigenTestEvent, AntigenTestState> {
                 idTest: antigenModel.data.test.id.oid,
                 symptoms: antigenModel.data.lastTest!.symptoms,
                 vaccines: antigenModel.data.lastTest!.vaccines,
-                question1: antigenModel.data.lastTest!.form[0].question1,
+                question1: QuestionType1StringEntity(
+                    name: antigenModel.data.lastTest!.form[0].question1.name,
+                    value: ''),
                 question2: antigenModel.data.lastTest!.form[0].question2,
                 question3: antigenModel.data.lastTest!.form[0].question3,
                 question4: antigenModel.data.lastTest!.form[0].question4,
@@ -47,9 +49,15 @@ class AntigenTestBloc extends Bloc<AntigenTestEvent, AntigenTestState> {
                 question10: antigenModel.data.lastTest!.form[0].question10,
                 question11: antigenModel.data.lastTest!.form[0].question11,
                 question12: antigenModel.data.lastTest!.form[0].question12,
-                question13: antigenModel.data.lastTest!.form[0].question13,
-                question14: antigenModel.data.lastTest!.form[0].question14,
-                question15: antigenModel.data.lastTest!.form[0].question15,
+                question13: QuestionType1StringEntity(
+                    name: antigenModel.data.lastTest!.form[0].question13.name,
+                    value: ''),
+                question14: QuestionType1StringEntity(
+                    name: antigenModel.data.lastTest!.form[0].question14.name,
+                    value: ''),
+                question15: QuestionType1StringEntity(
+                    name: antigenModel.data.lastTest!.form[0].question15.name,
+                    value: ''),
                 testTime: antigenModel.data.test.manufacturer[0].testTime,
               )));
     });
@@ -91,13 +99,19 @@ class AntigenTestBloc extends Bloc<AntigenTestEvent, AntigenTestState> {
     });
 
     on<AntigenQuestion1Event>((event, emit) async {
-      emit(state.copyWith(formStatus: FormSubmitting()));
+      final bool question1Value = event.question1! == 'Yes' ? true : false;
       emit(state.copyWith(
-          formStatus: const InitialFormStatus(),
-          question1: QuestionType1StringEntity(
-            name: state.question1!.name,
-            value: event.question1!,
-          )));
+        formStatus: const InitialFormStatus(),
+        question1: QuestionType1StringEntity(
+          name: state.question1!.name,
+          value: event.question1!,
+        ),
+        symptoms: question1Value ? state.symptoms : [],
+        question3: QuestionType1StringEntity(
+          name: state.question1!.name,
+          value: question1Value ? state.question1!.value : '',
+        ),
+      ));
     });
 
     on<AntigenQuestion2Event>((event, emit) {
@@ -200,11 +214,11 @@ class AntigenTestBloc extends Bloc<AntigenTestEvent, AntigenTestState> {
 
     on<AntigenQuestion12Event>((event, emit) {
       emit(state.copyWith(
-        formStatus: const InitialFormStatus(),
-        question12: QuestionType1StringEntity(
-          name: state.question12!.name,
-          value: event.question12,
-        )));
+          formStatus: const InitialFormStatus(),
+          question12: QuestionType1StringEntity(
+            name: state.question12!.name,
+            value: event.question12,
+          )));
     });
 
     on<AntigenQuestion13Event>((event, emit) {

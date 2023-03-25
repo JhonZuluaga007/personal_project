@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../bloc/antigen_test_bloc.dart';
 import '../widgets/four_question_widget.dart';
 import '../../../../../config/theme/theme.dart';
 import '../widgets/first_question_vissible_widget.dart';
@@ -8,6 +10,7 @@ import '../widgets/second_vissible_question_widget.dart';
 import '../widgets/third_vissible_question_widget.dart';
 import '../../../../../common_ui/common_widgets/text/text_widget.dart';
 import '../../../../../common_ui/common_pages/my_app_scaffold_page.dart';
+import '../../../../../common_ui/common_widgets/alerts/show_snackbar.dart';
 import '../../../../../common_ui/common_widgets/buttons/main_button_widget.dart';
 
 class QuestionsAntigenPage extends StatelessWidget {
@@ -63,16 +66,74 @@ class QuestionsAntigenPage extends StatelessWidget {
     final height = MediaQuery.of(context).size.height;
     final wColor = ThemesIdx20();
 
-    return MainButtonWidget(
-        width: width * 0.920,
-        height: height * 0.053,
-        borderRadiusButton: 30,
-        buttonString: "self_t_button",
-        textColor: wColor.mapColors["P01"],
-        buttonColor: wColor.mapColors["500BASE"],
-        borderColor: wColor.mapColors["500BASE"],
-        onPressed: () {
-          Navigator.pushNamed(context, "instructionPage");
-        });
+    return BlocBuilder<AntigenTestBloc, AntigenTestState>(
+      builder: (context, state) {
+        return MainButtonWidget(
+            width: width * 0.920,
+            height: height * 0.053,
+            borderRadiusButton: 30,
+            buttonString: "self_t_button",
+            textColor: wColor.mapColors["P01"],
+            buttonColor: validateQuestion(state)
+                ? wColor.mapColors["500BASE"]
+                : wColor.mapColors["N300"],
+            borderColor: validateQuestion(state)
+                ? wColor.mapColors["500BASE"]
+                : wColor.mapColors["N300"],
+            onPressed: () {
+              validateQuestion(state)
+                  ? Navigator.pushNamed(context, "instructionPage")
+                  : showSnackBar(
+                      context, 'It is mandatory to fill all the fields');
+            });
+      },
+    );
+  }
+
+  bool validateQuestion(AntigenTestState state) {
+    if (validateQuestionOne(state) &&
+        validateQuestionTwo(state) &&
+        state.question6!.value.isNotEmpty &&
+        state.question7!.value.isNotEmpty &&
+        state.question8!.value.isNotEmpty &&
+        state.question9!.value.isNotEmpty &&
+        state.vaccines!.isNotEmpty &&
+        state.question11!.value.isNotEmpty &&
+        state.question12!.value.isNotEmpty) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  bool validateQuestionOne(AntigenTestState state) {
+    if (state.question1!.value.isNotEmpty && state.question1!.value == 'Yes') {
+      if (state.question2!.value.isNotEmpty &&
+          state.question3!.value.isNotEmpty) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+    if (state.question1!.value.isNotEmpty) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  bool validateQuestionTwo(AntigenTestState state) {
+    if (state.question4!.value.isNotEmpty && state.question1!.value == 'Yes') {
+      if (state.question5!.value.isNotEmpty) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+    if (state.question4!.value.isNotEmpty) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }

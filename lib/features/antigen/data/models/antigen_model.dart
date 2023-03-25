@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import '../../domain/entities/antigen_entity.dart';
 import '../../../auth/data/models/options_tools_model.dart';
 import '../../../test_history/data/models/test_history_models.dart';
@@ -131,10 +129,10 @@ class LastTestAntigen extends LastTestAntigenEntity {
     required List<StatusTestHistory> statusHistory,
     required List<dynamic> stepHistory,
     required List<dynamic> swabType,
-    required List<Symptom> symptoms,
+    required List<SymptomAntigen> symptoms,
     required List<TypeHistory> type,
     required CreatedHistory updated,
-    required List<Vaccine> vaccines,
+    required List<VaccineAntigen> vaccines,
     required List<ValidityHistory> validity,
   }) : super(
             id: id,
@@ -175,24 +173,42 @@ class LastTestAntigen extends LastTestAntigenEntity {
         /*List<String>.from(json["photo"].map((x) => x)),*/
         preparedBy: IdHistory.fromMap(json["prepared_by"]),
         project: IdHistory.fromMap(json["project"]),
-        result: json["symptoms"] != null ? List<ResultHistory>.from(
-            json["result"].map((x) => ResultHistory.fromMap(x))) : [],
+        result: json["symptoms"] != null
+            ? List<ResultHistory>.from(
+                json["result"].map((x) => ResultHistory.fromMap(x)))
+            : [],
         sampleDate: CreatedHistory.fromMap(json["sample_date"]),
-        status: json["symptoms"] != null ? List<StatusHistory>.from(
-            json["status"].map((x) => StatusHistory.fromMap(x))) : [],
-        statusHistory: json["symptoms"] != null ? List<StatusTestHistory>.from(
-            json["status_history"].map((x) => StatusTestHistory.fromMap(x))) : [],
-        stepHistory: json["step_history"] != null ? List<dynamic>.from(json["step_history"].map((x) => x)) : [],
-        swabType: json["symptoms"] != null ? List<dynamic>.from(json["swab_type"].map((x) => x)) : [],
-        symptoms: json["symptoms"] != null ?
-            List<Symptom>.from(json["symptoms"].map((x) => Symptom.fromMap(x))) : [],
-        type: json["symptoms"] != null ? List<TypeHistory>.from(
-            json["type"].map((x) => TypeHistory.fromMap(x))) : [],
+        status: json["symptoms"] != null
+            ? List<StatusHistory>.from(
+                json["status"].map((x) => StatusHistory.fromMap(x)))
+            : [],
+        statusHistory: json["symptoms"] != null
+            ? List<StatusTestHistory>.from(
+                json["status_history"].map((x) => StatusTestHistory.fromMap(x)))
+            : [],
+        stepHistory: json["step_history"] != null
+            ? List<dynamic>.from(json["step_history"].map((x) => x))
+            : [],
+        swabType: json["symptoms"] != null
+            ? List<dynamic>.from(json["swab_type"].map((x) => x))
+            : [],
+        symptoms: json["symptoms"] != null
+            ? List<SymptomAntigen>.from(
+                json["symptoms"].map((x) => SymptomAntigen.fromMap(x)))
+            : [],
+        type: json["symptoms"] != null
+            ? List<TypeHistory>.from(
+                json["type"].map((x) => TypeHistory.fromMap(x)))
+            : [],
         updated: CreatedHistory.fromMap(json["updated"]),
-        vaccines: json["symptoms"] != null ?
-            List<Vaccine>.from(json["vaccines"].map((x) => Vaccine.fromMap(x))) : [],
-        validity: json["symptoms"] != null ? List<ValidityHistory>.from(
-            json["validity"].map((x) => ValidityHistory.fromMap(x))) : [],
+        vaccines: json["symptoms"] != null
+            ? List<VaccineAntigen>.from(
+                json["vaccines"].map((x) => VaccineAntigen.fromMap(x)))
+            : [],
+        validity: json["symptoms"] != null
+            ? List<ValidityHistory>.from(
+                json["validity"].map((x) => ValidityHistory.fromMap(x)))
+            : [],
       );
 }
 
@@ -303,10 +319,10 @@ class TestAntigen extends TestAntigenEntity {
     required List<StatusTestHistory> statusHistory,
     required List<dynamic> stepHistory,
     required List<dynamic> swabType,
-    required List<Symptom> symptoms,
+    required List<SymptomAntigen> symptoms,
     required List<TypeHistory> type,
     required CreatedHistory updated,
-    required List<Vaccine> vaccines,
+    required List<VaccineAntigen> vaccines,
     required List<dynamic> validity,
   }) : super(
             id: id,
@@ -332,9 +348,6 @@ class TestAntigen extends TestAntigenEntity {
             vaccines: vaccines,
             validity: validity);
 
-  factory TestAntigen.fromJson(String str) =>
-      TestAntigen.fromMap(json.decode(str));
-
   factory TestAntigen.fromMap(Map<String, dynamic> json) => TestAntigen(
         id: IdHistory.fromMap(json["_id"]),
         associatedTests:
@@ -357,13 +370,13 @@ class TestAntigen extends TestAntigenEntity {
             json["status_history"].map((x) => StatusTestHistory.fromMap(x))),
         stepHistory: List<dynamic>.from(json["validity"].map((x) => x)),
         swabType: List<dynamic>.from(json["swab_type"].map((x) => x)),
-        symptoms:
-            List<Symptom>.from(json["symptoms"].map((x) => Symptom.fromMap(x))),
+        symptoms: List<SymptomAntigen>.from(
+            json["symptoms"].map((x) => SymptomAntigen.fromMap(x))),
         type: List<TypeHistory>.from(
             json["type"].map((x) => TypeHistory.fromMap(x))),
         updated: CreatedHistory.fromMap(json["updated"]),
-        vaccines:
-            List<Vaccine>.from(json["vaccines"].map((x) => Vaccine.fromMap(x))),
+        vaccines: List<VaccineAntigen>.from(
+            json["vaccines"].map((x) => VaccineAntigen.fromMap(x))),
         validity: List<dynamic>.from(json["validity"].map((x) => x)),
       );
 }
@@ -390,22 +403,22 @@ class ManufacturerAntigen extends ManufacturerAntigenEntity {
       );
 }
 
-class Symptom extends SymptomEntity {
-  Symptom({
+class SymptomAntigen extends SymptomEntity {
+  SymptomAntigen({
     required Id id,
     required Id project,
     required String symptom,
   }) : super(id: id, project: project, symptom: symptom);
 
-  factory Symptom.fromMap(Map<String, dynamic> json) => Symptom(
+  factory SymptomAntigen.fromMap(Map<String, dynamic> json) => SymptomAntigen(
         id: Id.fromJson(json["_id"]),
         project: Id.fromJson(json["project"]),
         symptom: json["symptom"],
       );
 }
 
-class Vaccine extends VaccineEntity {
-  Vaccine({
+class VaccineAntigen extends VaccineEntity {
+  VaccineAntigen({
     required Id id,
     required Id project,
     required String vaccine,
@@ -415,7 +428,7 @@ class Vaccine extends VaccineEntity {
           vaccine: vaccine,
         );
 
-  factory Vaccine.fromMap(Map<String, dynamic> json) => Vaccine(
+  factory VaccineAntigen.fromMap(Map<String, dynamic> json) => VaccineAntigen(
         id: Id.fromJson(json["_id"]),
         project: Id.fromJson(json["project"]),
         vaccine: json["vaccine"],

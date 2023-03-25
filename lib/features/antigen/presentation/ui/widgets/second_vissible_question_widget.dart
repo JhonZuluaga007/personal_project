@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:Tellme/common_ui/common_widgets/form_field_dropdown_widget.dart';
-import 'package:Tellme/features/antigen/presentation/bloc/antigen_test_bloc.dart';
 import 'date_picker_container_widget.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../bloc/antigen_test_bloc.dart';
 import '../../../../../config/theme/theme.dart';
+import '../../../../../common_ui/common_widgets/form_field_dropdown_widget.dart';
 
 class SecondVissibleQuestionWidget extends StatefulWidget {
   const SecondVissibleQuestionWidget({
@@ -23,6 +23,14 @@ class _SecondVissibleQuestionWidgetState
   String _covidQuestionTwoValue = "Select option";
 
   @override
+  void initState() {
+    final state = BlocProvider.of<AntigenTestBloc>(context).state;
+    _covidQuestionValue = state.question4!.value.isNotEmpty ? state.question4!.value : "Select option";
+    _covidQuestionTwoValue = state.question6!.value.isNotEmpty ? state.question6!.value : "Select option";
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
@@ -34,7 +42,7 @@ class _SecondVissibleQuestionWidgetState
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         FormFieldDropdownWidget(
-          question: antigenBloc.state.question4!.name,
+          question: stateAntigen.question4!.name,
           generalColor: wColor.mapColors["S700"]!,
           height: height * 0.08,
           listItems: const [
@@ -82,7 +90,7 @@ class _SecondVissibleQuestionWidgetState
         ),
         SizedBox(height: height * 0.015),
         FormFieldDropdownWidget(
-          question: antigenBloc.state.question6!.name,
+          question: stateAntigen.question6!.name,
           generalColor: wColor.mapColors["S700"]!,
           height: height * 0.07,
           listItems: const [

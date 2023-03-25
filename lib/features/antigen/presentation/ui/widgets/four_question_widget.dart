@@ -30,11 +30,18 @@ class _FourQuestionWidgetState extends State<FourQuestionWidget> {
   List<OpVaccineEntity> vacinneChipList = [];
 
   @override
+  void initState() {
+    final state = BlocProvider.of<AntigenTestBloc>(context).state;
+    vacinneChipList.addAll(state.vaccines!);
+    covidBeforechipList.addAll(state.question11!.value);
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
     final wColor = ThemesIdx20();
-    final stateAntigen = BlocProvider.of<AntigenTestBloc>(context).state;
     final antigenBloc = BlocProvider.of<AntigenTestBloc>(context);
     final stateHelperTools = BlocProvider.of<HelperToolsBloc>(context).state;
 
@@ -54,10 +61,10 @@ class _FourQuestionWidgetState extends State<FourQuestionWidget> {
         MultiSelectedOpDropDownWidget(
           onChanged: (value) {
             setState(() {
-              if (stateAntigen.vaccines!.contains(value) != true) {
-                vacinneChipList.add(value! as OpVaccineEntity);
-                stateAntigen.vaccines = vacinneChipList;
-                debugPrint(vacinneChipList.toString());
+              if (vacinneChipList
+                  .where((vacinne) => vacinne.id == value!.id)
+                  .isEmpty) {
+                vacinneChipList.add(value as OpVaccineEntity);
               }
               antigenBloc
                   .add(AntigenQuestion10Event(vaccines: vacinneChipList));
@@ -65,7 +72,7 @@ class _FourQuestionWidgetState extends State<FourQuestionWidget> {
           },
           listItem: stateHelperTools.vaccines,
           valueDefaultList: "drop_down_select_option",
-          listChip: stateAntigen.vaccines ?? vacinneChipList,
+          listChip: vacinneChipList,
           requiredTranslate: false,
         ),
         SizedBox(height: height * 0.031),
@@ -90,9 +97,7 @@ class _FourQuestionWidgetState extends State<FourQuestionWidget> {
                 .add(AntigenQuestion11Event(question11: covidBeforechipList));
           },
           requiredTranslate: false,
-          listChip: stateAntigen.question11!.value != covidBeforechipList
-              ? stateAntigen.question11!.value
-              : covidBeforechipList,
+          listChip: covidBeforechipList,
           valueDefaultList: "drop_down_select_option",
         ),
         SizedBox(height: height * 0.031),

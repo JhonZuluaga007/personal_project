@@ -6,7 +6,7 @@ import '../../bloc/antigen_test_bloc.dart';
 import '../../../../../config/theme/theme.dart';
 import '../../../../../common_ui/common_widgets/text/text_widget.dart';
 import '../../../../../common_ui/common_pages/my_app_scaffold_page.dart';
-import '../../../../../common_ui/common_widgets/buttons/button_widget.dart';
+import '../../../../../common_ui/common_widgets/alerts/show_snackbar.dart';
 import '../../../../../common_ui/common_widgets/buttons/main_button_widget.dart';
 import '../../../../../common_ui/common_widgets/form_field_dropdown_widget.dart';
 
@@ -24,6 +24,19 @@ class UploadResultPage extends StatefulWidget {
 class _UploadResultPageState extends State<UploadResultPage> {
   String _covidQuestionOneValue = "Select option";
   String _covidQuestionTwoValue = "Select option";
+
+  @override
+  void initState() {
+    final state = BlocProvider.of<AntigenTestBloc>(context).state;
+    _covidQuestionOneValue = state.question13!.value.isNotEmpty
+        ? state.question13!.value
+        : 'Select option';
+    _covidQuestionOneValue = state.question14!.value.isNotEmpty
+        ? state.question14!.value
+        : 'Select option';
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
@@ -130,51 +143,36 @@ Widget buttonUpload(BuildContext context) {
   final width = MediaQuery.of(context).size.width;
   final height = MediaQuery.of(context).size.height;
   final wColor = ThemesIdx20();
-  return MainButtonWidget(
-      width: width * 0.920,
-      height: height * 0.053,
-      borderRadiusButton: 30,
-      buttonString: "Upload_button_text",
-      textColor: wColor.mapColors["P01"],
-      buttonColor: wColor.mapColors["500BASE"],
-      borderColor: wColor.mapColors["500BASE"],
-      onPressed: () {
-        //TODO CHECK RESULT AND SEND POPUP OF SUCCESS
-
-        Navigator.pushNamed(context, 'uploadFinalResult');
-      });
+  return BlocBuilder<AntigenTestBloc, AntigenTestState>(
+    builder: (context, state) {
+      return MainButtonWidget(
+          width: width * 0.920,
+          height: height * 0.053,
+          borderRadiusButton: 30,
+          buttonString: "Upload_button_text",
+          textColor: wColor.mapColors["P01"],
+          buttonColor: validateQuestion(state)
+              ? wColor.mapColors["500BASE"]
+              : wColor.mapColors["N300"],
+          borderColor: validateQuestion(state)
+              ? wColor.mapColors["500BASE"]
+              : wColor.mapColors["N300"],
+          onPressed: () {
+            validateQuestion(state)
+                ? Navigator.pushNamed(context, 'uploadFinalResult')
+                : showSnackBar(
+                    context, 'It is mandatory to fill all the fields');
+            ;
+          });
+    },
+  );
 }
 
-Widget buttonImagePicture(BuildContext context) {
-  final width = MediaQuery.of(context).size.width;
-  final height = MediaQuery.of(context).size.height;
-  final wColor = ThemesIdx20();
-
-  return Column(
-    children: [
-      ButtonWidget(
-          width: width * 0.920,
-          height: height * 0.053,
-          borderRadiusButton: 30,
-          icon: Icons.file_upload_outlined,
-          iconColor: wColor.mapColors["S800"],
-          buttonString: "Upload_image_Button_text",
-          textColor: wColor.mapColors["S800"],
-          buttonColor: wColor.mapColors["P01"],
-          borderColor: wColor.mapColors["S800"],
-          onPressed: () {}),
-      SizedBox(height: height * 0.021),
-      ButtonWidget(
-          width: width * 0.920,
-          height: height * 0.053,
-          borderRadiusButton: 30,
-          icon: Icons.camera_alt_outlined,
-          iconColor: wColor.mapColors["S800"],
-          buttonString: "Upload_picture_Button_text",
-          textColor: wColor.mapColors["S800"],
-          buttonColor: wColor.mapColors["P01"],
-          borderColor: wColor.mapColors["S800"],
-          onPressed: () {}),
-    ],
-  );
+bool validateQuestion(AntigenTestState state) {
+  if (state.question13!.value.isNotEmpty &&
+      state.question14!.value.isNotEmpty) {
+    return true;
+  } else {
+    return false;
+  }
 }

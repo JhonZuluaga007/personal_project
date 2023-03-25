@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:Tellme/config/helpers/form_submission_status.dart';
 
 import '../../../../../../config/theme/theme.dart';
 import '../widgets/image_buttons_upload_widget.dart';
+import '../../../../../../config/helpers/form_submission_status.dart';
 import '../../../../../../navigationBar/bloc/navigation_bar_bloc.dart';
 import '../../../../../antigen/presentation/bloc/antigen_test_bloc.dart';
 import '../../../../../../common_ui/common_widgets/text/text_widget.dart';
+import '../../../../../../common_ui/common_widgets/alerts/show_snackbar.dart';
 import '../../../../../medical_history/presentation/widgets/done_alert_widget.dart';
 import '../../../../../../common_ui/common_widgets/form_field_dropdown_widget.dart';
 import '../../../../../../common_ui/common_widgets/buttons/main_button_widget.dart';
@@ -171,13 +172,28 @@ Widget buttonUpload(BuildContext context) {
             borderRadiusButton: 30,
             buttonString: "Upload_button_text",
             textColor: wColor.mapColors["P01"],
-            buttonColor: wColor.mapColors["500BASE"],
-            borderColor: wColor.mapColors["500BASE"],
+            buttonColor: validateQuestion(state)
+                ? wColor.mapColors["500BASE"]
+                : wColor.mapColors["N300"],
+            borderColor: validateQuestion(state)
+                ? wColor.mapColors["500BASE"]
+                : wColor.mapColors["N300"],
             onPressed: () {
-              BlocProvider.of<AntigenTestBloc>(context)
-                  .add(AntigenRegisterEvent());
+              validateQuestion(state)
+                  ? BlocProvider.of<AntigenTestBloc>(context)
+                      .add(AntigenRegisterEvent())
+                  : showSnackBar(
+                      context, 'It is mandatory to fill all the fields');
             });
       }
     },
   );
+}
+
+bool validateQuestion(AntigenTestState state) {
+  if (state.question15!.value.isNotEmpty) {
+    return true;
+  } else {
+    return false;
+  }
 }

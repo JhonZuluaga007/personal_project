@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:Tellme/common_ui/common_widgets/form_field_dropdown_widget.dart';
-import 'package:Tellme/config/theme/theme.dart';
-import 'package:Tellme/features/antigen/presentation/bloc/antigen_test_bloc.dart';
 import 'date_picker_container_widget.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../bloc/antigen_test_bloc.dart';
+import '../../../../../config/theme/theme.dart';
+import '../../../../../common_ui/common_widgets/form_field_dropdown_widget.dart';
 
 class ThirdVissibleQuestionWidget extends StatefulWidget {
   const ThirdVissibleQuestionWidget({
@@ -21,13 +22,6 @@ class _ThirdVissibleQuestionWidgetState
   String _covidQuestionTwoValue = "Select option";
 
   final List<String> vacinneChipList = [];
-  final List<String> vaccinesList = [
-    "Pfizer",
-    "Moderna",
-    "Johnson & Johnson",
-    "Other",
-    "Do not know",
-  ];
 
   late DateTime date = DateTime.now();
   @override
@@ -64,7 +58,8 @@ class _ThirdVissibleQuestionWidgetState
           },
         ),
         Visibility(
-            visible: stateAntigen.question7!.value == "No" || _covidQuestionValue != "No",
+            visible: stateAntigen.question7!.value == "No" ||
+                _covidQuestionValue != "No",
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
