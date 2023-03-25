@@ -41,7 +41,7 @@ class InstructionsPage extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(height: height * 0.18),
+            SizedBox(height: height * 0.1),
             const Center(
                 child: Image(
                     image: AssetImage(
@@ -56,14 +56,17 @@ class InstructionsPage extends StatelessWidget {
                   letterSpacing: -0.2),
             ),
             SizedBox(height: height * 0.029),
-            TextWidget(
-              text: "instructions_description_text",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                  fontWeight: FontWeight.w400,
-                  fontSize: 14,
-                  color: wColor.mapColors["S600"],
-                  letterSpacing: -0.2),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: TextWidget(
+                text: "instructions_description_text",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    fontWeight: FontWeight.w400,
+                    fontSize: 16,
+                    color: wColor.mapColors["S600"],
+                    letterSpacing: -0.2),
+              ),
             ),
           ],
         ),

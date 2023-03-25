@@ -23,7 +23,7 @@ class _FirstVissibleQuestionWidgetState
   List<OpSymptomEntity> chipListText = [];
 
   late DateTime date = DateTime.now();
-  String _covidQuestionValue = "";
+  String _covidQuestionValue = "Select option";
 
   @override
   void initState() {
@@ -49,13 +49,14 @@ class _FirstVissibleQuestionWidgetState
               height: height * 0.07,
               listItems: const [
                 //TODO CHECK LANGUAGUE
-                "",
+                "Select option",
                 "Yes",
                 "No",
               ],
-              selectedValue: state.question1!.value != _covidQuestionValue
-                  ? state.question1!.value
-                  : _covidQuestionValue,
+              selectedValue: _covidQuestionValue,
+              // state.question1!.value != _covidQuestionValue
+              //     ? state.question1!.value
+              //     : _covidQuestionValue,
               width: width,
               onChanged: (cryptoMonthlyAmount) {
                 antigenBloc.add(AntigenQuestion1Event(cryptoMonthlyAmount!));
@@ -88,13 +89,13 @@ class _FirstVissibleQuestionWidgetState
                           state.symptoms = chipListText;
                           debugPrint(chipListText.toString());
                         }
-                        antigenBloc.add(
-                            AntigenQuestion2Event(symptoms: chipListText));
+                        antigenBloc
+                            .add(AntigenQuestion2Event(symptoms: chipListText));
                       });
                     },
                     listItem: stateHelperTools.symptoms,
                     valueDefaultList: "drop_down_select_option",
-                    listChip: state.symptoms ?? chipListText,
+                    listChip: chipListText,
                     requiredTranslate: false,
                   ),
                   SizedBox(height: height * 0.028),

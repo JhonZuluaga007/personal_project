@@ -119,13 +119,6 @@ Widget buttonUpload(BuildContext context) {
   return BlocConsumer<AntigenTestBloc, AntigenTestState>(
     listener: (context, state) {
       if (state.formStatus is SubmissionSuccess) {
-        if (state.question15!.value == "Yes") {
-          navigationBloc.add(PageChanged(indexNavigation: 2));
-          Navigator.pushReplacementNamed(context, 'navBar');
-        } else {
-          navigationBloc.add(PageChanged(indexNavigation: 1));
-          Navigator.pushReplacementNamed(context, 'navBar');
-        }
         doneSendInfo(
           requiresTranslateText: false,
           context: context,
@@ -139,7 +132,16 @@ Widget buttonUpload(BuildContext context) {
           infoText: state.message,
           mainButton: 'alert_text_three',
           mainButtonFunction: () {
-            Navigator.pop(context);
+            if (state.question15!.value == "Yes") {
+              navigationBloc.add(PageChanged(indexNavigation: 2));
+
+              Navigator.pushNamedAndRemoveUntil(
+                  context, 'navBar', (route) => false);
+            } else {
+              navigationBloc.add(PageChanged(indexNavigation: 1));
+              Navigator.pushNamedAndRemoveUntil(
+                  context, 'navBar', (route) => false);
+            }
           },
         );
       } else if (state.formStatus is SubmissionFailed) {

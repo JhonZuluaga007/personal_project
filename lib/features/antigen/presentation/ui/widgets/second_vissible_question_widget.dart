@@ -19,8 +19,8 @@ class SecondVissibleQuestionWidget extends StatefulWidget {
 class _SecondVissibleQuestionWidgetState
     extends State<SecondVissibleQuestionWidget> {
   late DateTime date = DateTime.now();
-  String _covidQuestionValue = "";
-  String _covidQuestionTwoValue = "";
+  String _covidQuestionValue = "Select option";
+  String _covidQuestionTwoValue = "Select option";
 
   @override
   Widget build(BuildContext context) {
@@ -38,13 +38,11 @@ class _SecondVissibleQuestionWidgetState
           generalColor: wColor.mapColors["S700"]!,
           height: height * 0.08,
           listItems: const [
-            "",
+            "Select option",
             "Yes",
             "No",
           ],
-          selectedValue: stateAntigen.question4!.value != _covidQuestionValue
-              ? stateAntigen.question4!.value
-              : _covidQuestionValue,
+          selectedValue: _covidQuestionValue,
           width: width,
           onChanged: (covidQuestion) {
             antigenBloc.add(AntigenQuestion4Event(question4: covidQuestion!));
@@ -54,7 +52,8 @@ class _SecondVissibleQuestionWidgetState
           },
         ),
         Visibility(
-          visible: stateAntigen.question4!.value == "Yes" || _covidQuestionValue == "Yes",
+          visible: stateAntigen.question4!.value == "Yes" ||
+              _covidQuestionValue == "Yes",
           child: Column(
             children: [
               SizedBox(height: height * 0.028),
@@ -87,13 +86,11 @@ class _SecondVissibleQuestionWidgetState
           generalColor: wColor.mapColors["S700"]!,
           height: height * 0.07,
           listItems: const [
-            "",
+            "Select option",
             "Yes",
             "No",
           ],
-          selectedValue: stateAntigen.question6!.value != _covidQuestionTwoValue
-              ? stateAntigen.question6!.value
-              : _covidQuestionTwoValue,
+          selectedValue: _covidQuestionTwoValue,
           width: width,
           onChanged: (covidQuestionTwo) {
             antigenBloc

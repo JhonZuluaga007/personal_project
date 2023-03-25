@@ -175,7 +175,7 @@
     "self_t_linear_text": "Complete the symptoms form",
     "test_part_one_text": "Scan the kit label",
     "instructions_title_text": "Follow the instructions on your kit",
-    "instructions_description_text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.\nLeo, amet, mi diam magna libero. Fermentum ultricies id\nnisi, feugiat tellus ullamcorper integer feugiat. Nisl, at eu\npraesent nisl, non. Odio ultricies pellentesque habitasse\nmauris turpis.",
+    "instructions_description_text": "Before sample collection, wash your hands with soap and water or apply hand sanitizer with at least 60% alcohol.\nYour testing kit comes with instructions for use. Please read the instructions carefully and follow all of the steps.",
     "instructions_linear_text": "Instructions",
 
     "medical_history_title": "Medical History",

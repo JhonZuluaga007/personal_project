@@ -23,7 +23,6 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   void initState() {
-    BlocProvider.of<AuthBloc>(context).add(GetUser());
     BlocProvider.of<HelperToolsBloc>(context).add(GetTestTools());
     super.initState();
   }

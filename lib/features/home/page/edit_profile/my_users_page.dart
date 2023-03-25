@@ -29,6 +29,7 @@ class _MyUserPageState extends State<MyUserPage> {
   @override
   void initState() {
     imagePath = 'assets/images/no_image.png';
+    BlocProvider.of<AuthBloc>(context).add(GetUser());
 
     super.initState();
   }

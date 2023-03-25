@@ -39,6 +39,13 @@ class _StartCounterPageState extends State<StartCounterPage> {
   }
 
   @override
+  void dispose() {
+    // TODO: implement dispose
+
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     final wColor = ThemesIdx20();
@@ -164,7 +171,7 @@ class _StartCounterPageState extends State<StartCounterPage> {
 
       final seconds = duration.inSeconds + decreaseTime;
 
-      if (seconds < 0 ) {
+      if (seconds < 0) {
         timer?.cancel();
         Navigator.pushNamed(context, "uploadResult");
       } else {
