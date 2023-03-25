@@ -46,7 +46,7 @@ class _FirstVissibleQuestionWidgetState
             FormFieldDropdownWidget(
               question: antigenBloc.state.question1!.name,
               generalColor: wColor.mapColors["S700"]!,
-              height: height * 0.07,
+              height: height * 0.1,
               listItems: const [
                 //TODO CHECK LANGUAGUE
                 "Select option",

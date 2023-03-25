@@ -51,6 +51,20 @@ class MyApp extends StatelessWidget {
           BlocProvider(create: (_) => SupportBloc())
         ],
         child: MaterialApp(
+          builder: (context, child) {
+            final mediaQuery = MediaQuery.of(context);
+            // Take the textScaleFactor from system and make
+            // sure that it's no less than 1.0, but no more
+            // than 1.1.
+            final num constrainedTextScaleFactor =
+                mediaQuery.textScaleFactor.clamp(1.0, 1.1);
+            return MediaQuery(
+              data: mediaQuery.copyWith(
+                textScaleFactor: constrainedTextScaleFactor as double?,
+              ),
+              child: child!,
+            );
+          },
           title: 'Idx20',
           debugShowCheckedModeBanner: false,
           theme: ThemeData(

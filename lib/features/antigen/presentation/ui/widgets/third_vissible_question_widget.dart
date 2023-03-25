@@ -43,7 +43,7 @@ class _ThirdVissibleQuestionWidgetState
         FormFieldDropdownWidget(
           question: antigenBloc.state.question7!.name,
           generalColor: wColor.mapColors["S700"]!,
-          height: height * 0.08,
+          height: height * 0.1,
           listItems: const [
             "",
             "No",
@@ -64,7 +64,8 @@ class _ThirdVissibleQuestionWidgetState
           },
         ),
         Visibility(
-            visible: stateAntigen.question7!.value == "No" || _covidQuestionValue != "No",
+            visible: stateAntigen.question7!.value == "No" ||
+                _covidQuestionValue != "No",
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -72,7 +73,7 @@ class _ThirdVissibleQuestionWidgetState
                 FormFieldDropdownWidget(
                   question: antigenBloc.state.question8!.name,
                   generalColor: wColor.mapColors["S700"]!,
-                  height: height * 0.08,
+                  height: height * 0.1,
                   listItems: const [
                     "Select option",
                     "None",

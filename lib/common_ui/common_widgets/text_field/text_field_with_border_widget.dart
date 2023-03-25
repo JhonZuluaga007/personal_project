@@ -67,7 +67,7 @@ class TextFieldWithBorderWidget extends StatelessWidget {
       children: [
         SizedBox(
           width: width ?? size.width * 0.9,
-          height: height ?? size.height * 0.06,
+          height: height ?? size.height * 0.09,
           child: TextFormField(
             initialValue: initialValue,
             controller: textEditingController,
