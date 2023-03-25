@@ -45,86 +45,86 @@ class _FirstVissibleQuestionWidgetState
     final antigenState = antigenBloc.state;
     final stateHelperTools = BlocProvider.of<HelperToolsBloc>(context).state;
 
- 
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            FormFieldDropdownWidget(
-              question: antigenState.question1!.name,
-              generalColor: wColor.mapColors["S700"]!,
-              height: height * 0.1,
-              listItems: const [
-                "Select option",
-                "Yes",
-                "No",
-              ],
-              selectedValue: _covidQuestionValue,
-              width: width,
-              onChanged: (cryptoMonthlyAmount) {
-                antigenBloc.add(AntigenQuestion1Event(cryptoMonthlyAmount!));
-                setState(() {
-                  _covidQuestionValue = cryptoMonthlyAmount;
-                  symptomChipList.addAll(antigenState.symptoms!);
-                });
-              },
-            ),
-            SizedBox(height: height * 0.021),
-            Visibility(
-              visible: antigenState.question1!.value == "Yes" ||
-                  _covidQuestionValue == "Yes",
-              child: Column(
-                children: [
-                  TextWidget(
-                    text: antigenState.question2!.name,
-                    requiresTranslate: false,
-                    style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
-                        letterSpacing: -0.2,
-                        color: wColor.mapColors["S700"]!),
-                  ),
-                  SizedBox(height: height * 0.011),
-                  MultiSelectedOpDropDownWidget(
-                    onChanged: (value) {
-                      setState(() {
-                        if (symptomChipList
-                            .where((symptom) => symptom.id == value!.id)
-                            .isEmpty) {
-                          symptomChipList.add(value as OpSymptomEntity);
-                        }
-                        antigenBloc.add(
-                            AntigenQuestion2Event(symptoms: symptomChipList));
-                      });
-                    },
-                    listItem: stateHelperTools.symptoms,
-                    valueDefaultList: "drop_down_select_option",
-                    listChip: symptomChipList,
-                    requiredTranslate: false,
-                  ),
-                  SizedBox(height: height * 0.028),
-                  DatePickerContainerWidget(
-                    textQuestions: antigenState.question3!.name,
-                    onTap: () async {
-                      DateTime? newDate = await showDatePicker(
-                        context: context,
-                        initialDate: DateTime.now(),
-                        firstDate: DateTime(2019),
-                        lastDate: DateTime.now(),
-                      );
-                      if (newDate == null) return;
-                      setState(() {
-                        date = newDate;
-                      });
-                      antigenBloc.add(
-                          AntigenQuestion3Event(question3: newDate.toString()));
-                    },
-                    date: date,
-                  ),
-                ],
-              ),
-            )
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        FormFieldDropdownWidget(
+          question: antigenState.question1!.name,
+          generalColor: wColor.mapColors["S700"]!,
+          height: height * 0.1,
+          listItems: const [
+            "Select option",
+            "Yes",
+            "No",
           ],
-        );
-  
+          selectedValue: _covidQuestionValue,
+          width: width,
+          onChanged: (cryptoMonthlyAmount) {
+            antigenBloc.add(AntigenQuestion1Event(cryptoMonthlyAmount!));
+            setState(() {
+              _covidQuestionValue = cryptoMonthlyAmount;
+              if (_covidQuestionValue == 'No') {
+                symptomChipList = [];
+              }
+            });
+          },
+        ),
+        SizedBox(height: height * 0.021),
+        Visibility(
+          visible: antigenState.question1!.value == "Yes" ||
+              _covidQuestionValue == "Yes",
+          child: Column(
+            children: [
+              TextWidget(
+                text: antigenState.question2!.name,
+                requiresTranslate: false,
+                style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                    letterSpacing: -0.2,
+                    color: wColor.mapColors["S700"]!),
+              ),
+              SizedBox(height: height * 0.011),
+              MultiSelectedOpDropDownWidget(
+                onChanged: (value) {
+                  setState(() {
+                    if (symptomChipList
+                        .where((symptom) => symptom.id == value!.id)
+                        .isEmpty) {
+                      symptomChipList.add(value as OpSymptomEntity);
+                    }
+                    antigenBloc
+                        .add(AntigenQuestion2Event(symptoms: symptomChipList));
+                  });
+                },
+                listItem: stateHelperTools.symptoms,
+                valueDefaultList: "drop_down_select_option",
+                listChip: symptomChipList,
+                requiredTranslate: false,
+              ),
+              SizedBox(height: height * 0.028),
+              DatePickerContainerWidget(
+                textQuestions: antigenState.question3!.name,
+                onTap: () async {
+                  DateTime? newDate = await showDatePicker(
+                    context: context,
+                    initialDate: DateTime.now(),
+                    firstDate: DateTime(2019),
+                    lastDate: DateTime.now(),
+                  );
+                  if (newDate == null) return;
+                  setState(() {
+                    date = newDate;
+                  });
+                  antigenBloc.add(
+                      AntigenQuestion3Event(question3: newDate.toString()));
+                },
+                date: date,
+              ),
+            ],
+          ),
+        )
+      ],
+    );
   }
 }
