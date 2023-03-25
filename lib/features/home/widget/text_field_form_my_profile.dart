@@ -67,6 +67,7 @@ class _TextFieldFormMyUserState extends State<TextFieldFormMyUser> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             TextFieldWithBorderWidget(
+              height: height * 0.1,
               borderColor: wColor.mapColors["T100"],
               requiresTranslate: false,
               hintStyle: TextStyle(
@@ -83,6 +84,7 @@ class _TextFieldFormMyUserState extends State<TextFieldFormMyUser> {
             ),
             SizedBox(height: height * 0.0250),
             TextFieldWithBorderWidget(
+              height: height * 0.1,
               borderColor: wColor.mapColors["T100"],
               requiresTranslate: false,
               hintStyle: TextStyle(

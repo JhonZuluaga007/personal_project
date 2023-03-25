@@ -44,7 +44,7 @@ class _SecondVissibleQuestionWidgetState
         FormFieldDropdownWidget(
           question: stateAntigen.question4!.name,
           generalColor: wColor.mapColors["S700"]!,
-          height: height * 0.08,
+          height: height * 0.1,
           listItems: const [
             "Select option",
             "Yes",

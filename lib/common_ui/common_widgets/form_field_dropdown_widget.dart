@@ -41,7 +41,7 @@ class _FormFieldDropdownWidgetState extends State<FormFieldDropdownWidget> {
               letterSpacing: -0.2,
               color: widget.generalColor),
         ),
-        SizedBox(height: widget.height * 0.13),
+        SizedBox(height: widget.height * 0.1),
         SizedBox(
           width: widget.width,
           height: widget.height,

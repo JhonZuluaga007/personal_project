@@ -49,6 +49,7 @@ class _StartCounterPageState extends State<StartCounterPage> {
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     final wColor = ThemesIdx20();
+    final ScrollController scrollControllerCounter = ScrollController();
 
     return Scaffold(
       appBar: AppBar(
@@ -75,6 +76,8 @@ class _StartCounterPageState extends State<StartCounterPage> {
         elevation: 4,
       ),
       body: SingleChildScrollView(
+        controller: scrollControllerCounter,
+        physics: ClampingScrollPhysics(),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -198,22 +201,28 @@ class _StartCounterPageState extends State<StartCounterPage> {
     String twoDigits(int n) => n.toString().padLeft(2, "0");
     final minutes = twoDigits(duration.inMinutes.remainder(60));
     final seconds = twoDigits(duration.inSeconds.remainder(60));
+    final ScrollController scrollControllerTimer = ScrollController();
 
-    return Column(
-      children: [
-        SizedBox(height: height * 0.070),
-        Text(
-          "$minutes:$seconds",
-          textAlign: TextAlign.center,
-          style: const TextStyle(fontSize: 73, fontWeight: FontWeight.w400),
-        ),
-        SizedBox(height: height * 0.019),
-        const TextWidget(
-          text: "start_counter_text_1",
-          textAlign: TextAlign.center,
-          style: TextStyle(fontSize: 25, fontWeight: FontWeight.w400),
-        ),
-      ],
+    return SingleChildScrollView(
+      scrollDirection: Axis.vertical,
+      controller: scrollControllerTimer,
+      physics: ClampingScrollPhysics(),
+      child: Column(
+        children: [
+          SizedBox(height: height * 0.070),
+          Text(
+            "$minutes:$seconds",
+            textAlign: TextAlign.center,
+            style: const TextStyle(fontSize: 73, fontWeight: FontWeight.w400),
+          ),
+          SizedBox(height: height * 0.019),
+          const TextWidget(
+            text: "start_counter_text_1",
+            textAlign: TextAlign.center,
+            style: TextStyle(fontSize: 25, fontWeight: FontWeight.w400),
+          ),
+        ],
+      ),
     );
   }
 
@@ -242,62 +251,68 @@ Future popUpSkyTimer(BuildContext context) {
   final width = MediaQuery.of(context).size.width;
   final height = MediaQuery.of(context).size.height;
   final wColor = ThemesIdx20();
+  final ScrollController scrollController2 = ScrollController();
 
   return showDialog(
       context: context,
       builder: (BuildContext context) {
-        return AlertDialog(
-            elevation: 6,
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-            actions: [
-              Padding(
-                padding: EdgeInsets.symmetric(
-                    horizontal: width * 0.049, vertical: height * 0.052),
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Image.asset(IconsFolderCovid.popUpSkyTimer),
-                      SizedBox(height: height * 0.031),
-                      TextWidget(
-                        text: "popUp_text_title",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 25,
-                          fontWeight: FontWeight.w600,
-                          color: wColor.mapColors["S800"],
+        return SingleChildScrollView(
+          controller: scrollController2,
+          physics: ClampingScrollPhysics(),
+          scrollDirection: Axis.vertical,
+          child: AlertDialog(
+              elevation: 6,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8)),
+              actions: [
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                      horizontal: width * 0.049, vertical: height * 0.052),
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset(IconsFolderCovid.popUpSkyTimer),
+                        SizedBox(height: height * 0.031),
+                        TextWidget(
+                          text: "popUp_text_title",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 25,
+                            fontWeight: FontWeight.w600,
+                            color: wColor.mapColors["S800"],
+                          ),
                         ),
-                      ),
-                      SizedBox(height: height * 0.011),
-                      TextWidget(
-                        text: "popUp_text_description",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 13,
-                          fontWeight: FontWeight.w400,
-                          color: wColor.mapColors["S600"],
+                        SizedBox(height: height * 0.011),
+                        TextWidget(
+                          text: "popUp_text_description",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 13,
+                            fontWeight: FontWeight.w400,
+                            color: wColor.mapColors["S600"],
+                          ),
                         ),
-                      ),
-                      SizedBox(height: height * 0.044),
-                      MainButtonWidget(
-                          buttonString: "popUp_button_text",
-                          textColor: wColor.mapColors["P01"],
-                          buttonColor: wColor.mapColors["S800"],
-                          borderColor: wColor.mapColors["S800"],
-                          onPressed: () {
-                            Navigator.pushNamed(context, "uploadResult");
-                          }),
-                      SizedBox(height: height * 0.012),
-                      MainButtonWidget(
-                          buttonString: "popUp_button_text_1",
-                          buttonColor: wColor.mapColors["P01"],
-                          textColor: wColor.mapColors["S800"],
-                          borderColor: wColor.mapColors["S800"],
-                          onPressed: () {
-                            Navigator.pop(context);
-                          }),
-                    ]),
-              )
-            ]);
+                        SizedBox(height: height * 0.044),
+                        MainButtonWidget(
+                            buttonString: "popUp_button_text",
+                            textColor: wColor.mapColors["P01"],
+                            buttonColor: wColor.mapColors["S800"],
+                            borderColor: wColor.mapColors["S800"],
+                            onPressed: () {
+                              Navigator.pushNamed(context, "uploadResult");
+                            }),
+                        SizedBox(height: height * 0.012),
+                        MainButtonWidget(
+                            buttonString: "popUp_button_text_1",
+                            buttonColor: wColor.mapColors["P01"],
+                            textColor: wColor.mapColors["S800"],
+                            borderColor: wColor.mapColors["S800"],
+                            onPressed: () {
+                              Navigator.pop(context);
+                            }),
+                      ]),
+                )
+              ]),
+        );
       });
 }

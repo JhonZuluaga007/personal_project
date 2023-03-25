@@ -56,7 +56,7 @@ class _DropDownQuestionsWidgetState extends State<DropDownQuestionsWidget> {
         SizedBox(height: widget.heightSizedBoxText ?? height * 0.0035),
         SizedBox(
           width: width,
-          height: height * 0.072,
+          height: height * 0.1,
           child: DropdownButtonFormField(
             isExpanded: true,
             decoration: InputDecoration(

@@ -62,30 +62,34 @@ class ButtonWidget extends StatelessWidget {
         ),
       ),
       onPressed: onPressed,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(
-            icon,
-            size: iconSize,
-            color: iconColor,
-          ),
-          SizedBox(
-            width: sizeWidth * 0.01,
-          ),
-          Text(
-            // buttonString,
-            AppLocalizations.of(context)!.translate(buttonString),
-            style: textStyle ??
-                TextStyle(
-                  color: textColor ?? color.mapColors['P00'],
-                  fontSize: 16,
-                  fontWeight: FontWeight.w700,
-                  fontFamily: 'Poppins',
-                ),
-            textAlign: TextAlign.center,
-          ),
-        ],
+      child: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        physics: ClampingScrollPhysics(),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              icon,
+              size: iconSize,
+              color: iconColor,
+            ),
+            SizedBox(
+              width: sizeWidth * 0.01,
+            ),
+            Text(
+              // buttonString,
+              AppLocalizations.of(context)!.translate(buttonString),
+              style: textStyle ??
+                  TextStyle(
+                    color: textColor ?? color.mapColors['P00'],
+                    fontSize: 16,
+                    fontWeight: FontWeight.w700,
+                    fontFamily: 'Poppins',
+                  ),
+              textAlign: TextAlign.center,
+            ),
+          ],
+        ),
       ),
     );
   }
