@@ -37,7 +37,7 @@ class _ThirdVissibleQuestionWidgetState
         FormFieldDropdownWidget(
           question: antigenBloc.state.question7!.name,
           generalColor: wColor.mapColors["S700"]!,
-          height: height * 0.1,
+          height: height * 0.11,
           listItems: const [
             "",
             "No",
@@ -67,7 +67,7 @@ class _ThirdVissibleQuestionWidgetState
                 FormFieldDropdownWidget(
                   question: antigenBloc.state.question8!.name,
                   generalColor: wColor.mapColors["S700"]!,
-                  height: height * 0.1,
+                  height: height * 0.11,
                   listItems: const [
                     "Select option",
                     "None",

@@ -104,7 +104,9 @@ class _FirstVissibleQuestionWidgetState
               ),
               SizedBox(height: height * 0.028),
               DatePickerContainerWidget(
-                textQuestions: antigenState.question3!.name,
+                //TODO CHECK THE QUESTION..... Bringing a bad info.
+                textQuestions:
+                    'When did you start experiencing these symptoms?' /*antigenState.question3!.name*/,
                 onTap: () async {
                   DateTime? newDate = await showDatePicker(
                     context: context,

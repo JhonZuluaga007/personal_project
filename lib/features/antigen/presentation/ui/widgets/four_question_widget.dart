@@ -104,7 +104,7 @@ class _FourQuestionWidgetState extends State<FourQuestionWidget> {
         FormFieldDropdownWidget(
           question: antigenBloc.state.question12!.name,
           generalColor: wColor.mapColors["S700"]!,
-          height: height * 0.1,
+          height: height * 0.11,
           listItems: const [
             "Select option",
             "Not Pregnant",
@@ -112,7 +112,9 @@ class _FourQuestionWidgetState extends State<FourQuestionWidget> {
             "Unknown",
             "Not Applicable",
           ],
-          selectedValue: _covidQuestionPregnantValue,
+          selectedValue: antigenBloc.state.question12!.value.isNotEmpty
+              ? antigenBloc.state.question12!.value
+              : _covidQuestionPregnantValue,
           width: width,
           onChanged: (covidQuestion12) {
             if (covidQuestion12 != "Select option") {

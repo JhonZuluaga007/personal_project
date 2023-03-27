@@ -25,8 +25,12 @@ class _SecondVissibleQuestionWidgetState
   @override
   void initState() {
     final state = BlocProvider.of<AntigenTestBloc>(context).state;
-    _covidQuestionValue = state.question4!.value.isNotEmpty ? state.question4!.value : "Select option";
-    _covidQuestionTwoValue = state.question6!.value.isNotEmpty ? state.question6!.value : "Select option";
+    _covidQuestionValue = state.question4!.value.isNotEmpty
+        ? state.question4!.value
+        : "Select option";
+    _covidQuestionTwoValue = state.question6!.value.isNotEmpty
+        ? state.question6!.value
+        : "Select option";
     super.initState();
   }
 
@@ -44,7 +48,7 @@ class _SecondVissibleQuestionWidgetState
         FormFieldDropdownWidget(
           question: stateAntigen.question4!.name,
           generalColor: wColor.mapColors["S700"]!,
-          height: height * 0.1,
+          height: height * 0.11,
           listItems: const [
             "Select option",
             "Yes",
@@ -92,7 +96,7 @@ class _SecondVissibleQuestionWidgetState
         FormFieldDropdownWidget(
           question: stateAntigen.question6!.name,
           generalColor: wColor.mapColors["S700"]!,
-          height: height * 0.07,
+          height: height * 0.11,
           listItems: const [
             "Select option",
             "Yes",

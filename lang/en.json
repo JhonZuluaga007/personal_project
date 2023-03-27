@@ -190,6 +190,7 @@
     "antigen_test_step_one_text_label": "Kit identifier",
     "antigen_test_step_one_text_hint": "Kit ID",
     "error_image": "Error loading your image",
+    "error_download": "Your test status is inconclusive, please contact support with the code of your test for more information.",
 
 
     "pcr_test_text_one": "Register PCR Test",

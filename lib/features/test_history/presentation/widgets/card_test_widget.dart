@@ -6,6 +6,7 @@ import 'package:syncfusion_flutter_pdf/pdf.dart';
 
 import '../../../../app_localizations.dart';
 import '../../../../config/theme/theme.dart';
+import '../../../medical_history/presentation/widgets/error_alert_widget.dart';
 import '../../domain/entities/test_history_entity.dart';
 import '../../../auth/presentation/bloc/auth_bloc.dart';
 import '../../presentation/widgets/open_file_widget.dart';
@@ -71,21 +72,26 @@ class CardTestWidget extends StatelessWidget {
                                     ? testHistoryEntity!.result.first.result
                                     : "In Progress";
                             print(testStatus);
-
-                            if (testStatus == "In Progress") {
-                              final snackBar = SnackBar(
-                                  duration: Duration(seconds: 2),
-                                  content: Text(
-                                      "There is no document at this moment for your test, contact support"),
-                                  action: SnackBarAction(
-                                    label: AppLocalizations.of(context)!
-                                        .translate(
-                                            "card_validate_pdf_snackbar"),
-                                    onPressed: () {},
-                                  ));
-                              ScaffoldMessenger.of(context)
-                                  .showSnackBar(snackBar);
-                            } else {
+                            if (testStatus == "In Progress" ||
+                                testStatus == 'Inconclusive') {
+                              errorAlertInfoPop(
+                                  context: context,
+                                  mainIcon: Icon(
+                                    Icons.cancel,
+                                    color: wColor.mapColors['C01'],
+                                    size: 46,
+                                  ),
+                                  titleText: 'alert_text_error_one',
+                                  paddingHeight: height * 0.25,
+                                  requiresTranslate: true,
+                                  infoText: 'error_download',
+                                  mainButton: 'alert_text_error_three',
+                                  mainButtonFunction: () {
+                                    Navigator.pop(context);
+                                  });
+                            }
+                            if (testStatus == 'Negative' ||
+                                testStatus == 'Positive') {
                               _createPDF(authBloc, textTestKit, testStatus,
                                   sampleDate!);
                             }
@@ -125,20 +131,27 @@ class CardTestWidget extends StatelessWidget {
                             testHistoryEntity!.result.isNotEmpty
                                 ? testHistoryEntity!.result.first.result
                                 : "In Progress";
-                        print(testStatus);
-
-                        if (testStatus == "In Progress") {
-                          final snackBar = SnackBar(
-                              duration: Duration(seconds: 2),
-                              content: Text(
-                                  "There is no document at this moment for your test, contact support"),
-                              action: SnackBarAction(
-                                label: AppLocalizations.of(context)!
-                                    .translate("card_validate_pdf_snackbar"),
-                                onPressed: () {},
-                              ));
-                          ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                        } else {
+                        print('aa+$testStatus');
+                        if (testStatus == "In Progress" ||
+                            testStatus == 'Inconclusive') {
+                          errorAlertInfoPop(
+                              context: context,
+                              mainIcon: Icon(
+                                Icons.cancel,
+                                color: wColor.mapColors['C01'],
+                                size: 46,
+                              ),
+                              requiresTranslate: true,
+                              titleText: 'alert_text_error_one',
+                              paddingHeight: height * 0.25,
+                              infoText: 'error_download',
+                              mainButton: 'alert_text_error_three',
+                              mainButtonFunction: () {
+                                Navigator.pop(context);
+                              });
+                        }
+                        if (testStatus == 'Negative' ||
+                            testStatus == 'Positive') {
                           _createPDF(
                               authBloc, textTestKit, testStatus, sampleDate!);
                         }

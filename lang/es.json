@@ -191,6 +191,8 @@
     
     "pcr_test_text_one": "Register PCR Test",
     "error_image": "Error cargando tu imagen",
+    "error_download": "Your test status is inconclusive, please contact support with the code of your test for more information.",
+
 
     "pcr_test_text_two": "Scan Kit's QR Code",
     "pcr_test_text_three": "Scan",

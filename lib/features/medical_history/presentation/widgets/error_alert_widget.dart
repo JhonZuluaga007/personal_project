@@ -13,6 +13,7 @@ Future<dynamic> errorAlertInfoPop({
   required String infoText,
   required String? mainButton,
   required VoidCallback mainButtonFunction,
+  bool? requiresTranslate,
 }) {
   final height = MediaQuery.of(context).size.height;
   final width = MediaQuery.of(context).size.width;
@@ -60,7 +61,7 @@ Future<dynamic> errorAlertInfoPop({
                   fontWeight: FontWeight.w400,
                   fontSize: 18),
               textAlign: TextAlign.center,
-              requiresTranslate: false,
+              requiresTranslate: requiresTranslate ?? false,
             ),
             SizedBox(height: height * 0.02),
           ],

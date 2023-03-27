@@ -78,7 +78,7 @@ class _UploadResultPageState extends State<UploadResultPage> {
         FormFieldDropdownWidget(
           question: antigenBloc.state.question13!.name,
           generalColor: wColor.mapColors["S700"]!,
-          height: height * 0.1,
+          height: height * 0.11,
           listItems: const [
             "Select option",
             "Yes",
@@ -107,7 +107,7 @@ class _UploadResultPageState extends State<UploadResultPage> {
         FormFieldDropdownWidget(
           question: antigenBloc.state.question14!.name,
           generalColor: wColor.mapColors["S700"]!,
-          height: height * 0.1,
+          height: height * 0.11,
           listItems: const [
             "Select option",
             "Yes",

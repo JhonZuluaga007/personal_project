@@ -81,7 +81,7 @@ class _StartCounterPageState extends State<StartCounterPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: height * 0.24),
+            SizedBox(height: height * 0.2),
             Center(child: startCounter()),
           ],
         ),
@@ -209,7 +209,7 @@ class _StartCounterPageState extends State<StartCounterPage> {
       physics: ClampingScrollPhysics(),
       child: Column(
         children: [
-          SizedBox(height: height * 0.070),
+          SizedBox(height: height * 0.030),
           Text(
             "$minutes:$seconds",
             textAlign: TextAlign.center,
