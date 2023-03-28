@@ -33,22 +33,34 @@ class AntigenTestBloc extends Bloc<AntigenTestEvent, AntigenTestState> {
                 statusCode: antigenModel.statusCode,
                 id: antigenModel.data.test.id.oid,
                 idTest: antigenModel.data.test.id.oid,
-                symptoms: antigenModel.data.lastTest!.symptoms,
+                symptoms: [],
                 vaccines: antigenModel.data.lastTest!.vaccines,
                 question1: QuestionType1StringEntity(
                     name: antigenModel.data.lastTest!.form[0].question1.name,
                     value: ''),
-                question2: antigenModel.data.lastTest!.form[0].question2,
-                question3: antigenModel.data.lastTest!.form[0].question3,
-                question4: antigenModel.data.lastTest!.form[0].question4,
-                question5: antigenModel.data.lastTest!.form[0].question5,
-                question6: antigenModel.data.lastTest!.form[0].question6,
+                question2: QuestionType10ListEntity(
+                    name: antigenModel.data.lastTest!.form[0].question2.name,
+                    value: []),
+                question3: QuestionType1StringEntity(
+                    name: antigenModel.data.lastTest!.form[0].question3.name,
+                    value: ''),
+                question4: QuestionType1StringEntity(
+                    name: antigenModel.data.lastTest!.form[0].question4.name,
+                    value: ''),
+                question5: QuestionType1StringEntity(
+                    name: antigenModel.data.lastTest!.form[0].question5.name,
+                    value: ''),
+                question6: QuestionType1StringEntity(
+                    name: antigenModel.data.lastTest!.form[0].question6.name,
+                    value: ''),
                 question7: antigenModel.data.lastTest!.form[0].question7,
                 question8: antigenModel.data.lastTest!.form[0].question8,
                 question9: antigenModel.data.lastTest!.form[0].question9,
                 question10: antigenModel.data.lastTest!.form[0].question10,
                 question11: antigenModel.data.lastTest!.form[0].question11,
-                question12: antigenModel.data.lastTest!.form[0].question12,
+                question12: QuestionType1StringEntity(
+                    name: antigenModel.data.lastTest!.form[0].question12.name,
+                    value: ''),
                 question13: QuestionType1StringEntity(
                     name: antigenModel.data.lastTest!.form[0].question13.name,
                     value: ''),
