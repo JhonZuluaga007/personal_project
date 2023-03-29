@@ -313,7 +313,7 @@
     "level_school_ten": "Professional degree",
     "level_school_eleven": "Doctorate degree",
 
-    "alert_text_error_one": "¡Error!",
+    "alert_text_error_one": "Error!",
     "alert_text_error_two": "We could not find a test with that Id",
     "alert_text_error_three": "Ok",
     "alert_text_password_updated": "Password has been updated successfully",
