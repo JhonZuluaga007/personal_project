@@ -181,8 +181,10 @@ class AssociatedTest extends AssociatedPcrEntity {
         result: IdHistory.fromMap(json["result"]),
         sampleDate: CreatedHistory.fromMap(json["sample_date"]),
         status: IdHistory.fromMap(json["status"]),
-        statusHistory: List<StatusTestHistory>.from(
-            json["status_history"].map((x) => StatusTestHistory.fromMap(x))),
+        statusHistory: json["status_history"] != null
+            ? List<StatusTestHistory>.from(
+                json["status_history"].map((x) => StatusTestHistory.fromMap(x)))
+            : [],
         stepHistory: json["step_history"] != null
             ? List<dynamic>.from(json["step_history"].map((x) => x))
             : [],
@@ -195,8 +197,10 @@ class AssociatedTest extends AssociatedPcrEntity {
             : [],
         type: IdHistory.fromMap(json["type"]),
         updated: CreatedHistory.fromMap(json["updated"]),
-        vaccines: List<IdHistory>.from(
-            json["vaccines"].map((x) => IdHistory.fromMap(x))),
+        vaccines: json["vaccines"] != null
+            ? List<IdHistory>.from(
+                json["vaccines"].map((x) => IdHistory.fromMap(x)))
+            : [],
         validity: IdHistory.fromMap(json["validity"]),
       );
 }
