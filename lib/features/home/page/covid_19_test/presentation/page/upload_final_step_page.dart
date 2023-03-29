@@ -129,7 +129,7 @@ Widget buttonUpload(BuildContext context) {
             color: wColor.mapColors['C00'],
           ),
           titleText: 'alert_text_one',
-          paddingHeight: height * 0.25,
+          paddingHeight: height * 0.22,
           infoText: state.message,
           mainButton: 'alert_text_three',
           mainButtonFunction: () {
@@ -154,7 +154,7 @@ Widget buttonUpload(BuildContext context) {
               size: 46,
             ),
             titleText: 'alert_text_error_one',
-            paddingHeight: height * 0.25,
+            paddingHeight: height * 0.22,
             infoText: state.errorMessage,
             mainButton: 'alert_text_error_three',
             mainButtonFunction: () {

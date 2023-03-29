@@ -146,7 +146,7 @@ class _AntigenRegisterInfoPageState extends State<AntigenRegisterInfoPage> {
                 size: 46,
               ),
               titleText: 'alert_text_error_one',
-              paddingHeight: height * 0.25,
+              paddingHeight: height * 0.22,
               infoText: state.errorMessage,
               mainButton: 'alert_text_error_three',
               mainButtonFunction: () {
@@ -187,7 +187,7 @@ class _AntigenRegisterInfoPageState extends State<AntigenRegisterInfoPage> {
                         size: 46,
                       ),
                       titleText: 'alert_text_error_one',
-                      paddingHeight: height * 0.25,
+                      paddingHeight: height * 0.22,
                       infoText: 'Please provide a valid Antigen code',
                       mainButton: 'alert_text_error_three',
                       mainButtonFunction: () {

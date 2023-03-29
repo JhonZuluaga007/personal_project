@@ -160,7 +160,7 @@ class _SupportBottomPageState extends State<SupportBottomPage> {
                       color: wColor.mapColors['C00'],
                     ),
                     titleText: 'alert_text_one',
-                    paddingHeight: size.height * 0.25,
+                    paddingHeight: height * 0.22,
                     infoText: 'alert_text_two',
                     mainButton: 'alert_text_three',
                     mainButtonFunction: () {
@@ -178,7 +178,7 @@ class _SupportBottomPageState extends State<SupportBottomPage> {
                         size: 46,
                       ),
                       titleText: 'alert_text_error_one',
-                      paddingHeight: size.height * 0.25,
+                      paddingHeight: height * 0.22,
                       infoText: 'alert_text_error_update',
                       mainButton: 'alert_text_error_three',
                       mainButtonFunction: () {

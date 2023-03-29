@@ -85,7 +85,7 @@ class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
                     size: 46,
                   ),
                   titleText: 'alert_text_error_one',
-                  paddingHeight: size.height * 0.25,
+                  paddingHeight: size.height * 0.22,
                   infoText: 'alert_text_error_update_one',
                   mainButton: 'alert_text_error_three',
                   mainButtonFunction: () {
@@ -109,7 +109,7 @@ class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
                   color: wColor.mapColors['C00'],
                 ),
                 titleText: 'alert_text_one',
-                paddingHeight: size.height * 0.25,
+                paddingHeight: size.height * 0.22,
                 infoText: 'alert_text_two',
                 mainButton: 'alert_text_three',
                 mainButtonFunction: () {
@@ -126,7 +126,7 @@ class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
                     size: 46,
                   ),
                   titleText: 'alert_text_error_one',
-                  paddingHeight: size.height * 0.25,
+                  paddingHeight: size.height * 0.22,
                   infoText: 'alert_text_error_update',
                   mainButton: 'alert_text_error_three',
                   mainButtonFunction: () {

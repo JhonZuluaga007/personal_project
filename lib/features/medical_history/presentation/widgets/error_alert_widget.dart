@@ -67,7 +67,7 @@ Future<dynamic> errorAlertInfoPop({
           ],
         ),
       ),
-      SizedBox(height: height * 0.035),
+      SizedBox(height: height * 0.015),
       MainButtonWidget(
         textColor: color.mapColors["P01"],
         buttonString: mainButton ?? ' Gracias ',

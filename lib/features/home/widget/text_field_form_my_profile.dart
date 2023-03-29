@@ -245,7 +245,7 @@ class _TextFieldFormMyUserState extends State<TextFieldFormMyUser> {
                           color: wColor.mapColors['C00'],
                         ),
                         titleText: 'alert_text_one',
-                        paddingHeight: height * 0.25,
+                        paddingHeight: height * 0.22,
                         infoText: 'alert_text_two',
                         mainButton: 'alert_text_three',
                         mainButtonFunction: () {

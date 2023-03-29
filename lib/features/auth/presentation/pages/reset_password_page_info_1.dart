@@ -134,7 +134,7 @@ class _ResetPasswordPageInfoState extends State<ResetPasswordPageInfo> {
                     color: wColor.mapColors['C00'],
                   ),
                   titleText: 'alert_text_one',
-                  paddingHeight: height * 0.25,
+                  paddingHeight: height * 0.22,
                   infoText: 'alert_text_password_updated',
                   mainButton: 'alert_text_three',
                   mainButtonFunction: () {
@@ -151,7 +151,7 @@ class _ResetPasswordPageInfoState extends State<ResetPasswordPageInfo> {
                     size: 46,
                   ),
                   titleText: 'alert_text_error_one',
-                  paddingHeight: height * 0.25,
+                  paddingHeight: height * 0.22,
                   infoText: 'alert_text_error',
                   mainButton: 'alert_text_error_three',
                   mainButtonFunction: () {

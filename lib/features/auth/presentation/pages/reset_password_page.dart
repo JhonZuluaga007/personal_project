@@ -233,7 +233,6 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
             SizedBox(height: height * 0.049),
             BlocConsumer<AuthBloc, AuthState>(listener: (context, state) {
               if (state.formChangePasswordStatus is SubmissionSuccess) {
-                //TODO CHECK WHAT  TO DO HERE
                 doneSendInfo(
                     requiresTranslateText: true,
                     context: context,
@@ -243,7 +242,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                       color: wColor.mapColors['C00'],
                     ),
                     titleText: 'alert_text_one',
-                    paddingHeight: height * 0.23,
+                    paddingHeight: height * 0.22,
                     infoText: 'alert_text_password_updated',
                     mainButton: 'alert_text_three',
                     mainButtonFunction: () {
@@ -260,7 +259,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                       size: 46,
                     ),
                     titleText: 'alert_text_error_one',
-                    paddingHeight: height * 0.25,
+                    paddingHeight: height * 0.22,
                     infoText: 'alert_text_password_error',
                     mainButton: 'alert_text_error_three',
                     mainButtonFunction: () {
