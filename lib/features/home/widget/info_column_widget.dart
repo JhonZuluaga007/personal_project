@@ -38,7 +38,7 @@ class InfoColumnWidget extends StatelessWidget {
             InfoContainerWidget(
               hintText: 'Date of birth',
               text: state.dateOfBirth != null
-                  ? formatter.format(state.dateOfBirth!.date)
+                  ? state.dateOfBirth.toString()
                   : 'mm/dd/yyyy',
               icon: Icons.calendar_month,
             ),

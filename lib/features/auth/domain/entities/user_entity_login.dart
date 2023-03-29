@@ -108,7 +108,7 @@ class UserEntity {
   final bool acceptsTerms;
   final AddressEntity address;
   final String cellphone;
-  final DateOfBirthEntity dateOfBirth;
+  final String dateOfBirth;
   final String email;
   final List<EthnicityEntity> ethnicity;
   final bool firstLogin;

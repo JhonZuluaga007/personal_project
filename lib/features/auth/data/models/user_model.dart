@@ -134,7 +134,7 @@ class User extends UserEntity {
     required bool acceptsTerms,
     required Address address,
     required String cellphone,
-    required DateOfBirth dateOfBirth,
+    required String dateOfBirth,
     required String email,
     required List<Ethnicity> ethnicity,
     required bool firstLogin,
@@ -190,7 +190,8 @@ class User extends UserEntity {
         acceptsTerms: json["accepts_terms"],
         address: Address.fromJson(json["address"]),
         cellphone: json["cellphone"],
-        dateOfBirth: DateOfBirth.fromJson(json["date_of_birth"]),
+        dateOfBirth: json[
+            "date_of_birth"] /*DateOfBirth.fromJson(json["date_of_birth"])*/,
         email: json["email"],
         ethnicity: List<Ethnicity>.from(
             json["ethnicity"].map((x) => Ethnicity.fromJson(x))),

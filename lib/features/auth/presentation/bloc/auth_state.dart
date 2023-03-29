@@ -12,7 +12,7 @@ class AuthState {
   final String? zip;
   final OpStatesEntity? state;
   final String? cellphone;
-  final DateOfBirthEntity? dateOfBirth;
+  final String? dateOfBirth;
   final String? email;
   final OpEthnicityEntity? ethnicity;
   final bool? firstLogin;
@@ -89,7 +89,7 @@ class AuthState {
     String? zip,
     OpStatesEntity? state,
     String? cellphone,
-    DateOfBirthEntity? dateOfBirth,
+    String? dateOfBirth,
     String? email,
     OpEthnicityEntity? ethnicity,
     bool? firstLogin,
@@ -126,7 +126,7 @@ class AuthState {
         city: "",
         zip: "",
         cellphone: '',
-        dateOfBirth: DateOfBirthEntity(date: DateTime.now()),
+        dateOfBirth: '',
         email: '',
         ethnicity: OpEthnicityEntity(id: "", ethnicity: ""),
         firstLogin: false,
@@ -175,7 +175,7 @@ class AuthState {
     OpStatesEntity? state,
     String? zip,
     String? cellphone,
-    DateOfBirthEntity? dateOfBirth,
+    String? dateOfBirth,
     String? email,
     OpEthnicityEntity? ethnicity,
     bool? firstLogin,
