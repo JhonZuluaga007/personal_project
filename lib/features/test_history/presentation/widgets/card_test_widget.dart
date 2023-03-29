@@ -143,7 +143,7 @@ class CardTestWidget extends StatelessWidget {
                               ),
                               requiresTranslate: true,
                               titleText: 'alert_text_error_one',
-                              paddingHeight: height * 0.27,
+                              paddingHeight: height * 0.22,
                               infoText: 'error_download',
                               mainButton: 'alert_text_error_three',
                               mainButtonFunction: () {
