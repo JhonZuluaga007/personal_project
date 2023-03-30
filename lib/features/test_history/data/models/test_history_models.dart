@@ -105,7 +105,9 @@ class TestHistory extends TestHistoryEntity {
                 .map((x) => AssociatedTestHistory.fromMap(x))),
         batch: IdHistory.fromMap(json["batch"]),
         code: json["code"],
-        created: CreatedHistory.fromMap(json["created"]),
+        created: json["created"] != null
+            ? CreatedHistory.fromMap(json["created"])
+            : CreatedHistory(date: DateTime(2021, 06, 22)),
         laboratory: List<LaboratoryHistory>.from(
             json["laboratory"].map((x) => LaboratoryHistory.fromMap(x))),
         manufacturer: List<ManufacturerAntigen>.from(
@@ -126,7 +128,9 @@ class TestHistory extends TestHistoryEntity {
         symptoms: List<dynamic>.from(json["symptoms"].map((x) => x)),
         type: List<TypeHistory>.from(
             json["type"].map((x) => TypeHistory.fromMap(x))),
-        updated: CreatedHistory.fromMap(json["updated"]),
+        updated: json["updated"] != null
+            ? CreatedHistory.fromMap(json["updated"])
+            : CreatedHistory(date: DateTime(2021, 06, 22)),
         vaccines: List<dynamic>.from(json["vaccines"].map((x) => x)),
         validity: List<ValidityHistory>.from(
             json["validity"].map((x) => ValidityHistory.fromMap(x))),

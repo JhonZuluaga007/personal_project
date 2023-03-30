@@ -40,139 +40,148 @@ class CardTestWidget extends StatelessWidget {
     final DateFormat formatter = DateFormat('MM-dd-yyyy');
 
     return DynamicContainerCopyWidget(minHeight: height * 0.075, children: [
-      Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-        Text(
-          textTestKit,
-          style: styleText ?? const TextStyle(fontSize: 14),
-        ),
-        testHistoryEntity!.result.isEmpty
-            ? testHistoryEntity!.type[0].type == "PCR"
-                ? Padding(
-                    padding: EdgeInsets.only(right: width * 0.093),
-                    child: Text(
-                        formatter.format(testHistoryEntity!.sampleDate.date)),
-                  )
-                : Row(
-                    children: [
-                      ButtonWidget(
-                          buttonColor: wColor.mapColors['S800'],
-                          borderColor: wColor.mapColors['S800'],
-                          textColor: wColor.mapColors['IDWhite'],
-                          textStyle: const TextStyle(
-                              fontSize: 13, overflow: TextOverflow.ellipsis),
-                          iconSize: 14,
-                          width: width * 0.295,
-                          height: height * 0.049,
-                          borderRadiusButton: 25,
-                          icon: Icons.download,
-                          buttonString: 'history_test_result_text_download',
-                          onPressed: () {
-                            final String testStatus =
-                                testHistoryEntity!.result.isNotEmpty
-                                    ? testHistoryEntity!.result.first.result
-                                    : "In Progress";
-                            print(testStatus);
-                            if (testStatus == "In Progress" ||
-                                testStatus == 'Inconclusive') {
-                              errorAlertInfoPop(
-                                  context: context,
-                                  mainIcon: Icon(
-                                    Icons.cancel,
-                                    color: wColor.mapColors['C01'],
-                                    size: 46,
-                                  ),
-                                  titleText: 'alert_text_error_one',
-                                  paddingHeight: height * 0.22,
-                                  requiresTranslate: true,
-                                  infoText: 'error_download',
-                                  mainButton: 'alert_text_error_three',
-                                  mainButtonFunction: () {
-                                    Navigator.pop(context);
-                                  });
-                            }
-                            if (testStatus == 'Negative' ||
-                                testStatus == 'Positive') {
-                              _createPDF(authBloc, textTestKit, testStatus,
-                                  sampleDate!);
-                            }
-                          }),
-                      SizedBox(width: width * 0.046),
-                      ButtonWidget(
-                          buttonColor: wColor.mapColors['S800'],
-                          borderColor: wColor.mapColors['S800'],
-                          textColor: wColor.mapColors['IDWhite'],
-                          textStyle: const TextStyle(
-                              fontSize: 13, overflow: TextOverflow.ellipsis),
-                          iconSize: 14,
-                          height: height * 0.049,
-                          borderRadiusButton: 25,
-                          width: width * 0.295,
-                          icon: Icons.remove_red_eye,
-                          buttonString: 'history_button_icon',
-                          onPressed: onPressed)
-                    ],
-                  )
-            : Row(
-                children: [
-                  ButtonWidget(
-                      buttonColor: wColor.mapColors['S800'],
-                      borderColor: wColor.mapColors['S800'],
-                      textColor: wColor.mapColors['IDWhite'],
-                      textStyle: const TextStyle(
-                          fontSize: 13, overflow: TextOverflow.ellipsis),
-                      iconSize: 14,
-                      height: height * 0.049,
-                      borderRadiusButton: 25,
-                      width: width * 0.295,
-                      icon: Icons.download,
-                      buttonString: 'history_test_result_text_download',
-                      onPressed: () {
-                        final String testStatus =
-                            testHistoryEntity!.result.isNotEmpty
-                                ? testHistoryEntity!.result.first.result
-                                : "In Progress";
-                        print('aa+$testStatus');
-                        if (testStatus == "In Progress" ||
-                            testStatus == 'Inconclusive') {
-                          errorAlertInfoPop(
-                              context: context,
-                              mainIcon: Icon(
-                                Icons.cancel,
-                                color: wColor.mapColors['C01'],
-                                size: 46,
-                              ),
-                              requiresTranslate: true,
-                              titleText: 'alert_text_error_one',
-                              paddingHeight: height * 0.22,
-                              infoText: 'error_download',
-                              mainButton: 'alert_text_error_three',
-                              mainButtonFunction: () {
-                                Navigator.pop(context);
-                              });
-                        }
-                        if (testStatus == 'Negative' ||
-                            testStatus == 'Positive') {
-                          _createPDF(
-                              authBloc, textTestKit, testStatus, sampleDate!);
-                        }
-                      }),
-                  SizedBox(width: width * 0.046),
-                  ButtonWidget(
-                      buttonColor: wColor.mapColors['S800'],
-                      borderColor: wColor.mapColors['S800'],
-                      textColor: wColor.mapColors['IDWhite'],
-                      textStyle: const TextStyle(
-                          fontSize: 13, overflow: TextOverflow.ellipsis),
-                      iconSize: 14,
-                      height: height * 0.049,
-                      borderRadiusButton: 25,
-                      width: width * 0.295,
-                      icon: Icons.remove_red_eye,
-                      buttonString: 'history_button_icon',
-                      onPressed: onPressed)
-                ],
-              )
-      ]),
+      SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+          Text(
+            textTestKit,
+            style: styleText ?? const TextStyle(fontSize: 14),
+          ),
+          SizedBox(width: width * 0.025),
+          testHistoryEntity!.result.isEmpty
+              ? testHistoryEntity!.type[0].type == "PCR"
+                  ? Padding(
+                      padding: EdgeInsets.only(right: width * 0.15),
+                      child: Row(
+                        children: [
+                          SizedBox(width: width * 0.3),
+                          Text(formatter
+                              .format(testHistoryEntity!.sampleDate.date)),
+                        ],
+                      ),
+                    )
+                  : Row(
+                      children: [
+                        ButtonWidget(
+                            buttonColor: wColor.mapColors['S800'],
+                            borderColor: wColor.mapColors['S800'],
+                            textColor: wColor.mapColors['IDWhite'],
+                            textStyle: const TextStyle(
+                                fontSize: 13, overflow: TextOverflow.ellipsis),
+                            iconSize: 14,
+                            width: width * 0.295,
+                            height: height * 0.049,
+                            borderRadiusButton: 25,
+                            icon: Icons.download,
+                            buttonString: 'history_test_result_text_download',
+                            onPressed: () {
+                              final String testStatus =
+                                  testHistoryEntity!.result.isNotEmpty
+                                      ? testHistoryEntity!.result.first.result
+                                      : "In Progress";
+                              print(testStatus);
+                              if (testStatus == "In Progress" ||
+                                  testStatus == 'Inconclusive') {
+                                errorAlertInfoPop(
+                                    context: context,
+                                    mainIcon: Icon(
+                                      Icons.cancel,
+                                      color: wColor.mapColors['C01'],
+                                      size: 46,
+                                    ),
+                                    titleText: 'alert_text_error_one',
+                                    paddingHeight: height * 0.22,
+                                    requiresTranslate: true,
+                                    infoText: 'error_download',
+                                    mainButton: 'alert_text_error_three',
+                                    mainButtonFunction: () {
+                                      Navigator.pop(context);
+                                    });
+                              }
+                              if (testStatus == 'Negative' ||
+                                  testStatus == 'Positive') {
+                                _createPDF(authBloc, textTestKit, testStatus,
+                                    sampleDate!);
+                              }
+                            }),
+                        SizedBox(width: width * 0.046),
+                        ButtonWidget(
+                            buttonColor: wColor.mapColors['S800'],
+                            borderColor: wColor.mapColors['S800'],
+                            textColor: wColor.mapColors['IDWhite'],
+                            textStyle: const TextStyle(
+                                fontSize: 13, overflow: TextOverflow.ellipsis),
+                            iconSize: 14,
+                            height: height * 0.049,
+                            borderRadiusButton: 25,
+                            width: width * 0.295,
+                            icon: Icons.remove_red_eye,
+                            buttonString: 'history_button_icon',
+                            onPressed: onPressed)
+                      ],
+                    )
+              : Row(
+                  children: [
+                    ButtonWidget(
+                        buttonColor: wColor.mapColors['S800'],
+                        borderColor: wColor.mapColors['S800'],
+                        textColor: wColor.mapColors['IDWhite'],
+                        textStyle: const TextStyle(
+                            fontSize: 13, overflow: TextOverflow.ellipsis),
+                        iconSize: 14,
+                        height: height * 0.049,
+                        borderRadiusButton: 25,
+                        width: width * 0.295,
+                        icon: Icons.download,
+                        buttonString: 'history_test_result_text_download',
+                        onPressed: () {
+                          final String testStatus =
+                              testHistoryEntity!.result.isNotEmpty
+                                  ? testHistoryEntity!.result.first.result
+                                  : "In Progress";
+                          print('aa+$testStatus');
+                          if (testStatus == "In Progress" ||
+                              testStatus == 'Inconclusive') {
+                            errorAlertInfoPop(
+                                context: context,
+                                mainIcon: Icon(
+                                  Icons.cancel,
+                                  color: wColor.mapColors['C01'],
+                                  size: 46,
+                                ),
+                                requiresTranslate: true,
+                                titleText: 'alert_text_error_one',
+                                paddingHeight: height * 0.22,
+                                infoText: 'error_download',
+                                mainButton: 'alert_text_error_three',
+                                mainButtonFunction: () {
+                                  Navigator.pop(context);
+                                });
+                          }
+                          if (testStatus == 'Negative' ||
+                              testStatus == 'Positive') {
+                            _createPDF(
+                                authBloc, textTestKit, testStatus, sampleDate!);
+                          }
+                        }),
+                    SizedBox(width: width * 0.046),
+                    ButtonWidget(
+                        buttonColor: wColor.mapColors['S800'],
+                        borderColor: wColor.mapColors['S800'],
+                        textColor: wColor.mapColors['IDWhite'],
+                        textStyle: const TextStyle(
+                            fontSize: 13, overflow: TextOverflow.ellipsis),
+                        iconSize: 14,
+                        height: height * 0.049,
+                        borderRadiusButton: 25,
+                        width: width * 0.295,
+                        icon: Icons.remove_red_eye,
+                        buttonString: 'history_button_icon',
+                        onPressed: onPressed)
+                  ],
+                )
+        ]),
+      ),
       SizedBox(
         height: height * 0.01,
       )

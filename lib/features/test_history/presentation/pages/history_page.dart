@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 
 import '../bloc/test_history_bloc.dart';
 import '../../../../config/theme/theme.dart';
@@ -140,7 +141,7 @@ class _HistoryPageState extends State<HistoryPage> {
                       TextWidget(
                         text: state.allTestHistoryList.isEmpty
                             ? "26-02-2023"
-                            : "${state.allTestHistoryList.first.sampleDate.date.day}-${state.allTestHistoryList.first.sampleDate.date.month}-${state.allTestHistoryList.first.sampleDate.date.year}",
+                            : "${state.allTestHistoryList.first.sampleDate.date.month}-${state.allTestHistoryList.first.sampleDate.date.day}-${state.allTestHistoryList.first.sampleDate.date.year}",
                         requiresTranslate: false,
                         style: const TextStyle(
                             fontSize: 14, fontWeight: FontWeight.w400),
