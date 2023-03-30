@@ -34,11 +34,8 @@ class _AntigenRegisterInfoPageState extends State<AntigenRegisterInfoPage> {
   final TextEditingController testIdController = TextEditingController();
   String qrCode = '';
   ScanController scanController = ScanController();
-
   @override
   Widget build(BuildContext context) {
-    final userState = BlocProvider.of<AuthBloc>(context).state;
-
     final size = MediaQuery.of(context).size;
     NavigationBarBloc navigationBloc =
         BlocProvider.of<NavigationBarBloc>(context);
@@ -93,7 +90,7 @@ class _AntigenRegisterInfoPageState extends State<AntigenRegisterInfoPage> {
                   triggerMode: TooltipTriggerMode.tap,
                   child: Icon(
                     Icons.question_mark,
-                    size: 18,
+                    size: 16,
                     color: wColor.mapColors['IDPink'],
                   ),
                 )
