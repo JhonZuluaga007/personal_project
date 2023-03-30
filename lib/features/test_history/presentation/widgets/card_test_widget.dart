@@ -51,12 +51,12 @@ class CardTestWidget extends StatelessWidget {
           testHistoryEntity!.result.isEmpty
               ? testHistoryEntity!.type[0].type == "PCR"
                   ? Padding(
-                      padding: EdgeInsets.only(right: width * 0.15),
+                      padding: EdgeInsets.only(right: width * 0.1),
                       child: Row(
                         children: [
-                          SizedBox(width: width * 0.3),
-                          Text(formatter
-                              .format(testHistoryEntity!.sampleDate.date)),
+                          SizedBox(
+                            width: width * 0.53,
+                          )
                         ],
                       ),
                     )
