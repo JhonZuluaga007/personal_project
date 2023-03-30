@@ -27,10 +27,12 @@ class MultiSelectedOpDropDownWidget extends StatefulWidget {
   });
 
   @override
-  State<MultiSelectedOpDropDownWidget> createState() => _MultiSelectedOpDropDownWidgetState();
+  State<MultiSelectedOpDropDownWidget> createState() =>
+      _MultiSelectedOpDropDownWidgetState();
 }
 
-class _MultiSelectedOpDropDownWidgetState extends State<MultiSelectedOpDropDownWidget> {
+class _MultiSelectedOpDropDownWidgetState
+    extends State<MultiSelectedOpDropDownWidget> {
   bool isSelected = false;
   bool selected = false;
 
@@ -51,6 +53,7 @@ class _MultiSelectedOpDropDownWidgetState extends State<MultiSelectedOpDropDownW
             SizedBox(height: heigth * 0.02),
             Container(
               width: width * 0.922,
+              height: heigth * 0.08,
               decoration: BoxDecoration(
                   border: Border.all(color: Colors.grey),
                   borderRadius: BorderRadius.circular(5)),

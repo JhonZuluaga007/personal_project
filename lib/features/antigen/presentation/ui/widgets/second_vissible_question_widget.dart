@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../../../../../common_ui/common_widgets/text/text_widget.dart';
+import '../../../../../common_ui/common_widgets/text_field/text_field_with_border_widget.dart';
 import 'date_picker_container_widget.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -21,6 +23,7 @@ class _SecondVissibleQuestionWidgetState
   late DateTime date = DateTime.now();
   String _covidQuestionValue = "Select option";
   String _covidQuestionTwoValue = "Select option";
+  final TextEditingController dateController = TextEditingController();
 
   @override
   void initState() {
@@ -68,31 +71,76 @@ class _SecondVissibleQuestionWidgetState
               _covidQuestionValue == "Yes",
           child: Column(
             children: [
-              SizedBox(height: height * 0.028),
-              DatePickerContainerWidget(
-                textQuestions: antigenBloc.state.question5!.name,
-                date: date,
-                onTap: () async {
-                  DateTime? newDate = await showDatePicker(
-                    context: context,
-                    initialDate: DateTime.now(),
-                    firstDate: DateTime(2019),
-                    lastDate: DateTime.now(),
-                  );
-
-                  if (newDate == null) return;
-
-                  setState(() {
-                    date = newDate;
-                  });
-                  antigenBloc.add(
-                      AntigenQuestion5Event(question5: newDate.toString()));
-                },
+              SizedBox(height: height * 0.01),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  TextWidget(
+                    text: 'When did you test positive for COVID-19?',
+                    style: TextStyle(
+                        fontSize: 16,
+                        color: wColor.mapColors['S700'],
+                        fontWeight: FontWeight.w500),
+                    requiresTranslate: false,
+                  ),
+                ],
+              ),
+              SizedBox(height: height * 0.018),
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 16),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(color: wColor.mapColors['IDGrey']!)),
+                child: GestureDetector(
+                    onTap: () async {
+                      final newDatePicker = await showDatePicker(
+                        context: context,
+                        initialDate: DateTime(2020),
+                        firstDate: DateTime(2019),
+                        lastDate: DateTime.now(),
+                        builder: (context, child) {
+                          return Theme(
+                              data: Theme.of(context).copyWith(
+                                dialogBackgroundColor: wColor.mapColors['P01']!,
+                                colorScheme: ColorScheme.light(
+                                  primary: wColor.mapColors[
+                                      'IDPink']!, // header background color
+                                  onPrimary: wColor
+                                      .mapColors['P01']!, // header text color
+                                  onSurface: wColor
+                                      .mapColors['P00']!, // body text color
+                                ),
+                              ),
+                              child: child!);
+                        },
+                      );
+                      if (newDatePicker != null) {
+                        antigenBloc.add(AntigenQuestion5Event(
+                            question5: newDatePicker.toString()));
+                        dateController.text =
+                            '${newDatePicker.month}/${newDatePicker.day}/${newDatePicker.year}';
+                      }
+                    },
+                    child: TextFieldWithBorderWidget(
+                      requiresTranslate: false,
+                      enabled: false,
+                      width: width * 0.9,
+                      height: height * 0.09,
+                      labelText: '12_validate_identity_label_text_eleven',
+                      hintText: 'MM/DD/YYYY',
+                      suffixIcon: Padding(
+                          padding: const EdgeInsets.all(12),
+                          child: Icon(
+                            Icons.calendar_today,
+                            color: wColor.mapColors['IDPink'],
+                          )),
+                      textEditingController: dateController,
+                    )),
               ),
             ],
           ),
         ),
-        SizedBox(height: height * 0.015),
+        SizedBox(height: height * 0.02),
         FormFieldDropdownWidget(
           question: stateAntigen.question6!.name,
           generalColor: wColor.mapColors["S700"]!,

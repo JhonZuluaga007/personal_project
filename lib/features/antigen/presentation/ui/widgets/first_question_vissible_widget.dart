@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../../../common_ui/common_widgets/text_field/text_field_with_border_widget.dart';
 import 'date_picker_container_widget.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -21,6 +22,7 @@ class FirstVissibleQuestionWidget extends StatefulWidget {
 class _FirstVissibleQuestionWidgetState
     extends State<FirstVissibleQuestionWidget> {
   final List<String> firstQuestionChipLIst = [];
+  final TextEditingController dateController = TextEditingController();
 
   late DateTime date = DateTime.now();
   String _covidQuestionValue = "Select option";
@@ -35,6 +37,8 @@ class _FirstVissibleQuestionWidgetState
     symptomChipList.addAll(state.symptoms!);
     super.initState();
   }
+
+  final todayDate = DateTime.now().toLocal();
 
   @override
   Widget build(BuildContext context) {
@@ -69,7 +73,7 @@ class _FirstVissibleQuestionWidgetState
             });
           },
         ),
-        SizedBox(height: height * 0.021),
+        SizedBox(height: height * 0.011),
         Visibility(
           visible: antigenState.question1!.value == "Yes" ||
               _covidQuestionValue == "Yes",
@@ -103,26 +107,87 @@ class _FirstVissibleQuestionWidgetState
                 requiredTranslate: false,
               ),
               SizedBox(height: height * 0.028),
-              DatePickerContainerWidget(
-                //TODO CHECK THE QUESTION..... Bringing a bad info.
-                textQuestions:
-                    'When did you start experiencing these symptoms?' /*antigenState.question3!.name*/,
-                onTap: () async {
-                  DateTime? newDate = await showDatePicker(
-                    context: context,
-                    initialDate: DateTime.now(),
-                    firstDate: DateTime(2019),
-                    lastDate: DateTime.now(),
-                  );
-                  if (newDate == null) return;
-                  setState(() {
-                    date = newDate;
-                  });
-                  antigenBloc.add(
-                      AntigenQuestion3Event(question3: newDate.toString()));
-                },
-                date: date,
+              TextWidget(
+                text: 'When did you start experiencing these symptoms?',
+                style: TextStyle(
+                    fontSize: 16,
+                    color: wColor.mapColors['S700'],
+                    fontWeight: FontWeight.w500),
+                requiresTranslate: false,
               ),
+              SizedBox(height: height * 0.018),
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 16),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(color: wColor.mapColors['IDGrey']!)),
+                child: GestureDetector(
+                    onTap: () async {
+                      final newDatePicker = await showDatePicker(
+                        context: context,
+                        initialDate: DateTime(2020),
+                        firstDate: DateTime(2019),
+                        lastDate: DateTime.now(),
+                        builder: (context, child) {
+                          return Theme(
+                              data: Theme.of(context).copyWith(
+                                dialogBackgroundColor: wColor.mapColors['P01']!,
+                                colorScheme: ColorScheme.light(
+                                  primary: wColor.mapColors[
+                                      'IDPink']!, // header background color
+                                  onPrimary: wColor
+                                      .mapColors['P01']!, // header text color
+                                  onSurface: wColor
+                                      .mapColors['P00']!, // body text color
+                                ),
+                              ),
+                              child: child!);
+                        },
+                      );
+                      if (newDatePicker != null) {
+                        antigenBloc.add(AntigenQuestion3Event(
+                            question3: newDatePicker.toString()));
+                        dateController.text =
+                            '${newDatePicker.month}/${newDatePicker.day}/${newDatePicker.year}';
+                      }
+                    },
+                    child: TextFieldWithBorderWidget(
+                      requiresTranslate: false,
+                      enabled: false,
+                      width: width * 0.9,
+                      height: height * 0.09,
+                      labelText: '12_validate_identity_label_text_eleven',
+                      hintText: 'MM/DD/YYYY',
+                      suffixIcon: Padding(
+                          padding: const EdgeInsets.all(12),
+                          child: Icon(
+                            Icons.calendar_today,
+                            color: wColor.mapColors['IDPink'],
+                          )),
+                      textEditingController: dateController,
+                    )),
+              ),
+
+              // DatePickerContainerWidget(
+              //   //TODO CHECK THE QUESTION..... Bringing a bad info.
+              //   textQuestions:
+              //       'When did you start experiencing these symptoms?' /*antigenState.question3!.name*/,
+              //   onTap: () async {
+              //     DateTime? newDate = await showDatePicker(
+              //       context: context,
+              //       initialDate: DateTime.now(),
+              //       firstDate: DateTime(2019),
+              //       lastDate: DateTime.now(),
+              //     );
+              //     if (newDate == null) return;
+              //     setState(() {
+              //       date = newDate;
+              //     });
+              //     antigenBloc.add(
+              //         AntigenQuestion3Event(question3: newDate.toString()));
+              //   },
+              //   date: date,
+              // ),
             ],
           ),
         )

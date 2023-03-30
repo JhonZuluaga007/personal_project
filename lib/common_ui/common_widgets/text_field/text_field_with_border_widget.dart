@@ -29,6 +29,7 @@ class TextFieldWithBorderWidget extends StatelessWidget {
     this.validator,
     this.onChanged,
     this.textErrorValidate,
+    this.enabled,
     this.textError,
     this.initialValue,
   }) : super(key: key);
@@ -56,6 +57,7 @@ class TextFieldWithBorderWidget extends StatelessWidget {
   final bool requiresTranslate;
   final bool? textErrorValidate;
   final String? textError;
+  final bool? enabled;
   final String? initialValue;
 
   @override
@@ -75,6 +77,7 @@ class TextFieldWithBorderWidget extends StatelessWidget {
             autofocus: false,
             obscureText: isPassword ?? false,
             validator: validator,
+            enabled: enabled,
             onChanged: onChanged,
             decoration: InputDecoration(
               floatingLabelBehavior: FloatingLabelBehavior.always,
