@@ -1,10 +1,13 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:Tellme/common_ui/common_widgets/text/text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../../../../../medical_history/presentation/widgets/error_alert_widget.dart';
+import '../../../../widget/test_widgets/app_bar_widget.dart';
 import '../widgets/upload_final_widget.dart';
 import '../../../../../../config/theme/theme.dart';
 import '../../../../../antigen/presentation/bloc/antigen_test_bloc.dart';
@@ -42,9 +45,7 @@ class _ImageButtonsWidgetState extends State<ImageButtonsWidget> {
             .add(AntigenImageEvent(testImage: img64));
       }
       if (imageDisplayed == '' || imageDisplayed == null) {
-        String image64 = base64.encode(imagePath.codeUnits);
-        BlocProvider.of<AntigenTestBloc>(context)
-            .add(AntigenImageEvent(testImage: image64));
+        
       }
       setState(() {
         imageDisplayed = imageCameraTemporary;
@@ -90,7 +91,7 @@ class _ImageButtonsWidgetState extends State<ImageButtonsWidget> {
                 )),
           ],
         ),
-        SizedBox(height: height * 0.08),
+        SizedBox(height: height * 0.03),
         ButtonWidget(
             width: width * 0.920,
             height: height * 0.053,

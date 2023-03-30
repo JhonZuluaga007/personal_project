@@ -346,5 +346,8 @@
     "test_history_empty": "At this moment you dont have any test in your history",
     "test_history_search_delegate": "You have no current tests at the moment, please register a new test",
 
-    "card_validate_pdf_snackbar": "Close"
+    "card_validate_pdf_snackbar": "Close",
+
+    "text_field_validate_support": "Field is required before sending your request",
+    "image_validate_support": "Image required"
 }

@@ -140,7 +140,7 @@ class _HistoryPageState extends State<HistoryPage> {
                       ),
                       TextWidget(
                         text: state.allTestHistoryList.isEmpty
-                            ? "26-02-2023"
+                            ? "MM/DD/YYYY"
                             : "${state.allTestHistoryList.first.sampleDate.date.month}-${state.allTestHistoryList.first.sampleDate.date.day}-${state.allTestHistoryList.first.sampleDate.date.year}",
                         requiresTranslate: false,
                         style: const TextStyle(

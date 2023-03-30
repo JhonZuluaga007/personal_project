@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:Tellme/features/home/widget/dynamic_container_copy_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -209,17 +210,17 @@ class _StartCounterPageState extends State<StartCounterPage> {
       physics: ClampingScrollPhysics(),
       child: Column(
         children: [
-          SizedBox(height: height * 0.030),
+          SizedBox(height: height * 0.003),
           Text(
             "$minutes:$seconds",
             textAlign: TextAlign.center,
-            style: const TextStyle(fontSize: 73, fontWeight: FontWeight.w400),
+            style: const TextStyle(fontSize: 70, fontWeight: FontWeight.w400),
           ),
           SizedBox(height: height * 0.019),
           const TextWidget(
             text: "start_counter_text_1",
             textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 25, fontWeight: FontWeight.w400),
+            style: TextStyle(fontSize: 23, fontWeight: FontWeight.w400),
           ),
         ],
       ),
@@ -233,7 +234,7 @@ class _StartCounterPageState extends State<StartCounterPage> {
 
     return SizedBox(
       width: width * 0.62,
-      height: height * 0.28,
+      height: height * 0.34,
       child: Stack(fit: StackFit.expand, children: [
         CircularProgressIndicator(
           value: duration.inSeconds / startTimer.inSeconds,

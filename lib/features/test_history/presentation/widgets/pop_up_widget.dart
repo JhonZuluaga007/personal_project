@@ -103,8 +103,12 @@ Future popUpWidget(BuildContext context, TestHistoryEntity testView) {
                                     visible: testView.result.isNotEmpty,
                                     child: testView.result.isNotEmpty
                                         ? SizedBox(
-                                            child:
-                                                testView.result.first.result ==
+                                            child: testView
+                                                        .result.first.result ==
+                                                    "Inconclusive"
+                                                ? SizedBox()
+                                                : testView.result.first
+                                                            .result ==
                                                         "Negative"
                                                     ? const Icon(Icons.cancel)
                                                     : const Icon(
