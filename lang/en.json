@@ -292,7 +292,8 @@
 
     "alert_text_one": "Done!",
     "alert_text_two": "Changes saved",
-    "alert_text_support": "Your support ticket has been successfully sended.",
+    
+    "alert_text_support": "Thank you for reaching out to our support team, we will try to answer your questions as soon as possible.",
 
     "alert_text_three": "Ok",
     "alert_text_antigen": "Please provide a valid Antigen code",
@@ -319,6 +320,8 @@
     "alert_text_password_updated": "Password has been updated successfully",
     "alert_text_password_error": "There was an error, and your password couldnt be updated",
     "alert_text_error_update": "We could not update your information",
+    "alert_text_error_support": "We could not send your request, please try again later",
+
     "alert_text_error_update_one": "We could not load your information, please try again",
 
     "match_password": "Make sure your passwords match",
@@ -336,6 +339,8 @@
     "support_text_seven": "Load support image",
     "support_text_eight": "Choose file",
     "support_text_nine": "Send",
+
+    "antigen_tooltip": "The kit ID is the 10-digit code can be found on the test label.",
 
 
     "test_history_empty": "At this moment you dont have any test in your history",

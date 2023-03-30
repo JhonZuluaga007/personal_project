@@ -161,7 +161,7 @@ class _SupportBottomPageState extends State<SupportBottomPage> {
                     ),
                     titleText: 'alert_text_one',
                     paddingHeight: height * 0.22,
-                    infoText: 'alert_text_two',
+                    infoText: 'alert_text_support',
                     mainButton: 'alert_text_three',
                     mainButtonFunction: () {
                       navigationBloc.add(PageChanged(indexNavigation: 0));
@@ -179,7 +179,7 @@ class _SupportBottomPageState extends State<SupportBottomPage> {
                       ),
                       titleText: 'alert_text_error_one',
                       paddingHeight: height * 0.22,
-                      infoText: 'alert_text_error_update',
+                      infoText: 'alert_text_error_support',
                       mainButton: 'alert_text_error_three',
                       mainButtonFunction: () {
                         Navigator.pop(context);

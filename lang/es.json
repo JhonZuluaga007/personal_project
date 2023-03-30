@@ -341,6 +341,7 @@
     "support_text_seven": "Load support image",
     "support_text_eight": "Choose file",
     "support_text_nine": "Send",
+    "antigen_tooltip": "The kit ID is the 10-digit code can be found on the test label.",
 
     "test_history_empty": "En este momento no tienes ninguna prueba en tu historial",
     "test_history_search_delegate": "No tienes test disponibles en el momento, por favor registre uno",

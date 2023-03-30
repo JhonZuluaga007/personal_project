@@ -2,6 +2,7 @@ import 'package:scan/scan.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../../app_localizations.dart';
 import 'questions_antigen_page.dart';
 import '../../bloc/antigen_test_bloc.dart';
 import '../../../../../config/theme/theme.dart';
@@ -33,8 +34,11 @@ class _AntigenRegisterInfoPageState extends State<AntigenRegisterInfoPage> {
   final TextEditingController testIdController = TextEditingController();
   String qrCode = '';
   ScanController scanController = ScanController();
+
   @override
   Widget build(BuildContext context) {
+    final userState = BlocProvider.of<AuthBloc>(context).state;
+
     final size = MediaQuery.of(context).size;
     NavigationBarBloc navigationBloc =
         BlocProvider.of<NavigationBarBloc>(context);
@@ -76,16 +80,30 @@ class _AntigenRegisterInfoPageState extends State<AntigenRegisterInfoPage> {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const TextWidget(
-              text: 'antigen_test_step_one_text_label',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+            Row(
+              children: [
+                const TextWidget(
+                  text: 'antigen_test_step_one_text_label',
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+                ),
+                SizedBox(width: size.width * 0.01),
+                Tooltip(
+                  message: AppLocalizations.of(context)!
+                      .translate('antigen_tooltip'),
+                  triggerMode: TooltipTriggerMode.tap,
+                  child: Icon(
+                    Icons.question_mark,
+                    size: 18,
+                    color: wColor.mapColors['IDPink'],
+                  ),
+                )
+              ],
             ),
             SizedBox(height: size.height * 0.015),
             TextFieldWithBorderWidget(
               textEditingController: testIdController,
               requiresTranslate: true,
               textInputType: TextInputType.text,
-              suffixIcon: const Icon(Icons.question_mark),
               borderColor: wColor.mapColors["T100"],
               hintStyle: TextStyle(
                   fontSize: 16,
