@@ -192,7 +192,7 @@ Widget buttonUpload(BuildContext context) {
 }
 
 bool validateQuestion(AntigenTestState state) {
-  if (state.question15!.value.isNotEmpty) {
+  if (state.question15!.value.isNotEmpty && state.testImage.isNotEmpty) {
     return true;
   } else {
     return false;
