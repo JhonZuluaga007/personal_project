@@ -325,6 +325,7 @@
 
     "alert_text_error_update_one": "We could not load your information, please try again",
 
+
     "match_password": "Make sure your passwords match",
     "password_validate_text_one": "Invalid field, it must have at least 6 characters",
 
@@ -340,7 +341,8 @@
     "support_text_seven": "Load support image",
     "support_text_eight": "Choose file",
     "support_text_nine": "Send",
-
+    "support_success": "Thank you for reaching out to our support team, we will try to answer your questions as soon as possible.",
+    "support_error": "Sorry there was a problem uploading your request, please wait and try again later.",
     "antigen_tooltip": "The kit ID is the 10-digit code can be found on the test label.",
 
 
