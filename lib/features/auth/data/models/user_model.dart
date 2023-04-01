@@ -1,6 +1,5 @@
-import 'package:Tellme/features/test_history/data/models/test_history_models.dart';
-
 import '../../domain/entities/user_entity_login.dart';
+import '../../../test_history/data/models/test_history_models.dart';
 
 class UserModelLogin extends UserEntityLogin {
   UserModelLogin({
