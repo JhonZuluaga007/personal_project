@@ -343,7 +343,7 @@
     "support_text_nine": "Send",
     "support_success": "Thank you for reaching out to our support team, we will try to answer your questions as soon as possible.",
     "support_error": "Sorry there was a problem uploading your request, please wait and try again later.",
-    "antigen_tooltip": "The kit ID is the 10-digit code can be found on the test label.",
+    "antigen_tooltip": "The kit ID is the 10-digit code that can be found on the test's label.",
     "12_validate_identity_label_text_eleven": "Select date",
 
     "test_history_empty": "En este momento no tienes ninguna prueba en tu historial",

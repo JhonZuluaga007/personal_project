@@ -52,10 +52,10 @@ android {
         applicationId "com.idxtellme.tellme"
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-build-configuration.
-        minSdkVersion 21
+        minSdkVersion 22
         targetSdkVersion flutter.targetSdkVersion
-        versionCode 13
-        versionName "1.0.13"
+        versionCode 14
+        versionName "1.0.14"
     }
     signingConfigs {
        release {
