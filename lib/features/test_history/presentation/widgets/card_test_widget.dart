@@ -4,7 +4,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:syncfusion_flutter_pdf/pdf.dart';
 
-import '../../../../app_localizations.dart';
 import '../../../../config/theme/theme.dart';
 import '../../../medical_history/presentation/widgets/error_alert_widget.dart';
 import '../../domain/entities/test_history_entity.dart';
@@ -37,7 +36,6 @@ class CardTestWidget extends StatelessWidget {
     final authBloc = BlocProvider.of<AuthBloc>(context);
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
-    final DateFormat formatter = DateFormat('MM-dd-yyyy');
 
     return DynamicContainerCopyWidget(minHeight: height * 0.075, children: [
       SingleChildScrollView(
@@ -233,7 +231,6 @@ class CardTestWidget extends StatelessWidget {
         brush: brush,
         bounds: Rect.fromLTWH(pageSize.width - 370, 105, 340, 40));
     final PdfBrush textBrush = PdfSolidBrush(PdfColor(255, 255, 255));
-    //TODO GET THE ACTUAL STATUS FROM THE TEST
     final PdfFont font = PdfStandardFont(PdfFontFamily.helvetica, 14);
     graphics.drawString('$statusTest FOR SARS-CoV-2', font,
         brush: textBrush,

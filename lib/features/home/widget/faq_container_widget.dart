@@ -62,7 +62,7 @@ class _VissibleContainerWidgetState extends State<VissibleContainerWidget> {
                   child: Icon(
                     widget.balanceVisible
                         ? Icons.arrow_upward
-                        : Icons.arrow_downward, // TODO check icons
+                        : Icons.arrow_downward,
                     color: wColor.mapColors['P00'],
                   ),
                 ),

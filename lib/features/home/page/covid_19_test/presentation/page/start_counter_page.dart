@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'package:Tellme/features/home/widget/dynamic_container_copy_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -41,7 +40,6 @@ class _StartCounterPageState extends State<StartCounterPage> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     timer!.cancel();
     super.dispose();
   }

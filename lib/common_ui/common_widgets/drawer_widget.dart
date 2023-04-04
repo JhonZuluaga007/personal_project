@@ -28,7 +28,7 @@ class DrawerWidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Icon(
-                    Icons.person, // TODO GET IMAGE FROM THE PROFILE.
+                    Icons.person, 
                     size: 70,
                   ),
                   const SizedBox(height: 10),

@@ -21,7 +21,6 @@ class TestHistoryBloc extends Bloc<TestHistoryEvent, TestHistoryState> {
                 formStatus:
                     SubmissionFailed(exception: Exception(error.message)),
               )), (testHistory) {
-        // TODO: VERIFICATION DATE ALLTESTHISTORY
         final allTestList = testHistory.data.tests
           ..sort((a, b) => b.sampleDate.date.compareTo(a.sampleDate.date));
         final antigenList = testHistory.data.tests

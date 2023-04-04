@@ -1,4 +1,3 @@
-import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -15,11 +14,8 @@ class InfoColumnWidget extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     return BlocBuilder<AuthBloc, AuthState>(
       builder: (context, state) {
-        final DateFormat formatter = DateFormat('MM-dd-yyyy');
-
         return Column(
           children: [
-            //TODO translate hintText
             InfoContainerWidget(
               hintText: 'First name',
               text: state.name!,

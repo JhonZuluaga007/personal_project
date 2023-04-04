@@ -72,7 +72,6 @@ class _ResetPasswordPageInfoState extends State<ResetPasswordPageInfo> {
             maxWidth: double.infinity,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              //TODO VALIDATE A EMAIL
               TextFieldWithBorderWidget(
                 textErrorValidate: emailValidateError,
                 textError: emailTraslate,
@@ -181,24 +180,6 @@ class _ResetPasswordPageInfoState extends State<ResetPasswordPageInfo> {
             }
           },
         ),
-        /*Center(
-          child: MainButtonWidget(
-            key: const Key('buttonLogin'),
-            borderColor: wColor.mapColors['IDPink'],
-            textColor: Colors.white,
-            buttonString: '02_forgotten_password_button',
-            //TODO validadr el ingreso hacia la aplicacion
-            onPressed: () {
-              //TODO send email
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const ResetPasswordPage()));
-            },
-
-            buttonColor: wColor.mapColors['IDPink'],
-          ),
-        ),*/
         SizedBox(height: height * 0.05),
         GestureDetector(
           onTap: () {

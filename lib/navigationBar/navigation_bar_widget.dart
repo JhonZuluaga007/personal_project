@@ -45,8 +45,6 @@ class _NavBarPageState extends State<NavBarPage> {
       {'pageName': const RegisterTestPage(), 'title': 'Tests'},
       {'pageName': const MyUserPage(isBottom: false), 'title': 'UserEdit'},
       {'pageName': const SupportBottomPage(), 'title': 'support'},
-
-      // {'pageName': const FAQSPage(), 'title': 'FAQs'}, //TODO NOT USED AT THE MOMENT
     ];
 
     return BlocBuilder<NavigationBarBloc, NavigationBarState>(

@@ -98,7 +98,6 @@ class _MyUserPageState extends State<MyUserPage> {
           builder: (context, state) {
             return Center(
               child: Stack(alignment: AlignmentDirectional.center, children: [
-                //TODO: CHECK EDIT IMAGE PENCIL
                 state.profileImage != null
                     ? CircleAvatar(
                         radius: 100,

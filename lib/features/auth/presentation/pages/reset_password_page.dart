@@ -297,7 +297,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                                   content:
                                       const TextWidget(text: 'match_password'),
                                   action: SnackBarAction(
-                                    label: 'Close', //TODO CHECK LANGUAGE
+                                    label: 'Close',
                                     onPressed: () {},
                                   ));
                               ScaffoldMessenger.of(context)

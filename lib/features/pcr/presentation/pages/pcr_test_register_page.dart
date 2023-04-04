@@ -64,24 +64,6 @@ class _PcrRegisterPageState extends State<PcrRegisterPage> {
           ),
         ),
         SizedBox(height: size.height * 0.05),
-
-        // Row(
-        //   children: [
-        //     const TextWidget(
-        //       text: 'antigen_test_step_one_text',
-        //       style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-        //     ),
-        //     SizedBox(
-        //       width: size.width * 0.01,
-        //     ),
-        //     const TextWidget(
-        //       //TODO GET THE USER FROM THE BACKEND
-        //       text: 'Mateo Bonnet',
-        //       requiresTranslate: false,
-        //       style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
-        //     )
-        //   ],
-        // ),
         SizedBox(height: size.height * 0.015),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,

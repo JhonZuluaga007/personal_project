@@ -26,7 +26,8 @@ class MedicalHistoryBloc
                     SubmissionFailed(exception: Exception(error.message)),
               )),
           (medicalHistory) => emit(state.copyWith(
-                question1: medicalHistory.data.medicalHistory.additionalInformation,
+                question1:
+                    medicalHistory.data.medicalHistory.additionalInformation,
                 question2: medicalHistory.data.medicalHistory.riskFactors,
                 formStatus: SubmissionSuccess(),
               )));
@@ -36,22 +37,21 @@ class MedicalHistoryBloc
       emit(state.copyWith(
         infoUploaded: FormSubmitting(),
       ));
-      final editMedicalHistory =
-          await editMedicalHistoryUseCase.editMedicalHistory(
-            event.responseOne, event.responseTwo);
+      final editMedicalHistory = await editMedicalHistoryUseCase
+          .editMedicalHistory(event.responseOne, event.responseTwo);
       editMedicalHistory.fold(
           (error) => emit(state.copyWith(
                 infoUploaded: SubmissionFailed(
                   exception: Exception(error.message),
                 ),
-                errorMessage: error.message, // TODO CHECK
+                errorMessage: error.message,
               )), (medicalHistory) {
         emit(
           state.copyWith(
-            infoUploaded: SubmissionSuccess(),
-            question1: medicalHistory.data.medicalHistory.additionalInformation,
-            question2: medicalHistory.data.medicalHistory.riskFactors
-          ),
+              infoUploaded: SubmissionSuccess(),
+              question1:
+                  medicalHistory.data.medicalHistory.additionalInformation,
+              question2: medicalHistory.data.medicalHistory.riskFactors),
         );
       });
       add(ResetStatesMedicalHistoryEvent());

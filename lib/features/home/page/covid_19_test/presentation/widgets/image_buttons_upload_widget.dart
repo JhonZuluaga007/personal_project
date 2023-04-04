@@ -1,13 +1,10 @@
-import 'dart:convert';
 import 'dart:io';
-import 'package:Tellme/common_ui/common_widgets/text/text_widget.dart';
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 
-import '../../../../../medical_history/presentation/widgets/error_alert_widget.dart';
-import '../../../../widget/test_widgets/app_bar_widget.dart';
 import '../widgets/upload_final_widget.dart';
 import '../../../../../../config/theme/theme.dart';
 import '../../../../../antigen/presentation/bloc/antigen_test_bloc.dart';
@@ -44,9 +41,7 @@ class _ImageButtonsWidgetState extends State<ImageButtonsWidget> {
         BlocProvider.of<AntigenTestBloc>(context)
             .add(AntigenImageEvent(testImage: img64));
       }
-      if (imageDisplayed == '' || imageDisplayed == null) {
-        
-      }
+      if (imageDisplayed == '' || imageDisplayed == null) {}
       setState(() {
         imageDisplayed = imageCameraTemporary;
       });

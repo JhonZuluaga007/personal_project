@@ -6,7 +6,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 
-import '../../../../common_ui/utils/utils_email.dart';
 import '../bloc/support_bloc.dart';
 import '../../../../config/theme/theme.dart';
 import '../../../../config/helpers/form_submission_status.dart';
