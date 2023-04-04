@@ -123,14 +123,14 @@ class QuestionsAntigenPage extends StatelessWidget {
   }
 
   bool validateQuestionTwo(AntigenTestState state) {
-    if (state.question4!.value.isNotEmpty && state.question1!.value == 'Yes') {
+    if (state.question4!.value.isNotEmpty && state.question4!.value == 'Yes') {
       if (state.question5!.value.isNotEmpty) {
         return true;
       } else {
         return false;
       }
     }
-    if (state.question4!.value.isNotEmpty) {
+    if (state.question4!.value.isNotEmpty && state.question4!.value == 'No') {
       return true;
     } else {
       return false;
