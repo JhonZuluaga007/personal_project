@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 part of 'medical_history_bloc.dart';
 
 @immutable
@@ -15,8 +17,7 @@ class MedicalHistoryState {
       this.id,
       this.infoUploaded = const InitialFormStatus(),
       this.question1,
-      this.question2
-    });
+      this.question2});
 
   MedicalHistoryState copyWith({
     FormSubmissionStatus? formStatus,

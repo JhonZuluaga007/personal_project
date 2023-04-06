@@ -85,7 +85,7 @@ class _HomePageState extends State<HomePage> {
         SizedBox(height: height * 0.02),
         CardScanHome(
           imageIcon: IconsFolderCovid.scanKitLabel,
-          textDescription: "home_description_card_scan",
+          // textDescription: "home_description_card_scan",
           textTitle: "home_title_card_scan",
           onTap: () {
             Navigator.push(
@@ -99,7 +99,7 @@ class _HomePageState extends State<HomePage> {
         SizedBox(height: height * 0.021),
         CardScanHome(
           imageIcon: IconsFolderCovid.covid19Self,
-          textDescription: "home_description_card_scan",
+          // textDescription: "home_description_card_scan",
           textTitle: "home_title_card_covid_19",
           onTap: () {
             Navigator.push(
@@ -113,7 +113,7 @@ class _HomePageState extends State<HomePage> {
         SizedBox(height: height * 0.021),
         CardScanHome(
           imageIcon: IconsFolderCovid.testStatusResult,
-          textDescription: "home_description_card_scan",
+          // textDescription: "home_description_card_scan",
           textTitle: "home_title_card_test_status",
           onTap: () {
             navigationBloc.add(PageChanged(indexNavigation: 1));

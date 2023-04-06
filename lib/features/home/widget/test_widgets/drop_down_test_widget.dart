@@ -4,6 +4,7 @@ import '../../../../config/theme/theme.dart';
 import '../../../../common_ui/common_widgets/text/text_widget.dart';
 import '../../../../common_ui/common_widgets/drop_down_widget.dart';
 
+// ignore: must_be_immutable
 class DropDownTestWidgetMyProfile extends StatefulWidget {
   DropDownTestWidgetMyProfile(
       {Key? key,

@@ -7,14 +7,14 @@ import '../../../common_ui/common_widgets/text/text_widget.dart';
 
 class CardScanHome extends StatelessWidget {
   final String textTitle;
-  final String textDescription;
+  final String? textDescription;
   final String imageIcon;
   final void Function()? onTap;
 
   const CardScanHome({
     super.key,
     required this.textTitle,
-    required this.textDescription,
+    this.textDescription,
     required this.imageIcon,
     required this.onTap,
   });
@@ -50,19 +50,23 @@ class CardScanHome extends StatelessWidget {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          TextWidget(
-                            text: textTitle,
-                            style: const TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w600,
-                                letterSpacing: -0.02,
-                                color: Colors.black),
+                          SizedBox(
+                            width: width * 0.45,
+                            child: TextWidget(
+                              text: textTitle,
+                              style: const TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w600,
+                                  letterSpacing: -0.02,
+                                  color: Colors.black),
+                            ),
                           ),
                           SizedBox(
                             height: height * 0.0043,
                           ),
                           TextWidget(
-                            text: textDescription,
+                            text: textDescription ?? '',
+                            requiresTranslate: false,
                             style: TextStyle(
                                 fontSize: 10,
                                 fontWeight: FontWeight.w500,
@@ -74,7 +78,7 @@ class CardScanHome extends StatelessWidget {
                     ],
                   ),
                   SizedBox(
-                    width: width * 0.086,
+                    width: width * 0.08,
                   ),
                   Image.asset(IconsFolderCovid.arrowCircleRight)
                 ]),
