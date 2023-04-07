@@ -1,4 +1,4 @@
-package com.idxtellme.tellme
+package com.tellmetech.tellme
 
 import io.flutter.embedding.android.FlutterActivity
 
