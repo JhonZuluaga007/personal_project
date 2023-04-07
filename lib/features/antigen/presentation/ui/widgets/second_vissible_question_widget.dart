@@ -43,6 +43,7 @@ class _SecondVissibleQuestionWidgetState
     final wColor = ThemesIdx20();
     final stateAntigen = BlocProvider.of<AntigenTestBloc>(context).state;
     final antigenBloc = BlocProvider.of<AntigenTestBloc>(context);
+    final todayDate = DateTime.now();
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -94,8 +95,10 @@ class _SecondVissibleQuestionWidgetState
                     onTap: () async {
                       final newDatePicker = await showDatePicker(
                         context: context,
-                        initialDate: DateTime(2020),
-                        firstDate: DateTime(2019),
+                        initialDate: DateTime(todayDate.year, todayDate.month,
+                            todayDate.day - 14),
+                        firstDate: DateTime(todayDate.year, todayDate.month,
+                            todayDate.day - 14),
                         lastDate: DateTime.now(),
                         builder: (context, child) {
                           return Theme(

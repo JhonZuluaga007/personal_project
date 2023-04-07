@@ -119,7 +119,7 @@ class _ThirdVissibleQuestionWidgetState
                         final newDatePicker = await showDatePicker(
                           context: context,
                           initialDate: DateTime(2020),
-                          firstDate: DateTime(2019),
+                          firstDate: DateTime(2020),
                           lastDate: DateTime.now(),
                           builder: (context, child) {
                             return Theme(

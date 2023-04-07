@@ -69,7 +69,7 @@ class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
                   defaultValueEng = 'Yes';
                 });
               }
-              if (defaultValueEng == 'No') {
+              if (defaultValueEng == 'No' || state.question1 == false) {
                 setState(() {
                   visibilityYes = false;
                   chipListText = state.question2!;
