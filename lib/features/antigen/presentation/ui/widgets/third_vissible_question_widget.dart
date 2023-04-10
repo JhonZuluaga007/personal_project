@@ -31,9 +31,9 @@ class _ThirdVissibleQuestionWidgetState
     final height = MediaQuery.of(context).size.height;
     final wColor = ThemesIdx20();
     final stateAntigen = BlocProvider.of<AntigenTestBloc>(context).state;
-    String date = stateAntigen.question9 != null
+    String date = stateAntigen.question9!.value.isNotEmpty
         ? stateAntigen.question9!.value.split(' ').first
-        : '';
+        : DateTime.now().toLocal().toString().split(' ').first;
     List<String> newDate = date.split('-');
 
     String newDisplay = '${newDate[1].toString()}-${newDate[2]}-${newDate[0]}';

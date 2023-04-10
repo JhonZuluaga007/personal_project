@@ -77,25 +77,34 @@ class _LoginPageState extends State<LoginPage> {
             children: [
               TextFieldWithBorderWidget(
                 validator: (valueUserName) {
-                  if (UtilsEmailUser.validateUserName(valueUserName!) ||
-                      emailController.text.length < 4) {
+                  if (emailController.text.length<4) {
                     return userNameTraslate;
                   } else {
                     return null;
                   }
                 },
                 onChanged: (userName) {
-                  if (UtilsEmailUser.validateUserName(userName) ||
-                      emailController.text.length < 4) {
-                    setState(() {
-                      emailValidateError = true;
-                    });
-                  } else {
-                    setState(() {
+                  if ( UtilsEmailUser.validateLength(userName)){
+                     setState(() {
                       emailValidateError = false;
+                    });
+                  }else{
+                       setState(() {
+                      emailValidateError = true;
                     });
                   }
                   return null;
+                   
+                  // if (UtilsEmailUser.validateUserName(userName) == false || emailController.text.length<4 || userName.length< 4 ) {
+                    // setState(() {
+                    //   emailValidateError = true;
+                    // });
+                  // } else {
+                  //   setState(() {
+                  //     emailValidateError = false;
+                  //   });
+                  // }
+                  // return null;
                 },
                 textErrorValidate: emailValidateError,
                 textError: userNameTraslate,

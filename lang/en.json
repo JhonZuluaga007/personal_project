@@ -329,7 +329,7 @@
     "match_password": "Make sure your passwords match",
     "password_validate_text_one": "Invalid field, it must have at least 6 characters",
 
-    "user_name_text_one": "Invalid email, it must be greater than 4 characters",
+    "user_name_text_one": "Invalid email or username, it must be greater than 4 characters",
     "email_text_invalid": "Invalid email",
 
     "support_text_one": "Support",
