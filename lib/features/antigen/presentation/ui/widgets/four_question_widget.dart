@@ -19,6 +19,8 @@ class FourQuestionWidget extends StatefulWidget {
 
 class _FourQuestionWidgetState extends State<FourQuestionWidget> {
   String _covidQuestionPregnantValue = "Select option";
+  String _covidQuestionValue = "";
+
   final List<String> covidBeforechipList = [];
   final List<String> covidBeforeAnswer = [
     "No",
@@ -47,35 +49,8 @@ class _FourQuestionWidgetState extends State<FourQuestionWidget> {
 
     return Column(
       children: [
-        SizedBox(height: height * 0.031),
-        TextWidget(
-          text: antigenBloc.state.question10!.name,
-          requiresTranslate: false,
-          style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.w500,
-              letterSpacing: -0.2,
-              color: wColor.mapColors["S700"]!),
-        ),
-        SizedBox(height: height * 0.011),
-        MultiSelectedOpDropDownWidget(
-          onChanged: (value) {
-            setState(() {
-              if (vacinneChipList
-                  .where((vacinne) => vacinne.id == value!.id)
-                  .isEmpty) {
-                vacinneChipList.add(value as OpVaccineEntity);
-              }
-              antigenBloc
-                  .add(AntigenQuestion10Event(vaccines: vacinneChipList));
-            });
-          },
-          listItem: stateHelperTools.vaccines,
-          valueDefaultList: "drop_down_select_option",
-          listChip: vacinneChipList,
-          requiredTranslate: false,
-        ),
-        SizedBox(height: height * 0.031),
+       
+       
         TextWidget(
           text: antigenBloc.state.question11!.name,
           requiresTranslate: false,
