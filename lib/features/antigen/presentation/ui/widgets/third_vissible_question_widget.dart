@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import '../../../../../common_ui/common_widgets/text/text_widget.dart';
-import '../../../../../common_ui/common_widgets/text_field/text_field_with_border_widget.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../auth/domain/entities/options_tools_entity.dart';
-import '../../../../auth/presentation/bloc/helper_tools_bloc.dart';
-import '../../../../medical_history/presentation/widgets/multi_selected_opdropdown_widget.dart';
 import '../../bloc/antigen_test_bloc.dart';
 import '../../../../../config/theme/theme.dart';
+import '../../../../auth/presentation/bloc/helper_tools_bloc.dart';
+import '../../../../auth/domain/entities/options_tools_entity.dart';
+import '../../../../../common_ui/common_widgets/text/text_widget.dart';
 import '../../../../../common_ui/common_widgets/form_field_dropdown_widget.dart';
+import '../../../../../common_ui/common_widgets/text_field/text_field_with_border_widget.dart';
+import '../../../../medical_history/presentation/widgets/multi_selected_opdropdown_widget.dart';
 
 class ThirdVissibleQuestionWidget extends StatefulWidget {
   const ThirdVissibleQuestionWidget({
@@ -33,9 +33,9 @@ class _ThirdVissibleQuestionWidgetState
     "Yes, 2022",
     "Yes, 2023"
   ];
-    List<OpVaccineEntity> vacinneChipList = [];
+  List<OpVaccineEntity> vacinneChipList = [];
 
-      @override
+  @override
   void initState() {
     final state = BlocProvider.of<AntigenTestBloc>(context).state;
     vacinneChipList.addAll(state.vaccines!);
@@ -51,9 +51,8 @@ class _ThirdVissibleQuestionWidgetState
     final stateAntigen = BlocProvider.of<AntigenTestBloc>(context).state;
     final stateHelperTools = BlocProvider.of<HelperToolsBloc>(context).state;
 
-    String date = stateAntigen.question9!.value.isNotEmpty
-        ? stateAntigen.question9!.value.split(' ').first
-        : DateTime.now().toLocal().toString().split(' ').first;
+    String date = stateAntigen.question9!.value.split(' ').first;
+
     List<String> newDate = date.split('-');
 
     String newDisplay = '${newDate[1].toString()}-${newDate[2]}-${newDate[0]}';
@@ -85,9 +84,14 @@ class _ThirdVissibleQuestionWidgetState
           },
         ),
         Visibility(
-          visible: stateAntigen.question7!.value == 'Yes, 1 Dose' || _covidQuestionValue == 'Yes, 1 Dose'
-          || stateAntigen.question7!.value == 'Yes, 2 Doses' || _covidQuestionValue == 'Yes, 2 Doses' || stateAntigen.question7!.value == 'Yes, 3 Doses' || _covidQuestionValue == 'Yes, 3 Doses' || stateAntigen.question7!.value == 'Yes, 4 Doses' || _covidQuestionValue == 'Yes, 4 Doses'
-          ,
+          visible: stateAntigen.question7!.value == 'Yes, 1 Dose' ||
+              _covidQuestionValue == 'Yes, 1 Dose' ||
+              stateAntigen.question7!.value == 'Yes, 2 Doses' ||
+              _covidQuestionValue == 'Yes, 2 Doses' ||
+              stateAntigen.question7!.value == 'Yes, 3 Doses' ||
+              _covidQuestionValue == 'Yes, 3 Doses' ||
+              stateAntigen.question7!.value == 'Yes, 4 Doses' ||
+              _covidQuestionValue == 'Yes, 4 Doses',
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -111,8 +115,8 @@ class _ThirdVissibleQuestionWidgetState
                 width: width,
                 onChanged: (covidQuestion8) {
                   if (covidQuestion8 != "Select option") {
-                    antigenBloc.add(
-                        AntigenQuestion8Event(question8: covidQuestion8!));
+                    antigenBloc
+                        .add(AntigenQuestion8Event(question8: covidQuestion8!));
                     setState(() {
                       _covidQuestionTwoValue = covidQuestion8;
                     });
@@ -121,8 +125,7 @@ class _ThirdVissibleQuestionWidgetState
               ),
               SizedBox(height: height * 0.028),
               TextWidget(
-                text:
-                    'When did you receive your most recent COVID-19 vaccine?',
+                text: 'When did you receive your most recent COVID-19 vaccine?',
                 style: TextStyle(
                     fontSize: 16,
                     color: wColor.mapColors['S700'],
@@ -145,8 +148,7 @@ class _ThirdVissibleQuestionWidgetState
                         builder: (context, child) {
                           return Theme(
                               data: Theme.of(context).copyWith(
-                                dialogBackgroundColor:
-                                    wColor.mapColors['P01']!,
+                                dialogBackgroundColor: wColor.mapColors['P01']!,
                                 colorScheme: ColorScheme.light(
                                   primary: wColor.mapColors[
                                       'IDPink']!, // header background color
@@ -165,12 +167,11 @@ class _ThirdVissibleQuestionWidgetState
                             question9: newDatePicker.toString()));
                         dateController.text =
                             '${newDatePicker.month}/${newDatePicker.day}/${newDatePicker.year}';
-                      }else {
+                      } else {
                         DateTime constTime = DateTime.now().toLocal();
                         antigenBloc.add(AntigenQuestion9Event(
                             question9: constTime.toString()));
                       }
-                    
                     },
                     child: TextFieldWithBorderWidget(
                       requiresTranslate: false,
@@ -191,8 +192,7 @@ class _ThirdVissibleQuestionWidgetState
                       textEditingController: dateController,
                     )),
               ),
-               SizedBox(height: height * 0.031),
-
+              SizedBox(height: height * 0.031),
               TextWidget(
                 text: antigenBloc.state.question10!.name,
                 requiresTranslate: false,
@@ -202,25 +202,25 @@ class _ThirdVissibleQuestionWidgetState
                     letterSpacing: -0.2,
                     color: wColor.mapColors["S700"]!),
               ),
-               SizedBox(height: height * 0.011),
-          MultiSelectedOpDropDownWidget(
-            onChanged: (value) {
-              setState(() {
-                if (vacinneChipList
-                    .where((vacinne) => vacinne.id == value!.id)
-                    .isEmpty) {
-                  vacinneChipList.add(value as OpVaccineEntity);
-                }
-                antigenBloc
-                    .add(AntigenQuestion10Event(vaccines: vacinneChipList));
-              });
-            },
-            listItem: stateHelperTools.vaccines,
-            valueDefaultList: "drop_down_select_option",
-            listChip: vacinneChipList,
-            requiredTranslate: false,
-          ),
-        SizedBox(height: height * 0.031),
+              SizedBox(height: height * 0.011),
+              MultiSelectedOpDropDownWidget(
+                onChanged: (value) {
+                  setState(() {
+                    if (vacinneChipList
+                        .where((vacinne) => vacinne.id == value!.id)
+                        .isEmpty) {
+                      vacinneChipList.add(value as OpVaccineEntity);
+                    }
+                    antigenBloc
+                        .add(AntigenQuestion10Event(vaccines: vacinneChipList));
+                  });
+                },
+                listItem: stateHelperTools.vaccines,
+                valueDefaultList: "drop_down_select_option",
+                listChip: vacinneChipList,
+                requiredTranslate: false,
+              ),
+              SizedBox(height: height * 0.031),
             ],
           ),
         )

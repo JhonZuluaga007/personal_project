@@ -55,7 +55,13 @@ class AntigenTestBloc extends Bloc<AntigenTestEvent, AntigenTestState> {
                     value: ''),
                 question7: antigenModel.data.lastTest!.form[0].question7,
                 question8: antigenModel.data.lastTest!.form[0].question8,
-                question9: antigenModel.data.lastTest!.form[0].question9,
+                question9: antigenModel
+                        .data.lastTest!.form[0].question9.value.isNotEmpty
+                    ? antigenModel.data.lastTest!.form[0].question9
+                    : QuestionType1StringEntity(
+                        name:
+                            antigenModel.data.lastTest!.form[0].question9.name,
+                        value: DateTime.now().toString()),
                 question10: antigenModel.data.lastTest!.form[0].question10,
                 question11: antigenModel.data.lastTest!.form[0].question11,
                 question12: QuestionType1StringEntity(

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import '../../../../../common_ui/common_widgets/text/text_widget.dart';
-import '../../../../../common_ui/common_widgets/text_field/text_field_with_border_widget.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../bloc/antigen_test_bloc.dart';
 import '../../../../../config/theme/theme.dart';
+import '../../../../../common_ui/common_widgets/text/text_widget.dart';
 import '../../../../../common_ui/common_widgets/form_field_dropdown_widget.dart';
+import '../../../../../common_ui/common_widgets/text_field/text_field_with_border_widget.dart';
 
 class SecondVissibleQuestionWidget extends StatefulWidget {
   const SecondVissibleQuestionWidget({

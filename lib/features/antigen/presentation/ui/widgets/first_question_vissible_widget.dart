@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../../../../../common_ui/common_widgets/text_field/text_field_with_border_widget.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../bloc/antigen_test_bloc.dart';
@@ -8,6 +7,7 @@ import '../../../../auth/presentation/bloc/helper_tools_bloc.dart';
 import '../../../../auth/domain/entities/options_tools_entity.dart';
 import '../../../../../common_ui/common_widgets/text/text_widget.dart';
 import '../../../../../common_ui/common_widgets/form_field_dropdown_widget.dart';
+import '../../../../../common_ui/common_widgets/text_field/text_field_with_border_widget.dart';
 import '../../../../medical_history/presentation/widgets/multi_selected_opdropdown_widget.dart';
 
 class FirstVissibleQuestionWidget extends StatefulWidget {

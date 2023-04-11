@@ -8,7 +8,6 @@ import '../../../../antigen/presentation/bloc/antigen_test_bloc.dart';
 import '../../../../../common_ui/common_widgets/text/text_widget.dart';
 import '../../../../../common_ui/common_widgets/form_field_dropdown_widget.dart';
 import '../../../../antigen/presentation/ui/widgets/multi_selector_string_widget.dart';
-import '../../../../medical_history/presentation/widgets/multi_selected_opdropdown_widget.dart';
 
 class FourQuestionWidget extends StatefulWidget {
   const FourQuestionWidget({Key? key}) : super(key: key);
@@ -49,8 +48,6 @@ class _FourQuestionWidgetState extends State<FourQuestionWidget> {
 
     return Column(
       children: [
-       
-       
         TextWidget(
           text: antigenBloc.state.question11!.name,
           requiresTranslate: false,

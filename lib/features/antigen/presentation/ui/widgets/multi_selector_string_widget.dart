@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../../common_ui/common_widgets/responsive/dynamic_container_widget.dart';
-import '../../../../../common_ui/common_widgets/text/text_widget.dart';
 import '../../../../../config/theme/theme.dart';
+import '../../../../../common_ui/common_widgets/text/text_widget.dart';
 import '../../../../medical_history/presentation/bloc/medical_history_bloc.dart';
+import '../../../../../common_ui/common_widgets/responsive/dynamic_container_widget.dart';
 
 // ignore: must_be_immutable
 class MultiSelectedStringWidget extends StatefulWidget {
@@ -26,7 +26,8 @@ class MultiSelectedStringWidget extends StatefulWidget {
   });
 
   @override
-  State<MultiSelectedStringWidget> createState() => _MultiSelectedStringWidgetState();
+  State<MultiSelectedStringWidget> createState() =>
+      _MultiSelectedStringWidgetState();
 }
 
 class _MultiSelectedStringWidgetState extends State<MultiSelectedStringWidget> {
@@ -61,8 +62,8 @@ class _MultiSelectedStringWidgetState extends State<MultiSelectedStringWidget> {
                             selected = selectedValue!;
                           }),
                       isExpanded: true,
-                      items: widget.listItem.map<DropdownMenuItem<Object>>(
-                          (Object? value) {
+                      items: widget.listItem
+                          .map<DropdownMenuItem<Object>>((Object? value) {
                         return DropdownMenuItem<Object>(
                             value: value,
                             child: Padding(
