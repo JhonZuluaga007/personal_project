@@ -3,29 +3,23 @@
     <uses-permission android:name="android.permission.CAMERA"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.INTERNET"/>
-    <compatible-screens>
-    <!-- devices with screen width up to 600 dp -->
-    <screen android:screenSize="small" android:screenDensity="ldpi"/>
-    <screen android:screenSize="small" android:screenDensity="mdpi"/>
-    <screen android:screenSize="small" android:screenDensity="hdpi"/>
-    <screen android:screenSize="small" android:screenDensity="xhdpi"/>
-    <screen android:screenSize="small" android:screenDensity="xxhdpi"/>
-    <screen android:screenSize="small" android:screenDensity="xxxhdpi"/>
+     <compatible-screens>
+        <!-- This screen configuration is supported -->
+        <screen android:screenSize="small" android:screenDensity="ldpi" />
+        <screen android:screenSize="small" android:screenDensity="mdpi" />
+        <screen android:screenSize="small" android:screenDensity="hdpi" />
+        <screen android:screenSize="small" android:screenDensity="xhdpi" />
 
-    <!-- devices with screen width up to 600 dp and screen ratio less than 2:3 -->
-    <screen android:screenSize="normal" android:screenDensity="ldpi"
-        android:screenRatio="notlong"/>
-    <screen android:screenSize="normal" android:screenDensity="mdpi"
-        android:screenRatio="notlong"/>
-    <screen android:screenSize="normal" android:screenDensity="hdpi"
-        android:screenRatio="notlong"/>
-    <screen android:screenSize="normal" android:screenDensity="xhdpi"
-        android:screenRatio="notlong"/>
-    <screen android:screenSize="normal" android:screenDensity="xxhdpi"
-        android:screenRatio="notlong"/>
-    <screen android:screenSize="normal" android:screenDensity="xxxhdpi"
-        android:screenRatio="notlong"/>
-</compatible-screens>
+        <!-- This screen configuration is not supported -->
+        <screen android:screenSize="normal" android:screenDensity="ldpi" />
+        <screen android:screenSize="normal" android:screenDensity="mdpi" />
+        <screen android:screenSize="normal" android:screenDensity="hdpi" />
+        <screen android:screenSize="normal" android:screenDensity="xhdpi" />
+        <screen android:screenSize="normal" android:screenDensity="xxhdpi" />
+        <screen android:screenSize="normal" android:screenDensity="xxxhdpi" />
+        <screen android:screenSize="large" />
+        <screen android:screenSize="xlarge" />
+    </compatible-screens>
    <application
         android:label="TellMe Testing"
         android:name="${applicationName}"
