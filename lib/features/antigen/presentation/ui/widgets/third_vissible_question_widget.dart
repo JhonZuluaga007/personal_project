@@ -160,7 +160,6 @@ class _ThirdVissibleQuestionWidgetState
                               ),
                               child: child!);
                         },
-                        //TODO CHECK THIS QUESTION 9
                       );
                       if (newDatePicker != null) {
                         antigenBloc.add(AntigenQuestion9Event(
