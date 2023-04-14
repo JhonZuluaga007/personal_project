@@ -93,10 +93,8 @@ class QuestionsAntigenPage extends StatelessWidget {
   bool validateQuestion(AntigenTestState state) {
     if (validateQuestionOne(state) &&
         validateQuestionTwo(state) &&
-        validateQuestionSeven(state) && 
+        validateQuestionSeven(state) &&
         state.question6!.value.isNotEmpty &&
-        
-        state.vaccines!.isNotEmpty &&
         state.question11!.value.isNotEmpty &&
         state.question12!.value.isNotEmpty) {
       return true;
@@ -136,20 +134,24 @@ class QuestionsAntigenPage extends StatelessWidget {
     }
   }
 
-  bool validateQuestionSeven (AntigenTestState state ){
-    if (state.question7!.value.isNotEmpty && (state.question7!.value == 'Yes, 1 Dose' || state.question7!.value == 'Yes, 2 Doses' ||state.question7!.value == 'Yes, 3 Doses' || state.question7!.value == 'Yes, 4 Doses' ) ){
-      if (state.question8!.value.isNotEmpty && state.question9!.value.isNotEmpty){
+  bool validateQuestionSeven(AntigenTestState state) {
+    if (state.question7!.value.isNotEmpty &&
+        (state.question7!.value == 'Yes, 1 Dose' ||
+            state.question7!.value == 'Yes, 2 Doses' ||
+            state.question7!.value == 'Yes, 3 Doses' ||
+            state.question7!.value == 'Yes, 4 Doses')) {
+      if (state.question8!.value.isNotEmpty &&
+          state.question9!.value.isNotEmpty &&
+          state.vaccines!.isNotEmpty) {
         return true;
-        
-      }else {
+      } else {
         return false;
       }
     }
-      if (state.question7!.value.isNotEmpty && state.question7!.value == 'No') {
-        return true;
-      }else{
-        return false;
-      }
+    if (state.question7!.value.isNotEmpty && state.question7!.value == 'No') {
+      return true;
+    } else {
+      return false;
+    }
   }
-  
 }

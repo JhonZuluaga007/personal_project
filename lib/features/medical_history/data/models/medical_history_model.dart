@@ -23,7 +23,13 @@ class Data extends DataMedicalHistoryEntity {
   }) : super(medicalHistory: medicalHistory);
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
-        medicalHistory: MedicalHistory.fromJson(json["medical_history"]),
+        medicalHistory: json["medical_history"] != null
+            ? MedicalHistory.fromJson(json["medical_history"])
+            : MedicalHistory(
+                additionalInformation: false,
+                id: Id(oid: ''),
+                riskFactors: [],
+                user: Id(oid: '')),
       );
 }
 
