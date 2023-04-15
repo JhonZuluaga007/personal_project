@@ -1,3 +1,3 @@
 class Config {
-  static const baseURL = 'http://3.225.234.168/api/';
+  static const baseTestURL = 'https://testing.tellme.tech/api/';
 }

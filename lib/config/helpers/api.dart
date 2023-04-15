@@ -33,7 +33,7 @@ class Api {
   //Returns Future con el resultado de la consulta
   static Future<dynamic> get(String path) async {
     await setHeaders();
-    debugPrint('---------------------------');
+    debugPrint('-------------GETHEADER--------------');
     debugPrint('headers---------: $_headers');
     Uri uri = Uri.parse(path);
     final response = await http.get(
@@ -42,7 +42,6 @@ class Api {
     );
     return decode(response.body);
   }
-
   //Realiza peticiones tipo POST al backend al endpoint pasado por parámetro
   //Returns Future con el resultado de la consulta
   static Future<dynamic> post(String path, Map<String, dynamic> data) async {

@@ -13,8 +13,8 @@ class ServerError {
       ServerError.fromMap(json.decode(str));
 
   factory ServerError.fromMap(Map<String, dynamic> json) => ServerError(
-        errorMessage: Message.fromMap(json["message"]),
-        statusCode: json["statusCode"],
+        errorMessage: json["message"] != null ? Message.fromMap(json["message"]) : Message(text: 'error', type: ''),
+        statusCode: json["statusCode"] !=null ? json["statusCode"] : 404,
       );
 }
 
