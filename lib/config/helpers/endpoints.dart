@@ -5,7 +5,7 @@ class Endpoints {
   static const String login = '${Config.baseTestURL}auth/login';
 
   static const String getUser =
-      '${Config.baseTestURL}profile?project=ChelseaProject';
+      '${Config.baseTestURL}profile/?project=ChelseaProject';
 
   static const String resetPassword = '${Config.baseTestURL}auth/reset-password';
 
@@ -20,7 +20,7 @@ class Endpoints {
   static const String viewMedicalHistory =
       '${Config.baseTestURL}profile/medical-history?project=ChelseaProject';
   static const String testHistory =
-      '${Config.baseTestURL}tests?project=ChelseaProject';
+      '${Config.baseTestURL}tests/?project=ChelseaProject';
 
   static const String viewTest = '${Config.baseTestURL}tests/detail/';
   //endpoint to create Support ticket.
