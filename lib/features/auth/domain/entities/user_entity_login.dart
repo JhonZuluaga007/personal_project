@@ -28,8 +28,8 @@ class DataEntity {
 class ProjectEntity {
   ProjectEntity({
     required this.id,
-    required this.description,
-    required this.disease,
+    // required this.description,
+    // required this.disease,
     required this.isActive,
     required this.logo,
     required this.project,
@@ -38,8 +38,8 @@ class ProjectEntity {
   });
 
   final IdEntity id;
-  final DescriptionEntity description;
-  final List<String> disease;
+  // final DescriptionEntity description;
+  // final List<dynamic> disease;
   final bool isActive;
   final DescriptionEntity logo;
   final String project;

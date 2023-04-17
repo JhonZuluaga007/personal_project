@@ -35,8 +35,8 @@ class Data extends DataEntity {
             ? Project.fromJson(json["project"])
             : Project(
                 id: Id(oid: ''),
-                description: Description(numberDouble: ''),
-                disease: [],
+                // description: Description(numberDouble: ''),
+                // disease: [],
                 isActive: false,
                 logo: Description(numberDouble: ''),
                 project: '',
@@ -50,8 +50,8 @@ class Data extends DataEntity {
 class Project extends ProjectEntity {
   Project({
     required Id id,
-    required Description description,
-    required List<String> disease,
+    // required Description description,
+    // required List<dynamic> disease,
     required bool isActive,
     required Description logo,
     required String project,
@@ -59,8 +59,8 @@ class Project extends ProjectEntity {
     required String url,
   }) : super(
             id: id,
-            description: description,
-            disease: disease,
+            // description: description,
+            // disease: disease,
             isActive: isActive,
             logo: logo,
             project: project,
@@ -69,8 +69,8 @@ class Project extends ProjectEntity {
 
   factory Project.fromJson(Map<String, dynamic> json) => Project(
         id: Id.fromJson(json["_id"]),
-        description: Description.fromJson(json["description"]),
-        disease: List<String>.from(json["disease"].map((x) => x)),
+        // description: Description.fromJson(json["description"]),
+        // disease:  json["disease"] /*List<String>.from(json["disease"].map((x) => x)),*/,
         isActive: json["is_active"],
         logo: Description.fromJson(json["logo"]),
         project: json["project"],
