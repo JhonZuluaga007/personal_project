@@ -254,7 +254,7 @@ class FormAntigen extends FormAntigenEntity {
 
   factory FormAntigen.fromMap(Map<String, dynamic> json) => FormAntigen(
         id: IdHistory.fromMap(json["_id"]),
-        ip: json["ip"],
+        ip: json["ip"] !=null ?  json["ip"] : '',
         question1: QuestionType1String.fromMap(json["question1"]),
         question10: QuestionType10List.fromMap(json["question10"]),
         question11: QuestionType10List.fromMap(json["question11"]),
