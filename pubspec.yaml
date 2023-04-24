@@ -50,7 +50,7 @@ dependencies:
   scan: ^1.6.0
   intl: ^0.17.0
   syncfusion_flutter_pdf: ^20.4.51
-  open_file: ^3.2.1
+  open_file_safe: ^3.2.3
   flutter_launcher_icons: ^0.11.0
   flutter_image_compress: ^1.1.3
 
