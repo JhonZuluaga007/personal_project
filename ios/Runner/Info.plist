@@ -27,9 +27,9 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-	<string>This app requires to access your photo library to show image on profile and send via chat</string>
+	<string>This application requires access to your camera in order to take photos and videos within the app. We will not access or use your camera outside of the app without your explicit permission.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Choose photo from gallery.</string>
+	<string>This app requires access to your photo library in order to save and share photos. We will not access or use any of your photos without your explicit permission.</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>
