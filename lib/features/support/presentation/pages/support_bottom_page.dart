@@ -125,6 +125,7 @@ class _SupportBottomPageState extends State<SupportBottomPage> {
                       }
                     },
                     height: height * 0.15,
+                    textInputType: TextInputType.text,
                     textEditingController: descriptionController,
                     maxLines: 5,
                     hintText: 'support_text_six',
