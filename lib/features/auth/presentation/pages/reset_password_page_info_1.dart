@@ -134,7 +134,7 @@ class _ResetPasswordPageInfoState extends State<ResetPasswordPageInfo> {
                   ),
                   titleText: 'alert_text_one',
                   paddingHeight: height * 0.22,
-                  infoText: 'alert_text_password_updated',
+                  infoText: 'alert_text_password_send_request',
                   mainButton: 'alert_text_three',
                   mainButtonFunction: () {
                     authBloc.add(LogOut());

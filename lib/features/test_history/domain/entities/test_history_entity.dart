@@ -22,9 +22,9 @@ class DataHistoryEntity {
 
 class TestHistoryEntity {
   TestHistoryEntity({
-    required this.ic,
-    required this.n,
-    required this.orf1Ab,
+    // required this.ic,
+    // required this.n,
+    // required this.orf1Ab,
     required this.id,
     required this.associatedTests,
     required this.batch,
@@ -50,9 +50,9 @@ class TestHistoryEntity {
     required this.stepHistory,
   });
 
-  final double ic;
-  final double n;
-  final double orf1Ab;
+  // final double ic;
+  // final double n;
+  // final double orf1Ab;
   final IdTestEntity id;
   final List<AssociatedTestEntity> associatedTests;
   final IdTestEntity batch;

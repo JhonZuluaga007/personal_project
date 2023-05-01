@@ -270,7 +270,7 @@ class FormAntigen extends FormAntigenEntity {
         question7: QuestionType1String.fromMap(json["question7"]),
         question8: QuestionType1String.fromMap(json["question8"]),
         question9: QuestionType1String.fromMap(json["question9"]),
-        test: IdHistory.fromMap(json["test"]),
+        test:json["test"] != null ? IdHistory.fromMap(json["test"]) : IdHistory.fromMap(json["_id"]),
       );
 }
 

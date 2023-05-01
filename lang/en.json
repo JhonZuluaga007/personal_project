@@ -147,7 +147,7 @@
     "popUp_button_text": "Skip anyway",
     "popUp_button_text_1": "Back",
     "popUp_text_title": "Are you sure?",
-    "popUp_text_description": "Are you sure you wanna skip the\ntimer? We recommend following the\ninstructions of the test and wait 15\nminutes in order to see the results.",
+    "popUp_text_description": "We recommend following the instructions of the test and the recommended waiting perior in order to see the results.",
 
     "Upload_drop_down_0": "Yes",
     "Upload_drop_down_1": "No",
@@ -317,7 +317,8 @@
     "alert_text_error_one": "Error!",
     "alert_text_error_two": "We could not find a test with that Id",
     "alert_text_error_three": "Ok",
-    "alert_text_password_updated": "Password has been updated successfully",
+    "alert_text_password_updated": "Password has been updated successfully. You will be redirected to the login page",
+    "alert_text_password_send_request": "A new password has been send to your email successfully",
     "alert_text_password_error": "There was an error, and your password couldnt be updated",
     "alert_text_error_update": "We could not update your information",
     "alert_text_error_support": "We could not send your request, please try again later",

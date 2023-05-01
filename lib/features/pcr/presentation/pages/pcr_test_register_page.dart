@@ -104,16 +104,39 @@ class _PcrRegisterPageState extends State<PcrRegisterPage> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => ScanView(
-                          controller: scanController,
-                          scanAreaScale: .7,
-                          onCapture: (value) {
-                            String newValue = value.split('=').last;
-                            pcrIdController.text = newValue;
-                            Navigator.pop(context);
-                          },
-                        ),
-                      ));
+                          builder: (context) => MyAppScaffold(
+                                appBar: AppBar(
+                                  backgroundColor: Colors.white,
+                                  elevation: 0,
+                                  leading: GestureDetector(
+                                    onTap: () {
+                                      Navigator.pop(context);
+                                    },
+                                    child: const Icon(
+                                      Icons.arrow_back_ios,
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                ),
+                                children: [
+                                  Center(
+                                    child: Container(
+                                      height: height * 0.8,
+                                      width: width,
+                                      child: ScanView(
+                                        controller: scanController,
+                                        scanAreaScale: .7,
+                                        onCapture: (value) {
+                                          String newValue =
+                                              value.split('=').last;
+                                          pcrIdController.text = newValue;
+                                          Navigator.pop(context);
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              )));
                 }),
             SizedBox(height: size.height * 0.15),
             BlocConsumer<PcrBloc, PcrState>(

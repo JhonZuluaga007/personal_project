@@ -37,9 +37,9 @@ class DataHistory extends DataHistoryEntity {
 
 class TestHistory extends TestHistoryEntity {
   TestHistory({
-    required double ic,
-    required double n,
-    required double orf1Ab,
+    // required double ic,
+    // required double n,
+    // required double orf1Ab,
     required IdHistory id,
     required List<AssociatedTestHistory> associatedTests,
     required IdHistory batch,
@@ -64,9 +64,9 @@ class TestHistory extends TestHistoryEntity {
     required String photo,
     required List<dynamic> stepHistory,
   }) : super(
-            ic: ic,
-            n: n,
-            orf1Ab: orf1Ab,
+            // ic: ic,
+            // n: n,
+            // orf1Ab: orf1Ab,
             id: id,
             associatedTests: associatedTests,
             batch: batch,
@@ -95,10 +95,10 @@ class TestHistory extends TestHistoryEntity {
       TestHistory.fromMap(json.decode(str));
 
   factory TestHistory.fromMap(Map<String, dynamic> json) => TestHistory(
-        ic: json["IC"] != null ? double.parse(json["IC"].toString()) : 0.0,
-        n: json["IC"] != null ? double.parse(json["N"].toString()) : 0.0,
-        orf1Ab:
-            json["IC"] != null ? double.parse(json["ORF1ab"].toString()) : 0.0,
+        // ic: json["IC"] != null ? double.parse(json["IC"].toString()) : 0.0,
+        // n: json["IC"] != null ? double.parse(json["N"].toString()) : 0.0,
+        // orf1Ab:
+        //     json["IC"] != null ? double.parse(json["ORF1ab"].toString()) : 0.0,
         id: IdHistory.fromMap(json["_id"]),
         associatedTests: List<AssociatedTestHistory>.from(
             json["associated_tests"]

@@ -37,6 +37,8 @@ class _AntigenRegisterInfoPageState extends State<AntigenRegisterInfoPage> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+        final width = MediaQuery.of(context).size.width;
+    final height = MediaQuery.of(context).size.height;
     NavigationBarBloc navigationBloc =
         BlocProvider.of<NavigationBarBloc>(context);
     return MyAppScaffold(
@@ -122,14 +124,37 @@ class _AntigenRegisterInfoPageState extends State<AntigenRegisterInfoPage> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => ScanView(
-                          controller: scanController,
-                          scanAreaScale: .7,
-                          onCapture: (value) {
-                            String newValue = value.split('=').last;
-                            testIdController.text = newValue;
-                            Navigator.pop(context);
-                          },
+                        builder: (context) => MyAppScaffold(
+                          appBar: AppBar(
+                            backgroundColor: Colors.white,
+                            elevation: 0,
+                            leading: GestureDetector(
+                              onTap: () {
+                                Navigator.pop(context);
+                              },
+                              child: const Icon(
+                                Icons.arrow_back_ios,
+                                color: Colors.black,
+                              ),
+                            ),
+                          ),
+                          children: [
+                            Center(
+                              child: Container(
+                                height: height * 0.8,
+                                width: width,
+                                child: ScanView(
+                                  controller: scanController,
+                                  scanAreaScale: .7,
+                                  onCapture: (value) {
+                                    String newValue = value.split('=').last;
+                                    testIdController.text = newValue;
+                                    Navigator.pop(context);
+                                  },
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ));
                 })
