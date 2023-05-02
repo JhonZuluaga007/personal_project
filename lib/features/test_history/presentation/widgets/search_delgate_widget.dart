@@ -39,17 +39,26 @@ class SearchDelegateWidget extends SearchDelegate {
     return SizedBox(
       child: Center(
           child: SizedBox(
-        width: size.width * 0.4,
+        width: size.width * 0.6,
         height: size.height * 0.4,
         child: Center(
-          child: TextWidget(
-            text: "test_history_search_delegate",
-            textAlign: TextAlign.center,
-            style: TextStyle(
-                color: wColor.mapColors["Black"],
-                fontSize: 24,
-                fontWeight: FontWeight.w600),
-          ),
+          child: listTestHistoryState.isEmpty
+              ? TextWidget(
+                  text: "test_history_search_delegate",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      color: wColor.mapColors["Black"],
+                      fontSize: 24,
+                      fontWeight: FontWeight.w600),
+                )
+              : TextWidget(
+                  text: "search_bar",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      color: wColor.mapColors["Black"],
+                      fontSize: 24,
+                      fontWeight: FontWeight.w600),
+                ),
         ),
       )),
     );
@@ -101,7 +110,10 @@ class SearchDelegateWidget extends SearchDelegate {
 }
 
 class ItemTestData extends StatelessWidget {
-  const ItemTestData({super.key, required this.testView,});
+  const ItemTestData({
+    super.key,
+    required this.testView,
+  });
 
   final TestHistoryEntity testView;
 

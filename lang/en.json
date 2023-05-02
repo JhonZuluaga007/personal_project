@@ -147,7 +147,7 @@
     "popUp_button_text": "Skip anyway",
     "popUp_button_text_1": "Back",
     "popUp_text_title": "Are you sure?",
-    "popUp_text_description": "We recommend following the instructions of the test and the recommended waiting perior in order to see the results.",
+    "popUp_text_description": "We recommend following the instructions of the test and the recommended waiting period in order to see the results.",
 
     "Upload_drop_down_0": "Yes",
     "Upload_drop_down_1": "No",
@@ -292,6 +292,7 @@
 
     "alert_text_one": "Done!",
     "alert_text_two": "Changes saved",
+    "alert_text_pcr_success": "Your PCR test was registered successfully",
     
     "alert_text_support": "Thank you for reaching out to our support team, we will try to answer your questions as soon as possible.",
 
@@ -349,9 +350,9 @@
 
     "test_history_empty": "At this moment you dont have any test in your history",
     "test_history_search_delegate": "You have no current tests at the moment, please register a new test",
-
+    "test_history_search_delegate_results": "Please start typing",
     "card_validate_pdf_snackbar": "Close",
-
+    "search_bar" : "Looking for a test?\nUse the search bar to find a test by its code",
     "text_field_validate_support": "Field is required before sending your request",
     "image_validate_support": "Image required"
 }

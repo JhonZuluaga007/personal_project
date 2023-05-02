@@ -152,7 +152,7 @@ class _PcrRegisterPageState extends State<PcrRegisterPage> {
                     ),
                     titleText: 'alert_text_one',
                     paddingHeight: height * 0.22,
-                    infoText: 'alert_text_two',
+                    infoText: 'alert_text_pcr_success',
                     mainButton: 'alert_text_three',
                     mainButtonFunction: () {
                       navigationBloc.add(PageChanged(indexNavigation: 1));

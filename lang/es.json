@@ -290,6 +290,7 @@
     "alert_confirm_text_two" : "Enviar",
     "alert_confirm_text_three" : "Si, Actulizar!",
     "alert_confirm_text_four" : "Cancelar",
+    "alert_text_pcr_success": "Your PCR test was registered successfully",
 
     
     "alert_text_one": "Listo!",
@@ -350,6 +351,7 @@
     "test_history_search_delegate": "No tienes test disponibles en el momento, por favor registre uno",
 
     "card_validate_pdf_snackbar": "Cerrar",
+    "search_bar" : "Looking for a test?\nUse the search bar to find a test by its code",
 
     "text_field_validate_support": "Este campo es requerido",
     "image_validate_support": "Image requerida"
