@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -49,9 +50,12 @@ class _StartCounterPageState extends State<StartCounterPage>
               .state
               .testTime ==
           0) {
-        //codigo del sonido aca
+        AssetsAudioPlayer.newPlayer().open(
+          Audio("assets/sounds/alarmp3.mp3"),
+          showNotification: false,
+        );
       }
-      //
+      
       setState(() {});
     }
     if (AppLifecycleState.inactive == state) {
@@ -60,7 +64,10 @@ class _StartCounterPageState extends State<StartCounterPage>
               .state
               .testTime ==
           0) {
-        //codigo del sonido aca
+        AssetsAudioPlayer.newPlayer().open(
+          Audio("assets/sounds/alarmp3.mp3"),
+          showNotification: false,
+        );
       }
       setState(() {});
     }
@@ -70,7 +77,10 @@ class _StartCounterPageState extends State<StartCounterPage>
               .state
               .testTime ==
           0) {
-        //Codigo del sonido aca
+        AssetsAudioPlayer.newPlayer().open(
+          Audio("assets/sounds/alarmp3.mp3"),
+          showNotification: false,
+        );
       }
       setState(() {});
     }
@@ -198,26 +208,32 @@ class _StartCounterPageState extends State<StartCounterPage>
     final stateAntigen = BlocProvider.of<AntigenTestBloc>(context).state;
 
     setState(() {
-      duration = Duration(minutes: stateAntigen.testTime!);
-      startTimer = Duration(minutes: stateAntigen.testTime!);
+      duration = Duration(seconds: 5);
+
+      // minutes: stateAntigen.testTime!);
+      startTimer = Duration(seconds: 5);
+
+      // minutes: stateAntigen.testTime!);
       timer = Timer.periodic(
           const Duration(seconds: 1), (timer) => decreaseTime(context));
     });
   }
 
-  void decreaseTime(BuildContext context) {
-    setState(() {
-      late int decreaseTime = -1;
+  void decreaseTime(BuildContext context) async {
+    late int decreaseTime = -1;
 
-      final seconds = duration.inSeconds + decreaseTime;
-
-      if (seconds < 0) {
-        timer?.cancel();
-        Navigator.pushNamed(context, "uploadResult");
-      } else {
-        duration = Duration(seconds: seconds);
-      }
-    });
+    final seconds = duration.inSeconds + decreaseTime;
+    if (seconds < 0) {
+      timer?.cancel();
+      AssetsAudioPlayer.newPlayer().open(
+        Audio("assets/sounds/alarmp3.mp3"),
+        showNotification: false,
+      );
+      Navigator.pushNamed(context, "uploadResult");
+    } else {
+      duration = Duration(seconds: seconds);
+    }
+    setState(() {});
   }
 
   void pauseTime() {
