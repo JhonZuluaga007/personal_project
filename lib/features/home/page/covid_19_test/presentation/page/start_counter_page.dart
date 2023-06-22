@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../../../config/helpers/navigator_key.dart';
 import '../../../../../../icons/icons.dart';
 import '../../../../../../config/theme/theme.dart';
 import '../../../../../../common_ui/common_widgets/text/text_widget.dart';
@@ -24,7 +25,8 @@ class StartCounterPage extends StatefulWidget {
   State<StartCounterPage> createState() => _StartCounterPageState();
 }
 
-class _StartCounterPageState extends State<StartCounterPage> {
+class _StartCounterPageState extends State<StartCounterPage>
+    with WidgetsBindingObserver {
   late Duration duration = const Duration(minutes: 15);
   late Duration startTimer = duration;
   Timer? timer;
@@ -36,6 +38,42 @@ class _StartCounterPageState extends State<StartCounterPage> {
     duration = Duration(minutes: stateAntigen.testTime ?? 15);
     startTimer = Duration(minutes: stateAntigen.testTime ?? 15);
     super.initState();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    super.didChangeAppLifecycleState(state);
+    if (AppLifecycleState.resumed == state) {
+      if (BlocProvider.of<AntigenTestBloc>(
+                  NavigatorKey.navigatorKey.currentState!.context)
+              .state
+              .testTime ==
+          0) {
+        //codigo del sonido aca
+      }
+      //
+      setState(() {});
+    }
+    if (AppLifecycleState.inactive == state) {
+      if (BlocProvider.of<AntigenTestBloc>(
+                  NavigatorKey.navigatorKey.currentState!.context)
+              .state
+              .testTime ==
+          0) {
+        //codigo del sonido aca
+      }
+      setState(() {});
+    }
+    if (AppLifecycleState.paused == state) {
+      if (BlocProvider.of<AntigenTestBloc>(
+                  NavigatorKey.navigatorKey.currentState!.context)
+              .state
+              .testTime ==
+          0) {
+        //Codigo del sonido aca
+      }
+      setState(() {});
+    }
   }
 
   @override
