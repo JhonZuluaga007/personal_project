@@ -270,5 +270,11 @@ class AntigenTestBloc extends Bloc<AntigenTestEvent, AntigenTestState> {
       emit(state.copyWith(
           formStatus: const InitialFormStatus(), testImage: event.testImage));
     });
+
+    on<AntigenTestTimeEvent>((event, emit) => {
+      emit(state.copyWith(
+        testTime: event.testTime
+      ))
+    });
   }
 }

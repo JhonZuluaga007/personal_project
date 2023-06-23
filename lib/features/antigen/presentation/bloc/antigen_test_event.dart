@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 part of 'antigen_test_bloc.dart';
 
 @immutable
@@ -108,4 +109,12 @@ class AntigenImageEvent extends AntigenTestEvent {
   final String testImage;
 
   AntigenImageEvent({required this.testImage});
+}
+
+class AntigenTestTimeEvent extends AntigenTestEvent {
+  final int testTime;
+  
+  AntigenTestTimeEvent({
+    required this.testTime,
+  });
 }
