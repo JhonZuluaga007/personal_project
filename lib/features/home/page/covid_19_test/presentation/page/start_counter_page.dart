@@ -33,8 +33,11 @@ class _StartCounterPageState extends State<StartCounterPage>
   Timer? timer;
   late bool isPauseTimer = false;
 
+  late AntigenTestBloc antigenBloc;
+
   @override
   void initState() {
+    antigenBloc = BlocProvider.of<AntigenTestBloc>(context);
     final stateAntigen = BlocProvider.of<AntigenTestBloc>(context).state;
     duration = Duration(minutes: stateAntigen.testTime ?? 15);
     startTimer = Duration(minutes: stateAntigen.testTime ?? 15);
@@ -44,46 +47,26 @@ class _StartCounterPageState extends State<StartCounterPage>
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     super.didChangeAppLifecycleState(state);
-    if (AppLifecycleState.resumed == state) {
+    if (AppLifecycleState.resumed == state ||
+        AppLifecycleState.inactive == state ||
+        AppLifecycleState.paused == state) {
       if (BlocProvider.of<AntigenTestBloc>(
                   NavigatorKey.navigatorKey.currentState!.context)
               .state
               .testTime ==
           0) {
-        AssetsAudioPlayer.newPlayer().open(
-          Audio("assets/sounds/alarmp3.mp3"),
-          showNotification: false,
-        );
+        openSoundsNotifications();
       }
-      
+
       setState(() {});
     }
-    if (AppLifecycleState.inactive == state) {
-      if (BlocProvider.of<AntigenTestBloc>(
-                  NavigatorKey.navigatorKey.currentState!.context)
-              .state
-              .testTime ==
-          0) {
-        AssetsAudioPlayer.newPlayer().open(
-          Audio("assets/sounds/alarmp3.mp3"),
-          showNotification: false,
-        );
-      }
-      setState(() {});
-    }
-    if (AppLifecycleState.paused == state) {
-      if (BlocProvider.of<AntigenTestBloc>(
-                  NavigatorKey.navigatorKey.currentState!.context)
-              .state
-              .testTime ==
-          0) {
-        AssetsAudioPlayer.newPlayer().open(
-          Audio("assets/sounds/alarmp3.mp3"),
-          showNotification: false,
-        );
-      }
-      setState(() {});
-    }
+  }
+
+  void openSoundsNotifications() {
+    AssetsAudioPlayer.newPlayer().open(
+      Audio("assets/sounds/alarmp3.mp3"),
+      showNotification: false,
+    );
   }
 
   @override
@@ -208,12 +191,10 @@ class _StartCounterPageState extends State<StartCounterPage>
     final stateAntigen = BlocProvider.of<AntigenTestBloc>(context).state;
 
     setState(() {
-      duration = Duration(seconds: 5);
+      duration: stateAntigen.testTime;
 
-      // minutes: stateAntigen.testTime!);
-      startTimer = Duration(seconds: 5);
+      startTimer: stateAntigen.testTime;
 
-      // minutes: stateAntigen.testTime!);
       timer = Timer.periodic(
           const Duration(seconds: 1), (timer) => decreaseTime(context));
     });
@@ -225,10 +206,7 @@ class _StartCounterPageState extends State<StartCounterPage>
     final seconds = duration.inSeconds + decreaseTime;
     if (seconds < 0) {
       timer?.cancel();
-      AssetsAudioPlayer.newPlayer().open(
-        Audio("assets/sounds/alarmp3.mp3"),
-        showNotification: false,
-      );
+      openSoundsNotifications();
       Navigator.pushNamed(context, "uploadResult");
     } else {
       duration = Duration(seconds: seconds);
@@ -240,6 +218,7 @@ class _StartCounterPageState extends State<StartCounterPage>
     setState(() {
       timer?.cancel();
     });
+    antigenBloc.add(AntigenTestTimeEvent(testTime: duration.inMinutes));
   }
 
   void resetTime() {
