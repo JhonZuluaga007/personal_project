@@ -7,12 +7,18 @@ class DatePickerContainerWidget extends StatefulWidget {
   final String textQuestions;
   final DateTime date;
   final Function() onTap;
+  final Color? colorBorder;
+  final Color? colorIcon;
+  final double? radiusBorderInput;
 
   const DatePickerContainerWidget({
     super.key,
     required this.textQuestions,
     required this.onTap,
     required this.date,
+    this.colorBorder,
+    this.radiusBorderInput,
+    this.colorIcon,
   });
 
   @override
@@ -39,41 +45,53 @@ class _DatePickerContainerWidgetState extends State<DatePickerContainerWidget> {
               color: wColor.mapColors["S700"],
               letterSpacing: -0.2),
         ),
-        SizedBox(height: height * 0.0043),
+        SizedBox(height: height * 0.007),
         GestureDetector(
           onTap: widget.onTap,
           child: Container(
             width: width * 0.922,
             height: height * 0.07,
             decoration: BoxDecoration(
-              color: wColor.mapColors["P01"],
-              border: Border(
-                top: BorderSide(width: 1, color: wColor.mapColors["IDGrey"]!),
-                bottom:
-                    BorderSide(width: 1, color: wColor.mapColors["IDGrey"]!),
-                right: BorderSide(width: 1, color: wColor.mapColors["IDGrey"]!),
-                left: BorderSide(width: 1, color: wColor.mapColors["IDGrey"]!),
-              ),
-              borderRadius: BorderRadius.circular(4),
-            ),
+                color: wColor.mapColors["P01"],
+                borderRadius:
+                    BorderRadius.circular(widget.radiusBorderInput ?? 4),
+                border: Border.all(
+                    color: widget.colorBorder ?? wColor.mapColors['Black']!)),
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: width * 0.037),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    "${widget.date.day}-${widget.date.month}-${widget.date.year}",
+                  SizedBox(height: width * 0.01),
+                  TextWidget(
+                    text: "Select date",
+                    requiresTranslate: false,
                     style: TextStyle(
-                        color: wColor.mapColors["S600"],
-                        fontWeight: FontWeight.w500,
-                        fontSize: 16,
-                        letterSpacing: -0.2),
+                      fontFamily: 'Poppins',
+                      color: wColor.mapColors['IDGrey'],
+                      fontSize: 14,
+                      fontWeight: FontWeight.normal,
+                    ),
                   ),
-                  Icon(
-                    Icons.calendar_today,
-                    size: 18,
-                    color: wColor.mapColors["Black"],
-                  )
+                  SizedBox(height: width * 0.01),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "${widget.date.day}/${widget.date.month}/${widget.date.year}",
+                        style: TextStyle(
+                            color: wColor.mapColors["S600"],
+                            fontWeight: FontWeight.w500,
+                            fontSize: 16,
+                            letterSpacing: -0.2),
+                      ),
+                      Icon(
+                        Icons.calendar_today,
+                        size: 18,
+                        color: widget.colorIcon ?? wColor.mapColors["Black"],
+                      ),
+                    ],
+                  ),
                 ],
               ),
             ),

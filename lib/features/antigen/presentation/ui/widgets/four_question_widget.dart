@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../config/theme/theme.dart';
-import '../../../../auth/presentation/bloc/helper_tools_bloc.dart';
 import '../../../../auth/domain/entities/options_tools_entity.dart';
 import '../../../../antigen/presentation/bloc/antigen_test_bloc.dart';
 import '../../../../../common_ui/common_widgets/text/text_widget.dart';
@@ -44,7 +43,6 @@ class _FourQuestionWidgetState extends State<FourQuestionWidget> {
     final height = MediaQuery.of(context).size.height;
     final wColor = ThemesIdx20();
     final antigenBloc = BlocProvider.of<AntigenTestBloc>(context);
-    final stateHelperTools = BlocProvider.of<HelperToolsBloc>(context).state;
 
     return Column(
       children: [
