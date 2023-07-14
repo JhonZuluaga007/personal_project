@@ -41,6 +41,7 @@ class _StartCounterPageState extends State<StartCounterPage>
     final stateAntigen = BlocProvider.of<AntigenTestBloc>(context).state;
     duration = Duration(minutes: stateAntigen.testTime ?? 15);
     startTimer = Duration(minutes: stateAntigen.testTime ?? 15);
+    WidgetsBinding.instance.addObserver(this);
     super.initState();
   }
 
@@ -49,7 +50,8 @@ class _StartCounterPageState extends State<StartCounterPage>
     super.didChangeAppLifecycleState(state);
     if (AppLifecycleState.resumed == state ||
         AppLifecycleState.inactive == state ||
-        AppLifecycleState.paused == state) {
+        AppLifecycleState.paused == state 
+      ) {
       if (BlocProvider.of<AntigenTestBloc>(
                   NavigatorKey.navigatorKey.currentState!.context)
               .state
@@ -71,6 +73,7 @@ class _StartCounterPageState extends State<StartCounterPage>
 
   @override
   void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
     timer!.cancel();
     super.dispose();
   }
