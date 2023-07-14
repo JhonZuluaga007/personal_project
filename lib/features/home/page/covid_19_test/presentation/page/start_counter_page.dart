@@ -48,7 +48,9 @@ class _StartCounterPageState extends State<StartCounterPage>
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     super.didChangeAppLifecycleState(state);
-    if (AppLifecycleState.resumed == state) {
+    if (AppLifecycleState.resumed == state ||
+        AppLifecycleState.inactive == state ||
+        AppLifecycleState.paused == state) {
       if (NavigatorKey.navigatorKey.currentState != null) {
         if (BlocProvider.of<AntigenTestBloc>(
                     NavigatorKey.navigatorKey.currentState!.context)
@@ -58,7 +60,6 @@ class _StartCounterPageState extends State<StartCounterPage>
           openSoundsNotifications();
         }
       }
-      {}
       setState(() {});
     }
   }
