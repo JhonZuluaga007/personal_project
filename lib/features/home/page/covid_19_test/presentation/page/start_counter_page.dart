@@ -48,18 +48,17 @@ class _StartCounterPageState extends State<StartCounterPage>
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     super.didChangeAppLifecycleState(state);
-    if (AppLifecycleState.resumed == state ||
-        AppLifecycleState.inactive == state ||
-        AppLifecycleState.paused == state 
-      ) {
-      if (BlocProvider.of<AntigenTestBloc>(
-                  NavigatorKey.navigatorKey.currentState!.context)
-              .state
-              .testTime ==
-          0) {
-        openSoundsNotifications();
+    if (AppLifecycleState.resumed == state) {
+      if (NavigatorKey.navigatorKey.currentState != null) {
+        if (BlocProvider.of<AntigenTestBloc>(
+                    NavigatorKey.navigatorKey.currentState!.context)
+                .state
+                .testTime ==
+            0) {
+          openSoundsNotifications();
+        }
       }
-
+      {}
       setState(() {});
     }
   }
@@ -191,13 +190,7 @@ class _StartCounterPageState extends State<StartCounterPage>
   }
 
   void startTime(BuildContext context) {
-    final stateAntigen = BlocProvider.of<AntigenTestBloc>(context).state;
-
     setState(() {
-      duration: stateAntigen.testTime;
-
-      startTimer: stateAntigen.testTime;
-
       timer = Timer.periodic(
           const Duration(seconds: 1), (timer) => decreaseTime(context));
     });
