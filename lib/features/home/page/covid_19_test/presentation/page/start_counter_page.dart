@@ -52,23 +52,8 @@ class _StartCounterPageState extends State<StartCounterPage>
     super.didChangeAppLifecycleState(state);
 
     if (state == AppLifecycleState.resumed) {
-      if (appResumedTime != null) {
-        final durationPaused = DateTime.now().difference(appResumedTime!);
-        remainingTime -= durationPaused;
-      }
-      appResumedTime = DateTime.now();
-      startTime(context);
-      if (BlocProvider.of<AntigenTestBloc>(
-                  NavigatorKey.navigatorKey.currentState!.context)
-              .state
-              .testTime ==
-          0) {
-        openSoundsNotifications();
-      }
-    } else if (state == AppLifecycleState.inactive ||
-        state == AppLifecycleState.paused) {
-      appResumedTime = null;
-      timer?.cancel();
+
+      if (NavigatorKey.navigatorKey.currentState != null) {
       if (BlocProvider.of<AntigenTestBloc>(
                   NavigatorKey.navigatorKey.currentState!.context)
               .state
@@ -77,10 +62,15 @@ class _StartCounterPageState extends State<StartCounterPage>
         openSoundsNotifications();
       }
     }
-    setState(() {});
-    // if (AppLifecycleState.resumed == state ||
-    //     AppLifecycleState.inactive == state ||
-    //     AppLifecycleState.paused == state) {
+      setState(() {});
+    }
+    //   if (appResumedTime != null) {
+    //     final durationPaused = DateTime.now().difference(appResumedTime!);
+    //     remainingTime -= durationPaused;
+    //   }
+    //   appResumedTime = DateTime.now();
+    //   startTime(context);
+
     //   if (NavigatorKey.navigatorKey.currentState != null) {
     //     if (BlocProvider.of<AntigenTestBloc>(
     //                 NavigatorKey.navigatorKey.currentState!.context)
@@ -90,6 +80,39 @@ class _StartCounterPageState extends State<StartCounterPage>
     //       openSoundsNotifications();
     //     }
     //   }
+    //   setState(() {});
+    // }
+    if (state == AppLifecycleState.inactive ||
+        state == AppLifecycleState.paused) {
+      // appResumedTime = null;
+      if (appResumedTime != null) {
+        final durationPaused = DateTime.now().difference(appResumedTime!);
+        remainingTime -= durationPaused;
+      }
+      appResumedTime = DateTime.now();
+      if (NavigatorKey.navigatorKey.currentState != null) {
+        if (BlocProvider.of<AntigenTestBloc>(
+                    NavigatorKey.navigatorKey.currentState!.context)
+                .state
+                .testTime ==
+            0) {
+          openSoundsNotifications();
+        }
+      }
+      setState(() {});
+    }
+    // if (AppLifecycleState.resumed == state ||
+    //     AppLifecycleState.inactive == state ||
+    //     AppLifecycleState.paused == state) {
+    // if (NavigatorKey.navigatorKey.currentState != null) {
+    //   if (BlocProvider.of<AntigenTestBloc>(
+    //               NavigatorKey.navigatorKey.currentState!.context)
+    //           .state
+    //           .testTime ==
+    //       0) {
+    //     openSoundsNotifications();
+    //   }
+    // }
     //   setState(() {});
     // }
   }
