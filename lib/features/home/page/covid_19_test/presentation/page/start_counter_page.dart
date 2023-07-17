@@ -28,12 +28,13 @@ class StartCounterPage extends StatefulWidget {
 
 class _StartCounterPageState extends State<StartCounterPage>
     with WidgetsBindingObserver {
-  late Duration duration = const Duration(minutes: 15);
+  late Duration duration;
   late Duration startTimer = duration;
   Timer? timer;
   late bool isPauseTimer = false;
-
+  late Duration remainingTime;
   late AntigenTestBloc antigenBloc;
+  DateTime? appResumedTime;
 
   @override
   void initState() {
@@ -41,6 +42,7 @@ class _StartCounterPageState extends State<StartCounterPage>
     final stateAntigen = BlocProvider.of<AntigenTestBloc>(context).state;
     duration = Duration(minutes: stateAntigen.testTime ?? 15);
     startTimer = Duration(minutes: stateAntigen.testTime ?? 15);
+    remainingTime = Duration(minutes: stateAntigen.testTime ?? 15);
     WidgetsBinding.instance.addObserver(this);
     super.initState();
   }
@@ -48,20 +50,48 @@ class _StartCounterPageState extends State<StartCounterPage>
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     super.didChangeAppLifecycleState(state);
-    if (AppLifecycleState.resumed == state ||
-        AppLifecycleState.inactive == state ||
-        AppLifecycleState.paused == state) {
-      if (NavigatorKey.navigatorKey.currentState != null) {
-        if (BlocProvider.of<AntigenTestBloc>(
-                    NavigatorKey.navigatorKey.currentState!.context)
-                .state
-                .testTime ==
-            0) {
-          openSoundsNotifications();
-        }
+
+    if (state == AppLifecycleState.resumed) {
+      if (appResumedTime != null) {
+        final durationPaused = DateTime.now().difference(appResumedTime!);
+        remainingTime -= durationPaused;
       }
-      setState(() {});
+      appResumedTime = DateTime.now();
+      startTime(context);
+      if (BlocProvider.of<AntigenTestBloc>(
+                  NavigatorKey.navigatorKey.currentState!.context)
+              .state
+              .testTime ==
+          0) {
+        openSoundsNotifications();
+      }
+    } else if (state == AppLifecycleState.inactive ||
+        state == AppLifecycleState.paused) {
+      appResumedTime = null;
+      timer?.cancel();
+      if (BlocProvider.of<AntigenTestBloc>(
+                  NavigatorKey.navigatorKey.currentState!.context)
+              .state
+              .testTime ==
+          0) {
+        openSoundsNotifications();
+      }
     }
+    setState(() {});
+    // if (AppLifecycleState.resumed == state ||
+    //     AppLifecycleState.inactive == state ||
+    //     AppLifecycleState.paused == state) {
+    //   if (NavigatorKey.navigatorKey.currentState != null) {
+    //     if (BlocProvider.of<AntigenTestBloc>(
+    //                 NavigatorKey.navigatorKey.currentState!.context)
+    //             .state
+    //             .testTime ==
+    //         0) {
+    //       openSoundsNotifications();
+    //     }
+    //   }
+    //   setState(() {});
+    // }
   }
 
   void openSoundsNotifications() {
