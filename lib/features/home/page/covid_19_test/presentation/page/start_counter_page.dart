@@ -32,7 +32,6 @@ class _StartCounterPageState extends State<StartCounterPage>
   late Duration startTimer = duration;
   Timer? timer;
   late bool isPauseTimer = false;
-  late Duration remainingTime;
   late AntigenTestBloc antigenBloc;
   DateTime? appResumedTime;
 
@@ -42,26 +41,31 @@ class _StartCounterPageState extends State<StartCounterPage>
     final stateAntigen = BlocProvider.of<AntigenTestBloc>(context).state;
     duration = Duration(minutes: stateAntigen.testTime ?? 15);
     startTimer = Duration(minutes: stateAntigen.testTime ?? 15);
-    remainingTime = Duration(minutes: stateAntigen.testTime ?? 15);
     WidgetsBinding.instance.addObserver(this);
     super.initState();
   }
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
-    super.didChangeAppLifecycleState(state);
-
     if (state == AppLifecycleState.resumed) {
+      if (appResumedTime != null && !isPauseTimer) {
+        DateTime durationPaused = DateTime.now();
+
+        final differentDuration = appResumedTime!.difference(durationPaused);
+
+        // Aca le estoy restanto el tiempo que duro inactivo
+        duration += differentDuration;
+      }
 
       if (NavigatorKey.navigatorKey.currentState != null) {
-      if (BlocProvider.of<AntigenTestBloc>(
-                  NavigatorKey.navigatorKey.currentState!.context)
-              .state
-              .testTime ==
-          0) {
-        openSoundsNotifications();
+        if (BlocProvider.of<AntigenTestBloc>(
+                    NavigatorKey.navigatorKey.currentState!.context)
+                .state
+                .testTime ==
+            0) {
+          openSoundsNotifications();
+        }
       }
-    }
       setState(() {});
     }
     //   if (appResumedTime != null) {
@@ -84,12 +88,10 @@ class _StartCounterPageState extends State<StartCounterPage>
     // }
     if (state == AppLifecycleState.inactive ||
         state == AppLifecycleState.paused) {
-      // appResumedTime = null;
-      if (appResumedTime != null) {
-        final durationPaused = DateTime.now().difference(appResumedTime!);
-        remainingTime -= durationPaused;
+
+      if (state == AppLifecycleState.paused) {
+        appResumedTime = DateTime.now();
       }
-      appResumedTime = DateTime.now();
       if (NavigatorKey.navigatorKey.currentState != null) {
         if (BlocProvider.of<AntigenTestBloc>(
                     NavigatorKey.navigatorKey.currentState!.context)
@@ -115,6 +117,7 @@ class _StartCounterPageState extends State<StartCounterPage>
     // }
     //   setState(() {});
     // }
+    super.didChangeAppLifecycleState(state);
   }
 
   void openSoundsNotifications() {
@@ -245,6 +248,7 @@ class _StartCounterPageState extends State<StartCounterPage>
 
   void startTime(BuildContext context) {
     setState(() {
+      if (isPauseTimer) isPauseTimer = !isPauseTimer;
       timer = Timer.periodic(
           const Duration(seconds: 1), (timer) => decreaseTime(context));
     });
@@ -266,6 +270,7 @@ class _StartCounterPageState extends State<StartCounterPage>
 
   void pauseTime() {
     setState(() {
+      isPauseTimer = true;
       timer?.cancel();
     });
     antigenBloc.add(AntigenTestTimeEvent(testTime: duration.inMinutes));
