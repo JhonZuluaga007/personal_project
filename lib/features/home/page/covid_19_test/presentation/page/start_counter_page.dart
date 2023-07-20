@@ -54,9 +54,10 @@ class _StartCounterPageState extends State<StartCounterPage>
         final differentDuration = appResumedTime!.difference(durationPaused);
 
         // Aca le estoy restanto el tiempo que duro inactivo
-        duration += differentDuration;
+        if (duration >= Duration(seconds: 0)) {
+          duration += differentDuration;
+        }
       }
-
       if (NavigatorKey.navigatorKey.currentState != null) {
         if (BlocProvider.of<AntigenTestBloc>(
                     NavigatorKey.navigatorKey.currentState!.context)
@@ -68,27 +69,8 @@ class _StartCounterPageState extends State<StartCounterPage>
       }
       setState(() {});
     }
-    //   if (appResumedTime != null) {
-    //     final durationPaused = DateTime.now().difference(appResumedTime!);
-    //     remainingTime -= durationPaused;
-    //   }
-    //   appResumedTime = DateTime.now();
-    //   startTime(context);
-
-    //   if (NavigatorKey.navigatorKey.currentState != null) {
-    //     if (BlocProvider.of<AntigenTestBloc>(
-    //                 NavigatorKey.navigatorKey.currentState!.context)
-    //             .state
-    //             .testTime ==
-    //         0) {
-    //       openSoundsNotifications();
-    //     }
-    //   }
-    //   setState(() {});
-    // }
     if (state == AppLifecycleState.inactive ||
         state == AppLifecycleState.paused) {
-
       if (state == AppLifecycleState.paused) {
         appResumedTime = DateTime.now();
       }
@@ -103,20 +85,6 @@ class _StartCounterPageState extends State<StartCounterPage>
       }
       setState(() {});
     }
-    // if (AppLifecycleState.resumed == state ||
-    //     AppLifecycleState.inactive == state ||
-    //     AppLifecycleState.paused == state) {
-    // if (NavigatorKey.navigatorKey.currentState != null) {
-    //   if (BlocProvider.of<AntigenTestBloc>(
-    //               NavigatorKey.navigatorKey.currentState!.context)
-    //           .state
-    //           .testTime ==
-    //       0) {
-    //     openSoundsNotifications();
-    //   }
-    // }
-    //   setState(() {});
-    // }
     super.didChangeAppLifecycleState(state);
   }
 
