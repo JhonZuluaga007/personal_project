@@ -51,12 +51,14 @@ class _StartCounterPageState extends State<StartCounterPage>
       if (appResumedTime != null && !isPauseTimer) {
         DateTime durationPaused = DateTime.now();
 
-        final differentDuration = appResumedTime!.difference(durationPaused);
+        final differentDuration = durationPaused.difference(appResumedTime!);
 
         // Aca le estoy restanto el tiempo que duro inactivo
-        if (duration >= Duration(seconds: 0)) {
-          duration += differentDuration;
+        if (differentDuration < duration) {
+          duration = Duration(seconds: 0);
         }
+        
+        duration += differentDuration;
       }
       if (NavigatorKey.navigatorKey.currentState != null) {
         if (BlocProvider.of<AntigenTestBloc>(
@@ -71,9 +73,6 @@ class _StartCounterPageState extends State<StartCounterPage>
     }
     if (state == AppLifecycleState.inactive ||
         state == AppLifecycleState.paused) {
-      if (state == AppLifecycleState.paused) {
-        appResumedTime = DateTime.now();
-      }
       if (NavigatorKey.navigatorKey.currentState != null) {
         if (BlocProvider.of<AntigenTestBloc>(
                     NavigatorKey.navigatorKey.currentState!.context)
