@@ -30,6 +30,7 @@ import 'app_localizations.dart';
 import 'config/helpers/injector/injector.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   Injector.setup();
   runApp(const MyApp());
 }
