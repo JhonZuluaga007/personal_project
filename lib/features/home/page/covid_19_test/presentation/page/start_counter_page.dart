@@ -34,6 +34,7 @@ class _StartCounterPageState extends State<StartCounterPage>
   late bool isPauseTimer = false;
   late AntigenTestBloc antigenBloc;
   DateTime? appResumedTime;
+  DateTime? appPausedTime;
 
   @override
   void initState() {
@@ -46,20 +47,58 @@ class _StartCounterPageState extends State<StartCounterPage>
   }
 
   @override
+  void deactivate() {
+    // Verificamos si la app se va a un estado inactivo (por ejemplo, antes de ser desechada de la pila de rutas).
+    if (appPausedTime != null && !isPauseTimer) {
+      final DateTime currentTime = DateTime.now();
+      final Duration difference = currentTime.difference(appPausedTime!);
+      if (timer != null && timer!.isActive) {
+        final Duration updatedDuration = duration - difference;
+        if (updatedDuration <= Duration.zero) {
+          timer?.cancel();
+          openSoundsNotifications();
+          Navigator.pushNamed(context, "uploadResult");
+        } else {
+          setState(() {
+            duration = updatedDuration;
+          });
+        }
+      }
+    }
+    super.deactivate();
+  }
+
+  @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     if (state == AppLifecycleState.resumed) {
+      if (NavigatorKey.navigatorKey.currentState != null) {
+        if (BlocProvider.of<AntigenTestBloc>(
+                    NavigatorKey.navigatorKey.currentState!.context)
+                .state
+                .testTime ==
+            0) {
+          openSoundsNotifications();
+        }
+      }
       if (appResumedTime != null && !isPauseTimer) {
-        DateTime durationPaused = DateTime.now();
-
-        final differentDuration = durationPaused.difference(appResumedTime!);
-
-        // Aca le estoy restanto el tiempo que duro inactivo
-        if (differentDuration < duration) {
-          duration = Duration(seconds: 0);
+        final DateTime currentTime = DateTime.now();
+        final Duration difference = currentTime.difference(appResumedTime!);
+        if (timer != null && timer!.isActive) {
+          final Duration updatedDuration = duration - difference;
+          if (updatedDuration <= Duration.zero) {
+            timer?.cancel();
+            openSoundsNotifications();
+            Navigator.pushNamed(context, "uploadResult");
+          } else {
+            setState(() {
+              duration = updatedDuration;
+            });
+          }
         }
-
-        duration += differentDuration;
       }
+    } else if (state == AppLifecycleState.paused) {
+      // La app se encuentra en estado "paused", guardamos el tiempo actual.
+      appPausedTime = DateTime.now();
       if (NavigatorKey.navigatorKey.currentState != null) {
         if (BlocProvider.of<AntigenTestBloc>(
                     NavigatorKey.navigatorKey.currentState!.context)
@@ -69,24 +108,46 @@ class _StartCounterPageState extends State<StartCounterPage>
           openSoundsNotifications();
         }
       }
-      setState(() {});
     }
-    if (state == AppLifecycleState.inactive ||
-        state == AppLifecycleState.paused) {
-      if (state == AppLifecycleState.paused) {
-        appResumedTime = DateTime.now();
-      }
-      if (NavigatorKey.navigatorKey.currentState != null) {
-        if (BlocProvider.of<AntigenTestBloc>(
-                    NavigatorKey.navigatorKey.currentState!.context)
-                .state
-                .testTime ==
-            0) {
-          openSoundsNotifications();
-        }
-      }
-      setState(() {});
-    }
+
+    // if (state == AppLifecycleState.resumed) {
+    //   if (appResumedTime != null && !isPauseTimer) {
+    //     DateTime durationPaused = DateTime.now();
+    //     final differentDuration = durationPaused.difference(appResumedTime!);
+
+    //     // Si el temporizador está activo, actualizamos la duración.
+    //     if (timer != null && timer!.isActive) {
+    //       setState(() {
+    //         if (duration - differentDuration >= Duration.zero) {
+    //           duration = duration - differentDuration;
+    //         } else {
+    //           duration = Duration.zero;
+    //           timer?.cancel();
+    //           openSoundsNotifications();
+    //           Navigator.pushNamed(context, "uploadResult");
+    //         }
+    //       });
+    //     }
+    //   }
+
+    //   setState(() {});
+    // }
+    // if (state == AppLifecycleState.inactive ||
+    //     state == AppLifecycleState.paused) {
+    //   if (state == AppLifecycleState.paused) {
+    //     appResumedTime = DateTime.now();
+    //   }
+    //   if (NavigatorKey.navigatorKey.currentState != null) {
+    //     if (BlocProvider.of<AntigenTestBloc>(
+    //                 NavigatorKey.navigatorKey.currentState!.context)
+    //             .state
+    //             .testTime ==
+    //         0) {
+    //       openSoundsNotifications();
+    //     }
+    //   }
+    //   setState(() {});
+    // }
     super.didChangeAppLifecycleState(state);
   }
 
@@ -225,17 +286,20 @@ class _StartCounterPageState extends State<StartCounterPage>
   }
 
   void decreaseTime(BuildContext context) async {
-    late int decreaseTime = -1;
+    final decreaseTime =
+        1; // Cambiamos el valor de -1 a 1, ya que restaremos 1 segundo en cada iteración.
+    setState(() {
+      final seconds = duration.inSeconds - decreaseTime; // Restamos 1 segundo.
 
-    final seconds = duration.inSeconds + decreaseTime;
-    if (seconds < 0) {
-      timer?.cancel();
-      openSoundsNotifications();
-      Navigator.pushNamed(context, "uploadResult");
-    } else {
-      duration = Duration(seconds: seconds);
-    }
-    setState(() {});
+      if (seconds <= 0) {
+        duration = Duration.zero;
+        timer?.cancel();
+        openSoundsNotifications();
+        Navigator.pushNamed(context, "uploadResult");
+      } else {
+        duration = Duration(seconds: seconds);
+      }
+    });
   }
 
   void pauseTime() {
