@@ -80,22 +80,22 @@ class _StartCounterPageState extends State<StartCounterPage>
           openSoundsNotifications();
         }
       }
-      if (appResumedTime != null && !isPauseTimer) {
-        final DateTime currentTime = DateTime.now();
-        final Duration difference = currentTime.difference(appResumedTime!);
-        if (timer != null && timer!.isActive) {
-          final Duration updatedDuration = duration - difference;
-          if (updatedDuration <= Duration.zero) {
-            timer?.cancel();
-            openSoundsNotifications();
-            Navigator.pushNamed(context, "uploadResult");
-          } else {
-            setState(() {
-              duration = updatedDuration;
-            });
-          }
-        }
-      }
+      // if (appResumedTime != null && !isPauseTimer) {
+      //   final DateTime currentTime = DateTime.now();
+      //   final Duration difference = currentTime.difference(appResumedTime!);
+      //   if (timer != null && timer!.isActive) {
+      //     final Duration updatedDuration = duration - difference;
+      //     if (updatedDuration <= Duration.zero) {
+      //       timer?.cancel();
+      //       openSoundsNotifications();
+      //       Navigator.pushNamed(context, "uploadResult");
+      //     } else {
+      //       setState(() {
+      //         duration = updatedDuration;
+      //       });
+      //     }
+      //   }
+      // }
     } else if (state == AppLifecycleState.paused) {
       // La app se encuentra en estado "paused", guardamos el tiempo actual.
       appPausedTime = DateTime.now();
@@ -110,44 +110,6 @@ class _StartCounterPageState extends State<StartCounterPage>
       }
     }
 
-    // if (state == AppLifecycleState.resumed) {
-    //   if (appResumedTime != null && !isPauseTimer) {
-    //     DateTime durationPaused = DateTime.now();
-    //     final differentDuration = durationPaused.difference(appResumedTime!);
-
-    //     // Si el temporizador está activo, actualizamos la duración.
-    //     if (timer != null && timer!.isActive) {
-    //       setState(() {
-    //         if (duration - differentDuration >= Duration.zero) {
-    //           duration = duration - differentDuration;
-    //         } else {
-    //           duration = Duration.zero;
-    //           timer?.cancel();
-    //           openSoundsNotifications();
-    //           Navigator.pushNamed(context, "uploadResult");
-    //         }
-    //       });
-    //     }
-    //   }
-
-    //   setState(() {});
-    // }
-    // if (state == AppLifecycleState.inactive ||
-    //     state == AppLifecycleState.paused) {
-    //   if (state == AppLifecycleState.paused) {
-    //     appResumedTime = DateTime.now();
-    //   }
-    //   if (NavigatorKey.navigatorKey.currentState != null) {
-    //     if (BlocProvider.of<AntigenTestBloc>(
-    //                 NavigatorKey.navigatorKey.currentState!.context)
-    //             .state
-    //             .testTime ==
-    //         0) {
-    //       openSoundsNotifications();
-    //     }
-    //   }
-    //   setState(() {});
-    // }
     super.didChangeAppLifecycleState(state);
   }
 
