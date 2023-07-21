@@ -32,6 +32,7 @@ class _StartCounterPageState extends State<StartCounterPage>
   late Duration startTimer = duration;
   Timer? timer;
   late bool isPauseTimer = false;
+  late bool beginTimer = false;
   late AntigenTestBloc antigenBloc;
   DateTime? appResumedTime;
 
@@ -39,8 +40,8 @@ class _StartCounterPageState extends State<StartCounterPage>
   void initState() {
     antigenBloc = BlocProvider.of<AntigenTestBloc>(context);
     final stateAntigen = BlocProvider.of<AntigenTestBloc>(context).state;
-    duration = Duration(minutes: stateAntigen.testTime ?? 15);
-    startTimer = Duration(minutes: stateAntigen.testTime ?? 15);
+    duration = Duration(minutes: 2);
+    startTimer = Duration(minutes: 2);
     WidgetsBinding.instance.addObserver(this);
     super.initState();
   }
@@ -48,18 +49,19 @@ class _StartCounterPageState extends State<StartCounterPage>
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     if (state == AppLifecycleState.resumed) {
-      if (appResumedTime != null && !isPauseTimer) {
-        DateTime durationPaused = DateTime.now();
+      // if (appResumedTime != null && !isPauseTimer && beginTimer) {
+      //   DateTime durationPaused = DateTime.now();
 
-        final differentDuration = durationPaused.difference(appResumedTime!);
+      //   final differentDuration = durationPaused.difference(appResumedTime!);
 
         // Aca le estoy restanto el tiempo que duro inactivo
-        if (differentDuration < duration) {
-          duration = Duration(seconds: 0);
-        }
-
-        duration += differentDuration;
-      }
+      //   if (duration < differentDuration) {
+      //     duration = Duration(seconds: 0);
+      //   } else {
+      //     duration -= differentDuration;
+      //   }
+      //   startTime(context);
+      // }
       if (NavigatorKey.navigatorKey.currentState != null) {
         if (BlocProvider.of<AntigenTestBloc>(
                     NavigatorKey.navigatorKey.currentState!.context)
@@ -73,9 +75,10 @@ class _StartCounterPageState extends State<StartCounterPage>
     }
     if (state == AppLifecycleState.inactive ||
         state == AppLifecycleState.paused) {
-      if (state == AppLifecycleState.paused) {
-        appResumedTime = DateTime.now();
-      }
+      // timer!.cancel();
+      // if (state == AppLifecycleState.paused) {
+      //   appResumedTime = DateTime.now();
+      // }
       if (NavigatorKey.navigatorKey.currentState != null) {
         if (BlocProvider.of<AntigenTestBloc>(
                     NavigatorKey.navigatorKey.currentState!.context)
@@ -159,6 +162,7 @@ class _StartCounterPageState extends State<StartCounterPage>
     return Column(
       children: [
         isRunning
+        // beginTimer
             ? buildButtonsRunning()
             : MainButtonWidget(
                 buttonString: "start_counter_text_button_start_timer",
@@ -218,7 +222,8 @@ class _StartCounterPageState extends State<StartCounterPage>
 
   void startTime(BuildContext context) {
     setState(() {
-      if (isPauseTimer) isPauseTimer = !isPauseTimer;
+      if (isPauseTimer) isPauseTimer = false;
+      beginTimer = true;
       timer = Timer.periodic(
           const Duration(seconds: 1), (timer) => decreaseTime(context));
     });
@@ -229,6 +234,7 @@ class _StartCounterPageState extends State<StartCounterPage>
 
     final seconds = duration.inSeconds + decreaseTime;
     if (seconds < 0) {
+      beginTimer = false;
       timer?.cancel();
       openSoundsNotifications();
       Navigator.pushNamed(context, "uploadResult");
