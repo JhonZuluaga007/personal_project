@@ -40,8 +40,8 @@ class _StartCounterPageState extends State<StartCounterPage>
   void initState() {
     antigenBloc = BlocProvider.of<AntigenTestBloc>(context);
     final stateAntigen = BlocProvider.of<AntigenTestBloc>(context).state;
-    duration = Duration(minutes: 2);
-    startTimer = Duration(minutes: 2);
+    duration = Duration(minutes: stateAntigen.testTime ?? 15);
+    startTimer = Duration(minutes: stateAntigen.testTime ?? 15);
     WidgetsBinding.instance.addObserver(this);
     super.initState();
   }
@@ -49,19 +49,20 @@ class _StartCounterPageState extends State<StartCounterPage>
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     if (state == AppLifecycleState.resumed) {
-      // if (appResumedTime != null && !isPauseTimer && beginTimer) {
-      //   DateTime durationPaused = DateTime.now();
+      if (appResumedTime != null && !isPauseTimer && beginTimer) {
+        DateTime durationPaused = DateTime.now();
 
-      //   final differentDuration = durationPaused.difference(appResumedTime!);
+        final differentDuration = durationPaused.difference(appResumedTime!);
 
-        // Aca le estoy restanto el tiempo que duro inactivo
-      //   if (duration < differentDuration) {
-      //     duration = Duration(seconds: 0);
-      //   } else {
-      //     duration -= differentDuration;
-      //   }
-      //   startTime(context);
-      // }
+        //Aca le estoy restanto el tiempo que duro inactivo
+        if (duration < differentDuration) {
+          duration = Duration(seconds: 0);
+        } else {
+          duration -= differentDuration;
+        }
+
+        startTime(context);
+      }
       if (NavigatorKey.navigatorKey.currentState != null) {
         if (BlocProvider.of<AntigenTestBloc>(
                     NavigatorKey.navigatorKey.currentState!.context)
@@ -75,10 +76,10 @@ class _StartCounterPageState extends State<StartCounterPage>
     }
     if (state == AppLifecycleState.inactive ||
         state == AppLifecycleState.paused) {
-      // timer!.cancel();
-      // if (state == AppLifecycleState.paused) {
-      //   appResumedTime = DateTime.now();
-      // }
+      timer!.cancel();
+      if (state == AppLifecycleState.paused) {
+        appResumedTime = DateTime.now();
+      }
       if (NavigatorKey.navigatorKey.currentState != null) {
         if (BlocProvider.of<AntigenTestBloc>(
                     NavigatorKey.navigatorKey.currentState!.context)
@@ -158,11 +159,9 @@ class _StartCounterPageState extends State<StartCounterPage>
 
   Widget buildButtons() {
     final wColor = ThemesIdx20();
-    final isRunning = timer == null ? false : timer!.isActive;
     return Column(
       children: [
-        isRunning
-        // beginTimer
+        beginTimer
             ? buildButtonsRunning()
             : MainButtonWidget(
                 buttonString: "start_counter_text_button_start_timer",
@@ -182,14 +181,12 @@ class _StartCounterPageState extends State<StartCounterPage>
     final width = MediaQuery.of(context).size.width;
     final wColor = ThemesIdx20();
 
-    final isRunning = timer == null ? false : timer!.isActive;
-
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         MainButtonWidget(
             width: width * 0.3,
-            buttonString: isRunning
+            buttonString: beginTimer
                 ? "start_counter_text_button_pause"
                 : "start_counter_text_button_continue",
             textColor: wColor.mapColors["S800"],
@@ -247,6 +244,7 @@ class _StartCounterPageState extends State<StartCounterPage>
   void pauseTime() {
     setState(() {
       isPauseTimer = true;
+      beginTimer = false;
       timer?.cancel();
     });
     antigenBloc.add(AntigenTestTimeEvent(testTime: duration.inMinutes));
