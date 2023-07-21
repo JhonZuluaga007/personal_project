@@ -57,7 +57,7 @@ class _StartCounterPageState extends State<StartCounterPage>
         if (differentDuration < duration) {
           duration = Duration(seconds: 0);
         }
-        
+
         duration += differentDuration;
       }
       if (NavigatorKey.navigatorKey.currentState != null) {
@@ -73,6 +73,9 @@ class _StartCounterPageState extends State<StartCounterPage>
     }
     if (state == AppLifecycleState.inactive ||
         state == AppLifecycleState.paused) {
+      if (state == AppLifecycleState.paused) {
+        appResumedTime = DateTime.now();
+      }
       if (NavigatorKey.navigatorKey.currentState != null) {
         if (BlocProvider.of<AntigenTestBloc>(
                     NavigatorKey.navigatorKey.currentState!.context)
