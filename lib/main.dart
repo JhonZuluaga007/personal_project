@@ -1,5 +1,7 @@
 import 'package:Tellme/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:Tellme/features/auth/presentation/bloc/helper_tools_bloc.dart';
+import 'package:Tellme/features/home/page/covid_19_test/presentation/page/practice_count_down.dart';
+import 'package:Tellme/features/home/page/covid_19_test/providers/count_down_provider.dart';
 import 'package:Tellme/features/support/presentation/bloc/support_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -25,6 +27,7 @@ import 'package:Tellme/navigationBar/bloc/navigation_bar_bloc.dart';
 import 'package:Tellme/navigationBar/navigation_bar_widget.dart';
 import 'package:Tellme/features/home/page/home_page.dart';
 import 'package:Tellme/onboarding/pages/intro_onboarding_page.dart';
+import 'package:provider/provider.dart';
 
 import 'app_localizations.dart';
 import 'config/helpers/injector/injector.dart';
@@ -49,7 +52,8 @@ class MyApp extends StatelessWidget {
           BlocProvider(create: (_) => AntigenTestBloc()),
           BlocProvider(create: (_) => PcrBloc()),
           BlocProvider(create: (_) => HelperToolsBloc()),
-          BlocProvider(create: (_) => SupportBloc())
+          BlocProvider(create: (_) => SupportBloc()),
+          ChangeNotifierProvider(create: ((_) => CountdownProvider()))
         ],
         child: MaterialApp(
           builder: (context, child) {
@@ -85,7 +89,7 @@ class MyApp extends StatelessWidget {
             return Locale(locale.languageCode.toString());
           },
           supportedLocales: AppLocalizations.supportedLocales,
-          initialRoute: "splash",
+          initialRoute: "practiceCount",
           routes: {
             "splash": (_) => const SplashScreenPage(),
             "onboarding": (_) => const IntroOnboardingPage(),
@@ -98,6 +102,7 @@ class MyApp extends StatelessWidget {
             "selfTestQuestions": (_) => const QuestionsAntigenPage(),
             "instructionPage": (_) => const InstructionsPage(),
             "startCounter": (_) => const StartCounterPage(timerValue: 10),
+            "practiceCount": (_) => PracticeCountDown(),
             "uploadResult": (_) => const UploadResultPage(),
             "uploadFinalResult": (_) => const UploadFinalResultPage(),
             "pcrInfo": (_) => const PcrRegisterPage(),

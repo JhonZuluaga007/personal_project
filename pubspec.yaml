@@ -43,6 +43,7 @@ dependencies:
   kiwi: ^4.0.3
   image_picker: ^0.8.6
   path_provider: ^2.0.11
+  provider: ^6.0.5  
   either_dart: ^0.3.0
   qr_flutter: ^4.0.0
   scan: ^1.6.0
