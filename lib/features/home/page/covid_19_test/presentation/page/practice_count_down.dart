@@ -9,16 +9,50 @@ class PracticeCountDown extends StatefulWidget {
   State<PracticeCountDown> createState() => _PracticeCountDownState();
 }
 
-class _PracticeCountDownState extends State<PracticeCountDown> {
+class _PracticeCountDownState extends State<PracticeCountDown>
+    with WidgetsBindingObserver {
+  late CountdownProvider countdownProvider;
+
+  @override
+  void initState() {
+    WidgetsBinding.instance.addObserver(this);
+    super.initState();
+  }
+
+  @override
+  void didChangeDependencies() {
+    countdownProvider = Provider.of<CountdownProvider>(context);
+    super.didChangeDependencies();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    print(state);
+    if (state == AppLifecycleState.inactive ||
+        state == AppLifecycleState.paused) {
+      countdownProvider.startStopTimer();
+    }
+    super.didChangeAppLifecycleState(state);
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    final countdownProvider = Provider.of<CountdownProvider>(context);
-
     return Scaffold(
       appBar: AppBar(
         title: Text("Prueba counter"),
         actions: [
-          IconButton(onPressed: () {}, icon: Icon(Icons.restore)),
+          IconButton(
+              onPressed: () {
+                countdownProvider
+                    .resetCountdownDuration(const Duration(seconds: 75));
+              },
+              icon: Icon(Icons.restore)),
         ],
       ),
       body: Center(

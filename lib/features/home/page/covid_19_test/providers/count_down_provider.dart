@@ -1,22 +1,28 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 class CountdownProvider extends ChangeNotifier {
   Duration duration = const Duration(seconds: 75);
   bool isRunning = false;
 
-  void startStopTimer() {
-    if (!isRunning) {
-      _startTimer(duration.inSeconds);
-    } else {
-      // pausar timer
-    }
+  StreamSubscription<int>? _tickSubscription;
 
-    isRunning = !isRunning;
+  void startStopTimer() {
+    // if (!isRunning) {
+       _startTimer(duration.inSeconds);
+    // } else {
+    //   _tickSubscription?.pause();
+    // }
+
+    // isRunning = !isRunning;
     notifyListeners();
   }
 
   void _startTimer(int seconds) {
-    Stream<int>.periodic(const Duration(seconds: 1), (sec) {
+    _tickSubscription?.cancel();
+    _tickSubscription = Stream<int>.periodic(const Duration(seconds: 1), (sec) {
       return seconds - sec - 1;
     }).take(seconds).listen((timeLeftInSeconds) {
       duration = Duration(seconds: timeLeftInSeconds);
@@ -24,9 +30,18 @@ class CountdownProvider extends ChangeNotifier {
     });
   }
 
+  void resetCountdownDuration(Duration newDuration) {
+    duration = newDuration;
+    _tickSubscription?.cancel();
+    isRunning = false;
+    notifyListeners();
+  }
+
   String get timeLeftString {
-    final minutes = ((duration.inSeconds / 60) % 60).floor().toString().padLeft(2, "0");
-    final seconds = (duration.inSeconds % 60).floor().toString().padLeft(2, "0");
+    final minutes =
+        ((duration.inSeconds / 60) % 60).floor().toString().padLeft(2, "0");
+    final seconds =
+        (duration.inSeconds % 60).floor().toString().padLeft(2, "0");
 
     return "${minutes}:${seconds}";
   }
