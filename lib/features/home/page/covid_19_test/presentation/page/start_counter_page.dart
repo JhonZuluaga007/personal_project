@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../../../config/helpers/navigator_key.dart';
 import '../../../../../../icons/icons.dart';
@@ -35,6 +36,9 @@ class _StartCounterPageState extends State<StartCounterPage>
   late bool beginTimer = false;
   late AntigenTestBloc antigenBloc;
   DateTime? appResumedTime;
+  // Agregar una clave única para identificar el temporizador y el estado de pausa en SharedPreferences
+  static const String timerKey = "timer_duration";
+  static const String isPausedKey = "timer_is_paused";
 
   @override
   void initState() {
@@ -43,7 +47,28 @@ class _StartCounterPageState extends State<StartCounterPage>
     duration = Duration(minutes: stateAntigen.testTime ?? 15);
     startTimer = Duration(minutes: stateAntigen.testTime ?? 15);
     WidgetsBinding.instance.addObserver(this);
+    // Recuperar la duración del temporizador y el estado de pausa desde SharedPreferences
+    _loadTimerData();
     super.initState();
+  }
+
+  void _loadTimerData() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      final int? savedDuration = prefs.getInt(timerKey);
+      final bool? savedIsPaused = prefs.getBool(isPausedKey);
+      if (savedDuration != null && savedIsPaused != null) {
+        duration = Duration(seconds: savedDuration);
+        isPauseTimer = savedIsPaused;
+      }
+    });
+  }
+
+  // Guardar la duración del temporizador y el estado de pausa en SharedPreferences
+  void _saveTimerData() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setInt(timerKey, duration.inSeconds);
+    prefs.setBool(isPausedKey, isPauseTimer);
   }
 
   @override
@@ -79,6 +104,8 @@ class _StartCounterPageState extends State<StartCounterPage>
       timer!.cancel();
       if (state == AppLifecycleState.paused) {
         appResumedTime = DateTime.now();
+          // Guardar la duración del temporizador y el estado de pausa cuando la aplicación pasa a segundo plano o está en pausa
+      _saveTimerData();
       }
       if (NavigatorKey.navigatorKey.currentState != null) {
         if (BlocProvider.of<AntigenTestBloc>(
