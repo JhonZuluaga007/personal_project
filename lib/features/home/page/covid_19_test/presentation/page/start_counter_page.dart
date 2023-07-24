@@ -36,11 +36,13 @@ class _StartCounterPageState extends State<StartCounterPage>
   late bool beginTimer = false;
   late AntigenTestBloc antigenBloc;
   DateTime? appResumedTime;
+  DateTime? appPausedTime;
   // Agregar una clave única para identificar el temporizador y el estado de pausa en SharedPreferences
   static const String timerKey = "timer_duration";
   static const String isPausedKey = "timer_is_paused";
   bool isFirstTime = true;
 
+  bool timeUpdatedInBackground = false;
   // Guardar la duración del temporizador y el estado de pausa en SharedPreferences
   void _saveTimerData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -88,18 +90,22 @@ class _StartCounterPageState extends State<StartCounterPage>
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
-    if (state == AppLifecycleState.resumed) {
-      if (appResumedTime != null && !isPauseTimer && beginTimer) {
-        DateTime durationPaused = DateTime.now();
-        final differentDuration = durationPaused.difference(appResumedTime!);
-        final secondsElapsedInBackground = differentDuration.inSeconds;
-        if (startTime != null) {
-          final remainingTime =
-              _calculateRemainingTime(secondsElapsedInBackground);
-          setState(() {
-            duration = remainingTime;
-          });
-        }
+    if (state == AppLifecycleState.paused) {
+      // La aplicación se pone en pausa
+      appPausedTime = DateTime.now();
+    } else if (state == AppLifecycleState.resumed) {
+      // La aplicación se reanuda
+      if (appPausedTime != null && beginTimer && !timeUpdatedInBackground) {
+        // Calculamos el tiempo transcurrido en segundo plano solo si la bandera es false
+        final durationPaused = DateTime.now().difference(appPausedTime!);
+        final secondsElapsedInBackground = durationPaused.inSeconds;
+        final remainingTime =
+            _calculateRemainingTime(secondsElapsedInBackground);
+        setState(() {
+          duration = remainingTime;
+        });
+        timeUpdatedInBackground =
+            true; // Actualizamos la bandera para evitar acumulación del tiempo
       }
       if (NavigatorKey.navigatorKey.currentState != null) {
         if (BlocProvider.of<AntigenTestBloc>(
