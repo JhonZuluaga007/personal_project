@@ -39,30 +39,7 @@ class _StartCounterPageState extends State<StartCounterPage>
   // Agregar una clave única para identificar el temporizador y el estado de pausa en SharedPreferences
   static const String timerKey = "timer_duration";
   static const String isPausedKey = "timer_is_paused";
-
-  @override
-  void initState() {
-    antigenBloc = BlocProvider.of<AntigenTestBloc>(context);
-    final stateAntigen = BlocProvider.of<AntigenTestBloc>(context).state;
-    duration = Duration(minutes: stateAntigen.testTime ?? 15);
-    startTimer = Duration(minutes: stateAntigen.testTime ?? 15);
-    WidgetsBinding.instance.addObserver(this);
-    // Recuperar la duración del temporizador y el estado de pausa desde SharedPreferences
-    _loadTimerData();
-    super.initState();
-  }
-
-  void _loadTimerData() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    setState(() {
-      final int? savedDuration = prefs.getInt(timerKey);
-      final bool? savedIsPaused = prefs.getBool(isPausedKey);
-      if (savedDuration != null && savedIsPaused != null) {
-        duration = Duration(seconds: savedDuration);
-        isPauseTimer = savedIsPaused;
-      }
-    });
-  }
+  bool isFirstTime = true;
 
   // Guardar la duración del temporizador y el estado de pausa en SharedPreferences
   void _saveTimerData() async {
@@ -71,22 +48,58 @@ class _StartCounterPageState extends State<StartCounterPage>
     prefs.setBool(isPausedKey, isPauseTimer);
   }
 
+  void _clearTimerData() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.remove(timerKey);
+    prefs.remove(isPausedKey);
+  }
+
+  void startTime(BuildContext context) {
+    final stateAntigen = BlocProvider.of<AntigenTestBloc>(context).state;
+
+    setState(() {
+      if (!beginTimer) {
+        duration = Duration(minutes: stateAntigen.testTime ?? 15);
+        _saveTimerData(); // Save the initial timer value in SharedPreferences
+      }
+      if (isPauseTimer) {
+        isPauseTimer = false;
+      }
+      beginTimer = true;
+      timer = Timer.periodic(
+          const Duration(seconds: 1), (timer) => decreaseTime(context));
+    });
+  }
+
+  @override
+  void initState() {
+    antigenBloc = BlocProvider.of<AntigenTestBloc>(context);
+    final stateAntigen = BlocProvider.of<AntigenTestBloc>(context).state;
+    duration = Duration(minutes: stateAntigen.testTime ?? 15);
+    startTimer = Duration(minutes: stateAntigen.testTime ?? 15);
+    WidgetsBinding.instance.addObserver(this);
+    super.initState();
+  }
+
+  Duration _calculateRemainingTime(int secondsElapsedInBackground) {
+    final seconds = duration.inSeconds - secondsElapsedInBackground;
+    return Duration(seconds: seconds);
+  }
+
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     if (state == AppLifecycleState.resumed) {
       if (appResumedTime != null && !isPauseTimer && beginTimer) {
         DateTime durationPaused = DateTime.now();
-
         final differentDuration = durationPaused.difference(appResumedTime!);
-
-        //Aca le estoy restanto el tiempo que duro inactivo
-        if (duration < differentDuration) {
-          duration = Duration(seconds: 0);
-        } else {
-          duration -= differentDuration;
+        final secondsElapsedInBackground = differentDuration.inSeconds;
+        if (startTime != null) {
+          final remainingTime =
+              _calculateRemainingTime(secondsElapsedInBackground);
+          setState(() {
+            duration = remainingTime;
+          });
         }
-
-        startTime(context);
       }
       if (NavigatorKey.navigatorKey.currentState != null) {
         if (BlocProvider.of<AntigenTestBloc>(
@@ -97,26 +110,6 @@ class _StartCounterPageState extends State<StartCounterPage>
           openSoundsNotifications();
         }
       }
-      setState(() {});
-    }
-    if (state == AppLifecycleState.inactive ||
-        state == AppLifecycleState.paused) {
-      timer!.cancel();
-      if (state == AppLifecycleState.paused) {
-        appResumedTime = DateTime.now();
-          // Guardar la duración del temporizador y el estado de pausa cuando la aplicación pasa a segundo plano o está en pausa
-      _saveTimerData();
-      }
-      if (NavigatorKey.navigatorKey.currentState != null) {
-        if (BlocProvider.of<AntigenTestBloc>(
-                    NavigatorKey.navigatorKey.currentState!.context)
-                .state
-                .testTime ==
-            0) {
-          openSoundsNotifications();
-        }
-      }
-      setState(() {});
     }
     super.didChangeAppLifecycleState(state);
   }
@@ -132,6 +125,7 @@ class _StartCounterPageState extends State<StartCounterPage>
   void dispose() {
     WidgetsBinding.instance.removeObserver(this);
     timer!.cancel();
+    _clearTimerData();
     super.dispose();
   }
 
@@ -242,15 +236,6 @@ class _StartCounterPageState extends State<StartCounterPage>
             })
       ],
     );
-  }
-
-  void startTime(BuildContext context) {
-    setState(() {
-      if (isPauseTimer) isPauseTimer = false;
-      beginTimer = true;
-      timer = Timer.periodic(
-          const Duration(seconds: 1), (timer) => decreaseTime(context));
-    });
   }
 
   void decreaseTime(BuildContext context) async {
