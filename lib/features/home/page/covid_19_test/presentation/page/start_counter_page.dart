@@ -88,26 +88,38 @@ class _StartCounterPageState extends State<StartCounterPage>
     return Duration(seconds: seconds);
   }
 
+  // Método para calcular el tiempo transcurrido en segundo plano y actualizar el temporizador
+  void _calculateElapsedTimeInBackground() {
+    final timeNow = DateTime.now();
+    if (appPausedTime != null && beginTimer && !timeUpdatedInBackground) {
+      final durationPaused = timeNow.difference(appPausedTime!);
+      final secondsElapsedInBackground = durationPaused.inSeconds;
+      final remainingTime = _calculateRemainingTime(secondsElapsedInBackground);
+      setState(() {
+        duration = remainingTime;
+      });
+      timeUpdatedInBackground = true;
+    }
+  }
+
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     if (state == AppLifecycleState.paused ||
         state == AppLifecycleState.inactive) {
       _saveTimerData();
       // La aplicación se pone en pausa
+
       appPausedTime = DateTime.now();
     } else if (state == AppLifecycleState.resumed) {
       // La aplicación se reanuda
-      if (appPausedTime != null && beginTimer && !timeUpdatedInBackground) {
-        // Calculamos el tiempo transcurrido en segundo plano solo si la bandera es false
-        final durationPaused = DateTime.now().difference(appPausedTime!);
-        final secondsElapsedInBackground = durationPaused.inSeconds;
-        final remainingTime =
-            _calculateRemainingTime(secondsElapsedInBackground);
-        setState(() {
-          duration = remainingTime;
-        });
-        timeUpdatedInBackground =
-            true; // Actualizamos la bandera para evitar acumulación del tiempo
+      _calculateElapsedTimeInBackground();
+      if (beginTimer) {
+        // Reanudamos el temporizador solo si estaba corriendo antes de ponerse en segundo plano
+        if (!isPauseTimer) {
+          timer?.cancel();
+          timer = Timer.periodic(
+              const Duration(seconds: 1), (timer) => decreaseTime(context));
+        }
       }
       if (NavigatorKey.navigatorKey.currentState != null) {
         if (BlocProvider.of<AntigenTestBloc>(
@@ -123,6 +135,7 @@ class _StartCounterPageState extends State<StartCounterPage>
   }
 
   void openSoundsNotifications() {
+    _clearTimerData();
     AssetsAudioPlayer.newPlayer().open(
       Audio("assets/sounds/alarmp3.mp3"),
       showNotification: false,
