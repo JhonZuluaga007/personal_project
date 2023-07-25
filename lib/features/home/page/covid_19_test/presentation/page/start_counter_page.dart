@@ -90,7 +90,9 @@ class _StartCounterPageState extends State<StartCounterPage>
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
-    if (state == AppLifecycleState.paused || state == AppLifecycleState.inactive) {
+    if (state == AppLifecycleState.paused ||
+        state == AppLifecycleState.inactive) {
+      _saveTimerData();
       // La aplicación se pone en pausa
       appPausedTime = DateTime.now();
     } else if (state == AppLifecycleState.resumed) {
