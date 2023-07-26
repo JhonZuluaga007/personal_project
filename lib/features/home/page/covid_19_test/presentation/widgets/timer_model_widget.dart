@@ -164,8 +164,16 @@ class TimerModel extends ChangeNotifier {
     _isRunning = false;
     _isPauseTimer = false;
     notifyListeners();
-   
+
+    // Realiza la navegación aquí cuando el temporizador llega a 0
+    openSoundsNotifications();
+    Navigator.pushNamed(context, "uploadResult");
   }
 
-
+  void openSoundsNotifications() {
+    AssetsAudioPlayer.newPlayer().open(
+      Audio("assets/sounds/alarmp3.mp3"),
+      showNotification: false,
+    );
+  }
 }

@@ -1495,7 +1495,7 @@ class StartCounterPage extends StatefulWidget {
 class _StartCounterPageState extends State<StartCounterPage>
     with WidgetsBindingObserver {
   final ScrollController scrollControllerCounter = ScrollController();
-
+  bool _isAlarmTriggered = false;
   @override
   void initState() {
     super.initState();
@@ -1505,7 +1505,6 @@ class _StartCounterPageState extends State<StartCounterPage>
   @override
   void dispose() {
     WidgetsBinding.instance.removeObserver(this);
-    context.read<TimerModel>().stop(context);
 
     super.dispose();
   }
@@ -1517,7 +1516,13 @@ class _StartCounterPageState extends State<StartCounterPage>
       context.read<TimerModel>().pauseTime();
     } else if (state == AppLifecycleState.resumed) {
       context.read<TimerModel>().resumeTime(context);
-      
+      if (BlocProvider.of<AntigenTestBloc>(
+                  NavigatorKey.navigatorKey.currentState!.context)
+              .state
+              .testTime ==
+          0) {
+        openSoundsNotifications();
+      }
     }
     super.didChangeAppLifecycleState(state);
   }
@@ -1534,13 +1539,6 @@ class _StartCounterPageState extends State<StartCounterPage>
         final _timerModel =
             context.watch<TimerModel>(); // Obtener el TimerModel del provider
         // Actualizar la interfaz de usuario cuando el temporizador llega a 0 y se detiene
-        if (_timerModel.remainingMinutes == 0 &&
-            _timerModel.remainingSeconds == 0 
-           ) {
-          _timerModel.stop(context);
-          openSoundsNotifications();
-          Navigator.pushNamed(context, "uploadResult");
-        }
 
         return Scaffold(
           appBar: AppBar(
