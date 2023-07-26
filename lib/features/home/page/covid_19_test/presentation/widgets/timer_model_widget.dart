@@ -76,6 +76,7 @@
 // }
 
 import 'dart:async';
+import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
@@ -105,7 +106,7 @@ class TimerModel extends ChangeNotifier {
   int get remainingMinutes => _duration.inMinutes;
   int get remainingSeconds => _duration.inSeconds % 60;
 
-  void start() {
+  void start(BuildContext context) {
     if (!_isRunning) {
       _isRunning = true;
       isPauseTimer = false;
@@ -114,7 +115,7 @@ class TimerModel extends ChangeNotifier {
           _duration = _duration - Duration(seconds: 1);
           notifyListeners();
         } else {
-          stop();
+          stop(context);
         }
       });
       notifyListeners();
@@ -130,7 +131,7 @@ class TimerModel extends ChangeNotifier {
     }
   }
 
-  void resumeTime() {
+  void resumeTime(BuildContext context) {
     if (!_isRunning && isPauseTimer) {
       // Corregir aquí
       _isRunning = true;
@@ -140,7 +141,7 @@ class TimerModel extends ChangeNotifier {
           _duration = _duration - Duration(seconds: 1);
           notifyListeners();
         } else {
-          stop();
+          stop(context);
         }
       });
       notifyListeners();
@@ -158,10 +159,13 @@ class TimerModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void stop() {
+  void stop(BuildContext context) {
     _timer.cancel();
     _isRunning = false;
     _isPauseTimer = false;
     notifyListeners();
+   
   }
+
+
 }

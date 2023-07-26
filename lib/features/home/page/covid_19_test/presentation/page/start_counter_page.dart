@@ -1505,7 +1505,7 @@ class _StartCounterPageState extends State<StartCounterPage>
   @override
   void dispose() {
     WidgetsBinding.instance.removeObserver(this);
-    context.read<TimerModel>().stop();
+    context.read<TimerModel>().stop(context);
 
     super.dispose();
   }
@@ -1516,16 +1516,8 @@ class _StartCounterPageState extends State<StartCounterPage>
         state == AppLifecycleState.inactive) {
       context.read<TimerModel>().pauseTime();
     } else if (state == AppLifecycleState.resumed) {
-      context.read<TimerModel>().resumeTime();
-      if (NavigatorKey.navigatorKey.currentState != null) {
-        if (BlocProvider.of<AntigenTestBloc>(
-                    NavigatorKey.navigatorKey.currentState!.context)
-                .state
-                .testTime ==
-            0) {
-          openSoundsNotifications();
-        }
-      }
+      context.read<TimerModel>().resumeTime(context);
+      
     }
     super.didChangeAppLifecycleState(state);
   }
@@ -1541,6 +1533,14 @@ class _StartCounterPageState extends State<StartCounterPage>
       builder: (context, _) {
         final _timerModel =
             context.watch<TimerModel>(); // Obtener el TimerModel del provider
+        // Actualizar la interfaz de usuario cuando el temporizador llega a 0 y se detiene
+        if (_timerModel.remainingMinutes == 0 &&
+            _timerModel.remainingSeconds == 0 
+           ) {
+          _timerModel.stop(context);
+          openSoundsNotifications();
+          Navigator.pushNamed(context, "uploadResult");
+        }
 
         return Scaffold(
           appBar: AppBar(
@@ -1639,7 +1639,7 @@ class _StartCounterPageState extends State<StartCounterPage>
             buttonColor: wColor.mapColors["P01"],
             borderColor: wColor.mapColors["S800"],
             onPressed: () {
-              timerModel.start();
+              timerModel.start(context);
             },
           ),
         if (timerModel.isRunning && !timerModel.isPauseTimer)
@@ -1669,7 +1669,7 @@ class _StartCounterPageState extends State<StartCounterPage>
               print('pausar');
               print(timerModel.isRunning);
             } else {
-              timerModel.resumeTime();
+              timerModel.resumeTime(context);
             }
           },
         ),
@@ -1781,6 +1781,5 @@ class _StartCounterPageState extends State<StartCounterPage>
       Audio("assets/sounds/alarmp3.mp3"),
       showNotification: false,
     );
-    Navigator.pushNamed(context, "uploadResult");
   }
 }
