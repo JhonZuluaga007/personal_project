@@ -1005,16 +1005,14 @@
 ///
 ///
 import 'dart:async';
+
 import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
+import 'package:flutter_foreground_plugin/flutter_foreground_plugin.dart';
 import '../../../../../../common_ui/common_widgets/buttons/main_button_widget.dart';
 import '../../../../../../common_ui/common_widgets/text/text_widget.dart';
-import '../../../../../../config/helpers/navigator_key.dart';
 import '../../../../../../config/theme/theme.dart';
 import '../../../../../../icons/icons.dart';
 import '../../../../../antigen/presentation/bloc/antigen_test_bloc.dart';
@@ -1495,7 +1493,6 @@ class StartCounterPage extends StatefulWidget {
 class _StartCounterPageState extends State<StartCounterPage>
     with WidgetsBindingObserver {
   final ScrollController scrollControllerCounter = ScrollController();
-  bool _isAlarmTriggered = false;
   @override
   void initState() {
     super.initState();
@@ -1509,20 +1506,17 @@ class _StartCounterPageState extends State<StartCounterPage>
     super.dispose();
   }
 
+  int _backgroundTime = 0;
+
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     if (state == AppLifecycleState.paused ||
         state == AppLifecycleState.inactive) {
+      // La aplicación está en pausa
       context.read<TimerModel>().pauseTime();
     } else if (state == AppLifecycleState.resumed) {
+      // La aplicación se reanudó desde pausa o inactividad
       context.read<TimerModel>().resumeTime(context);
-      if (BlocProvider.of<AntigenTestBloc>(
-                  NavigatorKey.navigatorKey.currentState!.context)
-              .state
-              .testTime ==
-          0) {
-        openSoundsNotifications();
-      }
     }
     super.didChangeAppLifecycleState(state);
   }

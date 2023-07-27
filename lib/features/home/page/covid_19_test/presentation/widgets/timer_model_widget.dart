@@ -79,9 +79,7 @@ import 'dart:async';
 import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:provider/provider.dart';
 
-import '../../../../../../config/helpers/navigator_key.dart';
 import '../../../../../antigen/presentation/bloc/antigen_test_bloc.dart';
 
 class TimerModel extends ChangeNotifier {
@@ -122,20 +120,32 @@ class TimerModel extends ChangeNotifier {
     }
   }
 
+  int _backgroundTime = 0;
+
+  // ... (código existente)
+
+  void updateBackgroundTime(int timeInSeconds) {
+    _backgroundTime = timeInSeconds;
+  }
+
+  // ... (código existente)
+
+  int get remainingSecondsWithBackgroundTime =>
+      _duration.inSeconds - _backgroundTime;
+
   void pauseTime() {
     if (_isRunning) {
       _timer.cancel();
       _isRunning = false;
-      isPauseTimer = true; // Corregir aquí
+      _isPauseTimer = true;
       notifyListeners();
     }
   }
 
   void resumeTime(BuildContext context) {
-    if (!_isRunning && isPauseTimer) {
-      // Corregir aquí
+    if (!_isRunning && _isPauseTimer) {
       _isRunning = true;
-      isPauseTimer = false; // Corregir aquí
+      _isPauseTimer = false;
       _timer = Timer.periodic(Duration(seconds: 1), (timer) {
         if (_duration.inSeconds > 0) {
           _duration = _duration - Duration(seconds: 1);
