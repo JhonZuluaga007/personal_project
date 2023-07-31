@@ -100,7 +100,7 @@ class MyApp extends StatelessWidget {
             "reset": (_) => const ResetPasswordPage(),
             "selfTestQuestions": (_) => const QuestionsAntigenPage(),
             "instructionPage": (_) => const InstructionsPage(),
-            "startCounter": (_) => const StartCounterPage(timerValue: 15),
+            "startCounter": (_) => const StartCounterPage(timerValue: Duration(minutes: 15)),
             "uploadResult": (_) => const UploadResultPage(),
             "uploadFinalResult": (_) => const UploadFinalResultPage(),
             "pcrInfo": (_) => const PcrRegisterPage(),

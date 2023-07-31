@@ -133,51 +133,51 @@
 //   }
 
 // //TODO WORKING METHODS
-//   // // Método para calcular el tiempo transcurrido en segundo plano y actualizar el temporizador
-//   // void _calculateElapsedTimeInBackground() {
-//   //   final timeNow = DateTime.now();
-//   //   if (appPausedTime != null && beginTimer && !timeUpdatedInBackground) {
-//   //     final durationPaused = timeNow.difference(appPausedTime!);
-//   //     final secondsElapsedInBackground = durationPaused.inSeconds;
-//   //     final remainingTime = _calculateRemainingTime(secondsElapsedInBackground);
-//   //     setState(() {
-//   //       duration = remainingTime;
-//   //     });
-//   // timeUpdatedInBackground = true;
-//   //   }
-//   // }
+// // Método para calcular el tiempo transcurrido en segundo plano y actualizar el temporizador
+// void _calculateElapsedTimeInBackground() {
+//   final timeNow = DateTime.now();
+//   if (appPausedTime != null && beginTimer && !timeUpdatedInBackground) {
+//     final durationPaused = timeNow.difference(appPausedTime!);
+//     final secondsElapsedInBackground = durationPaused.inSeconds;
+//     final remainingTime = _calculateRemainingTime(secondsElapsedInBackground);
+//     setState(() {
+//       duration = remainingTime;
+//     });
+// timeUpdatedInBackground = true;
+//   }
+// }
 
-//   // @override
-//   // void didChangeAppLifecycleState(AppLifecycleState state) {
-//   //   if (state == AppLifecycleState.paused ||
-//   //       state == AppLifecycleState.inactive) {
-//   // _saveTimerData();
-//   //     // La aplicación se pone en pausa
+// @override
+// void didChangeAppLifecycleState(AppLifecycleState state) {
+//   if (state == AppLifecycleState.paused ||
+//       state == AppLifecycleState.inactive) {
+// _saveTimerData();
+// La aplicación se pone en pausa
 
-//   //     appPausedTime = DateTime.now();
-//   //   } else if (state == AppLifecycleState.resumed) {
-//   //     // La aplicación se reanuda
-//   //     _calculateElapsedTimeInBackground();
-//   //     if (beginTimer) {
-//   //       // Reanudamos el temporizador solo si estaba corriendo antes de ponerse en segundo plano
-//   //       if (!isPauseTimer) {
-//   //         timer?.cancel();
-//   //         timer = Timer.periodic(
-//   //             const Duration(seconds: 1), (timer) => decreaseTime(context));
-//   //       }
-//   //     }
+//     appPausedTime = DateTime.now();
+//   } else if (state == AppLifecycleState.resumed) {
+//     // La aplicación se reanuda
+//     _calculateElapsedTimeInBackground();
+//     if (beginTimer) {
+//       // Reanudamos el temporizador solo si estaba corriendo antes de ponerse en segundo plano
+//       if (!isPauseTimer) {
+//         timer?.cancel();
+//         timer = Timer.periodic(
+//             const Duration(seconds: 1), (timer) => decreaseTime(context));
+//       }
+//     }
 // if (NavigatorKey.navigatorKey.currentState != null) {
-//   //   if (BlocProvider.of<AntigenTestBloc>(
-//   //               NavigatorKey.navigatorKey.currentState!.context)
-//   //           .state
-//   //           .testTime ==
-//   //       0) {
-//   //     openSoundsNotifications();
-//   //   }
-//   //     }
-//   //   }
-//   //   super.didChangeAppLifecycleState(state);
-//   // }
+//   if (BlocProvider.of<AntigenTestBloc>(
+//               NavigatorKey.navigatorKey.currentState!.context)
+//           .state
+//           .testTime ==
+//       0) {
+//     openSoundsNotifications();
+//   }
+//     }
+//   }
+//   super.didChangeAppLifecycleState(state);
+// }
 
 //   void openSoundsNotifications() {
 //     // _clearTimerData();
@@ -267,19 +267,19 @@
 //                     startTime(context);
 //                   });
 //                 }),
-//         // beginTimer
-//         //     ? buildButtonsRunning()
-//         //     : MainButtonWidget(
-//         //         buttonString: "start_counter_text_button_start_timer",
-//         //         textColor: wColor.mapColors["S800"],
-//         //         buttonColor: wColor.mapColors["P01"],
-//         //         borderColor: wColor.mapColors["S800"],
-//         //         onPressed: () {
-//         //           setState(() {
-//         //             // startTime(context);
-//         //             timerModel.start();
-//         //           });
-//         //         }),
+// beginTimer
+//     ? buildButtonsRunning()
+//     : MainButtonWidget(
+//         buttonString: "start_counter_text_button_start_timer",
+//         textColor: wColor.mapColors["S800"],
+//         buttonColor: wColor.mapColors["P01"],
+//         borderColor: wColor.mapColors["S800"],
+//         onPressed: () {
+//           setState(() {
+//             // startTime(context);
+//             timerModel.start();
+//           });
+//         }),
 //       ],
 //     );
 //   }
@@ -350,20 +350,20 @@
 //     setState(() {});
 //   }
 // //TODO WORKING METHODS
-//   // void pauseTime() {
-//   //   setState(() {
-//   //     isPauseTimer = true;
-//   //     beginTimer = false;
-//   //     timer?.cancel();
-//   //   });
-//   //   antigenBloc.add(AntigenTestTimeEvent(testTime: duration.inMinutes));
-//   // }
+// void pauseTime() {
+//   setState(() {
+//     isPauseTimer = true;
+//     beginTimer = false;
+//     timer?.cancel();
+//   });
+//   antigenBloc.add(AntigenTestTimeEvent(testTime: duration.inMinutes));
+// }
 
-//   // void resetTime() {
-//   //   setState(() {
-//   //     duration = Duration(seconds: startTimer.inSeconds);
-//   //   });
-//   // }
+// void resetTime() {
+//   setState(() {
+//     duration = Duration(seconds: startTimer.inSeconds);
+//   });
+// }
 
 //   Widget buildTime() {
 //     final height = MediaQuery.of(context).size.height;
@@ -1006,11 +1006,11 @@
 ///
 import 'dart:async';
 
-import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_foreground_plugin/flutter_foreground_plugin.dart';
+// import 'package:flutter_foreground_plugin/flutter_foreground_plugin.dart';
+
 import '../../../../../../common_ui/common_widgets/buttons/main_button_widget.dart';
 import '../../../../../../common_ui/common_widgets/text/text_widget.dart';
 import '../../../../../../config/theme/theme.dart';
@@ -1475,7 +1475,7 @@ import '../widgets/timer_model_widget.dart';
 // }
 
 class StartCounterPage extends StatefulWidget {
-  final int? timerValue;
+  final Duration? timerValue;
   final double valueLinear;
   final int maxValueLinear;
 
@@ -1493,30 +1493,23 @@ class StartCounterPage extends StatefulWidget {
 class _StartCounterPageState extends State<StartCounterPage>
     with WidgetsBindingObserver {
   final ScrollController scrollControllerCounter = ScrollController();
+
+  late Duration startDuration;
   @override
   void initState() {
-    super.initState();
     WidgetsBinding.instance.addObserver(this);
+    super.initState();
   }
-
-  @override
-  void dispose() {
-    WidgetsBinding.instance.removeObserver(this);
-
-    super.dispose();
-  }
-
-  int _backgroundTime = 0;
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
-    if (state == AppLifecycleState.paused ||
-        state == AppLifecycleState.inactive) {
-      // La aplicación está en pausa
-      context.read<TimerModel>().pauseTime();
-    } else if (state == AppLifecycleState.resumed) {
-      // La aplicación se reanudó desde pausa o inactividad
-      context.read<TimerModel>().resumeTime(context);
+    if (state == AppLifecycleState.paused) {
+      if (!context.read<TimerModel>().isPaused)
+        context.read<TimerModel>().pause();
+    }
+    if (state == AppLifecycleState.resumed) {
+      if (!context.read<TimerModel>().isPaused)
+        context.read<TimerModel>().resume();
     }
     super.didChangeAppLifecycleState(state);
   }
@@ -1533,6 +1526,7 @@ class _StartCounterPageState extends State<StartCounterPage>
         final _timerModel =
             context.watch<TimerModel>(); // Obtener el TimerModel del provider
         // Actualizar la interfaz de usuario cuando el temporizador llega a 0 y se detiene
+        startDuration = Duration(minutes: stateAntigen.testTime!);
 
         return Scaffold(
           appBar: AppBar(
@@ -1585,6 +1579,10 @@ class _StartCounterPageState extends State<StartCounterPage>
     final height = MediaQuery.of(context).size.height;
     final wColor = ThemesIdx20();
 
+    String minutes = timerModel.remainingMinutes.toString().padLeft(2, '0');
+    String seconds =
+        (timerModel.duration.inSeconds % 60).toString().padLeft(2, '0');
+
     return SizedBox(
       width: width * 0.62,
       height: height * 0.34,
@@ -1592,7 +1590,7 @@ class _StartCounterPageState extends State<StartCounterPage>
         fit: StackFit.expand,
         children: [
           CircularProgressIndicator(
-            value: timerModel.remainingMinutes / (widget.timerValue ?? 15),
+            value: timerModel.duration.inSeconds / startDuration.inSeconds,
             valueColor: AlwaysStoppedAnimation(wColor.mapColors["Pink"]!),
             strokeWidth: 21,
             backgroundColor: Colors.grey[300],
@@ -1602,7 +1600,7 @@ class _StartCounterPageState extends State<StartCounterPage>
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  "${timerModel.remainingMinutes.toString().padLeft(2, '0')}:${(timerModel.duration.inSeconds % 60).toString().padLeft(2, '0')}",
+                  "${minutes}:${seconds}",
                   style: TextStyle(fontSize: 70, fontWeight: FontWeight.w400),
                 ),
                 SizedBox(height: height * 0.019),
@@ -1624,17 +1622,17 @@ class _StartCounterPageState extends State<StartCounterPage>
 
     return Column(
       children: [
-        if (!timerModel.isRunning || timerModel.isPauseTimer)
+        if (!timerModel.isRunning)
           MainButtonWidget(
             buttonString: "start_counter_text_button_start_timer",
             textColor: wColor.mapColors["S800"],
             buttonColor: wColor.mapColors["P01"],
             borderColor: wColor.mapColors["S800"],
             onPressed: () {
-              timerModel.start(context);
+              timerModel.start();
             },
           ),
-        if (timerModel.isRunning && !timerModel.isPauseTimer)
+        if (timerModel.isRunning && !timerModel.isPaused)
           buildButtonsRunning(timerModel),
       ],
     );
@@ -1649,19 +1647,17 @@ class _StartCounterPageState extends State<StartCounterPage>
       children: [
         MainButtonWidget(
           width: width * 0.3,
-          buttonString: timerModel.isRunning
-              ? "start_counter_text_button_pause"
-              : "start_counter_text_button_continue",
+          buttonString: "start_counter_text_button_pause",
           textColor: wColor.mapColors["S800"],
           borderColor: wColor.mapColors["S800"],
           buttonColor: wColor.mapColors["P01"],
           onPressed: () {
             if (timerModel.isRunning) {
-              timerModel.pauseTime();
+              timerModel.pause();
               print('pausar');
               print(timerModel.isRunning);
             } else {
-              timerModel.resumeTime(context);
+              timerModel.resume();
             }
           },
         ),
@@ -1765,13 +1761,6 @@ class _StartCounterPageState extends State<StartCounterPage>
           ),
         );
       },
-    );
-  }
-
-  void openSoundsNotifications() {
-    AssetsAudioPlayer.newPlayer().open(
-      Audio("assets/sounds/alarmp3.mp3"),
-      showNotification: false,
     );
   }
 }
