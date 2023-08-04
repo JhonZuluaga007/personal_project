@@ -25,9 +25,11 @@ import 'package:Tellme/navigationBar/bloc/navigation_bar_bloc.dart';
 import 'package:Tellme/navigationBar/navigation_bar_widget.dart';
 import 'package:Tellme/features/home/page/home_page.dart';
 import 'package:Tellme/onboarding/pages/intro_onboarding_page.dart';
+import 'package:provider/provider.dart';
 
 import 'app_localizations.dart';
 import 'config/helpers/injector/injector.dart';
+import 'features/home/page/covid_19_test/presentation/widgets/timer_model_widget.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -49,7 +51,8 @@ class MyApp extends StatelessWidget {
           BlocProvider(create: (_) => AntigenTestBloc()),
           BlocProvider(create: (_) => PcrBloc()),
           BlocProvider(create: (_) => HelperToolsBloc()),
-          BlocProvider(create: (_) => SupportBloc())
+          BlocProvider(create: (_) => SupportBloc()),
+          ChangeNotifierProvider<TimerModel>(create: (_) => TimerModel(15)),
         ],
         child: MaterialApp(
           builder: (context, child) {
@@ -97,7 +100,7 @@ class MyApp extends StatelessWidget {
             "reset": (_) => const ResetPasswordPage(),
             "selfTestQuestions": (_) => const QuestionsAntigenPage(),
             "instructionPage": (_) => const InstructionsPage(),
-            "startCounter": (_) => const StartCounterPage(timerValue: 10),
+            "startCounter": (_) => const StartCounterPage(timerValue: Duration(minutes: 15)),
             "uploadResult": (_) => const UploadResultPage(),
             "uploadFinalResult": (_) => const UploadFinalResultPage(),
             "pcrInfo": (_) => const PcrRegisterPage(),
