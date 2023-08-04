@@ -23,10 +23,10 @@ class TimerModel extends ChangeNotifier {
   bool get isPaused => _isPaused;
   bool get isRunning => _isRunning;
 
-  void start() {
+  void start(BuildContext context) {
     if (_timer == null || !_isRunning) {
       _timer =
-          Timer.periodic(const Duration(seconds: 1), (_) => _decreaseTime());
+          Timer.periodic(const Duration(seconds: 1), (_) => _decreaseTime(context));
       _isRunning = true;
       _isPaused = false;
     }
@@ -42,19 +42,19 @@ class TimerModel extends ChangeNotifier {
     }
   }
 
-  void resume() {
+  void resume(BuildContext context) {
     if (_isPaused) {
       final pausedDuration = DateTime.now().difference(_pauseTime!);
       _isPaused = false;
       _isRunning = true;
       _duration += pausedDuration;
       _timer =
-          Timer.periodic(const Duration(seconds: 1), (_) => _decreaseTime());
+          Timer.periodic(const Duration(seconds: 1), (_) => _decreaseTime(context));
       notifyListeners();
     }
   }
 
-  void stop() {
+  void stop(BuildContext context) {
     _timer?.cancel();
     _isPaused = false;
     _isRunning = false;
@@ -62,6 +62,7 @@ class TimerModel extends ChangeNotifier {
     _duration = Duration();
     notifyListeners();
     openSoundsNotifications();
+    Navigator.pushNamed(context, "uploadResult");
     notifyListeners();
   }
 
@@ -75,12 +76,12 @@ class TimerModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void _decreaseTime() {
+  void _decreaseTime(BuildContext context) {
     if (_duration.inSeconds > 0) {
       _duration = Duration(seconds: _duration.inSeconds - 1);
       notifyListeners();
     } else {
-      stop();
+      stop(context);
     }
   }
 

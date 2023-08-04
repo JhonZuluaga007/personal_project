@@ -1509,7 +1509,7 @@ class _StartCounterPageState extends State<StartCounterPage>
     }
     if (state == AppLifecycleState.resumed) {
       if (!context.read<TimerModel>().isPaused)
-        context.read<TimerModel>().resume();
+        context.read<TimerModel>().resume(context);
     }
     super.didChangeAppLifecycleState(state);
   }
@@ -1629,7 +1629,7 @@ class _StartCounterPageState extends State<StartCounterPage>
             buttonColor: wColor.mapColors["P01"],
             borderColor: wColor.mapColors["S800"],
             onPressed: () {
-              timerModel.start();
+              timerModel.start(context);
             },
           ),
         if (timerModel.isRunning && !timerModel.isPaused)
@@ -1657,7 +1657,7 @@ class _StartCounterPageState extends State<StartCounterPage>
               print('pausar');
               print(timerModel.isRunning);
             } else {
-              timerModel.resume();
+              timerModel.resume(context);
             }
           },
         ),
